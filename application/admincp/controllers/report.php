@@ -636,6 +636,8 @@ class Report extends CI_Controller {
 		$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
 		
 		$this->data['reports'] = $this->reports->brokersearch($keyword);
+		
+		
 		//print_r($this->reports->brokersearch_count($keyword));
 		//echo "<pre>";
 		//print_r($this->data['reports']);
