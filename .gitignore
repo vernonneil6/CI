@@ -1,0 +1,3 @@
+application/admincp/config/database.php
+application/businessadmin/config/database.php
+application/catalog/config/database.php

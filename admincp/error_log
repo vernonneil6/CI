@@ -1,0 +1,69 @@
+[18-Nov-2013 03:09:50 CST6CDT] PHP Fatal error:  Class 'Settings' not found in /home/mxiind/public_html/system/core/Loader.php on line 303
+[26-Nov-2013 00:57:09 CST6CDT] PHP Warning:  POST Content-Length of 19683578 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[26-Nov-2013 02:39:08 CST6CDT] PHP Warning:  POST Content-Length of 8683411 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[27-Nov-2013 04:30:43 CST6CDT] PHP Warning:  POST Content-Length of 12821672 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[28-Nov-2013 01:17:24 CST6CDT] PHP Fatal error:  Call to a member function insert() on a non-object in /home/mxiind/public_html/application/admincp/controllers/coupon.php on line 367
+[02-Dec-2013 03:40:13 CST6CDT] PHP Fatal error:  Class 'Pages' not found in /home/mxiind/public_html/system/core/Loader.php on line 303
+[02-Dec-2013 03:40:14 CST6CDT] PHP Fatal error:  Class 'Pages' not found in /home/mxiind/public_html/system/core/Loader.php on line 303
+[02-Dec-2013 03:40:15 CST6CDT] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting ')' in /home/mxiind/public_html/application/admincp/models/pages.php on line 68
+[04-Dec-2013 04:14:55 CST6CDT] PHP Warning:  POST Content-Length of 19683653 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[04-Dec-2013 04:36:33 CST6CDT] PHP Warning:  POST Content-Length of 19683650 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[04-Dec-2013 06:13:19 CST6CDT] PHP Warning:  POST Content-Length of 19683597 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[05-Dec-2013 00:08:14 CST6CDT] PHP Warning:  POST Content-Length of 19683653 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[05-Dec-2013 00:09:48 CST6CDT] PHP Warning:  POST Content-Length of 19683644 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[05-Dec-2013 00:20:26 CST6CDT] PHP Warning:  POST Content-Length of 9933610 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[05-Dec-2013 00:24:13 CST6CDT] PHP Warning:  POST Content-Length of 19683647 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[05-Dec-2013 04:52:25 CST6CDT] PHP Fatal error:  Class 'PHPExcel_Shared_String' not found in /home/mxiind/public_html/application/admincp/Classes/PHPExcel/Autoloader.php on line 36
+[05-Dec-2013 04:57:50 CST6CDT] PHP Fatal error:  Uncaught exception 'PHPExcel_Writer_Exception' with message 'Can't open ../uploads/my/1386241070.xls. It may be in use or protected.' in /home/mxiind/public_html/application/admincp/Classes/PHPExcel/Shared/OLE/PPS/Root.php:93
+Stack trace:
+#0 /home/mxiind/public_html/application/admincp/Classes/PHPExcel/Writer/Excel5.php(226): PHPExcel_Shared_OLE_PPS_Root->save('../uploads/my/1...')
+#1 /home/mxiind/public_html/application/admincp/controllers/report.php(129): PHPExcel_Writer_Excel5->save('../uploads/my/1...')
+#2 [internal function]: Report->csv('allenable')
+#3 /home/mxiind/public_html/system/core/CodeIgniter.php(359): call_user_func_array(Array, Array)
+#4 /home/mxiind/public_html/admincp/index.php(202): require_once('/home/mxiind/pu...')
+#5 {main}
+  thrown in /home/mxiind/public_html/application/admincp/Classes/PHPExcel/Shared/OLE/PPS/Root.php on line 93
+[11-Dec-2013 01:19:45 CST6CDT] PHP Parse error:  syntax error, unexpected $end in /home/mxiind/public_html/application/admincp/views/coupon.php on line 391
+[11-Dec-2013 01:23:36 CST6CDT] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 77 bytes) in /home/mxiind/public_html/application/admincp/controllers/coupon.php on line 573
+[11-Dec-2013 01:28:50 CST6CDT] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[11-Dec-2013 01:28:54 CST6CDT] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[11-Dec-2013 01:28:58 CST6CDT] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 32 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[11-Dec-2013 01:30:49 CST6CDT] PHP Fatal error:  Allowed memory size of 1572864000 bytes exhausted (tried to allocate 77 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[11-Dec-2013 01:32:20 CST6CDT] PHP Fatal error:  Allowed memory size of 1572864000 bytes exhausted (tried to allocate 77 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[11-Dec-2013 01:32:20 CST6CDT] PHP Fatal error:  Allowed memory size of 1572864000 bytes exhausted (tried to allocate 77 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[11-Dec-2013 01:32:21 CST6CDT] PHP Fatal error:  Allowed memory size of 1572864000 bytes exhausted (tried to allocate 77 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[11-Dec-2013 01:32:21 CST6CDT] PHP Fatal error:  Allowed memory size of 1572864000 bytes exhausted (tried to allocate 77 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[11-Dec-2013 01:32:23 CST6CDT] PHP Fatal error:  Allowed memory size of 1572864000 bytes exhausted (tried to allocate 77 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[11-Dec-2013 01:32:23 CST6CDT] PHP Fatal error:  Allowed memory size of 1572864000 bytes exhausted (tried to allocate 77 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[11-Dec-2013 01:32:23 CST6CDT] PHP Fatal error:  Allowed memory size of 1572864000 bytes exhausted (tried to allocate 77 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[11-Dec-2013 01:32:23 CST6CDT] PHP Fatal error:  Allowed memory size of 1572864000 bytes exhausted (tried to allocate 77 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[11-Dec-2013 10:43:39 CST6CDT] PHP Warning:  POST Content-Length of 11976799 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[13-Dec-2013 21:31:55 CST6CDT] PHP Fatal error:  Allowed memory size of 2621440000 bytes exhausted (tried to allocate 76 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[13-Dec-2013 21:32:53 CST6CDT] PHP Fatal error:  Allowed memory size of 2621440000 bytes exhausted (tried to allocate 76 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[13-Dec-2013 21:34:09 CST6CDT] PHP Fatal error:  Allowed memory size of 2621440000 bytes exhausted (tried to allocate 76 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[13-Dec-2013 21:41:25 CST6CDT] PHP Fatal error:  Allowed memory size of 2621440000 bytes exhausted (tried to allocate 1 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[14-Dec-2013 22:22:28 CST6CDT] PHP Fatal error:  Allowed memory size of 2621440000 bytes exhausted (tried to allocate 32 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[15-Dec-2013 01:27:50 CST6CDT] PHP Fatal error:  Allowed memory size of 2621440000 bytes exhausted (tried to allocate 32 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[15-Dec-2013 01:29:22 CST6CDT] PHP Fatal error:  Allowed memory size of 2621440000 bytes exhausted (tried to allocate 32 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[15-Dec-2013 02:27:06 CST6CDT] PHP Fatal error:  Allowed memory size of 3670016000 bytes exhausted (tried to allocate 79 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[15-Dec-2013 02:28:39 CST6CDT] PHP Fatal error:  Allowed memory size of 3670016000 bytes exhausted (tried to allocate 79 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[15-Dec-2013 02:29:45 CST6CDT] PHP Fatal error:  Allowed memory size of 3670016000 bytes exhausted (tried to allocate 84 bytes) in /home/mxiind/public_html/system/database/drivers/mysql/mysql_result.php on line 152
+[16-Jan-2014 06:04:10 CST6CDT] PHP Fatal error:  Cannot redeclare Reviews::search_review() in /home/mxiind/public_html/application/admincp/models/reviews.php on line 192
+[16-Jan-2014 06:04:12 CST6CDT] PHP Fatal error:  Cannot redeclare Reviews::search_review() in /home/mxiind/public_html/application/admincp/models/reviews.php on line 192
+[16-Jan-2014 06:58:14 CST6CDT] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::count() in /home/mxiind/public_html/application/admincp/models/reviews.php on line 244
+[16-Jan-2014 07:25:02 CST6CDT] PHP Parse error:  syntax error, unexpected $end in /home/mxiind/public_html/application/admincp/views/review.php on line 313
+[24-Jun-2014 01:38:45 CST6CDT] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/mxiind/public_html/application/admincp/models/reports.php on line 98
+[24-Jun-2014 02:25:42 CST6CDT] PHP Fatal error:  Class 'Reports' not found in /home/mxiind/public_html/system/core/Loader.php on line 303
+[25-Jun-2014 06:11:39 CST6CDT] PHP Fatal error:  Cannot redeclare Reports::get_all_removed_reviews() in /home/mxiind/public_html/application/admincp/models/reports.php on line 124
+[25-Jun-2014 06:11:58 CST6CDT] PHP Fatal error:  Cannot redeclare Reports::get_all_removed_reviews() in /home/mxiind/public_html/application/admincp/models/reports.php on line 124
+[25-Jun-2014 06:12:46 CST6CDT] PHP Fatal error:  Cannot redeclare Reports::get_all_removed_reviews() in /home/mxiind/public_html/application/admincp/models/reports.php on line 124
+[21-Jul-2014 22:13:14 CST6CDT] PHP Parse error:  syntax error, unexpected $end in /home/mxiind/public_html/application/admincp/controllers/ad.php on line 296
+[21-Jul-2014 22:13:56 CST6CDT] PHP Parse error:  syntax error, unexpected $end in /home/mxiind/public_html/application/admincp/views/ad.php on line 219
+[21-Jul-2014 22:14:25 CST6CDT] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting ')' in /home/mxiind/public_html/application/admincp/views/ad.php on line 219
+[25-Jul-2014 00:20:53 CST6CDT] PHP Parse error:  syntax error, unexpected $end in /home/mxiind/public_html/application/admincp/views/complaint.php on line 390
+[25-Jul-2014 00:47:44 CST6CDT] PHP Fatal error:  Call to a member function multiple_function() on a non-object in /home/mxiind/public_html/application/admincp/controllers/review.php on line 382
+[25-Jul-2014 01:18:37 CST6CDT] PHP Fatal error:  Call to undefined method Elites::multiple_function() in /home/mxiind/public_html/application/admincp/controllers/elite.php on line 218
+[25-Jul-2014 02:01:26 CST6CDT] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/mxiind/public_html/application/admincp/models/settings.php on line 245
+[10-Aug-2014 04:21:03 CST6CDT] PHP Parse error:  syntax error, unexpected $end in /home/mxiind/public_html/application/admincp/views/solution.php on line 219
+[10-Aug-2014 06:57:36 CST6CDT] PHP Parse error:  syntax error, unexpected $end in /home/mxiind/public_html/application/admincp/views/elite.php on line 260
+[10-Aug-2014 07:04:31 CST6CDT] PHP Parse error:  syntax error, unexpected $end in /home/mxiind/public_html/application/admincp/views/elite.php on line 87

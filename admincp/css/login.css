@@ -1,0 +1,131 @@
+/*  Font size
+ *  ---------
+ */
+
+
+/*
+ *  9px  - .750em          
+ *  10px - .833em
+ *  11px - .917em
+ *  12px - 1em
+ *  13px - 1.083em
+ *  14px - 1.167em
+ *  15px - 1.250em
+ *  16px - 1.333em
+ *  17px - 1.417em
+ *  18px - 1.500em
+ *  19px - 1.583em
+ *  20px - 1.667em
+ *  21px - 1.750em
+ *  22px - 1.833em
+ *  23px - 1.917em
+ *  24px - 2.000em
+ *  30px - 2.500em
+ *  36px - 2.750em
+*/
+
+/*   Basic tags & class
+ *   ---------------
+ */
+html, body, div, p, li, ul, form, set, h1, h2, h3, h4, h5, h6   { margin: 0; padding: 0; list-style: none; }
+.none     { display: none;}
+.hidden   { visibility: hidden;}
+.fl       { float: left !important;}
+.fr       { float: right !important;}
+.left     { text-align: left;}
+.right    { text-align: right;}
+.center   { text-align: center !important;}
+.bold     { font-weight: bold;}
+.italic   { font-style: italic;}
+.nomargin { margin: 0 !important;}
+img       { border: none;}
+a         { outline-style: none; }
+html, body    { height: 100%; }
+body          { letter-spacing: 0em; background: #17316a; }
+ 
+/* -- Links -- */
+a, a:visited, a:active, a:link {  color: #000; text-decoration: underline; outline: none; }
+a:hover                        {  text-decoration: none; }
+
+/* -- Title -- */
+h1, h2 { font-weight: normal; }
+h1         { font-size: 2.750em; margin: 0 0 30px; }
+h2         { font-size: 2em; margin: 0 0 20px; }      
+
+/* Font & color
+ * ------------
+ */
+ 
+html { font-size:100%; }
+body { font: .750em Arial, sans-serif; }
+input, textarea { font: 1em Arial, sans-serif; }
+h1, h2, h3 { color: #201917; }
+
+#content, input, textarea { color: #404040;}
+
+/*  Layout
+ *  ------
+ */
+ 
+#main {
+ 	width: 100%;
+	margin: 0 auto; padding: 200px 0 0 0;
+	text-align: left;
+	position: relative; 
+  background: 0 0 repeat;
+}
+#content {
+  position: relative;
+  margin: 0; 
+  width: 100%;
+  background: #17316a 0 -1px repeat-x; 
+}
+#login { 
+  position: relative;
+  padding-top: 60px;
+  margin: 0 auto;
+  width: 550px; 
+}
+
+/* -- logo -- */
+#logo       { position: absolute; top: -172px; left: -25px; display: block; width: 600px; height: 190px; background: 0 0 no-repeat; z-index: 10; }
+#logo span  { position: absolute; bottom: 20px; left: 196px; width: 179px; height: 35px; display: block; color: #fff; text-align: center; font-size:30px; color:silver;
+
+    
+    
+}
+
+/* -- form col -- */
+.form-col { float: left; }
+.form-col { float: right; }
+
+/* -- formBox -- */
+.formBox                  { position: relative; padding-bottom: 30px; }
+.formBox fieldset         { padding: 0; margin: 0; border: none; }
+
+.formBox label                 { color: #fff; }
+.formBox label.lab             { position: relative; display: block; font-weight: bold; margin: 0 0 6px 0; }
+.formBox label.lab .warning    { position: absolute; top: 0; right: 2px; display: block; width: 16px; height: 16px; background: url(../images/ico-warning.png) 0 0; }
+.formBox input.input           { height:16px; line-height:1em; margin-bottom:-1px; padding:9px 10px 8px; width: 234px; color: #fff; border: none; background: 0 0 no-repeat; }
+.formBox input:focus.input     { background: 0 -33px no-repeat; border-radius: 5px 5px 5px 5px;}
+.formBox input.checkbox        { border:0 none; float:none; margin:0 10px 0 0; width:auto; }
+
+.formBox .form-col        { float: left; height: 60px; margin-bottom: 10px; }
+.formBox .form-col-right  { float: right; }
+.formBox .form-col-check  { padding-top: 10px; height: 50px; }
+.formBox .submit          { width: 111px; height: 33px; font-size: 14px; font-weight: bold; color: #3a3a3a; cursor: pointer; border: none; background: url(../images/bg-submit.gif) 0 0 no-repeat; }
+
+/* -- Form message -- */
+.form-message          { display: block; padding: 10px 20px 10px 8px; margin-bottom: 20px; border: 1px solid; -webkit-border-radius: 6px; border-radius: 6px; -moz-border-radius: 6px; }
+.form-message.correct  { border-color: #a8f383; background: #e4ffd4 url(../images/correct.gif) 10px 11px no-repeat; }
+.form-message.error    { border-color: #f3a48c; background: #ffded4 no-repeat; color:#CD0B1C;}
+.form-message.warning  { border-color: #fbea81; background: #fff9d4 url(../images/warning.gif) 10px 11px no-repeat; }
+
+.form-message p        { margin: 0 !important; }
+.form-message ul       { margin: 5px 0 0 20px; padding: 0; }
+.form-message ul li    { margin: 0; padding: 0; list-style: disc; font-size: 1em; line-height: 1.6em; }
+
+.error-note    { width: 227px; margin-right: 5px; padding-top: 5px;color: #CD0B1C; display:none; padding-bottom:10px}
+.error-box   {display:none;  border:1px solid #CD0B1C; }
+.close-red{cursor: pointer; float: left;padding-right: 5px; }
+ 
