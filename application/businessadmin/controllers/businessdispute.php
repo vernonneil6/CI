@@ -749,7 +749,7 @@ class Businessdispute extends CI_Controller {
 				   //five days
 				   $data=$this->businessdisputes->emailflag();
 				   //print_r($data['fifteen']);
-				   
+				   print_r($data);die('check');
 				    foreach($data['five'] as $alerts)
 				   {
 						
