@@ -602,7 +602,7 @@ class Businessdispute extends CI_Controller {
 							</table>');
 					  
 							 	  
-							//$this->email->send(); // send email to admin
+							$this->email->send(); // send email to admin
 							
 							
 							
