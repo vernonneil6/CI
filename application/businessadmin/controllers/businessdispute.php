@@ -785,6 +785,7 @@ class Businessdispute extends CI_Controller {
 							$this->alert6($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
 							$this->alert9($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
 							$this->alert3($useremail2,$username2,$companyname2,$companyemail2,$disputeid2,$carrier2,$tracking2,$dateshipped2);
+							$this->alert3_1($useremail2,$username2,$companyname2,$companyemail2,$disputeid2,$carrier2,$tracking2,$dateshipped2);
 						
 						  
 						
@@ -992,6 +993,62 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 			</tr>	
 			<tr>
 			 <td>Once you receive the item please issue the Buyer a Full Refund and follow the link below to upload Proof of Refund so we can close this case in your favor.</td>
+			</tr>	
+			<tr>
+			 <td>Please follow this link to the Resolution Center(<a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid2.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid2.'</a>)</td>
+			</tr>	
+			<tr>
+			 <td>Thank you for using the YouGotRated Buyer Protection Program.</td>
+			</tr>	
+			<tr>
+			 <td>Sincerely,</td>
+			</tr>	
+			<tr>
+			 <td>YouGotRated</td>
+			</tr>	
+			<tr>
+			 <td>Buyer Protection Program</td>
+			</tr>	
+			<tr>
+			 <td>BC: PP-003-442-048-286</td>
+			</tr>	
+			<tr>
+			 <td>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further assistance, please communicate with the Merchant through the Resolution Center,</td>
+			</tr>	
+			<tr>
+			 <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
+			</tr>	
+					  
+					  
+					  </table>');
+					 $this->email->send(); // send email to admin	
+			
+		}
+	       //->-If the buyer uploads the shipping information within 7 days then another email should go out to the Merchant with the following information:
+	    public function alert3_1($useremail2,$username2,$companyname2,$companyemail2,$disputeid2,$carrier2,$tracking2,$dateshipped2)
+	    {
+			
+				$this->load->library('email');
+				$this->email->from('noreply@Yougotrated.com','Yougotrated');
+				//$this->email->to($companyemail2);
+				$this->email->to('alankenn.grossmaninteractive@gmail.com');
+				$this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid2.'');
+				$this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
+									  
+			  <tr>
+			 <td> Hello '.ucfirst($companyname2).',</td>
+			</tr>	
+			<tr>
+			 <td> '.ucfirst($username2).' has shipped the damaged or defective back to you.
+				 <ul>
+					 <li>Carrier:'.$carrier2.'</li>
+					 <li>Tracking Number:'.$tracking2.'</li>
+					 <li>Date Shipped:'.$dateshipped2.'</li>
+				 </ul>
+			 </td>
+			</tr>	
+			<tr>
+			 <td>Once you receive the item please expedite the Buyer a Replacement Item and follow the link below to upload the new Shipping Information so we can close this case in your favor.</td>
 			</tr>	
 			<tr>
 			 <td>Please follow this link to the Resolution Center(<a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid2.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid2.'</a>)</td>
