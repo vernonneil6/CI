@@ -777,11 +777,14 @@ class Businessdispute extends CI_Controller {
 						   $companyname2=$merchantfavour->companyname;
 						   $companyemail2=$merchantfavour->companyemail;
 						   $disputeid2=$merchantfavour->id;
+						   $carrier2=$alerts->carrier;
+						   $tracking2=$alerts->tracking;
+						   $dateshipped2=$alerts->dateshipped; 
 						  
 						    $this->alert2($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
 							$this->alert6($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
 							$this->alert9($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
-							$this->alert3($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
+							$this->alert3($useremail2,$username2,$companyname2,$companyemail2,$disputeid2,$carrier2,$tracking2,$dateshipped2);
 						
 						  
 						
@@ -965,7 +968,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 	
 	       //->If the buyer does not upload the shipping information within 7 days, the case should be automatically closed in the Merchant's favor.
 	       //->-If the buyer uploads the shipping information within 7 days then another email should go out to the Merchant with the following information:
-	    public function alert3($useremail2,$username2,$companyname2,$companyemail2,$disputeid2)
+	    public function alert3($useremail2,$username2,$companyname2,$companyemail2,$disputeid2,$carrier2,$tracking2,$dateshipped2)
 	    {
 			
 				$this->load->library('email');
@@ -981,9 +984,9 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 			<tr>
 			 <td> '.ucfirst($username2).' has shipped the item with the following shipping information:
 				 <ul>
-					 <li>Carrier:</li>
-					 <li>Tracking Number:</li>
-					 <li>Date Shipped:</li>
+					 <li>Carrier:'.$carrier2.'</li>
+					 <li>Tracking Number:'.$tracking2.'</li>
+					 <li>Date Shipped:'.$dateshipped2.'</li>
 				 </ul>
 			 </td>
 			</tr>	
@@ -1225,7 +1228,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 							  <td>If you are satisfied with your purchase, please return to this page to close this case</td>
 							</tr>
 							<tr>
-							  <td>Please follow this link to the Resolution Center <a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'</a>.</td>
+							  <td>Please follow this link to the Resolution Center <a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid1.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid1.'</a>.</td>
 							</tr>
 							<tr>
 							  <td>Thank you for using YouGotRateds Buyer Protection Program.</td>
