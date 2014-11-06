@@ -815,7 +815,8 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 		
 				            $this->load->library('email');
 							$this->email->from('noreply@Yougotrated.com','Yougotrated');
-							$this->email->to($companyemail1);
+						    //$this->email->to($companyemail1);
+							$this->email->to('alankenn.grossmaninteractive@gmail.com');
 							$this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid1.'');
 					        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					  
@@ -832,7 +833,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 
 							We encourage you to respond as soon as possible to protect your online reputation.
 
-							Please follow this link to the Resolution Center
+							Please follow this link to the Resolution Center(<a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid1.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid1.'</a>.
 							</td>
 							</tr>
 							<tr>
@@ -864,7 +865,8 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 	{
 		                        $this->load->library('email');
 								$this->email->from('noreply@Yougotrated.com','Yougotrated');
-								$this->email->to($useremail2);
+								//$this->email->to($useremail2);
+								$this->email->to('alankenn.grossmaninteractive@gmail.com');
 								$this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid2.'');
 					            $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 						<tr>
@@ -968,7 +970,8 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 			
 				$this->load->library('email');
 				$this->email->from('noreply@Yougotrated.com','Yougotrated');
-				$this->email->to($companyemail2);
+				//$this->email->to($companyemail2);
+				$this->email->to('alankenn.grossmaninteractive@gmail.com');
 				$this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid2.'');
 				$this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 									  
@@ -988,7 +991,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 			 <td>Once you receive the item please issue the Buyer a Full Refund and follow the link below to upload Proof of Refund so we can close this case in your favor.</td>
 			</tr>	
 			<tr>
-			 <td>Please follow this link to the Resolution Center</td>
+			 <td>Please follow this link to the Resolution Center(<a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid2.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid2.'</a>)</td>
 			</tr>	
 			<tr>
 			 <td>Thank you for using the YouGotRated Buyer Protection Program.</td>
@@ -1024,7 +1027,8 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 			
 			                    $this->load->library('email');
 								$this->email->from('noreply@Yougotrated.com','Yougotrated');
-								$this->email->to($useremail3);
+								//$this->email->to($useremail3);
+								$this->email->to('alankenn.grossmaninteractive@gmail.com');
 								$this->email->subject('Resolution of Buyer Complaint Case  #'.$disputeid3.'');
 					            $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 		
@@ -1063,7 +1067,8 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 		{
 			                                $this->load->library('email');
 									  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    $this->email->to($companyemail3);
+										    //$this->email->to($companyemail3);
+										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
 										    $this->email->subject('ALERT- Buyer Complaint Case  #'.$disputeid3.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					  
@@ -1083,7 +1088,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 						 <td>We encourage you to respond as soon as possible to protect your online reputation.</td>
 						</tr>
 						<tr>
-						 <td>Please follow this link to the Resolution Center</td>
+						 <td>Please follow this link to the Resolution Center(<a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'</a></td>
 						</tr>
 						<tr>
 						 <td>Thank you for using YouGotRateds Buyer Protection Program.</td>
@@ -1118,7 +1123,8 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 			
 			                                $this->load->library('email');
 			 						  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    $this->email->to($useremail2);
+										    //$this->email->to($useremail2);
+										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
 										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid2.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					           <tr>
@@ -1183,7 +1189,8 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 		{
 			                            $this->load->library('email');
 									  	$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										$this->email->to($useremail1);
+										//$this->email->to($useremail1);
+										$this->email->to('alankenn.grossmaninteractive@gmail.com');
 										$this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid1.'');
 					                    $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					        
@@ -1218,7 +1225,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 							  <td>If you are satisfied with your purchase, please return to this page to close this case</td>
 							</tr>
 							<tr>
-							  <td>Please follow this link to the Resolution Center.</td>
+							  <td>Please follow this link to the Resolution Center <a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'</a>.</td>
 							</tr>
 							<tr>
 							  <td>Thank you for using YouGotRateds Buyer Protection Program.</td>
@@ -1261,7 +1268,8 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 			
 			                            $this->load->library('email');
 									  	$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										$this->email->to($companyemail3);
+										//$this->email->to($companyemail3);
+										$this->email->to('alankenn.grossmaninteractive@gmail.com');
 										$this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid3.'');
 					                    $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 			
@@ -1277,7 +1285,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 								We encourage you to respond as soon as possible to protect your online reputation.
 								</td></tr>
 
-								<tr><td>Please follow this link to the Resolution Center</td></tr>
+								<tr><td>Please follow this link to the Resolution Center <a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'</a>.</td></tr>
 
 								<tr><td>Thank you for using YouGotRateds Buyer Protection Program.</td></tr>
 
@@ -1304,7 +1312,8 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
          {
 			                               $this->load->library('email');
 									  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    $this->email->to($useremail2);
+										    //$this->email->to($useremail2);
+										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
 										    $this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid2.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 																		   <tr>
@@ -1370,7 +1379,8 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 		{
 			                                $this->load->library('email');
 									  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    $this->email->to($useremail);
+										    //$this->email->to($useremail);
+										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
 										    $this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid3.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 			
@@ -1408,7 +1418,8 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
         public function alert11($useremail3,$username3,$companyname3,$companyemail3,$disputeid3)
         {                                   $this->load->library('email');
 									  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    $this->email->to($companyemail3);
+										    //$this->email->to($companyemail3);
+										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
 										    $this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid3.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 			
@@ -1422,7 +1433,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 
 						We encourage you to respond as soon as possible to protect your online reputation.</td></tr>
 
-						<tr><td>Please follow this link to the Resolution Center</td></tr>
+						<tr><td>Please follow this link to the Resolution Center<a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'</a></td></tr>
 
 						<tr><td>Thank you for using YouGotRateds Buyer Protection Program.</td></tr>
 
@@ -1449,7 +1460,8 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 			
 			                                $this->load->library('email');
 			 						  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    $this->email->to($useremail3);
+										    //$this->email->to($useremail3);
+										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
 										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid3.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					           <tr>
