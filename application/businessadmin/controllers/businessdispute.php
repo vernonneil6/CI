@@ -810,6 +810,8 @@ class Businessdispute extends CI_Controller {
 						   $this->alert10($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
 						   $this->alert11($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
 						   $this->alert12($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   $this->alert12_1($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   
 					}
 					
 		   
@@ -1580,6 +1582,72 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 						</tr>
 						<tr>
 						 <td>'.ucfirst($companyname3).' has failed to provide Proof of Refund for the missing items you purchased.</td>
+						</tr>
+						<tr>
+						 <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
+						</tr>
+						<tr>
+						 <td>Step 1) You must contact your card issuer and file a Chargeback for this transaction.</td>
+						</tr>
+						<tr>
+						 <td>Step 2) You must specify that the reason for the chargeback is that you "Received an Incomplete order and the merchant has failed to issue you a Partial Refund for the missing items you purchased.</td>
+						</tr>
+						<tr>
+						 <td>Step 3) Request a partial refund of the charge based on the Merchants failure to fulfill the transaction</td>
+						</tr>
+						<tr>
+						 <td>Your card issuer will be very helpful in assisting you in filing the chargeback.</td>
+						</tr>
+						<tr>
+						 <td>Please note that this case will remain open for 90 days.</td>
+						</tr>
+						<tr>
+						 <td>You will have the opportunity to close the case at any time because you received a refund from the card issuer or to upload the paperwork from your card issuer in the event they denied your chargeback claim.</td>
+						</tr>
+						<tr>
+						 <td>In such event, once we receive the denial from the Card Issuer, YouGotRated will reimburse you for the full purchase price of the merchandise up to $1,500.00 providing you complied with all the instructions as outlined in the Resolution Center. Please note that it can take up to 30 days for a reimbursement to be issued after we receive the necessary paperwork.</td>
+						</tr>
+						<tr>
+						 <td>Thank you for using YouGotRateds Buyer Protection Program.</td>
+						</tr>
+						<tr>
+						 <td>Sincerely,</td>
+						</tr>
+						<tr>
+						 <td>YouGotRated</td>
+						</tr>
+						<tr>
+						 <td>Buyer Protection Program</td>
+						</tr>
+						<tr>
+						 <td>BC: PP-003-442-048-286</td>
+						</tr>
+						<tr>
+						 <td>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further assistance, please communicate with the Merchant through the Resolution Center,</td>
+						</tr>
+						<tr>
+						 <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
+						</tr>
+						
+					   </table>');
+					 $this->email->send(); // send email to admin
+			
+						
+		}
+		public function alert12_1($useremail3,$username3,$companyname3,$companyemail3,$disputeid3)
+		{
+			
+			                                $this->load->library('email');
+			 						  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
+										    //$this->email->to($useremail3);
+										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
+										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid3.'');
+					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
+					           <tr>
+						 <td>Hello '.ucfirst($username3).',</td>
+						</tr>
+						<tr>
+						 <td>'.ucfirst($companyname3).' has failed to provide has failed to provide Proof of Shipping for your Replacement Item.</td>
 						</tr>
 						<tr>
 						 <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
