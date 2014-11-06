@@ -333,7 +333,7 @@ class Businessdispute extends CI_Controller {
 									  <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
 									</tr>
 								</table>');
-									$this->email->send(); // send email to admin
+									//$this->email->send(); // send email to admin
 							
 						}
 						
@@ -397,7 +397,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						$this->email->send(); // send email to admin	
+						//$this->email->send(); // send email to admin	
 						
 					    }
 					    
@@ -461,7 +461,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						$this->email->send(); // send email to admin	
+						//$this->email->send(); // send email to admin	
 							
 							
 							
@@ -526,7 +526,7 @@ class Businessdispute extends CI_Controller {
 							 </table>');
 					  
 									  
-							$this->email->send(); // send email to admin
+							//$this->email->send(); // send email to admin
 							
 							
 							
@@ -565,7 +565,7 @@ class Businessdispute extends CI_Controller {
 							</table>');
 					  
 									  
-							$this->email->send(); // send email to admin
+							//$this->email->send(); // send email to admin
 							
 						} 
 					    if(trim($dispute) =='Items Missing from the Order' and trim($resolution_expect) =='Would like a Partial Refund for the missing items')  
@@ -600,7 +600,7 @@ class Businessdispute extends CI_Controller {
 							</table>');
 					  
 							 	  
-							$this->email->send(); // send email to admin
+							//$this->email->send(); // send email to admin
 							
 							
 							
@@ -664,7 +664,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						$this->email->send(); // send email to admin	
+						//$this->email->send(); // send email to admin	
 							
 							
 							
@@ -727,7 +727,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						$this->email->send(); // send email to admin	
+						//$this->email->send(); // send email to admin	
 							
 							
 						} 
