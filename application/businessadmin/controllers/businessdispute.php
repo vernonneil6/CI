@@ -877,7 +877,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 					</tr>
 					<tr>
 
-					   <td> '.ucfirst($companyname2).' has failed to provide the requested shipping and tracking information for your purchase.</td>
+					   <td> '.ucfirst($companyname2).' has failed to provide Proof of Refund for your purchase.</td>
 
 					</tr>
 					<tr>
