@@ -830,13 +830,13 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 							</tr>
 							<tr>
 							<td>
-							It has been 5 days from the time the buyer open this case against you but you have failed to provide the requested shipping information in the Resolution Center.
+							It has been 5 days from the time the buyer open this case against you but you have failed to provide the requested shipping information in the Resolution Center.<br>
 
-							Please follow this link to upload the shipping information so we can close this case in your favor.
+							Please follow this link to upload the shipping information so we can close this case in your favor.<br>
 
-							You must reply within 2 days of this email or this dispute will be escalated to a chargeback and the buyers Complaint will be posted online.
+							You must reply within 2 days of this email or this dispute will be escalated to a chargeback and the buyers Complaint will be posted online.<br>
 
-							We encourage you to respond as soon as possible to protect your online reputation.
+							We encourage you to respond as soon as possible to protect your online reputation.<br>
 
 							Please follow this link to the Resolution Center(<a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid1.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid1.'</a>.
 							</td>
