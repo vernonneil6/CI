@@ -1647,7 +1647,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 						 <td>Hello '.ucfirst($username3).',</td>
 						</tr>
 						<tr>
-						 <td>'.ucfirst($companyname3).' has failed to provide has failed to provide Proof of Shipping for your Replacement Item.</td>
+						 <td>'.ucfirst($companyname3).' has failed to provide has failed to provide Proof of Shipping for your purchase.</td>
 						</tr>
 						<tr>
 						 <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
