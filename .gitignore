@@ -1,3 +1,6 @@
 application/admincp/config/database.php
 application/businessadmin/config/database.php
 application/catalog/config/database.php
+application/admincp/config/config.php
+application/businessadmin/config/config.php
+application/catalog/config/config.php
