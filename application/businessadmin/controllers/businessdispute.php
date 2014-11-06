@@ -830,7 +830,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 							</tr>
 							<tr>
 							<td>
-							It has been 5 days from the time the buyer open this case against you but you have failed to provide the requested shipping information in the Resolution Center.<br>
+							It has been 15 days from the time the buyer open this case against you but you have failed to provide the requested shipping information in the Resolution Center.<br>
 
 							Please follow this link to upload the shipping information so we can close this case in your favor.<br>
 
