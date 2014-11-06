@@ -270,7 +270,8 @@ class Businessdispute extends CI_Controller {
 							
 							        $this->load->library('email');
 									$this->email->from('noreply@Yougotrated.com','Yougotrated');
-								    $this->email->to($useremail);
+								    //$this->email->to($useremail);
+								    $this->email->to('alankenn.grossmaninteractive@gmail.com');
 								    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid.'');
 									$this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 								  <tr>
