@@ -764,6 +764,7 @@ class Businessdispute extends CI_Controller {
 						   $dateshipped1=$alerts->dateshipped; 
 						   
 						  $this->alert1($useremail1,$username1,$companyname1,$companyemail1,$disputeid1);
+						  $this->alert1_1($useremail1,$username1,$companyname1,$companyemail1,$disputeid1);
 						  $this->alert7($useremail1,$username1,$companyname1,$companyemail1,$disputeid1,$carrier1,$tracking1,$dateshipped1);
 						 
 					}
@@ -816,6 +817,55 @@ class Businessdispute extends CI_Controller {
 	}
 	
 public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disputeid1)
+	{
+		
+				            $this->load->library('email');
+							$this->email->from('noreply@Yougotrated.com','Yougotrated');
+						    //$this->email->to($companyemail1);
+							$this->email->to('alankenn.grossmaninteractive@gmail.com');
+							$this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid1.'');
+					        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
+					  
+							<tr>
+							 <td>Dear '.ucfirst($companyname1).', </td>
+							</tr>
+							<tr>
+							<td>
+							It has been 5 days from the time the buyer open this case against you but you have failed to provide the requested shipping information in the Resolution Center.<br>
+
+							Please follow this link to upload the shipping information so we can close this case in your favor.<br>
+
+							You must reply within 2 days of this email or this dispute will be escalated to a chargeback and the buyers Complaint will be posted online.<br>
+
+							We encourage you to respond as soon as possible to protect your online reputation.<br>
+
+							Please follow this link to the Resolution Center(<a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid1.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid1.'</a>.
+							</td>
+							</tr>
+							<tr>
+							<td>Thank you for using YouGotRateds Buyer Protection Program.</td>
+							</tr>
+
+							<tr><td>Sincerely,</td></tr>
+
+							<tr><td>YouGotRated</td></tr>
+							<tr><td>Buyer Protection Program</td></tr>
+							<tr><td>BC: PP-003-442-048-286</td></tr>
+
+							<tr>
+								<td>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further assistance, please communicate with the Merchant through the Resolution Center,</td>
+							</tr>
+							<tr>
+							  <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
+							</tr>
+					  
+					  </table>');
+					  $this->email->send(); // send email to admin
+				  
+
+		
+	}
+public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$disputeid1)
 	{
 		
 				            $this->load->library('email');
