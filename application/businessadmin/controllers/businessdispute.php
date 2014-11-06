@@ -333,7 +333,7 @@ class Businessdispute extends CI_Controller {
 									  <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
 									</tr>
 								</table>');
-									$this->email->send(); // send email to admin
+									//$this->email->send(); // send email to admin
 							
 						}
 						
@@ -397,7 +397,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						$this->email->send(); // send email to admin	
+						//$this->email->send(); // send email to admin	
 						
 					    }
 					    
@@ -461,7 +461,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						$this->email->send(); // send email to admin	
+						//$this->email->send(); // send email to admin	
 							
 							
 							
@@ -526,7 +526,7 @@ class Businessdispute extends CI_Controller {
 							 </table>');
 					  
 									  
-							$this->email->send(); // send email to admin
+							//$this->email->send(); // send email to admin
 							
 							
 							
@@ -565,7 +565,7 @@ class Businessdispute extends CI_Controller {
 							</table>');
 					  
 									  
-							$this->email->send(); // send email to admin
+							//$this->email->send(); // send email to admin
 							
 						} 
 					    if(trim($dispute) =='Items Missing from the Order' and trim($resolution_expect) =='Would like a Partial Refund for the missing items')  
@@ -600,7 +600,7 @@ class Businessdispute extends CI_Controller {
 							</table>');
 					  
 							 	  
-							$this->email->send(); // send email to admin
+							//$this->email->send(); // send email to admin
 							
 							
 							
@@ -664,7 +664,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						$this->email->send(); // send email to admin	
+						//$this->email->send(); // send email to admin	
 							
 							
 							
@@ -727,7 +727,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						$this->email->send(); // send email to admin	
+						//$this->email->send(); // send email to admin	
 							
 							
 						} 
@@ -764,6 +764,7 @@ class Businessdispute extends CI_Controller {
 						   
 						  $this->alert1($useremail1,$username1,$companyname1,$companyemail1,$disputeid1);
 						  $this->alert1_1($useremail1,$username1,$companyname1,$companyemail1,$disputeid1);
+						  $this->alert1_2($useremail1,$username1,$companyname1,$companyemail1,$disputeid1);
 						  $this->alert7($useremail1,$username1,$companyname1,$companyemail1,$disputeid1,$carrier1,$tracking1,$dateshipped1);
 						 
 					}
@@ -865,7 +866,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 							</tr>
 					  
 					  </table>');
-					  $this->email->send(); // send email to admin
+					  //$this->email->send(); // send email to admin
 				  
 
 		
@@ -912,6 +913,88 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 							  <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
 							</tr>
 					  
+					  </table>');
+					  //$this->email->send(); // send email to admin
+				  
+
+		
+	}
+public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$disputeid1)
+	{
+		
+				            $this->load->library('email');
+							$this->email->from('noreply@Yougotrated.com','Yougotrated');
+						    //$this->email->to($useremail1);
+						    $this->email->to('alankenn.grossmaninteractive@gmail.com');
+							$this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid1.'');
+					        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
+					  
+							<tr>
+							 <td>Hello '.ucfirst($username1).', </td>
+							</tr>
+							<tr>
+
+								<td> '.ucfirst($companyname1).' has failed to provide the requested shipping and tracking information for your purchase.</td>
+
+					        </tr>
+							<tr>
+
+							   <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
+
+							</tr>
+					<tr>
+
+					   <td>Step 1) You must contact your card issuer and file a Chargeback for this transaction.</td>
+
+					</tr>
+					<tr>
+
+					   <td>Step 2) You must specify that the reason for the chargeback is that "The merchant did not shipped the item you purchased - Item not Received".</td>
+
+					</tr>
+
+					<tr>
+
+					 <td>Step 3) Request a full refund of the charge based on the Merchants failure to fulfill the transaction</td>
+
+					</tr>
+					<tr>
+
+					 <td>Your card issuer will be very helpful in assisting you in filing the chargeback.</td>
+
+					</tr>
+					<tr>
+
+					 <td>Please note that this case will remain open for 90 days.</td>
+
+					</tr>
+					<tr>
+
+					 <td>You will have the opportunity to close the case at any time because you received a refund from the card issuer or to upload the paperwork from your card issuer in the event they denied your chargeback claim.</td>
+
+					</tr>
+					<tr>
+
+					 <td>In such event, once we receive the denial from the Card Issuer, YouGotRated will reimburse you for the full purchase price of the merchandise up to $1,500.00 providing you complied with all the instructions as outlined in the Resolution Center. Please note that it can take up to 30 days for a reimbursement to be issued after we receive the necessary paperwork.</td>
+
+					</tr>
+					<tr>
+					<td>Thank you for using YouGotRateds Buyer Protection Program.</td>
+					</tr>
+
+					<tr><td>Sincerely,</td></tr>
+
+					<tr><td>YouGotRated</td></tr>
+					<tr><td>Buyer Protection Program</td></tr>
+					<tr><td>BC: PP-003-442-048-286</td></tr>
+
+					<tr>
+						<td>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further assistance, please communicate with the Merchant through the Resolution Center,</td>
+					</tr>
+					<tr>
+					  <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
+					</tr>
+			  
 					  </table>');
 					  $this->email->send(); // send email to admin
 				  
@@ -1015,7 +1098,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 				
 				</table>');
 					
-					       $this->email->send(); // send email to admin
+					       //$this->email->send(); // send email to admin
 		
 		
 	}
@@ -1074,7 +1157,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 					  
 					  
 					  </table>');
-					 $this->email->send(); // send email to admin	
+					 //$this->email->send(); // send email to admin	
 			
 		}
 	       //->-If the buyer uploads the shipping information within 7 days then another email should go out to the Merchant with the following information:
@@ -1129,7 +1212,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 					  
 					  
 					  </table>');
-					 $this->email->send(); // send email to admin	
+					 //$this->email->send(); // send email to admin	
 			
 		}
 		
@@ -1169,7 +1252,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 									
 			
 					  </table>');
-					  $this->email->send(); // send email to admin	
+					  //$this->email->send(); // send email to admin	
 			
 		}
 		
@@ -1224,7 +1307,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 											  
 					  
 					   </table>');
-					  $this->email->send(); // send email to admin
+					  //$this->email->send(); // send email to admin
 			
 		}
 		//->-If the merchant does not upload the Proof of Refund within 2 days of the second email, the negative complaint should automatically
@@ -1289,7 +1372,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 						</tr>
 						
 					   </table>');
-					 $this->email->send(); // send email to admin
+					 //$this->email->send(); // send email to admin
 			
 		}
 		 ////////////////////////////->Items Missing from the Order/////////////////////
@@ -1366,7 +1449,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 					                        </table>');
 									  
 									  
-					 $this->email->send(); // send email to admin
+					 //$this->email->send(); // send email to admin
 					
 		}
 		
@@ -1410,7 +1493,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 								 </table>');
 									  
 									  
-					 $this->email->send(); // send email to admin
+					 //$this->email->send(); // send email to admin
 					
 		}
 		
@@ -1477,7 +1560,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 									   </table>');
 									   
 									   
-									  $this->email->send(); // send email to admin
+									  //$this->email->send(); // send email to admin
 		}
 		
 		//->-If the choice was to get a Partial Refund for the missing items, then the following email is sent to the Buyer:15 days
@@ -1515,7 +1598,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 									</table>');
 									   
 									   
-									  $this->email->send(); // send email to admin
+									  //$this->email->send(); // send email to admin
 			
 		}
 		
@@ -1554,7 +1637,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 									</table>');
 									   
 									   
-									   $this->email->send(); // send email to admin
+									   //$this->email->send(); // send email to admin
 			
 		}  
 		
@@ -1620,7 +1703,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 						</tr>
 						
 					   </table>');
-					 $this->email->send(); // send email to admin
+					 //$this->email->send(); // send email to admin
 			
 						
 		}
@@ -1685,7 +1768,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 						</tr>
 						
 					   </table>');
-					 $this->email->send(); // send email to admin
+					 //$this->email->send(); // send email to admin
 			
 						
 		}
@@ -1750,7 +1833,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 						</tr>
 						
 					   </table>');
-					 $this->email->send(); // send email to admin
+					 //$this->email->send(); // send email to admin
 			
 						
 		}
@@ -1815,7 +1898,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 						</tr>
 						
 					   </table>');
-					 $this->email->send(); // send email to admin
+					 //$this->email->send(); // send email to admin
 			
 						
 		}
