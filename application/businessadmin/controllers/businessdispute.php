@@ -270,8 +270,7 @@ class Businessdispute extends CI_Controller {
 							
 							        $this->load->library('email');
 									$this->email->from('noreply@Yougotrated.com','Yougotrated');
-								    //$this->email->to($useremail);
-								    $this->email->to('alankenn.grossmaninteractive@gmail.com');
+								    $this->email->to($useremail);
 								    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid.'');
 									$this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 								  <tr>
@@ -398,7 +397,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						//$this->email->send(); // send email to admin	
+						$this->email->send(); // send email to admin	
 						
 					    }
 					    
@@ -462,7 +461,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						//$this->email->send(); // send email to admin	
+						$this->email->send(); // send email to admin	
 							
 							
 							
@@ -527,7 +526,7 @@ class Businessdispute extends CI_Controller {
 							 </table>');
 					  
 									  
-							//$this->email->send(); // send email to admin
+							$this->email->send(); // send email to admin
 							
 							
 							
@@ -566,7 +565,7 @@ class Businessdispute extends CI_Controller {
 							</table>');
 					  
 									  
-							//$this->email->send(); // send email to admin
+							$this->email->send(); // send email to admin
 							
 						} 
 					    if(trim($dispute) =='Items Missing from the Order' and trim($resolution_expect) =='Would like a Partial Refund for the missing items')  
@@ -574,8 +573,7 @@ class Businessdispute extends CI_Controller {
 							
 							$this->load->library('email');
 									  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    //$this->email->to($useremail);
-										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
+										    $this->email->to($useremail);
 										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 							
@@ -666,7 +664,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						//$this->email->send(); // send email to admin	
+						$this->email->send(); // send email to admin	
 							
 							
 							
@@ -729,7 +727,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						//$this->email->send(); // send email to admin	
+						$this->email->send(); // send email to admin	
 							
 							
 						} 
@@ -770,7 +768,7 @@ class Businessdispute extends CI_Controller {
 						 
 					}
 					
-					//seven days
+					//seven days 
 					foreach($data['seven'] as $merchantfavour)
 					{
 						 
@@ -784,9 +782,9 @@ class Businessdispute extends CI_Controller {
 						   $tracking2=$alerts->tracking;
 						   $dateshipped2=$alerts->dateshipped; 
 						  
-						    $this->alert2($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
-							$this->alert6($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
-							$this->alert9($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
+						    /*$this->alert2($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
+						    $this->alert6($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
+							$this->alert9($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);*/
 							$this->alert3($useremail2,$username2,$companyname2,$companyemail2,$disputeid2,$carrier2,$tracking2,$dateshipped2);
 							$this->alert3_1($useremail2,$username2,$companyname2,$companyemail2,$disputeid2,$carrier2,$tracking2,$dateshipped2);
 						
@@ -794,7 +792,7 @@ class Businessdispute extends CI_Controller {
 						
 					}
 					
-					//fifteendays
+					//fifteendays && alerts(2 days after)
 					foreach($data['fifteen'] as $finalwarning)
 					{
 						
@@ -805,13 +803,18 @@ class Businessdispute extends CI_Controller {
 						   $companyemail3=$finalwarning->companyemail;
 						   $disputeid3=$finalwarning->id;
 						
-						 $this->alert4($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   $this->alert2($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   $this->alert4($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
 						   $this->alert5($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   $this->alert6($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
 						   $this->alert8($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   $this->alert9($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
 						   $this->alert10($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
 						   $this->alert11($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
 						   $this->alert12($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
 						   $this->alert12_1($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   $this->alert12_2($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   $this->alert12_3($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
 						   
 					}
 					
@@ -824,9 +827,8 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 		
 				            $this->load->library('email');
 							$this->email->from('noreply@Yougotrated.com','Yougotrated');
-						    //$this->email->to($companyemail1);
-							$this->email->to('alankenn.grossmaninteractive@gmail.com');
-							$this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid1.'');
+						    $this->email->to($companyemail1);
+     						$this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid1.'');
 					        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					  
 							<tr>
@@ -873,8 +875,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 		
 				            $this->load->library('email');
 							$this->email->from('noreply@Yougotrated.com','Yougotrated');
-						    //$this->email->to($companyemail1);
-							$this->email->to('alankenn.grossmaninteractive@gmail.com');
+						    $this->email->to($companyemail1);
 							$this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid1.'');
 					        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					  
@@ -919,20 +920,19 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 	}
 	
 	//->-If the merchant does not upload the information within 2 days of the second email, the negative complaint should automatically be posted online in their profile
-	public function alert2($useremail2,$username2,$companyname2,$companyemail2,$disputeid2)
+	public function alert2($useremail3,$username3,$companyname3,$companyemail3,$disputeid3)
 	{
 		                        $this->load->library('email');
 								$this->email->from('noreply@Yougotrated.com','Yougotrated');
-								//$this->email->to($useremail2);
-								$this->email->to('alankenn.grossmaninteractive@gmail.com');
-								$this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid2.'');
+								$this->email->to($useremail3);
+								$this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid3.'');
 					            $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 						<tr>
-						<td>Hello '.ucfirst($username2).',</td>
+						<td>Hello '.ucfirst($username3).',</td>
 					</tr>
 					<tr>
 
-					   <td> '.ucfirst($companyname2).' has failed to provide Proof of Refund for your purchase.</td>
+					   <td> '.ucfirst($companyname3).' has failed to provide Proof of Refund for your purchase.</td>
 
 					</tr>
 					<tr>
@@ -1028,8 +1028,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 			
 				$this->load->library('email');
 				$this->email->from('noreply@Yougotrated.com','Yougotrated');
-				//$this->email->to($companyemail2);
-				$this->email->to('alankenn.grossmaninteractive@gmail.com');
+				$this->email->to($companyemail2);
 				$this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid2.'');
 				$this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 									  
@@ -1084,9 +1083,8 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 			
 				$this->load->library('email');
 				$this->email->from('noreply@Yougotrated.com','Yougotrated');
-				//$this->email->to($companyemail2);
-				$this->email->to('alankenn.grossmaninteractive@gmail.com');
-				$this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid2.'');
+				$this->email->to($companyemail2);
+			    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid2.'');
 				$this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 									  
 			  <tr>
@@ -1141,8 +1139,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 			
 			                    $this->load->library('email');
 								$this->email->from('noreply@Yougotrated.com','Yougotrated');
-								//$this->email->to($useremail3);
-								$this->email->to('alankenn.grossmaninteractive@gmail.com');
+								$this->email->to($useremail3);
 								$this->email->subject('Resolution of Buyer Complaint Case  #'.$disputeid3.'');
 					            $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 		
@@ -1181,8 +1178,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 		{
 			                                $this->load->library('email');
 									  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    //$this->email->to($companyemail3);
-										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
+										    $this->email->to($companyemail3);
 										    $this->email->subject('ALERT- Buyer Complaint Case  #'.$disputeid3.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					  
@@ -1232,20 +1228,19 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 			
 		}
 		//->-If the merchant does not upload the Proof of Refund within 2 days of the second email, the negative complaint should automatically
-	    public function alert6($useremail2,$username2,$companyname2,$companyemail2,$disputeid2)
+	    public function alert6($useremail3,$username3,$companyname3,$companyemail3,$disputeid3)
 	    {
 			
 			                                $this->load->library('email');
 			 						  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    //$this->email->to($useremail2);
-										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
-										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid2.'');
+										    $this->email->to($useremail3);
+										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid3.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					           <tr>
-						 <td>Hello '.ucfirst($username2).',</td>
+						 <td>Hello '.ucfirst($username3).',</td>
 						</tr>
 						<tr>
-						 <td>'.ucfirst($companyname2).' has failed to provide Proof of Refund for the missing items you purchased.</td>
+						 <td>'.ucfirst($companyname3).' has failed to provide Proof of Refund for the missing items you purchased.</td>
 						</tr>
 						<tr>
 						 <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
@@ -1303,8 +1298,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 		{
 			                            $this->load->library('email');
 									  	$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										//$this->email->to($useremail1);
-										$this->email->to('alankenn.grossmaninteractive@gmail.com');
+										$this->email->to($useremail1);
 										$this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid1.'');
 					                    $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					        
@@ -1382,8 +1376,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 			
 			                            $this->load->library('email');
 									  	$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										//$this->email->to($companyemail3);
-										$this->email->to('alankenn.grossmaninteractive@gmail.com');
+										$this->email->to($companyemail3);
 										$this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid3.'');
 					                    $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 			
@@ -1422,19 +1415,18 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 		}
 		
 		//->-If the merchant does not upload the Shipping Information within 2 days of the second email, the negative complaint should automatically be posted online in their profile and another email should go out to the buyer with the following instructions:
-         public function alert9($useremail2,$username2,$companyname2,$companyemail2,$disputeid2)
+         public function alert9($useremail3,$username3,$companyname3,$companyemail3,$disputeid3)
          {
 			                               $this->load->library('email');
 									  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    //$this->email->to($useremail2);
-										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
-										    $this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid2.'');
+										    $this->email->to($useremail3);
+										    $this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid3.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 																		   <tr>
-										 <td> Hello '.ucfirst($username2).',</td>
+										 <td> Hello '.ucfirst($username3).',</td>
 										</tr>
 										<tr>
-										 <td>'.ucfirst($companyname2).' has failed to provide Proof of Refund for the missing items you purchased.</td>
+										 <td>'.ucfirst($companyname3).' has failed to provide Proof of Refund for the missing items you purchased.</td>
 										</tr>
 										<tr>
 										 <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
@@ -1493,8 +1485,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 		{
 			                                $this->load->library('email');
 									  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    //$this->email->to($useremail);
-										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
+										    $this->email->to($useremail);
 										    $this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid3.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 			
@@ -1532,8 +1523,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
         public function alert11($useremail3,$username3,$companyname3,$companyemail3,$disputeid3)
         {                                   $this->load->library('email');
 									  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    //$this->email->to($companyemail3);
-										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
+										    $this->email->to($companyemail3);
 										    $this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid3.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 			
@@ -1574,8 +1564,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 			
 			                                $this->load->library('email');
 			 						  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    //$this->email->to($useremail3);
-										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
+										    $this->email->to($useremail3);
 										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid3.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					           <tr>
@@ -1640,8 +1629,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 			
 			                                $this->load->library('email');
 			 						  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    //$this->email->to($useremail3);
-										    $this->email->to('alankenn.grossmaninteractive@gmail.com');
+										    $this->email->to($useremail3);
 										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid3.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					           <tr>
@@ -1649,6 +1637,136 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 						</tr>
 						<tr>
 						 <td>'.ucfirst($companyname3).' has failed to provide has failed to provide Proof of Shipping for your purchase.</td>
+						</tr>
+						<tr>
+						 <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
+						</tr>
+						<tr>
+						 <td>Step 1) You must contact your card issuer and file a Chargeback for this transaction.</td>
+						</tr>
+						<tr>
+						 <td>Step 2) You must specify that the reason for the chargeback is that you "Received an Incomplete order and the merchant has failed to issue you a Partial Refund for the missing items you purchased.</td>
+						</tr>
+						<tr>
+						 <td>Step 3) Request a partial refund of the charge based on the Merchants failure to fulfill the transaction</td>
+						</tr>
+						<tr>
+						 <td>Your card issuer will be very helpful in assisting you in filing the chargeback.</td>
+						</tr>
+						<tr>
+						 <td>Please note that this case will remain open for 90 days.</td>
+						</tr>
+						<tr>
+						 <td>You will have the opportunity to close the case at any time because you received a refund from the card issuer or to upload the paperwork from your card issuer in the event they denied your chargeback claim.</td>
+						</tr>
+						<tr>
+						 <td>In such event, once we receive the denial from the Card Issuer, YouGotRated will reimburse you for the full purchase price of the merchandise up to $1,500.00 providing you complied with all the instructions as outlined in the Resolution Center. Please note that it can take up to 30 days for a reimbursement to be issued after we receive the necessary paperwork.</td>
+						</tr>
+						<tr>
+						 <td>Thank you for using YouGotRateds Buyer Protection Program.</td>
+						</tr>
+						<tr>
+						 <td>Sincerely,</td>
+						</tr>
+						<tr>
+						 <td>YouGotRated</td>
+						</tr>
+						<tr>
+						 <td>Buyer Protection Program</td>
+						</tr>
+						<tr>
+						 <td>BC: PP-003-442-048-286</td>
+						</tr>
+						<tr>
+						 <td>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further assistance, please communicate with the Merchant through the Resolution Center,</td>
+						</tr>
+						<tr>
+						 <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
+						</tr>
+						
+					   </table>');
+					 $this->email->send(); // send email to admin
+			
+						
+		}
+		public function alert12_2($useremail3,$username3,$companyname3,$companyemail3,$disputeid3)
+		{
+			
+			                                $this->load->library('email');
+			 						  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
+										    $this->email->to($useremail3);
+										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid3.'');
+					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
+					           <tr>
+						 <td>Hello '.ucfirst($username3).',</td>
+						</tr>
+						<tr>
+						 <td>'.ucfirst($companyname3).' has failed to provide Proof of Shipping for your Replacement Item.</td>
+						</tr>
+						<tr>
+						 <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
+						</tr>
+						<tr>
+						 <td>Step 1) You must contact your card issuer and file a Chargeback for this transaction.</td>
+						</tr>
+						<tr>
+						 <td>Step 2) You must specify that the reason for the chargeback is that you "Received an Incomplete order and the merchant has failed to issue you a Partial Refund for the missing items you purchased.</td>
+						</tr>
+						<tr>
+						 <td>Step 3) Request a partial refund of the charge based on the Merchants failure to fulfill the transaction</td>
+						</tr>
+						<tr>
+						 <td>Your card issuer will be very helpful in assisting you in filing the chargeback.</td>
+						</tr>
+						<tr>
+						 <td>Please note that this case will remain open for 90 days.</td>
+						</tr>
+						<tr>
+						 <td>You will have the opportunity to close the case at any time because you received a refund from the card issuer or to upload the paperwork from your card issuer in the event they denied your chargeback claim.</td>
+						</tr>
+						<tr>
+						 <td>In such event, once we receive the denial from the Card Issuer, YouGotRated will reimburse you for the full purchase price of the merchandise up to $1,500.00 providing you complied with all the instructions as outlined in the Resolution Center. Please note that it can take up to 30 days for a reimbursement to be issued after we receive the necessary paperwork.</td>
+						</tr>
+						<tr>
+						 <td>Thank you for using YouGotRateds Buyer Protection Program.</td>
+						</tr>
+						<tr>
+						 <td>Sincerely,</td>
+						</tr>
+						<tr>
+						 <td>YouGotRated</td>
+						</tr>
+						<tr>
+						 <td>Buyer Protection Program</td>
+						</tr>
+						<tr>
+						 <td>BC: PP-003-442-048-286</td>
+						</tr>
+						<tr>
+						 <td>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further assistance, please communicate with the Merchant through the Resolution Center,</td>
+						</tr>
+						<tr>
+						 <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
+						</tr>
+						
+					   </table>');
+					 $this->email->send(); // send email to admin
+			
+						
+		}
+		public function alert12_3($useremail3,$username3,$companyname3,$companyemail3,$disputeid3)
+		{
+			
+			                                $this->load->library('email');
+			 						  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
+										    $this->email->to($useremail3);
+										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid3.'');
+					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
+					           <tr>
+						 <td>Hello '.ucfirst($username3).',</td>
+						</tr>
+						<tr>
+						 <td>'.ucfirst($companyname3).' has failed to provide Proof of Shipping for your missing items.</td>
 						</tr>
 						<tr>
 						 <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
