@@ -334,7 +334,7 @@ class Businessdispute extends CI_Controller {
 									  <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
 									</tr>
 								</table>');
-									//$this->email->send(); // send email to admin
+									$this->email->send(); // send email to admin
 							
 						}
 						
