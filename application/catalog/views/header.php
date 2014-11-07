@@ -135,7 +135,7 @@
         <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">Press Releases<span>:<span></a></li>
         <li><a href="<?php echo site_url('complaint');?>" title="Complaints">Complaints<span>:<span></a></li>
         <li><a href="<?php echo site_url('coupon');?>" title="Coupons deals & Steals">Coupons deals & Steals<span>:<span></a></li>
-        <li><a href="<?php echo site_url('solution');?>" title="Business Solution">Business Solutions</a></li>
+        <li><a href="<?php echo site_url('solution');?>" title="Elite Membership">Elite Membership</a></li>
       </ul>
     </div>
     <div class='headersearch'>
