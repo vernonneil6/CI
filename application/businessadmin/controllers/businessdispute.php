@@ -333,7 +333,7 @@ class Businessdispute extends CI_Controller {
 									  <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
 									</tr>
 								</table>');
-									//$this->email->send(); // send email to admin
+									$this->email->send(); // send email to admin
 							
 						}
 						
@@ -397,7 +397,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						//$this->email->send(); // send email to admin	
+						$this->email->send(); // send email to admin	
 						
 					    }
 					    
@@ -461,7 +461,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						//$this->email->send(); // send email to admin	
+						$this->email->send(); // send email to admin	
 							
 							
 							
@@ -526,7 +526,7 @@ class Businessdispute extends CI_Controller {
 							 </table>');
 					  
 									  
-							//$this->email->send(); // send email to admin
+							$this->email->send(); // send email to admin
 							
 							
 							
@@ -565,7 +565,7 @@ class Businessdispute extends CI_Controller {
 							</table>');
 					  
 									  
-							//$this->email->send(); // send email to admin
+							$this->email->send(); // send email to admin
 							
 						} 
 					    if(trim($dispute) =='Items Missing from the Order' and trim($resolution_expect) =='Would like a Partial Refund for the missing items')  
@@ -600,7 +600,7 @@ class Businessdispute extends CI_Controller {
 							</table>');
 					  
 							 	  
-							//$this->email->send(); // send email to admin
+							$this->email->send(); // send email to admin
 							
 							
 							
@@ -664,7 +664,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						//$this->email->send(); // send email to admin	
+						$this->email->send(); // send email to admin	
 							
 							
 							
@@ -727,7 +727,7 @@ class Businessdispute extends CI_Controller {
 					        </table>');
 					  
 									  
-						//$this->email->send(); // send email to admin	
+						$this->email->send(); // send email to admin	
 							
 							
 						} 
@@ -783,9 +783,6 @@ class Businessdispute extends CI_Controller {
 						   $tracking2=$alerts->tracking;
 						   $dateshipped2=$alerts->dateshipped; 
 						  
-						    /*$this->alert2($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
-						    $this->alert6($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
-							$this->alert9($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);*/
 							$this->alert3($useremail2,$username2,$companyname2,$companyemail2,$disputeid2,$carrier2,$tracking2,$dateshipped2);
 							$this->alert3_1($useremail2,$username2,$companyname2,$companyemail2,$disputeid2,$carrier2,$tracking2,$dateshipped2);
 						
@@ -866,7 +863,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 							</tr>
 					  
 					  </table>');
-					  //$this->email->send(); // send email to admin
+					  $this->email->send(); // send email to admin
 				  
 
 		
@@ -914,7 +911,7 @@ public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$di
 							</tr>
 					  
 					  </table>');
-					  //$this->email->send(); // send email to admin
+					  $this->email->send(); // send email to admin
 				  
 
 		
@@ -924,9 +921,8 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 		
 				            $this->load->library('email');
 							$this->email->from('noreply@Yougotrated.com','Yougotrated');
-						    //$this->email->to($useremail1);
-						    $this->email->to('alankenn.grossmaninteractive@gmail.com');
-							$this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid1.'');
+						    $this->email->to($useremail1);
+						    $this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid1.'');
 					        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					  
 							<tr>
@@ -1098,7 +1094,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 				
 				</table>');
 					
-					       //$this->email->send(); // send email to admin
+					       $this->email->send(); // send email to admin
 		
 		
 	}
@@ -1157,7 +1153,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 					  
 					  
 					  </table>');
-					 //$this->email->send(); // send email to admin	
+					 $this->email->send(); // send email to admin	
 			
 		}
 	       //->-If the buyer uploads the shipping information within 7 days then another email should go out to the Merchant with the following information:
@@ -1212,7 +1208,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 					  
 					  
 					  </table>');
-					 //$this->email->send(); // send email to admin	
+					 $this->email->send(); // send email to admin	
 			
 		}
 		
@@ -1252,7 +1248,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 									
 			
 					  </table>');
-					  //$this->email->send(); // send email to admin	
+					  $this->email->send(); // send email to admin	
 			
 		}
 		
@@ -1307,7 +1303,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 											  
 					  
 					   </table>');
-					  //$this->email->send(); // send email to admin
+					  $this->email->send(); // send email to admin
 			
 		}
 		//->-If the merchant does not upload the Proof of Refund within 2 days of the second email, the negative complaint should automatically
@@ -1372,7 +1368,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 						</tr>
 						
 					   </table>');
-					 //$this->email->send(); // send email to admin
+					 $this->email->send(); // send email to admin
 			
 		}
 		 ////////////////////////////->Items Missing from the Order/////////////////////
@@ -1449,7 +1445,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 					                        </table>');
 									  
 									  
-					 //$this->email->send(); // send email to admin
+					 $this->email->send(); // send email to admin
 					
 		}
 		
@@ -1493,7 +1489,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 								 </table>');
 									  
 									  
-					 //$this->email->send(); // send email to admin
+					 $this->email->send(); // send email to admin
 					
 		}
 		
@@ -1560,7 +1556,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 									   </table>');
 									   
 									   
-									  //$this->email->send(); // send email to admin
+									  $this->email->send(); // send email to admin
 		}
 		
 		//->-If the choice was to get a Partial Refund for the missing items, then the following email is sent to the Buyer:15 days
@@ -1598,7 +1594,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 									</table>');
 									   
 									   
-									  //$this->email->send(); // send email to admin
+									  $this->email->send(); // send email to admin
 			
 		}
 		
@@ -1637,7 +1633,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 									</table>');
 									   
 									   
-									   //$this->email->send(); // send email to admin
+									   $this->email->send(); // send email to admin
 			
 		}  
 		
@@ -1703,7 +1699,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 						</tr>
 						
 					   </table>');
-					 //$this->email->send(); // send email to admin
+					 $this->email->send(); // send email to admin
 			
 						
 		}
@@ -1768,7 +1764,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 						</tr>
 						
 					   </table>');
-					 //$this->email->send(); // send email to admin
+					 $this->email->send(); // send email to admin
 			
 						
 		}
@@ -1833,7 +1829,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 						</tr>
 						
 					   </table>');
-					 //$this->email->send(); // send email to admin
+					 $this->email->send(); // send email to admin
 			
 						
 		}
@@ -1898,7 +1894,7 @@ public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$di
 						</tr>
 						
 					   </table>');
-					 //$this->email->send(); // send email to admin
+					 $this->email->send(); // send email to admin
 			
 						
 		}
