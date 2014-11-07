@@ -215,35 +215,58 @@
         
       </div>
     </div>
+    
     <div class="container">
+	
       <div class="reg_step_edit_add"></div>
-      <div class="reg_frm_wrap">
+      <div class="reg_frm_wrap free_elite">
+		
+          
         <form class="reg_frm" action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
-          <div class="reg-row">
+		  		
+          <div class="reg-row bname">
             <label>INTRODUCE YOUR BUSINESS</label>
             <div class="reg_fld">WHAT IS YOUR BUSINESS'S NAME?</div>
-            
-            
             <input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30">
             <div id="nameerror" class="error">Name is required.</div>
             <div id="nametknerror" class="error">This compnay name is already exists.</div>
           </div>
-          <div class="reg-row" style="margin-top:10px;">
+          
+          <div class="reg-row website" style="margin-top: 10px;">
             <div class="reg_fld">WHAT IS YOUR BUSINESS'S WEBSITE?</div>
             <input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150">
             <div id="websiteerror" class="error">Website is required.</div>
           </div>
+          
+         <div class="reg-row_free"> 
+             <div class="free_elite_box">
+				<div class="free_click">Or <a href="<?php echo base_url();?>">CLICK HERE</a> to become an Elite Member</div>
+                   <div class="quotetext">Elite Members receive the following benefits:</div>
+				<ul class="elist">
+					<li>Access to our Buyer Protection program</li>
+					<li>YGR Seal with rating information</li>
+					<li>Ability to manage reviews</li>
+					<li>Much more!</li>
+                </ul>
+              </div>
+            <div id="websiteerror" class="error">Website is required.</div>
+          </div>
+          
+          
           <div class="reg-row" style="margin-top:10px;">
             <div class="reg_fld">CATEGORY</div>
             <div id="" style="overflow-y: scroll; height:180px;border: 1px solid #D9D9D9;width:100%;">
 				<?php for($i=0;$i<count($categories);$i++) { ?>
                 <?php  $option = array( 'name'=>'cat[]', 'id'=>'cat[]', 'value'=>$categories[$i]['id'],'class'=>'checkboxLabel' );
         	    echo form_checkbox( $option ); ?>
-                &nbsp; <span style="color: #999999;font-family: "nimbus-sans-condensed";"> <?php echo stripslashes($categories[$i]['category'])."<br/>";?> </span>
+                &nbsp; <span style="color: #999999;font-family: 'myriadpro-regular';"> <?php echo stripslashes($categories[$i]['category'])."<br/>";?> </span>
                 <?php } ?>
               </div>
             <div id="websiteerror" class="error">Website is required.</div>
           </div>
+          
+          
+          
           <div class="reg-row">
             <label>YOUR EMAIL ADDRESS</label>
             <div class="reg_fld">WHERE DO YOU RECEIVE YOUR E-MAIL?</div>
