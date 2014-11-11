@@ -47,7 +47,7 @@ class Subbrokerlogin extends CI_Controller {
 					{
 						$sess_array[$key] = $val;
 					}
-					print_r($sess_array);die();
+					//print_r($sess_array);die();
 					$this->session->set_userdata('subbroker_data', $sess_array);
 					
 					// user has been logged in

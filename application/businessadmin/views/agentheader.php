@@ -29,6 +29,6 @@
   	<div id="logo"> <a href="<?php echo site_url('agentdashboard'); ?>" title="Agent Admin"><span>Agent Admin</span></a> </div>
 	<div id="user" align="right">
 	    <?php echo "logged in as ".$this->session->userdata['agent_data'][0]->name; ?>
-	    <a href="<?php echo site_url('agentdashboard');?>" title="Dashboard">Dashboard</a> - <a href="<?php echo site_url('agentdashboard/logout');?>" title="Logout">Logout</a>
+	    <a href="<?php echo site_url('agentdashboard');?>" title="Dashboard">Dashboard</a> - <a href="<?php echo site_url('agent/logout');?>" title="Logout">Logout</a>
 	</div>
 </div>

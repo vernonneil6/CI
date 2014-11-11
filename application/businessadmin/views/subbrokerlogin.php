@@ -70,7 +70,7 @@
 <div id="main">
   <div id="content">
     <div id="login">
-      <div id="logo"><span>Marketer Login</span></div>
+      <div id="logo"><span>Subbroker Login</span></div>
      
       <!-- Error form message -->
       <?php if( $this->session->flashdata('error') ) { ?>    
