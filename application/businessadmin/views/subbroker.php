@@ -1,118 +1,103 @@
 <?php echo $header; ?>
-
-
 <div id="content">
-
+<?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='') { ?>
+ 
   <div class="breadcrumbs">
     <ul>
-      <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
-      <li><a href="<?php echo site_url('subbroker');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
+      <li class="home"><a href="<?php echo site_url('marketer');?>" title="Dashboard">Dashboard</a></li>
     </ul>
   </div>
 
-<?php if( $this->uri->segment(1)=='subbroker' && $this->uri->segment(2) == 'add' ) { ?>
-<div class="box">
+
+	<div class="box">
     <div class="headlines">
-      <h2><span><?php echo "Add Sub-Broker" ?></span></h2>
+      <h2><span><?php echo "Add Broker" ?></span></h2>
     </div>
-<?php
-if($brokerid==$this->session->userdata['youg_admin']['id'])
-{
-?>
-	<?php
-	if($marketercount==$remainingmarketercount and $agentcount==$remainingagentcount)
-	{ 
-	echo 'you have reached limits';	
-	}
-	else
-	{
-	?>
-	<?php echo form_open('subbroker/add',array('class'=>'formBox broker')); ?>
-	<fieldset>
-	<div class="clearfix">
+    <div class="box-content"> 
+    	<?php echo form_open('mainbroker/add',array('class'=>'formBox broker')); ?>
+	 <fieldset>
+        <div class="clearfix">
           <div class="lab">
-            <label for="broker">Select Type</label>
-          </div>
-	<div class="con">
-	 <?php
-	if($marketercount!=$remainingmarketercount and $agentcount!=$remainingagentcount)
-	{ 
- 	$broker_list = array(
-                  'marketeraccount'   => 'Marketer Account',
-                  'agentaccount'   => 'Agent Account'
-                );
-        }
-        else if($marketercount==$remainingmarketercount and $agentcount!=$remainingagentcount)
-	{ 
- 	$broker_list = array(
-                  'agentaccount'   => 'Agent Account'
-                );
-        }
-        else if($marketercount!=$remainingmarketercount and $agentcount==$remainingagentcount)
-	{ 
- 	$broker_list = array(
- 		  'marketeraccount'   => 'Marketer Account'              
-                );
-        }
-	 $classes = "class='select' id='brokername'";
- 	echo form_dropdown('brokertype', $broker_list, 'subbroker',$classes);   
-	?> 
-	</div>
-        </div>
-        <?php
-        if($marketercount==$remainingmarketercount and $agentcount!=$remainingagentcount)
-	{ 
-	?>
-	<div class="clearfix">
-          <div class="lab">
-            <label for="broker">Select Marketer</label>
-          </div>
-	<div class="con">
-	<select class='select'  name='marketername'>
-		<option value='select'>Select</option>
-		<?php
-		 foreach($marketerview as $username)
-		{
-		?>
-		<option value='<?php echo $username->username;?>'><?php echo $username->username;?></option>
-		<?php
-		}
-		?>
-	</select>	
-	</div>
-        </div>
-        <?php
-        }
-        else
-        {
-        ?>
-        <div class="clearfix"  id='marketername' style='display:none;'>
-          <div class="lab">
-            <label for="broker">Select Marketer</label>
-          </div>
-	<div class="con">
-	<select class='select'  name='marketername'>
-		<option value='select'>Select</option>
-		<?php
-		 foreach($marketerview as $username)
-		{
-		?>
-		<option value='<?php echo $username->username;?>'><?php echo $username->username;?></option>
-		<?php
-		}
-		?>
-	</select>	
-	</div>
-        </div>
-        <?php
-        }
-        ?>
-	 <div class="clearfix">
-          <div class="lab">
-            <label for="name">Username</label>
+            <label for="name">Subbroker Name</label><?php echo $data;?>
           </div>
           <div class="con">
-            <?php echo form_input( array( 'name'=>'brokername','class'=>'input','type'=>'text' ) ); ?>
+         <input type="text" class="input" placeholder="enter minimum 4 characters to search company" id="company" name="company" maxlength="30" required>
+          </div>
+        </div>
+        <?php echo form_input(array('name'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+      </fieldset>
+       <?php echo form_close(); ?>
+    </div>
+	</div>
+ 
+<?php } ?>
+
+
+<?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='marketer') {?>
+	
+  <div class="breadcrumbs">
+    <ul>
+      <li class="home"><a href="<?php echo site_url('subbroker/agent');?>" title="agent">Agent</a></li>
+    </ul>
+  </div>
+
+
+	<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Agent" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+			
+	
+     
+	<?php if( count($allmarketer) > 0 ) { ?>
+    <table class="tab tab-drag">
+      <tr class="top nodrop nodrag">
+		<td>Url</td>
+		<td>Username</td>
+		<td>Password</td>
+		<td>Signup</td>
+      </tr>
+      <?php foreach($allmarketer as $marketers){ ?>
+      <tr>
+		<td><?php echo $marketers['url']; ?></td>
+		<td><?php echo $marketers['name']; ?></td>
+        <td><?php echo $marketers['password']; ?></td>
+        <td><?php echo $marketers['signup']; ?></td>
+      </tr>
+      <?php } ?>
+    </table>
+    <?php } ?>
+    
+	</div>
+	</div>
+	
+<?php } ?>
+
+
+<?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='addmarketer') {?>
+	
+ <div class="breadcrumbs">
+    <ul>
+      <li class="home"><a href="<?php echo site_url('subbroker/addmarketer');?>" title="addmarketer">Add Marketer</a></li>
+    </ul>
+  </div>
+
+
+	<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Add Marketer" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+		
+    	 <?php echo form_open('subbroker/addmarketer',array('class'=>'formBox broker')); ?>
+	 <fieldset>
+	<div class="clearfix">
+          <div class="lab">
+            <label for="name">Marketer Name</label>
+          </div>
+          <div class="con">
+            <?php echo form_input( array( 'name'=>'marketername','class'=>'input','type'=>'text' ) ); ?>
           </div>
         </div>
 	<div class="clearfix">
@@ -120,104 +105,128 @@ if($brokerid==$this->session->userdata['youg_admin']['id'])
             <label for="name">Password</label>
           </div>
           <div class="con">
-            <?php echo form_input( array( 'name'=>'brokerpassword','class'=>'input','type'=>'password' ) ); ?>
+            <?php echo form_input( array( 'name'=>'marketerpassword','class'=>'input','type'=>'password' ) ); ?>
           </div>
         </div>
-        <?php echo form_input(array('name'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+        <?php echo form_input(array('name'=>'marketersubmit','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+	
       </fieldset>
-      <?php echo form_close(); } ?>
-
-<?php
-}
-else
-{
-?>
-<h1>Contact Admin For Activating Sub-Broker</h1>
-<?php
-}
-?>
-</div>
-<?php
-}
-else
-{
-?>
-<div class="box">
-
-    <div class="headlines">
-      <h2><span><?php echo "Sub-Broker"  ?></span></h2>
+       <?php echo form_close(); ?>
+       
     </div>
+	</div>
 
-<?php
-if($brokerid==$this->session->userdata['youg_admin']['id'])
-{
-?>
-<table class="tab tab-drag">
+	
+
+<?php } ?>
+<?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='agent') { ?>
+ <div class="breadcrumbs">
+    <ul>
+      <li class="home"><a href="<?php echo site_url('subbroker/agent');?>" title="agent">Agent</a></li>
+    </ul>
+  </div>
+
+
+	<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Agent" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+			
+	
+     
+	<?php if( count($allagent) > 0 ) { ?>
+    <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-        <th width="40%">Type</th>
-        <th width="40%">Username</th>
-        <th width="7%">Password</th>
+		<td>Url</td>
+		<td>Username</td>
+		<td>Password</td>
+		<td>Signup</td>
       </tr>
-      <?php
-	foreach($marketerview as $marketer)
-	{
-	?>
+      <?php foreach($allagent as $agents){ ?>
       <tr>
-        <td><?php echo $marketer->type;?></td>
-        <td><?php echo $marketer->username;?></td>
-        <td><?php echo $marketer->password;?></td>
+		<td><?php echo $agents['url']; ?></td>
+		<td><?php echo $agents['name']; ?></td>
+        <td><?php echo $agents['password']; ?></td>
+        <td><?php echo $agents['signup']; ?></td>
       </tr>
-       <?php
-	foreach($agentview as $marketers)
-	{
-	foreach($marketers as $agent)
-	{
-	if($marketer->id==$agent->marketerid)
-	{ 
-	?>
-      <tr>
-        <td><?php echo $agent->type;?></td>
-        <td><?php echo $agent->username;?></td>
-        <td><?php echo $agent->password;?></td>
-      </tr>
-      <?php
-	}  
-	}
-	} 
-	}
-	 ?>
-</table >
-<?php
-}
-else
-{
-?>
-<h1>Contact Admin For Activating Sub-Broker</h1>
-<?php
-}
-?>
-</div>
-<?php
-}
-?>
+      <?php } ?>
+    </table>
+    <?php } ?>
+    
+	</div>
+	</div>
+
+<?php } ?>
+
+
+<?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='addagent') { ?>
+
+	<div class="breadcrumbs">
+		<ul>
+		  <li class="home"><a href="<?php echo site_url('subbroker/addagent');?>" title="addagent">Add Agent</a></li>
+		</ul>
+	  </div>
+
+
+	<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Add Agent" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+		
+    	 <?php echo form_open('subbroker/addagent',array('class'=>'formBox broker')); ?>
+	 <fieldset>
+	<div class="clearfix">
+          <div class="lab">
+            <label for="name">Marketer Name</label>
+          </div>
+          <div class="con">
+				<select name="agentmarketer">
+					<?php foreach($marketername as $name) { ?>
+						<option value="<?php echo $name['id']; ?>"><?php echo $name['name']; ?></option>
+					<?php } ?>
+				</select>
+          </div>
+    </div>
+	<div class="clearfix">
+          <div class="lab">
+            <label for="name">Agent Name</label>
+          </div>
+          <div class="con">
+            <?php echo form_input( array( 'name'=>'agentname','class'=>'input','type'=>'text' ) ); ?>
+          </div>
+        </div>
+	<div class="clearfix">
+          <div class="lab">
+            <label for="name">Password</label>
+          </div>
+          <div class="con">
+            <?php echo form_input( array( 'name'=>'agentpassword','class'=>'input','type'=>'password' ) ); ?>
+          </div>
+        </div>
+        <?php echo form_input(array('name'=>'agentsubmit','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+	
+      </fieldset>
+       <?php echo form_close(); ?>
+       
+    </div>
+	</div>
+
+
+<?php } ?>
 </div>
 
-<?php include('leftmenu.php'); ?>
+<?php include('subbrokerleftmenu.php'); ?>
 <?php echo $footer; ?>
 
-
-<script>
-$(document).ready(function()
-{
-$('#brokername').change(function(){
-var value=$('#brokername').val();
-if(value=='agentaccount'){
-$('#marketername').show();
-}
-else
-{
-$('#marketername').hide();
-}
+<script type="text/javascript">
+$(document).ready(function(){
+$(function(){
+  $("#company").autocomplete({
+    source: "index.php/subbroker/get_companyname" 
+  });
 });
 });
 </script>
+

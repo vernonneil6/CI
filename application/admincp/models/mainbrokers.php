@@ -19,15 +19,9 @@ Class Mainbrokers extends CI_Model
 			return array();
 		}
  	}
-	function brokeradd($subbroker,$subbrokerid,$marketer,$agent)
+	function brokeradd($data)
 	{
-		$data=array(
-			'subbroker'=>$subbroker,
-			'subbrokerid'=>$subbrokerid,
-			'marketer'=>$marketer,
-			'agent' => $agent
-		);
-		$this->db->insert('youg_broker',$data);
+		$this->db->insert('youg_subbroker',$data);
 	}
 	
 	function companyid($name)

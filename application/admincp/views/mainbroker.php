@@ -21,9 +21,16 @@
             <label for="name">Subbroker Name</label><?php echo $data;?>
           </div>
           <div class="con">
-         <input type="text" class="input" placeholder="enter minimum 4 characters to search company" id="company" name="company" maxlength="30" required>
+         <input type="text" class="input" name="username" value="" required>
           </div>
-	<div class="cpyerror"><?php echo $errors; ?></div>
+        </div>
+     <div class="clearfix">
+          <div class="lab">
+            <label for="name">Password</label><?php echo $data;?>
+          </div>
+          <div class="con">
+         <input type="password" class="input" name="password" required>
+          </div>
         </div>
 	<div class="clearfix">
           <div class="lab">

@@ -1,7 +1,7 @@
 <?php ob_start();?>
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Agentlogin extends CI_Controller {
+class Subbrokerlogin extends CI_Controller {
 
 	public $data;
 	
@@ -9,16 +9,16 @@ class Agentlogin extends CI_Controller {
   	{
   		parent::__construct();
 
-		if( $this->session->userdata('agent_data') )
+		if( $this->session->userdata('subbroker_data') )
 	  	{
-	        redirect('agent', 'refresh');
+	        redirect('subbroker', 'refresh');
 		}
 	}
 	
 	public function index()
 	{
 		
-    		$this->load->library(array('encrypt', 'form_validation', 'session'));
+    	$this->load->library(array('encrypt', 'form_validation', 'session'));
 		$this->load->helper('form');
 			
 		// SET VALIDATION RULES
@@ -35,10 +35,10 @@ class Agentlogin extends CI_Controller {
 				$user_pass = $this->input->post('user_pass');
 				
 				//Loads Adminlogin Model file
-				$this->load->model('agentlogins');
+				$this->load->model('subbrokerlogins');
 				
 				//query the database
-				$result = $this->agentlogins->logincheck($user_name, $user_pass);
+				$result = $this->subbrokerlogins->logincheck($user_name, $user_pass);
 				//print_r($result);die();
 				if($result)
 				{
@@ -47,33 +47,30 @@ class Agentlogin extends CI_Controller {
 					{
 						$sess_array[$key] = $val;
 					}
-					//print_r($sess_array);die();
-					$this->session->set_userdata('agent_data', $sess_array);
+					print_r($sess_array);die();
+					$this->session->set_userdata('subbroker_data', $sess_array);
 					
 					// user has been logged in
-					redirect('agent', 'refresh');
+					redirect('subbroker', 'refresh');
 				}
 				
 				else
 				{
 					$this->session->set_flashdata('error', 'Invalid username or password');
-					redirect('agentlogin', 'refresh');
+					redirect('subbrokerlogin', 'refresh');
 				}
 			}
 			else
 			{
 				$this->session->set_flashdata('error', 'Invalid username or password');
-				redirect('agentlogin', 'refresh');
+				redirect('subbrokerlogin', 'refresh');
 			}
 		}
 		
 		//Loads the Admin Login view
-		$this->load->view('agentlogin',$this->data);
+		$this->load->view('subbrokerlogin',$this->data);
 		
 	}
-
-
-
 
 }
 

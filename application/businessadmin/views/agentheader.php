@@ -18,6 +18,8 @@
 <script type="text/javascript" src="<?php echo base_url();?>js/init.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.raty.min.js"></script>
 <script src="<?php echo base_url();?>js/jquery.filestyle.js" type="text/javascript"></script>
+<link href="<?php echo base_url();?>css/jquery-ui.css" rel="stylesheet" type="text/css" media="screen">
+<script type="text/javascript" src="<?php echo base_url();?>js/jquery-ui.js"></script>
 
 </head>
 
@@ -26,7 +28,7 @@
 <div id="header"> 
   	<div id="logo"> <a href="<?php echo site_url('agentdashboard'); ?>" title="Agent Admin"><span>Agent Admin</span></a> </div>
 	<div id="user" align="right">
-	    <?php echo "logged in as ".$this->session->userdata['agent_data'][0]->username; ?>
+	    <?php echo "logged in as ".$this->session->userdata['agent_data'][0]->name; ?>
 	    <a href="<?php echo site_url('agentdashboard');?>" title="Dashboard">Dashboard</a> - <a href="<?php echo site_url('agentdashboard/logout');?>" title="Logout">Logout</a>
 	</div>
 </div>

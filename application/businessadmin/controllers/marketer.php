@@ -13,7 +13,7 @@ class Marketer extends CI_Controller {
 	      	redirect('marketerlogin', 'refresh');
 		}
 	 	$this->load->helper('form');
-                $this->load->model('marketers');
+        $this->load->model('marketers');
 
 
 		$this->data['header'] = $this->load->view('marketerheader',$this->data,true);
@@ -24,12 +24,48 @@ class Marketer extends CI_Controller {
 	{
 		if( $this->session->userdata['marketer_data'] )
 	  	{
-			$subbrokerid = $this->session->userdata['marketer_data'][0]->subbrokerid;
-			$marketerid = $this->session->userdata['marketer_data'][0]->id;
-			$this->data['marketerall']=$this->marketers->get_marketer($subbrokerid,$marketerid);
 			$this->load->view('marketer',$this->data);
 	  	}
                 
+	}
+	
+	public function agent()
+	{
+		if( $this->session->userdata['marketer_data'] )
+	  	{
+			$this->data['allagent'] = $this->marketers->data_allagent();
+			$this->load->view('marketer',$this->data);
+	  	}
+                
+	}
+	public function addagent()
+	{
+		if( $this->session->userdata['marketer_data'] )
+	  	{
+			$this->load->view('marketer',$this->data);
+			if($this->input->post('agentsubmit'))
+			{
+				$data=array(
+					'url'=> base_url().'index.php',
+					'name'=>$this->input->post('agentname'),
+					'password'=>$this->input->post('agentpassword'),
+					'signup'=>date("Y-m-d H:i:s"),
+					'marketerid'=>$this->session->userdata['marketer_data'][0]->id,
+					'subbrokerid'=>$this->session->userdata['marketer_data'][0]->subbrokerid
+				);
+				$this->marketers->data_agent($data);
+			}
+	  	}
+                
+	}
+	
+	function get_companyname()
+	{
+	   if (isset($_GET['term']))
+	   {
+	      $name = strtolower($_GET['term']);
+	      $this->marketers->get_companynames($name);
+	   }
 	}
 	function logout()
 	{

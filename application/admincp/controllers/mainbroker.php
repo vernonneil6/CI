@@ -82,29 +82,21 @@ class Mainbroker extends CI_Controller
 		
 		if($this->input->post('submitbroker'))
 		{
-		$subbrokername=strtolower($this->input->post('company'));
-		$subbrokerid = $this->mainbrokers->companyid($subbrokername);
-		if($subbrokername==strtolower($subbrokerid['company']))
-		{	
-		$marketer=$this->input->post('marketer');
-		$agent=$this->input->post('agent');
-		$this->mainbrokers->brokeradd($subbrokername,$subbrokerid['id'],$marketer,$agent);	
-		redirect('mainbroker','refresh');
+		$request=$this->input;
+		
+		$data=array(
+		'url'=> base_url(). 'subbrokerlogin/'.substr(rand(),0,5),
+		'name'=>$request->post('username'),
+		'password'=>$request->post('password'),
+		'marketer'=>$request->post('marketer'),
+		'agent'=>$request->post('agent'),
+		'signup'=>date("Y-m-d H:i:s")
+		);
+		
+		$this->mainbrokers->brokeradd($data);
 		}
-		else
-		{
-			$aData['errors']="Check Company Name";
-		}
-		}
-		$this->load->view('mainbroker',$aData);
+		$this->load->view('mainbroker');
 	}
-	function get_companyname()
-	{
-	    if (isset($_GET['term']))
-	   {
-	      $name = strtolower($_GET['term']);
-	      $this->mainbrokers->get_companynames($name);
-	    }
-	}
+	
 }
 ?>

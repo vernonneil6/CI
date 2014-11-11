@@ -26,9 +26,9 @@
 <body>
 <div id="main">
 <div id="header"> 
-  	<div id="logo"> <a href="<?php echo site_url('marketer'); ?>" title="Marketer Admin"><span>Marketer Admin</span></a> </div>
+  	<div id="logo"> <a href="<?php echo site_url('subbroker'); ?>" title="Subbroker Admin"><span>Subbroker Admin</span></a> </div>
 	<div id="user" align="right">
-	    <?php echo "logged in as ".$this->session->userdata['marketer_data'][0]->name; ?>
-	    <a href="<?php echo site_url('marketer');?>" title="Dashboard">Dashboard</a> - <a href="<?php echo site_url('marketer/logout');?>" title="Logout">Logout</a>
+	    <?php echo "logged in as ".$this->session->userdata['subbroker_data'][0]->name; ?>
+	    <a href="<?php echo site_url('subbroker');?>" title="Dashboard">Dashboardd</a> - <a href="<?php echo site_url('subbroker/logout');?>" title="Logout">Logout</a>
 	</div>
 </div>

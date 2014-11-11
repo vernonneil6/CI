@@ -30,17 +30,6 @@
         <li><a href="<?php echo site_url('review/reviews'); ?>" title="Remove Reviews">Remove Reviews</a></li>
       </ul>
     </li>
-
-<?php $a = $this->session->userdata['youg_admin']['id'];?>
-    <?php  $com = $this->settings->get_company_byid($a);?>
-
-   <li><a href="<?php echo site_url('subbroker'); ?>" title="SubBrokers">SubBrokers</a>
-      <ul class="submenu">
-        <li><a href="<?php echo site_url('subbroker/add'); ?>" title="Add SubBrokers">Add SubBrokers</a></li>
-        <li><a href="<?php echo site_url('subbroker'); ?>" title="List All SubBrokers">List All SubBrokers</a></li>
-      </ul>
-    </li>
-
    <li><a href="<?php echo site_url('elite'); ?>" title="Elite Membership Status" class="link">Elite Membership Status</a> </li>
    <li><a href="<?php echo site_url('pressrelease'); ?>" title="Press Releases">Press Releases</a>
       <ul class="submenu">
