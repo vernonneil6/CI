@@ -641,6 +641,8 @@ class Report extends CI_Controller {
 		//print_r($this->data['reports']);
 		//die();
 		
+		
+		
 		$this->paging['base_url'] = site_url("reports/searchresult/".$keyword."/index");
 		$this->paging['uri_segment'] = 5;
 		$this->paging['total_rows'] = $this->reports->brokersearch_count($keyword);

@@ -763,11 +763,13 @@ class Businessdispute extends CI_Controller {
 						   $dateshipped1=$alerts->dateshipped; 
 						   
 						  $this->alert1($useremail1,$username1,$companyname1,$companyemail1,$disputeid1);
+						  $this->alert1_1($useremail1,$username1,$companyname1,$companyemail1,$disputeid1);
+						  $this->alert1_2($useremail1,$username1,$companyname1,$companyemail1,$disputeid1);
 						  $this->alert7($useremail1,$username1,$companyname1,$companyemail1,$disputeid1,$carrier1,$tracking1,$dateshipped1);
 						 
 					}
 					
-					//seven days
+					//seven days 
 					foreach($data['seven'] as $merchantfavour)
 					{
 						 
@@ -777,17 +779,18 @@ class Businessdispute extends CI_Controller {
 						   $companyname2=$merchantfavour->companyname;
 						   $companyemail2=$merchantfavour->companyemail;
 						   $disputeid2=$merchantfavour->id;
+						   $carrier2=$alerts->carrier;
+						   $tracking2=$alerts->tracking;
+						   $dateshipped2=$alerts->dateshipped; 
 						  
-						    $this->alert2($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
-							$this->alert6($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
-							$this->alert9($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
-							$this->alert3($useremail2,$username2,$companyname2,$companyemail2,$disputeid2);
+							$this->alert3($useremail2,$username2,$companyname2,$companyemail2,$disputeid2,$carrier2,$tracking2,$dateshipped2);
+							$this->alert3_1($useremail2,$username2,$companyname2,$companyemail2,$disputeid2,$carrier2,$tracking2,$dateshipped2);
 						
 						  
 						
 					}
 					
-					//fifteendays
+					//fifteendays && alerts(2 days after)
 					foreach($data['fifteen'] as $finalwarning)
 					{
 						
@@ -798,12 +801,19 @@ class Businessdispute extends CI_Controller {
 						   $companyemail3=$finalwarning->companyemail;
 						   $disputeid3=$finalwarning->id;
 						
-						 $this->alert4($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   $this->alert2($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   $this->alert4($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
 						   $this->alert5($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   $this->alert6($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
 						   $this->alert8($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   $this->alert9($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
 						   $this->alert10($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
 						   $this->alert11($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
 						   $this->alert12($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   $this->alert12_1($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   $this->alert12_2($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   $this->alert12_3($useremail3,$username3,$companyname3,$companyemail3,$disputeid3);
+						   
 					}
 					
 		   
@@ -815,8 +825,8 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 		
 				            $this->load->library('email');
 							$this->email->from('noreply@Yougotrated.com','Yougotrated');
-							$this->email->to($companyemail1);
-							$this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid1.'');
+						    $this->email->to($companyemail1);
+     						$this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid1.'');
 					        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					  
 							<tr>
@@ -824,15 +834,15 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 							</tr>
 							<tr>
 							<td>
-							It has been 5 days from the time the buyer open this case against you but you have failed to provide the requested shipping information in the Resolution Center.
+							It has been 5 days from the time the buyer open this case against you but you have failed to provide the requested shipping information in the Resolution Center.<br>
 
-							Please follow this link to upload the shipping information so we can close this case in your favor.
+							Please follow this link to upload the shipping information so we can close this case in your favor.<br>
 
-							You must reply within 2 days of this email or this dispute will be escalated to a chargeback and the buyers Complaint will be posted online.
+							You must reply within 2 days of this email or this dispute will be escalated to a chargeback and the buyers Complaint will be posted online.<br>
 
-							We encourage you to respond as soon as possible to protect your online reputation.
+							We encourage you to respond as soon as possible to protect your online reputation.<br>
 
-							Please follow this link to the Resolution Center
+							Please follow this link to the Resolution Center(<a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid1.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid1.'</a>.
 							</td>
 							</tr>
 							<tr>
@@ -858,21 +868,150 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 
 		
 	}
-	
-	//->-If the merchant does not upload the information within 2 days of the second email, the negative complaint should automatically be posted online in their profile
-	public function alert2($useremail2,$username2,$companyname2,$companyemail2,$disputeid2)
+public function alert1_1($useremail1,$username1,$companyname1,$companyemail1,$disputeid1)
 	{
-		                        $this->load->library('email');
-								$this->email->from('noreply@Yougotrated.com','Yougotrated');
-								$this->email->to($useremail2);
-								$this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid2.'');
-					            $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
-						<tr>
-						<td>Hello '.ucfirst($username2).',</td>
+		
+				            $this->load->library('email');
+							$this->email->from('noreply@Yougotrated.com','Yougotrated');
+						    $this->email->to($companyemail1);
+							$this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid1.'');
+					        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
+					  
+							<tr>
+							 <td>Dear '.ucfirst($companyname1).', </td>
+							</tr>
+							<tr>
+							<td>
+							It has been 15 days from the time the buyer open this case against you but you have failed to provide the requested shipping information in the Resolution Center.<br>
+
+							Please follow this link to upload the shipping information so we can close this case in your favor.<br>
+
+							You must reply within 2 days of this email or this dispute will be escalated to a chargeback and the buyers Complaint will be posted online.<br>
+
+							We encourage you to respond as soon as possible to protect your online reputation.<br>
+
+							Please follow this link to the Resolution Center(<a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid1.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid1.'</a>.
+							</td>
+							</tr>
+							<tr>
+							<td>Thank you for using YouGotRateds Buyer Protection Program.</td>
+							</tr>
+
+							<tr><td>Sincerely,</td></tr>
+
+							<tr><td>YouGotRated</td></tr>
+							<tr><td>Buyer Protection Program</td></tr>
+							<tr><td>BC: PP-003-442-048-286</td></tr>
+
+							<tr>
+								<td>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further assistance, please communicate with the Merchant through the Resolution Center,</td>
+							</tr>
+							<tr>
+							  <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
+							</tr>
+					  
+					  </table>');
+					  $this->email->send(); // send email to admin
+				  
+
+		
+	}
+public function alert1_2($useremail1,$username1,$companyname1,$companyemail1,$disputeid1)
+	{
+		
+				            $this->load->library('email');
+							$this->email->from('noreply@Yougotrated.com','Yougotrated');
+						    $this->email->to($useremail1);
+						    $this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid1.'');
+					        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
+					  
+							<tr>
+							 <td>Hello '.ucfirst($username1).', </td>
+							</tr>
+							<tr>
+
+								<td> '.ucfirst($companyname1).' has failed to provide the requested shipping and tracking information for your purchase.</td>
+
+					        </tr>
+							<tr>
+
+							   <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
+
+							</tr>
+					<tr>
+
+					   <td>Step 1) You must contact your card issuer and file a Chargeback for this transaction.</td>
+
 					</tr>
 					<tr>
 
-					   <td> '.ucfirst($companyname2).' has failed to provide the requested shipping and tracking information for your purchase.</td>
+					   <td>Step 2) You must specify that the reason for the chargeback is that "The merchant did not shipped the item you purchased - Item not Received".</td>
+
+					</tr>
+
+					<tr>
+
+					 <td>Step 3) Request a full refund of the charge based on the Merchants failure to fulfill the transaction</td>
+
+					</tr>
+					<tr>
+
+					 <td>Your card issuer will be very helpful in assisting you in filing the chargeback.</td>
+
+					</tr>
+					<tr>
+
+					 <td>Please note that this case will remain open for 90 days.</td>
+
+					</tr>
+					<tr>
+
+					 <td>You will have the opportunity to close the case at any time because you received a refund from the card issuer or to upload the paperwork from your card issuer in the event they denied your chargeback claim.</td>
+
+					</tr>
+					<tr>
+
+					 <td>In such event, once we receive the denial from the Card Issuer, YouGotRated will reimburse you for the full purchase price of the merchandise up to $1,500.00 providing you complied with all the instructions as outlined in the Resolution Center. Please note that it can take up to 30 days for a reimbursement to be issued after we receive the necessary paperwork.</td>
+
+					</tr>
+					<tr>
+					<td>Thank you for using YouGotRateds Buyer Protection Program.</td>
+					</tr>
+
+					<tr><td>Sincerely,</td></tr>
+
+					<tr><td>YouGotRated</td></tr>
+					<tr><td>Buyer Protection Program</td></tr>
+					<tr><td>BC: PP-003-442-048-286</td></tr>
+
+					<tr>
+						<td>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further assistance, please communicate with the Merchant through the Resolution Center,</td>
+					</tr>
+					<tr>
+					  <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
+					</tr>
+			  
+					  </table>');
+					  $this->email->send(); // send email to admin
+				  
+
+		
+	}
+	
+	//->-If the merchant does not upload the information within 2 days of the second email, the negative complaint should automatically be posted online in their profile
+	public function alert2($useremail3,$username3,$companyname3,$companyemail3,$disputeid3)
+	{
+		                        $this->load->library('email');
+								$this->email->from('noreply@Yougotrated.com','Yougotrated');
+								$this->email->to($useremail3);
+								$this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid3.'');
+					            $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
+						<tr>
+						<td>Hello '.ucfirst($username3).',</td>
+					</tr>
+					<tr>
+
+					   <td> '.ucfirst($companyname3).' has failed to provide Proof of Refund for your purchase.</td>
 
 					</tr>
 					<tr>
@@ -963,7 +1102,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 	
 	       //->If the buyer does not upload the shipping information within 7 days, the case should be automatically closed in the Merchant's favor.
 	       //->-If the buyer uploads the shipping information within 7 days then another email should go out to the Merchant with the following information:
-	    public function alert3($useremail2,$username2,$companyname2,$companyemail2,$disputeid2)
+	    public function alert3($useremail2,$username2,$companyname2,$companyemail2,$disputeid2,$carrier2,$tracking2,$dateshipped2)
 	    {
 			
 				$this->load->library('email');
@@ -978,9 +1117,9 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 			<tr>
 			 <td> '.ucfirst($username2).' has shipped the item with the following shipping information:
 				 <ul>
-					 <li>Carrier:</li>
-					 <li>Tracking Number:</li>
-					 <li>Date Shipped:</li>
+					 <li>Carrier:'.$carrier2.'</li>
+					 <li>Tracking Number:'.$tracking2.'</li>
+					 <li>Date Shipped:'.$dateshipped2.'</li>
 				 </ul>
 			 </td>
 			</tr>	
@@ -988,7 +1127,62 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 			 <td>Once you receive the item please issue the Buyer a Full Refund and follow the link below to upload Proof of Refund so we can close this case in your favor.</td>
 			</tr>	
 			<tr>
-			 <td>Please follow this link to the Resolution Center</td>
+			 <td>Please follow this link to the Resolution Center(<a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid2.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid2.'</a>)</td>
+			</tr>	
+			<tr>
+			 <td>Thank you for using the YouGotRated Buyer Protection Program.</td>
+			</tr>	
+			<tr>
+			 <td>Sincerely,</td>
+			</tr>	
+			<tr>
+			 <td>YouGotRated</td>
+			</tr>	
+			<tr>
+			 <td>Buyer Protection Program</td>
+			</tr>	
+			<tr>
+			 <td>BC: PP-003-442-048-286</td>
+			</tr>	
+			<tr>
+			 <td>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further assistance, please communicate with the Merchant through the Resolution Center,</td>
+			</tr>	
+			<tr>
+			 <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
+			</tr>	
+					  
+					  
+					  </table>');
+					 $this->email->send(); // send email to admin	
+			
+		}
+	       //->-If the buyer uploads the shipping information within 7 days then another email should go out to the Merchant with the following information:
+	    public function alert3_1($useremail2,$username2,$companyname2,$companyemail2,$disputeid2,$carrier2,$tracking2,$dateshipped2)
+	    {
+			
+				$this->load->library('email');
+				$this->email->from('noreply@Yougotrated.com','Yougotrated');
+				$this->email->to($companyemail2);
+			    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid2.'');
+				$this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
+									  
+			  <tr>
+			 <td> Hello '.ucfirst($companyname2).',</td>
+			</tr>	
+			<tr>
+			 <td> '.ucfirst($username2).' has shipped the damaged or defective back to you.
+				 <ul>
+					 <li>Carrier:'.$carrier2.'</li>
+					 <li>Tracking Number:'.$tracking2.'</li>
+					 <li>Date Shipped:'.$dateshipped2.'</li>
+				 </ul>
+			 </td>
+			</tr>	
+			<tr>
+			 <td>Once you receive the item please expedite the Buyer a Replacement Item and follow the link below to upload the new Shipping Information so we can close this case in your favor.</td>
+			</tr>	
+			<tr>
+			 <td>Please follow this link to the Resolution Center(<a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid2.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid2.'</a>)</td>
 			</tr>	
 			<tr>
 			 <td>Thank you for using the YouGotRated Buyer Protection Program.</td>
@@ -1083,7 +1277,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 						 <td>We encourage you to respond as soon as possible to protect your online reputation.</td>
 						</tr>
 						<tr>
-						 <td>Please follow this link to the Resolution Center</td>
+						 <td>Please follow this link to the Resolution Center(<a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'</a></td>
 						</tr>
 						<tr>
 						 <td>Thank you for using YouGotRateds Buyer Protection Program.</td>
@@ -1113,19 +1307,19 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 			
 		}
 		//->-If the merchant does not upload the Proof of Refund within 2 days of the second email, the negative complaint should automatically
-	    public function alert6($useremail2,$username2,$companyname2,$companyemail2,$disputeid2)
+	    public function alert6($useremail3,$username3,$companyname3,$companyemail3,$disputeid3)
 	    {
 			
 			                                $this->load->library('email');
 			 						  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    $this->email->to($useremail2);
-										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid2.'');
+										    $this->email->to($useremail3);
+										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid3.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 					           <tr>
-						 <td>Hello '.ucfirst($username2).',</td>
+						 <td>Hello '.ucfirst($username3).',</td>
 						</tr>
 						<tr>
-						 <td>'.ucfirst($companyname2).' has failed to provide Proof of Refund for the missing items you purchased.</td>
+						 <td>'.ucfirst($companyname3).' has failed to provide Proof of Refund for the missing items you purchased.</td>
 						</tr>
 						<tr>
 						 <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
@@ -1218,7 +1412,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 							  <td>If you are satisfied with your purchase, please return to this page to close this case</td>
 							</tr>
 							<tr>
-							  <td>Please follow this link to the Resolution Center.</td>
+							  <td>Please follow this link to the Resolution Center <a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid1.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid1.'</a>.</td>
 							</tr>
 							<tr>
 							  <td>Thank you for using YouGotRateds Buyer Protection Program.</td>
@@ -1277,7 +1471,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 								We encourage you to respond as soon as possible to protect your online reputation.
 								</td></tr>
 
-								<tr><td>Please follow this link to the Resolution Center</td></tr>
+								<tr><td>Please follow this link to the Resolution Center <a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'</a>.</td></tr>
 
 								<tr><td>Thank you for using YouGotRateds Buyer Protection Program.</td></tr>
 
@@ -1300,18 +1494,18 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 		}
 		
 		//->-If the merchant does not upload the Shipping Information within 2 days of the second email, the negative complaint should automatically be posted online in their profile and another email should go out to the buyer with the following instructions:
-         public function alert9($useremail2,$username2,$companyname2,$companyemail2,$disputeid2)
+         public function alert9($useremail3,$username3,$companyname3,$companyemail3,$disputeid3)
          {
 			                               $this->load->library('email');
 									  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
-										    $this->email->to($useremail2);
-										    $this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid2.'');
+										    $this->email->to($useremail3);
+										    $this->email->subject('ALERT- Buyer Complaint Case #'.$disputeid3.'');
 					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
 																		   <tr>
-										 <td> Hello '.ucfirst($username2).',</td>
+										 <td> Hello '.ucfirst($username3).',</td>
 										</tr>
 										<tr>
-										 <td>'.ucfirst($companyname2).' has failed to provide Proof of Refund for the missing items you purchased.</td>
+										 <td>'.ucfirst($companyname3).' has failed to provide Proof of Refund for the missing items you purchased.</td>
 										</tr>
 										<tr>
 										 <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
@@ -1422,7 +1616,7 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 
 						We encourage you to respond as soon as possible to protect your online reputation.</td></tr>
 
-						<tr><td>Please follow this link to the Resolution Center</td></tr>
+						<tr><td>Please follow this link to the Resolution Center<a href="http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'">http://yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputeid3.'</a></td></tr>
 
 						<tr><td>Thank you for using YouGotRateds Buyer Protection Program.</td></tr>
 
@@ -1457,6 +1651,201 @@ public function alert1($useremail1,$username1,$companyname1,$companyemail1,$disp
 						</tr>
 						<tr>
 						 <td>'.ucfirst($companyname3).' has failed to provide Proof of Refund for the missing items you purchased.</td>
+						</tr>
+						<tr>
+						 <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
+						</tr>
+						<tr>
+						 <td>Step 1) You must contact your card issuer and file a Chargeback for this transaction.</td>
+						</tr>
+						<tr>
+						 <td>Step 2) You must specify that the reason for the chargeback is that you "Received an Incomplete order and the merchant has failed to issue you a Partial Refund for the missing items you purchased.</td>
+						</tr>
+						<tr>
+						 <td>Step 3) Request a partial refund of the charge based on the Merchants failure to fulfill the transaction</td>
+						</tr>
+						<tr>
+						 <td>Your card issuer will be very helpful in assisting you in filing the chargeback.</td>
+						</tr>
+						<tr>
+						 <td>Please note that this case will remain open for 90 days.</td>
+						</tr>
+						<tr>
+						 <td>You will have the opportunity to close the case at any time because you received a refund from the card issuer or to upload the paperwork from your card issuer in the event they denied your chargeback claim.</td>
+						</tr>
+						<tr>
+						 <td>In such event, once we receive the denial from the Card Issuer, YouGotRated will reimburse you for the full purchase price of the merchandise up to $1,500.00 providing you complied with all the instructions as outlined in the Resolution Center. Please note that it can take up to 30 days for a reimbursement to be issued after we receive the necessary paperwork.</td>
+						</tr>
+						<tr>
+						 <td>Thank you for using YouGotRateds Buyer Protection Program.</td>
+						</tr>
+						<tr>
+						 <td>Sincerely,</td>
+						</tr>
+						<tr>
+						 <td>YouGotRated</td>
+						</tr>
+						<tr>
+						 <td>Buyer Protection Program</td>
+						</tr>
+						<tr>
+						 <td>BC: PP-003-442-048-286</td>
+						</tr>
+						<tr>
+						 <td>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further assistance, please communicate with the Merchant through the Resolution Center,</td>
+						</tr>
+						<tr>
+						 <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
+						</tr>
+						
+					   </table>');
+					 $this->email->send(); // send email to admin
+			
+						
+		}
+		public function alert12_1($useremail3,$username3,$companyname3,$companyemail3,$disputeid3)
+		{
+			
+			                                $this->load->library('email');
+			 						  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
+										    $this->email->to($useremail3);
+										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid3.'');
+					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
+					           <tr>
+						 <td>Hello '.ucfirst($username3).',</td>
+						</tr>
+						<tr>
+						 <td>'.ucfirst($companyname3).' has failed to provide has failed to provide Proof of Shipping for your purchase.</td>
+						</tr>
+						<tr>
+						 <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
+						</tr>
+						<tr>
+						 <td>Step 1) You must contact your card issuer and file a Chargeback for this transaction.</td>
+						</tr>
+						<tr>
+						 <td>Step 2) You must specify that the reason for the chargeback is that you "Received an Incomplete order and the merchant has failed to issue you a Partial Refund for the missing items you purchased.</td>
+						</tr>
+						<tr>
+						 <td>Step 3) Request a partial refund of the charge based on the Merchants failure to fulfill the transaction</td>
+						</tr>
+						<tr>
+						 <td>Your card issuer will be very helpful in assisting you in filing the chargeback.</td>
+						</tr>
+						<tr>
+						 <td>Please note that this case will remain open for 90 days.</td>
+						</tr>
+						<tr>
+						 <td>You will have the opportunity to close the case at any time because you received a refund from the card issuer or to upload the paperwork from your card issuer in the event they denied your chargeback claim.</td>
+						</tr>
+						<tr>
+						 <td>In such event, once we receive the denial from the Card Issuer, YouGotRated will reimburse you for the full purchase price of the merchandise up to $1,500.00 providing you complied with all the instructions as outlined in the Resolution Center. Please note that it can take up to 30 days for a reimbursement to be issued after we receive the necessary paperwork.</td>
+						</tr>
+						<tr>
+						 <td>Thank you for using YouGotRateds Buyer Protection Program.</td>
+						</tr>
+						<tr>
+						 <td>Sincerely,</td>
+						</tr>
+						<tr>
+						 <td>YouGotRated</td>
+						</tr>
+						<tr>
+						 <td>Buyer Protection Program</td>
+						</tr>
+						<tr>
+						 <td>BC: PP-003-442-048-286</td>
+						</tr>
+						<tr>
+						 <td>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further assistance, please communicate with the Merchant through the Resolution Center,</td>
+						</tr>
+						<tr>
+						 <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
+						</tr>
+						
+					   </table>');
+					 $this->email->send(); // send email to admin
+			
+						
+		}
+		public function alert12_2($useremail3,$username3,$companyname3,$companyemail3,$disputeid3)
+		{
+			
+			                                $this->load->library('email');
+			 						  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
+										    $this->email->to($useremail3);
+										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid3.'');
+					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
+					           <tr>
+						 <td>Hello '.ucfirst($username3).',</td>
+						</tr>
+						<tr>
+						 <td>'.ucfirst($companyname3).' has failed to provide Proof of Shipping for your Replacement Item.</td>
+						</tr>
+						<tr>
+						 <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>
+						</tr>
+						<tr>
+						 <td>Step 1) You must contact your card issuer and file a Chargeback for this transaction.</td>
+						</tr>
+						<tr>
+						 <td>Step 2) You must specify that the reason for the chargeback is that you "Received an Incomplete order and the merchant has failed to issue you a Partial Refund for the missing items you purchased.</td>
+						</tr>
+						<tr>
+						 <td>Step 3) Request a partial refund of the charge based on the Merchants failure to fulfill the transaction</td>
+						</tr>
+						<tr>
+						 <td>Your card issuer will be very helpful in assisting you in filing the chargeback.</td>
+						</tr>
+						<tr>
+						 <td>Please note that this case will remain open for 90 days.</td>
+						</tr>
+						<tr>
+						 <td>You will have the opportunity to close the case at any time because you received a refund from the card issuer or to upload the paperwork from your card issuer in the event they denied your chargeback claim.</td>
+						</tr>
+						<tr>
+						 <td>In such event, once we receive the denial from the Card Issuer, YouGotRated will reimburse you for the full purchase price of the merchandise up to $1,500.00 providing you complied with all the instructions as outlined in the Resolution Center. Please note that it can take up to 30 days for a reimbursement to be issued after we receive the necessary paperwork.</td>
+						</tr>
+						<tr>
+						 <td>Thank you for using YouGotRateds Buyer Protection Program.</td>
+						</tr>
+						<tr>
+						 <td>Sincerely,</td>
+						</tr>
+						<tr>
+						 <td>YouGotRated</td>
+						</tr>
+						<tr>
+						 <td>Buyer Protection Program</td>
+						</tr>
+						<tr>
+						 <td>BC: PP-003-442-048-286</td>
+						</tr>
+						<tr>
+						 <td>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further assistance, please communicate with the Merchant through the Resolution Center,</td>
+						</tr>
+						<tr>
+						 <td>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</td>
+						</tr>
+						
+					   </table>');
+					 $this->email->send(); // send email to admin
+			
+						
+		}
+		public function alert12_3($useremail3,$username3,$companyname3,$companyemail3,$disputeid3)
+		{
+			
+			                                $this->load->library('email');
+			 						  		$this->email->from('noreply@Yougotrated.com','Yougotrated');
+										    $this->email->to($useremail3);
+										    $this->email->subject('Resolution of Buyer Complaint Case #'.$disputeid3.'');
+					                        $this->email->message('<table cellpadding="0" cellspacing="20" width="100%" border="0">
+					           <tr>
+						 <td>Hello '.ucfirst($username3).',</td>
+						</tr>
+						<tr>
+						 <td>'.ucfirst($companyname3).' has failed to provide Proof of Shipping for your missing items.</td>
 						</tr>
 						<tr>
 						 <td>Please follow the instructions outlined below in order to continue to be protected by the Buyer Protection Program:</td>

@@ -45,7 +45,7 @@ class Solution extends CI_Controller {
 		$this->data['total'] = round($total[0]['total']);
 		}
 				
-		$this->data['title'] = 'Business Solution';
+		$this->data['title'] = 'Elite Membership';
 		if($this->uri->segment(2) && $this->uri->segment(2) =='claim')
 		{
 			$this->data['section_title'] = 'Elite Membership';

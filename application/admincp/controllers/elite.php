@@ -166,6 +166,8 @@ class Elite extends CI_Controller {
 			$this->paging['uri_segment'] = 4;
 			$this->paging['total_rows'] = count($this->settings->get_all_subscriptions());
 			$this->pagination->initialize($this->paging);
+			
+			
 			//echo "<pre>";
 			//print_r($this->paging);
 			//die();

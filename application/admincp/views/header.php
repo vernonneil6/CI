@@ -62,10 +62,11 @@
   <div>
   
   </div>
-  <div id="logo"> <a href="<?php echo site_url(); ?>" title="<?php echo $site_name; ?>">
-  <span>
-  <img src="<?php echo base_url('../images/YGR_Logo_TranspBG.png'); ?>" /> Admin Management</span>
-  </a> </div>
+  <div id="logo">
+	  <a href="<?php echo site_url(); ?>" title="<?php echo $site_name; ?>">
+		<span><img src="<?php echo base_url('../images/YGR_whiteLogo.png'); ?>" /> Admin Management</span>
+	  </a>
+  </div>
 <?php date_default_timezone_set("EST");?>
 <?php date("Y-m-d H:i:s");?>
   <!-- /#logo --> 

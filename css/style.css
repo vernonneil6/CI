@@ -643,9 +643,16 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 .reg_buslnk a{padding-left: 5px; font-family:"myriadpro-regular";  text-transform:uppercase; color:#2C6A99; font-size:18px;}
 .reg_step{width:190px; float:left; min-height:1569px; background: url(../images/reg_point.png) center top no-repeat; display:block; margin-top:33px;}
 .reg_frm_wrap{float:left; display:block; width:630px;}
+.free_elite{width:773px;}
 .reg_frm{float:left; display:block;}
 .reg-row:first-child{margin-top:43px; display:block;}
 .reg-row{margin-top:50px; display: inline-block;}
+.reg-row .bname .website{float:left;}
+.reg-row_free{margin-top:50px; display: inline-block;float: right;margin-top: -142px;}
+.free_elite_box{height: 129px;border: 1px solid #D9D9D9;width: 290px;color: #999;font-family: 'myriadpro-regular';display: inline-block;padding-top: 10px;line-height: 17px;}
+.free_elite_box .e_list{list-style-type: square;}
+.free_elite_box .quotetext{padding-left: 8px;padding-top: 4px;}
+.free_click{padding-left: 12px;}
 .dispute{padding-top:3px;}
 .company{padding-top:79px;}
 .username{padding-top:45px;}

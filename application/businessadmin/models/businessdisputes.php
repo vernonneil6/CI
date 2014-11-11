@@ -107,16 +107,16 @@ Class Businessdisputes extends CI_Model
 		$query['emailcheck']=$this->db->get_where('youg_dispute',array('id'=>$disputeid))->row_array();
 		
 		$five_days_ago = date('Y-m-d', strtotime('-5 days', strtotime(date('Y-m-d'))));
-		$dates['five']= $this->db->get_where('youg_dispute',array('ondate ='=>$five_days_ago ,'emailcheck'=> '0','status'=>'open'))->result(); 
+		$dates['five']= $this->db->get_where('youg_dispute',array('ondate <='=>$five_days_ago ,'emailcheck'=> '0','status'=>'open'))->result(); 
 		
 	
 		
 		$seven_days_ago = date('Y-m-d', strtotime('-2 days', strtotime(date('Y-m-d'))));
-		$dates['seven']= $this->db->get_where('youg_dispute',array('ondate ='=>$seven_days_ago ,'emailcheck'=> '0','status'=>'open'))->result(); 
+		$dates['seven']= $this->db->get_where('youg_dispute',array('ondate <='=>$seven_days_ago ,'emailcheck'=> '0','status'=>'open'))->result(); 
 		
 		
 		$fifteendays_days_ago = date('Y-m-d', strtotime('-15 days', strtotime(date('Y-m-d'))));
-		$dates['fifteen']= $this->db->get_where('youg_dispute',array('ondate ='=>$fifteendays_days_ago,'emailcheck'=> '0','status'=>'open'))->result(); 
+		$dates['fifteen']= $this->db->get_where('youg_dispute',array('ondate <='=>$fifteendays_days_ago,'emailcheck'=> '0','status'=>'open'))->result(); 
 		
 		
 		return $dates;
