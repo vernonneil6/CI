@@ -16,7 +16,7 @@
       <h2><span><?php echo "Add Broker" ?></span></h2>
     </div>
     <div class="box-content"> 
-    	<label>URL:</label><textarea><?php echo 'http://localhost/index.php/signuppage/affid/'.$this->session->userdata['subbroker_data'][0]->id;?></textarea>
+    	<label>URL:</label><textarea><?php echo 'http://yougotrated.writerbin.com/signuppage/affid/'.$this->session->userdata['subbroker_data'][0]->id;?></textarea>
     </div>
 	</div>
  
