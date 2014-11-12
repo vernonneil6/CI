@@ -46,7 +46,7 @@ class Subbroker extends CI_Controller {
 			if($this->input->post('marketersubmit'))
 			{
 				$data=array(
-					'url'=> base_url().'index.php',
+					'type'=> 'marketer',
 					'name'=>$this->input->post('marketername'),
 					'password'=>$this->input->post('marketerpassword'),
 					'signup'=>date("Y-m-d H:i:s"),
@@ -75,7 +75,7 @@ class Subbroker extends CI_Controller {
 			if($this->input->post('agentsubmit'))
 			{
 				$data=array(
-					'url'=> base_url().'index.php',
+					'type'=> 'agent',
 					'name'=>$this->input->post('agentname'),
 					'password'=>$this->input->post('agentpassword'),
 					'signup'=>date("Y-m-d H:i:s"),

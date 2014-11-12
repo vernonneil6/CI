@@ -195,8 +195,10 @@ class Signuppage extends CI_Controller {
 		
 		$this->load->view('signup',$this->data);
 	}
-	public function update($id)
+	public function update($brokerid)
 	{ 
+		$broker =  $this->complaints->brokerid($brokerid);
+		//print_r($broker);echo $brokerid = $broker['id'];die();
 		
 		if($this->input->post('email'))
 		{
@@ -206,12 +208,14 @@ class Signuppage extends CI_Controller {
 			$city = $this->input->post('city');
 			$state = $this->input->post('state');
 			$country = $this->input->post('country');
+			$brokerid = $broker['id'];
+			$brokertype = $broker['type'];
 			
 			//get country name
 			//$country_name =  $this->common->get_country_name($country);
 			//$country = $country_name[0]['name'];
 			
-			$broker =  $this->complaints->brokerid($id);
+			
 			
 			$zip = $this->input->post('zip');
 			$phone = $this->input->post('phone');
@@ -231,7 +235,6 @@ class Signuppage extends CI_Controller {
 			$cemail = $this->input->post('cemail');
 			$discountcode = $this->input->post('discountcode');
 			$company = $this->complaints->get_company_by_emailid($email);
-			
 			
 			if(count($company)>0)
 			{
@@ -256,7 +259,7 @@ class Signuppage extends CI_Controller {
 				if($email1=='new' && $name1=='new')
 				{
 						//Inserting Record
-						if( $this->complaints->insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,'','',$category,'',$broker['id'] ))
+						if( $this->complaints->insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,'','',$category,'',$brokerid,$brokertype ))
 						{
 							$companyid = $this->db->insert_id();
 							$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
@@ -320,30 +323,30 @@ class Signuppage extends CI_Controller {
 							else
 							{
 								$this->session->set_flashdata('error', 'There is error in adding Business. Try later!');
-								redirect('signuppage/affid', 'refresh');
+								redirect('signuppage/claimbusiness', 'refresh');
 							}
 						}
 						else
 						{
 								$this->session->set_flashdata('error', 'There is error in adding Business. Try later!');
-								redirect('signuppage/affid', 'refresh');
+								redirect('signuppage/claimbusiness', 'refresh');
 						}
 					
 					
 					
-					redirect('signuppage/affid', 'refresh');
+					redirect('signuppage/claimbusiness', 'refresh');
 				}
 				else
 				{
 					if($email1=='old')
 					{
 						$this->session->set_flashdata('error', 'This company email address is already exists. Try later!');
-						redirect('solution/claimbusiness', 'refresh');	
+						redirect('signuppage/claimbusiness', 'refresh');	
 					}
 					if($name1=='old')
 					{
 						$this->session->set_flashdata('error', 'This company name is already exists. Try later!');
-						redirect('signuppage/affid', 'refresh');
+						redirect('signuppage/claimbusiness', 'refresh');
 					}
 				}
 			}

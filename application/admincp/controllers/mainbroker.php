@@ -85,7 +85,7 @@ class Mainbroker extends CI_Controller
 		$request=$this->input;
 		
 		$data=array(
-		'url'=> base_url(). 'subbrokerlogin/'.substr(rand(),0,5),
+		'type'=> 'subbroker',
 		'name'=>$request->post('username'),
 		'password'=>$request->post('password'),
 		'marketer'=>$request->post('marketer'),

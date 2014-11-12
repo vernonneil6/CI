@@ -620,7 +620,7 @@ class Complaints extends CI_Model
 			return false;
 		}
 	}
-	function insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,$paypalid,$logo,$category,$aboutus,$brokerid)
+	function insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,$paypalid,$logo,$category,$aboutus,$brokerid,$brokertype)
 	{
 		
 		$date = date_default_timezone_set('Asia/Kolkata');
@@ -644,7 +644,8 @@ class Complaints extends CI_Model
 					   'registerip' 	=> $varipaddress,
 					   'registerdate'	=> $date,
 					   'aboutus'		=> $aboutus,
-					   'brokerid'		=> $brokerid
+					   'brokerid'		=> $brokerid,
+					   'brokertype'		=> $$brokertype
  					   ); 
  		
 		if ($this->db->insert('company',$data))
