@@ -1,5 +1,7 @@
 <?php echo $header; ?>
 <div id="content">
+	
+	
 <?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='') { ?>
  
   <div class="breadcrumbs">
@@ -14,19 +16,7 @@
       <h2><span><?php echo "Add Broker" ?></span></h2>
     </div>
     <div class="box-content"> 
-    	<?php echo form_open('mainbroker/add',array('class'=>'formBox broker')); ?>
-	 <fieldset>
-        <div class="clearfix">
-          <div class="lab">
-            <label for="name">Subbroker Name</label><?php echo $data;?>
-          </div>
-          <div class="con">
-         <input type="text" class="input" placeholder="enter minimum 4 characters to search company" id="company" name="company" maxlength="30" required>
-          </div>
-        </div>
-        <?php echo form_input(array('name'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
-      </fieldset>
-       <?php echo form_close(); ?>
+    	<label>URL:</label><textarea><?php echo 'http://localhost/index.php/signuppage/affid/'.$this->session->userdata['subbroker_data'][0]->id;?></textarea>
     </div>
 	</div>
  
@@ -53,14 +43,12 @@
 	<?php if( count($allmarketer) > 0 ) { ?>
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-		<td>Url</td>
 		<td>Username</td>
 		<td>Password</td>
 		<td>Signup</td>
       </tr>
       <?php foreach($allmarketer as $marketers){ ?>
       <tr>
-		<td><?php echo $marketers['url']; ?></td>
 		<td><?php echo $marketers['name']; ?></td>
         <td><?php echo $marketers['password']; ?></td>
         <td><?php echo $marketers['signup']; ?></td>
@@ -119,6 +107,8 @@
 	
 
 <?php } ?>
+
+
 <?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='agent') { ?>
  <div class="breadcrumbs">
     <ul>
@@ -138,14 +128,12 @@
 	<?php if( count($allagent) > 0 ) { ?>
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-		<td>Url</td>
 		<td>Username</td>
 		<td>Password</td>
 		<td>Signup</td>
       </tr>
       <?php foreach($allagent as $agents){ ?>
       <tr>
-		<td><?php echo $agents['url']; ?></td>
 		<td><?php echo $agents['name']; ?></td>
         <td><?php echo $agents['password']; ?></td>
         <td><?php echo $agents['signup']; ?></td>

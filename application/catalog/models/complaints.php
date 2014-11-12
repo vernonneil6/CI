@@ -620,6 +620,42 @@ class Complaints extends CI_Model
 			return false;
 		}
 	}
+	function insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,$paypalid,$logo,$category,$aboutus,$brokerid)
+	{
+		
+		$date = date_default_timezone_set('Asia/Kolkata');
+		$date = date('Y-m-d H:i:s');
+		
+		$varipaddress = $_SERVER['REMOTE_ADDR'];
+		
+		$data = array( 'company' 		=> $name ,
+					   'streetaddress'	=> $streetaddress,
+					   'city'			=> $city,
+					   'state'			=> $state,
+					   'country'		=> $country,
+					   'zip'			=> $zip,
+					   'phone'			=> $phone,
+					   'email'			=> $email,
+					   'siteurl'		=> $website,
+					   'paypalid'		=> $paypalid,
+					   'logo'			=> $logo,
+					   'categoryid'		=> $category,
+					   'status'			=> 'Enable',
+					   'registerip' 	=> $varipaddress,
+					   'registerdate'	=> $date,
+					   'aboutus'		=> $aboutus,
+					   'brokerid'		=> $brokerid
+ 					   ); 
+ 		
+		if ($this->db->insert('company',$data))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 	//Querying to Check E-mail is already exists
 	function chkfield1($id,$field,$fieldvalue)
@@ -1460,6 +1496,11 @@ class Complaints extends CI_Model
 	function companygetid($id)
 	{
 		$query = $this->db->get_where('youg_company',array('id'=>$id));
+		return $query->row_array();
+	}
+	function brokerid($id)
+	{
+		$query = $this->db->get_where('youg_subbroker',array('id'=>$id));
 		return $query->row_array();
 	}
 }
