@@ -20,7 +20,7 @@
         <td>Subbroker Url</td>
         <td>
         <textarea cols='90' rows='10'>
-			<?php echo 'http://yougotrated.writerbin.com/signuppage/affid/'.$this->session->userdata['marketer_data'][0]->id;?>
+			<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/signuppage/affid/'.$this->session->userdata['marketer_data'][0]->id;?>
         </textarea>
         </td>
 	 </tr>

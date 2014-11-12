@@ -21,7 +21,7 @@
         <td>Subbroker Url</td>
         <td>
         <textarea cols='90' rows='10'>
-			<?php echo 'http://yougotrated.writerbin.com/signuppage/affid/'.$this->session->userdata['subbroker_data'][0]->id;?>
+			<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/signuppage/affid/'.$this->session->userdata['subbroker_data'][0]->id;?>
         </textarea>
         </td>
 	 </tr>
@@ -238,13 +238,31 @@
 		<td>Company</td>
 		<td>Email</td>
 		<td>Phone</td>
+		<td>type</td>
       </tr>
       <?php foreach($elitemember as $elite){ ?>
       <tr>
-		<td><?php echo $elite['company']; ?></td>
-        <td><?php echo $elite['email']; ?></td>
-        <td><?php echo $elite['phone']; ?></td>
+		<td><?php echo $elite['yc1company']; ?></td>
+        <td><?php echo $elite['yc1email']; ?></td>
+        <td><?php echo $elite['yc1phone']; ?></td>
+        <td><?php echo $elite['yc1brokertype']; ?></td>
       </tr>
+      <?php if($elite['yc2brokertype']=='marketer') { ?>
+      <tr>
+		<td><?php echo $elite['yc2company']; ?></td>
+        <td><?php echo $elite['yc2email']; ?></td>
+        <td><?php echo $elite['yc2phone']; ?></td>
+        <td><?php echo $elite['yc2brokertype']; ?></td>
+      </tr>
+      <?php } ?>
+       <?php if($elite['yc3brokertype']=='agent') { ?>
+      <tr>
+		<td><?php echo $elite['yc3company']; ?></td>
+        <td><?php echo $elite['yc3email']; ?></td>
+        <td><?php echo $elite['yc3phone']; ?></td>
+        <td><?php echo $elite['yc3brokertype']; ?></td>
+      </tr>
+      <?php } ?>
       <?php } ?>
     </table>
     <?php } ?>
