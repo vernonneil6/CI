@@ -28,6 +28,15 @@ class Agent extends CI_Controller {
 	  	}
                 
 	}
+	public function elitemember()
+	{
+		if( $this->session->userdata['agent_data'] )
+	  	{
+			$this->data['elitemember'] = $this->agents->data_elitemember();
+			$this->load->view('agent',$this->data);
+	  	}
+                
+	}
 	function logout()
 	{
 			if( isset($this->session->userdata['agent_data']) )

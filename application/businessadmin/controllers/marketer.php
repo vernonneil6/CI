@@ -59,14 +59,14 @@ class Marketer extends CI_Controller {
 	  	}
                 
 	}
-	
-	function get_companyname()
+	public function elitemember()
 	{
-	   if (isset($_GET['term']))
-	   {
-	      $name = strtolower($_GET['term']);
-	      $this->marketers->get_companynames($name);
-	   }
+		if( $this->session->userdata['marketer_data'] )
+	  	{
+			$this->data['elitemember'] = $this->marketers->data_elitemember();
+			$this->load->view('marketer',$this->data);
+	  	}
+                
 	}
 	function logout()
 	{

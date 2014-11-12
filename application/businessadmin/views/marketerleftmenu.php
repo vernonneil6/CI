@@ -7,5 +7,6 @@
         <li><a href="<?php echo site_url('marketer/agent'); ?>" title="List All Marketer">List All Agent</a></li>
       </ul>
     </li>
+    <li><a href="<?php echo site_url('marketer/elitemember'); ?>" class="link" title="Elitemember">Elite Member</a></li>
   </ul>
 </div>
