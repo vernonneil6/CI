@@ -53,6 +53,7 @@ class Subbroker extends CI_Controller {
 					'subbrokerid'=>$this->session->userdata['subbroker_data'][0]->id
 				);
 				$this->subbrokers->data_marketer($data);
+				$this->subbrokers->allbroker($data);
 			}
 	  	}
                 
@@ -83,6 +84,7 @@ class Subbroker extends CI_Controller {
 					'subbrokerid'=>$this->session->userdata['subbroker_data'][0]->id
 				);
 				$this->subbrokers->data_agent($data);
+				$this->subbrokers->allbroker($data);
 			}
 	  	}
                 

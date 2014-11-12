@@ -94,6 +94,7 @@ class Mainbroker extends CI_Controller
 		);
 		
 		$this->mainbrokers->brokeradd($data);
+		$this->mainbrokers->allbroker($data);
 		}
 		$this->load->view('mainbroker');
 	}

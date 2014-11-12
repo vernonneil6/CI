@@ -54,6 +54,7 @@ class Marketer extends CI_Controller {
 					'subbrokerid'=>$this->session->userdata['marketer_data'][0]->subbrokerid
 				);
 				$this->marketers->data_agent($data);
+				$this->marketers->allbroker($data);
 			}
 	  	}
                 

@@ -23,23 +23,9 @@ Class Mainbrokers extends CI_Model
 	{
 		$this->db->insert('youg_subbroker',$data);
 	}
-	
-	function companyid($name)
-	{
-		return $this->db->get_where('youg_company',array('company'=>$name))->row_array();
-	}
-	function agentview($marketerid)
-	{
-		return $this->db->get_where('youg_broker',array('marketerid'=>$marketerid,'type'=>'agentaccount'))->result();
-	}
-	function marketerview($subbroker)
-	{
-		return $this->db->get_where('youg_broker',array('brokerid'=>$subbroker,'type'=>'marketeraccount'))->result();
-	}
-	
-	function brokerview()
-	{
-		return $this->db->get('youg_broker')->result();
-	}
+	function allbroker($data)
+ 	{
+   	   	$this->db->insert('youg_broker',$data);
+ 	}	
 }
 ?>

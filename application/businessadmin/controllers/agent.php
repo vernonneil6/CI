@@ -28,14 +28,6 @@ class Agent extends CI_Controller {
 	  	}
                 
 	}
-	function get_companyname()
-	{
-	   if (isset($_GET['term']))
-	   {
-	      $name = strtolower($_GET['term']);
-	      $this->agents->get_companynames($name);
-	   }
-	}
 	function logout()
 	{
 			if( isset($this->session->userdata['agent_data']) )
