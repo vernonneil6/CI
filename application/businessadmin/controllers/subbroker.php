@@ -89,6 +89,15 @@ class Subbroker extends CI_Controller {
 	  	}
                 
 	}
+	public function elitemember()
+	{
+		if( $this->session->userdata['subbroker_data'] )
+	  	{
+			$this->data['elitemember'] = $this->subbrokers->data_elitemember();
+			$this->load->view('subbroker',$this->data);
+	  	}
+                
+	}
 	function logout()
 	{
 		if( isset($this->session->userdata['subbroker_data']) )

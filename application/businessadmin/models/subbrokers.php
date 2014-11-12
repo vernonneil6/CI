@@ -15,6 +15,10 @@ class Subbrokers extends CI_Model
  	{
    	   	return $this->db->get_where('youg_broker',array('subbrokerid'=>$this->session->userdata['subbroker_data'][0]->id,'type'=>'agent'))->result_array();
  	}
+ 	function data_elitemember()
+ 	{
+   	   	return $this->db->get_where('youg_company',array('brokerid'=>$this->session->userdata['subbroker_data'][0]->id,'brokertype'=>'subbroker'))->result_array();
+ 	}
  	
 }
 ?>

@@ -620,7 +620,7 @@ class Complaints extends CI_Model
 			return false;
 		}
 	}
-	function insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,$paypalid,$logo,$category,$aboutus,$brokerid,$brokertype,$subbrokerid,$marketerid)
+	function insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,$paypalid,$logo,$category,$aboutus,$brokerid,$brokertype,$marketerid,$subbrokerid)
 	{
 		
 		$date = date_default_timezone_set('Asia/Kolkata');
