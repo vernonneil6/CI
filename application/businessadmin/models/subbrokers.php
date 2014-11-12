@@ -3,28 +3,18 @@
 class Subbrokers extends CI_Model
 {
 	
-	function data_marketer($data)
- 	{
-   	   	return $this->db->insert('youg_marketer',$data);
- 	}	
- 	function data_agent($data)
- 	{
-   	   	return $this->db->insert('youg_agent',$data);
- 	}	
  	function allbroker($data)
  	{
    	   	return $this->db->insert('youg_broker',$data);
  	}	
  	function data_allmarketer()
  	{
-   	   	return $this->db->get_where('youg_marketer',array('subbrokerid'=>$this->session->userdata['subbroker_data'][0]->id))->result_array();
+   	   	return $this->db->get_where('youg_broker',array('subbrokerid'=>$this->session->userdata['subbroker_data'][0]->id,'type'=>'marketer'))->result_array();
  	}
  	function data_allagent()
  	{
-   	   	return $this->db->get_where('youg_agent',array('subbrokerid'=>$this->session->userdata['subbroker_data'][0]->id))->result_array();
+   	   	return $this->db->get_where('youg_broker',array('subbrokerid'=>$this->session->userdata['subbroker_data'][0]->id,'type'=>'agent'))->result_array();
  	}
  	
- 	
-
 }
 ?>

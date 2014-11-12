@@ -1503,7 +1503,7 @@ class Complaints extends CI_Model
 	}
 	function brokerid($id)
 	{
-		$query = $this->db->get_where('youg_subbroker',array('id'=>$id));
+		$query = $this->db->get_where('youg_broker',array('id'=>$id));
 		return $query->row_array();
 	}
 }

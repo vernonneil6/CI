@@ -46,15 +46,15 @@ class Marketer extends CI_Controller {
 			if($this->input->post('agentsubmit'))
 			{
 				$data=array(
-					'url'=> base_url().'index.php',
+					'type'=> 'agent',
 					'name'=>$this->input->post('agentname'),
 					'password'=>$this->input->post('agentpassword'),
 					'signup'=>date("Y-m-d H:i:s"),
 					'marketerid'=>$this->session->userdata['marketer_data'][0]->id,
 					'subbrokerid'=>$this->session->userdata['marketer_data'][0]->subbrokerid
 				);
-				$this->marketers->data_agent($data);
 				$this->marketers->allbroker($data);
+				redirect('marketer/agent','refresh');
 			}
 	  	}
                 
