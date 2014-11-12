@@ -135,12 +135,3 @@ else
 <?php include('leftmenu.php'); ?>
 <?php echo $footer; ?>
 
-<script type="text/javascript">
-$(document).ready(function(){
-$(function(){
-  $("#company").autocomplete({
-    source: "mainbroker/get_companyname" 
-  });
-});
-});
-</script>

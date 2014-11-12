@@ -208,8 +208,29 @@ class Signuppage extends CI_Controller {
 			$city = $this->input->post('city');
 			$state = $this->input->post('state');
 			$country = $this->input->post('country');
-			$brokerid = $broker['id'];
-			$brokertype = $broker['type'];
+			
+			if($broker['type']=='subbroker')
+			{
+				$brokertype = $broker['type'];
+				$brokerid = $broker['id'];
+				$marketerid='';
+				$subbrokerid='';
+			}
+			if($broker['type']=='marketer')
+			{
+				$brokertype = $broker['type'];
+				$brokerid = $broker['id'];
+				$marketerid='';
+				$subbrokerid=$broker['subbrokerid'];
+			}
+			if($broker['type']=='agent')
+			{
+				$brokertype = $broker['type'];
+				$brokerid = $broker['id'];
+				$marketerid=$broker['marketerid'];
+				$subbrokerid=$broker['subbrokerid'];
+			}
+			
 			
 			//get country name
 			//$country_name =  $this->common->get_country_name($country);
@@ -259,7 +280,7 @@ class Signuppage extends CI_Controller {
 				if($email1=='new' && $name1=='new')
 				{
 						//Inserting Record
-						if( $this->complaints->insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,'','',$category,'',$brokerid,$brokertype ))
+						if( $this->complaints->insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,'','',$category,'',$brokerid,$brokertype,$marketerid,$subbrokerid ))
 						{
 							$companyid = $this->db->insert_id();
 							$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);

@@ -13,11 +13,20 @@
 
 	<div class="box">
     <div class="headlines">
-      <h2><span><?php echo "Add Broker" ?></span></h2>
+      <h2><span><?php echo "Subbroker Url" ?></span></h2>
     </div>
-    <div class="box-content"> 
-    	<label>URL:</label><textarea><?php echo 'http://localhost/index.php/signuppage/affid/'.$this->session->userdata['subbroker_data'][0]->id;?></textarea>
-    </div>
+    <table class="tab tab-drag">
+     <tbody><tr class="top nodrop nodrag"> </tr>       
+     <tr class="odd">
+        <td>Subbroker Url</td>
+        <td>
+        <textarea cols='90' rows='10'>
+			<?php echo 'http://localhost/index.php/signuppage/affid/'.$this->session->userdata['subbroker_data'][0]->id;?>
+        </textarea>
+        </td>
+	 </tr>
+     </tbody>
+    </table>
 	</div>
  
 <?php } ?>
@@ -170,7 +179,7 @@
             <label for="name">Marketer Name</label>
           </div>
           <div class="con">
-				<select name="agentmarketer">
+				<select name="agentmarketer" class="select">
 					<?php foreach($marketername as $name) { ?>
 						<option value="<?php echo $name['id']; ?>"><?php echo $name['name']; ?></option>
 					<?php } ?>
@@ -207,14 +216,4 @@
 
 <?php include('subbrokerleftmenu.php'); ?>
 <?php echo $footer; ?>
-
-<script type="text/javascript">
-$(document).ready(function(){
-$(function(){
-  $("#company").autocomplete({
-    source: "index.php/subbroker/get_companyname" 
-  });
-});
-});
-</script>
 

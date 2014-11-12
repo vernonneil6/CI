@@ -28,19 +28,6 @@ Class Mainbrokers extends CI_Model
 	{
 		return $this->db->get_where('youg_company',array('company'=>$name))->row_array();
 	}
-	
-	function get_companynames($name)
-	{
-	    $this->db->select('company');
-	    $this->db->like('company', $name);
-	    $query = $this->db->get('youg_company');
-	    if($query->num_rows > 0){
-	      foreach ($query->result_array() as $row){
-	        $row_set[] = htmlentities(stripslashes($row['company']));
-	      }
-	      echo json_encode($row_set); 
-	    }
-	}
 	function agentview($marketerid)
 	{
 		return $this->db->get_where('youg_broker',array('marketerid'=>$marketerid,'type'=>'agentaccount'))->result();

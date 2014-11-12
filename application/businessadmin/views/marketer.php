@@ -12,23 +12,20 @@
 
 	<div class="box">
     <div class="headlines">
-      <h2><span><?php echo "Add Broker" ?></span></h2>
+      <h2><span><?php echo "Marketer Url" ?></span></h2>
     </div>
-    <div class="box-content"> 
-    	<?php echo form_open('mainbroker/add',array('class'=>'formBox broker')); ?>
-	 <fieldset>
-        <div class="clearfix">
-          <div class="lab">
-            <label for="name">Subbroker Name</label><?php echo $data;?>
-          </div>
-          <div class="con">
-         <input type="text" class="input" placeholder="enter minimum 4 characters to search company" id="company" name="company" maxlength="30" required>
-          </div>
-        </div>
-        <?php echo form_input(array('name'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
-      </fieldset>
-       <?php echo form_close(); ?>
-    </div>
+    <table class="tab tab-drag">
+     <tbody><tr class="top nodrop nodrag"> </tr>       
+     <tr class="odd">
+        <td>Subbroker Url</td>
+        <td>
+        <textarea cols='90' rows='10'>
+			<?php echo 'http://localhost/index.php/signuppage/affid/'.$this->session->userdata['marketer_data'][0]->id;?>
+        </textarea>
+        </td>
+	 </tr>
+     </tbody>
+    </table>
 	</div>
 	
 <?php }?>
@@ -54,14 +51,12 @@
 	<?php if( count($allagent) > 0 ) { ?>
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-		<td>Url</td>
 		<td>Username</td>
 		<td>Password</td>
 		<td>Signup</td>
       </tr>
       <?php foreach($allagent as $agents){ ?>
       <tr>
-		<td><?php echo $agents['url']; ?></td>
 		<td><?php echo $agents['name']; ?></td>
         <td><?php echo $agents['password']; ?></td>
         <td><?php echo $agents['signup']; ?></td>
@@ -122,14 +117,3 @@
 
 <?php include('marketerleftmenu.php'); ?>
 <?php echo $footer; ?>
-
-
-<script type="text/javascript">
-$(document).ready(function(){
-$(function(){
-  $("#company").autocomplete({
-    source: "index.php/marketer/get_companyname" 
-  });
-});
-});
-</script>
