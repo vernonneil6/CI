@@ -645,7 +645,7 @@ class Complaints extends CI_Model
 					   'registerdate'	=> $date,
 					   'aboutus'		=> $aboutus,
 					   'brokerid'		=> $brokerid,
-					   'brokertype'		=> $$brokertype
+					   'brokertype'		=> $brokertype
  					   ); 
  		
 		if ($this->db->insert('company',$data))
