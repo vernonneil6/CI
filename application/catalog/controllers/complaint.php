@@ -1060,9 +1060,10 @@ $this->complaints->set_video($companyid,"video2","http://www.youtube.com/watch?v
 		if( !array_key_exists('youg_user',$this->session->userdata) )
 		{
 			$this->session->set_flashdata('error', 'Please login to continue!');
-			$this->session->set_userdata('last_url','complaint/add/');
+			$this->session->set_userdata('last_url','complaint/add/'.$id);
 			redirect('login','refresh');
 		}
+		
 		$this->data['cmpyid']=$id;
 		$this->load->view('addcomplaint_new',$this->data);
 	}
