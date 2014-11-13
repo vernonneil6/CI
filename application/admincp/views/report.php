@@ -1,7 +1,140 @@
+<?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
+<!-- box -->
+
+<div class="box">
+  <div class="headlines">
+    <h2><span>Subbroker details</span></h2>
+  </div>
+  <!-- table -->
+  <table align="center" width="100%" cellspacing="10" cellpadding="0" border="0">
+     
+    <?php if(count($subbroker) > 0) { ?>
+		
+    <tr>
+      <td width="120"><b>Subbroker Name</b></td>
+      <td><b>:</b></td>
+      <td><?php echo stripcslashes($subbroker[0]['name']); ?></td>
+      <input type="hidden" name="subid" value="<?php $subbroker[0]['id']; ?>">
+    </tr>
+    
+    
+    <tr>
+      <td width="120"><b>No.of.Marketers Allowed</b></td>
+      <td><b>:</b></td>
+      <td><?php echo stripcslashes($subbroker[0]['marketer']); ?></td>
+    </tr>
+    <tr>
+      <td width="120"><b>No.of.Agents Allowed</b></td>
+      <td><b>:</b></td>
+      <td><?php echo stripcslashes($subbroker[0]['agent']); ?></td>
+    </tr>
+    
+    
+    <tr>
+		  <td width="120"><b>Marketers Name list</b></td>
+		  <td><b>:</b></td>
+		  <td>
+			  <ul>
+				  
+				  <?php for($i=0;$i<count($marketer);$i++){ ?>
+				  <li>-<?php echo ucfirst(stripcslashes($marketer[$i]['name'])); 				  
+				            //echo ucfirst(stripcslashes($marketer[$i]['id'])); ?>
+				  </li>
+				  <?php } ?>
+			 </ul>
+		  </td>
+		 
+    </tr>
+    <tr>
+      <td width="180"><b>Total counts of Elitemembers Added<br>(Total Sales made)</b></td>
+      <td><b>:</b></td>
+      <td>
+		  <?php $subbrokercount=count($subbroker_elite);
+				$marketercount=count($marketer_elite);
+				$agentcount=count($agent_elite); 
+				echo $total=$subbrokercount+$marketercount+$agentcount;
+		  ?>
+	  </td>
+    </tr>
+    
+    <tr>
+      <td width="120"><b>Marketers sales made</b></td>
+      <td><b>:</b></td>
+      <td>Individual sales-<?php echo stripcslashes($subbroker[0]['marketer']); ?></td>
+    </tr>
+    <tr>
+      <td width="120"><b>Agent Name list</b></td>
+      <td><b>:</b></td>
+      <td>
+		  <?php for($i=0;$i<count($agent);$i++){ ?>
+		  <ul>
+			  <li>-<?php echo ucfirst(stripcslashes($agent[$i]['name'])); ?><?php //echo ucfirst(stripcslashes($agent[$i]['id'])); ?></li>
+		  </ul>
+		  <?php } ?>
+	  </td>
+    </tr>
+    <tr>
+      <td width="120"><b>Agent sales made</b></td>
+      <td><b>:</b></td>
+      <td>Individual sales-<?php echo stripcslashes($subbroker[0]['agent']); ?></td>
+    </tr>
+    
+    <?php }  ?>
+    
+  </table>
+  <!-- /table --> 
+</div>
+<!-- /box -->
+<?php } 
+else {?>
 <?php echo $header; ?>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+    $( "#format" ).change(function() {
+      $( "#datepicker" ).datepicker( "option", "dateFormat", $( this ).val() );
+    });
+  });
+  $(function() {
+    $( "#datepicker1" ).datepicker();
+    $( "#format" ).change(function() {
+      $( "#datepicker1" ).datepicker( "option", "dateFormat", $( this ).val() );
+    });
+  });
+  $(function() {
+    $( "#datepicker2" ).datepicker();
+    $( "#format" ).change(function() {
+      $( "#datepicker2" ).datepicker( "option", "dateFormat", $( this ).val() );
+    });
+  });
+  
+ 
+$(document).ready(function(){
+$("#type").change(function(){
+	if(this.value == 'signupdate'){
+		$('#dateshow').show();
+		$('#'+$(this).val()).show();
+   }
+   else
+   {
+	    $('#dateshow').hide();
+   }
+});
+});
 
+</script>
+<?php echo link_tag('colorbox/colorbox.css'); ?> 
+<script language="javascript" type="text/javascript" src="<?php echo base_url();?>colorbox/jquery.colorbox.js"></script> 
+<script language="javascript" type="text/javascript">
+  $(document).ready(function(){
+		
+		$('.colorbox').colorbox({'width':'60%','height':'70%'});
+	
+  });
+</script>
 <!-- #content -->
-
 <div id="content"> 
   <!-- breadcrumbs -->
   <div class="breadcrumbs">
@@ -27,35 +160,60 @@
         <div class="form-cols"><!-- two form cols -->
           <div class="col1">
             <div class="clearfix">
-              <div class="lab">
-                <label for="keysearch">Keyword<span>*</span></label>
-              </div>
-              <div class="con"> 
-				<?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search Reports by')); ?> 
-				<input type="hidden" name="searchdate" value="<?php echo date('Y-m-d H:i:s');?>">
-				</div>
-				<div class="lab">
-                <label for="keysearch"></label>
-              </div>
-              <div class="con" style="margin-top:5px;">
-			   <select name="type" class="select" >
-					   <option>Select options</option>
-					   <option value="signupdate">SignUp-date</option>
-					   <option value="broker">Broker</option>
-					   <option value="marketer">Marketer</option>
-					   <option value="agent">Agent</option>
-			  </select>
-			  </div>	
-			 </div>
-         </div>
+				  <div class="lab">
+					<label for="keysearch">Keyword<span>*</span></label>
+				  </div>
+				  <div class="con"> 
+					<?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search Reports by keyword')); ?> 
+					<input type="hidden" name="searchdate" value="<?php echo date('Y-m-d H:i:s');?>">
+				  </div>
+				  <div class="lab" id="dates_text">
+						<label for="datepicker_2">Search with date<span></span></label>
+					  </div>
+					  <div class="con" id="datescon_text"> 
+						<?php echo form_input(array('name'=>'singledate','id'=>'datepicker2','class'=>'input','type'=>'text','placeholder'=>'Search Reports by signupdate')); ?>
+		         </div>
+				
+					<div class="lab" id="lab_text">
+						<label for="keysearch">Search options</label>
+					  </div>
+					  <div class="con" id="con_text">
+					   <select name="type" id ="type" class="select" >
+							   <option>Select options</option>
+							   <option value="signupdate">SignUp-date</option>
+							   <option value="broker">Broker</option>
+							   <option value="marketer">Marketer</option>
+							   <option value="agent">Agent</option>
+					  </select>
+					  </div>
+				  
+				
+					 <div id="dateshow" style="display:none;">
+						  <div class="lab" id="lab_text" >
+								<label for="datepicker">From-date</label>
+							  </div>
+						  <div class="con" id="con_text" > 
+							 <?php echo form_input(array( 'name'=>'fromdate','id'=>'datepicker','class'=>'input','type'=>'text','placeholder'=>'Choose from-date')); ?>
+						 </div>
+						  <div class="lab" id="lab_text">
+								<label for="datepicker_1">Till-date</label>
+							  </div>
+						  <div class="con" id="con_text"> 
+							<?php echo form_input(array( 'name'=>'enddate','id'=>'datepicker1','class'=>'input','type'=>'text','placeholder'=>'Choose to-date')); ?>  
+						  </div>
+					 </div>
+			</div>
+          </div>
           <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
         </div>
         <div class="btn-submit"> 
           <!-- Submit form --> 
-          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('report');?>" class="Cancel">Cancel</a> </div>
+          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;','onclick'=>'function showtext()')); ?> or <a href="<?php echo site_url('report');?>" class="Cancel">Cancel</a> </div>
       </fieldset>
-      <?php echo form_close(); ?> </div>
-  </div>
+      <?php echo form_close(); ?> 
+    </div>
+      
+</div>
     
     <!-- Correct form message -->
     <?php if( $this->session->flashdata('success') ) { ?>
@@ -79,60 +237,77 @@
 		padding: 8px 10px;
 	}
 	</style>
-	
-	
-	<?php if( count($reports) > 0 ) {
-		
-		 ?>
+	<?php if( count($reports) > 0 ) { ?>
     <!-- table -->
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-        <th>Subbroker</th>
-        <th>Marketer</th>
-        <th>Agent</th>
-        <th>Action</th>
-        <th>Add Coupon</th>
-        <th>Make Elite</th>
-      </tr>
-      <?php 
-	$site = site_url();			
-	$url = explode("/admincp",$site);
-	$path = $url[0];
-	?>
-      <?php echo count($reports);die;
-      
-      for($i=0;$i<count($reports);$i++) { 	   ?>
-      <tr>
-        <td><a href="<?php echo site_url('company/view/'.$reports['subbroker']); ?>" title="View Detail of <?php echo stripslashes($reports[$i]['company']); ?>" class="colorbox" style="color: #404040;"><?php echo stripslashes($reports['subbroker']); ?></a></td>        
-        <td><?php echo stripslashes($reports['marketername']); ?></td>
-        <td><?php echo stripslashes($reports['username']); ?></td>
-        <?php /*?>        <td><?php echo stripslashes($reports[$i]['siteurl']); ?></td><?php */?>
-        <td><?php if( stripslashes($reports[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('company/disable/'.$reports[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this company?');"><span>Enable</span></a>
-          <?php } ?>
-          <?php if( stripslashes($reports[$i]['status']) == 'Disable' ) { ?>
-          <a href="<?php echo site_url('company/enable/'.$reports[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this company?');"><span>Disable</span></a>
-          <?php } ?></td>
-        <td width="100px"><a href="<?php echo site_url('company/edit/'.$reports[$i]['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> <a href="<?php echo site_url('company/view/'.$reports[$i]['id']); ?>" title="View Detail of <?php echo stripslashes($reports[$i]['company']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> <a href="<?php echo site_url('company/delete/'.$reports[$i]['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this company?');">Delete</a></td>
-        <td><a href="<?php echo site_url('coupon/add'); ?>" title="Add Coupon">
-        <img width="16" height="17" border="0" src="images/Add-icon.png" alt="view">
-        </a></td>
-        <td>
-        <?php $mem = $this->settings->get_elite_status_of_companyid($reports[$i]['id']);?>
-        <?php if(count($mem)==0)
-		{?>
-        <a href="<?php echo site_url('company/makeelite/'.base64_encode($reports[$i]['id'])); ?>" title="Make Elite Member" onClick="return confirm('Are you sure to Make this company an Elite Member ?');">
-        <img width="16" height="17" border="0" src="images/Add-icon.png" alt="view">
-        </a>
-        <?php }
-		else
-		{
-		"Already a Member";
-		} ?>
-        </td>
-      </tr>
-      <?php } ?>
-    </table>
+        	<th>Type</th>
+			<th>Name</th>
+			<th>Signup</th>
+			<th>Download report</th>
+			<th>Action</th>
+	  </tr>
+		  <?php 
+				$site = site_url();			
+				$url = explode("/admincp",$site);
+				$path = $url[0];
+		  ?>
+				
+			<?php if($reports != ''){ ?>
+				<div class="form-message correct">
+					 <p><?php $counts=count($reports);echo "No.of.datas".'&nbsp;'.$counts;?></p>
+				</div>
+				<?php } else { ?>
+					
+					<div class="form-message error1">
+						<p id="error">No data to display</p>	
+					</div>
+			<?php } ?>
+				<?php  foreach($reports as $search) {   
+						
+								if($_POST['type'] == 'broker')	{ ?>
+									  <tr>
+										<td style="font-weight:bold;"><?php echo $_POST['type'];?></td>        
+										<td><?php echo ucfirst(stripslashes($search['name']));?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
+										<td><?php echo stripslashes($search['signup']);?></td>
+										<td><a href="<?php echo site_url('report/csv/subbrokerdetail'); ?>">check</a></td>
+										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> <a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['name']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>
+									  </tr>
+									 
+									  
+								<?php }  ?>
+								
+								<?php if($_POST['type'] == 'marketer'){ ?>
+									  <tr>
+										<td style="font-weight:bold;"><?php echo $_POST['type'];?></td>        
+										<td><?php echo stripslashes($search['name']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
+										<td><?php echo stripslashes($search['signup']);?></td>
+										<td><a href="javascript:void">Download</a></td>
+										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a></td>
+									  </tr>	 
+								<?php } ?>
+								
+								<?php if($_POST['type'] == 'agent')	{ ?>
+									<tr>
+										<td style="font-weight:bold;"><?php echo $_POST['type'];?></td>        
+										<td><?php echo stripslashes($search['name']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
+										<td><?php echo stripslashes($search['signup']);?></td>
+										<td><a href="javascript:void">Download</a></td>
+										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> </td>
+									</tr> 
+								<?php } ?> 
+								
+								<?php if($_POST['type'] == 'signupdate') { ?>
+										<tr>
+										<td style="font-weight:bold;">Sign-Up-Date</td>        
+										<td><?php echo stripslashes($search['name']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
+										<td><?php echo stripslashes($search['signup']);?></td>
+										<td><a href="javascript:void">Download</a></td>
+										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a></td>
+									</tr>  
+								<?php } ?> 
+					  <?php }  ?>
+	</table>
     <?php  if($this->pagination->create_links()) { ?>
     <tr style="background:#ffffff">
       <td></td>
@@ -142,12 +317,12 @@
     </tr>
     <?php } ?>
     <?php } 
-	else { ?>
+	//else { ?>
     <!-- Warning form message -->
-    <div class="form-message warning">
+    <?php /*<div class="form-message warning">
       <p>No records found.</p>
-    </div>
-    <?php } ?>
+    </div>*/?>
+    <?php //} ?>
 	
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag"> </tr>
@@ -170,13 +345,11 @@
         <td><a href="<?php echo site_url('report/csv/callcenter'); ?>" title="Export as CSV file">Download Reports for all Elite members with call center checkout process </a></td>
       </tr>
       <tr>
-      <td><a href="<?php echo site_url('report/csv/removedreviews'); ?>" title="Export as CSV file">
-      Download Reports for all removed Reviews</a>
+      <td><a href="<?php echo site_url('report/csv/removedreviews'); ?>" title="Export as CSV file">Download Reports for all removed Reviews</a>
       </td>
       </tr>
       <tr>
-      <td><a href="<?php echo site_url('report/csv/removedcomplaints'); ?>" title="Export as CSV file">
-      Download Reports for all removed Complaints</a>
+      <td><a href="<?php echo site_url('report/csv/removedcomplaints'); ?>" title="Export as CSV file">Download Reports for all removed Complaints</a>
       </td>
       </tr>
     </table>
@@ -193,4 +366,6 @@
 <!-- /#sidebar --> 
 
 <!-- #footer --> 
-<?php echo $footer; ?>
+<?php echo $footer; }?>
+
+	
