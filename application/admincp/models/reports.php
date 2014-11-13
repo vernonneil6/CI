@@ -168,33 +168,328 @@ class Reports extends CI_Model
 			return array();
 		}
 	}
-	function brokersearch($keyword){
+	function get_subbrokerdetails()
+	{
 		
-		$this->db->select('*');
-		$this->db->like('subbroker', $keyword);		
-
-		$query = $this->db->get('youg_broker');
-
+		$query=$this->db->query("SELECT name,type FROM youg_broker where type='subbroker'");
+		
 		if ($query->num_rows() > 0)
 		{
-			return $query->row_array();
+			return $query->result_array();
 		}
 		else
 		{
 			return array();
 		}
+		
+	}
+	function brokersearch($keyword,$option,$from,$end,$singledate)
+	{
+		
+	 	if($option=='broker')
+	 	{
+			$this->db->select('*');
+			$this->db->where('type', 'subbroker');
+			$this->db->like('name', $keyword);		
+			$query = $this->db->get('youg_broker');
+			$check='';
+			if($query->num_rows() > 0)
+			{
+				$check=$query->result_array();
+			}
+			return $check;
+			
+	    }
+	 	
+	 	if($option=='signupdate' && $singledate != '')
+	 	{
+		
+		   	$this->db->select('*');
+			$this->db->from('youg_broker');
+			$this->db->where('signup =', $singledate);
+		
+			$query = $this->db->get();
+            $check1='';
+			if($query->num_rows() > 0)
+			{
+				$check1=$query->result_array();
+			}
+				
+			return $check1;
+	    }
+	 	if($option=='signupdate' && $singledate == '')
+	 	{
+		
+			$this->db->select('*');
+			$this->db->from('youg_broker');
+			$this->db->where('signup >=', $from);
+            $this->db->where('signup <=', $end);
+				
+
+			$query = $this->db->get();
+            $check1_1='';
+           
+			if($query->num_rows() > 0)
+			{
+				$check1_1=$query->result_array();
+			}
+			
+			return $check1_1;
+	    }
+	 	
+	 	if($option=='marketer')
+	 	{
+			$this->db->select('*');
+			$this->db->where('type', 'marketer');
+			$this->db->like('name', $keyword);		
+			$query = $this->db->get('youg_broker');
+            $check2='';
+			if($query->num_rows() > 0)
+			{
+				$check2=$query->result_array();
+			}
+			
+			return $check2;
+	    }
+	 	
+	 	if($option=='agent')
+	 	{
+			$this->db->select('*');
+			$this->db->where('type', 'agent');
+			$this->db->like('name', $keyword);		
+			$query = $this->db->get('youg_broker');
+            $check2='';
+			if($query->num_rows() > 0)
+			{
+				$check2=$query->result_array();
+			}
+			
+			return $check2;
+	    }
 	}
 	
+		
 	//Getting value for searching
 	function brokersearch_count($keyword)
  	{
 	  //echo $keyword;
 	  $keyword = str_replace('-',' ', $keyword);
-	  $this->db->like('subbroker',$keyword);
-	  $this->db->from('youg_broker');
+	  $this->db->like('name',$keyword);
+	  $this->db->from('youg_subbroker');
 	  $query = $this->db->count_all_results();
 	  return $query;
  	}
+ 	
+ 	function get_subbroker_byid($id)
+ 	{
+		//$query = $this->db->get_where('youg_subbroker', array('id' => $id));
+		$query = $this->db->get_where('youg_broker', array('type'=>'subbroker','id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+	
+	}
+ 	function get_marketer_byid($id)
+ 	{
+		//$query = $this->db->get_where('youg_marketer', array('subbrokerid' => $id));
+		//$query = $this->db->get_where('youg_broker', array('type'=>'marketer','subbrokerid' => $id));
+		/*return $this->db->select('*')
+						->from('youg_broker as yb')
+						->join('youg_company as yc','yc.brokerid = yb.id and yb.brokertype = yc.type','left')
+						->where('yb.subbrokerid',$id)
+						->get()
+						->result_array();
+		
+		$query = $this->db->select('youg_broker.*, youg_company.brokerid, youg_company.brokertype, youg_company.marketerid, youg_company.subbrokerid')
+							 ->from('youg_broker')
+							 ->join('youg_company', 'youg_broker.id = youg_company.brokerid', 'left')
+							 ->where(array('youg_company.brokertype'=>'marketer','youg_company.subbrokerid'=>$id))
+							 ->get()				
+							 ->result_array();
+		
+		$xyz = $this->db->query("SELECT youg_broker.name,count(*) 
+from youg_company,youg_broker
+WHERE brokerid IN ( SELECT `youg_broker`.id FROM (`youg_broker`) LEFT JOIN `youg_company` ON `youg_broker`.`id` = `youg_company`.`brokerid` WHERE `youg_company`.`brokertype` = 'marketer' AND `youg_company`.`subbrokerid` = '1')")->result_array();
+		
+		
+		//$query1 = $this->db->last_query();
+		/*$array = array("Kyle","Ben","Sue","Phil","Ben","Mary","Sue","Ben");
+$counts = array_count_values($array);
+echo $counts['Ben'];*/
+		//echo $query1;
+			//$query2 = $this->db->query($query1)->result_array();
+          
+			/*echo "<pre>";	
+           print_r($xyz);
+           */
+	    $query = $this->db->select('youg_broker.*, youg_company.brokerid, youg_company.brokertype, youg_company.marketerid, youg_company.subbrokerid')
+                                                        ->from('youg_broker')
+                                                        ->join('youg_company', 'youg_broker.id = youg_company.brokerid', 'left')
+                                                        ->where(array('youg_company.brokertype'=>'marketer','youg_company.subbrokerid'=>$id))
+                                                        ->get()                                
+                                                        ->result_array();
+          $marketer = array();
+          $name ="";
+          foreach($query as $q)
+          {
+			if($q['name'] != $name){
+				$countquery = $this->db->query('select count(*) as brokercount from youg_company where brokerid='.$q['id'].'')->result_array();
+				$marketer[$q['name']] = $countquery['brokercount'];				
+				$name = $q['name'];
+			}
+          }
+          
+          print_r($marketer);
+			
+		
+		/*if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}*/
+	
+	}
+ 	function get_agent_byid($id)
+ 	{
+		//$query = $this->db->get_where('youg_agent', array('subbrokerid' => $id));
+		$query = $this->db->get_where('youg_broker', array('type'=>'agent','subbrokerid' => $id));
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+	
+	}
+ 	
+ 	function get_elitecount_subbroker_byid($id)
+ 	{
+		$query = $this->db->get_where('youg_company', array('brokertype'=>'subbroker','subbrokerid' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+	
+	}
+ 	
+ 	function get_elitecount_marketer_byid($id)
+ 	{
+		
+		$query = $this->db->get_where('youg_company', array('brokertype'=>'marketer','subbrokerid' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+	
+	}
+ 	
+ 	function get_elitecount_agent_byid($id)
+ 	{
+		$query = $this->db->get_where('youg_company', array('brokertype'=>'agent','subbrokerid' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+	
+	}
+ 	
+ 	
+ 	/*function brokersearch($keyword,$option)
+ 	{
+		
+		if(trim($option)=='signupdate')
+		{
+			$this->db->select('*');
+			$this->db->like('signup',$keyword);		
+			$query = $this->db->get('youg_subbroker');
+
+			if ($query->num_rows() > 0)
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return array();
+			}
+			
+	    }
+		if(trim($option)=='broker')
+		{
+			$this->db->select('*');
+			$this->db->like('name',$keyword);		
+			$query = $this->db->get('youg_subbroker');
+
+			if ($query->num_rows() > 0)
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return array();
+			}
+			
+	    }
+		if(trim($option)=='marketer')
+		{
+			$this->db->select('*');
+			$this->db->like('marketer',$keyword);		
+			$query = $this->db->get('youg_subbroker');
+
+			if ($query->num_rows() > 0)
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return array();
+			}
+			
+	    }
+		if(trim($option)=='agent')
+		{
+			$this->db->select('*');
+			$this->db->like('agent',$keyword);		
+			$query = $this->db->get('youg_subbroker');
+
+			if ($query->num_rows() > 0)
+			{
+				return $query->result_array();
+			}
+			else
+			{
+				return array();
+			}
+			
+	    }
+		
+	
+	}*/
 			
 	
 		

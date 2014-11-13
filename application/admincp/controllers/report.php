@@ -83,7 +83,7 @@ class Report extends CI_Controller {
         {
 				if($type!='')
 				{
-					if($type=='allenable' || $type=='alldisable' || $type=='allelite' || $type=='allenablewithcode' || $type=='alldisablewithcode' || $type=='callcenter' || $type=='removedreviews' || $type=='removedcomplaints')
+					if($type=='allenable' || $type=='alldisable' || $type=='allelite' || $type=='allenablewithcode' || $type=='alldisablewithcode' || $type=='callcenter' || $type=='removedreviews' || $type=='removedcomplaints' || $type='subbrokerdetail')
 					{
 						if($type=='allenable'){
 						$objPHPExcel = new PHPExcel();
@@ -145,6 +145,89 @@ class Report extends CI_Controller {
 		force_download($name, $file1); 
 		
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+			
+		///////////subbroker csv
+		
+		
+		
+		
+		
+		
+						if($type=='subbrokerdetail'){
+						$objPHPExcel = new PHPExcel();
+						$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
+							 ->setLastModifiedBy("YouGotRated Admin")
+							 ->setTitle("Office 2007 XLSX Test Document")
+							 ->setSubject("Office 2007 XLSX Test Document")
+							 ->setDescription("")
+							 ->setKeywords("office 2007 openxml php")
+							 ->setCategory("Business");
+							 
+		$objPHPExcel->getActiveSheet()->setTitle('Report');
+		
+	    $objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
+
+		$objPHPExcel->getActiveSheet()
+									->setCellValue('A1', 'Name')
+									->setCellValue('B1', 'Type');	
+														  
+		$items = $this->reports->get_subbrokerdetails();
+		
+		$row=2;
+		foreach($items as $row_data)
+		{
+    		$col = 0;	
+		    foreach($row_data as $key=>$value)
+			{
+				if(!$value)
+				$value='-';
+		        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+		        $col++;
+	    	}
+		    $row++;
+		}
+			
+		$objPHPExcel->setActiveSheetIndex(0);
+	
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+		$file=time().'.xls';
+		$objWriter->save('../uploads/my/'.$file);
+		$this->load->helper('download');
+		
+		$file1 = file_get_contents($site_url.'uploads/my/'.$file);
+		$name = 'Report-of-subbrokerdetails-enabled.xls';
+
+		force_download($name, $file1); 
+		
+		
+		}
+		
+		
+		
+		
+		///////////subbroker csv
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 						if($type=='alldisable'){
 						$objPHPExcel = new PHPExcel();
@@ -612,45 +695,88 @@ class Report extends CI_Controller {
 			$keyword = htmlspecialchars(str_replace('%20', ' ', $keyword));
 			$keyword = preg_replace('/[^a-zA-Z0-9\']/', '-',$keyword);
 			$keyword = str_replace(' ','-', $keyword);
-			
-			redirect('report/searchresult/'.$keyword,'refresh');	
-			
-			/*$datas=$this->reports->search_data($keyword);
+			$option=$this->input->post('type'); 
+			$singledate=date('Y-m-d',strtotime($this->input->post('singledate'))); 
+			$fromdate=$this->input->post('fromdate');
+			$enddate=$this->input->post('enddate');
+		    $from=date('Y-m-d', strtotime($fromdate)); 
+		   	$end=date('Y-m-d', strtotime($enddate));		
+			$this->data['reports']=$this->reports->brokersearch($keyword,$option,$from,$end,$singledate);	
 			$this->data['companyname']=$datas['company'];
 			$this->data['country']=$datas['country'];
 			$this->data['streetaddress']=$datas['streetaddress'];
-			$this->load->view('reportsearch',$this->data);*/
+			
+			
+			$limit = $this->paging['per_page'];
+			
+		    $offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
+			$this->paging['base_url'] = site_url("report/reportsearch");
+			$this->paging['uri_segment'] = 5;
+			$this->paging['total_rows'] = $this->reports->brokersearch_count($keyword,$limit,$offset);
+			$this->pagination->initialize($this->paging);
+			
 				
 		}
-		else
-		{
-			redirect('report','refresh');
-		}
-				
+		$this->load->view('report',$this->data);
+						
 	}
 	public function searchresult($keyword='')
 	{
+		
 		$keyword = str_replace('-',' ', $keyword);
 					
 		$limit = $this->paging['per_page'];
 		$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
-		
-		$this->data['reports'] = $this->reports->brokersearch($keyword);
-		//print_r($this->reports->brokersearch_count($keyword));
-		//echo "<pre>";
-		//print_r($this->data['reports']);
-		//die();
-		
-		
+		$option=$this->input->post('type');
+		//$this->data['reports'] = $this->reports->brokersearch($keyword,$option);
 		
 		$this->paging['base_url'] = site_url("reports/searchresult/".$keyword."/index");
 		$this->paging['uri_segment'] = 5;
 		$this->paging['total_rows'] = $this->reports->brokersearch_count($keyword);
 		$this->pagination->initialize($this->paging);
-		//echo "<pre>";
-		//print_r($this->paging);
-		//die();
-		$this->load->view('report',$this->data);
+		
+		//$this->load->view('report',$this->data);
+	}
+	
+	public function view($id='')
+	{
+		if( $this->input->is_ajax_request() )
+			{
+				if( $this->session->userdata['youg_admin'] )
+				{
+					if(!$id)
+					{
+						redirect('report', 'refresh');
+					}
+				
+				//Getting detail for displaying in form
+				$this->data['subbroker'] = $this->reports->get_subbroker_byid($id);
+				$this->data['marketer'] = $this->reports->get_marketer_byid($id);
+				$this->data['agent'] = $this->reports->get_agent_byid($id);
+				
+				//Elite member sales count for each subbroker , marketer , agent
+				$this->data['subbroker_elite'] = $this->reports->get_elitecount_subbroker_byid($id);
+				$this->data['marketer_elite'] = $this->reports->get_elitecount_marketer_byid($id);
+				$this->data['agent_elite'] = $this->reports->get_elitecount_agent_byid($id);
+				
+				
+				
+				if( count($this->data['subbroker']) > 0 || count($this->data['marketer']) > 0 || count($this->data['agent']) > 0  ||  count($this->data['subbroker_elite']) > 0 || count($this->data['marketer_elite']) > 0  || count($this->data['agent_elite']) > 0)
+				{			
+					//Loading View File
+					$this->load->view('report',$this->data);
+				}
+				else
+				{
+					$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
+					redirect('report', 'refresh');
+				}
+			}
+		}
+		else
+		{
+			redirect('report', 'refresh');
+		}
 	}
 	
 }
