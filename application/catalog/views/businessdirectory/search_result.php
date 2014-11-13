@@ -104,7 +104,8 @@
       <?php } 
 	  } ?>
     </div>
-    <div class="lgn_btnlogo"> <a href="<?php echo base_url();?>" title="<?php echo $site_name;?>"><img src="images/YouGotRated_Essential_YGR-Logo-Small.png" alt="Yougotrated" title="Yougotrated"></a> </div>
+    <!--<div class="lgn_btnlogo"> <a href="<?php echo base_url();?>" title="<?php echo $site_name;?>"><img src="images/YouGotRated_Essential_YGR-Logo-Small.png" alt="Yougotrated" title="Yougotrated"></a> </div>-->
+    <div class="lgn_btnlogo"> <a><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
     <!--pagination--> 
   </section>
 </section>
