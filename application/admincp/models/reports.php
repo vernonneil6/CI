@@ -430,7 +430,7 @@ class Reports extends CI_Model
  	
  	function get_elitecount_subbroker_byid($id)
  	{
-		$query = $this->db->get_where('youg_company', array('brokertype'=>'subbroker','subbrokerid' => $id));
+		$query = $this->db->get_where('youg_company', array('brokertype'=>'subbroker','brokerid' => $id));
 		
 		if ($query->num_rows() > 0)
 		{
