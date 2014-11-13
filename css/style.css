@@ -265,6 +265,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .contct_dtl{display:block; float:left; height:auto; width: 100%;padding: 13px 0px 0px 0px;}
 .contct_dtl ul{margin:0; padding:0;}
 .contct_dtl ul li{list-style:none; font-size:16px;}
+
 .contct_dtl ul li a{
 	color: #575757;
     font-family: "myriadpro-regular";
