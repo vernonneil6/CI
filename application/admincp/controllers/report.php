@@ -157,10 +157,6 @@ class Report extends CI_Controller {
 		///////////subbroker csv
 		
 		
-		
-		
-		
-		
 						if($type=='subbrokerdetail'){
 						$objPHPExcel = new PHPExcel();
 						$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
@@ -185,7 +181,7 @@ class Report extends CI_Controller {
 									->setCellValue('G1', 'Agents_name')	
 									->setCellValue('H1', 'Total_Elite_sales');	
 														  
-		$items = $this->reports->get_subbrokerdetails_byid($id);
+		$items = $this->reports->get_subbrokerdetails();
 		
 		$row=2;
 		foreach($items as $row_data)
@@ -755,12 +751,13 @@ class Report extends CI_Controller {
 						redirect('report', 'refresh');
 					}
 				
-				//Getting detail for displaying in form
+			    $this->data['m_list'] = $this->reports->get_marketerlist_byid($id);          
+			    $this->data['a_list'] = $this->reports->get_agentlist_byid($id);          
+				
 				$this->data['subbroker'] = $this->reports->get_subbroker_byid($id);
 				$this->data['marketer'] = $this->reports->get_marketer_byid($id);
 				$this->data['agent'] = $this->reports->get_agent_byid($id);
 				
-				//Elite member sales count for each subbroker , marketer , agent
 				$this->data['subbroker_elite'] = $this->reports->get_elitecount_subbroker_byid($id);
 				$this->data['marketer_elite'] = $this->reports->get_elitecount_marketer_byid($id);
 				$this->data['agent_elite'] = $this->reports->get_elitecount_agent_byid($id);
