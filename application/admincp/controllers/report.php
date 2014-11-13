@@ -177,9 +177,15 @@ class Report extends CI_Controller {
 
 		$objPHPExcel->getActiveSheet()
 									->setCellValue('A1', 'Name')
-									->setCellValue('B1', 'Type');	
+									->setCellValue('B1', 'Type')	
+									->setCellValue('C1', 'Marketers_allowed')	
+									->setCellValue('D1', 'Agents_allowed')	
+									->setCellValue('E1', 'Signup')	
+									->setCellValue('F1', 'Marketers_name')	
+									->setCellValue('G1', 'Agents_name')	
+									->setCellValue('H1', 'Total_Elite_sales');	
 														  
-		$items = $this->reports->get_subbrokerdetails();
+		$items = $this->reports->get_subbrokerdetails_byid($id);
 		
 		$row=2;
 		foreach($items as $row_data)

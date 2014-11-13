@@ -1,19 +1,19 @@
 <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
 <!-- box -->
 
-<div class="box">
+<div class="box" id="popup">
   <div class="headlines">
     <h2><span>Subbroker details</span></h2>
   </div>
   <!-- table -->
-  <table align="center" width="100%" cellspacing="10" cellpadding="0" border="0">
+  <table align="center" width="100%" cellspacing="10" cellpadding="5" border="0" id="detail">
      
     <?php if(count($subbroker) > 0) { ?>
 		
     <tr>
       <td width="120"><b>Subbroker Name</b></td>
       <td><b>:</b></td>
-      <td><?php echo stripcslashes($subbroker[0]['name']); ?></td>
+      <td><?php echo ucfirst(stripcslashes($subbroker[0]['name'])); ?></td>
       <input type="hidden" name="subid" value="<?php $subbroker[0]['id']; ?>">
     </tr>
     
@@ -29,22 +29,6 @@
       <td><?php echo stripcslashes($subbroker[0]['agent']); ?></td>
     </tr>
     
-    
-    <tr>
-		  <td width="120"><b>Marketers Name list</b></td>
-		  <td><b>:</b></td>
-		  <td>
-			  <ul>
-				  
-				  <?php for($i=0;$i<count($marketer);$i++){ ?>
-				  <li>-<?php echo ucfirst(stripcslashes($marketer[$i]['name'])); 				  
-				            //echo ucfirst(stripcslashes($marketer[$i]['id'])); ?>
-				  </li>
-				  <?php } ?>
-			 </ul>
-		  </td>
-		 
-    </tr>
     <tr>
       <td width="180"><b>Total counts of Elitemembers Added<br>(Total Sales made)</b></td>
       <td><b>:</b></td>
@@ -58,26 +42,32 @@
     </tr>
     
     <tr>
-      <td width="120"><b>Marketers sales made</b></td>
-      <td><b>:</b></td>
-      <td>Individual sales-<?php echo stripcslashes($subbroker[0]['marketer']); ?></td>
+		  <td width="120"><b>Marketers Name list & indvidual sales made</b></td>
+		  <td><b>:</b></td>
+		  <td>
+			   <ul>
+				  <?php foreach($marketer as $key => $value){ ?>
+				  <li id="countshow"><?php echo ucfirst($key); echo "&nbsp;"."(".$value.")";?></li>	  
+				  <?php  }  ?>
+			   </ul>
+		  </td>
+		 
     </tr>
-    <tr>
-      <td width="120"><b>Agent Name list</b></td>
-      <td><b>:</b></td>
-      <td>
-		  <?php for($i=0;$i<count($agent);$i++){ ?>
-		  <ul>
-			  <li>-<?php echo ucfirst(stripcslashes($agent[$i]['name'])); ?><?php //echo ucfirst(stripcslashes($agent[$i]['id'])); ?></li>
-		  </ul>
-		  <?php } ?>
-	  </td>
+    
+     <tr>
+		 <td width="120"><b>Agent Name list & indvidual sales made</b></td>
+		  <td><b>:</b></td>
+		  <td>
+			  
+			  <ul>
+				  <?php foreach($agent as $key => $value){ ?>
+				  <li id="countshow"><?php echo ucfirst($key); echo "&nbsp;"."(".$value.")";?></li>	  
+				  <?php  }  ?>
+			  </ul>
+			  
+		  </td>
     </tr>
-    <tr>
-      <td width="120"><b>Agent sales made</b></td>
-      <td><b>:</b></td>
-      <td>Individual sales-<?php echo stripcslashes($subbroker[0]['agent']); ?></td>
-    </tr>
+    
     
     <?php }  ?>
     
@@ -270,7 +260,7 @@ $("#type").change(function(){
 										<td style="font-weight:bold;"><?php echo $_POST['type'];?></td>        
 										<td><?php echo ucfirst(stripslashes($search['name']));?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
-										<td><a href="<?php echo site_url('report/csv/subbrokerdetail'); ?>">check</a></td>
+										<td><a href="<?php echo site_url('report/csv/subbrokerdetail'); ?>">Download subbroker details</a></td>
 										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> <a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['name']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>
 									  </tr>
 									 
@@ -282,7 +272,7 @@ $("#type").change(function(){
 										<td style="font-weight:bold;"><?php echo $_POST['type'];?></td>        
 										<td><?php echo stripslashes($search['name']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
-										<td><a href="javascript:void">Download</a></td>
+										<td><a href="<?php echo site_url('report/csv/marketers'); ?>">Download marketers details</a></td>
 										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a></td>
 									  </tr>	 
 								<?php } ?>
@@ -292,7 +282,7 @@ $("#type").change(function(){
 										<td style="font-weight:bold;"><?php echo $_POST['type'];?></td>        
 										<td><?php echo stripslashes($search['name']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
-										<td><a href="javascript:void">Download</a></td>
+										<td><a href="<?php echo site_url('report/csv/agents'); ?>">Download agents details</a></td>
 										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> </td>
 									</tr> 
 								<?php } ?> 
@@ -302,7 +292,7 @@ $("#type").change(function(){
 										<td style="font-weight:bold;">Sign-Up-Date</td>        
 										<td><?php echo stripslashes($search['name']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
-										<td><a href="javascript:void">Download</a></td>
+										<td><a href="<?php echo site_url('report/csv/signup'); ?>">Download SignUp details</a></td>
 										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a></td>
 									</tr>  
 								<?php } ?> 

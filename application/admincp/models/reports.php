@@ -168,6 +168,9 @@ class Reports extends CI_Model
 			return array();
 		}
 	}
+	                           // FOR CSV PROCESS
+	                           
+	                           
 	function get_subbrokerdetails()
 	{
 		
@@ -182,7 +185,86 @@ class Reports extends CI_Model
 			return array();
 		}
 		
-	}
+	}                                 
+	function get_subbrokerdetails_byid($id)
+	{
+		// get subbroker details ->respective marketers -> agent and total elites sales count.
+		
+		//fieldsshown-Name -Marketers_allowed -Agents_allowed -Marketers_name- Agents_name- Total_Elite_sales
+		//$query=$this->db->query("SELECT name,type FROM youg_broker where subbrokerid='".$id."'");
+		$query=$this->db->select('yb.name,yb.marketer,yb.agent,yb.signup')
+						->from('youg_broker as yb')
+						->join('youg_company as yc','yc.brokerid = yb.id and yb.brokertype = yc.type','left')
+						->where('yb.subbrokerid',$id)
+						->get()
+						->result_array();
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}                                 
+	function get_marketers_byid($id)
+	{
+		//checkit
+		$query=$this->db->query("SELECT name,type FROM youg_broker where type='subbroker'");
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}                                 
+	function get_agents_byid($id)
+	{
+		//checkit
+		$query=$this->db->query("SELECT name,type FROM youg_broker where type='subbroker'");
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}                                 
+	function get_signupdates_byid($id)
+	{
+		//checkit
+		$query=$this->db->query("SELECT name,type FROM youg_broker where type='subbroker'");
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}                                 
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                              //END FOR CSV PROCESS	
 	function brokersearch($keyword,$option,$from,$end,$singledate)
 	{
 		
@@ -297,37 +379,7 @@ class Reports extends CI_Model
 	}
  	function get_marketer_byid($id)
  	{
-		//$query = $this->db->get_where('youg_marketer', array('subbrokerid' => $id));
-		//$query = $this->db->get_where('youg_broker', array('type'=>'marketer','subbrokerid' => $id));
-		/*return $this->db->select('*')
-						->from('youg_broker as yb')
-						->join('youg_company as yc','yc.brokerid = yb.id and yb.brokertype = yc.type','left')
-						->where('yb.subbrokerid',$id)
-						->get()
-						->result_array();
 		
-		$query = $this->db->select('youg_broker.*, youg_company.brokerid, youg_company.brokertype, youg_company.marketerid, youg_company.subbrokerid')
-							 ->from('youg_broker')
-							 ->join('youg_company', 'youg_broker.id = youg_company.brokerid', 'left')
-							 ->where(array('youg_company.brokertype'=>'marketer','youg_company.subbrokerid'=>$id))
-							 ->get()				
-							 ->result_array();
-		
-		$xyz = $this->db->query("SELECT youg_broker.name,count(*) 
-from youg_company,youg_broker
-WHERE brokerid IN ( SELECT `youg_broker`.id FROM (`youg_broker`) LEFT JOIN `youg_company` ON `youg_broker`.`id` = `youg_company`.`brokerid` WHERE `youg_company`.`brokertype` = 'marketer' AND `youg_company`.`subbrokerid` = '1')")->result_array();
-		
-		
-		//$query1 = $this->db->last_query();
-		/*$array = array("Kyle","Ben","Sue","Phil","Ben","Mary","Sue","Ben");
-$counts = array_count_values($array);
-echo $counts['Ben'];*/
-		//echo $query1;
-			//$query2 = $this->db->query($query1)->result_array();
-          
-			/*echo "<pre>";	
-           print_r($xyz);
-           */
 	    $query = $this->db->select('youg_broker.*, youg_company.brokerid, youg_company.brokertype, youg_company.marketerid, youg_company.subbrokerid')
                                                         ->from('youg_broker')
                                                         ->join('youg_company', 'youg_broker.id = youg_company.brokerid', 'left')
@@ -340,36 +392,39 @@ echo $counts['Ben'];*/
           {
 			if($q['name'] != $name){
 				$countquery = $this->db->query('select count(*) as brokercount from youg_company where brokerid='.$q['id'].'')->result_array();
-				$marketer[$q['name']] = $countquery['brokercount'];				
+				
+				$marketer[$q['name']] = $countquery[0]['brokercount'];				
 				$name = $q['name'];
 			}
           }
           
-          print_r($marketer);
-			
+        
+          return $marketer;
 		
-		/*if ($query->num_rows() > 0)
-		{
-			return $query->result_array();
-		}
-		else
-		{
-			return array();
-		}*/
-	
 	}
  	function get_agent_byid($id)
  	{
-		//$query = $this->db->get_where('youg_agent', array('subbrokerid' => $id));
-		$query = $this->db->get_where('youg_broker', array('type'=>'agent','subbrokerid' => $id));
-		if ($query->num_rows() > 0)
-		{
-			return $query->result_array();
-		}
-		else
-		{
-			return array();
-		}
+		$query = $this->db->select('youg_broker.*, youg_company.brokerid, youg_company.brokertype, youg_company.marketerid, youg_company.subbrokerid')
+							->from('youg_broker')
+							->join('youg_company', 'youg_broker.id = youg_company.brokerid', 'left')
+							->where(array('youg_company.brokertype'=>'agent','youg_company.subbrokerid'=>$id))
+							->get()                                
+							->result_array();
+		                                             
+         $agent = array();
+         $name ="";
+          foreach($query as $q)
+          {
+			if($q['name'] != $name){
+				$countquery = $this->db->query('select count(*) as brokercount from youg_company where brokerid='.$q['id'].'')->result_array();
+				
+				$agent [$q['name']] = $countquery[0]['brokercount'];				
+				$name = $q['name'];
+			}
+          }
+          
+        
+          return $agent;
 	
 	}
  	
