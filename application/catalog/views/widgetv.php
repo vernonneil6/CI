@@ -30,7 +30,7 @@ $(function(){
   <?php if( !empty($name) ) { ?>
   <div class="business"> 
  <a href="<?php echo $url; ?>" title="<?php echo $name; ?>" target="_blank" id="colorcode"><?php echo ucfirst($name); ?></a>&nbsp;
- <?php echo img(array('src'=>'images/stars/'.$rating.'.png', 'alt'=>$rating.' stars', 'title'=>$rating.' stars')); ?><br>
+ <!--<php echo img(array('src'=>'images/stars/'.$rating.'.png', 'alt'=>$rating.' stars', 'title'=>$rating.' stars')); ?>--><br>
  
    <label> Rating:&nbsp;<?php echo $rating; ?>&nbsp;/&nbsp;5 </label><br>
    <label> <?php echo $total; ?> User Reviews.</label> <br>
