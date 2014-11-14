@@ -613,7 +613,7 @@ class Report extends CI_Controller {
 							->setCellValue('F1', 'Agents_name')	
 							->setCellValue('G1', 'Total_Elite_sales');	
 														  
-					$items = $this->reports->get_subbrokerdetails_byid($id);
+					$items = $this->reports->get_subbrokerdetails();
 					
 
 					$row=2;
