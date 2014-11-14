@@ -1096,11 +1096,7 @@ $this->complaints->set_video($companyid,"video2","http://www.youtube.com/watch?v
 	
 	public function dispute_insert()
 	{
-		 if( !array_key_exists('youg_user',$this->session->userdata) )
-		{
-			print_r($this->session->userdata);
-			die('check');
-		}	
+		 
 		if($this->input->post('mysubmit'))
 	    {   
 			
@@ -1264,29 +1260,6 @@ Buyer Protection Program<br>
 	      
 			
 	}
-	
-	public function disputes() {
-		if( !array_key_exists('youg_user',$this->session->userdata) )
-		{
-			print_r($this->session->userdata);
-			die('check');
-		}	
-		
-        $config = array();
-        $config["base_url"] = base_url() . "user/disputes";
-        $config["total_rows"] = $this->complaints->record_count();
-        $config["per_page"] = 5;
-        $config["uri_segment"] = 2;
- 
-        $this->pagination->initialize($config);
- 
-        $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
-        $data["results"] =$this->complaints-
-            fetch_disputes($config["per_page"], $page);
-        $data["links"] = $this->pagination->create_links();
- 
-        $this->load->view("user", $data);
-    }
 		
 	public function add1()
 	{
