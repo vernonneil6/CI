@@ -6,6 +6,7 @@
 <title><?php echo ( !empty($name) ) ? $name : $site_name; ?></title>
 <link rel="stylesheet" href="../../css/widget.css" type="text/css">
 <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo base_url();?>js/jquery.raty.min.js"></script>
 </head>
 
 <body>
@@ -32,7 +33,7 @@ $(function(){
  <a href="<?php echo $url; ?>" title="<?php echo $name; ?>" target="_blank" id="colorcode"><?php echo ucfirst($name); ?></a>&nbsp;
  <!--<php echo img(array('src'=>'images/stars/'.$rating.'.png', 'alt'=>$rating.' stars', 'title'=>$rating.' stars')); ?>--><br>
  
-   <label> Rating:&nbsp;<?php echo $rating; ?>&nbsp;/&nbsp;5 </label><br>
+   <label> Rating:&nbsp;<label class='rating'  data-rating=<?php echo $rating; ?>>&nbsp;/&nbsp;5 </label><br>
    <label> <?php echo $total; ?> User Reviews.</label> <br>
  
     <!--<a href="<?php //echo $site_url; ?>" target="_blank" title="<?php //echo $site_name; ?>">-->
@@ -59,3 +60,16 @@ $(function(){
 <?php } ?>
 </body>
 </html>
+<script>
+$(document).ready(function(){
+$('.rating').raty({
+  path: 'http://www.yougotrated.writerbin.com/images/',
+  half: true,
+  readOnly: true,
+  score: function() {
+    return $(this).attr('data-rating');
+  }
+});
+});
+
+</script>
