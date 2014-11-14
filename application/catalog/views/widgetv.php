@@ -28,9 +28,13 @@ $(function(){
 <div class="box">
   <div class="title"><a href="<?php echo $site_url; ?>" title="<?php echo $site_name; ?>" target="_blank"><?php echo $site_name; ?></a></div>
   <?php if( !empty($name) ) { ?>
-  <div class="business"> <a href="<?php echo $url; ?>" title="<?php echo $name; ?>" target="_blank" id="colorcode"><?php echo ucfirst($name); ?></a>&nbsp;<?php echo img(array('src'=>'images/stars/'.$rating.'.png', 'alt'=>$rating.' stars', 'title'=>$rating.' stars')); ?><br>
-    Rating:&nbsp;<?php echo $rating; ?>&nbsp;/&nbsp;5 <br>
-    <?php echo $total; ?> User Reviews. <br>
+  <div class="business"> 
+ <a href="<?php echo $url; ?>" title="<?php echo $name; ?>" target="_blank" id="colorcode"><?php echo ucfirst($name); ?></a>&nbsp;
+ <?php echo img(array('src'=>'images/stars/'.$rating.'.png', 'alt'=>$rating.' stars', 'title'=>$rating.' stars')); ?><br>
+ 
+   <label> Rating:&nbsp;<?php echo $rating; ?>&nbsp;/&nbsp;5 </label><br>
+   <label> <?php echo $total; ?> User Reviews.</label> <br>
+ 
     <!--<a href="<?php //echo $site_url; ?>" target="_blank" title="<?php //echo $site_name; ?>">-->
     <div align="center">
       <?php /*?>   <img src="<?php if( $verifiedlogo ) { echo $this->common->get_setting_value('2').$this->config->item('verifiedlogo_thumb_upload_path');?><?php echo stripslashes($verifiedlogo); } else { echo $this->common->get_setting_value('2').$this->config->item('verifiedlogo_thumb_upload_path')."no_image.png"; } ?>" alt="Verified Logo" />
@@ -39,7 +43,7 @@ $(function(){
     </a> </div>
   <?php } ?>
 </div>
-<div class="box" align="center"> <img src="<?php echo base_url();?>images/verified_logonew.png" alt="Verified Logo" width="230" height="120" />
+<div class="box" align="center"> <!--<img src="<?php echo base_url();?>images/verified_logonew.png" alt="Verified Logo" width="230" height="120" />-->
   <div class="overlay">
     <?php for($j=0;$j<count($sites);$j++)
 	{
