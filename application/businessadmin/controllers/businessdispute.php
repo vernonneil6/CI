@@ -19,7 +19,7 @@ class Businessdispute extends CI_Controller {
 			
 		//Loading Model File
 	  	
-                $this->load->model('businessdisputes');
+        $this->load->model('businessdisputes');
 		
 		//Setting Page Title and Comman Variable
 		$this->data['site_name'] = $this->settings->get_setting_value(1);
@@ -43,6 +43,10 @@ class Businessdispute extends CI_Controller {
 					$this->data['selsite']['all'] = 'All Websites';
 					$this->data['selsite'] = array();
 				}
+				
+		//Loadin Pagination Custome Config File
+		$this->config->load('paging',TRUE);
+		$this->paging = $this->config->item('paging');
 		
 		//Load header and save in variable
 		$this->data['header'] = $this->load->view('header',$this->data,true);
@@ -55,7 +59,21 @@ class Businessdispute extends CI_Controller {
 	  	{
 			$companyid = $this->session->userdata['youg_admin']['id'];
 			$siteid = $this->session->userdata('siteid');
-            $this->data['companydispute']=$this->businessdisputes->disputedetail();
+			
+			$this->load->library('pagination');
+			
+			$limit = $this->paging['per_page'];
+			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+			//Addingg Setting Result to variable
+			$this->data['companydispute'] = $this->businessdisputes->listdispute($limit,$offset);
+			
+			$this->paging['base_url'] = site_url("businessdispute/index");
+			$this->paging['uri_segment'] = 3;
+			$this->paging['total_rows'] = $this->businessdisputes->dispute_count();
+			$this->pagination->initialize($this->paging);
+			
+			
+            //$this->data['companydispute']=$this->businessdisputes->disputedetail();
 			$this->load->view('businessdispute',$this->data);
 	  	}
                 

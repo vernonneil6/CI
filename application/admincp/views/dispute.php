@@ -39,8 +39,16 @@
 			<td><a href='dispute/review/<?php echo $disp->id;?>'>Click here</a></td>
         </tr>
       <?php } ?>
+      
+      
+	   
     </table>
     <!-- /table -->
+    <?php 
+		if($this->pagination->create_links()) { ?>
+        <div class="pagination"><?php echo $this->pagination->create_links(); ?></div>
+        <?php } 
+	   ?>
 <?php } ?>
    
     </div>

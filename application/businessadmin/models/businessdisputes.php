@@ -1,7 +1,33 @@
 <?php
 Class Businessdisputes extends CI_Model
 {
-
+	
+	function listdispute($limit ='',$offset='')
+ 	{
+		
+		//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+		
+		//Executing Query
+		$query = $this->db->get_where('youg_dispute',array('status'=>'open','companyid'=>$this->session->userdata['youg_admin']['id']));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+ 	public function dispute_count()
+	{
+		$query = $this->db->count_all('youg_dispute');
+		return $query;
+	}
 	function disputedetail()
 	{
 		return $this->db->get_where('youg_dispute',array('status'=>'open','companyid'=>$this->session->userdata['youg_admin']['id']))->result();

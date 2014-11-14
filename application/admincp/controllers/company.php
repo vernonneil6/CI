@@ -95,7 +95,7 @@ class Company extends CI_Controller {
 			$this->paging['total_rows'] = $this->companys->get_all_companys_count();
 			$this->pagination->initialize($this->paging);
 			
-			//echo '<pre>';print_r($this->paging); 
+			//echo '<pre>';print_r($this->paging); die;
 			
 			//Loading View File
 			$this->load->view('company',$this->data);
