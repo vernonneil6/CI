@@ -55,7 +55,8 @@
      
      <tr>
         <td>Widget</td>
-        <td><a href="<?php echo $url[0]['siteurl'];?>widget/business/<?php echo $companyid;?>" target="_blank" title="Get Widget">Get Widget</a></td>
+        <td><a href="<?php echo $url[0]['siteurl'];?>widget/business/<?php echo $companyid;?>" target="_blank" title="Click to view your widget">Click to view your widget</a></td>
+        <td>Please copy and paste this embed code into your HTML/website code to add this widget to your website.</td>
       </tr>
       <tr>
         <td>Widget Code</td>

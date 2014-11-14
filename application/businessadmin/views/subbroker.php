@@ -232,7 +232,7 @@
 			
 	
      
-	<?php if( count($elitemember) > 0 ) { ?>
+	<?php if( count($elitemembers) > 0 ) { //echo count($elitemembers); ?>
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
 		<td>Company</td>
@@ -240,30 +240,51 @@
 		<td>Phone</td>
 		<td>type</td>
       </tr>
-      <?php foreach($elitemember as $elite){ ?>
-      <tr>
-		<td><?php echo $elite['yc1company']; ?></td>
-        <td><?php echo $elite['yc1email']; ?></td>
-        <td><?php echo $elite['yc1phone']; ?></td>
-        <td><?php echo $elite['yc1brokertype']; ?></td>
-      </tr>
-      <?php if($elite['yc2brokertype']=='marketer') { ?>
-      <tr>
-		<td><?php echo $elite['yc2company']; ?></td>
-        <td><?php echo $elite['yc2email']; ?></td>
-        <td><?php echo $elite['yc2phone']; ?></td>
-        <td><?php echo $elite['yc2brokertype']; ?></td>
-      </tr>
-      <?php } ?>
-       <?php if($elite['yc3brokertype']=='agent') { ?>
-      <tr>
-		<td><?php echo $elite['yc3company']; ?></td>
-        <td><?php echo $elite['yc3email']; ?></td>
-        <td><?php echo $elite['yc3phone']; ?></td>
-        <td><?php echo $elite['yc3brokertype']; ?></td>
-      </tr>
-      <?php } ?>
-      <?php } ?>
+      <?php 
+      //echo '<pre>';//print_r($elitemembers);
+      //$elitemember = array_unique($elitemembers);
+      // $b1id='';
+	  $i=0;
+      foreach($elitemembers as $elite){ 
+	  if($elite['yc1marketerid']=='' )
+	  {
+	  ?>
+		<tr>
+			<td><?php echo $elite['yb1name']; ?></td>
+			<td><?php echo $elite['yc1company']; ?></td>
+			<td><?php echo $elite['yc1email']; ?></td>
+			<td><?php echo $elite['yc1phone']; ?></td>
+			<td><?php echo $elite['yc1brokertype']; ?></td>
+			<td><?php echo $elite['yb1id']; ?></td>
+			<td><?php echo $elite['yb2id']; ?></td>
+			<td><?php echo $elite['yb3id']; ?></td>
+			<td><?php echo $elite['yc1brokerid']; ?></td>
+			<td><?php echo $elite['yc2brokerid']; ?></td>
+			<td><?php echo $elite['yc3brokerid']; ?></td>
+			<td><?php echo $elite['yc1subbrokerid']; ?></td>
+			<td><?php echo $elite['yc2subbrokerid']; ?></td>
+			<td><?php echo $elite['yc3subbrokerid']; ?></td>
+			
+		</tr>
+		<?php }// if($elite['yb1id'] == $elite['yc2subbrokerid'] and $elite['yb2id'] == $elite['yc2brokerid']) {  ?>
+		<tr>
+			<td><?php echo $elite['yb2name']; ?></td>
+			<td><?php echo $elite['yc2company']; ?></td>
+			<td><?php echo $elite['yc2email']; ?></td>
+			<td><?php echo $elite['yc2phone']; ?></td>
+			<td><?php echo $elite['yc2brokertype']; ?></td>
+			
+		</tr>
+		<?php //} if($elite['yb1id'] == $elite['yc3subbrokerid'] and $elite['yb3id'] == $elite['yc3brokerid']) { ?>
+		<tr>
+			<td><?php echo $elite['yb3name']; ?></td>
+			<td><?php echo $elite['yc3company']; ?></td>
+			<td><?php echo $elite['yc3email']; ?></td>
+			<td><?php echo $elite['yc3phone']; ?></td>
+			<td><?php echo $elite['yc3brokertype']; ?></td>
+			
+		</tr>
+	  <?php } //} ?>
     </table>
     <?php } ?>
     

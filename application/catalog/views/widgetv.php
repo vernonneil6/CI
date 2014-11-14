@@ -4,92 +4,12 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <title><?php echo ( !empty($name) ) ? $name : $site_name; ?></title>
+<link rel="stylesheet" href="css/widget.css" type="text/css">
 <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
 </head>
 
 <body>
-<style>
-div.box
-{
-cursor:pointer;
-}
-div.box div.overlay
-{
-    display:none;
-	width:auto;
-	cursor:pointer;
-}
-div.overlay a:hover
-{
-color:#575656;
-width:auto;
-cursor:pointer;
-}
-</style>
-<style type="text/css">
-.box {
-	background-color: #ffffff;
-	border: 1px solid #ccc;
-	border: 1px solid rgba(0, 0, 0, 0.2);
- *border-right-width: 2px;
- *border-bottom-width: 2px;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	border-radius: 6px;
-	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-	-webkit-background-clip: padding-box;
-	-moz-background-clip: padding;
-	background-clip: padding-box;
-	width:255px;
-	max-width:255px;
-}
-.box .title {
-	text-align:center;
-	background:url("../../../images/wdg_title.png") #047AD3 repeat-x;
-	padding:5px;
-	border-top-left-radius:6px;
-	border-top-right-radius:6px;
-	-moz-border-radius-topleft:6px;
-	-moz-border-radius-topright:6px;
-	-webkit-border-top-right-radius:6px;
-	-webkit-border-top-left-radius:6px;
-	margin-bottom:5px;
-}
-a,a:hover,a:active {
-	text-decoration:none;
-}
-.box .title a {
-	text-decoration:none;
-	color:#FFF;
-	font-size:18px;
-	font-weight:bold;
-}
-img
-{
-	border:0px none;
-	vertical-align:middle;
-}
-.business {
-	text-align:left;
-	padding:5px;
-}
-.business a {
-	display:inline-block;
-	font-size:16px;
-	font-weight:bold;
-	
-}
-#colorcode
-{
-color : #0573BF;
-}
-#widdiv
-{
-height:355px;
-overflow-y:auto;
-}
+
 
 </style>
 <script>

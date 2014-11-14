@@ -1,0 +1,117 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+	font-family: 'MyriadProBoldCondensed';
+	src:url('../font/myraidpro/MyriadProBoldCondensed.eot');
+	src:url('../font/myraidpro/MyriadProBoldCondensed.eot?#iefix') format('embedded-opentype'),
+		url('../font/myraidpro/MyriadProBoldCondensed.woff') format('woff'),
+		url('../font/myraidpro/MyriadProBoldCondensed.ttf') format('truetype');
+	
+}
+@font-face {
+	font-family: 'MyriadPro-BlackSemiCn';
+	
+	src:url('../font/MyriadPro-BlackSemiCn.ttf') format('truetype');
+	
+}
+@font-face {
+	font-family: 'MyriadPro-Regular';
+	
+	src:url('../font/myriad/MyriadPro-Regular.otf') format('opentype');
+	
+}
+@font-face {
+	font-family: 'MyriadPro-BoldCond';
+	
+	src:url('../font/myriad/MyriadPro-BoldCond.otf') format('opentype');
+	
+}
+@font-face {
+	font-family: 'MyriadPro-SemiboldCondIt';
+	
+	src:url('../font/myriad/MyriadPro-SemiboldCondIt.otf') format('opentype');
+	
+}
+
+div.box
+{
+cursor:pointer;
+}
+div.box div.overlay
+{
+    display:none;
+	width:auto;
+	cursor:pointer;
+}
+div.overlay a:hover
+{
+color:#575656;
+width:auto;
+cursor:pointer;
+font-family: MyriadPro-Regular;
+}
+
+.box {
+	background-color: #ffffff;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+ *border-right-width: 2px;
+ *border-bottom-width: 2px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+	width:255px;
+	max-width:255px;
+}
+.box .title {
+	text-align:center;
+	background:url("../../../images/wdg_title.png") #047AD3 repeat-x;
+	padding:5px;
+	border-top-left-radius:6px;
+	border-top-right-radius:6px;
+	-moz-border-radius-topleft:6px;
+	-moz-border-radius-topright:6px;
+	-webkit-border-top-right-radius:6px;
+	-webkit-border-top-left-radius:6px;
+	margin-bottom:5px;
+}
+a,a:hover,a:active {
+	text-decoration:none;
+	font-family: MyriadPro-Regular;
+}
+.box .title a {
+	text-decoration:none;
+	color:#FFF;
+	font-size:18px;
+	font-weight:bold;
+}
+img
+{
+	border:0px none;
+	vertical-align:middle;
+}
+.business {
+	text-align:left;
+	padding:5px;
+}
+.business a {
+	display:inline-block;
+	font-size:16px;
+	font-weight:bold;
+	
+}
+#colorcode
+{
+color : #0573BF;
+}
+#widdiv
+{
+height:355px;
+overflow-y:auto;
+}
