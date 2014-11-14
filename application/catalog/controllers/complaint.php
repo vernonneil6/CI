@@ -1255,7 +1255,7 @@ Buyer Protection Program<br>
 			$this->email->send(); // send email to admin
           
 			
-			redirect('complaint/success', 'refresh');
+			redirect('user/disputes', 'refresh');
 	    }  
 	      
 			
