@@ -36,26 +36,63 @@
 		  <?php $subbrokercount=count($subbroker_elite);
 				$marketercount=count($marketer_elite);
 				$agentcount=count($agent_elite); 
-				echo $total=$subbrokercount+$marketercount+$agentcount;
+				$total=$subbrokercount+$marketercount+$agentcount;
+		        if($total == 0) { 						
+				  echo "No Sales Available";	
+				} else {
+				
+				  echo $total;
+				}
 		  ?>
 	  </td>
     </tr>
     
     <tr>
-		  <td width="120"><b>Marketers Name list & indvidual sales made</b></td>
+		  <td width="120"><b>Marketers Name list </b></td>
+		  <td><b>:</b></td>
+		  <td>			      
+			   <ul>
+				  <?php for($i=0;$i<count($m_list);$i++){ ?>
+				  <li id="countshow"><?php echo ucfirst($m_list[$i]['name']);?></li>	  
+				  <?php  }  ?>
+			   </ul>
+		  </td>
+		 
+    </tr>
+   
+    <tr>
+		  <td width="120"><b>Marketers indvidual sales made</b></td>
 		  <td><b>:</b></td>
 		  <td>
 			   <ul>
-				  <?php foreach($marketer as $key => $value){ ?>
-				  <li id="countshow"><?php echo ucfirst($key); echo "&nbsp;"."(".$value.")";?></li>	  
-				  <?php  }  ?>
+				  <?php foreach($marketer as $key => $value){ echo $key; ?>
+						  <?php if(count($key) == 0){ ?>
+							 <li>No Sales Available</li>
+						  <?php } else { ?>	  
+						  <li id="countshow"><?php echo ucfirst($key); echo "&nbsp;"."(".$value.")";?></li>	  
+						  <?php  } ?>
+				  <?php  } ?>
+				  
 			   </ul>
 		  </td>
 		 
     </tr>
     
      <tr>
-		 <td width="120"><b>Agent Name list & indvidual sales made</b></td>
+		 <td width="120"><b>Agent Name list </b></td>
+		  <td><b>:</b></td>
+		  <td>
+			  
+			  <ul>
+				  <?php for($i=0;$i<count($a_list);$i++){ ?>
+				  <li id="countshow"><?php echo ucfirst($a_list[$i]['name']);?></li>	  
+				  <?php  }  ?>
+			  </ul>
+			  
+		  </td>
+    </tr>
+     <tr>
+		 <td width="120"><b>Agent indvidual sales made</b></td>
 		  <td><b>:</b></td>
 		  <td>
 			  
@@ -260,7 +297,7 @@ $("#type").change(function(){
 										<td style="font-weight:bold;"><?php echo $_POST['type'];?></td>        
 										<td><?php echo ucfirst(stripslashes($search['name']));?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
-										<td><a href="<?php echo site_url('report/csv/subbrokerdetail'); ?>">Download subbroker details</a></td>
+										<td><a href="<?php echo site_url('report/subbrokerdetails/'.$search['id']); ?>">Download subbroker details</a></td>
 										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> <a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['name']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>
 									  </tr>
 									 
