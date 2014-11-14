@@ -699,7 +699,7 @@ class Report extends CI_Controller {
 					$this->load->helper('download');
 
 					$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-					$name = 'Report-of-subbrokerdetails-enabled.xls';
+					$name = 'Report-of-subbroker-details.xls';
 
 					force_download($name, $file1); 
 		
