@@ -1096,7 +1096,11 @@ $this->complaints->set_video($companyid,"video2","http://www.youtube.com/watch?v
 	
 	public function dispute_insert()
 	{
-		 
+		 if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			print_r($this->session->userdata);
+			die('check');
+		}	
 		if($this->input->post('mysubmit'))
 	    {   
 			
