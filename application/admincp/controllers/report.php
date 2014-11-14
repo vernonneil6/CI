@@ -83,7 +83,7 @@ class Report extends CI_Controller {
         {
 				if($type!='')
 				{
-					if($type=='allenable' || $type=='alldisable' || $type=='allelite' || $type=='allenablewithcode' || $type=='alldisablewithcode' || $type=='callcenter' || $type=='removedreviews' || $type=='removedcomplaints' || $type='subbrokerdetail')
+					if($type=='allenable' || $type=='alldisable' || $type=='allelite' || $type=='allenablewithcode' || $type=='alldisablewithcode' || $type=='callcenter' || $type=='removedreviews' || $type=='removedcomplaints')
 					{
 						if($type=='allenable'){
 						$objPHPExcel = new PHPExcel();
@@ -583,14 +583,15 @@ class Report extends CI_Controller {
 			redirect('adminlogin','refresh');
 		}
     }
-    public function subbrokerdetails( $type = 'subbrokerdetail')
+    public function subbrokerdetails($id)
     {
-		$id = $this->uri->segment(4);		
-			
+		//echo $id;
 		/*subbroker csv*/
-				
-			//if($type=='subbrokerdetail'){
-				
+		$site_url = $this->settings->get_setting_value(2);
+		if( $this->session->userdata['youg_admin'] )
+        {		
+		   //if($type=='subbrokerdetails'){
+		
 					$objPHPExcel = new PHPExcel();
 					$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
 					 ->setLastModifiedBy("YouGotRated Admin")
@@ -613,27 +614,23 @@ class Report extends CI_Controller {
 							->setCellValue('F1', 'Agents_name')	
 							->setCellValue('G1', 'Total_Elite_sales');	
 														  
-					$items = $this->reports->get_subbrokerdetails();
-					
-
+					$items = $this->reports->get_subbrokerdetails_byid($id);
 					$row=2;
 					foreach($items as $row_data)
 					{
-					//print_r($row_data);die;
+					
 					$col = 0;	
-					foreach($row_data as $key=>$value)
-					{
-						//print_r($value);die;
-						if(!$value)
-						$value='-';
-						$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-						$col++;
-					}
+						foreach($row_data as $key=>$value)
+						{
+							if(!$value)
+							$value='-';
+							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+							$col++;
+						}
 					$row++;
-					}
-
+			    	}
+                    
 					$objPHPExcel->setActiveSheetIndex(0);
-
 					$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 					$file=time().'.xls';
 					$objWriter->save('../uploads/my/'.$file);
@@ -644,8 +641,8 @@ class Report extends CI_Controller {
 
 					force_download($name, $file1); 
 		
-		//}
-		
+		    //}
+	    } 
 		
 		/*subbroker csv*/		
 	}
