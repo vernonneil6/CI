@@ -65,12 +65,10 @@
 		  <td><b>:</b></td>
 		  <td>
 			   <ul>
-				  <?php foreach($marketer as $key => $value){ echo $key; ?>
-						  <?php if(count($key) == 0){ ?>
-							 <li>No Sales Available</li>
-						  <?php } else { ?>	  
+				  <?php foreach($marketer as $key => $value){ ?>
+						   
 						  <li id="countshow"><?php echo ucfirst($key); echo "&nbsp;"."(".$value.")";?></li>	  
-						  <?php  } ?>
+						  
 				  <?php  } ?>
 				  
 			   </ul>
