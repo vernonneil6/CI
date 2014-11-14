@@ -187,17 +187,11 @@ class Reports extends CI_Model
 		
 	}                                 
 	function get_subbrokerdetails_byid($id)
-	{
-		// get subbroker details ->respective marketers -> agent and total elites sales count.
+	{	
 		
+		// get subbroker details ->respective marketers -> agent and total elites sales count.
 		//fieldsshown-Name -Marketers_allowed -Agents_allowed -Marketers_name- Agents_name- Total_Elite_sales
-		//$query=$this->db->query("SELECT name,type FROM youg_broker where subbrokerid='".$id."'");
-		$query=$this->db->select('yb.name,yb.marketer,yb.agent,yb.signup')
-						->from('youg_broker as yb')
-						->join('youg_company as yc','yc.brokerid = yb.id and yb.brokertype = yc.type','left')
-						->where('yb.subbrokerid',$id)
-						->get()
-						->result_array();
+	    $query = $this->db->query("select name,marketer as no_of_marketers,agent as no_of_agents,signup,(select group_concat(name SEPARATOR ', ') from youg_broker where subbrokerid =".$id." and type='marketer') as marketer_names ,(select group_concat(name SEPARATOR ', ') from youg_broker where subbrokerid =".$id." and type='agent') as agent_names ,(select count(*) from youg_company where subbrokerid =".$id." ) as total_elites from youg_broker where id=".$id);		
 		
 		if ($query->num_rows() > 0)
 		{
@@ -402,6 +396,20 @@ class Reports extends CI_Model
           return $marketer;
 		
 	}
+ 	function get_marketerlist_byid($id)
+ 	{
+		 $query = $this->db->get_where('youg_broker', array('type'=>'marketer','subbrokerid' => $id));
+		 
+		 if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 
+	}
  	function get_agent_byid($id)
  	{
 		$query = $this->db->select('youg_broker.*, youg_company.brokerid, youg_company.brokertype, youg_company.marketerid, youg_company.subbrokerid')
@@ -425,6 +433,23 @@ class Reports extends CI_Model
           
         
           return $agent;
+	
+	}
+ 	
+ 	function get_agentlist_byid($id)
+ 	{
+		 $query = $this->db->get_where('youg_broker', array('type'=>'agent','subbrokerid' => $id));
+		 
+		 if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+  
+		
 	
 	}
  	

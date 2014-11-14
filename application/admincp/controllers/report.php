@@ -95,11 +95,11 @@ class Report extends CI_Controller {
 							 ->setKeywords("office 2007 openxml php")
 							 ->setCategory("Business");
 							 
-		$objPHPExcel->getActiveSheet()->setTitle('Report');
-		
-	    $objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
+			$objPHPExcel->getActiveSheet()->setTitle('Report');
+			
+			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
 
-		$objPHPExcel->getActiveSheet()
+			$objPHPExcel->getActiveSheet()
 									->setCellValue('A1', 'Company')
 									->setCellValue('B1', 'Address')	
 									->setCellValue('C1', 'City')
@@ -116,21 +116,21 @@ class Report extends CI_Controller {
 									->setCellValue('N1', 'Discount Code');
 									
 															  
-		$items = $this->reports->get_all_enabledmembers();
-		
-		$row=2;
-		foreach($items as $row_data)
-		{
-    		$col = 0;	
-		    foreach($row_data as $key=>$value)
+			$items = $this->reports->get_all_enabledmembers();
+			
+			$row=2;
+			foreach($items as $row_data)
 			{
-				if(!$value)
-				$value='-';
-		        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-		        $col++;
-	    	}
-		    $row++;
-		}
+				$col = 0;	
+				foreach($row_data as $key=>$value)
+				{
+					if(!$value)
+					$value='-';
+					$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+					$col++;
+				}
+				$row++;
+			}
 			
 		$objPHPExcel->setActiveSheetIndex(0);
 	
@@ -145,91 +145,6 @@ class Report extends CI_Controller {
 		force_download($name, $file1); 
 		
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-			
-		///////////subbroker csv
-		
-		
-						if($type=='subbrokerdetail'){
-						$objPHPExcel = new PHPExcel();
-						$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
-							 ->setLastModifiedBy("YouGotRated Admin")
-							 ->setTitle("Office 2007 XLSX Test Document")
-							 ->setSubject("Office 2007 XLSX Test Document")
-							 ->setDescription("")
-							 ->setKeywords("office 2007 openxml php")
-							 ->setCategory("Business");
-							 
-		$objPHPExcel->getActiveSheet()->setTitle('Report');
-		
-	    $objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
-
-		$objPHPExcel->getActiveSheet()
-									->setCellValue('A1', 'Name')
-									->setCellValue('B1', 'Type')	
-									->setCellValue('C1', 'Marketers_allowed')	
-									->setCellValue('D1', 'Agents_allowed')	
-									->setCellValue('E1', 'Signup')	
-									->setCellValue('F1', 'Marketers_name')	
-									->setCellValue('G1', 'Agents_name')	
-									->setCellValue('H1', 'Total_Elite_sales');	
-														  
-		$items = $this->reports->get_subbrokerdetails();
-		
-		$row=2;
-		foreach($items as $row_data)
-		{
-    		$col = 0;	
-		    foreach($row_data as $key=>$value)
-			{
-				if(!$value)
-				$value='-';
-		        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-		        $col++;
-	    	}
-		    $row++;
-		}
-			
-		$objPHPExcel->setActiveSheetIndex(0);
-	
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-		$file=time().'.xls';
-		$objWriter->save('../uploads/my/'.$file);
-		$this->load->helper('download');
-		
-		$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-		$name = 'Report-of-subbrokerdetails-enabled.xls';
-
-		force_download($name, $file1); 
-		
-		
-		}
-		
-		
-		
-		
-		///////////subbroker csv
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 						if($type=='alldisable'){
 						$objPHPExcel = new PHPExcel();
@@ -668,6 +583,74 @@ class Report extends CI_Controller {
 			redirect('adminlogin','refresh');
 		}
     }
+    public function subbrokerdetails( $type = 'subbrokerdetail')
+    {
+		$id = $this->uri->segment(3);		
+			
+		/*subbroker csv*/
+				
+			//if($type=='subbrokerdetail'){
+				
+					$objPHPExcel = new PHPExcel();
+					$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
+					 ->setLastModifiedBy("YouGotRated Admin")
+					 ->setTitle("Office 2007 XLSX Test Document")
+					 ->setSubject("Office 2007 XLSX Test Document")
+					 ->setDescription("")
+					 ->setKeywords("office 2007 openxml php")
+					 ->setCategory("Business");
+					 
+					$objPHPExcel->getActiveSheet()->setTitle('Report');
+
+					$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
+
+					$objPHPExcel->getActiveSheet()
+							->setCellValue('A1', 'Name')							
+							->setCellValue('B1', 'Marketers_allowed')	
+							->setCellValue('C1', 'Agents_allowed')	
+							->setCellValue('D1', 'Signup')	
+							->setCellValue('E1', 'Marketers_name')	
+							->setCellValue('F1', 'Agents_name')	
+							->setCellValue('G1', 'Total_Elite_sales');	
+														  
+					$items = $this->reports->get_subbrokerdetails_byid($id);
+					
+
+					$row=2;
+					foreach($items as $row_data)
+					{
+					//print_r($row_data);die;
+					$col = 0;	
+					foreach($row_data as $key=>$value)
+					{
+						//print_r($value);die;
+						if(!$value)
+						$value='-';
+						$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+						$col++;
+					}
+					$row++;
+					}
+
+					$objPHPExcel->setActiveSheetIndex(0);
+
+					$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+					$file=time().'.xls';
+					$objWriter->save('../uploads/my/'.$file);
+					$this->load->helper('download');
+
+					$file1 = file_get_contents($site_url.'uploads/my/'.$file);
+					$name = 'Report-of-subbrokerdetails-enabled.xls';
+
+					force_download($name, $file1); 
+		
+		//}
+		
+		
+		/*subbroker csv*/		
+	}
+    
+    
 	/*public function search()
 	{
 		
