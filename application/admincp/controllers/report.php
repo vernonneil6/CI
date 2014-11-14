@@ -83,7 +83,7 @@ class Report extends CI_Controller {
         {
 				if($type!='')
 				{
-					if($type=='allenable' || $type=='alldisable' || $type=='allelite' || $type=='allenablewithcode' || $type=='alldisablewithcode' || $type=='callcenter' || $type=='removedreviews' || $type=='removedcomplaints')
+					if($type=='allenable' || $type=='alldisable' || $type=='allelite' || $type=='allenablewithcode' || $type=='alldisablewithcode' || $type=='callcenter' || $type=='removedreviews' || $type=='removedcomplaints' || $type=='subbrokerdetails')
 					{
 						if($type=='allenable'){
 						$objPHPExcel = new PHPExcel();
@@ -132,19 +132,81 @@ class Report extends CI_Controller {
 				$row++;
 			}
 			
-		$objPHPExcel->setActiveSheetIndex(0);
-	
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-		$file=time().'.xls';
-		$objWriter->save('../uploads/my/'.$file);
-		$this->load->helper('download');
+			$objPHPExcel->setActiveSheetIndex(0);
 		
-		$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-		$name = 'Report-of-elite-members-enabled.xls';
+			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+			$file=time().'.xls';
+			$objWriter->save('../uploads/my/'.$file);
+			$this->load->helper('download');
+			
+			$file1 = file_get_contents($site_url.'uploads/my/'.$file);
+			$name = 'Report-of-elite-members-enabled.xls';
 
-		force_download($name, $file1); 
+			force_download($name, $file1); 
+			
+			}
+			
+			
+			
+			
+			
+			
+			///Checking csv for subbroker
+			
+			
+						if($type=='subbrokerdetails'){
+						$objPHPExcel = new PHPExcel();
+						$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
+							 ->setLastModifiedBy("YouGotRated Admin")
+							 ->setTitle("Office 2007 XLSX Test Document")
+							 ->setSubject("Office 2007 XLSX Test Document")
+							 ->setDescription("")
+							 ->setKeywords("office 2007 openxml php")
+							 ->setCategory("Business");
+							 
+			$objPHPExcel->getActiveSheet()->setTitle('Report');
+			
+			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
+
+			$objPHPExcel->getActiveSheet()
+									->setCellValue('A1', 'Name')
+									->setCellValue('B1', 'Type');	
+									
+									
+															  
+			$items = $this->reports->get_subbrokerdetails();
+			
+			$row=2;
+			foreach($items as $row_data)
+			{
+				$col = 0;	
+				foreach($row_data as $key=>$value)
+				{
+					if(!$value)
+					$value='-';
+					$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+					$col++;
+				}
+				$row++;
+			}
+			
+			$objPHPExcel->setActiveSheetIndex(0);
 		
-		}
+			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+			$file=time().'.xls';
+			$objWriter->save('../uploads/my/'.$file);
+			$this->load->helper('download');
+			
+			$file1 = file_get_contents($site_url.'uploads/my/'.$file);
+			$name = 'Report-of-elite-members-enabled.xls';
+
+			force_download($name, $file1); 
+			
+			}
+		
+		    ///END of Checking csv for subbroker
+		    
+		    
 		
 						if($type=='alldisable'){
 						$objPHPExcel = new PHPExcel();
@@ -156,11 +218,11 @@ class Report extends CI_Controller {
 							 ->setKeywords("office 2007 openxml php")
 							 ->setCategory("Business");
 							 
-		$objPHPExcel->getActiveSheet()->setTitle('Report');
-		
-	    $objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
+			$objPHPExcel->getActiveSheet()->setTitle('Report');
+			
+			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
 
-		$objPHPExcel->getActiveSheet()
+			$objPHPExcel->getActiveSheet()
 									->setCellValue('A1', 'Company')
 									->setCellValue('B1', 'Address')	
 									->setCellValue('C1', 'City')
@@ -177,36 +239,36 @@ class Report extends CI_Controller {
 									->setCellValue('N1', 'Discount Code');
 									
 															  
-		$items = $this->reports->get_all_disabledmembers();
-		
-		$row=2;
-		foreach($items as $row_data)
-		{
-    		$col = 0;	
-		    foreach($row_data as $key=>$value)
-			{
-				if(!$value)
-				$value='-';
-		        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-		        $col++;
-	    	}
-		    $row++;
-		}
+			$items = $this->reports->get_all_disabledmembers();
 			
-		$objPHPExcel->setActiveSheetIndex(0);
-	
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-		$file=time().'.xls';
-		$objWriter->save('../uploads/my/'.$file);
-		$this->load->helper('download');
+			$row=2;
+			foreach($items as $row_data)
+			{
+				$col = 0;	
+				foreach($row_data as $key=>$value)
+				{
+					if(!$value)
+					$value='-';
+					$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+					$col++;
+				}
+				$row++;
+			}
+				
+			$objPHPExcel->setActiveSheetIndex(0);
 		
-		$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-		$name = 'Report-of-elite-members-disabled.xls';
+			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+			$file=time().'.xls';
+			$objWriter->save('../uploads/my/'.$file);
+			$this->load->helper('download');
+			
+			$file1 = file_get_contents($site_url.'uploads/my/'.$file);
+			$name = 'Report-of-elite-members-disabled.xls';
 
-		force_download($name, $file1); 
-		
-		}
-		
+			force_download($name, $file1); 
+			
+			}
+			
 						if($type=='allelite'){
 						$objPHPExcel = new PHPExcel();
 						$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
@@ -217,57 +279,57 @@ class Report extends CI_Controller {
 							 ->setKeywords("office 2007 openxml php")
 							 ->setCategory("Business");
 							 
-		$objPHPExcel->getActiveSheet()->setTitle('Report');
-		
-	    $objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
-
-		$objPHPExcel->getActiveSheet()
-									->setCellValue('A1', 'Company')
-									->setCellValue('B1', 'Address')	
-									->setCellValue('C1', 'City')
-									->setCellValue('D1', 'State')
-									->setCellValue('E1', 'Zip')
-									->setCellValue('F1', 'Business Phone')
-									->setCellValue('G1', 'Category')
-									->setCellValue('H1', 'Contact Name')
-									->setCellValue('I1', 'Contact Phone')
-									->setCellValue('J1', 'Contact Email')
-									->setCellValue('K1', 'Signup Date')
-									->setCellValue('L1', 'Cancel Date')
-									->setCellValue('M1', 'Membership status:')
-									->setCellValue('N1', 'Discount Code');
-									
-															  
-		$items = $this->reports->get_all_elitemembers();
-		
-		$row=2;
-		foreach($items as $row_data)
-		{
-    		$col = 0;	
-		    foreach($row_data as $key=>$value)
-			{
-				if(!$value)
-				$value='-';
-		        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-		        $col++;
-	    	}
-		    $row++;
-		}
+			$objPHPExcel->getActiveSheet()->setTitle('Report');
 			
-		$objPHPExcel->setActiveSheetIndex(0);
-	
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-		$file=time().'.xls';
-		$objWriter->save('../uploads/my/'.$file);
-		$this->load->helper('download');
-		
-		$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-		$name = 'Report-of-elite-members.xls';
+			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
 
-		force_download($name, $file1); 
+			$objPHPExcel->getActiveSheet()
+										->setCellValue('A1', 'Company')
+										->setCellValue('B1', 'Address')	
+										->setCellValue('C1', 'City')
+										->setCellValue('D1', 'State')
+										->setCellValue('E1', 'Zip')
+										->setCellValue('F1', 'Business Phone')
+										->setCellValue('G1', 'Category')
+										->setCellValue('H1', 'Contact Name')
+										->setCellValue('I1', 'Contact Phone')
+										->setCellValue('J1', 'Contact Email')
+										->setCellValue('K1', 'Signup Date')
+										->setCellValue('L1', 'Cancel Date')
+										->setCellValue('M1', 'Membership status:')
+										->setCellValue('N1', 'Discount Code');
+										
+																  
+			$items = $this->reports->get_all_elitemembers();
+			
+			$row=2;
+			foreach($items as $row_data)
+			{
+				$col = 0;	
+				foreach($row_data as $key=>$value)
+				{
+					if(!$value)
+					$value='-';
+					$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+					$col++;
+				}
+				$row++;
+			}
+				
+			$objPHPExcel->setActiveSheetIndex(0);
 		
-		}
-					
+			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+			$file=time().'.xls';
+			$objWriter->save('../uploads/my/'.$file);
+			$this->load->helper('download');
+			
+			$file1 = file_get_contents($site_url.'uploads/my/'.$file);
+			$name = 'Report-of-elite-members.xls';
+
+			force_download($name, $file1); 
+			
+			}
+						
 						if($type=='allenablewithcode'){
 						$objPHPExcel = new PHPExcel();
 						$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
@@ -278,56 +340,56 @@ class Report extends CI_Controller {
 							 ->setKeywords("office 2007 openxml php")
 							 ->setCategory("Business");
 							 
-		$objPHPExcel->getActiveSheet()->setTitle('Report');
-		
-	    $objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
-
-		$objPHPExcel->getActiveSheet()
-									->setCellValue('A1', 'Company')
-									->setCellValue('B1', 'Address')	
-									->setCellValue('C1', 'City')
-									->setCellValue('D1', 'State')
-									->setCellValue('E1', 'Zip')
-									->setCellValue('F1', 'Business Phone')
-									->setCellValue('G1', 'Category')
-									->setCellValue('H1', 'Contact Name')
-									->setCellValue('I1', 'Contact Phone')
-									->setCellValue('J1', 'Contact Email')
-									->setCellValue('K1', 'Signup Date')
-									->setCellValue('L1', 'Cancel Date')
-									->setCellValue('M1', 'Membership status:')
-									->setCellValue('N1', 'Discount Code');
-															  
-		$items = $this->reports->get_all_enabledmemberswithcode();
-		
-		$row=2;
-		foreach($items as $row_data)
-		{
-    		$col = 0;	
-		    foreach($row_data as $key=>$value)
-			{
-				if(!$value)
-				$value='-';
-		        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-		        $col++;
-	    	}
-		    $row++;
-		}
+			$objPHPExcel->getActiveSheet()->setTitle('Report');
 			
-		$objPHPExcel->setActiveSheetIndex(0);
-	
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-		$file=time().'.xls';
-		$objWriter->save('../uploads/my/'.$file);
-		$this->load->helper('download');
-		
-		$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-		$name = 'Report-of-elite-members.xls';
+			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
 
-		force_download($name, $file1); 
+			$objPHPExcel->getActiveSheet()
+										->setCellValue('A1', 'Company')
+										->setCellValue('B1', 'Address')	
+										->setCellValue('C1', 'City')
+										->setCellValue('D1', 'State')
+										->setCellValue('E1', 'Zip')
+										->setCellValue('F1', 'Business Phone')
+										->setCellValue('G1', 'Category')
+										->setCellValue('H1', 'Contact Name')
+										->setCellValue('I1', 'Contact Phone')
+										->setCellValue('J1', 'Contact Email')
+										->setCellValue('K1', 'Signup Date')
+										->setCellValue('L1', 'Cancel Date')
+										->setCellValue('M1', 'Membership status:')
+										->setCellValue('N1', 'Discount Code');
+																  
+			$items = $this->reports->get_all_enabledmemberswithcode();
+			
+			$row=2;
+			foreach($items as $row_data)
+			{
+				$col = 0;	
+				foreach($row_data as $key=>$value)
+				{
+					if(!$value)
+					$value='-';
+					$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+					$col++;
+				}
+				$row++;
+			}
+				
+			$objPHPExcel->setActiveSheetIndex(0);
 		
-		}
-		
+			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+			$file=time().'.xls';
+			$objWriter->save('../uploads/my/'.$file);
+			$this->load->helper('download');
+			
+			$file1 = file_get_contents($site_url.'uploads/my/'.$file);
+			$name = 'Report-of-elite-members.xls';
+
+			force_download($name, $file1); 
+			
+			}
+			
 						if($type=='alldisablewithcode'){
 						$objPHPExcel = new PHPExcel();
 						$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
@@ -338,55 +400,55 @@ class Report extends CI_Controller {
 							 ->setKeywords("office 2007 openxml php")
 							 ->setCategory("Business");
 							 
-		$objPHPExcel->getActiveSheet()->setTitle('Report');
-		
-	    $objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
-
-		$objPHPExcel->getActiveSheet()
-									->setCellValue('A1', 'Company')
-									->setCellValue('B1', 'Address')	
-									->setCellValue('C1', 'City')
-									->setCellValue('D1', 'State')
-									->setCellValue('E1', 'Zip')
-									->setCellValue('F1', 'Business Phone')
-									->setCellValue('G1', 'Category')
-									->setCellValue('H1', 'Contact Name')
-									->setCellValue('I1', 'Contact Phone')
-									->setCellValue('J1', 'Contact Email')
-									->setCellValue('K1', 'Signup Date')
-									->setCellValue('L1', 'Cancel Date')
-									->setCellValue('M1', 'Membership status:')
-									->setCellValue('N1', 'Discount Code');
-															  
-		$items = $this->reports->get_all_disabledmemberswithcode();
-		
-		$row=2;
-		foreach($items as $row_data)
-		{
-    		$col = 0;	
-		    foreach($row_data as $key=>$value)
-			{
-				if(!$value)
-				$value='-';
-		        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-		        $col++;
-	    	}
-		    $row++;
-		}
+			$objPHPExcel->getActiveSheet()->setTitle('Report');
 			
-		$objPHPExcel->setActiveSheetIndex(0);
-	
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-		$file=time().'.xls';
-		$objWriter->save('../uploads/my/'.$file);
-		$this->load->helper('download');
-		
-		$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-		$name = 'Report-of-elite-members.xls';
+			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
 
-		force_download($name, $file1); 
+			$objPHPExcel->getActiveSheet()
+										->setCellValue('A1', 'Company')
+										->setCellValue('B1', 'Address')	
+										->setCellValue('C1', 'City')
+										->setCellValue('D1', 'State')
+										->setCellValue('E1', 'Zip')
+										->setCellValue('F1', 'Business Phone')
+										->setCellValue('G1', 'Category')
+										->setCellValue('H1', 'Contact Name')
+										->setCellValue('I1', 'Contact Phone')
+										->setCellValue('J1', 'Contact Email')
+										->setCellValue('K1', 'Signup Date')
+										->setCellValue('L1', 'Cancel Date')
+										->setCellValue('M1', 'Membership status:')
+										->setCellValue('N1', 'Discount Code');
+																  
+			$items = $this->reports->get_all_disabledmemberswithcode();
+			
+			$row=2;
+			foreach($items as $row_data)
+			{
+				$col = 0;	
+				foreach($row_data as $key=>$value)
+				{
+					if(!$value)
+					$value='-';
+					$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+					$col++;
+				}
+				$row++;
+			}
+				
+			$objPHPExcel->setActiveSheetIndex(0);
 		
-		}
+			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+			$file=time().'.xls';
+			$objWriter->save('../uploads/my/'.$file);
+			$this->load->helper('download');
+			
+			$file1 = file_get_contents($site_url.'uploads/my/'.$file);
+			$name = 'Report-of-elite-members.xls';
+
+			force_download($name, $file1); 
+			
+			}
 		
 						if($type=='callcenter'){
 						$objPHPExcel = new PHPExcel();
@@ -398,52 +460,52 @@ class Report extends CI_Controller {
 							 ->setKeywords("office 2007 openxml php")
 							 ->setCategory("Business");
 							 
-		$objPHPExcel->getActiveSheet()->setTitle('Report');
-		
-	    $objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
-
-		$objPHPExcel->getActiveSheet()
-							->setCellValue('A1', 'Email')
-							->setCellValue('B1', 'Name')
-							->setCellValue('C1', 'Address')
-							->setCellValue('D1', 'Payment Transaction ID')
-							->setCellValue('E1', 'Payment Method')
-							->setCellValue('F1', 'Membership status')
-							->setCellValue('G1', 'Disabled On');
-															  
-		$items = $this->reports->get_all_callcenter_elite();
-		$row=2;
-		foreach($items as $row_data)
-		{
-    		$col = 0;	
-		    foreach($row_data as $key=>$value)
-			{
-				if(!$value)
-				$value='-';
-		        if($key=='id')
-				{
-					$value='Paypal';
-				}
-				
-				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-		        $col++;
-	    	}
-		    $row++;
-		}
+			$objPHPExcel->getActiveSheet()->setTitle('Report');
 			
-		$objPHPExcel->setActiveSheetIndex(0);
-	
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-		$file=time().'.xls';
-		$objWriter->save('../uploads/my/'.$file);
-		$this->load->helper('download');
-		
-		$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-		$name = 'Report-of-elite-members-registered-from-callcenter.xls';
+			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
 
-		force_download($name, $file1); 
+			$objPHPExcel->getActiveSheet()
+								->setCellValue('A1', 'Email')
+								->setCellValue('B1', 'Name')
+								->setCellValue('C1', 'Address')
+								->setCellValue('D1', 'Payment Transaction ID')
+								->setCellValue('E1', 'Payment Method')
+								->setCellValue('F1', 'Membership status')
+								->setCellValue('G1', 'Disabled On');
+																  
+			$items = $this->reports->get_all_callcenter_elite();
+			$row=2;
+			foreach($items as $row_data)
+			{
+				$col = 0;	
+				foreach($row_data as $key=>$value)
+				{
+					if(!$value)
+					$value='-';
+					if($key=='id')
+					{
+						$value='Paypal';
+					}
+					
+					$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+					$col++;
+				}
+				$row++;
+			}
+				
+			$objPHPExcel->setActiveSheetIndex(0);
 		
-		}
+			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+			$file=time().'.xls';
+			$objWriter->save('../uploads/my/'.$file);
+			$this->load->helper('download');
+			
+			$file1 = file_get_contents($site_url.'uploads/my/'.$file);
+			$name = 'Report-of-elite-members-registered-from-callcenter.xls';
+
+			force_download($name, $file1); 
+			
+			}
 		
 						if($type=='removedreviews'){
 							
@@ -457,55 +519,55 @@ class Report extends CI_Controller {
 							 ->setKeywords("office 2007 openxml php")
 							 ->setCategory("Business");
 							 
-		$objPHPExcel->getActiveSheet()->setTitle('Report');
-		
-	    $objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
-
-		$objPHPExcel->getActiveSheet()
-							->setCellValue('A1', 'Username')
-							->setCellValue('B1', 'Email')
-							->setCellValue('C1', 'Name')
-							->setCellValue('D1', 'Address')
-							->setCellValue('E1', 'Created On')
-							->setCellValue('F1', 'Removed On')
-							->setCellValue('G1', 'Company Name')
-							->setCellValue('H1', 'Company Address');
-							
-							
-													  
-		$items = $this->reports->get_all_removed_reviews();
-		
-		$row=2;
-		foreach($items as $row_data)
-		{
-    		$col = 0;	
-		    foreach($row_data as $key=>$value)
-			{
-				if(!$value)
-				$value='-';
-		        if($value=='0000-00-00')
-				{
-					$value='NA';
-				}
-				
-				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-		        $col++;
-	    	}
-		    $row++;
-		}
+			$objPHPExcel->getActiveSheet()->setTitle('Report');
 			
-		$objPHPExcel->setActiveSheetIndex(0);
-	
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-		$file=time().'.xls';
-		$objWriter->save('../uploads/my/'.$file);
-		$this->load->helper('download');
+			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
+
+			$objPHPExcel->getActiveSheet()
+								->setCellValue('A1', 'Username')
+								->setCellValue('B1', 'Email')
+								->setCellValue('C1', 'Name')
+								->setCellValue('D1', 'Address')
+								->setCellValue('E1', 'Created On')
+								->setCellValue('F1', 'Removed On')
+								->setCellValue('G1', 'Company Name')
+								->setCellValue('H1', 'Company Address');
+								
+								
+														  
+			$items = $this->reports->get_all_removed_reviews();
+			
+			$row=2;
+			foreach($items as $row_data)
+			{
+				$col = 0;	
+				foreach($row_data as $key=>$value)
+				{
+					if(!$value)
+					$value='-';
+					if($value=='0000-00-00')
+					{
+						$value='NA';
+					}
+					
+					$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+					$col++;
+				}
+				$row++;
+			}
+				
+			$objPHPExcel->setActiveSheetIndex(0);
 		
-		$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-		$name = 'Report-of-all-removed-reviews.xls';
-		force_download($name, $file1); 
-		}
-		
+			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+			$file=time().'.xls';
+			$objWriter->save('../uploads/my/'.$file);
+			$this->load->helper('download');
+			
+			$file1 = file_get_contents($site_url.'uploads/my/'.$file);
+			$name = 'Report-of-all-removed-reviews.xls';
+			force_download($name, $file1); 
+			}
+			
 						if($type=='removedcomplaints'){
 							
 												
@@ -518,54 +580,54 @@ class Report extends CI_Controller {
 							 ->setKeywords("office 2007 openxml php")
 							 ->setCategory("Business");
 							 
-		$objPHPExcel->getActiveSheet()->setTitle('Report');
-		
-	    $objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
-
-		$objPHPExcel->getActiveSheet()
-							->setCellValue('A1', 'Username')
-							->setCellValue('B1', 'Email')
-							->setCellValue('C1', 'Name')
-							->setCellValue('D1', 'Address')
-							->setCellValue('E1', 'Created On')
-							->setCellValue('F1', 'Removed On')
-							->setCellValue('G1', 'Company Name')
-							->setCellValue('H1', 'Company Address');
-							
-							
-													  
-		$items = $this->reports->get_all_removed_complaints();
-		
-		$row=2;
-		foreach($items as $row_data)
-		{
-    		$col = 0;	
-		    foreach($row_data as $key=>$value)
-			{
-				if(!$value)
-				$value='-';
-		        if($value=='0000-00-00 00:00:00')
-				{
-					$value='NA';
-				}
-				
-				$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-		        $col++;
-	    	}
-		    $row++;
-		}
+			$objPHPExcel->getActiveSheet()->setTitle('Report');
 			
-		$objPHPExcel->setActiveSheetIndex(0);
-	
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-		$file=time().'.xls';
-		$objWriter->save('../uploads/my/'.$file);
-		$this->load->helper('download');
+			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
+
+			$objPHPExcel->getActiveSheet()
+								->setCellValue('A1', 'Username')
+								->setCellValue('B1', 'Email')
+								->setCellValue('C1', 'Name')
+								->setCellValue('D1', 'Address')
+								->setCellValue('E1', 'Created On')
+								->setCellValue('F1', 'Removed On')
+								->setCellValue('G1', 'Company Name')
+								->setCellValue('H1', 'Company Address');
+								
+								
+														  
+			$items = $this->reports->get_all_removed_complaints();
+			
+			$row=2;
+			foreach($items as $row_data)
+			{
+				$col = 0;	
+				foreach($row_data as $key=>$value)
+				{
+					if(!$value)
+					$value='-';
+					if($value=='0000-00-00 00:00:00')
+					{
+						$value='NA';
+					}
+					
+					$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+					$col++;
+				}
+				$row++;
+			}
+				
+			$objPHPExcel->setActiveSheetIndex(0);
 		
-		$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-		$name = 'Report-of-all-removed-complaints.xls';
-		force_download($name, $file1); 
-		}
+			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+			$file=time().'.xls';
+			$objWriter->save('../uploads/my/'.$file);
+			$this->load->helper('download');
+			
+			$file1 = file_get_contents($site_url.'uploads/my/'.$file);
+			$name = 'Report-of-all-removed-complaints.xls';
+			force_download($name, $file1); 
+			}
 						
 					}
 					else
