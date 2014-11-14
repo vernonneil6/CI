@@ -585,7 +585,7 @@ class Report extends CI_Controller {
     }
     public function subbrokerdetails( $type = 'subbrokerdetail')
     {
-		$id = $this->uri->segment(3);		
+		$id = $this->uri->segment(4);		
 			
 		/*subbroker csv*/
 				
