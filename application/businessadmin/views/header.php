@@ -45,7 +45,7 @@
 <div id="header"> 
   <!-- #logo -->
   <div id="logo"> <a href="<?php echo site_url(); ?>" title="Business Admin"><span>
-	   <img src="<?php echo base_url('../images/YGR_whiteLogo.png'); ?>" /> Elite Business Admin
+	   <img src="<?php echo base_url('../images/YGR_Logo_TranspBG.png'); ?>" /> Elite Business Admin
 	</span></a> </div>
   <!-- /#logo --> 
   <!-- #user -->
