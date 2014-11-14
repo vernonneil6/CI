@@ -1255,11 +1255,34 @@ Buyer Protection Program<br>
 			$this->email->send(); // send email to admin
           
 			
-			redirect('complaint/success', 'refresh');
+			redirect('user/disputes', 'refresh');
 	    }  
 	      
 			
 	}
+	
+	public function disputes() {
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			print_r($this->session->userdata);
+			die('check');
+		}	
+		
+        $config = array();
+        $config["base_url"] = base_url() . "user/disputes";
+        $config["total_rows"] = $this->complaints->record_count();
+        $config["per_page"] = 5;
+        $config["uri_segment"] = 2;
+ 
+        $this->pagination->initialize($config);
+ 
+        $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
+        $data["results"] =$this->complaints-
+            fetch_disputes($config["per_page"], $page);
+        $data["links"] = $this->pagination->create_links();
+ 
+        $this->load->view("user", $data);
+    }
 		
 	public function add1()
 	{

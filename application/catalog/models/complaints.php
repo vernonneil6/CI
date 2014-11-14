@@ -1506,5 +1506,11 @@ class Complaints extends CI_Model
 		$query = $this->db->get_where('youg_broker',array('id'=>$id));
 		return $query->row_array();
 	}
+	function record_count()
+	{
+		
+		$this->db->where('userid','39')
+			     ->count_all('youg_disputes');
+	}
 }
 ?>
