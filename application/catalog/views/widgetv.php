@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <title><?php echo ( !empty($name) ) ? $name : $site_name; ?></title>
-<link rel="stylesheet" href="css/widget.css" type="text/css">
+<link rel="stylesheet" href="../../css/widget.css" type="text/css">
 <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
 </head>
 
