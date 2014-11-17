@@ -40,7 +40,7 @@ $(function(){
     <div align="center">
       <?php /*?>   <img src="<?php if( $verifiedlogo ) { echo $this->common->get_setting_value('2').$this->config->item('verifiedlogo_thumb_upload_path');?><?php echo stripslashes($verifiedlogo); } else { echo $this->common->get_setting_value('2').$this->config->item('verifiedlogo_thumb_upload_path')."no_image.png"; } ?>" alt="Verified Logo" />
 <?php */?>
-      <a target="_blank" onClick="window.open('<?php echo $site_url; ?>verified','YougotratedVerification','width=500,height=400,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes'); return false;" style="cursor: pointer;" title="Yougotrated Verification"> <img src="<?php if( $verifiedlogo ) { echo "uploads/verifiedlogo/thumb/verifiedlogo.png"/*base_url().$this->config->item('verifiedlogo_thumb_upload_path');?><?php echo stripslashes($verifiedlogo)*/; } ?>" alt="Verified Logo" width="230" height="120"/> </a> </div>
+      <a target="_blank" onClick="window.open('<?php echo $site_url; ?>verified','YougotratedVerification','width=500,height=400,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes'); return false;" style="cursor: pointer;" title="Yougotrated Verification"> <img src="<?php if( $verifiedlogo ) { echo "../../suploads/verifiedlogo/thumb/verifiedlogo.png"/*base_url().$this->config->item('verifiedlogo_thumb_upload_path');?><?php echo stripslashes($verifiedlogo)*/; } ?>" alt="Verified Logo" width="120" height="120"/> </a> </div>
     </a> </div>
   <?php } ?>
 </div>
