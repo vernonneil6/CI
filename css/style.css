@@ -650,10 +650,12 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 .reg-row{margin-top:50px; display: inline-block;}
 .reg-row .bname .website{float:left;}
 .reg-row_free{margin-top:50px; display: inline-block;float: right;margin-top: -142px;}
-.free_elite_box{height: 129px;border: 1px solid #D9D9D9;width: 290px;color: #999;font-family: 'myriadpro-regular';display: inline-block;padding-top: 10px;line-height: 17px;}
+.free_elite_box{height: 138px;border: 1px solid #666;padding: 20px;color: #999;font-family: 'myriadpro-regular';display: inline-block;line-height: 17px;}
 .free_elite_box .e_list{list-style-type: square;}
-.free_elite_box .quotetext{padding-left: 8px;padding-top: 4px;}
-.free_click{padding-left: 12px;}
+.free_elite_box .quotetext{padding-left: 8px;padding-top: 4px;font-size: 15px;}
+.free_click{padding-left: 8px;font-size: 15px;}
+.elist{padding-left: 21px;margin-bottom: 0; font-size: 15px;}
+.elist li{padding:3px;}
 .dispute{padding-top:3px;}
 .company{padding-top:79px;}
 .username{padding-top:45px;}
