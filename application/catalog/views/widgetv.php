@@ -33,7 +33,7 @@ $(function(){
  <a href="<?php echo $url; ?>" title="<?php echo $name; ?>" target="_blank" id="colorcode"><?php echo ucfirst($name); ?></a>&nbsp;
  <!--<php echo img(array('src'=>'images/stars/'.$rating.'.png', 'alt'=>$rating.' stars', 'title'=>$rating.' stars')); ?>--><br>
  
-   <label> Rating:&nbsp;<label class='rating'  data-rating=<?php echo $rating; ?>>&nbsp;/&nbsp;5 </label><br>
+   <label> Rating:&nbsp;<?php if($rating=='0'){ echo "Not Yet Verified" }else{ ?><label class='rating'  data-rating=<?php echo $rating; ?>>&nbsp;/&nbsp;5 </label><?php } ?></label><br>
    <label> <?php echo $total; ?> User Reviews.</label> <br>
  
     <!--<a href="<?php //echo $site_url; ?>" target="_blank" title="<?php //echo $site_name; ?>">-->

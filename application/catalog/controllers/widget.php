@@ -54,8 +54,6 @@ class Widget extends CI_Controller {
 			$this->data['rating'] = ceil($rating);
 			$this->data['total'] = $this->widgets->get_total_review($companyid);
 			$this->data['verifiedlogo'] = $this->common->get_setting_value(17);
-			
-			
 		}
 		else
 		{
