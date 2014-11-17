@@ -343,3 +343,13 @@ a:hover.ico   { background-position: 0 0; }
 .modal-window .list-square li { padding-left: 15px; background: url(../images/ico/list-square.gif) 0 6px no-repeat; }
 .modal-window .list-dash li   { padding-left: 15px; background: url(../images/ico/list-dash.gif) 0 6px no-repeat; }
 .modal-window .list-number li { margin-left: 20px; list-style: decimal; }
+
+
+
+
+.ebalogo
+{
+	display: inline-block;
+    height: 66px;
+    padding: 5px 0;
+}
