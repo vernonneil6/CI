@@ -33,14 +33,14 @@ $(function(){
  <a href="<?php echo $url; ?>" title="<?php echo $name; ?>" target="_blank" id="colorcode"><?php echo ucfirst($name); ?></a>&nbsp;
  <!--<php echo img(array('src'=>'images/stars/'.$rating.'.png', 'alt'=>$rating.' stars', 'title'=>$rating.' stars')); ?>--><br>
  
-   <label> Rating:&nbsp;<?php if($rating=='0'){ echo "Not Yet Verified"; } else { ?><label class='rating'  data-rating=<?php echo $rating; ?>>&nbsp;/&nbsp;5 </label><?php } ?></label><br>
+<label> Rating:&nbsp;<?php if($rating=='0'){ echo "Not Yet Verified"; } else { ?><label class='rating'  data-rating=<?php echo $rating; ?>>&nbsp;/&nbsp;5 </label><?php } ?></label><br>
    <label> <?php echo $total; ?> User Reviews.</label> <br>
  
     <!--<a href="<?php //echo $site_url; ?>" target="_blank" title="<?php //echo $site_name; ?>">-->
     <div align="center">
       <?php /*?>   <img src="<?php if( $verifiedlogo ) { echo $this->common->get_setting_value('2').$this->config->item('verifiedlogo_thumb_upload_path');?><?php echo stripslashes($verifiedlogo); } else { echo $this->common->get_setting_value('2').$this->config->item('verifiedlogo_thumb_upload_path')."no_image.png"; } ?>" alt="Verified Logo" />
 <?php */?>
-      <a target="_blank" onClick="window.open('<?php echo $site_url; ?>verified','YougotratedVerification','width=500,height=400,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes'); return false;" style="cursor: pointer;" title="Yougotrated Verification"> <?php if( $verifiedlogo ) { ?> <img src="../../uploads/verifiedlogo/thumb/verifiedlogo.png" alt="Verified Logo" width="120" height="120"/> <?php } ?> </a> </div>
+      <a target="_blank" onClick="window.open('<?php echo $site_url; ?>verified','YougotratedVerification','width=500,height=400,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes'); return false;" style="cursor: pointer;" title="Yougotrated Verification"> <img src="<?php if( $verifiedlogo ) { echo base_url().$this->config->item('verifiedlogo_thumb_upload_path');?><?php echo stripslashes($verifiedlogo); } ?>" alt="Verified Logo" width="230" height="120"/> </a> </div>
     </a> </div>
   <?php } ?>
 </div>
