@@ -145,7 +145,60 @@
 						  }
 					  }
 					  
-					 
+					  if( trim($("#fname").val()) == "" )
+					  {
+						  $("#fnameerror").show();
+						  $("#fname").focus();
+						  return false;
+					  }
+					  else
+					  {
+						  $("#fnameerror").hide();
+					  }
+					  
+					  if( trim($("#lname").val()) == "" )
+					  {
+						  $("#lnameerror").show();
+						  $("#lname").focus();
+						  return false;
+					  }
+					  else
+					  {
+						  $("#lnameerror").hide();
+					  }
+					  
+					  if( trim($("#ccnumber").val()) == "" )
+					  {
+						  $("#ccnumbererror").show();
+						  $("#ccnumber").focus();
+						  return false;
+					  }
+					  else
+					  {
+						  $("#ccnumbererror").hide();
+					  }
+					  
+					  if( trim($("#expirationdatey").val()) == "")
+					  {
+						  $("#expirationdateerror").show();
+						  $("#expirationdatey").focus();
+						  return false;
+					  }
+					  else
+					  {
+						  $("#expirationdateerror").hide();
+					  }
+					  
+					  if( trim($("#expirationdatem").val()) == "")
+					  {
+						  $("#expirationdateerror").show();
+						  $("#expirationdatem").focus();
+						  return false;
+					  }
+					  else
+					  {
+						  $("#expirationdateerror").hide();
+					  }
 					  
 					 
 					  
@@ -342,6 +395,45 @@
             <input type="text" class="reg_txt_box" placeholder="CONTACT EMAIL" id="cemail" name="cemail" maxlength="200" /><div id="cemailerror" class="error">Enter valid Emailid.</div>
               
           </div>
+          <!-- payment details -->
+          <div class="reg-row" style="margin-top:55px;">
+            <label>YOUR PAYMENT INFORMATION</label>
+            
+            <div class="reg_fld">FIRST NAME</div>
+            
+            <input type="text" class="reg_txt_box" placeholder="FIRST NAME" id="fname" name="fname" maxlength="30" /><div id="fnameerror" class="error">First Name is required.</div>
+          </div>
+          <div class="reg-row" style="margin-top:10px !important;">
+            <div class="reg_fld">LAST NAME</div>
+            <input type="text" class="reg_txt_box" placeholder="LAST NAME" id="lname" name="lname" maxlength="30" /><div id="lnameerror" class="error">Last Name is required.</div>
+              
+          </div>
+          <div class="reg-row" style="margin-top:10px !important;">
+            <div class="reg_fld">CREDIT CARD NUMBER</div>
+            <input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" /><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+              
+          </div>
+          <div class="reg-row" style="margin-top:10px !important;">
+            <div class="reg_fld">EXPIRATION DATE</div>
+            <select id="expirationdatey" name="expirationdatey">
+                <option value="">--Select--</option>
+                <?php for($k=0;$k<10;$k++) {?>
+                <?php $a = date('Y')+$k;?>
+                <option value="<?php echo $a;?>"><?php echo $a;?></option>
+                <?php } ?>
+              </select>
+              &nbsp;
+              <select id="expirationdatem" name="expirationdatem">
+                <option value="">--Select--</option>
+                <?php for($i=1;$i<13;$i++) {?>
+                <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                <?php } ?>
+              </select>
+              <div id="ccnumbererror" class="error">Credit Card Number is required.</div><div id="expirationdateerror" class="error">Select Expiration Date.</div>
+              <div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+              
+          </div>
+          <!-- payment details -->
           <div class="reg-row" style="margin-top:55px;">
             <label>HAVE DISCOUNT CODE?</label>
             <div class="reg_fld">ENTER DISCOUNT CODE</div>
