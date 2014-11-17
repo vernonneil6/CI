@@ -253,7 +253,8 @@ class Solution extends CI_Controller {
 						//Inserting Record
 						if( $this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,'','',$category,'' ))
 						{
-							$companyid = $this->db->insert_id();
+							$companyid = $this->db->insert_id();							
+							$this->eliteSubscribe($_POST,$companyid); // for authorise
 							$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
 							if($this->complaints->insert_companyseo($companyid,$name))
 							{
@@ -414,7 +415,378 @@ class Solution extends CI_Controller {
 			redirect('solution', 'refresh');
 		}
 	}
+
+public function eliteSubscribe ($_POST){
+	//data.php start
+	//$loginname = $this->common->get_setting_value(22);
+	//$transactionkey = $this->common->get_setting_value(23);
+	$loginname="2sRT3yAsr3tA";
+	$transactionkey="38UzuaL2c6y5BQ88";
+	/*test mode*/
+	$host = "apitest.authorize.net";
+	//$host = "api.authorize.net";
+	$path = "/xml/v1/request.api";
+	//data.php end
 	
+	include('authorize/authnetfunction.php');
+	$subscriptionprice = $this->common->get_setting_value(19);
+		   
+	//define variables to send
+	$amount = $subscriptionprice;
+	$refId = uniqid();
+	$name = "elite membership";
+	$length = 10;
+	$unit = "months";
+	$startDate = date("Y-m-d");
+	$totalOccurrences = 999;
+	$trialOccurrences = 0;
+	$trialAmount = 0;
+	$cardNumber = $_POST["ccnumber"];
+			
+	if(strlen($_POST["expirationdatem"])==1)
+	{
+		$expirationDate = $_POST["expirationdatey"].'-0'.$_POST["expirationdatem"];
+	}
+	else
+	{
+		$expirationDate = $_POST["expirationdatey"].'-'.$_POST["expirationdatem"];
+	}
+			
+	$firstName = $_POST["fname"];
+	$lastName = $_POST["lname"];	
+	$email = $this->input->post('email');					
+			
+	$company = $this->complaints->get_company_by_emailid($email);
+	if(count($company)>0)
+	{
+		$companyid = $company[0]['id'];
+	}
+
+	"Results <br><br>";
+
+	//build xml to post
+	$content =
+			"<?xml version=\"1.0\" encoding=\"utf-8\"?>" .
+			"<ARBCreateSubscriptionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">" .
+			"<merchantAuthentication>".
+			"<name>" . $loginname . "</name>".
+			"<transactionKey>" . $transactionkey . "</transactionKey>".
+			"</merchantAuthentication>".
+			"<refId>" . $refId . "</refId>".
+			"<subscription>".
+			"<name>" . $name . "</name>".
+			"<paymentSchedule>".
+			"<interval>".
+			"<length>". $length ."</length>".
+			"<unit>". $unit ."</unit>".
+			"</interval>".
+			"<startDate>" . $startDate . "</startDate>".
+			"<totalOccurrences>". $totalOccurrences . "</totalOccurrences>".
+			"<trialOccurrences>". $trialOccurrences . "</trialOccurrences>".
+			"</paymentSchedule>".
+			"<amount>". $amount ."</amount>".
+			"<trialAmount>" . $trialAmount . "</trialAmount>".
+			"<payment>".
+			"<creditCard>".
+			"<cardNumber>" . $cardNumber . "</cardNumber>".
+			"<expirationDate>" . $expirationDate . "</expirationDate>".
+			"</creditCard>".
+			"</payment>".
+			"<billTo>".
+			"<firstName>". $firstName . "</firstName>".
+			"<lastName>" . $lastName . "</lastName>".
+			"</billTo>".
+			"</subscription>".
+			"</ARBCreateSubscriptionRequest>";
+
+
+	//send the xml via curl
+	$response = send_request_via_curl($host,$path,$content);
+	//if the connection and send worked $response holds the return from Authorize.net
+	print_r($response);
+	if ($response)
+	{
+		list ($refId, $resultCode, $code, $text, $subscriptionId) =parse_return($response);
+		 " Response Code: $resultCode <br>";
+		 " Response Reason Code: $code<br>";
+		 " Response Text: $text<br>";
+		 " Reference Id: $refId<br>";
+		 " Subscription Id: $subscriptionId <br><br>";
+		 " Data has been written to data.log<br><br>";
+		 $loginname;
+		 "<br />";
+		 $transactionkey;
+		 "<br />";
+	  
+		"amount:";
+		$amount;
+		"<br \>";
+	  
+		"refId:";
+		$refId;
+		"<br \>";
+	  
+		"name:";
+		$name;
+		"<br \>";
+	  
+		"amount: ";
+		$amount;
+		"<br \>";
+		"<br \>";
+		$content;
+		"<br \>";
+		"<br \>";
+		if($resultCode=='Ok')
+		{
+			$tx  = $transactionkey;
+			$amt = $amount;
+			$companyid  = $companyid;
+			$sig = $refId;
+			$time = $this->common->get_setting_value(18);
+			$expires = date('Y-m-d H:i:s', strtotime("+$time Month"));
+			$payer_id=$email;
+			$paymentmethod = 'authorize';
+			if( $this->complaints->insert_subscription($companyid,$amt,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
+			{
+				$company = $this->complaints->get_company_byid($companyid);
+				if( count($company)>0 )
+				{
+					$password = uniqid();
+					
+					$video = $this->complaints->get_videos_bycompanyid($companyid);
+					$sem = $this->complaints->get_companysem_bycompanyid($companyid);
+					$seo = $this->complaints->get_companyseo_bycompanyid($companyid);
+							
+					$this->complaints->set_password($companyid,$password);
+					if(count($video)==0 && count($sem)==0 && count($seo)==0 ) {
+						for($i=1;$i<17;$i++) {
+							$this->complaints->set_sem($companyid,"Facebook","http://www.facebook.com","ade2c15ab85aef450fb2f6e53e8cb825.png","ade2c15ab85aef450fb2f6e53e8cb825.png",$i,'f');
+							$this->complaints->set_sem($companyid,"twitter","http://www.twitter.com","51e28dd5af6d2bb51b518b47ae717f1a.png","51e28dd5af6d2bb51b518b47ae717f1a.png",$i,'t');
+							$this->complaints->set_sem($companyid,"Linkedin","http://www.linkedin.com","ab5b4de4c8fa16f822635c942aafdfb5.jpg","ab5b4de4c8fa16f822635c942aafdfb5.jpg",$i,'l');
+							$this->complaints->set_sem($companyid,"Google","http://www.google.com","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg",$i,'g');
+							$this->complaints->set_sem($companyid,"pintrest","http://www.pintrest.com","1519f4062fa76260346bfc61665e579d.jpeg","1519f4062fa76260346bfc61665e579d.jpeg",$i,'p');
+													
+
+
+							$this->complaints->set_seo($companyid,"Google Analytic","Google Analytic",$i);
+							$this->complaints->set_seo($companyid,"Google Webmaster","Google Webmaster",$i);
+							$this->complaints->set_seo($companyid,"General Meta Tag Keywords","General Meta Tag Keywords",$i);
+							$this->complaints->set_seo($companyid,"General Meta Tag Description","General Meta Tag Description",$i);
+
+
+							$this->complaints->set_video($companyid,"video1","http://www.youtube.com/watch?v=wPNZz1oeKaI",$i,'video1');
+							$this->complaints->set_video($companyid,"video2","http://www.youtube.com/watch?v=wPNZz1oeKaI",$i,'video2');
+
+						}
+					}
+									
+					//Inserting Elite Membership Transaction Details for Company
+					$transaction = $this->complaints->add_transaction($companyid,$amount,'USD',$transactionkey,date('Y-m-d H:i:s'));
+					$websites = $this->complaints->get_all_websites();
+					$this->complaints->insert_discountcode($companyid,'ACE-Call-Center');
+									
+					$siteid = $this->session->userdata('siteid');
+					$page = $this->common->get_pages_by_id(12,$siteid);
+			
+					if( count($page) > 0 )
+					{
+						$institle = stripslashes($page[0]['title']);
+						$inssteps = nl2br(stripslashes($page[0]['pagecontent']));
+					}
+								
+					$site_name = $this->common->get_setting_value(1);
+					$site_url = $this->common->get_setting_value(2);
+					$site_mail = $this->common->get_setting_value(5);
+									
+					//Company Email Address
+					$email = $company[0]['email'];
+									
+					//Loading E-mail library
+					$this->load->library('email');
+									
+					//Loading E-mail config file
+					$this->config->load('email',TRUE);
+					$this->cnfemail = $this->config->item('email');
+											
+					$this->email->initialize($this->cnfemail);
+					$this->email->from($email,$company[0]['company']);
+					$this->email->to($site_mail);	
+					$this->email->subject('Payment Received for Business Claim.');
+					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
+															<tr>
+																<td>Hello administration,</td>
+															</tr>
+															<tr><td><br/></td></tr>
+															<tr>
+																<td style="padding-left:20px;">
+																Following User has claimed the business <b>'.ucwords($company[0]['company']).'</b>. Transaction Details are as follows.
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<table cellpadding="0" cellspacing="0" width="100%" border="0">
+																	<tr><td colspan="3"><h3>Payment Detail</h3></td></tr>
+																	<tr>
+																		<td>Payment Amount</td>
+																		<td>:</td>
+																		<td>USD '.$amount.'</td>
+																	</tr>
+																	<tr>
+																		<td>Transacion ID</td>
+																		<td>:</td>
+																		<td><b>'.$transactionkey.'</b></td>
+																	</tr>
+																	</table>
+																</td>
+															</tr>
+															</table>');
+					//Sending mail to admin
+					$this->email->send();
+									
+					//For sending mail to user
+					$this->email->from($site_mail,$site_name);
+					$this->email->to($email);	
+					$this->email->subject('Business has been claimed successfully.');
+					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
+											  <tr>
+												<td>Hello '.$company[0]['company'].',</td>
+											  </tr>
+											  <tr>
+												<td><br/></td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;"> You have successfully claimed the Business <b>'.ucwords($company[0]['company']).'</b>. </td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;"> You can login with the following credentials to your elite member admin account by clicking link below or paste it in the address bar. </td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;"> ----------------------------------------------------<br />
+												  Username = Your email address<br />
+												  password = '.$password.'<br />
+												  ----------------------------------------------------<br />
+												  Please click this link to login your account.<br />
+												  <a href="'.$site_url.'businessadmin">Elite Member Login</a></td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;"></td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;"> Your Transaction Details are as follows. </td>
+											  </tr>
+											  <tr>
+												<td><table cellpadding="0" cellspacing="0" width="100%" border="0">
+													<tr>
+													  <td colspan="3"><h3>Payment Detail</h3></td>
+													</tr>
+													<tr>
+													  <td>Payment Amount</td>
+													  <td>:</td>
+													  <td>USD '.$amount.'</td>
+													</tr>
+													<tr>
+													  <td>Transacion ID</td>
+													  <td>:</td>
+													  <td><b>'.$transactionkey.'</b></td>
+													</tr>
+													<tr>
+													  <td colspan="3"><h3>Widget</h3></td>
+													</tr>
+												   <tr>
+													  <td colspan="3">&lt;iframe src=&quot;'.site_url("widget/business/".$companyid).'&quot; style=&quot;border:none;&quot;&gt;&lt;/iframe&gt;
+																	<br/>
+																&lt;div style=&quot;display:none;&quot;&gt;
+																&lt;a href=&quot;'.$websites[0]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[1]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[2]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[3]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[4]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[5]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[6]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[7]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[8]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[9]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[10]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[11]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[12]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[13]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[14]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[15]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;/div&gt;
+																</td>
+													</tr>
+													<tr>
+													  <td colspan="3">&nbsp;</td>
+													</tr>
+													<tr>
+													  <td colspan="3">&nbsp;</td>
+													</tr>
+													<tr>
+													  <td colspan="3"><h3>'.$institle.'</h3></td>
+													</tr>
+													<tr>
+													  <td colspan="3">'.$inssteps.' </td>
+													</tr>
+												  </table></td>
+											  </tr>
+											  <tr>
+												<td><br/>
+												  <br/></td>
+											  </tr>
+											  <tr>
+												<td> Regards,<br/>
+												  The '.$site_name.' Team.<br/>
+												  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
+											  </tr>
+											</table>
+											');
+									
+					//Sending mail user
+					$this->email->send();
+					$this->session->set_flashdata('success','Payment is made and your business is claimed successfully.');
+					//redirect('complaint', 'refresh');
+				}
+				else
+				{
+					//redirect('authorize', 'refresh');
+				}
+			}
+			else
+			{
+						$this->session->set_flashdata('error',"There was error during payment. Please try later!");
+						//redirect('authorize', 'refresh');
+			}
+		}
+		else
+		{
+			$this->session->set_flashdata('success', $text);
+			//redirect('authorize', 'refresh');
+		}
+			
+	}
+	else
+	{
+		echo "Transaction Failed. <br>";
+	}
+
+}
 }
 /* End of file dashboard.php */
 /* Location: ./application/controllers/dashboard.php */
