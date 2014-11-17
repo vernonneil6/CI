@@ -218,80 +218,58 @@
 	
 	
 	<div class="breadcrumbs">
-    <ul>
-      <li class="home"><a href="<?php echo site_url('subbroker/elitemember');?>" title="elitemember">Elite Member</a></li>
-    </ul>
-  </div>
+		<ul>
+		  <li class="home"><a href="<?php echo site_url('subbroker/elitemember');?>" title="elitemember">Elite Member</a></li>
+		</ul>
+	</div>
 
 
 	<div class="box">
-    <div class="headlines">
-      <h2><span><?php echo "Elite Member" ?></span></h2>
-    </div>
-    <div class="box-content"> 
+		<div class="headlines">
+		  <h2><span><?php echo "Elite Member" ?></span></h2>
+		</div>
+		<div class="box-content"> 
 			
-	
-     
-	<?php if( count($elitemembers) > 0 ) { //echo count($elitemembers); ?>
-    <table class="tab tab-drag">
-      <tr class="top nodrop nodrag">
-		<td>Company</td>
-		<td>Email</td>
-		<td>Phone</td>
-		<td>type</td>
-      </tr>
-      <?php 
-      //echo '<pre>';//print_r($elitemembers);
-      //$elitemember = array_unique($elitemembers);
-      // $b1id='';
-	  $i=0;
-      foreach($elitemembers as $elite){ 
-	  if($elite['yc1marketerid']=='' )
-	  {
-	  ?>
-		<tr>
-			<td><?php echo $elite['yb1name']; ?></td>
-			<td><?php echo $elite['yc1company']; ?></td>
-			<td><?php echo $elite['yc1email']; ?></td>
-			<td><?php echo $elite['yc1phone']; ?></td>
-			<td><?php echo $elite['yc1brokertype']; ?></td>
-			<td><?php echo $elite['yb1id']; ?></td>
-			<td><?php echo $elite['yb2id']; ?></td>
-			<td><?php echo $elite['yb3id']; ?></td>
-			<td><?php echo $elite['yc1brokerid']; ?></td>
-			<td><?php echo $elite['yc2brokerid']; ?></td>
-			<td><?php echo $elite['yc3brokerid']; ?></td>
-			<td><?php echo $elite['yc1subbrokerid']; ?></td>
-			<td><?php echo $elite['yc2subbrokerid']; ?></td>
-			<td><?php echo $elite['yc3subbrokerid']; ?></td>
-			
-		</tr>
-		<?php }// if($elite['yb1id'] == $elite['yc2subbrokerid'] and $elite['yb2id'] == $elite['yc2brokerid']) {  ?>
-		<tr>
-			<td><?php echo $elite['yb2name']; ?></td>
-			<td><?php echo $elite['yc2company']; ?></td>
-			<td><?php echo $elite['yc2email']; ?></td>
-			<td><?php echo $elite['yc2phone']; ?></td>
-			<td><?php echo $elite['yc2brokertype']; ?></td>
-			
-		</tr>
-		<?php //} if($elite['yb1id'] == $elite['yc3subbrokerid'] and $elite['yb3id'] == $elite['yc3brokerid']) { ?>
-		<tr>
-			<td><?php echo $elite['yb3name']; ?></td>
-			<td><?php echo $elite['yc3company']; ?></td>
-			<td><?php echo $elite['yc3email']; ?></td>
-			<td><?php echo $elite['yc3phone']; ?></td>
-			<td><?php echo $elite['yc3brokertype']; ?></td>
-			
-		</tr>
-	  <?php } //} ?>
-    </table>
-    <?php } ?>
-    
-	</div>
-	</div>
-	
-	
+		<?php if( count($elitemembers) > 0 ) { ?>
+		<table class="tab tab-drag">
+		  <tr class="top nodrop nodrag">
+			<td>Name</td>
+			<td>Type</td>
+			<td>Company</td>
+			<td>Email</td>
+			<td>Phone</td>
+		  </tr>
+		  <?php  foreach($elitemembers as $elite) { 
+		  if($elite['ybid']==$this->session->userdata['subbroker_data'][0]->id and $elite['ybtype']=='subbroker' and $elite['yctype']=='subbroker')	{  ?>
+			<tr>
+				<td><?php echo $elite['ybname']; ?></td>
+				<td><?php echo $elite['ybtype']; ?></td>
+				<td><?php echo $elite['yccompany']; ?></td>
+				<td><?php echo $elite['ycemail']; ?></td>
+				<td><?php echo $elite['ycphone']; ?></td>
+			</tr>
+			<?php }	if($elite['ycsubbrokerid']==$this->session->userdata['subbroker_data'][0]->id) { ?>
+			<tr>
+				<td><?php echo $elite['ybname']; ?></td>
+				<td><?php echo $elite['ybtype']; ?></td>
+				<td><?php echo $elite['yccompany']; ?></td>
+				<td><?php echo $elite['ycemail']; ?></td>
+				<td><?php echo $elite['ycphone']; ?></td>
+			</tr>
+			<?php
+			if($elite['ycsubbrokerid']==$this->session->userdata['subbroker_data'][0]->id and $elite['ybid']==$elite['ycmarketerid'] and $elite['ybtype']=='agent' and $elite['yctype']=='agent') {	?>
+			<tr>
+				<td><?php echo $elite['ybname']; ?></td>
+				<td><?php echo $elite['ybtype']; ?></td>
+				<td><?php echo $elite['yccompany']; ?></td>
+				<td><?php echo $elite['ycemail']; ?></td>
+				<td><?php echo $elite['ycphone']; ?></td>
+			</tr>
+			<?php } } }	?>
+		</table>
+		<?php } ?>
+		</div>
+	</div>	
 <?php } ?>
 
 </div>

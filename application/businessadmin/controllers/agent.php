@@ -32,7 +32,7 @@ class Agent extends CI_Controller {
 	{
 		if( $this->session->userdata['agent_data'] )
 	  	{
-			$this->data['elitemember'] = $this->agents->data_elitemember();
+			$this->data['elitemembers'] = $this->agents->elitemembers();
 			$this->load->view('agent',$this->data);
 	  	}
                 

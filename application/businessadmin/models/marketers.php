@@ -11,10 +11,15 @@ class Marketers extends CI_Model
  	{
    	   	return $this->db->get_where('youg_broker',array('marketerid'=>$this->session->userdata['marketer_data'][0]->id,'type'=>'agent'))->result_array();
  	}
-	function data_elitemember()
+ 	function elitemembers()
  	{
-   	   	return $this->db->get_where('youg_company',array('brokerid'=>$this->session->userdata['marketer_data'][0]->id,'brokertype'=>'marketer'))->result_array();
- 	}
+   	   	return $this->db
+   	   	->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.marketerid ycmarketerid')
+		->from('youg_broker yb')
+		->join('youg_company yc','yb.id = yc.brokerid','left')
+		->get()
+		->result_array();			
+ 	}	
 
 }
 ?>

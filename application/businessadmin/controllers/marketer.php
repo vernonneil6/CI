@@ -63,7 +63,7 @@ class Marketer extends CI_Controller {
 	{
 		if( $this->session->userdata['marketer_data'] )
 	  	{
-			$this->data['elitemember'] = $this->marketers->data_elitemember();
+			$this->data['elitemembers'] = $this->marketers->elitemembers();
 			$this->load->view('marketer',$this->data);
 	  	}
                 

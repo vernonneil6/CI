@@ -133,22 +133,38 @@
 			
 	
      
-	<?php if( count($elitemember) > 0 ) { ?>
-    <table class="tab tab-drag">
-      <tr class="top nodrop nodrag">
-		<td>Company</td>
-		<td>Email</td>
-		<td>Phone</td>
-      </tr>
-      <?php foreach($elitemember as $elite){ ?>
-      <tr>
-		<td><?php echo $elite['company']; ?></td>
-        <td><?php echo $elite['email']; ?></td>
-        <td><?php echo $elite['phone']; ?></td>
-      </tr>
-      <?php } ?>
-    </table>
-    <?php } ?>
+		<?php if( count($elitemembers) > 0 ) { ?>
+		<table class="tab tab-drag">
+		  <tr class="top nodrop nodrag">
+			<td>Name</td>
+			<td>Type</td>
+			<td>Company</td>
+			<td>Email</td>
+			<td>Phone</td>
+		  </tr>
+		  <?php  foreach($elitemembers as $elite) { 
+		 	if($elite['ybid']==$this->session->userdata['marketer_data'][0]->id) { ?>
+			<tr>
+				<td><?php echo $elite['ybname']; ?></td>
+				<td><?php echo $elite['ybtype']; ?></td>
+				<td><?php echo $elite['yccompany']; ?></td>
+				<td><?php echo $elite['ycemail']; ?></td>
+				<td><?php echo $elite['ycphone']; ?></td>
+			</tr>
+			<?php
+			} if($elite['ycmarketerid']==$this->session->userdata['marketer_data'][0]->id and $elite['ybtype']=='agent' and $elite['yctype']=='agent') {	?>
+			<tr>
+				<td><?php echo $elite['ybname']; ?></td>
+				<td><?php echo $elite['ybtype']; ?></td>
+				<td><?php echo $elite['yccompany']; ?></td>
+				<td><?php echo $elite['ycemail']; ?></td>
+				<td><?php echo $elite['ycphone']; ?></td>
+			</tr>
+			<?php  } }	?>
+		</table>
+		<?php } ?>
+		
+		
     
 	</div>
 	</div>
