@@ -19,4 +19,4 @@
              </div>
   </section>
 </section>
-<?php echo $footer;?>
+
