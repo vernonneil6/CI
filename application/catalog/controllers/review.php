@@ -908,6 +908,10 @@ class Review extends CI_Controller {
 			   redirect('review', 'refresh');
 			}
 	 }
+	 public function reviewfeedback()
+	 {
+		 $this->load->view('review/feedback');
+	 }
 }
 /* End of file dashboard.php */
 /* Location: ./application/controllers/dashboard.php */

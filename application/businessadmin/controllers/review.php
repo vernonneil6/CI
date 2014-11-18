@@ -4,6 +4,10 @@
 class Review extends CI_Controller {
 
 	/**
+	 * You wrote a review about '.ucfirst($company[0]['company']).' on <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a>,<br/>
+								'.ucfirst($company[0]['company']).' sent a request for Removing review ID ' .$reviewid.' Below are Details.
+								* 
+								* <a href="'.site_url('review/feedback/'.$rid.'/'.$userid.'/'.'agree').'"
 	* Index Page for this controller.
 	*
 	* Maps to the following URL
@@ -300,8 +304,8 @@ class Review extends CI_Controller {
 							<tr><td>&nbsp;</td></tr>
 							<tr>
 								<td style="padding-left:50px;">
-								You wrote a review about '.ucfirst($company[0]['company']).' on <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a>,<br/>
-								'.ucfirst($company[0]['company']).' sent a request for Removing review ID ' .$reviewid.' Below are Details.
+								'ucfirst($company[0]['company']).' has requested your approval to remedy your concern, so that the negative review on <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a> could be removed.<br/>
+								Please click the link below to see if you can reach an agreement with this business.
 								</td>
 							</tr>
 							<tr><td>&nbsp;</td></tr>
@@ -331,7 +335,7 @@ class Review extends CI_Controller {
                                     <table cellpadding="0" cellspacing="0" width="100%" border="0">
 									<tr><td colspan="3"><h4>Please give your feedback by clicking below option</h4></td></tr>
                                     <tr><td colspan="3">&nbsp;</td></tr>
-                                    <tr><td colspan="3"><a href="'.site_url('review/feedback/'.$rid.'/'.$userid.'/'.'agree').'" title="I AGREE TO THE REMOVAL REQUEST">I AGREE TO THE REMOVAL REQUEST</a>&nbsp;
+                                    <tr><td colspan="3"><a href="'.site_url('review/reviewfeedback/').'" title="I AGREE TO THE REMOVAL REQUEST">I AGREE TO THE REMOVAL REQUEST</a>&nbsp;
                                         <a href="'.site_url('review/feedback/'.$rid.'/'.$userid.'/'.'disagree').'" title="I DECLINE THE REMOVAL REQUEST">I DECLINE THE REMOVAL REQUEST</a>
                                         </td>
 									</tr>

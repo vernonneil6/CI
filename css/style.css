@@ -1156,4 +1156,17 @@ color:#2c6a99;
 {
 	height: 120px;
 }
-
+.subt_btnn
+{
+	display:inline-block;
+}
+.fdbk
+{
+	float:none!important;
+	margin:0 0 10px;
+	width:auto!important;
+}
+.fdbk_txt
+{
+	width:100%!important;
+}
