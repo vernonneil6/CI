@@ -304,7 +304,7 @@ class Review extends CI_Controller {
 							<tr><td>&nbsp;</td></tr>
 							<tr>
 								<td style="padding-left:50px;">
-								'ucfirst($company[0]['company']).' has requested your approval to remedy your concern, so that the negative review on <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a> could be removed.<br/>
+								'.ucfirst($company[0]['company']).' has requested your approval to remedy your concern, so that the negative review on <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a> could be removed.<br/>
 								Please click the link below to see if you can reach an agreement with this business.
 								</td>
 							</tr>
