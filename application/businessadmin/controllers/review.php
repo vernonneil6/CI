@@ -335,7 +335,7 @@ class Review extends CI_Controller {
                                     <table cellpadding="0" cellspacing="0" width="100%" border="0">
 									<tr><td colspan="3"><h4>Please give your feedback by clicking below option</h4></td></tr>
                                     <tr><td colspan="3">&nbsp;</td></tr>
-                                    <tr><td colspan="3"><a href="'.site_url('review/reviewfeedback/').'" title="I AGREE TO THE REMOVAL REQUEST">I AGREE TO THE REMOVAL REQUEST</a>&nbsp;
+                                    <tr><td colspan="3"><a href="'.'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'review/reviewfeedback/'.'" title="I AGREE TO THE REMOVAL REQUEST">I AGREE TO THE REMOVAL REQUEST</a>&nbsp;
                                         <a href="'.site_url('review/feedback/'.$rid.'/'.$userid.'/'.'disagree').'" title="I DECLINE THE REMOVAL REQUEST">I DECLINE THE REMOVAL REQUEST</a>
                                         </td>
 									</tr>
