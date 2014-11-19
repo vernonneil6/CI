@@ -66,6 +66,7 @@ class Report extends CI_Controller {
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			//Addingg Setting Result to variable
+			$this->reportsearch();   
 			$this->data['elitemembers'] = $this->reports->get_all_elitemembersforreport();
 			//Loading View File
 			$this->load->view('report',$this->data);
@@ -731,37 +732,90 @@ class Report extends CI_Controller {
 		}
 			
 	}*/
-	public function reportsearch()
+	
+	public function marketer_list($subid)
 	{
+		
+		$data['mlist'] = $this->reports->get_marketerdetails($subid);  
+		$menu.='<option>Select marketer</option>';
+		foreach($data['mlist'] as $list){
+			$menu.="<option value=".$list['id'].">".$list['name']."</option>";
+		}
+		print_r($menu);
+        
+	}	
+	public function agent_list($mid)
+	{
+		$data['alist'] = $this->reports->get_agentdetails($mid);  
+		$menus.='<option>Select agent</option>';
+	    foreach($data['alist'] as $lists){
+			$menus.="<option value=".$lists['id'].">".$lists['name']."</option>";
+		}	
+		print_r($menus);
+	}
+	public function reportsearch()
+	{   
+		$this->data['allsubbroker']=$this->reports->get_subbrokerdetails();  
+		 
 		if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
 		{
-			$keyword = addslashes($this->input->post('keysearch'));
-			$keyword = htmlspecialchars(str_replace('%20', ' ', $keyword));
-			$keyword = preg_replace('/[^a-zA-Z0-9\']/', '-',$keyword);
-			$keyword = str_replace(' ','-', $keyword);
-			$option=$this->input->post('type'); 
-			$singledate=date('Y-m-d',strtotime($this->input->post('singledate'))); 
-			$fromdate=$this->input->post('fromdate');
-			$enddate=$this->input->post('enddate');
-		    $from=date('Y-m-d', strtotime($fromdate)); 
-		   	$end=date('Y-m-d', strtotime($enddate));		
-			$this->data['reports']=$this->reports->brokersearch($keyword,$option,$from,$end,$singledate);	
+			$broker_keyword = addslashes($this->input->post('subbroker'));
+			$broker_keyword = htmlspecialchars(str_replace('%20', ' ', $broker_keyword));
+			$broker_keyword = preg_replace('/[^a-zA-Z0-9\']/', '-',$broker_keyword);
+			$broker_keyword = str_replace(' ','-', $broker_keyword);
+		    
+			$marketer_keyword = addslashes($this->input->post('marketer'));
+			$marketer_keyword = htmlspecialchars(str_replace('%20', ' ', $marketer_keyword));
+			$marketer_keyword = preg_replace('/[^a-zA-Z0-9\']/', '-',$marketer_keyword);
+			$marketer_keyword = str_replace(' ','-', $marketer_keyword);
+		    
+			$agent_keyword = addslashes($this->input->post('agent'));
+			$agent_keyword = htmlspecialchars(str_replace('%20', ' ', $agent_keyword));
+			$agent_keyword = preg_replace('/[^a-zA-Z0-9\']/', '-',$agent_keyword);
+			$agent_keyword = str_replace(' ','-', $agent_keyword);
+			
+			if(is_numeric($broker_keyword)) { $search_broker=$broker_keyword; } else { $search_broker='';}
+		    if(is_numeric($marketer_keyword)) { $search_marketer=$marketer_keyword;  } else { $search_marketer='';}
+		    if(is_numeric($agent_keyword)) { $search_agent=$agent_keyword; } else { $search_agent='';}
+		    
+		    $fromdate=$this->input->post('fromdate');
+			if($fromdate !='')	{
+			    $from=date('Y-m-d', strtotime($fromdate));
+		    }  else  {
+			    $from='';	
+			}
+			
+			$enddate=$this->input->post('enddate'); 
+		    if($enddate !='') {
+		         $end=date('Y-m-d', strtotime($enddate));	
+		    } else {
+			      $end='';	
+			}
+			
+			//$this->data['reports']=$this->reports->brokersearch($keyword,$option,$from,$end);	
+			$this->data['reports']=$this->reports->brokersearches($search_broker,$search_marketer,$search_agent,$from,$end);	
 			$this->data['companyname']=$datas['company'];
 			$this->data['country']=$datas['country'];
 			$this->data['streetaddress']=$datas['streetaddress'];
-			
-			
-			$limit = $this->paging['per_page'];
-			
-		    $offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
-			$this->paging['base_url'] = site_url("report/reportsearch");
-			$this->paging['uri_segment'] = 5;
-			$this->paging['total_rows'] = $this->reports->brokersearch_count($keyword,$limit,$offset);
-			$this->pagination->initialize($this->paging);
-			
 				
-		}
-		$this->load->view('report',$this->data);
+		} 
+		
+		$limit = $this->paging['per_page'];
+		$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
+		$this->paging['base_url'] = site_url("report/reportsearch");
+		$this->paging['uri_segment'] = 5;
+		$this->paging['total_rows'] = $this->reports->brokersearch_count($limit,$offset);
+		$this->pagination->initialize($this->paging);
+		
+		  /*  $this->load->library('pagination');
+		   	$limit=$this->paging['per_page'];
+			$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+			$this->paging['base_url'] = site_url("report/reportsearch");
+			$this->paging['uri_segment'] = 4;
+			$this->paging['total_rows'] = $this->reports->brokersearch_count($limit,$offset);
+			$this->pagination->initialize($this->paging);
+			//print_r($this->paging); */
+		    $this->load->view('report',$this->data);
 						
 	}
 	public function searchresult($keyword='')
@@ -774,9 +828,14 @@ class Report extends CI_Controller {
 		$option=$this->input->post('type');
 		//$this->data['reports'] = $this->reports->brokersearch($keyword,$option);
 		
-		$this->paging['base_url'] = site_url("reports/searchresult/".$keyword."/index");
+		/*$this->paging['base_url'] = site_url("reports/searchresult/".$keyword."/index");
 		$this->paging['uri_segment'] = 5;
-		$this->paging['total_rows'] = $this->reports->brokersearch_count($keyword);
+		$this->paging['total_rows'] = $this->reports->brokersearch_count($keyword,$limit,$offset);
+		$this->pagination->initialize($this->paging);*/
+		
+		$this->paging['base_url'] = site_url("report/reportsearch");
+		$this->paging['uri_segment'] = 5;
+		$this->paging['total_rows'] = $this->reports->brokersearch_count($keyword,$limit,$offset);
 		$this->pagination->initialize($this->paging);
 		
 		//$this->load->view('report',$this->data);
@@ -792,30 +851,20 @@ class Report extends CI_Controller {
 					{
 						redirect('report', 'refresh');
 					}
-				
-			    $this->data['m_list'] = $this->reports->get_marketerlist_byid($id);          
-			    $this->data['a_list'] = $this->reports->get_agentlist_byid($id);          
-				
-				$this->data['subbroker'] = $this->reports->get_subbroker_byid($id);
-				$this->data['marketer'] = $this->reports->get_marketer_byid($id);
-				$this->data['agent'] = $this->reports->get_agent_byid($id);
-				
-				$this->data['subbroker_elite'] = $this->reports->get_elitecount_subbroker_byid($id);
-				$this->data['marketer_elite'] = $this->reports->get_elitecount_marketer_byid($id);
-				$this->data['agent_elite'] = $this->reports->get_elitecount_agent_byid($id);
-				
-				
-				
-				if( count($this->data['subbroker']) > 0 || count($this->data['marketer']) > 0 || count($this->data['agent']) > 0  ||  count($this->data['subbroker_elite']) > 0 || count($this->data['marketer_elite']) > 0  || count($this->data['agent_elite']) > 0)
-				{			
-					//Loading View File
-					$this->load->view('report',$this->data);
-				}
-				else
-				{
-					$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
-					redirect('report', 'refresh');
-				}
+								
+					$this->data['elitemembers'] = $this->reports->elitemembers();
+			        $this->data['elitemember'] = $this->reports->agentelitemembers();
+					
+					if( count($this->data['subbroker']) > 0 || count($this->data['marketer']) > 0 || count($this->data['agent']) > 0  ||  count($this->data['subbroker_elite']) > 0 || count($this->data['marketer_elite']) > 0  || count($this->data['agent_elite']) > 0 || count($this->data['MA_tree']) > 0)
+					{			
+						//Loading View File
+						$this->load->view('report',$this->data);
+					}
+					else
+					{
+						$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
+						redirect('report', 'refresh');
+					}
 			}
 		}
 		else
