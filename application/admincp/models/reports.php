@@ -221,7 +221,7 @@ class Reports extends CI_Model
 	function get_marketeragentdetails_byid($id)
 	{	
 		
-		$query = $this->db->query("select name,type,marketer as no_of_marketers,agent as no_of_agents,signup,(select count(*) from youg_company where brokertype='agent' and marketerid =".$id." ) as individual_elites ,(select count(*) from youg_company where brokertype='agent' and marketerid =".$id." ) as total_elites from youg_broker where marketerid=".$id);		
+		$query = $this->db->query("select yb.name name,yb.type type,yb.marketer no_of_marketers,yb.agent no_of_agents,yb.signup signup,(select count(*) from youg_company yc where yc.brokertype='agent' and yc.brokerid = yb.id and yc.marketerid =".$id." ) as individual_elites ,(select count(*) from youg_company yc where yc.brokertype='agent' and yc.brokerid = yb.id and yc.marketerid =".$id." ) as total_elites from youg_broker yb left join youg_company yc on yc.brokerid = yb.id and yb.type = 'agent' and yc.brokertype = 'agent' where yb.marketerid=".$id." and yc.marketerid=".$id);		
 		//echo $this->db->last_query();die;
 		if ($query->num_rows() > 0)
 		{
