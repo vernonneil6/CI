@@ -665,16 +665,16 @@ class Report extends CI_Controller {
 					 
 					$objPHPExcel->getActiveSheet()->setTitle('Report');
 
-					$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
+					$objPHPExcel->getActiveSheet()->getStyle("A1:G1")->getFont()->setBold(true);
 
 					$objPHPExcel->getActiveSheet()
 							->setCellValue('A1', 'Name')							
-							->setCellValue('B1', 'Marketers_allowed')	
-							->setCellValue('C1', 'Agents_allowed')	
-							->setCellValue('D1', 'Signup')	
-							->setCellValue('E1', 'Marketers_name')	
-							->setCellValue('F1', 'Agents_name')	
-							->setCellValue('G1', 'Total_Elite_sales');	
+							->setCellValue('B1', 'Type')							
+							->setCellValue('C1', 'Marketer_allowed')	
+							->setCellValue('D1', 'Agent_allowed')	
+							->setCellValue('E1', 'Signup_date')	
+							->setCellValue('F1', 'Individual_sale')	
+							->setCellValue('G1', 'Total_sale');	
 														  
 					$items = $this->reports->get_subbrokerdetails_byid($id);
 					$row=2;
