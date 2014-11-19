@@ -239,8 +239,12 @@
 			<td>Email</td>
 			<td>Phone</td>
 		  </tr>
-		  <?php  foreach($elitemembers as $elite) { 
-		  if($elite['ybid']==$this->session->userdata['subbroker_data'][0]->id and $elite['ybtype']=='subbroker' and $elite['yctype']=='subbroker')	{  ?>
+			<?php  
+			foreach($elitemembers as $elite) 
+			{ 
+			if($elite['ybid']==$this->session->userdata['subbroker_data'][0]->id and $elite['ybtype']=='subbroker' and $elite['yctype']=='subbroker')	
+			{	  
+		    ?>
 			<tr>
 				<td><?php echo $elite['ybname']; ?></td>
 				<td><?php echo $elite['ybtype']; ?></td>
@@ -248,7 +252,11 @@
 				<td><?php echo $elite['ycemail']; ?></td>
 				<td><?php echo $elite['ycphone']; ?></td>
 			</tr>
-			<?php }	if($elite['ycsubbrokerid']==$this->session->userdata['subbroker_data'][0]->id) { ?>
+			<?php 
+			}
+			if($elite['ycsubbrokerid']==$this->session->userdata['subbroker_data'][0]->id and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer') 
+			{ 
+			?>
 			<tr>
 				<td><?php echo $elite['ybname']; ?></td>
 				<td><?php echo $elite['ybtype']; ?></td>
@@ -256,18 +264,29 @@
 				<td><?php echo $elite['ycemail']; ?></td>
 				<td><?php echo $elite['ycphone']; ?></td>
 			</tr>
-			<?php
-			if($elite['ycsubbrokerid']==$this->session->userdata['subbroker_data'][0]->id and $elite['ybid']==$elite['ycmarketerid'] and $elite['ybtype']=='agent' and $elite['yctype']=='agent') {	?>
+			<?php 
+			foreach($elitemember as $agent)
+			{
+			if($agent['ycsubbrokerid']==$this->session->userdata['subbroker_data'][0]->id and $elite['ybid']==$agent['ycmarketerid'] and $agent['ybtype']=='agent' and $agent['yctype']=='agent') 
+			{ 
+			?>
 			<tr>
-				<td><?php echo $elite['ybname']; ?></td>
-				<td><?php echo $elite['ybtype']; ?></td>
-				<td><?php echo $elite['yccompany']; ?></td>
-				<td><?php echo $elite['ycemail']; ?></td>
-				<td><?php echo $elite['ycphone']; ?></td>
+				<td><?php echo $agent['ybname']; ?></td>
+				<td><?php echo $agent['ybtype']; ?></td>
+				<td><?php echo $agent['yccompany']; ?></td>
+				<td><?php echo $agent['ycemail']; ?></td>
+				<td><?php echo $agent['ycphone']; ?></td>
 			</tr>
-			<?php } } }	?>
+			<?php 	
+			}
+			}
+			} 
+			}
+			?>
 		</table>
 		<?php } ?>
+		
+		
 		</div>
 	</div>	
 <?php } ?>

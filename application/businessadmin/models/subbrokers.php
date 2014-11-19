@@ -20,9 +20,18 @@ class Subbrokers extends CI_Model
    	   	return $this->db
    	   	->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid')
 		->from('youg_broker yb')
-		->join('youg_company yc','yb.id = yc.brokerid and yb.subbrokerid = yc.subbrokerid and yb.marketerid = yc.marketerid and yb.type = yc.brokertype','left')
+		->join('youg_company yc','yb.id = yc.brokerid and yb.type = yc.brokertype','left')
 		->get()
-		->result_array();			
+		->result_array();		
+ 	}
+ 	function agentelitemembers()
+ 	{
+   	   	return $this->db
+   	   	->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid')
+		->from('youg_broker yb')
+		->join('youg_company yc','yb.id = yc.brokerid and yb.type = yc.brokertype and yb.subbrokerid = yc.subbrokerid and yb.marketerid = yc.marketerid','left')
+		->get()
+		->result_array();		
  	}	
 }
 ?>

@@ -222,8 +222,83 @@ class Reports extends CI_Model
 		
 		// get subbroker details ->respective marketers -> agent and total elites sales count.
 		//fieldsshown-Name -Marketers_allowed -Agents_allowed -Marketers_name- Agents_name- Total_Elite_sales
-	    $query = $this->db->query("select name,marketer as no_of_marketers,agent as no_of_agents,signup,(select group_concat(name SEPARATOR ', ') from youg_broker where subbrokerid =".$id." and type='marketer') as marketer_names ,(select group_concat(name SEPARATOR ', ') from youg_broker where subbrokerid =".$id." and type='agent') as agent_names ,(select count(*) from youg_company where subbrokerid =".$id." ) as total_elites from youg_broker where id=".$id);		
+	    //$query = $this->db->query("select name,marketer as no_of_marketers,agent as no_of_agents,signup,(select group_concat(name SEPARATOR ', ') from youg_broker where subbrokerid =".$id." and type='marketer') as marketer_names ,(select group_concat(name SEPARATOR ', ') from youg_broker where subbrokerid =".$id." and type='agent') as agent_names ,(select count(*) from youg_company where subbrokerid =".$id." ) as total_elites from youg_broker where id=".$id);		
+	    $query = $this->db->query("select name,type,marketer as no_of_marketers,agent as no_of_agents,signup,(select count(*) from youg_company where brokerid =".$id." ) as individual_elites ,(select count(*) from youg_company where brokerid =".$id." ) + (select count(*) from youg_company where subbrokerid =".$id." ) as total_elites from youg_broker where id=".$id);		
+		//echo $this->db->last_query();die;
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
 		
+	}
+	function get_marketerdetails_byid($id)
+	{	
+		$query = $this->db->query("select name,type,marketer as no_of_marketers,agent as no_of_agents,signup,(select count(*) from youg_company where brokertype='marketer' and brokerid =".$id." ) as individual_elites ,(select count(*) from youg_company where brokertype='marketer' and brokerid =".$id." ) + (select count(*) from youg_company where brokertype='agent' and marketerid =".$id." ) as total_elites from youg_broker where id=".$id);		
+		//echo $this->db->last_query();die;
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}
+	function get_subbrokermarketerdetails_byid($id)
+	{	
+		
+		$query = $this->db->query("select yb.name name,yb.type type,yb.marketer no_of_marketers,yb.agent no_of_agents,yb.signup signup,(select count(*) from youg_company yc where yc.brokertype='marketer' and yc.brokerid = yb.id and yc.subbrokerid =".$id." ) as individual_elites ,(select count(*) from youg_company yc where yc.brokertype='marketer' and yc.brokerid = yb.id and yc.subbrokerid =".$id." ) as total_elites ,yb.id as ybid from youg_broker yb left join youg_company yc on yc.brokerid = yb.id and yb.type = 'marketer' and yc.brokertype = 'marketer' where yb.subbrokerid=".$id." and yc.subbrokerid=".$id." group by yb.id");		
+		//echo $this->db->last_query();die;
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}
+	function get_subbrokeragentdetails_byid($id)
+	{	
+		
+		$query = $this->db->query("select yb.name name,yb.type type,yb.marketer no_of_marketers,yb.agent no_of_agents,yb.signup signup,(select count(*) from youg_company yc where yc.brokertype='agent' and yc.marketerid = yb.marketerid and yc.brokerid = yb.id and yc.subbrokerid =".$id." ) as individual_elites ,(select count(*) from youg_company yc where yc.brokertype='agent' and yc.marketerid = yb.marketerid and yc.brokerid = yb.id and yc.subbrokerid =".$id." ) as total_elites,yc.marketerid  ycmarketerid from youg_broker yb left join youg_company yc on yc.brokerid = yb.id and yc.marketerid = yb.marketerid and yb.type = 'agent' and yc.brokertype = 'agent' where yb.subbrokerid=".$id." and yc.subbrokerid=".$id." group by yb.id");		
+		//echo $this->db->last_query();die;
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}
+	function get_marketeragentdetails_byid($id)
+	{	
+		
+		$query = $this->db->query("select yb.name name,yb.type type,yb.marketer no_of_marketers,yb.agent no_of_agents,yb.signup signup,(select count(*) from youg_company yc where yc.brokertype='agent' and yc.brokerid = yb.id and yc.marketerid =".$id." ) as individual_elites ,(select count(*) from youg_company yc where yc.brokertype='agent' and yc.brokerid = yb.id and yc.marketerid =".$id." ) as total_elites from youg_broker yb left join youg_company yc on yc.brokerid = yb.id and yb.type = 'agent' and yc.brokertype = 'agent' where yb.marketerid=".$id." and yc.marketerid=".$id." group by yb.id");		
+		//echo $this->db->last_query();die;
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}
+	function get_agentdetails_byid($id)
+	{	
+		
+		$query = $this->db->query("select name,type,marketer as no_of_marketers,agent as no_of_agents,signup,(select count(*) from youg_company where brokertype='agent' and brokerid =".$id." ) as individual_elites ,(select count(*) from youg_company where brokertype='agent' and brokerid =".$id." ) as total_elites from youg_broker where id=".$id);		
+		//echo $this->db->last_query();die;
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
@@ -450,10 +525,13 @@ class Reports extends CI_Model
 	//Getting value for searching
 	function brokersearch_count($keyword,$limit,$offset)
  	{
-	  $query=$this->db->select('id')
-                      ->from('youg_broker')
-					  ->count_all_results();
-	 			  
+
+	  //echo $keyword;
+	  $keyword = str_replace('-',' ', $keyword);
+	  $this->db->like('name',$keyword);
+	  $this->db->from('youg_broker');
+	  $query = $this->db->count_all_results();
+
 	  return $query;
  	}
  	/*

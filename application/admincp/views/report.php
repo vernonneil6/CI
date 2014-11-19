@@ -288,8 +288,10 @@ function agent_list(id)
 									  <tr>
 										<td style="font-weight:bold;"><?php echo ucfirst(stripslashes($search['name']));?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
-										<td><a href="<?php echo site_url('report/csv/marketers'); ?>">Download marketers details</a></td>
-										<td width="100px"><a href="<?php echo site_url('report/marketerview/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['name']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
+
+										<td><a href="<?php echo site_url('report/marketerdetails/'.$search['id']); ?>">Download marketers details</a></td>
+										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a></td>
+
 									  </tr>	 
 								<?php } ?>
 								
@@ -297,8 +299,10 @@ function agent_list(id)
 									<tr>
 										<td style="font-weight:bold;"><?php echo ucfirst(stripslashes($search['name']));?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
-										<td><a href="<?php echo site_url('report/csv/agents'); ?>">Download agents details</a></td>
-										<td width="100px"><a href="<?php echo site_url('report/agentview/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['name']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>
+
+										<td><a href="<?php echo site_url('report/agentdetails/'.$search['id']); ?>">Download agents details</a></td>
+										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> </td>
+
 									</tr> 
 								<?php } ?> 
 								

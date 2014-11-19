@@ -142,8 +142,12 @@
 			<td>Email</td>
 			<td>Phone</td>
 		  </tr>
-		  <?php  foreach($elitemembers as $elite) { 
-		 	if($elite['ybid']==$this->session->userdata['marketer_data'][0]->id) { ?>
+			<?php  
+			foreach($elitemembers as $elite) 
+			{ 
+			if($elite['ybid']==$this->session->userdata['marketer_data'][0]->id and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer') 
+			{ 
+			?>
 			<tr>
 				<td><?php echo $elite['ybname']; ?></td>
 				<td><?php echo $elite['ybtype']; ?></td>
@@ -152,7 +156,10 @@
 				<td><?php echo $elite['ycphone']; ?></td>
 			</tr>
 			<?php
-			} if($elite['ycmarketerid']==$this->session->userdata['marketer_data'][0]->id and $elite['ybtype']=='agent' and $elite['yctype']=='agent') {	?>
+			} 
+			if($elite['ycmarketerid']==$this->session->userdata['marketer_data'][0]->id and $elite['ybtype']=='agent' and $elite['yctype']=='agent') 
+			{	
+			?>
 			<tr>
 				<td><?php echo $elite['ybname']; ?></td>
 				<td><?php echo $elite['ybtype']; ?></td>
@@ -160,7 +167,10 @@
 				<td><?php echo $elite['ycemail']; ?></td>
 				<td><?php echo $elite['ycphone']; ?></td>
 			</tr>
-			<?php  } }	?>
+			<?php  
+			} 
+			}	
+			?>
 		</table>
 		<?php } ?>
 		

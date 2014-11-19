@@ -666,18 +666,187 @@ class Report extends CI_Controller {
 					 
 					$objPHPExcel->getActiveSheet()->setTitle('Report');
 
-					$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
+					$objPHPExcel->getActiveSheet()->getStyle("A1:G1")->getFont()->setBold(true);
 
 					$objPHPExcel->getActiveSheet()
 							->setCellValue('A1', 'Name')							
-							->setCellValue('B1', 'Marketers_allowed')	
-							->setCellValue('C1', 'Agents_allowed')	
-							->setCellValue('D1', 'Signup')	
-							->setCellValue('E1', 'Marketers_name')	
-							->setCellValue('F1', 'Agents_name')	
-							->setCellValue('G1', 'Total_Elite_sales');	
+							->setCellValue('B1', 'Type')							
+							->setCellValue('C1', 'Marketer_allowed')	
+							->setCellValue('D1', 'Agent_allowed')	
+							->setCellValue('E1', 'Signup_date')	
+							->setCellValue('F1', 'Individual_sale')	
+							->setCellValue('G1', 'Total_sale');	
 														  
 					$items = $this->reports->get_subbrokerdetails_byid($id);
+					$items1 = $this->reports->get_subbrokermarketerdetails_byid($id);
+					$items2 = $this->reports->get_subbrokeragentdetails_byid($id);
+					$row=2;
+					foreach($items as $row_data)
+					{
+					
+					$col = 0;	
+						foreach($row_data as $key=>$value)
+						{
+							if(!$value)
+							$value='-';
+							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+							$col++;
+						}
+					$row++;
+			    	}
+			    	foreach($items1 as $row_data)
+					{
+					$col = 0;	
+						foreach($row_data as $key=>$value)
+						{
+							if(!$value)
+							$value='-';
+							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+							$col++;
+						}
+					$row++;
+					foreach($items2 as $rowdata)
+					{
+					if($row_data['ybid']==$rowdata['ycmarketerid'])
+					{
+					$col = 0;	
+						foreach($rowdata as $key=>$value)
+						{
+							if(!$value)
+							$value='-';
+							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+							$col++;
+						}
+					$row++;
+			    	}
+					}
+			    	}
+                    
+					$objPHPExcel->setActiveSheetIndex(0);
+					$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+					$file=time().'.xls';
+					$objWriter->save('../uploads/my/'.$file);
+					$this->load->helper('download');
+
+					$file1 = file_get_contents($site_url.'uploads/my/'.$file);
+					$name = 'Report-of-subbroker-details.xls';
+
+					force_download($name, $file1); 
+		
+		    //}
+	    } 
+		
+		/*subbroker csv*/		
+	}
+    public function marketerdetails($id)
+    {
+		//echo $id;
+		/*subbroker csv*/
+		$site_url = $this->settings->get_setting_value(2);
+		if( $this->session->userdata['youg_admin'] )
+        {		
+		   //if($type=='subbrokerdetails'){
+		
+					$objPHPExcel = new PHPExcel();
+					$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
+					 ->setLastModifiedBy("YouGotRated Admin")
+					 ->setTitle("Office 2007 XLSX Test Document")
+					 ->setSubject("Office 2007 XLSX Test Document")
+					 ->setDescription("")
+					 ->setKeywords("office 2007 openxml php")
+					 ->setCategory("Business");
+					 
+					$objPHPExcel->getActiveSheet()->setTitle('Report');
+
+					$objPHPExcel->getActiveSheet()->getStyle("A1:G1")->getFont()->setBold(true);
+
+					$objPHPExcel->getActiveSheet()
+							->setCellValue('A1', 'Name')							
+							->setCellValue('B1', 'Type')							
+							->setCellValue('C1', 'Marketer_allowed')	
+							->setCellValue('D1', 'Agent_allowed')	
+							->setCellValue('E1', 'Signup_date')	
+							->setCellValue('F1', 'Individual_sale')	
+							->setCellValue('G1', 'Total_sale');	
+														  
+					$items = $this->reports->get_marketerdetails_byid($id);
+					$items1 = $this->reports->get_marketeragentdetails_byid($id);
+					$row=2;
+					foreach($items as $row_data)
+					{
+					//print_r($items);die;
+					$col = 0;	
+						foreach($row_data as $key=>$value)
+						{
+							if(!$value)
+							$value='-';
+							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+							$col++;
+						}
+					$row++;
+			    	}
+			    	foreach($items1 as $row_data)
+					{
+					//print_r($items1);die;
+					$col = 0;	
+						foreach($row_data as $key=>$value)
+						{
+							if(!$value)
+							$value='-';
+							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+							$col++;
+						}
+					$row++;
+			    	}
+                    
+					$objPHPExcel->setActiveSheetIndex(0);
+					$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+					$file=time().'.xls';
+					$objWriter->save('../uploads/my/'.$file);
+					$this->load->helper('download');
+
+					$file1 = file_get_contents($site_url.'uploads/my/'.$file);
+					$name = 'Report-of-marketer-details.xls';
+
+					force_download($name, $file1); 
+		
+		    //}
+	    } 
+		
+		/*subbroker csv*/		
+	}
+	public function agentdetails($id)
+    {
+		//echo $id;
+		/*subbroker csv*/
+		$site_url = $this->settings->get_setting_value(2);
+		if( $this->session->userdata['youg_admin'] )
+        {		
+		   //if($type=='subbrokerdetails'){
+		
+					$objPHPExcel = new PHPExcel();
+					$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
+					 ->setLastModifiedBy("YouGotRated Admin")
+					 ->setTitle("Office 2007 XLSX Test Document")
+					 ->setSubject("Office 2007 XLSX Test Document")
+					 ->setDescription("")
+					 ->setKeywords("office 2007 openxml php")
+					 ->setCategory("Business");
+					 
+					$objPHPExcel->getActiveSheet()->setTitle('Report');
+
+					$objPHPExcel->getActiveSheet()->getStyle("A1:G1")->getFont()->setBold(true);
+
+					$objPHPExcel->getActiveSheet()
+							->setCellValue('A1', 'Name')							
+							->setCellValue('B1', 'Type')							
+							->setCellValue('C1', 'Marketer_allowed')	
+							->setCellValue('D1', 'Agent_allowed')	
+							->setCellValue('E1', 'Signup_date')	
+							->setCellValue('F1', 'Individual_sale')	
+							->setCellValue('G1', 'Total_sale');	
+														  
+					$items = $this->reports->get_agentdetails_byid($id);
 					$row=2;
 					foreach($items as $row_data)
 					{
@@ -700,7 +869,7 @@ class Report extends CI_Controller {
 					$this->load->helper('download');
 
 					$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-					$name = 'Report-of-subbroker-details.xls';
+					$name = 'Report-of-agent-details.xls';
 
 					force_download($name, $file1); 
 		
@@ -709,7 +878,6 @@ class Report extends CI_Controller {
 		
 		/*subbroker csv*/		
 	}
-    
     
 	/*public function search()
 	{
