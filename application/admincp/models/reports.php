@@ -351,7 +351,7 @@ class Reports extends CI_Model
 	  //echo $keyword;
 	  $keyword = str_replace('-',' ', $keyword);
 	  $this->db->like('name',$keyword);
-	  $this->db->from('youg_subbroker');
+	  $this->db->from('youg_broker');
 	  $query = $this->db->count_all_results();
 	  return $query;
  	}
