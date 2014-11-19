@@ -218,6 +218,21 @@ class Reports extends CI_Model
 		}
 		
 	}
+	function get_marketeragentdetails_byid($id)
+	{	
+		
+		$query = $this->db->query("select name,type,marketer as no_of_marketers,agent as no_of_agents,signup,(select count(*) from youg_company where brokertype='agent' and marketerid =".$id." ) as individual_elites ,(select count(*) from youg_company where brokertype='agent' and marketerid =".$id." ) as total_elites from youg_broker where marketerid=".$id);		
+		//echo $this->db->last_query();die;
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}
 	function get_agentdetails_byid($id)
 	{	
 		

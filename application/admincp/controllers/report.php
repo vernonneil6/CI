@@ -740,10 +740,24 @@ class Report extends CI_Controller {
 							->setCellValue('G1', 'Total_sale');	
 														  
 					$items = $this->reports->get_marketerdetails_byid($id);
+					$items1 = $this->reports->get_marketeragentdetails_byid($id);
 					$row=2;
 					foreach($items as $row_data)
 					{
-					
+					//print_r($items);die;
+					$col = 0;	
+						foreach($row_data as $key=>$value)
+						{
+							if(!$value)
+							$value='-';
+							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+							$col++;
+						}
+					$row++;
+			    	}
+			    	foreach($items1 as $row_data)
+					{
+					//print_r($items1);die;
 					$col = 0;	
 						foreach($row_data as $key=>$value)
 						{
