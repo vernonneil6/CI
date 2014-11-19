@@ -695,8 +695,7 @@ class Report extends CI_Controller {
 			    	}
 			    	foreach($items1 as $row_data)
 					{
-						
-						$col = 0;	
+					$col = 0;	
 						foreach($row_data as $key=>$value)
 						{
 							if(!$value)
@@ -704,22 +703,22 @@ class Report extends CI_Controller {
 							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
 							$col++;
 						}
-						//$row_data['ybid'];die;
-						foreach($items2 as $data)
+					$row++;
+					foreach($items2 as $rowdata)
+					{
+					if($row_data['ybid']==$rowdata['ycmarketerid'])
+					{
+					$col = 0;	
+						foreach($rowdata as $key=>$value)
 						{
-						if($row_data['ybid']==$data['ycmarketerid'])
-						{
-							$col = 0;	
-							foreach($data as $key=>$value)
-							{
-								if(!$value)
-								$value='-';
-								$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-								$col++;
-							}
-						}
+							if(!$value)
+							$value='-';
+							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+							$col++;
 						}
 					$row++;
+			    	}
+					}
 			    	}
                     
 					$objPHPExcel->setActiveSheetIndex(0);
