@@ -148,68 +148,7 @@ class Report extends CI_Controller {
 			}
 			
 			
-			
-			
-			
-			
-			///Checking csv for subbroker
-			
-			
-						if($type=='subbrokerdetails'){
-						$objPHPExcel = new PHPExcel();
-						$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
-							 ->setLastModifiedBy("YouGotRated Admin")
-							 ->setTitle("Office 2007 XLSX Test Document")
-							 ->setSubject("Office 2007 XLSX Test Document")
-							 ->setDescription("")
-							 ->setKeywords("office 2007 openxml php")
-							 ->setCategory("Business");
-							 
-			$objPHPExcel->getActiveSheet()->setTitle('Report');
-			
-			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
-
-			$objPHPExcel->getActiveSheet()
-									->setCellValue('A1', 'Name')
-									->setCellValue('B1', 'Type');	
-									
-									
-															  
-			$items = $this->reports->get_subbrokerdetails();
-			
-			$row=2;
-			foreach($items as $row_data)
-			{
-				$col = 0;	
-				foreach($row_data as $key=>$value)
-				{
-					if(!$value)
-					$value='-';
-					$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-					$col++;
-				}
-				$row++;
-			}
-			
-			$objPHPExcel->setActiveSheetIndex(0);
-		
-			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-			$file=time().'.xls';
-			$objWriter->save('../uploads/my/'.$file);
-			$this->load->helper('download');
-			
-			$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-			$name = 'Report-of-elite-members-enabled.xls';
-
-			force_download($name, $file1); 
-			
-			}
-		
-		    ///END of Checking csv for subbroker
-		    
-		    
-		
-						if($type=='alldisable'){
+					if($type=='alldisable'){
 						$objPHPExcel = new PHPExcel();
 						$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
 							 ->setLastModifiedBy("YouGotRated Admin")
@@ -1019,7 +958,9 @@ class Report extends CI_Controller {
 					{
 						redirect('report', 'refresh');
 					}
-								
+					
+					$this->data['subbroker'] = $this->reports->get_subbroker_byid($id);
+									
 					$this->data['elitemembers'] = $this->reports->elitemembers();
 			        $this->data['elitemember'] = $this->reports->agentelitemembers();
 					

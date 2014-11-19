@@ -14,8 +14,8 @@
 			<td>Name</td>
 			<td>Type</td>
 			<td>Company</td>
-			<td>Individual<br>Sales</td>
-			<td>Total sales</td>
+			<td>Email</td>
+			<td>Phone</td>
 		  </tr>
 			<?php
 			  
@@ -28,7 +28,7 @@
 				<td><?php echo $elite['ybname']; ?></td>
 				<td><?php echo $elite['ybtype']; ?></td>
 				<td><?php echo $elite['yccompany']; ?></td>
-				<td><?php echo count($elite['ybid']); ?></td>
+				<td><?php echo $elite['ycemail']; ?></td>
 				<td><?php echo $elite['ycphone']; ?></td>
 			</tr>
 			<?php 
@@ -40,7 +40,7 @@
 				<td><?php echo $elite['ybname']; ?></td>
 				<td><?php echo $elite['ybtype']; ?></td>
 				<td><?php echo $elite['yccompany']; ?></td>
-				<td><?php echo count($elite['ybid']); ?></td>
+				<td><?php echo $elite['ycemail']; ?></td>
 				<td><?php echo $elite['ycphone']; ?></td>
 			</tr>
 			<?php 
@@ -53,7 +53,7 @@
 				<td><?php echo $agent['ybname']; ?></td>
 				<td><?php echo $agent['ybtype']; ?></td>
 				<td><?php echo $agent['yccompany']; ?></td>
-				<td><?php echo count($agent['ybname']); ?></td>
+				<td><?php echo $agent['ycemail']; ?></td>
 				<td><?php echo $agent['ycphone']; ?></td>
 			</tr>
 			<?php 	
