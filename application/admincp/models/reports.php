@@ -192,7 +192,37 @@ class Reports extends CI_Model
 		// get subbroker details ->respective marketers -> agent and total elites sales count.
 		//fieldsshown-Name -Marketers_allowed -Agents_allowed -Marketers_name- Agents_name- Total_Elite_sales
 	    //$query = $this->db->query("select name,marketer as no_of_marketers,agent as no_of_agents,signup,(select group_concat(name SEPARATOR ', ') from youg_broker where subbrokerid =".$id." and type='marketer') as marketer_names ,(select group_concat(name SEPARATOR ', ') from youg_broker where subbrokerid =".$id." and type='agent') as agent_names ,(select count(*) from youg_company where subbrokerid =".$id." ) as total_elites from youg_broker where id=".$id);		
-	    $query = $this->db->query("select name,type,marketer as no_of_marketers,agent as no_of_agents,signup,(select count(*) from youg_company where brokerid =".$id." ) as individual_elites ,(select count(*) from youg_company where subbrokerid =".$id." ) as total_elites from youg_broker where id=".$id);		
+	    $query = $this->db->query("select name,type,marketer as no_of_marketers,agent as no_of_agents,signup,(select count(*) from youg_company where brokerid =".$id." ) as individual_elites ,(select count(*) from youg_company where brokerid =".$id." ) + (select count(*) from youg_company where subbrokerid =".$id." ) as total_elites from youg_broker where id=".$id);		
+		//echo $this->db->last_query();die;
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}
+	function get_marketerdetails_byid($id)
+	{	
+		$query = $this->db->query("select name,type,marketer as no_of_marketers,agent as no_of_agents,signup,(select count(*) from youg_company where brokertype='marketer' and brokerid =".$id." ) as individual_elites ,(select count(*) from youg_company where brokertype='marketer' and brokerid =".$id." ) + (select count(*) from youg_company where brokertype='agent' and marketerid =".$id." ) as total_elites from youg_broker where id=".$id);		
+		//echo $this->db->last_query();die;
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}
+	function get_agentdetails_byid($id)
+	{	
+		
+		$query = $this->db->query("select name,type,marketer as no_of_marketers,agent as no_of_agents,signup,(select count(*) from youg_company where brokertype='agent' and brokerid =".$id." ) as individual_elites ,(select count(*) from youg_company where brokertype='agent' and brokerid =".$id." ) as total_elites from youg_broker where id=".$id);		
+		//echo $this->db->last_query();die;
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();

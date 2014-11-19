@@ -307,7 +307,7 @@ $("#type").change(function(){
 										<td style="font-weight:bold;"><?php echo $_POST['type'];?></td>        
 										<td><?php echo stripslashes($search['name']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
-										<td><a href="<?php echo site_url('report/csv/marketers'); ?>">Download marketers details</a></td>
+										<td><a href="<?php echo site_url('report/marketerdetails/'.$search['id']); ?>">Download marketers details</a></td>
 										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a></td>
 									  </tr>	 
 								<?php } ?>
@@ -317,7 +317,7 @@ $("#type").change(function(){
 										<td style="font-weight:bold;"><?php echo $_POST['type'];?></td>        
 										<td><?php echo stripslashes($search['name']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
-										<td><a href="<?php echo site_url('report/csv/agents'); ?>">Download agents details</a></td>
+										<td><a href="<?php echo site_url('report/agentdetails/'.$search['id']); ?>">Download agents details</a></td>
 										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> </td>
 									</tr> 
 								<?php } ?> 
