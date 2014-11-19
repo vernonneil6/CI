@@ -174,7 +174,38 @@ class Reports extends CI_Model
 	function get_subbrokerdetails()
 	{
 		
-		$query=$this->db->query("SELECT name,type FROM youg_broker where type='subbroker'");
+		$query=$this->db->query("SELECT id,name,type FROM youg_broker where type='subbroker'");
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}                                 
+	function get_marketerdetails($subid)
+	{
+		
+		$query=$this->db->query('SELECT id,name,type FROM youg_broker where type="marketer" and subbrokerid='.$subid.'');
+		
+		$this->db->last_query();
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}                                 
+	function get_agentdetails($mid)
+	{
+		
+		$query=$this->db->query('SELECT id,name,type FROM youg_broker where type="agent" and marketerid='.$mid.'');
 		
 		if ($query->num_rows() > 0)
 		{
@@ -259,9 +290,8 @@ class Reports extends CI_Model
                              
                              
                               //END FOR CSV PROCESS	
-	function brokersearch($keyword,$option,$from,$end,$singledate)
-	{
-		
+	/*function brokersearch($keyword,$option,$from,$end,$singledate)
+	{	
 	 	if($option=='broker')
 	 	{
 			$this->db->select('*');
@@ -279,7 +309,6 @@ class Reports extends CI_Model
 	 	
 	 	if($option=='signupdate' && $singledate != '')
 	 	{
-		
 		   	$this->db->select('*');
 			$this->db->from('youg_broker');
 			$this->db->where('signup =', $singledate);
@@ -293,24 +322,24 @@ class Reports extends CI_Model
 				
 			return $check1;
 	    }
-	 	if($option=='signupdate' && $singledate == '')
-	 	{
-		
-			$this->db->select('*');
-			$this->db->from('youg_broker');
-			$this->db->where('signup >=', $from);
-            $this->db->where('signup <=', $end);
+	 	if($option=='signupdate') 
+	 	{	   
+			$this->db->select('*')
+			        ->from('youg_broker')
+					->where('signup >=', $from)
+					->where('signup <=', $end);
 				
-
+            
 			$query = $this->db->get();
-            $check1_1='';
-           
+			$this->db->last_query();
+            $check11='';
+            
 			if($query->num_rows() > 0)
 			{
-				$check1_1=$query->result_array();
+				$check11=$query->result_array();
 			}
 			
-			return $check1_1;
+			return $check11;
 	    }
 	 	
 	 	if($option=='marketer')
@@ -342,19 +371,122 @@ class Reports extends CI_Model
 			
 			return $check2;
 	    }
-	}
+	}*/
 	
+	public function brokersearches($search_broker,$search_marketer,$search_agent,$from,$end)
+	{
+		
+		if($search_broker != '' and $search_marketer =='' and $search_agent =='')
+		{
+			
+			$this->db->select('*')
+			         ->where(array('id'=>$search_broker,'type'=>'subbroker'));
+			$query = $this->db->get('youg_broker');
+			$check='';
+			if($query->num_rows() > 0)
+			{
+				$check=$query->result_array();
+			}
+			return $check;
+			
+			
+		}
+		if($search_broker != '' and $search_marketer !='' and $search_agent =='')
+		{
+			
+			$this->db->select('*')
+			         ->where(array('id'=>$search_marketer,'type'=>'marketer','subbrokerid'=>$search_broker));
+			$query = $this->db->get('youg_broker');
+			$checks='';
+			if($query->num_rows() > 0)
+			{
+				$checks=$query->result_array();
+			}
+			return $checks;
+		
+		}
+		if($search_broker != '' and $search_marketer !='' and $search_agent !='')
+		{
+			
+			$this->db->select('*')
+			         ->where(array('id'=>$search_agent,'type'=>'agent','subbrokerid'=>$search_broker,'marketerid'=>$search_marketer));
+			$query = $this->db->get('youg_broker');
+			$checkss='';
+			if($query->num_rows() > 0)
+			{
+				$checkss=$query->result_array();
+			}
+			return $checkss;
+		
+		}
+		if($from != '' and $end == '')
+		{
+			$this->db->select('*')
+			         ->where('registerdate =',$from);
+		    $query = $this->db->get('youg_company');
+		    $dates='';
+		    if($query->num_rows() > 0)
+		    {
+				$dates=$query->result_array();
+			}
+			return $dates;
+		}
+		if($from != '' and $end != '')
+		{
+			$this->db->select('*')
+			         ->where('registerdate >=',$from)
+			         ->where('registerdate <=',$end);
+		    $query = $this->db->get('youg_company');
+		    $range='';
+		    if($query->num_rows() > 0)
+		    {
+				$range=$query->result_array();
+			}
+			return $range;
+		}
+		
+	}
 		
 	//Getting value for searching
-	function brokersearch_count($keyword)
+	function brokersearch_count($keyword,$limit,$offset)
  	{
-	  //echo $keyword;
-	  $keyword = str_replace('-',' ', $keyword);
-	  $this->db->like('name',$keyword);
-	  $this->db->from('youg_subbroker');
-	  $query = $this->db->count_all_results();
+	  $query=$this->db->select('id')
+                      ->from('youg_broker')
+					  ->count_all_results();
+	 			  
 	  return $query;
  	}
+ 	/*
+	function brokersearch_count($limit ='',$offset='',$sortby = 'id',$orderby = 'DESC')
+ 	{
+	  switch($sortby)
+		{
+			case 'name' 	: $sortby = 'name';break;
+			case 'id' 	: $sortby = 'id';break;
+			default 		: $sortby = 'name';break;
+		}
+		
+		//Ordering Data
+		$this->db->order_by($sortby,$orderby);
+		
+		//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+		
+		//Executing Query
+		$query = $this->db->get('youg_broker');
+		$this->db->last_query();	
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}*/
  	
  	function get_subbroker_byid($id)
  	{
@@ -498,6 +630,86 @@ class Reports extends CI_Model
 		}
 	
 	}
+	
+	function get_subbrokertree($id)
+	{
+		$query = $this->db->get_where('youg_broker', array('type'=>'subbroker','id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}
+	function get_subbrokersales($id)
+	{
+		$query = $this->db->get_where('youg_company', array('brokertype'=>'subbroker','brokerid' => $id,'subbrokerid'=>$id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}
+	function get_total_elite_sales($id)
+	{
+		$query = $this->db->get_where('youg_company', array('subbrokerid'=>$id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}
+	function get_marketertree()
+	{
+		
+		
+		/*result expected      
+		        
+		 
+		 adrian                  2            4
+		    ---mason             2
+		
+		 adam                    1            5
+		    ---martin            4 
+		 
+		*/
+		
+		/* return $query = $this->db->select('yob.*,yoc.brokerid, yoc.brokertype, yoc.company, yoc.marketerid, yoc.subbrokerid')
+                                                        ->from('youg_broker yob')
+                                                        ->join('youg_company yoc','yob.id = yoc.brokerid', 'left')
+                                                        ->get()                                
+                                                        ->result_array();
+          //echo $this->db->last_query();
+		 //echo "<pre>";print_r($query);*/
+		
+		//Now checked
+		return $query=$this->db->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid')
+								->from('youg_broker yb')
+								->join('youg_company yc','yb.id = yc.brokerid and yc.brokertype = yb.type','left')
+								//->group_by('yb.name')
+								->order_by('yb.id','asc')
+								->get()
+								->result_array();
+		
+		
+		
+		
+		
+	}
  	
  	
  	/*function brokersearch($keyword,$option)
@@ -571,7 +783,24 @@ class Reports extends CI_Model
 	
 	}*/
 			
-	
+	function elitemembers()
+ 	{
+   	   	return $this->db
+   	   	->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid')
+		->from('youg_broker yb')
+		->join('youg_company yc','yb.id = yc.brokerid and yb.type = yc.brokertype','left')
+		->get()
+		->result_array();		
+ 	}
+ 	function agentelitemembers()
+ 	{
+   	   	return $this->db
+   	   	->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid')
+		->from('youg_broker yb')
+		->join('youg_company yc','yb.id = yc.brokerid and yb.type = yc.brokertype and yb.subbrokerid = yc.subbrokerid and yb.marketerid = yc.marketerid','left')
+		->get()
+		->result_array();		
+ 	}
 		
 	
 }
