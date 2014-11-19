@@ -678,6 +678,7 @@ class Report extends CI_Controller {
 														  
 					$items = $this->reports->get_subbrokerdetails_byid($id);
 					$items1 = $this->reports->get_subbrokermarketerdetails_byid($id);
+					$items2 = $this->reports->get_subbrokeragentdetails_byid($id);
 					$row=2;
 					foreach($items as $row_data)
 					{
@@ -694,13 +695,29 @@ class Report extends CI_Controller {
 			    	}
 			    	foreach($items1 as $row_data)
 					{
-					$col = 0;	
+						
+						$col = 0;	
 						foreach($row_data as $key=>$value)
 						{
 							if(!$value)
 							$value='-';
 							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
 							$col++;
+						}
+						//$row_data['ybid'];die;
+						foreach($items2 as $data)
+						{
+						if($row_data['ybid']==$data['ycmarketerid'])
+						{
+							$col = 0;	
+							foreach($data as $key=>$value)
+							{
+								if(!$value)
+								$value='-';
+								$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+								$col++;
+							}
+						}
 						}
 					$row++;
 			    	}
