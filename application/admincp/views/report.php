@@ -35,7 +35,7 @@
 	<!--Report view for signup date-->	
 	
 	<!--Report view for subbroker, marketer , agent -->
-<?php if(count($signups) ==0) { ?>
+<?php if(empty($signups)) { ?>
 <?php if(count($elitemembers) > 0 ) { ?>
 	
 	<div class="box">
