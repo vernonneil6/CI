@@ -356,99 +356,7 @@ class Reports extends CI_Model
 		
 	}                                 
                              
-                             
-                             
-                             
-                             
-                             
-                             
-                             
-                             
-                             
-                              //END FOR CSV PROCESS	
-	/*function brokersearch($keyword,$option,$from,$end,$singledate)
-	{	
-	 	if($option=='broker')
-	 	{
-			$this->db->select('*');
-			$this->db->where('type', 'subbroker');
-			$this->db->like('name', $keyword);		
-			$query = $this->db->get('youg_broker');
-			$check='';
-			if($query->num_rows() > 0)
-			{
-				$check=$query->result_array();
-			}
-			return $check;
-			
-	    }
-	 	
-	 	if($option=='signupdate' && $singledate != '')
-	 	{
-		   	$this->db->select('*');
-			$this->db->from('youg_broker');
-			$this->db->where('signup =', $singledate);
-		
-			$query = $this->db->get();
-            $check1='';
-			if($query->num_rows() > 0)
-			{
-				$check1=$query->result_array();
-			}
-				
-			return $check1;
-	    }
-	 	if($option=='signupdate') 
-	 	{	   
-			$this->db->select('*')
-			        ->from('youg_broker')
-					->where('signup >=', $from)
-					->where('signup <=', $end);
-				
-            
-			$query = $this->db->get();
-			$this->db->last_query();
-            $check11='';
-            
-			if($query->num_rows() > 0)
-			{
-				$check11=$query->result_array();
-			}
-			
-			return $check11;
-	    }
-	 	
-	 	if($option=='marketer')
-	 	{
-			$this->db->select('*');
-			$this->db->where('type', 'marketer');
-			$this->db->like('name', $keyword);		
-			$query = $this->db->get('youg_broker');
-            $check2='';
-			if($query->num_rows() > 0)
-			{
-				$check2=$query->result_array();
-			}
-			
-			return $check2;
-	    }
-	 	
-	 	if($option=='agent')
-	 	{
-			$this->db->select('*');
-			$this->db->where('type', 'agent');
-			$this->db->like('name', $keyword);		
-			$query = $this->db->get('youg_broker');
-            $check2='';
-			if($query->num_rows() > 0)
-			{
-				$check2=$query->result_array();
-			}
-			
-			return $check2;
-	    }
-	}*/
-	
+  
 	public function brokersearches($search_broker,$search_marketer,$search_agent,$from,$end)
 	{
 		
@@ -799,13 +707,40 @@ class Reports extends CI_Model
 	function elitemembers()
  	{
    	   	return $this->db
-   	   	->select('(select count(*) from youg_company yc2 where yc2.brokertype="subbroker" and yc2.brokerid = yb.id) subbroker,(select count(*) from youg_company yc1 where yc1.brokertype="marketer" and yc1.brokerid = yb.id)  marketer,yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid')
+   	   	->select('(select count(*) from youg_company yc2 where yc2.brokertype="subbroker" and yc2.brokerid = yb.id) subbroker,(select count(*) from youg_company yc1 where yc1.brokertype="marketer" and yc1.brokerid = yb.id)  marketer,(select count(*) from youg_company yc3 where yc3.brokertype="agent" and yc3.subbrokerid=yb.subbrokerid and yc3.marketerid=yb.marketerid and yc3.brokerid = yb.id) agents,yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid')
 		->from('youg_broker yb')
 		->join('youg_company yc','yb.id = yc.brokerid and yb.type = yc.brokertype','left')
 		->group_by('yb.id')
 		->get()
 		->result_array();		
  	}
+ 	function totalelites($id)
+ 	{
+	            $this->db->select('*');
+				$this->db->from('youg_company');
+				$this->db->where(array('brokerid'=>$id));
+				$this->db->or_where(array('subbrokerid'=>$id));
+			return	$num_results = $this->db->count_all_results();
+		
+	}
+ 	function marketer_totalelites($id)
+ 	{
+	            $this->db->select('*');
+				$this->db->from('youg_company');
+				$this->db->where(array('brokerid'=>$id));
+				$this->db->or_where(array('marketerid'=>$id));
+			return	$num_results = $this->db->count_all_results();
+		
+	}
+ 	function agent_totalelites($id)
+ 	{
+	            $this->db->select('*');
+				$this->db->from('youg_company');
+				$this->db->where(array('brokerid'=>$id,'brokertype'=>'agent'));
+				
+			return	$num_results = $this->db->count_all_results();
+		
+	}
  	function agentelitemembers()
  	{
    	   	return $this->db
