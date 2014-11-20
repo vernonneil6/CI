@@ -114,10 +114,12 @@ class Report extends CI_Controller {
 									->setCellValue('K1', 'Sub Broker')
 									->setCellValue('L1', 'Marketer')
 									->setCellValue('M1', 'Agent')
-									->setCellValue('N1', 'Signup Date')
-									->setCellValue('O1', 'Cancel Date')
-									->setCellValue('P1', 'Membership status:')
-									->setCellValue('Q1', 'Discount Code');
+									->setCellValue('N1', 'Acquisition Type')
+									->setCellValue('O1', 'Signup Date')
+									->setCellValue('P1', 'Cancel Date')
+									->setCellValue('Q1', 'Membership status:')
+									->setCellValue('R1', 'Discount Code')
+									->setCellValue('S1', 'Notes');
 									
 															  
 			$items = $this->reports->get_all_enabledmembers();
