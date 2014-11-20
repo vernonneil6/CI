@@ -967,7 +967,7 @@ class Report extends CI_Controller {
 			        $this->data['signups'] = $this->reports->get_signupview_bycompanyid($id);
 					
 					
-					if(count($this->data['elitemembers']) > 0 || count($this->data['elitemember']) > 0 || count($this->data['titletype']) > 0)
+					if(count($this->data['elitemembers']) > 0 || count($this->data['elitemember']) > 0 || count($this->data['titletype']) > 0|| count($this->data['signups']) > 0)
 					{			
 						//Loading View File
 						$this->load->view('report',$this->data);
