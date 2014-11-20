@@ -588,7 +588,7 @@ class Reports extends CI_Model
 	    $query = $this->db->select('youg_broker.*, youg_company.brokerid, youg_company.brokertype, youg_company.marketerid, youg_company.subbrokerid')
                                                         ->from('youg_broker')
                                                         ->join('youg_company', 'youg_broker.id = youg_company.brokerid', 'left')
-                                                        ->where(array('youg_company.brokertype'=>'marketer','youg_company.subbrokerid'=>$id))
+                                                        ->where(array('youg_company.brokertype'=>'marketer','youg_company.marketerid'=>$id))
                                                         ->get()                                
                                                         ->result_array();
           $marketer = array();
@@ -783,85 +783,19 @@ class Reports extends CI_Model
 								->order_by('yb.id','asc')
 								->get()
 								->result_array();
-		
-		
-		
-		
-		
+				
 	}
  	
- 	
- 	/*function brokersearch($keyword,$option)
- 	{
+	function get_types($id)
+	{
+		return $query = $this->db->get_where('youg_broker', array('id' => $id))->result_array();
+	  
+	}
+	function get_signupview_bycompanyid($id)
+	{
+	   return $query = $this->db->get_where('youg_company', array('id' => $id))->result_array();	
 		
-		if(trim($option)=='signupdate')
-		{
-			$this->db->select('*');
-			$this->db->like('signup',$keyword);		
-			$query = $this->db->get('youg_subbroker');
-
-			if ($query->num_rows() > 0)
-			{
-				return $query->result_array();
-			}
-			else
-			{
-				return array();
-			}
-			
-	    }
-		if(trim($option)=='broker')
-		{
-			$this->db->select('*');
-			$this->db->like('name',$keyword);		
-			$query = $this->db->get('youg_subbroker');
-
-			if ($query->num_rows() > 0)
-			{
-				return $query->result_array();
-			}
-			else
-			{
-				return array();
-			}
-			
-	    }
-		if(trim($option)=='marketer')
-		{
-			$this->db->select('*');
-			$this->db->like('marketer',$keyword);		
-			$query = $this->db->get('youg_subbroker');
-
-			if ($query->num_rows() > 0)
-			{
-				return $query->result_array();
-			}
-			else
-			{
-				return array();
-			}
-			
-	    }
-		if(trim($option)=='agent')
-		{
-			$this->db->select('*');
-			$this->db->like('agent',$keyword);		
-			$query = $this->db->get('youg_subbroker');
-
-			if ($query->num_rows() > 0)
-			{
-				return $query->result_array();
-			}
-			else
-			{
-				return array();
-			}
-			
-	    }
-		
-	
-	}*/
-			
+	}		
 	function elitemembers()
  	{
    	   	return $this->db
@@ -880,7 +814,5 @@ class Reports extends CI_Model
 		->get()
 		->result_array();		
  	}
-		
-	
 }
 ?>

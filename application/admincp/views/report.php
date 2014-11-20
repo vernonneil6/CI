@@ -1,14 +1,57 @@
 <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
 <!-- box -->
 <?php $view_id=$this->uri->segment(3); ?>
+<?php if(count($signups) > 0) {?>
+<div class="box">
+		<div class="headlines">
+			  <h2><span><?php echo "Signup details" ?></span></h2>
+		</div>
+ <!--Report view for signup date-->	
 
+<div class="box-content"> 
+	<table class="tab tab-drag">
+	    <tr class="top nodrop nodrag">
+			<td>Company</td>
+			<td>Email</td>
+			<td>Phone</td>
+			<td>Country</td>
+			<td>SiteUrl</td>
+			<td>Status</td>
+		  </tr>
+		<?php foreach($signups as $sign) {?>
+		  <tr>
+			  <td><?php echo ucfirst($sign['company']);?></td>
+			  <td><?php echo $sign['email'];?></td>
+			  <td><?php echo $sign['phone']?></td>
+			  <td><?php echo $sign['country']?></td>
+			  <td><?php echo $sign['siteurl']?></td>
+			  <td><?php echo $sign['status']?></td>
+		  </tr>
+		 <?php } ?> 
+	</table>
+</div>
+</div>
+<?php } ?>
+	<!--Report view for signup date-->	
+	
+	<!--Report view for subbroker, marketer , agent -->
+<?php if(count($signups)==0) { ?>
+<?php if(count($elitemembers) > 0 ) { ?>
+	
 	<div class="box">
 		<div class="headlines">
-		  <h2><span><?php echo "Subbroker details" ?></span></h2>
+		 <?php if($titletype[0]['type'] =='subbroker') { ?>
+		 		  <h2><span><?php echo "Subbroker details" ?></span></h2>
+		  <?php } ?>
+		 <?php if($titletype[0]['type'] =='marketer') { ?>
+		 		  <h2><span><?php echo "Marketer details" ?></span></h2>
+		  <?php } ?>
+		 <?php if($titletype[0]['type'] =='agent') { ?>
+		 		  <h2><span><?php echo "Agent details" ?></span></h2>
+		  <?php } ?>
 		</div>
-		<div class="box-content"> 
 		
-		<?php if( count($elitemembers) > 0 ) { ?>
+		<div class="box-content"> 
 		<table class="tab tab-drag">
 		  <tr class="top nodrop nodrag">
 			<td>Name</td>
@@ -17,56 +60,126 @@
 			<td>Email</td>
 			<td>Phone</td>
 		  </tr>
-			<?php
-			  
-			foreach($elitemembers as $elite) 
-			{ 
-			if($elite['ybid']==$view_id and $elite['ybtype']=='subbroker' and $elite['yctype']=='subbroker')	
-			{	  
-		    ?>
-			<tr>
-				<td><?php echo $elite['ybname']; ?></td>
-				<td><?php echo $elite['ybtype']; ?></td>
-				<td><?php echo $elite['yccompany']; ?></td>
-				<td><?php echo $elite['ycemail']; ?></td>
-				<td><?php echo $elite['ycphone']; ?></td>
-			</tr>
-			<?php 
-			}
-			if($elite['ycsubbrokerid']==$view_id  and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer') 
-			{ 
-			?>
-			<tr>
-				<td><?php echo $elite['ybname']; ?></td>
-				<td><?php echo $elite['ybtype']; ?></td>
-				<td><?php echo $elite['yccompany']; ?></td>
-				<td><?php echo $elite['ycemail']; ?></td>
-				<td><?php echo $elite['ycphone']; ?></td>
-			</tr>
-			<?php 
-			foreach($elitemember as $agent)
-			{
-			if($agent['ycsubbrokerid']==$view_id  and $elite['ybid']==$agent['ycmarketerid'] and $agent['ybtype']=='agent' and $agent['yctype']=='agent') 
-			{ 
-			?>
-			<tr>
-				<td><?php echo $agent['ybname']; ?></td>
-				<td><?php echo $agent['ybtype']; ?></td>
-				<td><?php echo $agent['yccompany']; ?></td>
-				<td><?php echo $agent['ycemail']; ?></td>
-				<td><?php echo $agent['ycphone']; ?></td>
-			</tr>
-			<?php 	
-			}
-			}
-			} 
-			}
-			?>
-		</table>
-		<?php } ?>
+		 
+		<!--For Subbroker details-->
+	    <?php  foreach($elitemembers as $elite) 	{ 
+					if($elite['ybid']==$view_id and $elite['ybtype']=='subbroker' and $elite['yctype']=='subbroker')	
+					{	  
+					?>
+					<tr>
+						<td><?php echo $elite['ybname']; ?></td>
+						<td><?php echo $elite['ybtype']; ?></td>
+						<td><?php echo $elite['yccompany']; ?></td>
+						<td><?php echo $elite['ycemail']; ?></td>
+						<td><?php echo $elite['ycphone']; ?></td>
+					</tr>
+					<?php 
+					}
+					if($elite['ycsubbrokerid']==$view_id  and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer') 
+					{ 
+					?>
+					<tr>
+						<td><?php echo $elite['ybname']; ?></td>
+						<td><?php echo $elite['ybtype']; ?></td>
+						<td><?php echo $elite['yccompany']; ?></td>
+						<td><?php echo $elite['ycemail']; ?></td>
+						<td><?php echo $elite['ycphone']; ?></td>
+					</tr>
+					<?php 
+					foreach($elitemember as $agent)
+					{
+					if($agent['ycsubbrokerid']==$view_id  and $elite['ybid']==$agent['ycmarketerid'] and $agent['ybtype']=='agent' and $agent['yctype']=='agent') 
+					{ 
+					?>
+					<tr>
+						<td><?php echo $agent['ybname']; ?></td>
+						<td><?php echo $agent['ybtype']; ?></td>
+						<td><?php echo $agent['yccompany']; ?></td>
+						<td><?php echo $agent['ycemail']; ?></td>
+						<td><?php echo $agent['ycphone']; ?></td>
+					</tr>
+					<?php 	
+					}
+					}
+					} 
+					}
+					?>
+		<!--End for Subbroker details-->
 		
-		</div>
-	</div>
+		
+		<!--For marketer details-->
+		
+			
+				<?php foreach($elitemembers as $elite) 
+				{ 
+				if($elite['ybid']==$view_id and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer')	
+				{	  
+				?>
+				<tr>
+					<td><?php echo $elite['ybname']; ?></td>
+					<td><?php echo $elite['ybtype']; ?></td>
+					<td><?php echo $elite['yccompany']; ?></td>
+					<td><?php echo $elite['ycemail']; ?></td>
+					<td><?php echo $elite['ycphone']; ?></td>
+				</tr>
+				<?php 
+				}
+				if($elite['ycmarketerid']==$view_id  and $elite['ybtype']=='agent' and $elite['yctype']=='agent') 
+				{ 
+				?>
+				<tr>
+					<td><?php echo $elite['ybname']; ?></td>
+					<td><?php echo $elite['ybtype']; ?></td>
+					<td><?php echo $elite['yccompany']; ?></td>
+					<td><?php echo $elite['ycemail']; ?></td>
+					<td><?php echo $elite['ycphone']; ?></td>
+				</tr>
+				<?php 
+				} 
+				}
+				?>
+			
+		
+		<!--End for marketer details-->
+		
+		<!--For agent details-->
+		<?php	foreach($elitemembers as $elite) 
+				{ 
+				if($elite['ybid']==$view_id and $elite['ybtype']=='agent' and $elite['yctype']=='agent')	
+				{	  
+				?>
+				<tr>
+					<td><?php echo $elite['ybname']; ?></td>
+					<td><?php echo $elite['ybtype']; ?></td>
+					<td><?php echo $elite['yccompany']; ?></td>
+					<td><?php echo $elite['ycemail']; ?></td>
+					<td><?php echo $elite['ycphone']; ?></td>
+				</tr>
+				<?php 
+				}
+				if($elite['ycmarketerid']==$view_id  and $elite['ybtype']=='agent' and $elite['yctype']=='agent') 
+				{ 
+				?>
+				<tr>
+					<td><?php echo $elite['ybname']; ?></td>
+					<td><?php echo $elite['ybtype']; ?></td>
+					<td><?php echo $elite['yccompany']; ?></td>
+					<td><?php echo $elite['ycemail']; ?></td>
+					<td><?php echo $elite['ycphone']; ?></td>
+				</tr>
+				<?php 
+				} 
+				}
+				?>
+		
+		<!--End for agent details-->
+		</table>
+</div>
+<?php } ?>
+</div>
+<?php } ?>
+<!--Report view for subbroker, marketer , agent -->
+
 <!-- /box -->
 <?php } else { ?>
 <?php echo $header; ?>
@@ -266,8 +379,8 @@ function agent_list(id)
 				</div>
 				<?php } else { ?>
 					
-					<div class="form-message error1">
-						<p id="error">No data to display</p>	
+					 <div class="form-message warning">
+					  <p>No records found.</p>
 					</div>
 			<?php } ?>
 			
@@ -288,9 +401,8 @@ function agent_list(id)
 									  <tr>
 										<td style="font-weight:bold;"><?php echo ucfirst(stripslashes($search['name']));?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
-
-										<td><a href="<?php echo site_url('report/marketerdetails/'.$search['id']); ?>">Download marketers details</a></td>
-										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a></td>
+										<td><a href="<?php echo site_url('report/marketerdetails/'.$search['id']); ?>">Download marketers details CSV</a></td>
+										<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['name']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>
 
 									  </tr>	 
 								<?php } ?>
@@ -299,9 +411,8 @@ function agent_list(id)
 									<tr>
 										<td style="font-weight:bold;"><?php echo ucfirst(stripslashes($search['name']));?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
-
-										<td><a href="<?php echo site_url('report/agentdetails/'.$search['id']); ?>">Download agents details</a></td>
-										<td width="100px"><a href="<?php echo site_url('report/edit/'.$search['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> </td>
+										<td><a href="<?php echo site_url('report/agentdetails/'.$search['id']); ?>">Download agents details CSV</a></td>
+										<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['name']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
 
 									</tr> 
 								<?php } ?> 
@@ -310,8 +421,8 @@ function agent_list(id)
 										<tr>
 										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['registerdate']);?></td>
-										<td><a href="<?php echo site_url('report/csv/signup'); ?>">Download SignUp details</a></td>
-										<td width="100px"><a href="<?php echo site_url('report/signview/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['company']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
+										<td><a href="<?php echo site_url('report/csv/signup'); ?>">Download SignUp details CSV</a></td>
+										<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['company']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
 									</tr>  
 								<?php } ?> 
 					  <?php }  ?>
@@ -327,9 +438,9 @@ function agent_list(id)
     <?php } 
 	else { ?>
     <!-- Warning form message -->
-    <div class="form-message warning">
+    <?php /*<div class="form-message warning">
       <p>No records found.</p>
-    </div>
+    </div> */?>
     <?php } ?>
 	
     <table class="tab tab-drag">

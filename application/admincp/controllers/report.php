@@ -960,12 +960,14 @@ class Report extends CI_Controller {
 						redirect('report', 'refresh');
 					}
 					
-					$this->data['subbroker'] = $this->reports->get_subbroker_byid($id);
-									
+													
 					$this->data['elitemembers'] = $this->reports->elitemembers();
 			        $this->data['elitemember'] = $this->reports->agentelitemembers();
+					$this->data['titletype'] = $this->reports->get_types($id);
+			        $this->data['signups'] = $this->reports->get_signupview_bycompanyid($id);
 					
-					if( count($this->data['subbroker']) > 0 || count($this->data['marketer']) > 0 || count($this->data['agent']) > 0  ||  count($this->data['subbroker_elite']) > 0 || count($this->data['marketer_elite']) > 0  || count($this->data['agent_elite']) > 0 || count($this->data['MA_tree']) > 0)
+					
+					if(count($this->data['elitemembers']) > 0 || count($this->data['elitemember']) > 0 || count($this->data['titletype']) > 0|| count($this->data['signups']) > 0)
 					{			
 						//Loading View File
 						$this->load->view('report',$this->data);
