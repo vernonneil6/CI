@@ -108,18 +108,21 @@ class Report extends CI_Controller {
 									->setCellValue('E1', 'Zip')
 									->setCellValue('F1', 'Business Phone')
 									->setCellValue('G1', 'Category')
-									->setCellValue('H1', 'Contact Name')
-									->setCellValue('I1', 'Contact Phone')
-									->setCellValue('J1', 'Contact Email')
-									->setCellValue('K1', 'Sub Broker')
-									->setCellValue('L1', 'Marketer')
-									->setCellValue('M1', 'Agent')
-									->setCellValue('N1', 'Acquisition Type')
-									->setCellValue('O1', 'Signup Date')
-									->setCellValue('P1', 'Cancel Date')
-									->setCellValue('Q1', 'Membership status:')
-									->setCellValue('R1', 'Discount Code')
-									->setCellValue('S1', 'Notes');
+									->setCellValue('H1', 'Website')
+									->setCellValue('I1', 'Contact Name')
+									->setCellValue('J1', 'Contact Phone')
+									->setCellValue('K1', 'Contact Email')
+									->setCellValue('L1', 'Sub Broker')
+									->setCellValue('M1', 'Marketer')
+									->setCellValue('N1', 'Agent')
+									->setCellValue('O1', 'Acquisition Type')
+									->setCellValue('P1', 'Signup Date')
+									->setCellValue('Q1', 'Cancel Date')
+									->setCellValue('R1', 'Membership status:')
+									->setCellValue('S1', 'Months Active')
+									->setCellValue('T1', 'Monthly Rate')
+									->setCellValue('U1', 'Discount Code')
+									->setCellValue('V1', 'Notes');
 									
 															  
 			$items = $this->reports->get_all_enabledmembers();
