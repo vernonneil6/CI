@@ -168,7 +168,7 @@ class Report extends CI_Controller {
 							 
 			$objPHPExcel->getActiveSheet()->setTitle('Report');
 			
-			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
+			$objPHPExcel->getActiveSheet()->getStyle("A1:V1")->getFont()->setBold(true);
 
 			$objPHPExcel->getActiveSheet()
 									->setCellValue('A1', 'Company')
@@ -237,7 +237,7 @@ class Report extends CI_Controller {
 							 
 			$objPHPExcel->getActiveSheet()->setTitle('Report');
 			
-			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
+			$objPHPExcel->getActiveSheet()->getStyle("A1:V1")->getFont()->setBold(true);
 
 			$objPHPExcel->getActiveSheet()
 										->setCellValue('A1', 'Company')
@@ -306,7 +306,7 @@ class Report extends CI_Controller {
 							 
 			$objPHPExcel->getActiveSheet()->setTitle('Report');
 			
-			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
+			$objPHPExcel->getActiveSheet()->getStyle("A1:V1")->getFont()->setBold(true);
 
 			$objPHPExcel->getActiveSheet()
 									->setCellValue('A1', 'Company')
@@ -374,7 +374,7 @@ class Report extends CI_Controller {
 							 
 			$objPHPExcel->getActiveSheet()->setTitle('Report');
 			
-			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
+			$objPHPExcel->getActiveSheet()->getStyle("A1:V1")->getFont()->setBold(true);
 
 			$objPHPExcel->getActiveSheet()
 									->setCellValue('A1', 'Company')
