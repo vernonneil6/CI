@@ -1,7 +1,7 @@
 <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
 <!-- box -->
 <?php $view_id=$this->uri->segment(3); ?>
-<?php if(count($signups) > 0) {?>
+<?php if($_POST['fromdate']!='' ) {?>
 <div class="box">
 		<div class="headlines">
 			  <h2><span><?php echo "Signup details" ?></span></h2>
@@ -35,7 +35,7 @@
 	<!--Report view for signup date-->	
 	
 	<!--Report view for subbroker, marketer , agent -->
-<?php if(count($signups)==0) { ?>
+<?php if(count($_POST['fromdate'])=='') { ?>
 <?php if(count($elitemembers) > 0 ) { ?>
 	
 	<div class="box">
