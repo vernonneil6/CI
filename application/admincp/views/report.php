@@ -59,12 +59,13 @@
 			<td>Name</td>
 			<td>Type</td>
 			<td>Company</td>
-			<td>Email</td>
-			<td>Phone</td>
+			<td>individual</td>
+			<td>total</td>
 		  </tr>
 		 
 		<!--For Subbroker details-->
-	    <?php  foreach($elitemembers as $elite) 	{ 
+		
+	    <?php  foreach($elitemembers as $elite) 	{ $check=count($elite);
 					if($elite['ybid']==$view_id and $elite['ybtype']=='subbroker' and $elite['yctype']=='subbroker')	
 					{	  
 					?>
@@ -72,8 +73,9 @@
 						<td><?php echo $elite['ybname']; ?></td>
 						<td><?php echo $elite['ybtype']; ?></td>
 						<td><?php echo $elite['yccompany']; ?></td>
-						<td><?php echo $elite['ycemail']; ?></td>
-						<td><?php echo $elite['ycphone']; ?></td>
+						<td><?php echo $elite['subbroker']; ?></td>
+						<td><?php echo $check; ?></td>
+						
 					</tr>
 					<?php 
 					}
@@ -84,8 +86,8 @@
 						<td><?php echo $elite['ybname']; ?></td>
 						<td><?php echo $elite['ybtype']; ?></td>
 						<td><?php echo $elite['yccompany']; ?></td>
-						<td><?php echo $elite['ycemail']; ?></td>
-						<td><?php echo $elite['ycphone']; ?></td>
+						<td><?php echo $elite['marketer']; ?></td>
+						<td></td>
 					</tr>
 					<?php 
 					foreach($elitemember as $agent)
@@ -97,8 +99,8 @@
 						<td><?php echo $agent['ybname']; ?></td>
 						<td><?php echo $agent['ybtype']; ?></td>
 						<td><?php echo $agent['yccompany']; ?></td>
-						<td><?php echo $agent['ycemail']; ?></td>
-						<td><?php echo $agent['ycphone']; ?></td>
+						<td><?php echo $agent['agent']; ?></td>
+						<td></td>
 					</tr>
 					<?php 	
 					}
@@ -121,8 +123,8 @@
 					<td><?php echo $elite['ybname']; ?></td>
 					<td><?php echo $elite['ybtype']; ?></td>
 					<td><?php echo $elite['yccompany']; ?></td>
-					<td><?php echo $elite['ycemail']; ?></td>
-					<td><?php echo $elite['ycphone']; ?></td>
+					<td><?php echo $elite['marketer']; ?></td>
+					<td></td>
 				</tr>
 				<?php 
 				}
@@ -133,8 +135,8 @@
 					<td><?php echo $elite['ybname']; ?></td>
 					<td><?php echo $elite['ybtype']; ?></td>
 					<td><?php echo $elite['yccompany']; ?></td>
-					<td><?php echo $elite['ycemail']; ?></td>
-					<td><?php echo $elite['ycphone']; ?></td>
+					<td><?php echo $agent['agent']; ?></td>
+					<td></td>
 				</tr>
 				<?php 
 				} 
@@ -154,8 +156,8 @@
 					<td><?php echo $elite['ybname']; ?></td>
 					<td><?php echo $elite['ybtype']; ?></td>
 					<td><?php echo $elite['yccompany']; ?></td>
-					<td><?php echo $elite['ycemail']; ?></td>
-					<td><?php echo $elite['ycphone']; ?></td>
+					<td></td>
+					<td></td>
 				</tr>
 				<?php 
 				}
