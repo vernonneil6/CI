@@ -701,13 +701,13 @@ class Reports extends CI_Model
 	}
 	function get_signupview_bycompanyid($id)
 	{
-	    $query = $this->db
-						->select('*')
+				return 	$query = $this->db
+						->select('c.company,c.registerdate,c.country,c.status,c.email,b.name,b.type')
 						->from('youg_company c')
 						->join('youg_broker b','c.brokerid = b.id and c.brokertype = b.type and c.id = "'.$id.'"','left')
 						->get()
 						->row_array();	
-						echo $this->db->last_query();die;
+						
 	}		
 	function elitemembers()
  	{

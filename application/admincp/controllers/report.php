@@ -65,6 +65,7 @@ class Report extends CI_Controller {
 		$this->load->model('reports');
 		if( $this->session->userdata['youg_admin'] )
 	  	{
+			
 			//Addingg Setting Result to variable
 			$this->reportsearch();   
 			$this->data['elitemembers'] = $this->reports->get_all_elitemembersforreport();
@@ -903,6 +904,7 @@ class Report extends CI_Controller {
 	}
 	public function reportsearch()
 	{   
+		
 		$this->data['allsubbroker']=$this->reports->get_subbrokerdetails();  
 		$this->data['sub']= $this->input->post('subbroker');
 		$this->data['mark']= $this->input->post('marketer');
