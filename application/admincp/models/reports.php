@@ -18,7 +18,8 @@ class Reports extends CI_Model
 
 	function get_all_enabledmembers()
  	{
-		$query = $this->db->query("SELECT c.company,c.streetaddress,c.city,c.state,c.zip,c.phone,c.categoryid,c.contactname,c.contactphonenumber,c.contactemail,e.payment_date,s.expires,e.status,e.discountcode FROM youg_elite e LEFT JOIN youg_company c ON c.id = e.company_id LEFT JOIN youg_subscription s ON c.id = s.company_id where e.status='Enable'");
+		$query = $this->db->query("SELECT c.company,c.streetaddress,c.city,c.state,c.zip,c.phone,c.categoryid,c.contactname,c.contactphonenumber,c.contactemail,b.name,e.payment_date,s.expires,e.status,e.discountcode FROM youg_elite e LEFT JOIN youg_company c ON c.id = e.company_id LEFT JOIN youg_subscription s ON c.id = s.company_id LEFT JOIN youg_broker b ON c.brokerid = b.id where e.status='Enable'");
+		echo $this->db->last_query();die;
 		
 		if ($query->num_rows() > 0)
 		{
