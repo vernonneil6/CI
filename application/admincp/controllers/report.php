@@ -118,7 +118,7 @@ class Report extends CI_Controller {
 									->setCellValue('O1', 'Signup Date')
 									->setCellValue('P1', 'Cancel Date')
 									->setCellValue('Q1', 'Membership status:')
-									->setCellValue('R1', 'Discount Code');
+									->setCellValue('R1', 'Discount Code')
 									->setCellValue('S1', 'Notes');
 									
 															  
