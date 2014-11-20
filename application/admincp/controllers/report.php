@@ -643,7 +643,7 @@ class Report extends CI_Controller {
 							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
 							$col++;
 						}
-					$row++;
+					
 					foreach($items2 as $rowdata)
 					{
 					if($row_data['ybid']==$rowdata['ycmarketerid'])
@@ -659,6 +659,7 @@ class Report extends CI_Controller {
 					$row++;
 			    	}
 					}
+					$row++;
 			    	}
                     
 					$objPHPExcel->setActiveSheetIndex(0);
