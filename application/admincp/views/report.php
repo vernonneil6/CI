@@ -64,9 +64,9 @@
 		  </tr>
 		 
 		<!--For Subbroker details-->
-		               <?php echo "elite-".count($elitemembers);?>
-	    <?php  foreach($elitemembers as $elite) 	{
-			           $check=count($elite);
+		              
+	    <?php  foreach($elitemembers as $elite) 	{ echo count($elite);
+			     
 					if($elite['ybid']==$view_id and $elite['ybtype']=='subbroker' and $elite['yctype']=='subbroker')	
 					{	  
 					?>
@@ -75,12 +75,13 @@
 						<td><?php echo $elite['ybtype']; ?></td>
 						<td><?php echo $elite['yccompany']; ?></td>
 						<td><?php echo $elite['subbroker']; ?></td>
-						<td><?php echo "loop".$check; ?></td>
 						
 					</tr>
 					<?php 
 					}
-					if($elite['ycsubbrokerid']==$view_id  and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer') 
+					?> 
+					
+				<?php if($elite['ycsubbrokerid']==$view_id  and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer') 
 					{ 
 					?>
 					<tr>
