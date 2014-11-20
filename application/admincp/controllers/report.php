@@ -636,32 +636,32 @@ class Report extends CI_Controller {
 			    	foreach($items1 as $row_data)
 					{
 					$col = 0;	
-						foreach($row_data as $key=>$value)
-						{
-							if(!$value)
-							$value='-';
-							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-							$col++;
-						}
-					
-					foreach($items2 as $rowdata)
+					foreach($row_data as $key=>$value)
 					{
-					if($row_data['ybid']==$rowdata['ycmarketerid'])
-					{
-					$col = 0;	
-						foreach($rowdata as $key=>$value)
-						{
-							if(!$value)
-							$value='-';
-							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-							$col++;
-						}
-					$row++;
-			    	}
+						if(!$value)
+						$value='-';
+						$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+						$col++;
 					}
 					$row++;
+						foreach($items2 as $rowdata)
+						{
+						if($row_data['ybid']==$rowdata['ycmarketerid'])
+						{
+						$col = 0;	
+							foreach($rowdata as $key=>$value)
+							{
+								
+								if(!$value)
+								$value='-';
+								$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+								$col++;
+							}
+						$row++;
+						}
+						}
 			    	}
-                    
+                   
 					$objPHPExcel->setActiveSheetIndex(0);
 					$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 					$file=time().'.xls';
