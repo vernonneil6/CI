@@ -864,7 +864,12 @@ class Report extends CI_Controller {
 	public function reportsearch()
 	{   
 		$this->data['allsubbroker']=$this->reports->get_subbrokerdetails();  
-		 
+		$this->data['sub']= $this->input->post('subbroker');
+		$this->data['mark']= $this->input->post('marketer');
+		$this->data['agent']= $this->input->post('agent');
+		$this->data['fromdate']= $this->input->post('fromdate');
+		$this->data['enddate']= $this->input->post('enddate');
+		
 		if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
 		{
 			$broker_keyword = addslashes($this->input->post('subbroker'));
@@ -899,6 +904,7 @@ class Report extends CI_Controller {
 		    } else {
 			      $end='';	
 			}
+			
 			
 			//$this->data['reports']=$this->reports->brokersearch($keyword,$option,$from,$end);	
 			$this->data['reports']=$this->reports->brokersearches($search_broker,$search_marketer,$search_agent,$from,$end);	
@@ -967,7 +973,7 @@ class Report extends CI_Controller {
 			        $this->data['signups'] = $this->reports->get_signupview_bycompanyid($id);
 					
 					
-					if(count($this->data['elitemembers']) > 0 || count($this->data['elitemember']) > 0 || count($this->data['titletype']) > 0|| count($this->data['signups']) > 0)
+					if(count($this->data['elitemembers']) > 0 || count($this->data['elitemember']) > 0 || count($this->data['titletype']) > 0 || count($this->data['signups']) > 0)
 					{			
 						//Loading View File
 						$this->load->view('report',$this->data);
