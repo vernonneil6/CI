@@ -1,8 +1,6 @@
 <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
 <!-- box -->
 <?php $view_id=$this->uri->segment(3); ?>
-<?php print_r($signups);?>
-<?php echo count($signups);?>
 <?php if(count($signups) !=0) {?>
 <div class="box">
 		<div class="headlines">
