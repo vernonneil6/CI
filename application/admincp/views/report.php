@@ -1,6 +1,6 @@
 <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
 <!-- box -->
-<?php $view_id=$this->uri->segment(3); ?>
+<?php echo $view_id=$this->uri->segment(3); ?>
 
 <?php if($titletype[0]['type']=='') {?>
 	
@@ -64,8 +64,9 @@
 		  </tr>
 		 
 		<!--For Subbroker details-->
-		
-	    <?php  foreach($elitemembers as $elite) 	{ $check=count($elite);
+		               <?php echo "elite-".count($elitemembers);?>
+	    <?php  foreach($elitemembers as $elite) 	{
+			           $check=count($elite);
 					if($elite['ybid']==$view_id and $elite['ybtype']=='subbroker' and $elite['yctype']=='subbroker')	
 					{	  
 					?>
@@ -74,7 +75,7 @@
 						<td><?php echo $elite['ybtype']; ?></td>
 						<td><?php echo $elite['yccompany']; ?></td>
 						<td><?php echo $elite['subbroker']; ?></td>
-						<td><?php echo $check; ?></td>
+						<td><?php echo "loop".$check; ?></td>
 						
 					</tr>
 					<?php 
