@@ -208,6 +208,8 @@ class Signuppage extends CI_Controller {
 			$city = $this->input->post('city');
 			$state = $this->input->post('state');
 			$country = $this->input->post('country');
+			$actype = $this->input->post('actype');
+			$notes = $this->input->post('notes');
 			
 			if($broker['type']=='subbroker')
 			{
@@ -280,7 +282,7 @@ class Signuppage extends CI_Controller {
 				if($email1=='new' && $name1=='new')
 				{
 						//Inserting Record
-						if( $this->complaints->insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,'','',$category,'',$brokerid,$brokertype,$marketerid,$subbrokerid ))
+						if( $this->complaints->insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,'','',$category,'',$brokerid,$brokertype,$marketerid,$subbrokerid,$actype,$notes ))
 						{
 							$companyid = $this->db->insert_id();
 							$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
