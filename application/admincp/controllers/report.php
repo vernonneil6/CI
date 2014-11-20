@@ -98,7 +98,7 @@ class Report extends CI_Controller {
 							 
 			$objPHPExcel->getActiveSheet()->setTitle('Report');
 			
-			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
+			$objPHPExcel->getActiveSheet()->getStyle("A1:V1")->getFont()->setBold(true);
 
 			$objPHPExcel->getActiveSheet()
 									->setCellValue('A1', 'Company')
@@ -178,13 +178,21 @@ class Report extends CI_Controller {
 									->setCellValue('E1', 'Zip')
 									->setCellValue('F1', 'Business Phone')
 									->setCellValue('G1', 'Category')
-									->setCellValue('H1', 'Contact Name')
-									->setCellValue('I1', 'Contact Phone')
-									->setCellValue('J1', 'Contact Email')
-									->setCellValue('K1', 'Signup Date')
-									->setCellValue('L1', 'Cancel Date')
-									->setCellValue('M1', 'Membership status:')
-									->setCellValue('N1', 'Discount Code');
+									->setCellValue('H1', 'Website')
+									->setCellValue('I1', 'Contact Name')
+									->setCellValue('J1', 'Contact Phone')
+									->setCellValue('K1', 'Contact Email')
+									->setCellValue('L1', 'Sub Broker')
+									->setCellValue('M1', 'Marketer')
+									->setCellValue('N1', 'Agent')
+									->setCellValue('O1', 'Acquisition Type')
+									->setCellValue('P1', 'Signup Date')
+									->setCellValue('Q1', 'Cancel Date')
+									->setCellValue('R1', 'Membership status:')
+									->setCellValue('S1', 'Months Active')
+									->setCellValue('T1', 'Monthly Rate')
+									->setCellValue('U1', 'Discount Code')
+									->setCellValue('V1', 'Notes');
 									
 															  
 			$items = $this->reports->get_all_disabledmembers();
@@ -233,19 +241,27 @@ class Report extends CI_Controller {
 
 			$objPHPExcel->getActiveSheet()
 										->setCellValue('A1', 'Company')
-										->setCellValue('B1', 'Address')	
-										->setCellValue('C1', 'City')
-										->setCellValue('D1', 'State')
-										->setCellValue('E1', 'Zip')
-										->setCellValue('F1', 'Business Phone')
-										->setCellValue('G1', 'Category')
-										->setCellValue('H1', 'Contact Name')
-										->setCellValue('I1', 'Contact Phone')
-										->setCellValue('J1', 'Contact Email')
-										->setCellValue('K1', 'Signup Date')
-										->setCellValue('L1', 'Cancel Date')
-										->setCellValue('M1', 'Membership status:')
-										->setCellValue('N1', 'Discount Code');
+									->setCellValue('B1', 'Address')	
+									->setCellValue('C1', 'City')
+									->setCellValue('D1', 'State')
+									->setCellValue('E1', 'Zip')
+									->setCellValue('F1', 'Business Phone')
+									->setCellValue('G1', 'Category')
+									->setCellValue('H1', 'Website')
+									->setCellValue('I1', 'Contact Name')
+									->setCellValue('J1', 'Contact Phone')
+									->setCellValue('K1', 'Contact Email')
+									->setCellValue('L1', 'Sub Broker')
+									->setCellValue('M1', 'Marketer')
+									->setCellValue('N1', 'Agent')
+									->setCellValue('O1', 'Acquisition Type')
+									->setCellValue('P1', 'Signup Date')
+									->setCellValue('Q1', 'Cancel Date')
+									->setCellValue('R1', 'Membership status:')
+									->setCellValue('S1', 'Months Active')
+									->setCellValue('T1', 'Monthly Rate')
+									->setCellValue('U1', 'Discount Code')
+									->setCellValue('V1', 'Notes');
 										
 																  
 			$items = $this->reports->get_all_elitemembers();
@@ -293,20 +309,28 @@ class Report extends CI_Controller {
 			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
 
 			$objPHPExcel->getActiveSheet()
-										->setCellValue('A1', 'Company')
-										->setCellValue('B1', 'Address')	
-										->setCellValue('C1', 'City')
-										->setCellValue('D1', 'State')
-										->setCellValue('E1', 'Zip')
-										->setCellValue('F1', 'Business Phone')
-										->setCellValue('G1', 'Category')
-										->setCellValue('H1', 'Contact Name')
-										->setCellValue('I1', 'Contact Phone')
-										->setCellValue('J1', 'Contact Email')
-										->setCellValue('K1', 'Signup Date')
-										->setCellValue('L1', 'Cancel Date')
-										->setCellValue('M1', 'Membership status:')
-										->setCellValue('N1', 'Discount Code');
+									->setCellValue('A1', 'Company')
+									->setCellValue('B1', 'Address')	
+									->setCellValue('C1', 'City')
+									->setCellValue('D1', 'State')
+									->setCellValue('E1', 'Zip')
+									->setCellValue('F1', 'Business Phone')
+									->setCellValue('G1', 'Category')
+									->setCellValue('H1', 'Website')
+									->setCellValue('I1', 'Contact Name')
+									->setCellValue('J1', 'Contact Phone')
+									->setCellValue('K1', 'Contact Email')
+									->setCellValue('L1', 'Sub Broker')
+									->setCellValue('M1', 'Marketer')
+									->setCellValue('N1', 'Agent')
+									->setCellValue('O1', 'Acquisition Type')
+									->setCellValue('P1', 'Signup Date')
+									->setCellValue('Q1', 'Cancel Date')
+									->setCellValue('R1', 'Membership status:')
+									->setCellValue('S1', 'Months Active')
+									->setCellValue('T1', 'Monthly Rate')
+									->setCellValue('U1', 'Discount Code')
+									->setCellValue('V1', 'Notes');
 																  
 			$items = $this->reports->get_all_enabledmemberswithcode();
 			
@@ -353,20 +377,28 @@ class Report extends CI_Controller {
 			$objPHPExcel->getActiveSheet()->getStyle("A1:T1")->getFont()->setBold(true);
 
 			$objPHPExcel->getActiveSheet()
-										->setCellValue('A1', 'Company')
-										->setCellValue('B1', 'Address')	
-										->setCellValue('C1', 'City')
-										->setCellValue('D1', 'State')
-										->setCellValue('E1', 'Zip')
-										->setCellValue('F1', 'Business Phone')
-										->setCellValue('G1', 'Category')
-										->setCellValue('H1', 'Contact Name')
-										->setCellValue('I1', 'Contact Phone')
-										->setCellValue('J1', 'Contact Email')
-										->setCellValue('K1', 'Signup Date')
-										->setCellValue('L1', 'Cancel Date')
-										->setCellValue('M1', 'Membership status:')
-										->setCellValue('N1', 'Discount Code');
+									->setCellValue('A1', 'Company')
+									->setCellValue('B1', 'Address')	
+									->setCellValue('C1', 'City')
+									->setCellValue('D1', 'State')
+									->setCellValue('E1', 'Zip')
+									->setCellValue('F1', 'Business Phone')
+									->setCellValue('G1', 'Category')
+									->setCellValue('H1', 'Website')
+									->setCellValue('I1', 'Contact Name')
+									->setCellValue('J1', 'Contact Phone')
+									->setCellValue('K1', 'Contact Email')
+									->setCellValue('L1', 'Sub Broker')
+									->setCellValue('M1', 'Marketer')
+									->setCellValue('N1', 'Agent')
+									->setCellValue('O1', 'Acquisition Type')
+									->setCellValue('P1', 'Signup Date')
+									->setCellValue('Q1', 'Cancel Date')
+									->setCellValue('R1', 'Membership status:')
+									->setCellValue('S1', 'Months Active')
+									->setCellValue('T1', 'Monthly Rate')
+									->setCellValue('U1', 'Discount Code')
+									->setCellValue('V1', 'Notes');
 																  
 			$items = $this->reports->get_all_disabledmemberswithcode();
 			
