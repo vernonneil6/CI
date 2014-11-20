@@ -1,7 +1,9 @@
 <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
 <!-- box -->
 <?php $view_id=$this->uri->segment(3); ?>
-<?php if($_POST['fromdate']!='' ) {?>
+
+<?php if($titletype[0]['type']=='') {?>
+	
 <div class="box">
 		<div class="headlines">
 			  <h2><span><?php echo "Signup details" ?></span></h2>
@@ -35,7 +37,7 @@
 	<!--Report view for signup date-->	
 	
 	<!--Report view for subbroker, marketer , agent -->
-<?php if(count($_POST['fromdate'])=='') { ?>
+<?php if($titletype[0]['type']!='' ) { ?>
 <?php if(count($elitemembers) > 0 ) { ?>
 	
 	<div class="box">
@@ -305,7 +307,7 @@ function agent_list(id)
 				  <div class="con" id="con_text"> 
 					   <select name="agent" id="agent" class="select" disabled>
 					     <option>All</option>
-					      
+					     
                    	   </select>
 				</div>
 				 
@@ -313,14 +315,16 @@ function agent_list(id)
 								<label for="datepicker">Search Signup</label>
 							  </div>
 						  <div class="con" id="con_text" > 
-							 <?php echo form_input(array( 'name'=>'fromdate','id'=>'datepicker','class'=>'input','type'=>'text','placeholder'=>'Choose From date')); ?>
-				</div> 
+							 <?php echo form_input(array('name'=>'fromdate','id'=>'datepicker','class'=>'input','value'=>$fromdate,'type'=>'text','placeholder'=>'Choose From date')); ?>
+				            
+				          </div> 
 				
 				<div class="lab" id="lab_text">
 								<label for="datepicker_1">Date Range</label>
 							  </div>
 						  <div class="con" id="con_text"> 
-							<?php echo form_input(array( 'name'=>'enddate','id'=>'datepicker1','class'=>'input','type'=>'text','placeholder'=>'Choose Till date')); ?>  
+							<?php echo form_input(array( 'name'=>'enddate','id'=>'datepicker1','class'=>'input','value'=>$enddate,'type'=>'text','placeholder'=>'Choose Till date')); ?>  
+				             
 				</div>
 					 
 			</div>
@@ -420,7 +424,7 @@ function agent_list(id)
 								<?php if($_POST['fromdate'] != '') { ?>
 										<tr>
 										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
-										<td><?php echo stripslashes($search['registerdate']);?></td>
+										<td><?php echo substr(stripslashes($search['registerdate']),0,10);?></td>
 										<td><a href="<?php echo site_url('report/csv/signup'); ?>">Download SignUp details CSV</a></td>
 										<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['company']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
 									</tr>  
