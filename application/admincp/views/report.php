@@ -388,6 +388,7 @@ function agent_list(id)
 					</div>
 			<?php } ?>
 			
+				<?php if(count($reports) > 0) { ?>
 				<?php  foreach($reports as $search) {   
 						    
 									if($search['type']=='subbroker') { ?>
@@ -446,7 +447,7 @@ function agent_list(id)
       <p>No records found.</p>
     </div> */?>
     <?php } ?>
-	
+<?php } ?>
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag"> </tr>
       <tr>
