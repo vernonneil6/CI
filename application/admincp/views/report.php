@@ -1,6 +1,6 @@
 <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
 <!-- box -->
-<?php echo $view_id=$this->uri->segment(3); ?>
+<?php  $view_id=$this->uri->segment(3); ?>
 
 <?php if($titletype[0]['type']=='') {?>
 	
@@ -59,14 +59,15 @@
 			<td>Name</td>
 			<td>Type</td>
 			<td>Company</td>
-			<td>individual</td>
-			<td>total</td>
+			<td>Individual-Elitesales</td>
+			<td>Total-Elitesales</td>
+		
 		  </tr>
-		 
+		
 		<!--For Subbroker details-->
-		              
-	    <?php  foreach($elitemembers as $elite) 	{ echo count($elite);
-			     
+		      
+	    <?php  foreach($elitemembers as $elite) 	{ 
+			        
 					if($elite['ybid']==$view_id and $elite['ybtype']=='subbroker' and $elite['yctype']=='subbroker')	
 					{	  
 					?>
@@ -75,15 +76,14 @@
 						<td><?php echo $elite['ybtype']; ?></td>
 						<td><?php echo $elite['yccompany']; ?></td>
 						<td><?php echo $elite['subbroker']; ?></td>
-						
+						<td><?php echo $totalelite; ?></td>
 					</tr>
 					<?php 
 					}
 					?> 
-					
-				<?php if($elite['ycsubbrokerid']==$view_id  and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer') 
+					<?php if($elite['ycsubbrokerid']==$view_id  and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer') 
 					{ 
-					?>
+					?>   
 					<tr>
 						<td><?php echo $elite['ybname']; ?></td>
 						<td><?php echo $elite['ybtype']; ?></td>
@@ -108,42 +108,41 @@
 					}
 					}
 					} 
-					}
+					} 
 					?>
+					
 		<!--End for Subbroker details-->
 		
 		
 		<!--For marketer details-->
-		
-			
 				<?php foreach($elitemembers as $elite) 
 				{ 
-				if($elite['ybid']==$view_id and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer')	
-				{	  
-				?>
-				<tr>
-					<td><?php echo $elite['ybname']; ?></td>
-					<td><?php echo $elite['ybtype']; ?></td>
-					<td><?php echo $elite['yccompany']; ?></td>
-					<td><?php echo $elite['marketer']; ?></td>
-					<td></td>
-				</tr>
-				<?php 
-				}
-				if($elite['ycmarketerid']==$view_id  and $elite['ybtype']=='agent' and $elite['yctype']=='agent') 
-				{ 
-				?>
-				<tr>
-					<td><?php echo $elite['ybname']; ?></td>
-					<td><?php echo $elite['ybtype']; ?></td>
-					<td><?php echo $elite['yccompany']; ?></td>
-					<td><?php echo $agent['agent']; ?></td>
-					<td></td>
-				</tr>
-				<?php 
-				} 
-				}
-				?>
+					if($elite['ybid']==$view_id and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer')	
+					{	  
+					?>
+					<tr>
+						<td><?php echo $elite['ybname']; ?></td>
+						<td><?php echo $elite['ybtype']; ?></td>
+						<td><?php echo $elite['yccompany']; ?></td>
+						<td><?php echo $elite['marketer']; ?></td>
+						<td><?php echo $marketer_totalelite;?></td>
+						</tr>
+						<?php 
+					}
+					if($elite['ycmarketerid']==$view_id and $elite['ycbrokerid']==$elite['ybid'] and $elite['ybtype']=='agent' and $elite['yctype']=='agent') 
+					{ 
+					?>
+					<tr>
+						<td><?php echo $elite['ybname']; ?></td>
+						<td><?php echo $elite['ybtype']; ?></td>
+						<td><?php echo $elite['yccompany']; ?></td>
+						<td><?php echo $elite['agents']; ?></td>
+						<td><?php echo $agent_totalelite;?></td>
+					</tr>
+				    <?php 
+					} 
+					}
+					?>
 			
 		
 		<!--End for marketer details-->
@@ -158,8 +157,8 @@
 					<td><?php echo $elite['ybname']; ?></td>
 					<td><?php echo $elite['ybtype']; ?></td>
 					<td><?php echo $elite['yccompany']; ?></td>
-					<td></td>
-					<td></td>
+					<td><?php echo $elite['agents']; ?></td>
+					<td><?php echo $agent_totalelite;?></td>
 				</tr>
 				<?php 
 				}
@@ -170,8 +169,8 @@
 					<td><?php echo $elite['ybname']; ?></td>
 					<td><?php echo $elite['ybtype']; ?></td>
 					<td><?php echo $elite['yccompany']; ?></td>
-					<td><?php echo $elite['ycemail']; ?></td>
-					<td><?php echo $elite['ycphone']; ?></td>
+					<td><?php echo $elite['agents']; ?></td>
+					<td></td>
 				</tr>
 				<?php 
 				} 
@@ -427,6 +426,7 @@ function agent_list(id)
 								<?php } ?> 
 								
 								<?php if($_POST['fromdate'] != '') { ?>
+									    <button name="total" id="total" class="button">Download TotalSignUp Details CSV</button>
 										<tr>
 										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo substr(stripslashes($search['registerdate']),0,10);?></td>
