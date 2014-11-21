@@ -634,7 +634,7 @@ class Reports extends CI_Model
 		return $query = $this->db->get_where('youg_broker', array('id' => $id))->result_array();
 	  
 	}
-	function get_signupview_bycompanyid($id)
+	function get_signupview_bycompanyid()
 	{
 				return 	$query = $this->db
 						->select('c.company ,c.id, c.registerdate, c.country, c.status, c.email, b.name , b.type')
@@ -691,5 +691,15 @@ class Reports extends CI_Model
 		->get()
 		->result_array();		
  	}
+ 	function signbtndate()
+ 	{
+		$this->db
+		->select('*')
+		->where('registerdate >=',$from)
+		->where('registerdate <=',$end)
+		->get('youg_company')
+		->result_array();
+	}
+ 	
 }
 ?>
