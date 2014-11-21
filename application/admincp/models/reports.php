@@ -679,7 +679,10 @@ class Reports extends CI_Model
 	function elitemembers()
  	{
    	   	return $this->db
-   	   	->select('(select count(*) from youg_company yc2 where yc2.brokertype="subbroker" and yc2.brokerid = yb.id) subbroker,(select count(*) from youg_company yc1 where yc1.brokertype="marketer" and yc1.brokerid = yb.id)  marketer,(select count(*) from youg_company yc3 where yc3.brokertype="agent" and yc3.subbrokerid=yb.subbrokerid and yc3.marketerid=yb.marketerid and yc3.brokerid = yb.id) agents,yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid')
+   	   	->select('(select count(*) from youg_company yc2 where yc2.brokertype="subbroker" and yc2.brokerid = yb.id) subbroker,
+   	   	          (select count(*) from youg_company yc1 where yc1.brokertype="marketer" and yc1.brokerid = yb.id)  marketer,
+   	   	          (select count(*) from youg_company yc3 where yc3.brokertype="agent" and yc3.subbrokerid=yb.subbrokerid and yc3.marketerid=yb.marketerid and yc3.brokerid = yb.id) agents,
+   	   	          yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid')
 		->from('youg_broker yb')
 		->join('youg_company yc','yb.id = yc.brokerid and yb.type = yc.brokertype','left')
 		->group_by('yb.id')
