@@ -726,5 +726,15 @@ class Reports extends CI_Model
 		->get()
 		->result_array();		
  	}
+ 	function signbtndate()
+ 	{
+		$this->db
+		->select('*')
+		->where('registerdate >=',$from)
+		->where('registerdate <=',$end)
+		->get('youg_company')
+		->result_array();
+	}
+ 	
 }
 ?>
