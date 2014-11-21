@@ -58,12 +58,7 @@
 		<div class="box-content"> 
 		<table class="tab tab-drag">
 		  <tr class="top nodrop nodrag">
-			<td>Name
-			<?php echo "uri-1".$this->uri->segment(1)."<br>";?>
-			<?php echo "uri-2".$this->uri->segment(2)."<br>";?>
-			<?php echo "uri-3".$this->uri->segment(3)."<br>";?>
-			<?php echo "uri-4".$this->uri->segment(4)."<br>";?>
-			</td>
+			<td>Name</td>
 			<td>Type</td>
 			<td>Company</td>
 			<td>Individual-Elitesales</td>
@@ -466,6 +461,13 @@ function agent_list(id)
 <?php } ?>
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag"> </tr>
+      <tr>
+      <?php echo "uri-1".$this->uri->segment(1)."<br>";?>
+			<?php echo "uri-2".$this->uri->segment(2)."<br>";?>
+			<?php echo "uri-3".$this->uri->segment(3)."<br>";?>
+			<?php echo "uri-4".$this->uri->segment(4)."<br>";?>
+      
+      </tr>
       <tr>
         <td><a href="<?php echo site_url('report/csv/allenable'); ?>" title="Export as CSV file"> Download Reports for Elite members that are currently Enabled status</a></td>
       	</tr>
