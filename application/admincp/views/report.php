@@ -292,8 +292,11 @@ function agent_list(id)
 					    <select name="subbroker" id="subbroker" class="select" onChange="marketer_list(this.value)">
 					      <option>All</option>
 					      <?php for($i=0;$i<count($allsubbroker);$i++) {?>
+							  <?php if($sub != $allsubbroker[$i]['id']) {?>
 							  <option value="<?php echo $allsubbroker[$i]['id'];?>"><?php echo $allsubbroker[$i]['name'];?></option>
-						  <?php } ?>		  
+						   <?php } else { ?>
+							   <option value="<?php echo $allsubbroker[$i]['id'];?>" selected><?php echo $allsubbroker[$i]['name'];?></option>
+						  <?php } }?>		  
                    	   </select>
 				 </div>
 				 
