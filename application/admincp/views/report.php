@@ -19,7 +19,8 @@
 			<td>CreatedbyName</td>
 			<td>Status</td>
 		  </tr>
-		  <?php foreach($signups as $sign) { ?>			  
+		  <?php $i=0; foreach($signups as $sign) {
+			  if($i==0){ ?>			  
 		 
 		 <tr> 
 			 <?php if($sign['id']==$view_id) {  ?>
@@ -29,9 +30,10 @@
 			  <td><?php echo ucfirst($sign['type']);?></td>
 			  <td><?php echo ucfirst($sign['name']);?></td>
 			  <td><?php echo $sign['status'];?></td>
-		     <?php } ?>
+		     <?php $i++; } ?>
 		  </tr>
-		<?php }  ?>
+		  
+		<?php } }  ?>
 	</table>
 </div>
 </div>
