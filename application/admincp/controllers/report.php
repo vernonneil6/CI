@@ -68,9 +68,9 @@ class Report extends CI_Controller {
 			
 			//Addingg Setting Result to variable
 			$this->reportsearch();   
-			$this->data['elitemembers'] = $this->reports->get_all_elitemembersforreport();
+			//$this->data['elitemembers'] = $this->reports->get_all_elitemembersforreport();
 			//Loading View File
-			//$this->load->view('report',$this->data);
+			$this->load->view('report',$this->data);
 	  	}
 		else
 		{
