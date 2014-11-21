@@ -1087,13 +1087,12 @@ class Report extends CI_Controller {
 					}
 					
 													
-					$this->data['elitemembers'] = $this->reports->elitemembers();
-			        $this->data['elitemember'] = $this->reports->agentelitemembers();
-					$this->data['titletype'] = $this->reports->get_types($id);
-			        $this->data['signups'] = $this->reports->get_signupview_bycompanyid();
-			        $this->data['totalelite'] = $this->reports->totalelites($id);
+					$this->data['elitemembers'] = $this->reports->elitemembers($id);
+			        $this->data['titletype'] = $this->reports->get_types($id);
+			        $this->data['signups'] = $this->reports->get_signupview_bycompanyid($id);
+			        /*$this->data['totalelite'] = $this->reports->totalelites($id);
 			        $this->data['marketer_totalelite'] = $this->reports->marketer_totalelites($id);
-			        $this->data['agent_totalelite'] = $this->reports->agent_totalelites($id);
+			        $this->data['agent_totalelite'] = $this->reports->agent_totalelites($id);*/
 					
 					
 					if(count($this->data['elitemembers']) > 0 || count($this->data['elitemember']) > 0 || count($this->data['titletype']) > 0 || count($this->data['signups']) > 0)

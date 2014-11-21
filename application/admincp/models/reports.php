@@ -635,29 +635,30 @@ class Reports extends CI_Model
 		return $query = $this->db->get_where('youg_broker', array('id' => $id))->result_array();
 	  
 	}
-	function get_signupview_bycompanyid()
+	function get_signupview_bycompanyid($id)
 	{
-				return 	$query = $this->db
+		return 	$query = $this->db
 						->select('c.company ,c.id, c.registerdate, c.country, c.status, c.email, b.name , b.type')
 						->from('youg_company c')
 						->join('youg_broker b','b.id=c.brokerid','left')
+						->where('c.id',$id)
 						->get()
 						->result_array();	
-						//echo $this->db->last_query();
+						
 	}		
-	function elitemembers()
+	function elitemembers($id)
  	{
-   	   	return $this->db
-   	   	->select('(select count(*) from youg_company yc2 where yc2.brokertype="subbroker" and yc2.brokerid = yb.id) subbroker,
-   	   	          (select count(*) from youg_company yc1 where yc1.brokertype="marketer" and yc1.brokerid = yb.id)  marketer,
-   	   	          (select count(*) from youg_company yc3 where yc3.brokertype="agent" and yc3.subbrokerid=yb.subbrokerid and yc3.marketerid=yb.marketerid and yc3.brokerid = yb.id) agents,
-   	   	          yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid')
+   	   return $this->db
+   	   	->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid,yc.brokerid ycbrokerid')
 		->from('youg_broker yb')
-		->join('youg_company yc','yb.id = yc.brokerid and yb.type = yc.brokertype','left')
+		->join('youg_company yc','yb.id = yc.brokerid and yc.brokertype = yb.type','left')
+		->where('yc.brokerid',$id)
+		->or_where('yc.subbrokerid',$id)
 		->group_by('yb.id')
 		->get()
-		->result_array();		
- 	}
+		->result_array();
+		//echo $this->db->last_query();		
+ 	} 
  	function totalelites($id)
  	{
 	            $this->db->select('*');
@@ -685,16 +686,7 @@ class Reports extends CI_Model
 			return	$num_results = $this->db->count_all_results();
 		
 	}
- 	function agentelitemembers()
- 	{
-   	   	return $this->db
-   	   	->select('(select count(*) from youg_company yc1 where yc1.brokertype="agent" and yc1.subbrokerid=yb.subbrokerid and yc1.marketerid=yb.marketerid and yc1.brokerid = yb.id) agent,yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid')
-		->from('youg_broker yb')
-		->join('youg_company yc','yb.id = yc.brokerid and yb.type = yc.brokertype and yb.subbrokerid = yc.subbrokerid and yb.marketerid = yc.marketerid','left')
-		->group_by('yb.id')
-		->get()
-		->result_array();		
- 	}
+ 	
  	function signbtndate($from,$end)
  	{
 		return $this->db
