@@ -15,21 +15,24 @@
 	    <tr class="top nodrop nodrag">
 			<td>Company</td>
 			<td>Email</td>
-			<td>Phone</td>
 			<td>Country</td>
-			<td>SiteUrl</td>
+			<td>Createdby</td>
+			<td>CreatedbyName</td>
 			<td>Status</td>
 		  </tr>
-		<?php foreach($signups as $sign) {?>
-		  <tr>
+		  <?php foreach($signups as $sign) { ?>			  
+		 
+		 <tr> 
+			 <?php if($sign['id']==$view_id) {  ?>
 			  <td><?php echo ucfirst($sign['company']);?></td>
 			  <td><?php echo $sign['email'];?></td>
-			  <td><?php echo $sign['phone']?></td>
-			  <td><?php echo $sign['country']?></td>
-			  <td><?php echo $sign['siteurl']?></td>
-			  <td><?php echo $sign['status']?></td>
+			  <td><?php echo ucfirst($sign['country']);?></td>
+			  <td><?php echo ucfirst($sign['type']);?></td>
+			  <td><?php echo ucfirst($sign['name']);?></td>
+			  <td><?php echo $sign['status'];?></td>
+		     <?php } ?>
 		  </tr>
-		 <?php } ?> 
+		<?php }  ?>
 	</table>
 </div>
 </div>
@@ -391,6 +394,9 @@ function agent_list(id)
 					</div>
 			<?php } ?>
 			
+			<?php if($_POST['fromdate'] != '') {?>
+			<button name="total" id="total" class="button">Download TotalSignUp Details CSV</button>
+			<?php } ?>
 				<?php if(count($reports) > 0) { ?>
 				<?php  foreach($reports as $search) {   
 						    
@@ -426,8 +432,7 @@ function agent_list(id)
 								<?php } ?> 
 								
 								<?php if($_POST['fromdate'] != '') { ?>
-									    <button name="total" id="total" class="button">Download TotalSignUp Details CSV</button>
-										<tr>
+									    <tr>
 										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo substr(stripslashes($search['registerdate']),0,10);?></td>
 										<td><a href="<?php echo site_url('report/csv/signup'); ?>">Download SignUp details CSV</a></td>

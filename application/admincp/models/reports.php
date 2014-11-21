@@ -443,41 +443,9 @@ class Reports extends CI_Model
 
 	  return $query;
  	}
- 	/*
-	function brokersearch_count($limit ='',$offset='',$sortby = 'id',$orderby = 'DESC')
- 	{
-	  switch($sortby)
-		{
-			case 'name' 	: $sortby = 'name';break;
-			case 'id' 	: $sortby = 'id';break;
-			default 		: $sortby = 'name';break;
-		}
-		
-		//Ordering Data
-		$this->db->order_by($sortby,$orderby);
-		
-		//Setting Limit for Paging
-		if( $limit != '' && $offset == 0)
-		{ $this->db->limit($limit); }
-		else if( $limit != '' && $offset != 0)
-		{	$this->db->limit($limit, $offset);	}
-		
-		//Executing Query
-		$query = $this->db->get('youg_broker');
-		$this->db->last_query();	
-		if ($query->num_rows() > 0)
-		{
-			return $query->result_array();
-		}
-		else
-		{
-			return array();
-		}
- 	}*/
- 	
+ 	 	
  	function get_subbroker_byid($id)
  	{
-		//$query = $this->db->get_where('youg_subbroker', array('id' => $id));
 		$query = $this->db->get_where('youg_broker', array('type'=>'subbroker','id' => $id));
 		
 		if ($query->num_rows() > 0)
@@ -660,40 +628,7 @@ class Reports extends CI_Model
 		}
 		
 	}
-	function get_marketertree()
-	{
-		
-		
-		/*result expected      
-		        
-		 
-		 adrian                  2            4
-		    ---mason             2
-		
-		 adam                    1            5
-		    ---martin            4 
-		 
-		*/
-		
-		/* return $query = $this->db->select('yob.*,yoc.brokerid, yoc.brokertype, yoc.company, yoc.marketerid, yoc.subbrokerid')
-                                                        ->from('youg_broker yob')
-                                                        ->join('youg_company yoc','yob.id = yoc.brokerid', 'left')
-                                                        ->get()                                
-                                                        ->result_array();
-          //echo $this->db->last_query();
-		 //echo "<pre>";print_r($query);*/
-		
-		//Now checked
-		return $query=$this->db->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid')
-								->from('youg_broker yb')
-								->join('youg_company yc','yb.id = yc.brokerid and yc.brokertype = yb.type','left')
-								//->group_by('yb.name')
-								->order_by('yb.id','asc')
-								->get()
-								->result_array();
-				
-	}
- 	
+	
 	function get_types($id)
 	{
 		return $query = $this->db->get_where('youg_broker', array('id' => $id))->result_array();
@@ -702,12 +637,12 @@ class Reports extends CI_Model
 	function get_signupview_bycompanyid($id)
 	{
 				return 	$query = $this->db
-						->select('c.company,c.registerdate,c.country,c.status,c.email,b.name,b.type')
+						->select('c.company ,c.id, c.registerdate, c.country, c.status, c.email, b.name , b.type')
 						->from('youg_company c')
-						->join('youg_broker b','c.brokerid = b.id and c.brokertype = b.type and c.id = "'.$id.'"','left')
+						->join('youg_broker b','b.id=c.brokerid','left')
 						->get()
-						->row_array();	
-						
+						->result_array();	
+						//echo $this->db->last_query();
 	}		
 	function elitemembers()
  	{
