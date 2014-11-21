@@ -443,37 +443,6 @@ class Reports extends CI_Model
 
 	  return $query;
  	}
- 	/*
-	function brokersearch_count($limit ='',$offset='',$sortby = 'id',$orderby = 'DESC')
- 	{
-	  switch($sortby)
-		{
-			case 'name' 	: $sortby = 'name';break;
-			case 'id' 	: $sortby = 'id';break;
-			default 		: $sortby = 'name';break;
-		}
-		
-		//Ordering Data
-		$this->db->order_by($sortby,$orderby);
-		
-		//Setting Limit for Paging
-		if( $limit != '' && $offset == 0)
-		{ $this->db->limit($limit); }
-		else if( $limit != '' && $offset != 0)
-		{	$this->db->limit($limit, $offset);	}
-		
-		//Executing Query
-		$query = $this->db->get('youg_broker');
-		$this->db->last_query();	
-		if ($query->num_rows() > 0)
-		{
-			return $query->result_array();
-		}
-		else
-		{
-			return array();
-		}
- 	}*/
  	
  	function get_subbroker_byid($id)
  	{
@@ -679,7 +648,10 @@ class Reports extends CI_Model
 	function elitemembers()
  	{
    	   	return $this->db
-   	   	->select('(select count(*) from youg_company yc2 where yc2.brokertype="subbroker" and yc2.brokerid = yb.id) subbroker,(select count(*) from youg_company yc1 where yc1.brokertype="marketer" and yc1.brokerid = yb.id)  marketer,(select count(*) from youg_company yc3 where yc3.brokertype="agent" and yc3.subbrokerid=yb.subbrokerid and yc3.marketerid=yb.marketerid and yc3.brokerid = yb.id) agents,yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid')
+   	   	->select('(select count(*) from youg_company yc2 where yc2.brokertype="subbroker" and yc2.brokerid = yb.id) subbroker,
+   	   	          (select count(*) from youg_company yc1 where yc1.brokertype="marketer" and yc1.brokerid = yb.id)  marketer,
+   	   	          (select count(*) from youg_company yc3 where yc3.brokertype="agent" and yc3.subbrokerid=yb.subbrokerid and yc3.marketerid=yb.marketerid and yc3.brokerid = yb.id) agents,
+   	   	          yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yc.phone ycphone,yc.brokertype yctype,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid')
 		->from('youg_broker yb')
 		->join('youg_company yc','yb.id = yc.brokerid and yb.type = yc.brokertype','left')
 		->group_by('yb.id')
