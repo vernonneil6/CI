@@ -1,7 +1,6 @@
 <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
 <!-- box -->
-<?php echo $view_id=$this->uri->segment(3); ?>
-
+<?php  $view_id=$this->uri->segment(3); ?>
 <?php if($titletype[0]['type']=='') {?>
 	
 <div class="box">
@@ -59,7 +58,12 @@
 		<div class="box-content"> 
 		<table class="tab tab-drag">
 		  <tr class="top nodrop nodrag">
-			<td>Name</td>
+			<td>Name
+			<?php echo "uri-1".$this->uri->segment(1)."<br>";?>
+			<?php echo "uri-2".$this->uri->segment(2)."<br>";?>
+			<?php echo "uri-3".$this->uri->segment(3)."<br>";?>
+			<?php echo "uri-4".$this->uri->segment(4)."<br>";?>
+			</td>
 			<td>Type</td>
 			<td>Company</td>
 			<td>Individual-Elitesales</td>
