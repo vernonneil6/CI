@@ -1,6 +1,6 @@
 <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
 <!-- box -->
-<?php  $view_id=$this->uri->segment(3); ?>
+<?php echo $view_id=$this->uri->segment(3); ?>
 
 <?php if($titletype[0]['type']=='') {?>
 	
