@@ -723,14 +723,17 @@ class Reports extends CI_Model
 		->get()
 		->result_array();		
  	}
- 	function signbtndate()
+ 	function signbtndate($from,$end)
  	{
-		$this->db
-		->select('*')
+		return $this->db
+		->select('c.company,c.registerdate')
+		->from('youg_company c')
+		->join('youg_broker b','c.brokerid = b.id and c.brokertype = b.type','left')
 		->where('registerdate >=',$from)
 		->where('registerdate <=',$end)
-		->get('youg_company')
+		->get()
 		->result_array();
+		//echo $this->db->last_query();die;
 	}
  	
 }
