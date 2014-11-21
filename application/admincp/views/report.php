@@ -1,7 +1,6 @@
 <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
 <!-- box -->
-<?php echo $view_id=$this->uri->segment(3); ?>
-
+<?php  $view_id=$this->uri->segment(3); ?>
 <?php if($titletype[0]['type']=='') {?>
 	
 <div class="box">
@@ -59,7 +58,7 @@
 		<div class="box-content"> 
 		<table class="tab tab-drag">
 		  <tr class="top nodrop nodrag">
-			<td>Name</td>
+			<td>Name</td>		
 			<td>Type</td>
 			<td>Company</td>
 			<td>Individual-Elitesales</td>
@@ -67,120 +66,74 @@
 		
 		  </tr>
 		
-		<!--For Subbroker details-->
-		      
-	    <?php  foreach($elitemembers as $elite) 	{ 
-			        
-					if($elite['ybid']==$view_id and $elite['ybtype']=='subbroker' and $elite['yctype']=='subbroker')	
-					{	  
-					?>
-					<tr>
-						<td><?php echo $elite['ybname']; ?></td>
-						<td><?php echo $elite['ybtype']; ?></td>
-						<td><?php echo $elite['yccompany']; ?></td>
-						<td><?php echo $elite['subbroker']; ?></td>
-						<td><?php echo $totalelite; ?></td>
-					</tr>
-					<?php 
-					}
-					?> 
-					<?php if($elite['ycsubbrokerid']==$view_id  and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer') 
-					{ 
-					?>   
-					<tr>
-						<td><?php echo $elite['ybname']; ?></td>
-						<td><?php echo $elite['ybtype']; ?></td>
-						<td><?php echo $elite['yccompany']; ?></td>
-						<td><?php echo $elite['marketer']; ?></td>
-						<td></td>
-					</tr>
-					<?php 
-					foreach($elitemember as $agent)
-					{
-					if($agent['ycsubbrokerid']==$view_id  and $elite['ybid']==$agent['ycmarketerid'] and $agent['ybtype']=='agent' and $agent['yctype']=='agent') 
-					{ 
-					?>
-					<tr>
-						<td><?php echo $agent['ybname']; ?></td>
-						<td><?php echo $agent['ybtype']; ?></td>
-						<td><?php echo $agent['yccompany']; ?></td>
-						<td><?php echo $agent['agent']; ?></td>
-						<td></td>
-					</tr>
-					<?php 	
-					}
-					}
-					} 
-					} 
-					?>
-					
-		<!--End for Subbroker details-->
-		
-		
-		<!--For marketer details-->
-				<?php foreach($elitemembers as $elite) 
-				{ 
-					if($elite['ybid']==$view_id and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer')	
-					{	  
-					?>
-					<tr>
-						<td><?php echo $elite['ybname']; ?></td>
-						<td><?php echo $elite['ybtype']; ?></td>
-						<td><?php echo $elite['yccompany']; ?></td>
-						<td><?php echo $elite['marketer']; ?></td>
-						<td><?php echo $marketer_totalelite;?></td>
-						</tr>
-						<?php 
-					}
-					if($elite['ycmarketerid']==$view_id and $elite['ycbrokerid']==$elite['ybid'] and $elite['ybtype']=='agent' and $elite['yctype']=='agent') 
-					{ 
-					?>
-					<tr>
-						<td><?php echo $elite['ybname']; ?></td>
-						<td><?php echo $elite['ybtype']; ?></td>
-						<td><?php echo $elite['yccompany']; ?></td>
-						<td><?php echo $elite['agents']; ?></td>
-						<td><?php echo $agent_totalelite;?></td>
-					</tr>
-				    <?php 
-					} 
-					}
-					?>
-			
-		
-		<!--End for marketer details-->
-		
-		<!--For agent details-->
-		<?php	foreach($elitemembers as $elite) 
-				{ 
-				if($elite['ybid']==$view_id and $elite['ybtype']=='agent' and $elite['yctype']=='agent')	
-				{	  
-				?>
-				<tr>
-					<td><?php echo $elite['ybname']; ?></td>
-					<td><?php echo $elite['ybtype']; ?></td>
-					<td><?php echo $elite['yccompany']; ?></td>
-					<td><?php echo $elite['agents']; ?></td>
-					<td><?php echo $agent_totalelite;?></td>
-				</tr>
-				<?php 
-				}
-				if($elite['ycmarketerid']==$view_id  and $elite['ybtype']=='agent' and $elite['yctype']=='agent') 
-				{ 
-				?>
-				<tr>
-					<td><?php echo $elite['ybname']; ?></td>
-					<td><?php echo $elite['ybtype']; ?></td>
-					<td><?php echo $elite['yccompany']; ?></td>
-					<td><?php echo $elite['agents']; ?></td>
-					<td></td>
-				</tr>
-				<?php 
-				} 
-				}
-				?>
-		
-		<!--End for agent details-->
+		<!--For View details-->
+	
+	<!--Subbroker view popup-->	   		    
+	<?php if($titletype[0]['type'] =='subbroker') { ?>
+				  <?php foreach($elitemembers as $subbroker) {	?>
+					   
+					 <?php if($subbroker['ybid']==$view_id) {?>
+					  <tr>
+						  <td><?php echo $subbroker['ybname']; ?></td>
+						  <td><?php echo $subbroker['ybtype']; ?></td>
+						  <td><?php echo $subbroker['yccompany']; ?></td>
+						  <td><?php echo "2" ?></td>
+						  <td><?php echo count($subbroker); ?></td>
+					  </tr>
+					  <?php } if($subbroker['ycsubbrokerid']==$view_id) { ?>
+					  <tr>
+						  <td><?php echo $subbroker['ybname']; ?></td>
+						  <td><?php echo $subbroker['ybtype']; ?></td>
+						  <td><?php echo $subbroker['yccompany']; ?></td>
+						  <td><?php echo "1"; ?></td>
+						  <td><?php echo count($subbroker); ?></td>
+					  </tr>
+				<?php  } } ?>	  
+	<?php } ?>
+	
+	
+	
+	<!--Marketer view popup-->	 
+	
+	<?php if($titletype[0]['type'] =='marketer') { ?>
+	          
+	           <?php foreach($elitemembers as $marketer) { ?>
+				     
+				<?php  if($marketer['ybid']==$view_id and $marketer['ybtype']=='marketer') {   ?>
+	
+	                   <tr>
+						  <td><?php echo $marketer['ybname']; ?></td>
+						  <td><?php echo $marketer['ybtype']; ?></td>
+						  <td><?php echo $marketer['yccompany']; ?></td>
+						  <td><?php echo "1"; ?></td>
+						  <td><?php echo count($marketer); ?></td>
+					  </tr>
+	             <?php } ?>
+	
+	           <?php  } ?>
+	<?php  } ?>
+	
+	
+	<!--agent view popup-->	 
+	<?php if($titletype[0]['type'] =='agent') { ?>
+	          
+	           <?php foreach($elitemembers as $agent) {  ?>
+				     
+				<?php  if($agent['ybid']==$view_id and $agent['ybtype']=='agent') {   ?>
+	
+	                   <tr>
+						  <td><?php echo $agent['ybname']; ?></td>
+						  <td><?php echo $agent['ybtype']; ?></td>
+						  <td><?php echo $agent['yccompany']; ?></td>
+						  <td><?php echo "1"; ?></td>
+						  <td><?php echo count($agent); ?></td>
+					  </tr>
+	             <?php } ?>
+	
+	           <?php  } ?>
+	<?php  } ?>
+	
+	
 		</table>
 </div>
 <?php } ?>
