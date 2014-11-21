@@ -402,7 +402,7 @@ function agent_list(id)
 			<?php } ?>
 			
 			<?php if($_POST['fromdate'] != '') {?>
-			<button name="total" id="total" class="button">Download TotalSignUp Details CSV</button>
+			<a href="<?php echo site_url('report/signupdetailss/'.$search['id']); ?>">Download subbroker-details CSV</a>
 			<?php } ?>
 				<?php if(count($reports) > 0) { ?>
 				<?php  foreach($reports as $search) {   
