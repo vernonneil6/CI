@@ -443,37 +443,6 @@ class Reports extends CI_Model
 
 	  return $query;
  	}
- 	/*
-	function brokersearch_count($limit ='',$offset='',$sortby = 'id',$orderby = 'DESC')
- 	{
-	  switch($sortby)
-		{
-			case 'name' 	: $sortby = 'name';break;
-			case 'id' 	: $sortby = 'id';break;
-			default 		: $sortby = 'name';break;
-		}
-		
-		//Ordering Data
-		$this->db->order_by($sortby,$orderby);
-		
-		//Setting Limit for Paging
-		if( $limit != '' && $offset == 0)
-		{ $this->db->limit($limit); }
-		else if( $limit != '' && $offset != 0)
-		{	$this->db->limit($limit, $offset);	}
-		
-		//Executing Query
-		$query = $this->db->get('youg_broker');
-		$this->db->last_query();	
-		if ($query->num_rows() > 0)
-		{
-			return $query->result_array();
-		}
-		else
-		{
-			return array();
-		}
- 	}*/
  	
  	function get_subbroker_byid($id)
  	{

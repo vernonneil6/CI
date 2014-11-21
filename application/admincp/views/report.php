@@ -20,7 +20,7 @@
 			<td>CreatedbyName</td>
 			<td>Status</td>
 		  </tr>
-		  <?php /*foreach($signups as $sign) { ?>			  
+		  <?php foreach($signups as $sign) { ?>			  
 		 
 		 <tr> 
 			 <?php if($sign['id']==$view_id) {  ?>
@@ -32,7 +32,7 @@
 			  <td><?php echo $sign['status'];?></td>
 		     <?php } ?>
 		  </tr>
-		<?php }  */?>
+		<?php }  ?>
 	</table>
 </div>
 </div>
