@@ -648,39 +648,98 @@ class Reports extends CI_Model
 	}		
 	function elitemembers($id)
  	{
-   	    $query = $this->db
-   	   	->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid,yc.brokerid ycbrokerid,(SELECT count(*) FROM `youg_company` where brokerid='.$id.' or subbrokerid='.$id.') as totalelite ')
-		->from('youg_broker yb')
-		->join('youg_company yc','yb.id = yc.brokerid and yc.brokertype = yb.type','left')
-		->where('yc.brokerid',$id)
-		->or_where('yc.subbrokerid',$id)
-		->group_by('yb.id')
-		->get()
-		->result_array();
-		
-		
-		$totalelite='';
-		foreach ($query as $key => $row)
-		{	
-		
-			$brokerquery = $this->db->query('select count(*) as count from youg_company where brokerid='.$row['ybid'].'')->result_array();
-			//print_r($brokerquery[0]['count']);
+   	    $query1 = $this->db->get_where('youg_broker', array('id' => $id))->result_array();
+   	   	   
+   	    if($query1[0]['type'] =='subbroker' and $query1[0]['id']==$id)
+   	    {
+   	     $query = $this->db
+			->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid,yc.brokerid ycbrokerid,(SELECT count(*) FROM `youg_company` where brokerid='.$id.' or subbrokerid='.$id.') as totalelite ')
+			->from('youg_broker yb')
+			->join('youg_company yc','yb.id = yc.brokerid and yc.brokertype = yb.type','left')
+			->where('yc.brokerid',$id)
+			->or_where('yc.subbrokerid',$id)
+			->group_by('yb.id')
+			->get()
+			->result_array();
+			$totalelite='';
+			foreach ($query as $key => $row)
+			{	
 			
-			$query[$key]['count'] = $brokerquery[0]['count'];
-			$total = $query[$key]['totalelite'];
-			if($total != $totalelite){
-								
-				$query[$key]['totalelites'] = $total;
-				$totalelite = $query[$key]['totalelite'];
-			}
+				$brokerquery = $this->db->query('select count(*) as count from youg_company where brokerid='.$row['ybid'].'')->result_array();
+				//print_r($brokerquery[0]['count']);
+				
+				$query[$key]['count'] = $brokerquery[0]['count'];
+				$total = $query[$key]['totalelite'];
+				if($total != $totalelite){
+									
+					$query[$key]['totalelites'] = $total;
+					$totalelite = $query[$key]['totalelite'];
+				}
+			}	
 			
+		}
+   	    if($query1[0]['type'] =='marketer' and $query1[0]['id']==$id)
+   	    {
+   	     $query = $this->db
+			->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid,yc.brokerid ycbrokerid,(SELECT count(*) FROM `youg_company` where brokerid='.$id.' or subbrokerid='.$id.') as totalelite ')
+			->from('youg_broker yb')
+			->join('youg_company yc','yb.id = yc.brokerid and yc.brokertype = yb.type','left')
+			->where('yc.brokerid',$id)
+			->or_where('yc.marketerid',$id)
+			->group_by('yb.id')
+			->get()
+			->result_array();
+			$totalelite='';
+			foreach ($query as $key => $row)
+			{	
+			
+				$brokerquery = $this->db->query('select count(*) as count from youg_company where brokerid='.$row['ybid'].'')->result_array();
+				$query[$key]['count'] = $brokerquery[0]['count'];
+				$total = $query[$key]['totalelite'];
+				if($total != $totalelite){
+									
+					$query[$key]['totalelites'] = $total;
+					$totalelite = $query[$key]['totalelite'];
+				}
+					
+		   }	
+			
+		}
+   	    if($query1[0]['type'] =='agent' and $query1[0]['id']==$id)
+   	    {
+   	     $query = $this->db
+			->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid,yc.brokerid ycbrokerid,(SELECT count(*) FROM `youg_company` where brokerid='.$id.' or subbrokerid='.$id.') as totalelite ')
+			->from('youg_broker yb')
+			->join('youg_company yc','yb.id = yc.brokerid and yc.brokertype = yb.type','left')
+			->where('yc.brokerid',$id)
+			->group_by('yb.id')
+			->get()
+			->result_array();
+			$totalelite='';
+			foreach ($query as $key => $row)
+			{	
+			
+				$brokerquery = $this->db->query('select count(*) as count from youg_company where brokerid='.$row['ybid'].'')->result_array();
+				//print_r($brokerquery[0]['count']);
+				
+				$query[$key]['count'] = $brokerquery[0]['count'];
+				$total = $query[$key]['totalelite'];
+				if($total != $totalelite){
+									
+					$query[$key]['totalelites'] = $total;
+					$totalelite = $query[$key]['totalelite'];
+				}
+				
+		   }	
 			
 		}
 		//print_r($query);die;
 		return $query;
 		//echo $this->db->last_query();		
- 	} 
- 	function totalelites($id)
+ 	}
+ 	 	
+ 	 
+ 	/*function totalelites($id)
  	{
 	            $this->db->select('*');
 				$this->db->from('youg_company');
@@ -706,7 +765,7 @@ class Reports extends CI_Model
 				
 			return	$num_results = $this->db->count_all_results();
 		
-	}
+	}*/
  	
  	function signbtndate($from,$end)
  	{
