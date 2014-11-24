@@ -870,7 +870,7 @@ class Report extends CI_Controller {
 		//$this->data['fromdate']= $this->input->post('fromdate');
 		//$this->data['enddate']= $this->input->post('enddate');
 		
-		 $from='11-1-14';
+		 $from='11-13-14';
 		/*echo $fromdate=$this->input->post('fromdate');
 			if($fromdate !='')	{
 			   //echo $from=date('Y-m-d', strtotime($fromdate));
