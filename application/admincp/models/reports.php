@@ -360,7 +360,8 @@ class Reports extends CI_Model
 	public function brokersearches($search_broker,$search_marketer,$search_agent,$from,$end)
 	{
 		
-		if($search_broker != '' and $search_marketer =='' and $search_agent =='')
+				
+		if($search_broker != '' and $search_marketer =='' and $search_agent =='' and $from =='')
 		{
 			
 			$this->db->select('*')
@@ -375,7 +376,7 @@ class Reports extends CI_Model
 			
 			
 		}
-		if($search_broker != '' and $search_marketer !='' and $search_agent =='')
+		if($search_broker != '' and $search_marketer !='' and $search_agent =='' and $from =='')
 		{
 			
 			$this->db->select('*')
@@ -389,7 +390,7 @@ class Reports extends CI_Model
 			return $checks;
 		
 		}
-		if($search_broker != '' and $search_marketer !='' and $search_agent !='')
+		if($search_broker != '' and $search_marketer !='' and $search_agent !='' and $from =='')
 		{
 			
 			$this->db->select('*')
@@ -403,10 +404,10 @@ class Reports extends CI_Model
 			return $checkss;
 		
 		}
-		if($from != '' and $end == '')
+		if($from != '' and $end == '' and $search_broker == '' and $search_marketer =='' and $search_agent =='')
 		{
 			$this->db->select('*')
-			         ->where('registerdate =',$from);
+			         ->where('registerdate >=',$from);
 		    $query = $this->db->get('youg_company');
 		    $dates='';
 		    if($query->num_rows() > 0)
@@ -415,7 +416,7 @@ class Reports extends CI_Model
 			}
 			return $dates;
 		}
-		if($from != '' and $end != '')
+		if($from != '' and $end != '' and $search_broker == '' and $search_marketer =='' and $search_agent =='')
 		{
 			$this->db->select('*')
 			         ->where('registerdate >=',$from)
@@ -427,6 +428,86 @@ class Reports extends CI_Model
 				$range=$query->result_array();
 			}
 			return $range;
+		}
+	
+	
+		//single date search
+		if($from != '' and $end =='')
+		{		 	
+		   if($search_broker !='')
+		   {
+		   	$where="(`brokerid` = ".$search_broker." OR `subbrokerid` = ".$search_broker." )";
+		 	$this->db->select('*')
+			         ->where($where)
+			         ->where(array('registerdate ='=>$from));
+			$query = $this->db->get('youg_company');
+		    }
+		    if($search_marketer !='')
+		    {
+			$where="(`brokerid` = ".$search_marketer." OR `marketerid` = ".$search_marketer." )";
+		 	$this->db->select('*')
+			         ->where($where)
+			         ->where(array('registerdate ='=>$from));
+			$query = $this->db->get('youg_company');	
+			}
+		    if($search_agent !='')
+		    {
+			$where="(`brokerid` = ".$search_agent." OR `brokertype` = 'agent' )";
+		 	$this->db->select('*')
+			         ->where($where)
+			         ->where(array('registerdate ='=>$from));
+			$query = $this->db->get('youg_company');	
+			}
+		    
+		    $this->db->last_query();
+		    $sub_date='';
+		    if($query->num_rows() > 0)
+		    {
+				$sub_date=$query->result_array();
+			}
+			return $sub_date;
+		}
+			
+		
+		//multi date search
+		if($from != '' and $end !='')
+		{
+		   
+		   if($search_broker !='')
+		   {
+			$where="(`brokerid` = ".$search_broker." OR `subbrokerid` = ".$search_broker." )";   	
+		 	$this->db->select('*')
+			         ->where($where)
+			         ->where('registerdate >=',$from)
+			         ->where('registerdate <=',$end);
+			$query = $this->db->get('youg_company');
+		    }
+		   if($search_marketer !='')
+		   {
+			$where="(`brokerid` = ".$search_marketer." OR `marketerid` = ".$search_marketer." )";   		
+		 	$this->db->select('*')
+			         ->where($where)
+			         ->where('registerdate >=',$from)
+			         ->where('registerdate <=',$end);
+			$query = $this->db->get('youg_company');
+		    }
+		   if($search_agent !='')
+		   {	
+		 	$where="(`brokerid` = ".$search_agent." AND `brokertype` = 'agent' )";   		
+		 	$this->db->select('*')
+			         ->where($where)
+			         ->where('registerdate >=',$from)
+			         ->where('registerdate <=',$end);
+			$query = $this->db->get('youg_company');
+		    }
+		    
+		    echo $this->db->last_query();
+		    $totalsub_date='';
+		    if($query->num_rows() > 0)
+		    {
+				$totalsub_date=$query->result_array();
+			}
+			return $totalsub_date;
 		}
 		
 	}
