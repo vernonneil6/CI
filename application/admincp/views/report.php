@@ -19,6 +19,7 @@
 			<td>CreatedbyName</td>
 			<td>Status</td>
 		  </tr>
+		  
 		  <?php foreach($signups as $sign) { ?>			  
 		 
 		 <tr> 
@@ -69,26 +70,19 @@
 		<!--For View details-->
 	
 	<!--Subbroker view popup-->	   		    
-	<?php if($titletype[0]['type'] =='subbroker') { ?>
+	<?php if($titletype[0]['type'] =='subbroker') { 
+		//echo "<pre>";print_r($elitemembers);?>
 				  <?php foreach($elitemembers as $subbroker) {	?>
-					   
-					 <?php if($subbroker['ybid']==$view_id) {?>
+					
 					  <tr>
 						  <td><?php echo $subbroker['ybname']; ?></td>
 						  <td><?php echo $subbroker['ybtype']; ?></td>
 						  <td><?php echo $subbroker['yccompany']; ?></td>
-						  <td><?php echo "2" ?></td>
-						  <td><?php echo count($subbroker); ?></td>
+						  <td><?php echo $subbroker['count']; ?></td>						  
+						  <td><?php echo $subbroker['totalelites']; ?></td>
 					  </tr>
-					  <?php } if($subbroker['ycsubbrokerid']==$view_id) { ?>
-					  <tr>
-						  <td><?php echo $subbroker['ybname']; ?></td>
-						  <td><?php echo $subbroker['ybtype']; ?></td>
-						  <td><?php echo $subbroker['yccompany']; ?></td>
-						  <td><?php echo "1"; ?></td>
-						  <td><?php echo count($subbroker); ?></td>
-					  </tr>
-				<?php  } } ?>	  
+					 
+				<?php  } ?>	  
 	<?php } ?>
 	
 	
@@ -98,18 +92,14 @@
 	<?php if($titletype[0]['type'] =='marketer') { ?>
 	          
 	           <?php foreach($elitemembers as $marketer) { ?>
-				     
-				<?php  if($marketer['ybid']==$view_id and $marketer['ybtype']=='marketer') {   ?>
-	
-	                   <tr>
+				     <tr>
 						  <td><?php echo $marketer['ybname']; ?></td>
 						  <td><?php echo $marketer['ybtype']; ?></td>
 						  <td><?php echo $marketer['yccompany']; ?></td>
-						  <td><?php echo "1"; ?></td>
-						  <td><?php echo count($marketer); ?></td>
+						  <td><?php echo $marketer['count']; ?></td>
+						  <td><?php echo $marketer['totalelite']; ?></td>
 					  </tr>
-	             <?php } ?>
-	
+					 	
 	           <?php  } ?>
 	<?php  } ?>
 	
@@ -125,9 +115,9 @@
 						  <td><?php echo $agent['ybname']; ?></td>
 						  <td><?php echo $agent['ybtype']; ?></td>
 						  <td><?php echo $agent['yccompany']; ?></td>
-						  <td><?php echo "1"; ?></td>
-						  <td><?php echo count($agent); ?></td>
-					  </tr>
+						  <td><?php echo $agent['count']; ?></td>
+						  <td><?php echo $agent['totalelite']; ?></td>
+					   </tr>
 	             <?php } ?>
 	
 	           <?php  } ?>
