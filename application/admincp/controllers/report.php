@@ -877,7 +877,8 @@ class Report extends CI_Controller {
 		    if($enddate !='') {
 		         $end=date('Y-m-d', strtotime($enddate));	
 		    } else {
-			      $end='';	
+				
+			     echo $end=date('Y-m-d', strtotime($fromdate));
 			}
 			
 		$site_url = $this->settings->get_setting_value(2);
@@ -902,7 +903,6 @@ class Report extends CI_Controller {
 							->setCellValue('B1', 'Register Date')							
 							->setCellValue('C1', 'Broker')	
 							->setCellValue('D1', 'Type')	
-							->setCellValue('E1', 'Signup_date')	
 							->setCellValue('F1', 'Individual_sale')	
 							->setCellValue('G1', 'Total_sale');	
 														  
