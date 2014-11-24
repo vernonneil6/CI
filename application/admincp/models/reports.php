@@ -404,7 +404,7 @@ class Reports extends CI_Model
 			return $checkss;
 		
 		}
-		if($from != '' and $end == '' and $search_broker == 'all' and $search_marketer =='all' and $search_agent =='all')
+		if($from != '' and $end == '' and $search_broker =='all' and $search_marketer =='all' and $search_agent =='all')
 		{
 			$this->db->select('*')
 			         ->where('registerdate >=',$from);
@@ -416,7 +416,7 @@ class Reports extends CI_Model
 			}
 			return $dates;
 		}
-		if($from != '' and $end != '' and $search_broker == 'all' and $search_marketer =='all' and $search_agent =='all')
+		if($from != '' and $end != '' and $search_broker =='all' and $search_marketer =='all' and $search_agent =='all')
 		{
 			$this->db->select('*')
 			         ->where('registerdate >=',$from)
