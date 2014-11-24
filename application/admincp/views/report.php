@@ -71,7 +71,7 @@
 	
 	<!--Subbroker view popup-->	   		    
 	<?php if($titletype[0]['type'] =='subbroker') { 
-		//echo "<pre>";print_r($elitemembers);?>
+		?>
 				  <?php foreach($elitemembers as $subbroker) {	?>
 					
 					  <tr>
@@ -163,8 +163,14 @@
 
 </script>
 <script>
-function marketer_list(id)
+function marketer_list(sel,id)
 {
+	
+	 var i = sel.selectedIndex;
+	 
+	 if (i != -1) {
+		document.getElementById("subbrokername").value = sel.options[i].text;  
+	 }
 	//alert('this id value :'+id);
 	 $.ajax({ type: "POST",
                     url: '<?php echo site_url('report/marketer_list/').'/';?>'+id,
@@ -198,7 +204,7 @@ function agent_list(id)
   $(document).ready(function(){
 		
 		$('.colorbox').colorbox({'width':'60%','height':'70%'});
-	
+		
   });
 </script>
 <!-- #content -->
@@ -232,15 +238,16 @@ function agent_list(id)
 					<label for="keysearch">Search Subbroker</label>
 				  </div>
 				   <div class="con" id="con_text"> 
-					    <select name="subbroker" id="subbroker" class="select" onChange="marketer_list(this.value)">
-					      <option>All</option>
+					    <select name="subbroker" id="subbroker" class="select" onChange="marketer_list(this,this.value)">
+					      <option value="all">All</option>
 					      <?php for($i=0;$i<count($allsubbroker);$i++) {?>
 							  <?php if($sub != $allsubbroker[$i]['id']) {?>
-							  <option value="<?php echo $allsubbroker[$i]['id'];?>"><?php echo $allsubbroker[$i]['name'];?></option>
+							  <option value="<?php echo $allsubbroker[$i]['id'];?>"><?php echo ucfirst($allsubbroker[$i]['name']);?></option>
 						   <?php } else { ?>
-							   <option value="<?php echo $allsubbroker[$i]['id'];?>" selected><?php echo $allsubbroker[$i]['name'];?></option>
+							   <option value="<?php echo $allsubbroker[$i]['id'];?>" selected><?php echo ucfirst($allsubbroker[$i]['name']);?></option>
 						  <?php } }?>		  
                    	   </select>
+                   	   <input id="subbrokername" type="hidden" name="subbrokername"  />
 				 </div>
 				 
 				<div class="lab" id="lab_text">
@@ -343,10 +350,12 @@ function agent_list(id)
 			<?php if($_POST['fromdate'] != '') {?>
 			<a href="<?php echo site_url('report/signupdetailss?fromdates='.$_POST['fromdate'].'&todates='.$_POST['enddate']); ?>">Download subbroker-details CSV</a>
 			<?php } ?>
-				<?php if(count($reports) > 0) { ?>
+						
+			<?php if(count($reports) > 0) { ?>
 				<?php  foreach($reports as $search) {   
 						    
-									if($search['type']=='subbroker') { ?>
+						          //subroker search
+									if($search['type']=='subbroker' and $_POST['fromdate'] == '') { ?>
 									  <tr>
 										<td style="font-weight:bold;"><?php echo ucfirst(stripslashes($search['name']));?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
@@ -356,7 +365,7 @@ function agent_list(id)
 								
 								     <?php }  ?>
 															
-								
+								<!--Marketer search-->
 								<?php if($search['type']=='marketer'){ ?>
 									  <tr>
 										<td style="font-weight:bold;"><?php echo ucfirst(stripslashes($search['name']));?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
@@ -367,6 +376,7 @@ function agent_list(id)
 									  </tr>	 
 								<?php } ?>
 								
+								<!--Agent search-->
 								<?php if($search['type']=='agent'){ ?>
 									<tr>
 										<td style="font-weight:bold;"><?php echo ucfirst(stripslashes($search['name']));?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
@@ -377,15 +387,41 @@ function agent_list(id)
 									</tr> 
 								<?php } ?> 
 								
-								<?php if($_POST['fromdate'] != '') { ?>
+								<!--Search with only SingUpdate-->
+								<?php if($_POST['fromdate'] != '' and $_POST['subbroker'] =='all') { ?>
 									    <tr>
 											
 										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo substr(stripslashes($search['registerdate']),0,10);?></td>
-										<td><a href="<?php echo site_url('report/csv/signup'); ?>">Download SignUp details CSV</a></td>
+										<td><a href="<?php echo site_url('report/csv/signup'); ?>">Download Signup details CSV</a></td>
 										<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['company']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
 									</tr>  
 								<?php } ?> 
+								
+								<!--subroker , marketer , agent search with Single date-->
+								<?php if($_POST['fromdate'] != '' and $_POST['enddate'] =='') { ?>
+									<tr>
+										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
+										<td><?php echo substr(stripslashes($search['registerdate']),0,10);?></td>
+										<td><a href="<?php echo site_url('report/csv/signup'); ?>">Download Sub-Signup details CSV</a></td>
+										<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['company']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
+									</tr>  
+								<?php } ?> 
+								
+								<!--subroker search with Multiple date-->
+								<?php if($_POST['fromdate'] != '' and $_POST['enddate'] !='') { ?>
+									<tr>
+										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
+										<td><?php echo substr(stripslashes($search['registerdate']),0,10);?></td>
+										<td><a href="<?php echo site_url('report/csv/signup'); ?>">Download TotalSub-Signup details CSV</a></td>
+										<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['company']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
+									</tr>  
+								<?php } ?> 
+								
+								
+								
+								
+								 
 					  <?php }  ?>
 	</table>
 	<?php if($this->pagination->create_links()) { ?>

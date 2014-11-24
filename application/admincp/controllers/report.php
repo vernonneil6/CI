@@ -961,9 +961,9 @@ class Report extends CI_Controller {
 	{
 		
 		$data['mlist'] = $this->reports->get_marketerdetails($subid);  
-		$menu.='<option>Select marketer</option>';
+		$menu.='<option value="all">Select marketer</option>';
 		foreach($data['mlist'] as $list){
-			$menu.="<option value=".$list['id'].">".$list['name']."</option>";
+			$menu.="<option value=".$list['id'].">".ucfirst($list['name'])."</option>";
 		}
 		print_r($menu);
         
@@ -971,15 +971,16 @@ class Report extends CI_Controller {
 	public function agent_list($mid)
 	{
 		$data['alist'] = $this->reports->get_agentdetails($mid);  
-		$menus.='<option>Select agent</option>';
+		$menus.='<option value="all">Select agent</option>';
 	    foreach($data['alist'] as $lists){
-			$menus.="<option value=".$lists['id'].">".$lists['name']."</option>";
+			$menus.="<option value=".$lists['id'].">".ucfirst($lists['name'])."</option>";
 		}	
 		print_r($menus);
 	}
 	public function reportsearch()
 	{   
 		
+		//print_r($_POST);die;
 		$this->data['allsubbroker']=$this->reports->get_subbrokerdetails();  
 		$this->data['sub']= $this->input->post('subbroker');
 		$this->data['mark']= $this->input->post('marketer');
