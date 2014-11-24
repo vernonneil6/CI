@@ -176,6 +176,7 @@ function marketer_list(sel,id)
                     success: function(datas){
                         //alert(datas);
                         $('#marketer').html(datas);
+                        $('#marks').val(datas);
                 },
 });
 
@@ -256,12 +257,10 @@ function agent_list(id)
 				  </div>
 				 <div class="con" id="con_text"> 
 					   <select name="marketer" id="marketer" class="select" onChange="agent_list(this.value)" disabled>
-						  <?php if($_POST['marketer']=='') {?> 
-					      <option value="0">All</option>
-					      <?php } else { ?>
-						  <option value="<?php echo $_POST['marketer'];?>" selected><?php echo $_POST['marketer'];?></option>
-						  <?php } ?>	  	
+						  <option value="0">All</option>
+					      	  	
                    	   </select>
+                   	   <input type="hidden" name="marks" value="" id="marks">
 				 </div>
 				 
 				<div class="lab" id="lab_text">
@@ -356,7 +355,8 @@ function agent_list(id)
 			<?php } ?>
 			
 			<?php if($_POST['fromdate'] != '') {?>
-			<a href="<?php echo site_url('report/signupdetailss?fromdates='.$_POST['fromdate'].'&todates='.$_POST['enddate']); ?>">Download Total Elitesales-details CSV</a>
+			<a href="<?php echo site_url('report/signupdetailss?fromdates='.$_POST['fromdate'].'&todates='.$_POST['enddate']); ?>">Download Total Elitesales-details CSV</a><br>
+			<p>Date Range Searched &nbsp;<input type="text" name="date" class="input" value="<?php echo $_POST['fromdate'];?>"> To <input type="text" name="date" value="<?php echo $_POST['enddate'];?>"></p>
 			<?php } ?>
 						
 			<?php if(count($reports) > 0) { ?>
@@ -396,7 +396,7 @@ function agent_list(id)
 								<?php } ?> 
 								
 								<!--Search with only SingUpdate And multiple date-->
-								<?php if($_POST['fromdate'] != '' and $_POST['subbroker'] ==0) { ?>
+								<?php if($_POST['fromdate'] != '' and $_POST['subbroker'] =='all') { ?>
 									    <tr>
 											
 										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
@@ -408,6 +408,7 @@ function agent_list(id)
 								
 								<!--subroker , marketer , agent search with Single date-->
 								<?php if($_POST['fromdate'] != '' and $_POST['enddate'] =='') { ?>
+									
 									<tr>
 										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo substr(stripslashes($search['registerdate']),0,10);?></td>
@@ -418,6 +419,7 @@ function agent_list(id)
 								
 								<!--subroker search with Multiple date-->
 								<?php if($_POST['fromdate'] != '' and $_POST['enddate'] !='') { ?>
+									
 									<tr>
 										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo substr(stripslashes($search['registerdate']),0,10);?></td>

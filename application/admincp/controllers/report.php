@@ -980,7 +980,7 @@ class Report extends CI_Controller {
 	public function reportsearch()
 	{   
 		
-		//print_r($_POST);die;
+		
 		$this->data['allsubbroker']=$this->reports->get_subbrokerdetails();  
 		$this->data['sub']= $this->input->post('subbroker');
 		$this->data['mark']= $this->input->post('marketer');
