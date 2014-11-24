@@ -501,7 +501,7 @@ class Reports extends CI_Model
 			$query = $this->db->get('youg_company');
 		    }
 		    
-		    echo $this->db->last_query();
+		    //echo $this->db->last_query();
 		    $totalsub_date='';
 		    if($query->num_rows() > 0)
 		    {
