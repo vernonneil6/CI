@@ -341,7 +341,7 @@ function agent_list(id)
 			<?php } ?>
 			
 			<?php if($_POST['fromdate'] != '') {?>
-			<a href="<?php echo site_url('report/signupdetailss'); ?>">Download subbroker-details CSV</a>
+			<a href="<?php echo site_url('report/signupdetailss?fromdates='.$_POST['fromdate'].'&todates='.$_POST['enddate']); ?>">Download subbroker-details CSV</a>
 			<?php } ?>
 				<?php if(count($reports) > 0) { ?>
 				<?php  foreach($reports as $search) {   
@@ -379,9 +379,10 @@ function agent_list(id)
 								
 								<?php if($_POST['fromdate'] != '') { ?>
 									    <tr>
+											
 										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo substr(stripslashes($search['registerdate']),0,10);?></td>
-										<td><a href="<?php echo site_url('report/csv/signup'); ?>">Download SignUp details CSV</a></td>
+										<td><a href="<?php echo site_url('report/csv/signup'); ?>"><?php echo $_POST['fromdate'];?>Download SignUp details CSV</a></td>
 										<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['company']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
 									</tr>  
 								<?php } ?> 
