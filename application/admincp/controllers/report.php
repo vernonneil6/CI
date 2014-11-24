@@ -55,6 +55,10 @@ class Report extends CI_Controller {
 					$this->data['selsite'] = array();
 				}
 		
+		//Loadin Pagination Custome Config File
+		$this->config->load('paging',TRUE);
+		$this->paging = $this->config->item('paging');
+		
 		//Load header and save in variable
 		$this->data['header'] = $this->load->view('header',$this->data,true);
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
@@ -1034,12 +1038,19 @@ class Report extends CI_Controller {
 				
 		} 
 		
-		$limit = $this->paging['per_page'];
-		$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
-		$this->paging['base_url'] = site_url("report/reportsearch");
-		$this->paging['uri_segment'] = 5;
-		$this->paging['total_rows'] = $this->reports->brokersearch_count($limit,$offset);
-		$this->pagination->initialize($this->paging);
+			$this->load->library('pagination');
+			
+			$limit = $this->paging['per_page'];
+			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+			//Addingg Setting Result to variable
+			$this->data['companydispute'] = $this->reports->listdispute($limit,$offset);
+			
+			$this->paging['base_url'] = site_url("report/reportsearch");
+			$this->paging['uri_segment'] = 3;
+			$this->paging['total_rows'] = $this->reports->report_count();
+			$this->pagination->initialize($this->paging);
+			
+
 		
 		  /*  $this->load->library('pagination');
 		   	$limit=$this->paging['per_page'];

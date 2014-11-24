@@ -354,7 +354,7 @@ function agent_list(id)
 			<?php } ?>
 			
 			<?php if($_POST['fromdate'] != '') {?>
-			<a href="<?php echo site_url('report/signupdetailss/'.$search['id']); ?>">Download subbroker-details CSV</a>
+			<a href="<?php echo site_url('report/signupdetailss'); ?>">Download subbroker-details CSV</a>
 			<?php } ?>
 				<?php if(count($reports) > 0) { ?>
 				<?php  foreach($reports as $search) {   
@@ -400,6 +400,9 @@ function agent_list(id)
 								<?php } ?> 
 					  <?php }  ?>
 	</table>
+	<?php if($this->pagination->create_links()) { ?>
+        <div class="pagination"><?php echo $this->pagination->create_links(); ?></div>
+    <?php } ?>
     <?php  /*if($this->pagination->create_links()) { ?>
     <tr style="background:#ffffff">
       <td></td>
