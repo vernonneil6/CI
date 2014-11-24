@@ -902,9 +902,7 @@ class Report extends CI_Controller {
 							->setCellValue('A1', 'Company')							
 							->setCellValue('B1', 'Register Date')							
 							->setCellValue('C1', 'Broker')	
-							->setCellValue('D1', 'Type')	
-							->setCellValue('F1', 'Individual_sale')	
-							->setCellValue('G1', 'Total_sale');	
+							->setCellValue('D1', 'Type');
 														  
 					$items = $this->reports->signbtndate($from,$end);
 					$row=2;
