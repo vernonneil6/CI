@@ -165,10 +165,8 @@
 <script>
 function marketer_list(sel,id)
 {
-	
-	 var i = sel.selectedIndex;
-	 
-	 if (i != -1) {
+	var i = sel.selectedIndex;
+	if (i != -1) {
 		document.getElementById("subbrokername").value = sel.options[i].text;  
 	 }
 	//alert('this id value :'+id);
@@ -205,6 +203,9 @@ function agent_list(id)
 		
 		$('.colorbox').colorbox({'width':'60%','height':'70%'});
 		
+		//$("#subbroker option[value='3']").attr("selected", "selected");
+		//marketer_list(3); 
+		//$("#marketer").trigger("click");
   });
 </script>
 <!-- #content -->
@@ -239,7 +240,7 @@ function agent_list(id)
 				  </div>
 				   <div class="con" id="con_text"> 
 					    <select name="subbroker" id="subbroker" class="select" onChange="marketer_list(this,this.value)">
-					      <option value="all">All</option>
+					      <option value="0">All</option>
 					      <?php for($i=0;$i<count($allsubbroker);$i++) {?>
 							  <?php if($sub != $allsubbroker[$i]['id']) {?>
 							  <option value="<?php echo $allsubbroker[$i]['id'];?>"><?php echo ucfirst($allsubbroker[$i]['name']);?></option>
@@ -255,8 +256,11 @@ function agent_list(id)
 				  </div>
 				 <div class="con" id="con_text"> 
 					   <select name="marketer" id="marketer" class="select" onChange="agent_list(this.value)" disabled>
-					      <option>All</option>
-					      	
+						  <?php if($_POST['marketer']=='') {?> 
+					      <option value="0">All</option>
+					      <?php } else { ?>
+						  <option value="<?php echo $_POST['marketer'];?>" selected><?php echo $_POST['marketer'];?></option>
+						  <?php } ?>	  	
                    	   </select>
 				 </div>
 				 
@@ -265,7 +269,11 @@ function agent_list(id)
 				  </div>
 				  <div class="con" id="con_text"> 
 					   <select name="agent" id="agent" class="select" disabled>
-					     <option>All</option>
+					  <?php if($_POST['agent']=='') {?> 
+					      <option value="0">All</option>
+					      <?php } else { ?>
+						  <option value="<?php echo $_POST['agent'];?>" selected><?php echo $_POST['agent'];?></option>
+						  <?php } ?>
 					     
                    	   </select>
 				</div>
@@ -348,7 +356,7 @@ function agent_list(id)
 			<?php } ?>
 			
 			<?php if($_POST['fromdate'] != '') {?>
-			<a href="<?php echo site_url('report/signupdetailss?fromdates='.$_POST['fromdate'].'&todates='.$_POST['enddate']); ?>">Download subbroker-details CSV</a>
+			<a href="<?php echo site_url('report/signupdetailss?fromdates='.$_POST['fromdate'].'&todates='.$_POST['enddate']); ?>">Download Total Elitesales-details CSV</a>
 			<?php } ?>
 						
 			<?php if(count($reports) > 0) { ?>
@@ -387,8 +395,8 @@ function agent_list(id)
 									</tr> 
 								<?php } ?> 
 								
-								<!--Search with only SingUpdate-->
-								<?php if($_POST['fromdate'] != '' and $_POST['subbroker'] =='all') { ?>
+								<!--Search with only SingUpdate And multiple date-->
+								<?php if($_POST['fromdate'] != '' and $_POST['subbroker'] ==0) { ?>
 									    <tr>
 											
 										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
