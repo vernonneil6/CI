@@ -817,17 +817,22 @@ class Reports extends CI_Model
 		
 	}*/
  	
- 	function signbtndate($from,$end)
+ 	function signbtndate($from,$to)
  	{
+		if($to == $from){
+			$to_date = 'registerdate >='.$from;
+		}
+		else{
+			$to_date = 'registerdate <='.$to;
+		}
 		return $this->db
-		->select('c.company,c.registerdate')
+		->select('c.company,c.registerdate,b.name,b.type')
 		->from('youg_company c')
 		->join('youg_broker b','c.brokerid = b.id and c.brokertype = b.type','left')
-		->where('registerdate >=',$from)
-		->where('registerdate <=',$end)
+		->where('registerdate >=',$from)		
+		->where($to_date)
 		->get()
 		->result_array();
-		echo $this->db->last_query();die;
 	}
 	function listdispute($limit ='',$offset='')
  	{

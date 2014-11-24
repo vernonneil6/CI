@@ -348,7 +348,7 @@ function agent_list(id)
 			<?php } ?>
 			
 			<?php if($_POST['fromdate'] != '') {?>
-			<a href="<?php echo site_url('report/signupdetailss'); ?>">Download Total Elite Sales-details CSV</a>
+			<a href="<?php echo site_url('report/signupdetailss?fromdates='.$_POST['fromdate'].'&todates='.$_POST['enddate']); ?>">Download subbroker-details CSV</a>
 			<?php } ?>
 						
 			<?php if(count($reports) > 0) { ?>
@@ -390,6 +390,7 @@ function agent_list(id)
 								<!--Search with only SingUpdate-->
 								<?php if($_POST['fromdate'] != '' and $_POST['subbroker'] =='all') { ?>
 									    <tr>
+											
 										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo substr(stripslashes($search['registerdate']),0,10);?></td>
 										<td><a href="<?php echo site_url('report/csv/signup'); ?>">Download Signup details CSV</a></td>

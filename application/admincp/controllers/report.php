@@ -865,24 +865,20 @@ class Report extends CI_Controller {
 	}
 	public function signupdetailss()
     {
-	
-		
-		$this->data['fromdate']= $this->input->post('fromdate');
-		$this->data['enddate']= $this->input->post('enddate');
-		
-		
-		$fromdate=$this->input->post('fromdate');
+
+		   $fromdate= $_GET['fromdates'];
 			if($fromdate !='')	{
-			    $from=date('Y-m-d', strtotime($fromdate));
+			   $from=date('Y-m-d', strtotime($fromdate));
 		    }  else  {
 			    $from='';	
 			}
 			
-			$enddate=$this->input->post('enddate'); 
+			$enddate=$_GET['todates'];
 		    if($enddate !='') {
 		         $end=date('Y-m-d', strtotime($enddate));	
 		    } else {
-			      $end='';	
+				
+			     echo $end=date('Y-m-d', strtotime($fromdate));
 			}
 			
 		$site_url = $this->settings->get_setting_value(2);
@@ -906,10 +902,7 @@ class Report extends CI_Controller {
 							->setCellValue('A1', 'Company')							
 							->setCellValue('B1', 'Register Date')							
 							->setCellValue('C1', 'Broker')	
-							->setCellValue('D1', 'Type')	
-							->setCellValue('E1', 'Signup_date')	
-							->setCellValue('F1', 'Individual_sale')	
-							->setCellValue('G1', 'Total_sale');	
+							->setCellValue('D1', 'Type');
 														  
 					$items = $this->reports->signbtndate($from,$end);
 					$row=2;
