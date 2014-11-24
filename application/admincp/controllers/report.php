@@ -878,7 +878,7 @@ class Report extends CI_Controller {
 		         $end=date('Y-m-d', strtotime($enddate));	
 		    } else {
 				
-			     echo $end=date('Y-m-d', strtotime($fromdate));
+			     $end=date('Y-m-d', strtotime($fromdate));
 			}
 			
 		$site_url = $this->settings->get_setting_value(2);

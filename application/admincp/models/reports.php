@@ -739,19 +739,19 @@ class Reports extends CI_Model
  	function signbtndate($from,$to)
  	{
 		if($to == $from){
-			$to_date = 'registerdate >='.$from;
+			$where = "`registerdate` >= '".$from."'";
 		}
 		else{
-			$to_date = 'registerdate <='.$to;
+			$where = "(`registerdate` >= '".$from ."' AND `registerdate` <= '".$to."')";
 		}
 		return $this->db
 		->select('c.company,c.registerdate,b.name,b.type')
 		->from('youg_company c')
 		->join('youg_broker b','c.brokerid = b.id and c.brokertype = b.type','left')
-		->where('registerdate >=',$from)		
-		->where($to_date)
+		->where($where)
 		->get()
-		->result_array();
+		->result_array();	
+		
 	}
 	function listdispute($limit ='',$offset='')
  	{
