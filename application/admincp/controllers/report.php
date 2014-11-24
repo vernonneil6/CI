@@ -866,14 +866,14 @@ class Report extends CI_Controller {
 	public function signupdetailss()
     {
 
-		   $fromdate= $this->input->post('fromdates');
+		   $fromdate= $_GET['fromdates'];
 			if($fromdate !='')	{
 			   $from=date('Y-m-d', strtotime($fromdate));
 		    }  else  {
 			    $from='';	
 			}
 			
-			$enddate=$this->input->post('todates');
+			$enddate=$_GET['todates'];
 		    if($enddate !='') {
 		         $end=date('Y-m-d', strtotime($enddate));	
 		    } else {
