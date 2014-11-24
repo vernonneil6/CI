@@ -867,23 +867,24 @@ class Report extends CI_Controller {
     {
 	
 		
-		$this->data['fromdate']= $this->input->post('fromdate');
-		$this->data['enddate']= $this->input->post('enddate');
+		//$this->data['fromdate']= $this->input->post('fromdate');
+		//$this->data['enddate']= $this->input->post('enddate');
 		
-		
-		$fromdate=$this->input->post('fromdate');
+		 $from='11-1-14';
+		/*echo $fromdate=$this->input->post('fromdate');
 			if($fromdate !='')	{
-			    $from=date('Y-m-d', strtotime($fromdate));
+			   //echo $from=date('Y-m-d', strtotime($fromdate));
+			   $from='11-1-14';
 		    }  else  {
 			    $from='';	
 			}
 			
-			$enddate=$this->input->post('enddate'); 
+		echo	$enddate=$this->input->post('enddate'); 
 		    if($enddate !='') {
-		         $end=date('Y-m-d', strtotime($enddate));	
+		         echo $end=date('Y-m-d', strtotime($enddate));	
 		    } else {
 			      $end='';	
-			}
+			}*/
 			
 		$site_url = $this->settings->get_setting_value(2);
 		if( $this->session->userdata['youg_admin'] )
@@ -911,7 +912,7 @@ class Report extends CI_Controller {
 							->setCellValue('F1', 'Individual_sale')	
 							->setCellValue('G1', 'Total_sale');	
 														  
-					$items = $this->reports->signbtndate($from,$end);
+					$items = $this->reports->signbtndate($from);
 					$row=2;
 					foreach($items as $row_data)
 					{
