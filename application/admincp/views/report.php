@@ -270,7 +270,7 @@ function viewlist(sel,id)
 				  </div>
 				 <div class="con" id="con_text"> 
 					   <select name="marketer" id="marketer" class="select" onChange="agent_list(this,this.value)" disabled>
-						  <?php if($_POST['marketer'] =='') { ?>
+						  <?php if($_POST['marketer']==0) { ?>
 						  <option value="0">All</option>
 						  <?php }  else { ?>
 						  <option value="<?php echo $_POST['marketer'];?>"><?php echo $_POST['marketername'];?></option>
@@ -284,7 +284,7 @@ function viewlist(sel,id)
 				  </div>
 				  <div class="con" id="con_text"> 
 					   <select name="agent" id="agent" class="select"  onChange="viewlist(this,this.value)" disabled>
-					  <?php if($_POST['agent']=='') {?> 
+					  <?php if($_POST['agent']==0) {?> 
 					      <option value="0">All</option>
 					      <?php } else { ?>
 						  <option value="<?php echo $_POST['agent'];?>" selected><?php echo $_POST['agentname'];?></option>
