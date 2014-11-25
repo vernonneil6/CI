@@ -977,6 +977,15 @@ class Report extends CI_Controller {
 		}	
 		print_r($menus);
 	}
+	public function viewlist($mid)
+	{
+		$data['alist'] = $this->reports->get_agentdetails($mid);  
+		$menus.='<option value="all">Select agent</option>';
+	    foreach($data['alist'] as $lists){
+			$menus.="<option value=".$lists['id'].">".ucfirst($lists['name'])."</option>";
+		}	
+		print_r($menus);
+	}
 	public function reportsearch()
 	{   
 		

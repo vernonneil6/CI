@@ -166,9 +166,11 @@
 function marketer_list(sel,id)
 {
 	var i = sel.selectedIndex;
+	//alert(id);
 	if (i != -1) {
 		document.getElementById("subbrokername").value = sel.options[i].text;  
-	 }
+	   //alert(sel.options[i].text);
+	  	 }
 	//alert('this id value :'+id);
 	 $.ajax({ type: "POST",
                     url: '<?php echo site_url('report/marketer_list/').'/';?>'+id,
@@ -176,25 +178,39 @@ function marketer_list(sel,id)
                     success: function(datas){
                         //alert(datas);
                         $('#marketer').html(datas);
-                        $('#marks').val(datas);
+                       
                 },
 });
 
 }
-function agent_list(id)
+
+function agent_list(sel,id)
 {
-	//alert('this id value :'+id);
-	 $.ajax({ type: "POST",
+	
+	var i = sel.selectedIndex;
+	if (i != -1) {
+		document.getElementById("marketername").value = sel.options[i].text;  
+	 
+	}
+	$.ajax({ type: "POST",
                     url: '<?php echo site_url('report/agent_list/').'/';?>'+id,
                     data: id='mid',
                     success: function(datas){
-                        //alert(datas);
+                       
                         $('#agent').html(datas);
                 },
 });
-
 }
 
+function viewlist(sel,id)
+{
+	
+	var i = sel.selectedIndex;
+	if (i != -1) {
+		document.getElementById("agentname").value = sel.options[i].text;  
+	 
+	}
+}
 </script>
 
 <?php echo link_tag('colorbox/colorbox.css'); ?> 
@@ -203,10 +219,7 @@ function agent_list(id)
   $(document).ready(function(){
 		
 		$('.colorbox').colorbox({'width':'60%','height':'70%'});
-		
-		//$("#subbroker option[value='3']").attr("selected", "selected");
-		//marketer_list(3); 
-		//$("#marketer").trigger("click");
+	
   });
 </script>
 <!-- #content -->
@@ -256,25 +269,28 @@ function agent_list(id)
 					<label for="keysearch">Search Marketer</label>
 				  </div>
 				 <div class="con" id="con_text"> 
-					   <select name="marketer" id="marketer" class="select" onChange="agent_list(this.value)" disabled>
+					   <select name="marketer" id="marketer" class="select" onChange="agent_list(this,this.value)" disabled>
+						  <?php if($_POST['marketer'] =='') { ?>
 						  <option value="0">All</option>
-					      	  	
+						  <?php }  else { ?>
+						  <option value="<?php echo $_POST['marketer'];?>"><?php echo $_POST['marketername'];?></option>
+						   <?php } ?> 	  	
                    	   </select>
-                   	   <input type="hidden" name="marks" value="" id="marks">
+                   	   <input type="hidden" name="marketername" value="" id="marketername">
 				 </div>
 				 
 				<div class="lab" id="lab_text">
 					<label for="keysearch">Search Agent</label>
 				  </div>
 				  <div class="con" id="con_text"> 
-					   <select name="agent" id="agent" class="select" disabled>
+					   <select name="agent" id="agent" class="select"  onChange="viewlist(this,this.value)" disabled>
 					  <?php if($_POST['agent']=='') {?> 
 					      <option value="0">All</option>
 					      <?php } else { ?>
-						  <option value="<?php echo $_POST['agent'];?>" selected><?php echo $_POST['agent'];?></option>
+						  <option value="<?php echo $_POST['agent'];?>" selected><?php echo $_POST['agentname'];?></option>
 						  <?php } ?>
-					     
-                   	   </select>
+					  </select>
+					  <input type="hidden" name="agentname" value="" id="agentname">
 				</div>
 				 
 				<div class="lab" id="lab_text" >
@@ -327,6 +343,12 @@ function agent_list(id)
     .tab th {
 		padding: 8px 10px;
 	}
+	.dateinput
+	{
+		width: 150px;
+		height: 22px;
+		margin-top: 14px;	
+	}
 	</style>
 	<?php if( count($reports) > 0 ) { ?>
     <!-- table -->
@@ -355,8 +377,8 @@ function agent_list(id)
 			<?php } ?>
 			
 			<?php if($_POST['fromdate'] != '') {?>
-			<a href="<?php echo site_url('report/signupdetailss?fromdates='.$_POST['fromdate'].'&todates='.$_POST['enddate']); ?>">Download Total Elitesales-details CSV</a><br>
-			<p>Date Range Searched &nbsp;<input type="text" name="date" class="input" value="<?php echo $_POST['fromdate'];?>"> To <input type="text" name="date" value="<?php echo $_POST['enddate'];?>"></p>
+			<a href="<?php echo site_url('report/signupdetailss?fromdates='.$_POST['fromdate'].'&todates='.$_POST['enddate']); ?>">Download Total EliteSales-Reports CSV</a><br>
+			<p>Date Range Searched &nbsp;<input type="text" name="from" class="dateinput" value="<?php echo $_POST['fromdate'];?>"> To <input type="text" name="end" class="dateinput" value="<?php echo $_POST['enddate'];?>"></p>
 			<?php } ?>
 						
 			<?php if(count($reports) > 0) { ?>
