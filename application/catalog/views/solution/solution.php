@@ -101,19 +101,19 @@
               <td><?php
 	   		if(count($company)>0)
 			{
-				if( count($elite)==0 ) {/* ?>
+				if( count($elite)==0 ) { ?>
                 <div style="margin-top:10px;" align="center" title="Click to subscribe for Elite Membership"> <span class="company_content_title">Click to subscribe for Elite Membership</span>
                   <?php	if($_SERVER['HTTP_HOST']=="localhost") { ?>
                   <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
                   <?php } else { ?>
                   <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                     <?php } ?>
-                    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post"> 
+                    <!--<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">--> 
                     <!-- Identify your business so that you can collect the payments. -->
                     <?php $paypalid = $this->common->get_setting_value(12);?>
                     <input type="hidden" name="business" value="<?php echo $paypalid;?>">
-                   <input type="hidden" name="business" value="info@capleswebdev.com">
-                   <input type="hidden" name="business" value="<?php echo $paypalid;?>">
+                    <!--<input type="hidden" name="business" value="info@capleswebdev.com">-->
+                    <?php /*?><input type="hidden" name="business" value="<?php echo $paypalid;?>"><?php */?>
                     <!-- Specify a Subscribe button. -->
                     <input type="hidden" name="cmd" value="_xclick-subscriptions">
                     <!-- Identify the subscription. -->
@@ -151,7 +151,7 @@
                     <input type="image" name="submit" border="0" src="https://www.paypalobjects.com/en_GB/i/btn/btn_subscribeCC_LG.gif" alt="PayPal - The safer, easier way to pay online">
                     <img alt="paypal" border="0" width="1" height="1" src="https://www.paypal.com/en_US/i/scr/pixel.gif" >
                   </form>
-                  <?php */}?>
+                  <?php }?>
                 </div>
                 <?php
 			 }?></td>
