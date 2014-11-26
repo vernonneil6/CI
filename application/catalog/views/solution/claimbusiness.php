@@ -296,6 +296,12 @@
     <div class="container">
       <div class="reg_step_edit_claim"></div>
       <div class="reg_frm_wrap">
+		  <?php /*echo form_open('solution/freesign',array('class'=>'formBox','id'=>'frmaddcompany')); ?>
+       <input type="text" name="name" value="" placeholder="Enter username">
+       <input type="text" name="emailid" value="" placeholder="Enter email">
+       <?php echo form_input(array('name'=>'btnadd','id'=>'btnadd','class'=>'dir-searchbtn','type'=>'submit','value'=>'Send email','style'=>'float:none;color:#fff; padding: 3px 16px;font-size:15px;text-shadow:none;')); ?></td>
+       <?php echo form_close(); */?> 
+       
         <form class="reg_frm" action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
           <div class="reg-row">
             <label>INTRODUCE YOUR BUSINESS</label>

@@ -75,6 +75,7 @@ class Solution extends CI_Controller {
 	public function claim($id='')
 	{
 		$company = $this->common->get_company_byid($id);
+		
 		if(count($company)==0)
 		{
 			redirect('solution', 'refresh');
@@ -89,7 +90,7 @@ class Solution extends CI_Controller {
 				}
 				else
 				{
-					$this->session->set_flashdata('error', 'This Business is already claim. Try later!');
+					$this->session->set_flashdata('error', 'This Businessss is already claim. Try later!');
 					redirect('solution', 'refresh');
 				}
 			}
@@ -229,9 +230,9 @@ class Solution extends CI_Controller {
 			$company = $this->complaints->get_company_by_emailid($email);
 			
 			if(count($company)>0)
-			{
+			{ 
 				$id = $company[0]['id'];
-				$company = $this->complaints->get_company_by_emailid($email);
+						
 				if($discountcode!='')
 				{
 					redirect('solution/claimdisc/'.$id.'/'.$discountcode, 'refresh');
@@ -239,22 +240,27 @@ class Solution extends CI_Controller {
 				}
 				else
 				{
+					
 					redirect('solution/claim/'.$id, 'refresh');
+					
 				}
 				
 			}
 			else
-			{
-				$email1 = $this->complaints->chkfield1(0,'email',$email);
-				$name1 = $this->complaints->chkfield1(0,'company',$name);
+			{ 
+				 $email1 = $this->complaints->chkfield1(0,'email',$email);
+				 $name1 = $this->complaints->chkfield1(0,'company',$name);
 				
 				if($email1=='new' && $name1=='new')
 				{
 						//Inserting Record
 						if( $this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,'','',$category,'' ))
 						{
+							
 							$companyid = $this->db->insert_id();							
-							$this->eliteSubscribe($_POST,$companyid); // for authorise
+							$formpost=$_POST;
+							$this->eliteSubscribe($formpost,$companyid); // for authorise
+							
 							$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
 							if($this->complaints->insert_companyseo($companyid,$name))
 							{
@@ -310,7 +316,8 @@ class Solution extends CI_Controller {
 								$this->email->send();
 								
 								$this->session->set_flashdata('success', 'Business added successfully. claim your business here');
-								redirect('solution/claim/'.$companyid, 'refresh');
+								///redirect('solution/claim/'.$companyid, 'refresh');
+								redirect('solution', 'refresh');
 								
 							}
 							else
@@ -374,7 +381,6 @@ class Solution extends CI_Controller {
 	{
 		if( $this->input->is_ajax_request() && ( $this->input->post('cid') ) )
 		{
-			//print_r($_POST);
 			$selcatid = (($this->input->post('cid')));
 			
 			if( $selcatid!='' || $selcatid!='0' )
@@ -416,7 +422,9 @@ class Solution extends CI_Controller {
 		}
 	}
 
-public function eliteSubscribe ($_POST){
+public function eliteSubscribe($formpost) {
+	
+	
 	//data.php start
 	//$loginname = $this->common->get_setting_value(22);
 	//$transactionkey = $this->common->get_setting_value(23);
@@ -503,7 +511,7 @@ public function eliteSubscribe ($_POST){
 	//send the xml via curl
 	$response = send_request_via_curl($host,$path,$content);
 	//if the connection and send worked $response holds the return from Authorize.net
-	print_r($response);
+	//print_r($response);
 	if ($response)
 	{
 		list ($refId, $resultCode, $code, $text, $subscriptionId) =parse_return($response);
@@ -547,7 +555,7 @@ public function eliteSubscribe ($_POST){
 			$expires = date('Y-m-d H:i:s', strtotime("+$time Month"));
 			$payer_id=$email;
 			$paymentmethod = 'authorize';
-			if( $this->complaints->insert_subscription($companyid,$amt,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
+			if($this->complaints->insert_subscription($companyid,$amt,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
 			{
 				$company = $this->complaints->get_company_byid($companyid);
 				if( count($company)>0 )
@@ -566,7 +574,7 @@ public function eliteSubscribe ($_POST){
 							$this->complaints->set_sem($companyid,"Linkedin","http://www.linkedin.com","ab5b4de4c8fa16f822635c942aafdfb5.jpg","ab5b4de4c8fa16f822635c942aafdfb5.jpg",$i,'l');
 							$this->complaints->set_sem($companyid,"Google","http://www.google.com","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg",$i,'g');
 							$this->complaints->set_sem($companyid,"pintrest","http://www.pintrest.com","1519f4062fa76260346bfc61665e579d.jpeg","1519f4062fa76260346bfc61665e579d.jpeg",$i,'p');
-													
+														
 
 
 							$this->complaints->set_seo($companyid,"Google Analytic","Google Analytic",$i);
@@ -588,8 +596,8 @@ public function eliteSubscribe ($_POST){
 									
 					$siteid = $this->session->userdata('siteid');
 					$page = $this->common->get_pages_by_id(12,$siteid);
-			
-					if( count($page) > 0 )
+			        
+					if(count($page) > 0)
 					{
 						$institle = stripslashes($page[0]['title']);
 						$inssteps = nl2br(stripslashes($page[0]['pagecontent']));
@@ -603,13 +611,23 @@ public function eliteSubscribe ($_POST){
 					$email = $company[0]['email'];
 									
 					//Loading E-mail library
+					$config = Array(
+					'protocol' => 'smtp',
+					'smtp_host' => 'smtp.mandrillapp.com',
+					'smtp_port' => 587,
+					'smtp_user' => 'alankenn@grossmaninteractive.com',
+					'smtp_pass' => 'vPVq6nWolBWIKNp1LaWNFw',
+					'mailtype'  => 'html', 
+					'charset'   => 'iso-8859-1'
+				);	
 					$this->load->library('email');
-									
+					$this->email->set_newline("\r\n");				
 					//Loading E-mail config file
 					$this->config->load('email',TRUE);
 					$this->cnfemail = $this->config->item('email');
-											
-					$this->email->initialize($this->cnfemail);
+										
+					//$this->email->initialize($this->cnfemail);
+					$this->email->initialize($config);
 					$this->email->from($email,$company[0]['company']);
 					$this->email->to($site_mail);	
 					$this->email->subject('Payment Received for Business Claim.');
@@ -694,42 +712,42 @@ public function eliteSubscribe ($_POST){
 													  <td colspan="3"><h3>Widget</h3></td>
 													</tr>
 												   <tr>
-													  <td colspan="3">&lt;iframe src=&quot;'.site_url("widget/business/".$companyid).'&quot; style=&quot;border:none;&quot;&gt;&lt;/iframe&gt;
+													  <td colspan="3"><iframe src=></iframe>'.site_url("widget/business/".$companyid).'" style="border:none;"></iframe>
 																	<br/>
-																&lt;div style=&quot;display:none;&quot;&gt;
-																&lt;a href=&quot;'.$websites[0]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[1]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[2]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[3]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[4]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[5]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[6]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[7]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[8]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[9]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[10]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[11]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[12]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[13]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[14]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[15]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;/div&gt;
+																<div style="display:none;">
+																<a href="'.$websites[0]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[1]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[2]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[3]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[4]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[5]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[6]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[7]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[8]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[9]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[10]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[11]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[12]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[13]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[14]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																<a href="'.$websites[15]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
+																</a>
+																</div>
 																</td>
 													</tr>
 													<tr>
@@ -787,6 +805,68 @@ public function eliteSubscribe ($_POST){
 	}
 
 }
-}
+/*public function freesign()
+{
+	if($this->input->post('btnadd'))
+	{ 
+		
+	echo $username=$this->input->post('name');	
+	echo $emails=$this->input->post('emailid');	
+	 
+	 $config = Array(
+					'protocol' => 'smtp',
+					'smtp_host' => 'smtp.mandrillapp.com',
+					'smtp_port' => 587,
+					'smtp_user' => 'alankenn@grossmaninteractive.com',
+					'smtp_pass' => 'vPVq6nWolBWIKNp1LaWNFw',
+					'mailtype'  => 'html', 
+					'charset'   => 'iso-8859-1'
+				);	
+					$this->load->library('email');
+					$this->email->set_newline("\r\n");				
+					//Loading E-mail config file
+					$this->config->load('email',TRUE);
+					$this->cnfemail = $this->config->item('email');
+										
+					$this->email->initialize($config);
+					$this->email->from('noreply@yougotrated.com');
+					$this->email->to($emails);	
+					$this->email->subject('Free signup successfully.');
+					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
+															<tr>
+																<td>Hello User,</td>
+															</tr>
+															<tr><td><br/></td></tr>
+															<tr>
+																<td style="padding-left:20px;">
+																Following User has claimed the freesignup <b>'.ucwords($username).'</b>. Transaction Details are as follows.
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<table cellpadding="0" cellspacing="0" width="100%" border="0">
+																	<tr><td colspan="3"><h3>Payment Detail</h3></td></tr>
+																	<tr>
+																		<td>Payment Amount</td>
+																		<td>:</td>
+																		<td>USD "US 100"</td>
+																	</tr>
+																	<tr>
+																		<td>Transacion ID</td>
+																		<td>:</td>
+																		<td><b>"id-10"</b></td>
+																	</tr>
+																	</table>
+																</td>
+															</tr>
+															</table>');
+					//Sending mail to admin
+					$this->email->send();
+					$this->session->set_flashdata('success','Free signups successfully.');
+					redirect('solution','refresh');
+	}
+
+}*/
 /* End of file dashboard.php */
 /* Location: ./application/controllers/dashboard.php */
+}
