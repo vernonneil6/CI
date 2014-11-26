@@ -712,8 +712,7 @@ public function eliteSubscribe($formpost) {
 													  <td colspan="3"><h3>Widget</h3></td>
 													</tr>
 												   <tr>
-													  <td colspan="3"><iframe src=></iframe>'.site_url("widget/business/".$companyid).'" style="border:none;"></iframe>
-																	<br/>
+													  <td colspan="3"><iframe src="'.site_url("widget/business/".$companyid).'" style="border:none;"></iframe>
 																<div style="display:none;">
 																<a href="'.$websites[0]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
 																</a>
