@@ -574,7 +574,7 @@ public function eliteSubscribe($formpost) {
 							$this->complaints->set_sem($companyid,"Linkedin","http://www.linkedin.com","ab5b4de4c8fa16f822635c942aafdfb5.jpg","ab5b4de4c8fa16f822635c942aafdfb5.jpg",$i,'l');
 							$this->complaints->set_sem($companyid,"Google","http://www.google.com","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg",$i,'g');
 							$this->complaints->set_sem($companyid,"pintrest","http://www.pintrest.com","1519f4062fa76260346bfc61665e579d.jpeg","1519f4062fa76260346bfc61665e579d.jpeg",$i,'p');
-														
+													
 
 
 							$this->complaints->set_seo($companyid,"Google Analytic","Google Analytic",$i);
@@ -596,8 +596,8 @@ public function eliteSubscribe($formpost) {
 									
 					$siteid = $this->session->userdata('siteid');
 					$page = $this->common->get_pages_by_id(12,$siteid);
-			        
-					if(count($page) > 0)
+			
+					if( count($page) > 0 )
 					{
 						$institle = stripslashes($page[0]['title']);
 						$inssteps = nl2br(stripslashes($page[0]['pagecontent']));
@@ -712,41 +712,42 @@ public function eliteSubscribe($formpost) {
 													  <td colspan="3"><h3>Widget</h3></td>
 													</tr>
 												   <tr>
-													  <td colspan="3"><iframe src="'.site_url("widget/business/".$companyid).'" style="border:none;"></iframe>
-																<div style="display:none;">
-																<a href="'.$websites[0]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[1]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[2]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[3]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[4]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[5]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[6]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[7]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[8]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[9]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[10]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[11]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[12]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[13]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[14]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																<a href="'.$websites[15]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'" >
-																</a>
-																</div>
+													  <td colspan="3">&lt;iframe src=&quot;'.site_url("widget/business/".$companyid).'&quot; style=&quot;border:none;&quot;&gt;&lt;/iframe&gt;
+																	<br/>
+																&lt;div style=&quot;display:none;&quot;&gt;
+																&lt;a href=&quot;'.$websites[0]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[1]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[2]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[3]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[4]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[5]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[6]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[7]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[8]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[9]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[10]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[11]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[12]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[13]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[14]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;a href=&quot;'.$websites[15]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
+																&lt;/a&gt;
+																&lt;/div&gt;
 																</td>
 													</tr>
 													<tr>
