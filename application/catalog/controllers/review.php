@@ -1,3 +1,10 @@
+<style>
+.reviewheading
+{
+	font-size:20px;
+}	
+</style>
+
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 ob_start();
 class Review extends CI_Controller {
@@ -317,7 +324,7 @@ class Review extends CI_Controller {
 					$this->email->subject($subject);
 					
 					
-					$link1 = "<a href='".base_url('welcome/confirm/'.base64_encode($companyid).'/'.base64_encode($userid))."' title='Confirm Customer' class='mailbutton' style='background-image:url(".$site_url."images/type_btn.png);border: 1px solid #CCCCCC;
+					/*$link1 = "<a href='".base_url('welcome/confirm/'.base64_encode($companyid).'/'.base64_encode($userid))."' title='Confirm Customer' class='mailbutton' style='background-image:url(".$site_url."images/type_btn.png);border: 1px solid #CCCCCC;
     color: #373737;
     float: left;
     font-family: aller;
@@ -344,7 +351,77 @@ class Review extends CI_Controller {
             	
 					$mail_body = str_replace("%username%",ucfirst($user[0]['firstname'].' '.$user[0]['lastname']),str_replace("%company%",ucfirst($company[0]['company']),str_replace("%useremail%",$user[0]['email'],str_replace("%link1%",$link1,str_replace("%link2%",$link2,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat)))))))));
 					
-					$this->email->message($mail_body);
+					$this->email->message($mail_body);*/
+					
+					$this->email->message('
+					<table>
+						
+						<tr>
+							<td class="reviewheading"> 
+								One of your customers has posted a Review / Complaint about you 
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								Hello (Name of Merchant),
+								One of your customers has recently posted a review on YouGot Rated.
+								If you received a positive review, congratulations for a job well done.
+								If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.
+								•By being pro-active and working with your customer you can avoid having a bad reputation online which can affect your business
+								•Customers are more likely to arrive at a mutually beneficial solution when contacted immediately
+								•You will save time, money and most importantly, you will continue to enjoy a good online reputation
+							</td>
+							<td>
+								
+								Expert Tips
+
+								Address your current dispute
+
+								Help avoid future transaction issues
+
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+							
+								Here are the Transaction Details
+
+								Buyers name: John Doe
+								Buyers email: johndoe08@gmail.com  (hyperlink)
+								Buyers Phone Number: 999-999-9999
+
+								What To Do Next
+
+								Most of the time, customers disputes can be resolved quickly and amicably by communicating with the buyer through YouGotRated. 
+
+								We encourage you to respond to the buyer as soon as possible. A buyer who feels that you are working with them to resolve a problem is more likely to agree to a settlement.
+
+
+								Your Benefit
+
+								If you choose to have the review removed from your profile, YouGotRated will temporarily disable and hide the review from public view until you reach a resolution with your customer. We believe that as a merchant you deserve the opportunity to keep a good online reputation.
+
+								Please remember that even though you may select the review to be removed from the site, you must comply with the YouGotRated User Agreement and provide your customer with a solution to their complaint. Failure to do so, will result in having the review permanently posted online.
+								To review the YouGotRated User Agreement, visit the YouGotRated and click the
+								"Legal Agreements" link on the bottom of any page.
+								Sincerely,
+
+								YouGotRated
+
+
+								Please follow this link to view your Review.
+  
+							</td>
+						</tr>
+						
+					</table>
+					
+					
+					');
+					
+					
 										
 					if($this->email->send())
 							{
@@ -915,3 +992,4 @@ class Review extends CI_Controller {
 }
 /* End of file dashboard.php */
 /* Location: ./application/controllers/dashboard.php */
+
