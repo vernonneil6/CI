@@ -320,10 +320,10 @@ class Review extends CI_Controller {
 					
 					// Company Mail
 					$to = $companyemailaddress;
-					$mail = $this->common->get_email_byid(9);
+					//$mail = $this->common->get_email_byid(9);
 					
-					$subject = $mail[0]['subject'];
-					$mailformat = $mail[0]['mailformat'];
+					//$subject = $mail[0]['subject'];
+					//$mailformat = $mail[0]['mailformat'];
 					
 					$this->load->library('email');
 					$this->email->from($site_email,$site_name);
@@ -331,7 +331,7 @@ class Review extends CI_Controller {
 					$this->email->subject($subject);
 					
 					
-					/*$link1 = "<a href='".base_url('welcome/confirm/'.base64_encode($companyid).'/'.base64_encode($userid))."' title='Confirm Customer' class='mailbutton' style='background-image:url(".$site_url."images/type_btn.png);border: 1px solid #CCCCCC;
+				/*	$link1 = "<a href='".base_url('welcome/confirm/'.base64_encode($companyid).'/'.base64_encode($userid))."' title='Confirm Customer' class='mailbutton' style='background-image:url(".$site_url."images/type_btn.png);border: 1px solid #CCCCCC;
     color: #373737;
     float: left;
     font-family: aller;
@@ -372,7 +372,7 @@ class Review extends CI_Controller {
 							<td>
 								<ul style='font-size: 13px; list-style: none; padding : 0;'>
 								
-									<li style='margin: 20px 0;  padding : 0;'>Hello (Name of Merchant),</li>
+									<li style='margin: 20px 0;  padding : 0;'>Hello "$company[0]['company'])",</li>
 									
 									<li style='margin: 8px 0; padding : 0 0 0 15px;'>One of your customers has recently posted a review on YouGot Rated.</li>
 									
@@ -389,26 +389,26 @@ class Review extends CI_Controller {
 								</ul>
 							</td>
 							<td>
-								<ul style='font-size : 13px; list-style : none; padding : 0;'>
+								<ul style='font-size : 13px; list-style : none; padding : 0; margin : 0;'>
 								
 									<li style = 'margin : 0;'><img src='".$site_url."images/email.jpg'></li>
 								</ul>
-								<ul style='font-size : 13px; list-style : none; background-color : #E7E5D3;'>
-									<li style = 'font-size : 18px; color : #B32317; margin : 5px 0;padding : 0  0 0 15px;'>Expert Tips</li>								
-									<li style = 'margin: 5px 0; padding : 0  0 0 15px; '>Address your current dispute</li>								
-									<li style = 'margin: 5px 0; padding : 0  0 5px 15px; '>Help avoid future transaction issues</li>
+								<ul style='font-size : 13px; list-style : none; background-color : #E7E5D3; width: 198px; padding : 6px 0; border-radius : 0 0 7px 7px; margin : -8px 0 0;'>
+									<li style = 'font-size : 18px; color : #B32317; margin : 5px 0 10px; padding : 0  0 0 15px;'>Expert Tips</li>								
+									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Address your current dispute</li>								
+									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Help avoid future transaction issues</li>
 								</ul>	
 							</td>
 						</tr>
 						
 						<tr>
 							<td>
-								<ul style='font-size: 15px; list-style: none; padding: 10px 0;'>
+								<ul style='font-size : 15px; list-style : none; padding : 10px 0; margin : 0;'>
 								
 									<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>Here are the Transaction Details</li>
-									<li style='font-size : 13px'>Buyers name: John Doe</li>
-									<li style='font-size : 13px'>Buyers email: johndoe08@gmail.com  (hyperlink)</li>					
-									<li style='font-size : 13px'>Buyers Phone Number: 999-999-9999</li>
+									<li style='font-size : 13px'>Buyer's name: "ucfirst($user[0]['firstname'].' '.$user[0]['lastname'])"</li>
+									<li style='font-size : 13px'>Buyer's email: "$user[0]['email']"</li>					
+									<li style='font-size : 13px'>Buyer's Phone Number: "$user[0]['phoneno']"</li>
 
 									
 									
@@ -435,7 +435,7 @@ class Review extends CI_Controller {
 									<li style='font-size : 13px'>To review the YouGotRated User Agreement, visit the YouGotRated and click the</li>
 									<li style='font-size : 13px'>Legal Agreements link on the bottom of any page.</li>
 									
-									<li style='font-size : 13px; margin : 20px 0 0 15px;'>Sincerely,</li>
+									<li style='font-size : 13px; margin : 20px 0 5px 15px;'>Sincerely,</li>
 
 									<li style='font-size : 13px; margin : 0 0 20px 15px;'>YouGotRated</li>
 
