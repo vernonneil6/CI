@@ -1,8 +1,15 @@
 <style>
 .reviewheading
 {
-	font-size:20px;
+	color: red;
+    font-size: 23px;
+    text-align: center;
+    padding: 15px 0;
 }	
+.reviewtext li
+{
+	font-size: 14px;
+}
 </style>
 
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
@@ -353,33 +360,32 @@ class Review extends CI_Controller {
 					
 					$this->email->message($mail_body);*/
 					
-					$this->email->message('
+					$this->email->message("
 					<table>
 						
-						<tr>
-							<td class="reviewheading"> 
+						<label class='reviewheading'> 
 								One of your customers has posted a Review / Complaint about you 
-							</td>
-						</tr>
+						</label>
 						
 						<tr>
 							<td>
-								Hello (Name of Merchant),
-								One of your customers has recently posted a review on YouGot Rated.
-								If you received a positive review, congratulations for a job well done.
-								If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.
-								•By being pro-active and working with your customer you can avoid having a bad reputation online which can affect your business
-								•Customers are more likely to arrive at a mutually beneficial solution when contacted immediately
-								•You will save time, money and most importantly, you will continue to enjoy a good online reputation
+								<ul class='reviewtext'>
+									<li>Hello (Name of Merchant),</li>
+									<li>One of your customers has recently posted a review on YouGot Rated.</li>
+									<li>If you received a positive review, congratulations for a job well done.</li>
+									<li>If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.</li>
+									<li>•By being pro-active and working with your customer you can avoid having a bad reputation online which can affect your business</li>
+									<li>•Customers are more likely to arrive at a mutually beneficial solution when contacted immediately</li>
+									<li>•You will save time, money and most importantly, you will continue to enjoy a good online reputation</li>
+								</ul>
 							</td>
 							<td>
-								
-								Expert Tips
-
-								Address your current dispute
-
-								Help avoid future transaction issues
-
+								<ul class='reviewtext'>
+									<li><img src='".$site_url."images/email.jpg'></li>
+									<li>Expert Tips</li>
+									<li>Address your current dispute</li>
+									<li>Help avoid future transaction issues</li>
+								</ul>
 							</td>
 						</tr>
 						
@@ -405,7 +411,7 @@ class Review extends CI_Controller {
 
 								Please remember that even though you may select the review to be removed from the site, you must comply with the YouGotRated User Agreement and provide your customer with a solution to their complaint. Failure to do so, will result in having the review permanently posted online.
 								To review the YouGotRated User Agreement, visit the YouGotRated and click the
-								"Legal Agreements" link on the bottom of any page.
+								Legal Agreements link on the bottom of any page.
 								Sincerely,
 
 								YouGotRated
@@ -419,7 +425,7 @@ class Review extends CI_Controller {
 					</table>
 					
 					
-					');
+					");
 					
 					
 										
