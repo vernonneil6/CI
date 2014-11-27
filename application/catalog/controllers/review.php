@@ -331,7 +331,7 @@ class Review extends CI_Controller {
 					$this->email->subject($subject);
 					
 					
-				/*	$link1 = "<a href='".base_url('welcome/confirm/'.base64_encode($companyid).'/'.base64_encode($userid))."' title='Confirm Customer' class='mailbutton' style='background-image:url(".$site_url."images/type_btn.png);border: 1px solid #CCCCCC;
+					$link1 = "<a href='".base_url('welcome/confirm/'.base64_encode($companyid).'/'.base64_encode($userid))."' title='Confirm Customer' class='mailbutton' style='background-image:url(".$site_url."images/type_btn.png);border: 1px solid #CCCCCC;
     color: #373737;
     float: left;
     font-family: aller;
@@ -372,7 +372,7 @@ class Review extends CI_Controller {
 							<td>
 								<ul style='font-size: 13px; list-style: none; padding : 0;'>
 								
-									<li style='margin: 20px 0;  padding : 0;'>Hello "$company[0]['company']",</li>
+									<li style='margin: 20px 0;  padding : 0;'>Hello '".$company[0]['company']."',</li>
 									
 									<li style='margin: 8px 0; padding : 0 0 0 15px;'>One of your customers has recently posted a review on YouGot Rated.</li>
 									
@@ -406,9 +406,9 @@ class Review extends CI_Controller {
 								<ul style='font-size : 15px; list-style : none; padding : 10px 0; margin : 0;'>
 								
 									<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>Here are the Transaction Details</li>
-									<li style='font-size : 13px'>Buyer's name: "ucfirst($user[0]['firstname'].' '.$user[0]['lastname'])"</li>
-									<li style='font-size : 13px'>Buyer's email: "$user[0]['email']"</li>					
-									<li style='font-size : 13px'>Buyer's Phone Number: "$user[0]['phoneno']"</li>
+									<li style='font-size : 13px'>Buyer's name: '".ucfirst($user[0]['firstname'].' '.$user[0]['lastname'])"'</li>
+									<li style='font-size : 13px'>Buyer's email: '".$user[0]['email']"'</li>					
+									<li style='font-size : 13px'>Buyer's Phone Number: '".$user[0]['phoneno']"'</li>
 
 									
 									
