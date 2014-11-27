@@ -314,7 +314,7 @@ class Review extends CI_Controller {
 					$this->load->library('email');
 					$this->email->from($site_email,$site_name);
 					$this->email->to($to);
-					$this->email->subject($subject);
+					$this->email->subject('A Review about you company has been posted on YouGotRated.');
 					
 					
 				/*	$link1 = "<a href='".base_url('welcome/confirm/'.base64_encode($companyid).'/'.base64_encode($userid))."' title='Confirm Customer' class='mailbutton' style='background-image:url(".$site_url."images/type_btn.png);border: 1px solid #CCCCCC;
@@ -379,7 +379,7 @@ class Review extends CI_Controller {
 								
 									<li style = 'margin : 0;'><img src='".$site_url."images/email.jpg'></li>
 								</ul>
-								<ul style='font-size : 13px; list-style : none; margin : -4px 0 0; background-color : #E7E5D3; width: 198px; padding : 6px 0; border-radius : 0 0 7px 7px; '>
+								<ul style='font-size : 13px; list-style : none; margin : 0; background-color : #E7E5D3; width: 198px; padding : 6px 0; border-radius : 0 0 7px 7px; '>
 									<li style = 'font-size : 18px; color : #B32317; margin : 5px 0 10px; padding : 0  0 0 15px;'>Expert Tips</li>								
 									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Address your current dispute</li>								
 									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Help avoid future transaction issues</li>
@@ -392,9 +392,9 @@ class Review extends CI_Controller {
 								<ul style='font-size : 15px; list-style : none; padding : 10px 0; margin : 0;'>
 								
 									<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>Here are the Transaction Details</li>
-									<li style='font-size : 13px'>Buyers name: ".ucfirst($user[0]['firstname']."' '".$user[0]['lastname'])."</li>
-									<li style='font-size : 13px'>Buyers email: ".$user[0]['email']."</li>					
-									<li style='font-size : 13px'>Buyers Phone Number: ".$user[0]['phoneno']."</li>
+									<li style='font-size : 13px'>Buyer's name: ".ucfirst($user[0]['firstname']." ".$user[0]['lastname'])."</li>
+									<li style='font-size : 13px'>Buyer's email: ".$user[0]['email']."</li>					
+									<li style='font-size : 13px'>Buyer's Phone Number: ".$user[0]['phoneno']."</li>
 
 									
 									
@@ -427,7 +427,7 @@ class Review extends CI_Controller {
 
 									<li style='font-size : 13px; color : blue; margin : 15px 0 15px 15px;'>Please follow this link to view your Review.</li>
 									
-									<li><img src='".$site_url."images/go.gif'></li>
+									<li><a href='".base_url('review/reviews/'.base64_encode($companyid)."'><img src='".$site_url."images/go.gif'></a></li>
 									
   								</ul>
 							</td>
