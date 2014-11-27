@@ -370,33 +370,34 @@ class Review extends CI_Controller {
 						
 						<tr>
 							<td>
-								<ul style='font-size: 13px; list-style: none; padding : 0 0 0 15px;'>
+								<ul style='font-size: 13px; list-style: none; padding : 0;'>
 								
-									<li style='margin: 10px 0;  padding : 0;'>Hello (Name of Merchant),</li>
+									<li style='margin: 20px 0;  padding : 0;'>Hello (Name of Merchant),</li>
 									
-									<li style='margin: 8px 0'>One of your customers has recently posted a review on YouGot Rated.</li>
+									<li style='margin: 8px 0; padding : 0 0 0 15px;'>One of your customers has recently posted a review on YouGot Rated.</li>
 									
-									<li style='margin: 8px 0'>If you received a positive review, congratulations for a job well done.</li>
+									<li style='margin: 8px 0; padding : 0 0 0 15px;'>If you received a positive review, congratulations for a job well done.</li>
 									
-									<li style='margin: 8px 0'>If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.</li>
+									<li style='margin: 8px 0; padding : 0 0 0 15px;'>If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.</li>
 									
-									<li style='margin: 11px 0'>• By being pro-active and working with your customer you can avoid having a bad reputation online which can affect your business</li>
+									<li style='margin: 11px 0; padding : 0 0 0 15px;'>• By being pro-active and working with your customer you can avoid having a bad reputation online which can affect your business</li>
 									
-									<li style='margin: 8px 0'>• Customers are more likely to arrive at a mutually beneficial solution when contacted immediately</li>
+									<li style='margin: 8px 0; padding : 0 0 0 15px;'>• Customers are more likely to arrive at a mutually beneficial solution when contacted immediately</li>
 									
-									<li style='margin: 8px 0'>• You will save time, money and most importantly, you will continue to enjoy a good online reputation</li>
+									<li style='margin: 8px 0; padding : 0 0 0 15px;'>• You will save time, money and most importantly, you will continue to enjoy a good online reputation</li>
 									
 								</ul>
 							</td>
 							<td>
-								<ul style='font-size : 13px; list-style : none; background-color : #E7E5D3;'>
+								<ul style='font-size : 13px; list-style : none; padding : 0;'>
 								
-									<li><img src='".$site_url."images/email.jpg'></li>
-									<li style = 'font-size : 18px;color : #B32317;'>Expert Tips</li>								
-									<li style='margin: 5px 0; padding : 0 0 0 15px;'>Address your current dispute</li>								
-									<li style='margin: 5px 0; padding : 0 0 0 15px;'>Help avoid future transaction issues</li>
-									
+									<li style = 'margin : 0;'><img src='".$site_url."images/email.jpg'></li>
 								</ul>
+								<ul style='font-size : 13px; list-style : none; background-color : #E7E5D3;'>
+									<li style = 'font-size : 18px; color : #B32317; margin : 5px 0;padding : 0  0 0 15px;'>Expert Tips</li>								
+									<li style = 'margin: 5px 0; padding : 0  0 0 15px; '>Address your current dispute</li>								
+									<li style = 'margin: 5px 0; padding : 0  0 5px 15px; '>Help avoid future transaction issues</li>
+								</ul>	
 							</td>
 						</tr>
 						
