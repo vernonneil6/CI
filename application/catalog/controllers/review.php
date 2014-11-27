@@ -406,9 +406,9 @@ class Review extends CI_Controller {
 								<ul style='font-size : 15px; list-style : none; padding : 10px 0; margin : 0;'>
 								
 									<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>Here are the Transaction Details</li>
-									<li style='font-size : 13px'>Buyer's name: '".$user[0]['firstname']"'</li>
-									<li style='font-size : 13px'>Buyer's email: '".$user[0]['email']"'</li>					
-									<li style='font-size : 13px'>Buyer's Phone Number: '".$user[0]['phoneno']"'</li>
+									<li style='font-size : 13px'>Buyers name: '".ucfirst($user[0]['firstname']."' '".$user[0]['lastname'])."'</li>
+									<li style='font-size : 13px'>Buyers email: '".$user[0]['email']."'</li>					
+									<li style='font-size : 13px'>Buyers Phone Number: '".$user[0]['phoneno']."'</li>
 
 									
 									
