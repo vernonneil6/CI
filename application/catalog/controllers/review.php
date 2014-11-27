@@ -1,17 +1,3 @@
-<style>
-.reviewheading
-{
-	color: red;
-    font-size: 23px;
-    text-align: center;
-    padding: 15px 0;
-}	
-.reviewtext li
-{
-	font-size: 14px;
-}
-</style>
-
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 ob_start();
 class Review extends CI_Controller {
@@ -372,7 +358,7 @@ class Review extends CI_Controller {
 							<td>
 								<ul style='font-size: 13px; list-style: none; padding : 0;'>
 								
-									<li style='margin: 20px 0;  padding : 0;'>Hello '".$company[0]['company']."',</li>
+									<li style='margin: 20px 0;  padding : 0;'>Hello ".$company[0]['company'].",</li>
 									
 									<li style='margin: 8px 0; padding : 0 0 0 15px;'>One of your customers has recently posted a review on YouGot Rated.</li>
 									
@@ -393,7 +379,7 @@ class Review extends CI_Controller {
 								
 									<li style = 'margin : 0;'><img src='".$site_url."images/email.jpg'></li>
 								</ul>
-								<ul style='font-size : 13px; list-style : none; background-color : #E7E5D3; width: 198px; padding : 6px 0; border-radius : 0 0 7px 7px; margin : -8px 0 0;'>
+								<ul style='font-size : 13px; list-style : none; margin : -4px 0 0; background-color : #E7E5D3; width: 198px; padding : 6px 0; border-radius : 0 0 7px 7px; '>
 									<li style = 'font-size : 18px; color : #B32317; margin : 5px 0 10px; padding : 0  0 0 15px;'>Expert Tips</li>								
 									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Address your current dispute</li>								
 									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Help avoid future transaction issues</li>
@@ -406,9 +392,9 @@ class Review extends CI_Controller {
 								<ul style='font-size : 15px; list-style : none; padding : 10px 0; margin : 0;'>
 								
 									<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>Here are the Transaction Details</li>
-									<li style='font-size : 13px'>Buyers name: '".ucfirst($user[0]['firstname']."' '".$user[0]['lastname'])."'</li>
-									<li style='font-size : 13px'>Buyers email: '".$user[0]['email']."'</li>					
-									<li style='font-size : 13px'>Buyers Phone Number: '".$user[0]['phoneno']."'</li>
+									<li style='font-size : 13px'>Buyers name: ".ucfirst($user[0]['firstname']."' '".$user[0]['lastname'])."</li>
+									<li style='font-size : 13px'>Buyers email: ".$user[0]['email']."</li>					
+									<li style='font-size : 13px'>Buyers Phone Number: ".$user[0]['phoneno']."</li>
 
 									
 									
