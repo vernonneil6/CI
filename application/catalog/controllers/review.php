@@ -363,38 +363,38 @@ class Review extends CI_Controller {
 					$this->email->message("
 					<table>
 						
-						<label style='color: red; font-size: 23px; padding: 15px 0;'> 
+						<label style='color: #B32317; font-size: 23px; padding: 15px 0;'> 
 								 One of your customers has posted a </br>
 								 Review / Complaint about you 
 						</label>
 						
 						<tr>
 							<td>
-								<ul style='font-size: 13px; list-style: none; padding : 0;'>
+								<ul style='font-size: 13px; list-style: none; padding : 0 0 0 15px;'>
 								
-									<li style='margin: 5px 0'>Hello (Name of Merchant),</li>
+									<li style='margin: 10px 0;  padding : 0;'>Hello (Name of Merchant),</li>
 									
-									<li style='margin: 5px 0'>One of your customers has recently posted a review on YouGot Rated.</li>
+									<li style='margin: 8px 0'>One of your customers has recently posted a review on YouGot Rated.</li>
 									
-									<li style='margin: 5px 0'>If you received a positive review, congratulations for a job well done.</li>
+									<li style='margin: 8px 0'>If you received a positive review, congratulations for a job well done.</li>
 									
-									<li style='margin: 5px 0'>If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.</li>
+									<li style='margin: 8px 0'>If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.</li>
 									
-									<li style='margin: 8px 0'>• By being pro-active and working with your customer you can avoid having a bad reputation online which can affect your business</li>
+									<li style='margin: 11px 0'>• By being pro-active and working with your customer you can avoid having a bad reputation online which can affect your business</li>
 									
-									<li style='margin: 5px 0'>• Customers are more likely to arrive at a mutually beneficial solution when contacted immediately</li>
+									<li style='margin: 8px 0'>• Customers are more likely to arrive at a mutually beneficial solution when contacted immediately</li>
 									
-									<li style='margin: 5px 0'>• You will save time, money and most importantly, you will continue to enjoy a good online reputation</li>
+									<li style='margin: 8px 0'>• You will save time, money and most importantly, you will continue to enjoy a good online reputation</li>
 									
 								</ul>
 							</td>
 							<td>
-								<ul style='font-size: 13px; list-style: none;'>
+								<ul style='font-size : 13px; list-style : none; background-color : #E7E5D3;'>
 								
 									<li><img src='".$site_url."images/email.jpg'></li>
-									<li style = 'font-size : 18px;color : red;'>Expert Tips</li>								
-									<li style='margin: 5px 0'>Address your current dispute</li>								
-									<li style='margin: 5px 0'>Help avoid future transaction issues</li>
+									<li style = 'font-size : 18px;color : #B32317;'>Expert Tips</li>								
+									<li style='margin: 5px 0; padding : 0 0 0 15px;'>Address your current dispute</li>								
+									<li style='margin: 5px 0; padding : 0 0 0 15px;'>Help avoid future transaction issues</li>
 									
 								</ul>
 							</td>
@@ -416,7 +416,7 @@ class Review extends CI_Controller {
 									<li>Most of the time, customers disputes can be resolved quickly and amicably </li>
 									<li>by communicating with the buyer through YouGotRated. </li>
 									
-									<li style='font-size : 13px; margin : 10px 0 0 15px;'>We encourage you to respond to the buyer as soon as possible. A buyer who feels that you are working</li> 
+									<li style='font-size : 13px; margin : 15px 0 0 15px;'>We encourage you to respond to the buyer as soon as possible. A buyer who feels that you are working</li> 
 									<li style='font-size : 13px'>with them to resolve a problem is more likely to agree to a settlement.</li> 
 									
 									
@@ -428,17 +428,17 @@ class Review extends CI_Controller {
 									<li>with your customer. We believe that as a merchant you deserve the opportunity to keep </li> 
 									<li>a good online reputation.</li>
 									
-									<li style='font-size : 13px; margin : 10px 0 0 15px;'>Please remember that even though you may select the review to be removed from the site, you must </li>
+									<li style='font-size : 13px; margin : 15px 0 0 15px;'>Please remember that even though you may select the review to be removed from the site, you must </li>
 									<li style='font-size : 13px'>comply with the YouGotRated User Agreement and provide your customer with a solution to their </li>
 									<li style='font-size : 13px'>complaint. Failure to do so, will result in having the review permanently posted online.</li>
 									<li style='font-size : 13px'>To review the YouGotRated User Agreement, visit the YouGotRated and click the</li>
 									<li style='font-size : 13px'>Legal Agreements link on the bottom of any page.</li>
 									
-									<li style='font-size : 13px; margin : 15px 0 0 15px;'>Sincerely,</li>
+									<li style='font-size : 13px; margin : 20px 0 0 15px;'>Sincerely,</li>
 
-									<li style='font-size : 13px; margin : 0 0 10px 15px;'>YouGotRated</li>
+									<li style='font-size : 13px; margin : 0 0 20px 15px;'>YouGotRated</li>
 
-									<li style='font-size : 13px; color : blue; margin : 15px 0 0 15px;'>Please follow this link to view your Review.</li>
+									<li style='font-size : 13px; color : blue; margin : 15px 0 15px 15px;'>Please follow this link to view your Review.</li>
 									
 									<li><img src='".$site_url."images/go.gif'></li>
 									
