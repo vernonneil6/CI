@@ -372,7 +372,7 @@ class Review extends CI_Controller {
 							<td>
 								<ul style='font-size: 13px; list-style: none; padding : 0;'>
 								
-									<li style='margin: 20px 0;  padding : 0;'>Hello "$company[0]['company'])",</li>
+									<li style='margin: 20px 0;  padding : 0;'>Hello "$company[0]['company']",</li>
 									
 									<li style='margin: 8px 0; padding : 0 0 0 15px;'>One of your customers has recently posted a review on YouGot Rated.</li>
 									
