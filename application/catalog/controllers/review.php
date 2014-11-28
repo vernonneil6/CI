@@ -485,17 +485,20 @@ class Review extends CI_Controller {
 		}
 	 }
 	}
-	public function buyerreview($id)
+	public function buyerreview($userid, $companyid)
 	{
-		if( !array_key_exists('youg_user',$this->session->userdata) )
-		{
-			$this->session->set_flashdata('error', 'Please login to continue!');
-			redirect('login','refresh');
-		}
-		
-		$user = $this->users->get_user_byid($id);
+		$user = $this->users->get_user_byid($userid);
+		$this->data['userid'] = $userid;
+		$this->data['companyid'] = $companyid;
 		$this->data['name'] = ucfirst($user[0]['firstname']." ".$user[0]['lastname']);
 		$this->load->view('review_buyer',$this->data);
+	}
+	public function merchantbuyermail($userid, $companyid)
+	{
+		if($this->input->post('buyer_option') == 'Ship the Item and/or Provide Proof of Shipping')
+		{
+			echo "hello hr u";
+		}
 	}
 	public function checkvote()
 	{

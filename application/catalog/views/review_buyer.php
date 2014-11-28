@@ -72,7 +72,7 @@
 			);
 		?>
 		<?php echo form_textarea('buyer_textarea'); ?>
-		<div class = "buyer_submit"><img src = <?php echo base_url('images/submit.jpg'); ?> ></div>
+		<div class = "buyer_submit"><a href="review/merchantbuyermail/"<?php echo $userid; ?> "/" <?php echo $companyid; ?> ><img src = <?php echo base_url('images/submit.jpg'); ?> ></a></div>
 	</div>
 
 
