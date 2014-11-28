@@ -359,6 +359,10 @@ class Reviews extends CI_Model
 			return array();
 		}
  	}
+ 	function get_status_review($userid, $companyid)
+ 	{
+		return $this->db->get_where('review',array('reviewby' => $userid, 'companyid' => $companyid))->row_array();
+	}
 	
 	//Getting value for searching
 	function search_company($keyword,$limit ='',$offset='')
