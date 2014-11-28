@@ -59,7 +59,6 @@
 			'Would like a Replacement item' => 'Would like a Replacement item',
 			'Would like the missing items to be shipped immediately' => 'Would like the missing items to be shipped immediately',
 			'Would like a Partial Refund and/or Gift Card in compensation for the service received' => 'Would like a Partial Refund and/or Gift Card in compensation for the service received'
-			
 			);
 		?>
 		<?php echo form_dropdown('buyer_option', $data, 'Ship the Item and/or Provide Proof of Shipping'); ?>
@@ -71,7 +70,7 @@
 			'rows' => 8,
 			'cols' => 18
 			);
-		?>           
+		?>
 		<?php echo form_textarea('buyer_textarea'); ?>
 		<div class = "buyer_submit"><img src = <?php echo base_url('images/submit.jpg'); ?> ></div>
 	</div>
