@@ -425,9 +425,9 @@ class Review extends CI_Controller {
 
 									<li style='font-size : 13px; margin : 0 0 20px 15px;'>YouGotRated</li>
 
-									<li style='font-size : 13px; color : blue; margin : 15px 0 15px 15px;'>Please follow this link to view your Review.</li>
+									<li style='font-size : 13px; color : #347C91; margin : 15px 0 15px 15px;'>Please follow this link to view your Review.</li>
 									
-									<li><a href='".base_url('review/reviews/'.base64_encode($companyid)."'><img src='".$site_url."images/go.gif'></a></li>
+									<li><a href='".base_url('businessadmin/review/reviews')."'><img src='".$site_url."images/go.gif'></a></li>
 									
   								</ul>
 							</td>

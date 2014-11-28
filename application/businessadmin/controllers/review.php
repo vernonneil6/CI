@@ -295,7 +295,7 @@ class Review extends CI_Controller {
 					
 					//Payment mail for Admin
 					$from = $company[0]['email'];
-					$subject = 'Review Removal Request for ' .$reviewid;
+					$subject = 'Request for Information About Your Review:  Case #'.$reviewid;
 					$to = $user[0]['email'];
 					
 					$this->email->from($site_mail,$site_name);
@@ -303,7 +303,60 @@ class Review extends CI_Controller {
 					$this->email->subject($subject);
 				
 					$mailbody = 
-						'<html>
+					"<table>
+						
+						<label style='color: #B32317; font-size: 23px; padding: 15px 0;'> 
+								You filed a Negative Review and the Merchant would like to have it removed. 
+						</label>
+						
+						<tr>
+							<td>
+								<ul style='font-size : 16px; list-style : none; padding : 10px 0; margin : 0;'>
+								
+									<li style='font-size : 13px; margin: 20px 0;  padding : 0;'>Hello ".ucwords($user[0]['firstname'].' '.$user[0]['lastname']).",</li>
+									
+									<li style='margin: 8px 0 4px; padding : 0 0 0 15px;'> Your merchant has received your Negative </li>								
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> Review and would like to work out a </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> solution with you. </li>
+									
+									<li style='margin: 8px 0 4px; padding : 0 0 0 15px;'> By communicating directly with the </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> merchant through YouGotRated you can </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> reach a satisfactory resolution to your </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> complaint that can be mutually beneficial. </li>
+									
+									<li style='margin: 8px 0 4px; padding : 0 0 0 15px;'> Please note that the reason you are </li>
+									<li style='margin: 8px 0; padding : 0 0 0 15px;'> receiving this email is because the </li>
+									<li style='margin: 8px 0; padding : 0 0 0 15px;'> Merchant is already aware of your </li>
+									<li style='margin: 8px 0; padding : 0 0 0 15px;'> complaint and has pledged his willingness </li>
+									<li style='margin: 8px 0; padding : 0 0 0 15px;'> to assist you.  </li>
+									
+									
+									<li style='font-size : 13px; margin: 8px 0 4px; padding : 0 0 0 15px;'>In the next page you will have several options that you </li>
+									<li style='font-size : 13px; margin: 4px 0; padding : 0 0 0 15px;'>can choose from that will be emailed to the Merchant on </li>
+									<li style='font-size : 13px; margin: 4px 0; padding : 0 0 0 15px;'>your behalf in order to resolve your complaint. </li>
+									
+									
+									<li style='font-size : 13px; margin: 8px 0 4px; color : #347C91; padding : 0 0 0 15px; font-weight : bold;'> Please Reply to this email here with your selection. </li>
+																		
+  									<li style='margin: 4px 0; padding : 0 0 0 15px;'><a href='".base_url('businessadmin/review/reviews')."'><img src='".$site_url."images/go.gif'></a></li>
+
+									<li style='font-size : 13px; margin: 8px 0; padding : 0 0 0 15px;'> Sincerely, </li>
+
+									<li style='font-size : 13px; margin: 8px 0; padding : 0 0 0 15px;'>YouGotRated </li>
+
+									<li style='font-size : 13px; margin: 8px 0; padding : 0 0 0 15px;'> BC:  YGR-03-442-048-286 </li>
+									
+								</ul>
+							</td>
+							<td>
+								<ul style='list-style : none;'>
+									<li><img src='".$site_url."images/email.jpg'></li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+					";
+						/*<html>
 							<body>
 							<table cellpadding="0" cellspacing="0" width="100%" border="0">
 							<tr>
@@ -359,7 +412,7 @@ class Review extends CI_Controller {
 							</tr>
 							</table>
 							</body>
-						</html>';
+						</html>/*;
 					 
 					/*echo"<pre>";
 					print_r($mailbody);
@@ -376,7 +429,7 @@ class Review extends CI_Controller {
 							$id = $this->db->insert_id();
 							if($this->reviews->update_checkdate($id,$companyid,$reviewid))
 							{
-								redirect('review/reviews', 'refresh');
+								redirect('review/removalrequest', 'refresh');
 							}
 							else
 							{
