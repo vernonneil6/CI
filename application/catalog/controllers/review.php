@@ -505,7 +505,7 @@ class Review extends CI_Controller {
 		
 		$site_name = $this->common->get_setting_value(1);
 		$site_email = $this->common->get_setting_value(5);
-		$site_url  = $this->settings->get_setting_value(2);
+		$site_url  = $this->reviews->get_setting_value(2);
 		
 		$this->load->library('email');
 		

@@ -359,6 +359,27 @@ class Reviews extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	function get_setting_value($id)
+ 	{
+		$siteid = $this->session->userdata('siteid');
+		if($siteid=='')
+		{
+		$siteid=1;
+		}
+		$query = $this->db->get_where('setting', array('id' => $id,'websiteid' => $siteid));
+		
+		if ($query->num_rows() > 0)
+		{
+			$result = $query->result_array();
+			return nl2br(stripslashes($result[0]['value']));
+		}
+		else
+		{
+			return false;
+		}
+ 	}
+ 	
  	function get_status_review($userid, $companyid)
  	{
 		return $this->db->get_where('reviews',array('reviewby' => $userid, 'companyid' => $companyid))->row_array();
