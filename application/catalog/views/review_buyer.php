@@ -33,7 +33,11 @@
 }
 .sbtbtn
 {
-	background : url('images/submit.jpg');
+	background: url("../../../images/submit.jpg") repeat scroll 0 0 / cover rgba(0, 0, 0, 0);
+    border: medium none;
+    height: 48px;
+    padding: 0;
+    width: 140px;
 }
 </style>
 
