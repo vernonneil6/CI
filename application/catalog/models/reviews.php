@@ -361,7 +361,7 @@ class Reviews extends CI_Model
  	}
  	function get_status_review($userid, $companyid)
  	{
-		return $this->db->get_where('review',array('reviewby' => $userid, 'companyid' => $companyid))->row_array();
+		return $this->db->get_where('reviews',array('reviewby' => $userid, 'companyid' => $companyid))->row_array();
 	}
 	
 	//Getting value for searching
