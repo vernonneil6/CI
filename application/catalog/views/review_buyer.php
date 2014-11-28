@@ -51,6 +51,7 @@
 	</ul>
 
 	<div class = "buyer_form">
+		<form action="" methos="post">
 		<div class = "buyer_bottom"> What Resolution do you expect from the Merchant: </div>
 		<?php 
 			$data = array(
@@ -72,7 +73,8 @@
 			);
 		?>
 		<?php echo form_textarea('buyer_textarea'); ?>
-		<div class = "buyer_submit"><a href="review/merchantbuyermail/"<?php echo $userid; ?> "/" <?php echo $companyid; ?> ><img src = <?php echo base_url('images/submit.jpg'); ?> ></a></div>
+		<div class = "buyer_submit"><a href="../../../review/merchantbuyermail/<?php echo $userid; ?>/<?php echo $companyid; ?>" ><img src = <?php echo base_url('images/submit.jpg'); ?> ></a></div>
+		<?php echo form_close();?>
 	</div>
 
 

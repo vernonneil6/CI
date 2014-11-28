@@ -485,6 +485,7 @@ class Review extends CI_Controller {
 		}
 	 }
 	}
+	
 	public function buyerreview($userid, $companyid)
 	{
 		$user = $this->users->get_user_byid($userid);
@@ -493,6 +494,7 @@ class Review extends CI_Controller {
 		$this->data['name'] = ucfirst($user[0]['firstname']." ".$user[0]['lastname']);
 		$this->load->view('review_buyer',$this->data);
 	}
+	
 	public function merchantbuyermail($userid, $companyid)
 	{
 		if($this->input->post('buyer_option') == 'Ship the Item and/or Provide Proof of Shipping')
@@ -500,6 +502,7 @@ class Review extends CI_Controller {
 			echo "hello hr u";
 		}
 	}
+	
 	public function checkvote()
 	{
 		$ip = $this->input->post('ip');
