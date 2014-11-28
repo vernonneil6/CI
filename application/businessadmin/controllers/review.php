@@ -260,7 +260,6 @@ class Review extends CI_Controller {
 		$this->data['companyname'] = $company[0]['company'];
 		$this->load->view('removalreview',$this->data);
 	}
-	
 	public function request($reviewid='',$userid='')
 	{
 		// Your own constructor code
@@ -295,7 +294,7 @@ class Review extends CI_Controller {
 					
 					//Payment mail for Admin
 					$from = $company[0]['email'];
-					$subject = 'Request for Information About Your Review:  Case #'.$reviewid;
+					$subject = 'Request for Information About Your Review:  Case #YGR-'.$reviewid;
 					$to = $user[0]['email'];
 					
 					$this->email->from($site_mail,$site_name);
@@ -319,37 +318,37 @@ class Review extends CI_Controller {
 									<li style='margin: 4px 0; padding : 0 0 0 15px;'> Review and would like to work out a </li>
 									<li style='margin: 4px 0; padding : 0 0 0 15px;'> solution with you. </li>
 									
-									<li style='margin: 8px 0 4px; padding : 0 0 0 15px;'> By communicating directly with the </li>
+									<li style='margin: 30px 0 4px; padding : 0 0 0 15px;'> By communicating directly with the </li>
 									<li style='margin: 4px 0; padding : 0 0 0 15px;'> merchant through YouGotRated you can </li>
 									<li style='margin: 4px 0; padding : 0 0 0 15px;'> reach a satisfactory resolution to your </li>
 									<li style='margin: 4px 0; padding : 0 0 0 15px;'> complaint that can be mutually beneficial. </li>
 									
-									<li style='margin: 8px 0 4px; padding : 0 0 0 15px;'> Please note that the reason you are </li>
-									<li style='margin: 8px 0; padding : 0 0 0 15px;'> receiving this email is because the </li>
-									<li style='margin: 8px 0; padding : 0 0 0 15px;'> Merchant is already aware of your </li>
-									<li style='margin: 8px 0; padding : 0 0 0 15px;'> complaint and has pledged his willingness </li>
-									<li style='margin: 8px 0; padding : 0 0 0 15px;'> to assist you.  </li>
+									<li style='margin: 30px 0 4px; padding : 0 0 0 15px;'> Please note that the reason you are </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> receiving this email is because the </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> Merchant is already aware of your </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> complaint and has pledged his willingness </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> to assist you.  </li>
 									
 									
-									<li style='font-size : 13px; margin: 8px 0 4px; padding : 0 0 0 15px;'>In the next page you will have several options that you </li>
+									<li style='font-size : 13px; margin: 30px 0 4px; padding : 0 0 0 15px;'>In the next page you will have several options that you </li>
 									<li style='font-size : 13px; margin: 4px 0; padding : 0 0 0 15px;'>can choose from that will be emailed to the Merchant on </li>
 									<li style='font-size : 13px; margin: 4px 0; padding : 0 0 0 15px;'>your behalf in order to resolve your complaint. </li>
 									
 									
-									<li style='font-size : 13px; margin: 8px 0 4px; color : #347C91; padding : 0 0 0 15px; font-weight : bold;'> Please Reply to this email here with your selection. </li>
+									<li style='font-size : 13px; margin: 30px 0 4px; color : #347C91; padding : 0 0 0 15px; font-weight : bold;'> Please Reply to this email here with your selection. </li>
 																		
-  									<li style='margin: 4px 0; padding : 0 0 0 15px;'><a href='".base_url('businessadmin/review/reviews')."'><img src='".$site_url."images/go.gif'></a></li>
+  									<li style='margin: 4px 0; padding : 0 0 0 15px;'><a href='".base_url('review/buyerreview'.$user[0]['id'].)."'><img src='".$site_url."images/go.gif'></a></li>
 
-									<li style='font-size : 13px; margin: 8px 0; padding : 0 0 0 15px;'> Sincerely, </li>
+									<li style='font-size : 13px; margin: 25px 0 8px; padding : 0 0 0 15px;'> Sincerely, </li>
 
 									<li style='font-size : 13px; margin: 8px 0; padding : 0 0 0 15px;'>YouGotRated </li>
 
-									<li style='font-size : 13px; margin: 8px 0; padding : 0 0 0 15px;'> BC:  YGR-03-442-048-286 </li>
+									<li style='font-size : 13px; margin: 8px 0; padding : 0 0 0 15px;'> BC:  YGR-".$reviewid." </li>
 									
 								</ul>
 							</td>
-							<td>
-								<ul style='list-style : none;'>
+							<td style = 'display : block;'>
+								<ul style = 'list-style : none;'>
 									<li><img src='".$site_url."images/email.jpg'></li>
 								</ul>
 							</td>

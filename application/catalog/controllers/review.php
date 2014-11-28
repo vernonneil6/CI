@@ -485,7 +485,18 @@ class Review extends CI_Controller {
 		}
 	 }
 	}
-	
+	public function buyerreview($id)
+	{
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			$this->session->set_flashdata('error', 'Please login to continue!');
+			redirect('login','refresh');
+		}
+		
+		$user = $this->users->get_user_byid($id);
+		$this->data['name'] = ucfirst($user[0]['firstname']." ".$user[0]['lastname']);
+		$this->load->view('review_buyer',$this->data);
+	}
 	public function checkvote()
 	{
 		$ip = $this->input->post('ip');
