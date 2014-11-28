@@ -497,18 +497,22 @@ class Review extends CI_Controller {
 	
 	public function merchantbuyermail($userid, $companyid)
 	{
+		$option = $this->input->post('buyeroption');
+		$textarea = $this->input->post('buyer_textarea');
 		$user = $this->users->get_user_byid($userid);
 		$company = $this->reviews->get_company_byid($companyid);
 		$review = $this->reviews->get_status_review($userid, $companyid);
 		
 		$site_name = $this->common->get_setting_value(1);
 		$site_email = $this->common->get_setting_value(5);
-		$to = $user[0]['email'];
-		$this->load->library('email');
-		$this->email->from($site_email,$site_name);
-		$this->email->to($to);
-		$this->email->subject('Resolution of Negative Review');
 		
+		$this->load->library('email');
+		
+		if($option == 'Ship the Item and/or Provide Proof of Shipping')
+		{
+		$this->email->from($site_email,$site_name);
+		$this->email->to($user[0]['email']);
+		$this->email->subject('Resolution of Negative Review');	
 		$this->email->message("
 					<table>
 					
@@ -516,7 +520,7 @@ class Review extends CI_Controller {
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
 								
-									<li style='font-size : 17px; margin : 0'>Your Case #".$review['id']."</li>
+									<li style='font-size : 17px; margin : 0'>Your Case # ".$review['id']."</li>
 									<li style='margin : 15px 0;'>Hello ".ucfirst($user[0]['firstname']." ".$user[0]['lastname'])."</li>
 									<li style='margin : 0 0 15px;'>".$company[0]['company']." has indicated that your order has been shipped. Here is the Information:</li>					
 									<li style='margin : 0'>Carrier:</li>
@@ -537,14 +541,77 @@ class Review extends CI_Controller {
 							</td>
 						</tr>
 						
-					</table>
-					
-					
+					</table>		
 					");
+		$this->email->send();
+		}
+		if($option == 'Would like a Full Refund')
+		{
+		$this->email->from($site_email,$site_name);
+		$this->email->to($user[0]['email']);
+		$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+		$this->email->message("
+					<table>
 					
-					
-										
-					$this->email->send();
+						<tr>
+							<td>
+								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
+															
+									<li style='margin : 15px 0;'>Hello ".ucfirst($user[0]['firstname']." ".$user[0]['lastname'])."</li>
+									<li style='margin : 0 0 15px;'>".ucfirst($company[0]['company'])." has agreed to offer you a full refund.</li>					
+									
+									<li style='margin : 0'>You must first return the original merchandise to the following address provided by the Merchant within 7</li>
+									<li style='margin : 0'>days of this email:</li>
+									
+									<li style='margin : 15px 0 0;'>Merchant's Name,</li>
+									<li style='margin : 0'>Address,</li>
+									<li style='margin : 0'>City,</li>
+									<li style='margin : 0'>State,</li>
+									<li style='margin : 0'>Zip Code</li>
+									
+									<li style='margin : 15px 0 0;'>For your protection, please ensure that the items are properly packaged and that you send them Fully</li>
+									<li style='margin : 0;'>Insured and with Signature Required.</li>
+									
+									<li style='margin : 15px 0 0;'>Once you have shipped the items, you must returned to this page to upload the Tracking Information</li>
+									<li style='margin : 0;'>within 7 days or this case will be automatically closed.</li>
+									
+									<li style='margin : 15px 0 0;'>The Merchant will issue your refund within 5 business days of receipt and inspection of the returned</li>
+									<li style='margin : 0;'>merchandise.</li>
+									
+									<li style='margin: 15px 0 15px; color : #347C91; font-weight : bold;'> Please Reply to this email here with your selection. </li>
+									
+									<li style='margin: 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
+									
+									<li style='margin : 0 0 15px;'>Thank you for using YouGotRated.</li>
+									<li style='margin : 0 0 15px;'>Sincerely,</li>
+									<li style='margin : 0 0 15px;'>YouGotRated</li>
+									<li style='margin : 0 0 15px;'>BC : YGR-".$review['id']."</li>
+									
+									<li style='font-size : 10px; margin : 0'>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further</li>
+									<li style='font-size : 10px; margin : 0 0 15px;'>assistance, please communicate with the Merchant through the Resolution Center,</li>
+									
+									<li style='font-size : 10px; margin : 0'>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</li>
+									
+  								</ul>
+							</td>
+						</tr>
+						
+					</table>		
+					");
+		$this->email->send();
+		}
+		if($option == 'Would like a Replacement item')
+		{
+			echo "hi2";
+		}
+		if($option == 'Would like the missing items to be shipped immediately')
+		{
+			echo "hi3";
+		}
+		if($option == 'Would like a Partial Refund and/or Gift Card in compensation for the service received')
+		{
+			echo "hi4";
+		}
 		
 	}
 	

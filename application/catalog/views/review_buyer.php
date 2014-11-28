@@ -31,6 +31,10 @@
 	height: 50px;
     width: 130px;
 }
+.sbtbtn
+{
+	background : url('images/submit.jpg');
+}
 </style>
 
 	<label class = "buyer_form">Dear <?php echo $name; ?>:</label>
@@ -51,7 +55,7 @@
 	</ul>
 
 	<div class = "buyer_form">
-		<form action="" methos="post">
+		<form action="../../../review/merchantbuyermail/<?php echo $userid; ?>/<?php echo $companyid; ?>" method="post">
 		<div class = "buyer_bottom"> What Resolution do you expect from the Merchant: </div>
 		<?php 
 			$data = array(
@@ -73,7 +77,8 @@
 			);
 		?>
 		<?php echo form_textarea('buyer_textarea'); ?>
-		<div class = "buyer_submit"><a href="../../../review/merchantbuyermail/<?php echo $userid; ?>/<?php echo $companyid; ?>" ><img src = <?php echo base_url('images/submit.jpg'); ?> ></a></div>
+		<div class = "buyer_submit">
+			<input type="submit" class = "sbtbtn" value = ""></div>
 		<?php echo form_close();?>
 	</div>
 
