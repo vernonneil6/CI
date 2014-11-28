@@ -497,10 +497,55 @@ class Review extends CI_Controller {
 	
 	public function merchantbuyermail($userid, $companyid)
 	{
-		if($this->input->post('buyer_option') == 'Ship the Item and/or Provide Proof of Shipping')
-		{
-			echo "hello hr u";
-		}
+		$user = $this->users->get_user_byid($userid);
+		$company = $this->reviews->get_company_byid($companyid);
+		
+		
+		$site_name = $this->common->get_setting_value(1);
+		$site_email = $this->common->get_setting_value(5);
+		$to = $user[0]['email'];
+		$this->load->library('email');
+		$this->email->from($site_email,$site_name);
+		$this->email->to($to);
+		$this->email->subject('Resolution of Negative Review');
+		
+		$this->email->message("
+					<table>
+					
+						<tr>
+							<td>
+								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
+								
+									<li style='font-size : 17px'>Your Case # PP-003-442-048</li>
+									<li style='margin : 15px 0;'>Hello ".ucfirst($user[0]['firstname']." ".$user[0]['lastname'])."</li>
+									<li style='margin : 0 0 15px;'>".$company[0]['company']." has indicated that your order has been shipped. Here is the Information:</li>					
+									<li>Carrier:</li>
+									<li>Tracking Number:</li>
+									<li style='margin : 0 0 15px;'>Date Shipped:</li>
+									<li>Please allow sufficient time for the items to reach you. </li>
+									<li>Since the Merchant has supplied you with the information you requested, the Negative Review has been </li>
+									<li style='margin : 0 0 25px;'>permanently removed for the Merchant's record. </li>
+									<li style='margin : 0 0 15px;'>Thank you for using YouGotRated </li>
+									<li style='margin : 0 0 15px;'>Sincerely, </li>
+									<li style='margin : 0 0 15px;'>YouGotRated</li>
+									<li style='margin : 0 0 15px;'>BC: PP-003-442-048-286</li>
+									<li style='font-size : 10px'>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further</li>
+									<li style='font-size : 10px;margin : 0 0 15px;'>assistance, please communicate with the Merchant through the Resolution Center,</li>
+									<li style='font-size : 10px'>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</li>
+									
+  								</ul>
+							</td>
+						</tr>
+						
+					</table>
+					
+					
+					");
+					
+					
+										
+					$this->email->send();
+		
 	}
 	
 	public function checkvote()

@@ -62,12 +62,12 @@
 			'Would like a Partial Refund and/or Gift Card in compensation for the service received' => 'Would like a Partial Refund and/or Gift Card in compensation for the service received'
 			);
 		?>
-		<?php echo form_dropdown('buyer_option', $data, 'Ship the Item and/or Provide Proof of Shipping'); ?>
+		<?php echo form_dropdown('buyeroption', $data, 'Ship the Item and/or Provide Proof of Shipping'); ?>
 
 		<div class = "buyer_bottom"> Send a message: </div>
 		<?php
 		$textarea_data = array(
-			'name' => 'buyer_textarea',
+			'name' => 'buyertextarea',
 			'rows' => 8,
 			'cols' => 18
 			);
