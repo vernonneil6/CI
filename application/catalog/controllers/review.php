@@ -523,7 +523,7 @@ class Review extends CI_Controller {
 								
 									<li style='font-size : 17px; margin : 0'>Your Case # ".$review['id']."</li>
 									
-									<li style='margin : 15px 0;'>Hello ".ucfirst($user[0]['firstname']." ".$user[0]['lastname'])."</li>
+									<li style='margin : 15px 0;'>Hello ".ucfirst($user[0]['firstname']." ".$user[0]['lastname']).",</li>
 									
 									<li style='margin : 0 0 15px;'>".ucfirst($company[0]['company'])." has indicated that your order has been shipped. Here is the Information:</li>	
 													
@@ -554,7 +554,7 @@ class Review extends CI_Controller {
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
 								
-									<li style='margin : 15px 0;'>Dear ".ucfirst($company[0]['company'])."</li>	
+									<li style='margin : 15px 0;'>Dear ".ucfirst($company[0]['company']).",</li>	
 													
 									<li style='margin : 0'>It has been 5 days from the time the buyer emailed you requesting the items to be shipped but you have</li>
 									<li style='margin : 0 0 15px;'>failed to provide the shipping information.</li>
@@ -565,7 +565,7 @@ class Review extends CI_Controller {
 									
 									<li style='margin : 0 0 15px;'>We encourage you to respond as soon as possible to protect your online reputation.</li>
 																	
-									<li style='margin : 40px 0 20px; color : #347C91; font-weight : bold;'> Please follow this link to respond NOW. </li>
+									<li style='margin : 40px 0 30px; color : #347C91; font-weight : bold;'> Please follow this link to respond NOW. </li>
 									
 									<li style='margin : 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
 									
@@ -590,7 +590,7 @@ class Review extends CI_Controller {
 								
 									<li style='font-size : 17px; margin : 0'>Your Case #YGR-".$review['id']."</li>
 									
-									<li style='margin : 15px 0;'>Hello ".ucfirst($user[0]['firstname']." ".$user[0]['lastname'])."</li>
+									<li style='margin : 15px 0;'>Hello ".ucfirst($user[0]['firstname']." ".$user[0]['lastname']).",</li>
 									
 									<li style='margin : 0;'>".ucfirst($company[0]['company'])." has failed to provide the requested shipping and tracking information for your</li>
 									<li style='margin : 0 0 15px;'>purchase.</li>	
@@ -653,7 +653,7 @@ class Review extends CI_Controller {
 									<li style='margin : 15px 0 0;'>The Merchant will issue your refund within 5 business days of receipt and inspection of the returned</li>
 									<li style='margin : 0;'>merchandise.</li>
 									
-									<li style='margin: 40px 0 20px; color : #347C91; font-weight : bold;'> Please follow this link to Upload your Shipping Information. </li>
+									<li style='margin: 40px 0 30px; color : #347C91; font-weight : bold;'> Please follow this link to Upload your Shipping Information. </li>
 									
 									<li style='margin: 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
 									
@@ -686,7 +686,7 @@ class Review extends CI_Controller {
 									<li style='margin : 0'>Once you receive the item please issue the Buyer a Full Refund and follow the link below to upload Proof</li>
 									<li style='margin : 0 0 15px;'>of Refund so we can close this case in your favor.</li>			
 														
-									<li style='margin : 40px 0 20px; color : #347C91; font-weight : bold;'> Please follow this link to Upload Proof of Refund. </li>
+									<li style='margin : 40px 0 30px; color : #347C91; font-weight : bold;'> Please follow this link to Upload Proof of Refund. </li>
 									
 									<li style='margin : 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
 									
@@ -717,7 +717,7 @@ class Review extends CI_Controller {
 									<li style='margin : 0'>This case will remain open for another 15 days and you will have an opportunity to return to this page to</li>
 									<li style='margin : 0 0 15px;'>close your case.</li>			
 														
-									<li style='margin : 40px 0 20px; color : #347C91; font-weight : bold;'> Please follow this link to close your case. </li>
+									<li style='margin : 40px 0 30px; color : #347C91; font-weight : bold;'> Please follow this link to close your case. </li>
 									
 									<li style='margin : 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
 									
@@ -751,7 +751,7 @@ class Review extends CI_Controller {
 									
 									<li style='margin : 0 0 15px;'>We encourage you to respond as soon as possible to protect your online reputation.</li>		
 														
-									<li style='margin : 40px 0 20px; color : #347C91; font-weight : bold;'> Please follow this link to Upload Proof of Refund </li>
+									<li style='margin : 40px 0 30px; color : #347C91; font-weight : bold;'> Please follow this link to Upload Proof of Refund </li>
 									
 									<li style='margin : 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
 									
@@ -832,7 +832,7 @@ class Review extends CI_Controller {
 									<li style='margin : 15px 0 0;'>Once you have shipped the items, please returned to this page to upload the Tracking Information. As</li>
 									<li style='margin : 0;'>soon as the merchant receives the original item, a replacement will be expedited back to you.</li>
 																		
-									<li style='margin: 40px 0 20px; color : #347C91; font-weight : bold;'> Please follow this link to upload your shipping information. </li>
+									<li style='margin: 40px 0 30px; color : #347C91; font-weight : bold;'> Please follow this link to upload your shipping information. </li>
 									
 									<li style='margin: 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
 									
@@ -866,7 +866,7 @@ class Review extends CI_Controller {
 									<li style='margin : 0'>Once you receive the item please expedite the Buyer a Replacement Item and follow the link below to</li>
 									<li style='margin : 0 0 15px;'>upload the new Shipping Information so we can close this case in your favor.</li>
 									
-									<li style='margin: 40px 0 20px; color : #347C91; font-weight : bold;'> Please follow this link to upload your shipping information. </li>
+									<li style='margin: 40px 0 30px; color : #347C91; font-weight : bold;'> Please follow this link to upload your shipping information. </li>
 									
 									<li style='margin: 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
 									
@@ -919,7 +919,7 @@ class Review extends CI_Controller {
 									
 									<li style='margin : 0 0 15px;'>If you are satisfied with your purchase, please return to this page to close this case.</li>
 									
-									<li style='margin : 40px 0 20px; color : #347C91; font-weight : bold;'> Please follow this link to close your case. </li>
+									<li style='margin : 40px 0 30px; color : #347C91; font-weight : bold;'> Please follow this link to close your case. </li>
 									
 									<li style='margin : 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
 									
@@ -953,7 +953,7 @@ class Review extends CI_Controller {
 									
 									<li style='margin : 0 0 15px;'>We encourage you to respond as soon as possible to protect your online reputation.</li>		
 														
-									<li style='margin : 40px 0 20px; color : #347C91; font-weight : bold;'> Please follow this link to Upload the New Shipping Information. </li>
+									<li style='margin : 40px 0 30px; color : #347C91; font-weight : bold;'> Please follow this link to Upload the New Shipping Information. </li>
 									
 									<li style='margin : 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
 									
@@ -1074,7 +1074,7 @@ class Review extends CI_Controller {
 									
 									<li style='margin : 0 0 15px;'>If you are satisfied with your purchase, please return to this page to close this case.</li>
 									
-									<li style='margin : 40px 0 20px; color : #347C91; font-weight : bold;'> Please follow this link to close your case. </li>
+									<li style='margin : 40px 0 30px; color : #347C91; font-weight : bold;'> Please follow this link to close your case. </li>
 									
 									<li style='margin : 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
 									
@@ -1108,7 +1108,7 @@ class Review extends CI_Controller {
 									
 									<li style='margin : 0 0 15px;'>We encourage you to respond as soon as possible to protect your online reputation.</li>		
 														
-									<li style='margin : 40px 0 20px; color : #347C91; font-weight : bold;'> Please follow this link to Upload the Shipping Information </li>
+									<li style='margin : 40px 0 30px; color : #347C91; font-weight : bold;'> Please follow this link to Upload the Shipping Information </li>
 									
 									<li style='margin : 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
 									
@@ -1178,7 +1178,7 @@ class Review extends CI_Controller {
 									<li style='margin : 0'>This case will remain open for another 15 days and you will have an opportunity to return to this page to</li>
 									<li style='margin : 0'>close your case.</li>
 																											
-									<li style='margin: 40px 0 20px; color : #347C91; font-weight : bold;'> Please follow this link to close the case. </li>
+									<li style='margin: 40px 0 30px; color : #347C91; font-weight : bold;'> Please follow this link to close the case. </li>
 									
 									<li style='margin: 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
 									
@@ -1212,7 +1212,7 @@ class Review extends CI_Controller {
 									
 									<li style='margin : 0 0 15px;'>We encourage you to respond as soon as possible to protect your online reputation.</li>		
 														
-									<li style='margin : 40px 0 20px; color : #347C91; font-weight : bold;'> Please follow this link to Upload Proof of Refund </li>
+									<li style='margin : 40px 0 30px; color : #347C91; font-weight : bold;'> Please follow this link to Upload Proof of Refund </li>
 									
 									<li style='margin : 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
 									
