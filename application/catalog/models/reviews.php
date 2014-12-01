@@ -385,6 +385,19 @@ class Reviews extends CI_Model
 		return $this->db->get_where('reviews',array('reviewby' => $userid, 'companyid' => $companyid))->row_array();
 	}
 	
+	function insert_reviewmail($companyid, $userid, $review, $option, $textarea, $status)
+	{
+		$data = array(
+			'company_id' => $companyid,
+			'user_id'	 => $userid,
+			'review_id'  => $review,
+			'resolution' => $option,
+			'comment' 	 => $textarea,
+			'status' 	 => $status
+		);
+		$this->db->insert('youg_reviewmail', $data);
+	}
+	
 	//Getting value for searching
 	function search_company($keyword,$limit ='',$offset='')
  	{
