@@ -503,7 +503,7 @@ class Review extends CI_Controller {
 		$company = $this->reviews->get_company_byid($companyid);
 		$review = $this->reviews->get_status_review($userid, $companyid);
 		
-		$this->reviews->insert_reviewmail($companyid, $userid, $review['id'], $option, $textarea, '0')
+		$this->reviews->insert_reviewmail($companyid, $userid, $review['id'], $option, $textarea, '0');
 		
 		$site_name = $this->common->get_setting_value(1);
 		$site_email = $this->common->get_setting_value(5);
