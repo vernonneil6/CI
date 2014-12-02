@@ -494,9 +494,27 @@ class Review extends CI_Controller {
 		$this->data['name'] = ucfirst($user[0]['firstname']." ".$user[0]['lastname']);
 		$this->load->view('review_buyer',$this->data);
 	}
+	public function cronjob()
+	{
+		$result = $this->reviews->get_all_reviewmail();
+		foreach ( $result as $record )
+		{
+			$this->merchantbuyermail($record['user_id'], $record['company_id']);
+		}
+		die;
+	}
 	
 	public function merchantbuyermail($userid, $companyid)
 	{
+		$data = $this->reviews->get_reviewmail($userid, $companyid);
+		$status = $data['status'];
+		$date1 = $data['date'];
+		$date2 = date("Y-m-d");
+		$diff = abs(strtotime($date2) - strtotime($date1));
+		$years = floor($diff / (365*60*60*24));
+		$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+		$days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+		
 		$option = $this->input->post('buyeroption');
 		$textarea = $this->input->post('buyer_textarea');
 		$user = $this->users->get_user_byid($userid);
@@ -505,129 +523,158 @@ class Review extends CI_Controller {
 		
 		$this->reviews->insert_reviewmail($companyid, $userid, $review['id'], $option, $textarea, '0');
 		
+		
 		$site_name = $this->common->get_setting_value(1);
 		$site_email = $this->common->get_setting_value(5);
 		$site_url  = $this->reviews->get_setting_value(2);
 		
 		$this->load->library('email');
-		
+			
 		if($option == 'Ship the Item and/or Provide Proof of Shipping')
 		{
-		$this->email->from($site_email,$site_name);
-		$this->email->to($user[0]['email']);
-		$this->email->subject('Resolution of Negative Review');	
-		$this->email->message("
-					<table>
-					
-						<tr>
-							<td>
-								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
-								
-									<li style='font-size : 17px; margin : 0'>Your Case # ".$review['id']."</li>
+			if ($status == 1)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review');	
+			$this->email->message("
+						<table>
+							<tr>
+								<td>
+									<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
 									
-									<li style='margin : 15px 0;'>Hello ".ucfirst($user[0]['firstname']." ".$user[0]['lastname']).",</li>
+										<li style='font-size : 17px; margin : 0'>Your Case # ".$review['id']."</li>
+										
+										<li style='margin : 15px 0;'>Hello ".ucfirst($user[0]['firstname']." ".$user[0]['lastname']).",</li>
+										
+										<li style='margin : 0 0 15px;'>".ucfirst($company[0]['company'])." has indicated that your order has been shipped. Here is the Information:</li>	
+														
+										<li style='margin : 0'>Carrier:</li>
+										<li style='margin : 0'>Tracking Number:</li>
+										<li style='margin : 0 0 15px;'>Date Shipped:</li>
+										
+										<li style='margin : 0'>Please allow sufficient time for the items to reach you.</li>
+										<li style='margin : 0'>Since the Merchant has supplied you with the information you requested, the Negative Review has been</li>
+										<li style='margin : 0 0 25px;'>permanently removed for the Merchant's record.</li>
+										
+										<li style='margin : 0 0 15px;'>Thank you for using YouGotRated </li>
+										<li style='margin : 0 0 15px;'>Sincerely, </li>
+										<li style='margin : 0 0 15px;'>YouGotRated</li>
+										<li style='margin : 0 0 15px;'>BC: ".$review['id']."</li>
+										
+										<li style='font-size : 10px; margin : 0;'>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further</li>
+										<li style='font-size : 10px; margin : 0 0 15px;'>assistance, please communicate with the Merchant through the Resolution Center,</li>
+										
+										<li style='font-size : 10px; margin : 0;'>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</li>
+										
+	  								</ul>
+								</td>
+							</tr>
+							
+						</table>		
+						");
+				if($this->email->send())
+				{
+					$review = $this->reviews->get_status_reviewupdate($userid, $companyid);
+				}
+			}
+
+			else if ($days == 5 and $status == 0)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('ALERT- Negative Review Case # "'.$review['id'].'"');	
+			$this->email->message("
+						<table>
+							<tr>
+								<td>
+									<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
 									
-									<li style='margin : 0 0 15px;'>".ucfirst($company[0]['company'])." has indicated that your order has been shipped. Here is the Information:</li>	
-													
-									<li style='margin : 0'>Carrier:</li>
-									<li style='margin : 0'>Tracking Number:</li>
-									<li style='margin : 0 0 15px;'>Date Shipped:</li>
-									
-									<li style='margin : 0'>Please allow sufficient time for the items to reach you.</li>
-									<li style='margin : 0'>Since the Merchant has supplied you with the information you requested, the Negative Review has been</li>
-									<li style='margin : 0 0 25px;'>permanently removed for the Merchant's record.</li>
-									
-									<li style='margin : 0 0 15px;'>Thank you for using YouGotRated </li>
-									<li style='margin : 0 0 15px;'>Sincerely, </li>
-									<li style='margin : 0 0 15px;'>YouGotRated</li>
-									<li style='margin : 0 0 15px;'>BC: ".$review['id']."</li>
-									
-									<li style='font-size : 10px; margin : 0;'>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further</li>
-									<li style='font-size : 10px; margin : 0 0 15px;'>assistance, please communicate with the Merchant through the Resolution Center,</li>
-									
-									<li style='font-size : 10px; margin : 0;'>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</li>
-									
-  								</ul>
-							</td>
-						</tr>
-						
-						
-						<tr>
-							<td>
-								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
-								
-									<li style='margin : 15px 0;'>Dear ".ucfirst($company[0]['company']).",</li>	
-													
-									<li style='margin : 0'>It has been 5 days from the time the buyer emailed you requesting the items to be shipped but you have</li>
-									<li style='margin : 0 0 15px;'>failed to provide the shipping information.</li>
-									
-									<li style='margin : 0 0 15px;'>Please follow this link to upload the shipping information so we can remove this negative review.</li>
-									
-									<li style='margin : 0 0 15px;'>You must reply within 2 days of this email or the Negative Review will be permanently posted online.</li>
-									
-									<li style='margin : 0 0 15px;'>We encourage you to respond as soon as possible to protect your online reputation.</li>
-																	
-									<li style='margin : 30px 0 15px; color : #347C91; font-weight : bold;'> Please follow this link to respond NOW. </li>
-									
-									<li style='margin : 0 0 20px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
-									
-									<li style='margin : 0 0 15px;'>Thank you for using YouGotRated </li>
-									<li style='margin : 0 0 15px;'>Sincerely, </li>
-									<li style='margin : 0 0 15px;'>YouGotRated</li>
-									<li style='margin : 0 0 15px;'>BC: ".$review['id']."</li>
-									
-									<li style='font-size : 10px; margin : 0;'>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further</li>
-									<li style='font-size : 10px; margin : 0 0 15px;'>assistance, please communicate with the Merchant through the Resolution Center,</li>
-									
-									<li style='font-size : 10px; margin : 0;'>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</li>
-									
-  								</ul>
-							</td>
-						</tr>
-						
-						
-						<tr>
-							<td>
-								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
-								
-									<li style='font-size : 17px; margin : 0'>Your Case #YGR-".$review['id']."</li>
-									
-									<li style='margin : 15px 0;'>Hello ".ucfirst($user[0]['firstname']." ".$user[0]['lastname']).",</li>
-									
-									<li style='margin : 0;'>".ucfirst($company[0]['company'])." has failed to provide the requested shipping and tracking information for your</li>
-									<li style='margin : 0 0 15px;'>purchase.</li>	
-													
-									<li style='margin : 0'>At this time you should file a chargeback with your credit card provider in order to protect yourself due to</li>
-									<li style='margin : 0 0 15px;'>the unwillingness of the merchant to respond.</li>
-									
-									<li style='margin : 0 0 15px;'>Your card issuer will be very helpful in assisting you in filing the chargeback.</li>
-									
-									<li style='margin : 0 0 15px;'>Please note that your Negative Review has been permanently posted online against the merchant.</li>
+										<li style='margin : 15px 0;'>Dear ".ucfirst($company[0]['company']).",</li>	
+														
+										<li style='margin : 0'>It has been 5 days from the time the buyer emailed you requesting the items to be shipped but you have</li>
+										<li style='margin : 0 0 15px;'>failed to provide the shipping information.</li>
+										
+										<li style='margin : 0 0 15px;'>Please follow this link to upload the shipping information so we can remove this negative review.</li>
+										
+										<li style='margin : 0 0 15px;'>You must reply within 2 days of this email or the Negative Review will be permanently posted online.</li>
+										
+										<li style='margin : 0 0 15px;'>We encourage you to respond as soon as possible to protect your online reputation.</li>
 																		
-									<li style='margin : 0 0 15px;'>Thank you for using YouGotRated </li>
-									<li style='margin : 0 0 15px;'>Sincerely,</li>
-									<li style='margin : 0 0 15px;'>YouGotRated</li>
-									<li style='margin : 0 0 15px;'>BC: ".$review['id']."</li>
+										<li style='margin : 30px 0 15px; color : #347C91; font-weight : bold;'> Please follow this link to respond NOW. </li>
+										
+										<li style='margin : 0 0 20px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
+										
+										<li style='margin : 0 0 15px;'>Thank you for using YouGotRated </li>
+										<li style='margin : 0 0 15px;'>Sincerely, </li>
+										<li style='margin : 0 0 15px;'>YouGotRated</li>
+										<li style='margin : 0 0 15px;'>BC: ".$review['id']."</li>
+										
+										<li style='font-size : 10px; margin : 0;'>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further</li>
+										<li style='font-size : 10px; margin : 0 0 15px;'>assistance, please communicate with the Merchant through the Resolution Center,</li>
+										
+										<li style='font-size : 10px; margin : 0;'>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</li>
+										
+	  								</ul>
+								</td>
+							</tr>
+						</table>		
+						");
+			$this->email->send();
+			}
+			
+			else if ($days == 7 and $status == 0)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review');	
+			$this->email->message("
+						<table>
+							<tr>
+								<td>
+									<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
 									
-									<li style='font-size : 10px; margin : 0;'>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further</li>
-									<li style='font-size : 10px; margin : 0 0 15px;'>assistance, please communicate with the Merchant through the Resolution Center,</li>
-									
-									<li style='font-size : 10px; margin : 0;'>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</li>
-									
-  								</ul>
-							</td>
-						</tr>
-						
-					</table>		
-					");
-		$this->email->send();
+										<li style='font-size : 17px; margin : 0'>Your Case #YGR-".$review['id']."</li>
+										
+										<li style='margin : 15px 0;'>Hello ".ucfirst($user[0]['firstname']." ".$user[0]['lastname']).",</li>
+										
+										<li style='margin : 0;'>".ucfirst($company[0]['company'])." has failed to provide the requested shipping and tracking information for your</li>
+										<li style='margin : 0 0 15px;'>purchase.</li>	
+														
+										<li style='margin : 0'>At this time you should file a chargeback with your credit card provider in order to protect yourself due to</li>
+										<li style='margin : 0 0 15px;'>the unwillingness of the merchant to respond.</li>
+										
+										<li style='margin : 0 0 15px;'>Your card issuer will be very helpful in assisting you in filing the chargeback.</li>
+										
+										<li style='margin : 0 0 15px;'>Please note that your Negative Review has been permanently posted online against the merchant.</li>
+																			
+										<li style='margin : 0 0 15px;'>Thank you for using YouGotRated </li>
+										<li style='margin : 0 0 15px;'>Sincerely,</li>
+										<li style='margin : 0 0 15px;'>YouGotRated</li>
+										<li style='margin : 0 0 15px;'>BC: ".$review['id']."</li>
+										
+										<li style='font-size : 10px; margin : 0;'>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further</li>
+										<li style='font-size : 10px; margin : 0 0 15px;'>assistance, please communicate with the Merchant through the Resolution Center,</li>
+										
+										<li style='font-size : 10px; margin : 0;'>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</li>
+										
+	  								</ul>
+								</td>
+							</tr>
+						</table>		
+						");
+			$this->email->send();
+			}
 		}
+		
 		if($option == 'Would like a Full Refund')
 		{
-		$this->email->from($site_email,$site_name);
-		$this->email->to($user[0]['email']);
-		$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
-		$this->email->message("
+			if ($days == 7 and $status == 0)
+			{	
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
 					<table>
 					
 						<tr>
@@ -672,7 +719,18 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-						
+					</table>		
+					");
+			$this->email->send();
+			}
+					
+			else if ($days >= 7 and $status == 1)
+			{	
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
+					<table>
 						<tr>
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
@@ -705,7 +763,21 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-						
+					</table>		
+					");
+				if($this->email->send())
+				{
+					$this->reviews->get_status_reviewupdate($userid, $companyid);
+				}
+			}
+			
+			else if ($status == 2)
+			{	
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
+					<table>
 						<tr>
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
@@ -736,7 +808,18 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-						
+					</table>		
+					");
+			$this->email->send();
+			}
+			
+			else if ($days == 10 and $status == 0)
+			{	
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
+					<table>
 						<tr>
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
@@ -770,7 +853,18 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-						
+					</table>		
+					");
+			$this->email->send();
+			}
+			
+			else if ($days == 13 and $status == 0)
+			{	
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
+					<table>
 						<tr>
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
@@ -799,20 +893,21 @@ class Review extends CI_Controller {
 									
   								</ul>
 							</td>
-						</tr>
-						
-						
-						
+						</tr>	
 					</table>		
 					");
-		$this->email->send();
+			$this->email->send();
+			}
 		}
+		
 		if($option == 'Would like a Replacement item')
 		{
-		$this->email->from($site_email,$site_name);
-		$this->email->to($user[0]['email']);
-		$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
-		$this->email->message("
+			if($days == 7 and $status == 1)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
 					<table>
 					
 						<tr>
@@ -851,7 +946,18 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-						
+					</table>		
+					");
+			$this->email->send();
+			}
+			
+			else if ($days == 7 and $status == 0)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
+					<table>
 						<tr>
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
@@ -885,7 +991,21 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-						
+					</table>		
+					");
+				if($this->email->send())
+				{
+					$this->reviews->get_status_reviewupdate($userid, $companyid);
+				}
+			}
+			
+			else if($status == 0)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
+					<table>
 						<tr>
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
@@ -938,7 +1058,18 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-						
+					</table>		
+					");
+			$this->email->send();
+			}
+			
+			else if($days == 10 and $status == 0)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
+					<table>
 						<tr>
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
@@ -972,7 +1103,18 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-						
+					</table>		
+					");
+			$this->email->send();
+			}
+			
+			else if ($days == 12 and $status == 0)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
+					<table>
 						<tr>
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
@@ -1002,17 +1144,20 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-						
 					</table>		
 					");
-		$this->email->send();
+			$this->email->send();
+			}
 		}
+		
 		if($option == 'Would like the missing items to be shipped immediately')
 		{
-		$this->email->from($site_email,$site_name);
-		$this->email->to($user[0]['email']);
-		$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
-		$this->email->message("
+			if ($status == 0)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
 					<table>
 						
 						<tr>
@@ -1040,7 +1185,18 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-							
+					</table>		
+					");
+			$this->email->send();
+			}	
+			
+			else if ($days == 10 and $status == 0)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
+					<table>
 						<tr>
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
@@ -1093,7 +1249,18 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-						
+					</table>		
+					");
+			$this->email->send();
+			}	
+			
+			else if ($days == 15 and $status == 0)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
+					<table>
 						<tr>
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
@@ -1127,7 +1294,18 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-						
+					</table>		
+					");
+			$this->email->send();
+			}
+				
+			else if ($days == 2 and $status == 0)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
+					<table>
 						<tr>
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
@@ -1157,19 +1335,21 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-						
-					</table>		
-					");
-		$this->email->send();
+				</table>		
+				");
+			$this->email->send();
+			}
 		}
+		
 		if($option == 'Would like a Partial Refund and/or Gift Card in compensation for the service received')
 		{
-		$this->email->from($site_email,$site_name);
-		$this->email->to($user[0]['email']);
-		$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
-		$this->email->message("
+			if($status == 0)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
 					<table>
-					
 						<tr>
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
@@ -1197,7 +1377,18 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-						
+					</table>		
+				");
+			$this->email->send();
+			}	
+			
+			else if($days == 15 and $status == 0)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
+					<table>
 						<tr>
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
@@ -1231,7 +1422,18 @@ class Review extends CI_Controller {
   								</ul>
 							</td>
 						</tr>
-						
+					</table>		
+				");
+			$this->email->send();
+			}	
+			
+			else if($days == 17 and $status == 0)
+			{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($user[0]['email']);
+			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
+			$this->email->message("
+					<table>
 						<tr>
 							<td>
 								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
@@ -1264,9 +1466,10 @@ class Review extends CI_Controller {
 						
 					</table>		
 					");
-		$this->email->send();
+			$this->email->send();
+			}
 		}
-		
+		return true;
 	}
 	
 	public function checkvote()

@@ -82,7 +82,7 @@
 		?>
 		<?php echo form_textarea('buyer_textarea'); ?>
 		<div class = "buyer_submit">
-			<input type="submit" class = "sbtbtn" value = ""></div>
+			<input type="submit" class = "sbtbtn" value = "" name = "submit"></div>
 		<?php echo form_close();?>
 	</div>
 
