@@ -533,15 +533,14 @@ class Review extends CI_Controller {
 		{
 			//if ($status == 1)
 			//{
-				$mail = $this->common->get_email_byid(23);
-				$this->email->from($site_email,$site_name);
-				$this->email->to($user[0]['email']);
-				$subject = $mail[0]['subject'];
-				$mailformat = $mail[0]['mailformat'];
+				
 					
 				$this->load->library('email');
+				$mail = $this->common->get_email_byid(23);
+				$subject = $mail[0]['subject'];
+				$mailformat = $mail[0]['mailformat'];
 				$this->email->from($site_email,$site_name);
-				$this->email->to($to);
+				$this->email->to($user[0]['email']);
 				$this->email->subject($subject);	
 				$this->email->message($mailformat);
 				
