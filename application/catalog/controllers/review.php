@@ -539,12 +539,12 @@ class Review extends CI_Controller {
 			
 		if($option == 'Ship the Item and/or Provide Proof of Shipping')
 		{
-			//if ($status == 1)
-			//{
+			if ($status == 1)
+			{
 				
 				$mail_msg = $this->common->get_email_byid(23);
 				
-				$mail = str_replace("%reviewid%",$review['id'],str_replace("%company%",ucfirst($company[0]['company']),str_replace("%name%",ucfirst($user[0]['firstname']." ".$user[0]['lastname']),stripslashes($mail_msg[0]['mailformat']))));
+				$mail = str_replace("%reviewid%", $review['id'], str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))));
 								
 				$this->mail($site_name,$site_email,$user[0]['email'],$mail_msg[0]['subject'],$mail);
 				
@@ -554,51 +554,18 @@ class Review extends CI_Controller {
 				//{
 					//$review = $this->reviews->get_status_reviewupdate($userid, $companyid);
 				//}
-			//}
-
-			if ($days == 5 and $status == 0)
-			{
-			$this->email->from($site_email,$site_name);
-			$this->email->to($user[0]['email']);
-			$this->email->subject('ALERT- Negative Review Case # "'.$review['id'].'"');	
-			$this->email->message("
-						<table>
-							<tr>
-								<td>
-									<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
-									
-										<li style='margin : 15px 0;'>Dear ".ucfirst($company[0]['company']).",</li>	
-														
-										<li style='margin : 0'>It has been 5 days from the time the buyer emailed you requesting the items to be shipped but you have</li>
-										<li style='margin : 0 0 15px;'>failed to provide the shipping information.</li>
-										
-										<li style='margin : 0 0 15px;'>Please follow this link to upload the shipping information so we can remove this negative review.</li>
-										
-										<li style='margin : 0 0 15px;'>You must reply within 2 days of this email or the Negative Review will be permanently posted online.</li>
-										
-										<li style='margin : 0 0 15px;'>We encourage you to respond as soon as possible to protect your online reputation.</li>
-																		
-										<li style='margin : 30px 0 15px; color : #347C91; font-weight : bold;'> Please follow this link to respond NOW. </li>
-										
-										<li style='margin : 0 0 20px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
-										
-										<li style='margin : 0 0 15px;'>Thank you for using YouGotRated </li>
-										<li style='margin : 0 0 15px;'>Sincerely, </li>
-										<li style='margin : 0 0 15px;'>YouGotRated</li>
-										<li style='margin : 0 0 15px;'>BC: ".$review['id']."</li>
-										
-										<li style='font-size : 10px; margin : 0;'>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further</li>
-										<li style='font-size : 10px; margin : 0 0 15px;'>assistance, please communicate with the Merchant through the Resolution Center,</li>
-										
-										<li style='font-size : 10px; margin : 0;'>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</li>
-										
-	  								</ul>
-								</td>
-							</tr>
-						</table>		
-						");
-			$this->email->send();
 			}
+
+			//if ($days == 5 and $status == 0)
+			//{
+			$mail_msg = $this->common->get_email_byid(24);
+				
+			$mail = str_replace("%reviewid%", $review['id'], str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))));
+								
+			$this->mail($site_name,$site_email,$user[0]['email'],$mail_msg[0]['subject'],$mail);
+			
+			$this->email->send();
+			//}
 			
 			else if ($days == 7 and $status == 0)
 			{
