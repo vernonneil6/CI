@@ -553,7 +553,7 @@ class Review extends CI_Controller {
 				//}
 			//}
 
-			else if ($days == 5 and $status == 0)
+			if ($days == 5 and $status == 0)
 			{
 			$this->email->from($site_email,$site_name);
 			$this->email->to($user[0]['email']);
