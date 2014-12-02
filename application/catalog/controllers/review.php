@@ -541,7 +541,12 @@ class Review extends CI_Controller {
 				$mailformat = $mail[0]['mailformat'];
 				$this->email->from($site_email,$site_name);
 				$this->email->to($user[0]['email']);
-				$this->email->subject($subject);	
+				$this->email->subject($subject);
+				
+				
+				str_replace("%reviewid%",$review['id'],str_replace("%company%",ucfirst($company[0]['company']),str_replace("%name%",ucfirst($user[0]['firstname']." ".$user[0]['lastname']),stripslashes($mailformat))));
+				
+					
 				$this->email->message($mailformat);
 				
 				$this->email->send();
