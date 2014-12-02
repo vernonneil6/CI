@@ -505,7 +505,6 @@ class Review extends CI_Controller {
 	}
 	function mail($site_name,$site_email,$to,$subject,$mail)
 	{
-			$this->load->library('email');
 			$this->email->from($site_email,$site_name);
 			$this->email->to($to);
 			$this->email->subject($subject);	
@@ -539,6 +538,17 @@ class Review extends CI_Controller {
 			
 		if($option == 'Ship the Item and/or Provide Proof of Shipping')
 		{
+			//if ($days == 5 and $status == 0)
+			//{
+			$mail_msg = $this->common->get_email_byid(24);
+				
+			$mail = str_replace("%reviewid%", $review['id'], str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))));
+								
+			$this->mail($site_name,$site_email,$user[0]['email'],$mail_msg[0]['subject'],$mail);
+			
+			$this->email->send();
+			//}
+			
 			if ($status == 1)
 			{
 				
@@ -556,16 +566,7 @@ class Review extends CI_Controller {
 				//}
 			}
 
-			//if ($days == 5 and $status == 0)
-			//{
-			$mail_msg = $this->common->get_email_byid(24);
-				
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))));
-								
-			$this->mail($site_name,$site_email,$user[0]['email'],$mail_msg[0]['subject'],$mail);
 			
-			$this->email->send();
-			//}
 			
 			else if ($days == 7 and $status == 0)
 			{
