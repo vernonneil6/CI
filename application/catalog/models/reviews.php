@@ -393,8 +393,8 @@ class Reviews extends CI_Model
 			'review_id'  => $review,
 			'resolution' => $option,
 			'comment' 	 => $textarea,
-			'status' 	 => $status
-			'date'		 => date('Y:m:d H:i:s');
+			'status' 	 => $status,
+			'date'		 => date('Y:m:d H:i:s')
 		);
 		$this->db->insert('youg_reviewmail', $data);
 	}
