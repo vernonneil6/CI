@@ -525,13 +525,20 @@ class Review extends CI_Controller {
 			$textarea   	= $this->input->post('buyer_textarea');
 			
 			$this->reviews->insert_reviewmail($companyid, $userid, $review['id'], $buyeroption, $textarea, '0');
+			echo $id = $this->db->insert_id();
+			$reviewmail = $this->reviews->get_reviewmailbyid($id);
+			$option   	= $reviewmail['resolution'];
+			$status   	= $reviewmail['status'];
+			$date1  	= $reviewmail['date'];
+		}
+		else
+		{
+			$reviewmail	= $this->reviews->get_reviewmail($userid, $companyid);
+			$option   	= $reviewmail['resolution'];
+			$status   	= $reviewmail['status'];
+			$date1  	= $reviewmail['date'];
 		}
 		
-		$reviewmail	= $this->reviews->get_reviewmail($userid, $companyid);
-		$option   	= $reviewmail['resolution'];
-		$status   	= $reviewmail['status'];
-		
-		$date1  = $reviewmail['date'];
 		$date2  = date("Y-m-d");
 		$diff   = abs(strtotime($date2) - strtotime($date1));
 		$years  = floor($diff / (365*60*60*24));
