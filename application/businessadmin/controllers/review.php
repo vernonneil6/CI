@@ -268,14 +268,18 @@ class Review extends CI_Controller {
 		$this->load->view('review', $this->data);
 	}
 	
-	public function review_updates()
+	public function review_update_refund()
 	{
 		if($this->input->post('submit'))
 		{
 			$data = array(
-			'carrier' => $this->input->post('carrier'),
-			'trackingno' => $this->input->post('trackingno'),
-			'dateshipped' => $this->input->post('dateshipped')
+			'merchantname' => $this->input->post('merchantname'),
+			'address' => $this->input->post('address'),
+			'city' => $this->input->post('city'),
+			'state' => $this->input->post('state'),
+			'zip' => $this->input->post('zip'),
+			'code' => $this->input->post('code'),
+			'checkdate' => date('Y-m-d')
 			);
 			
 			$reviewid = $this->input->post('id');
@@ -283,6 +287,24 @@ class Review extends CI_Controller {
 			redirect("review/reviews","refresh");
 		}
 	}
+	
+	public function	review_updates()
+	{
+		if($this->input->post('submit'))
+		{
+			$data = array(
+			'carrier' => $this->input->post('carrier'),
+			'trackingno' => $this->input->post('trackingno'),
+			'dateshipped' => $this->input->post('dateshipped'),
+			'checkdate' => date('Y-m-d')
+			);
+			
+			$reviewid = $this->input->post('id');
+			$this->reviews->reviewmail_update($data, $reviewid);
+			redirect("review/reviews","refresh");
+		}
+	}
+	
 	public function request($reviewid='',$userid='')
 	{
 		// Your own constructor code

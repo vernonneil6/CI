@@ -164,6 +164,7 @@
 	?>
 	<div class="box-content">
     <fieldset>
+	<?php if($review['resolution'] == 'Ship the Item and/or Provide Proof of Shipping') { ?>
 	<form action="review/review_updates" method="post" class ="formBox broker">
 		<div class="clearfix">
 			<div class="lab">
@@ -188,7 +189,7 @@
 				<label for="name">Carrier</label>
 			</div>
 			<div class="con">
-				<input type = "text" value="<?php echo $review['comment']; ?>" class="input" name = "carrier">
+				<input type = "text" value="" class="input" name = "carrier">
 			</div>
 		</div>
 		
@@ -197,7 +198,7 @@
 				<label for="name">Tracking Number</label>
 			</div>
 			<div class="con">
-				<input type = "text" value="<?php echo $review['comment']; ?>" class="input" name = "trackingno" >
+				<input type = "text" value="" class="input" name = "trackingno" >
 			</div>
 		</div>
 		
@@ -206,7 +207,7 @@
 				<label for="name">Date Shipped</label>
 			</div>
 			<div class="con">
-				<input type = "text" value="<?php echo $review['comment']; ?>" class="input" name = "dateshipped" >
+				<input type = "text" value="" class="input" name = "dateshipped" >
 			</div>
 		</div>
 		<input type = "hidden" value = "<?php echo $review['id'];?>" name = "id" >
@@ -215,6 +216,89 @@
 		</div>
 		
 	</form>
+	<?php } ?>
+	
+	<?php if($review['resolution'] == 'Would like a Full Refund') { ?>
+	<form action="review/review_update_refund" method="post" class ="formBox broker">
+		<div class="clearfix">
+			<div class="lab">
+				<label for="name">Resolution</label>
+			</div>
+			<div class="con">
+				<input type = "text" value="<?php echo $review['resolution']; ?>" class="input" readonly>
+			</div>
+		</div>
+		
+		<div class="clearfix">
+			<div class="lab">
+				<label for="name">Comments</label>
+			</div>
+			<div class="con">
+				<input type = "text" value="<?php echo $review['comment']; ?>" class="input" readonly>
+			</div>
+		</div>
+		
+		<div class="clearfix">
+			<div class="lab">
+				<label for="name">Merchant's Name</label>
+			</div>
+			<div class="con">
+				<input type = "text" value="" class="input" name = "merchantname">
+			</div>
+		</div>
+		
+		<div class="clearfix">
+			<div class="lab">
+				<label for="name">Address</label>
+			</div>
+			<div class="con">
+				<input type = "text" value="" class="input" name = "address" >
+			</div>
+		</div>
+		
+		<div class="clearfix">
+			<div class="lab">
+				<label for="name">City</label>
+			</div>
+			<div class="con">
+				<input type = "text" value="" class="input" name = "city" >
+			</div>
+		</div>
+		
+		<div class="clearfix">
+			<div class="lab">
+				<label for="name">State</label>
+			</div>
+			<div class="con">
+				<input type = "text" value="" class="input" name = "state" >
+			</div>
+		</div>
+		
+		<div class="clearfix">
+			<div class="lab">
+				<label for="name">Zip</label>
+			</div>
+			<div class="con">
+				<input type = "text" value="" class="input" name = "zip" >
+			</div>
+		</div>
+		
+		<div class="clearfix">
+			<div class="lab">
+				<label for="name">Code</label>
+			</div>
+			<div class="con">
+				<input type = "text" value="" class="input" name = "code" >
+			</div>
+		</div>
+		<input type = "hidden" value = "<?php echo $review['id'];?>" name = "id" >
+		<div class="btn-submit" style = "padding : 15px 0 0 14%; border : none;">
+			<input class="button" type="submit" value="Submit" name="submit">
+		</div>
+		
+	</form>
+	<?php } ?>
+	
 	</fieldset>
     </div>
 	<?php
