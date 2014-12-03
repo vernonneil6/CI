@@ -494,6 +494,7 @@ class Review extends CI_Controller {
 		$this->data['name'] = ucfirst($user[0]['firstname']." ".$user[0]['lastname']);
 		$this->load->view('review_buyer',$this->data);
 	}
+	
 	public function cronjob()
 	{
 		$result = $this->reviews->get_all_reviewmail();
@@ -503,6 +504,7 @@ class Review extends CI_Controller {
 		}
 		die;
 	}
+	
 	function mail($site_name,$site_email,$site_url,$to,$subject,$mail)
 	{
 			$this->email->from($site_email,$site_name);
@@ -510,318 +512,272 @@ class Review extends CI_Controller {
 			$this->email->subject($subject);	
 			$this->email->message($mail);		
 	}
-	function mail_content ($site_name, $site_email, $site_url, $to)
-	{
-		$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-		$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-														
-		$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-	}
 	
 	public function merchantbuyermail($userid, $companyid)
 	{
-		$data = $this->reviews->get_reviewmail($userid, $companyid);
-		$status = $data['status'];
-		$date1 = $data['date'];
-		$date2 = date("Y-m-d");
-		$diff = abs(strtotime($date2) - strtotime($date1));
-		$years = floor($diff / (365*60*60*24));
-		$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-		$days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+		$user 		= $this->users->get_user_byid($userid);
+		$company 	= $this->reviews->get_company_byid($companyid);
+		$review  	= $this->reviews->get_status_review($userid, $companyid);
 		
-		$option = $this->input->post('buyeroption');
-		$textarea = $this->input->post('buyer_textarea');
-		$user = $this->users->get_user_byid($userid);
-		$company = $this->reviews->get_company_byid($companyid);
-		$review = $this->reviews->get_status_review($userid, $companyid);
-		
-		$this->reviews->insert_reviewmail($companyid, $userid, $review['id'], $option, $textarea, '0');
+		if($this->input->post('submit'))
+		{
+			$buyeroption 	= $this->input->post('buyeroption');
+			$textarea   	= $this->input->post('buyer_textarea');
 			
-		$site_name = $this->common->get_setting_value(1);
+			$this->reviews->insert_reviewmail($companyid, $userid, $review['id'], $buyeroption, $textarea, '0');
+		}
+		
+		$reviewmail	= $this->reviews->get_reviewmail($userid, $companyid);
+		$option   	= $reviewmail['option'];
+		$status   	= $reviewmail['status'];
+		
+		$date1  = $reviewmail['date'];
+		$date2  = date("Y-m-d");
+		$diff   = abs(strtotime($date2) - strtotime($date1));
+		$years  = floor($diff / (365*60*60*24));
+		$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+		$days 	= floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+		
+		$site_name  = $this->common->get_setting_value(1);
 		$site_email = $this->common->get_setting_value(5);
-		$site_url  = $this->reviews->get_setting_value(2);
+		$site_url   = $this->reviews->get_setting_value(2);
 		
 		$this->load->library('email');
 			
-		if($option == 'Ship the Item and/or Provide Proof of Shipping')
+		if ($option == 'Ship the Item and/or Provide Proof of Shipping')
 		{
+			if ($status == 1)
+			{
+				$mail_msg = $this->common->get_email_byid(23);
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));			
+				$to 	  = $user[0]['email'];
+						
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
+				$this->email->send();
+			}
 			
-			$mail_msg = $this->common->get_email_byid(23);
+			else if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(24);
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));				
+				$mail	  = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));								
+				$to 	  = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);				
+				$this->email->send();
+			}
 			
-			$to = $user[0]['email'];
-							
-			$this->mail_content($site_name, $site_email, $site_url, $to, $mail_msg, $company, $user);
-			
-			$this->email->send();
-			
-			
-			
-			$mail_msg = $this->common->get_email_byid(24);
-			
-			$to = $user[0]['email'];
-							
-			$this->mail_content($site_name, $site_email, $site_url, $to, $mail_msg, $company, $user);
-			
-			$this->email->send();
-			
-			
-			
-	
-	
-			$mail_msg = $this->common->get_email_byid(26);
-			
-			$to = $user[0]['email'];
-							
-			$this->mail_content($site_name, $site_email, $site_url, $to, $mail_msg, $company, $user);
-			
-			$this->email->send();
-			
+			else if ($days == 7 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(26);				
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
+				$mail 	  = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));		
+				$to 	  = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);				
+				$this->email->send();
+			}
 		}
 		
 		if($option == 'Would like a Full Refund')
 		{
-
-			$mail_msg = $this->common->get_email_byid(28);
+			if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(28);
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 			
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
+			else if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(29);			
+				$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
+			else if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(30);
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+					
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 			
-			$this->email->send();
-	
-		
-			$mail_msg = $this->common->get_email_byid(29);
+			else if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(31);		
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 			
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
-			
-			
-			$mail_msg = $this->common->get_email_byid(30);
-				
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
-			
-			
-			$mail_msg = $this->common->get_email_byid(31);
-				
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
-			
-			
-			$mail_msg = $this->common->get_email_byid(26);
-				
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
-			
+			else if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(26);
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 			
 		}
 		
 		if($option == 'Would like a Replacement item')
 		{
+			if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(32);
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 			
-			$mail_msg = $this->common->get_email_byid(32);
-				
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
+			else if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(33);	
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
-			
-			
-			
-			$mail_msg = $this->common->get_email_byid(33);
-				
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
-			
-			
-			
-			$mail_msg = $this->common->get_email_byid(34);
-				
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-			
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
+			else if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(34);	
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 		
-		
-		
-			$mail_msg = $this->common->get_email_byid(35);
-				
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
+			else if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(35);	
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
-			
-			
-			
-			$mail_msg = $this->common->get_email_byid(26);
-			
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
-			
+			else if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(26);
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 		}
 		
 		if($option == 'Would like the missing items to be shipped immediately')
 		{
+			if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(36);
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 			
-			$mail_msg = $this->common->get_email_byid(36);
-			
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
-		
-		
-		
-			$mail_msg = $this->common->get_email_byid(37);
-			
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
+			else if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(37);
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 	
-	
-	
-			$mail_msg = $this->common->get_email_byid(38);
-			
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
+			else if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(38);
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 		
-		
-		
-			$mail_msg = $this->common->get_email_byid(26);
-			
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
-			
+			else if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(26);	
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 		}
 		
 		if($option == 'Would like a Partial Refund and/or Gift Card in compensation for the service received')
 		{
+			if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(39);			
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 		
-			$mail_msg = $this->common->get_email_byid(39);
+			else if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(40);			
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 			
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
-		
-		
-		
-			$mail_msg = $this->common->get_email_byid(40);
-			
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
-			
-			$this->email->send();
-		
-		
-		
-			$mail_msg = $this->common->get_email_byid(26);
-			
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
-							
-			$to = $user[0]['email'];
-							
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			
-			$this->email->send();
-			
+			else if ($days == 5 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(26);
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
 		}
 		return true;
 	}
