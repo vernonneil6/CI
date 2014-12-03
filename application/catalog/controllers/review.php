@@ -503,7 +503,7 @@ class Review extends CI_Controller {
 		}
 		die;
 	}
-	function mail($site_name,$site_email,$to,$subject,$mail)
+	function mail($site_name,$site_email,$site_url,$to,$subject,$mail)
 	{
 			$this->email->from($site_email,$site_name);
 			$this->email->to($to);
@@ -544,7 +544,7 @@ class Review extends CI_Controller {
 				
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))));
 								
-			$this->mail($site_name,$site_email,$user[0]['email'],$mail_msg[0]['subject'],$mail);
+			$this->mail($site_name,$site_email,$site_url,$user[0]['email'],$mail_msg[0]['subject'],$mail);
 			
 			$this->email->send();
 			//}
@@ -556,7 +556,7 @@ class Review extends CI_Controller {
 				
 				$mail = str_replace("%reviewid%", $review['id'], str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))));
 								
-				$this->mail($site_name,$site_email,$user[0]['email'],$mail_msg[0]['subject'],$mail);
+				$this->mail($site_name,$site_email,$site_url,$user[0]['email'],$mail_msg[0]['subject'],$mail);
 				
 				$this->email->send();
 				
@@ -570,45 +570,13 @@ class Review extends CI_Controller {
 			
 			else if ($days == 7 and $status == 0)
 			{
-			$this->email->from($site_email,$site_name);
-			$this->email->to($user[0]['email']);
-			$this->email->subject('Resolution of Negative Review');	
-			$this->email->message("
-						<table>
-							<tr>
-								<td>
-									<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
-									
-										<li style='font-size : 17px; margin : 0'>Your Case #YGR-".$review['id']."</li>
-										
-										<li style='margin : 15px 0;'>Hello ".ucfirst($user[0]['firstname']." ".$user[0]['lastname']).",</li>
-										
-										<li style='margin : 0;'>".ucfirst($company[0]['company'])." has failed to provide the requested shipping and tracking information for your</li>
-										<li style='margin : 0 0 15px;'>purchase.</li>	
-														
-										<li style='margin : 0'>At this time you should file a chargeback with your credit card provider in order to protect yourself due to</li>
-										<li style='margin : 0 0 15px;'>the unwillingness of the merchant to respond.</li>
-										
-										<li style='margin : 0 0 15px;'>Your card issuer will be very helpful in assisting you in filing the chargeback.</li>
-										
-										<li style='margin : 0 0 15px;'>Please note that your Negative Review has been permanently posted online against the merchant.</li>
-																			
-										<li style='margin : 0 0 15px;'>Thank you for using YouGotRated </li>
-										<li style='margin : 0 0 15px;'>Sincerely,</li>
-										<li style='margin : 0 0 15px;'>YouGotRated</li>
-										<li style='margin : 0 0 15px;'>BC: ".$review['id']."</li>
-										
-										<li style='font-size : 10px; margin : 0;'>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further</li>
-										<li style='font-size : 10px; margin : 0 0 15px;'>assistance, please communicate with the Merchant through the Resolution Center,</li>
-										
-										<li style='font-size : 10px; margin : 0;'>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</li>
-										
-	  								</ul>
-								</td>
-							</tr>
-						</table>		
-						");
-			$this->email->send();
+				$mail_msg = $this->common->get_email_byid(26);
+				
+				$mail = str_replace("%reviewid%", $review['id'], str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))));
+								
+				$this->mail($site_name,$site_email,$site_url,$user[0]['email'],$mail_msg[0]['subject'],$mail);
+				
+				$this->email->send();
 			}
 		}
 		
@@ -616,57 +584,13 @@ class Review extends CI_Controller {
 		{
 			if ($days == 7 and $status == 0)
 			{	
-			$this->email->from($site_email,$site_name);
-			$this->email->to($user[0]['email']);
-			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
-			$this->email->message("
-					<table>
-					
-						<tr>
-							<td>
-								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
-															
-									<li style='margin : 15px 0;'>Hello ".ucfirst($user[0]['firstname']." ".$user[0]['lastname']).",</li>
-									<li style='margin : 0 0 15px;'>".ucfirst($company[0]['company'])." has agreed to offer you a full refund.</li>					
-									
-									<li style='margin : 0'>You must first return the original merchandise to the following address provided by the Merchant within 7</li>
-									<li style='margin : 0'>days of this email:</li>
-									
-									<li style='margin : 15px 0 0;'>Merchant's Name,</li>
-									<li style='margin : 0'>Address,</li>
-									<li style='margin : 0'>City,</li>
-									<li style='margin : 0'>State,</li>
-									<li style='margin : 0'>Zip Code</li>
-									
-									<li style='margin : 15px 0 0;'>For your protection, please ensure that the items are properly packaged and that you send them Fully</li>
-									<li style='margin : 0;'>Insured and with Signature Required.</li>
-									
-									<li style='margin : 15px 0 0;'>Once you have shipped the items, you must returned to this page to upload the Tracking Information</li>
-									<li style='margin : 0;'>within 7 days or this case will be automatically closed.</li>
-									
-									<li style='margin : 15px 0 0;'>The Merchant will issue your refund within 5 business days of receipt and inspection of the returned</li>
-									<li style='margin : 0;'>merchandise.</li>
-									
-									<li style='margin:  30px 0 15px; color : #347C91; font-weight : bold;'> Please follow this link to Upload your Shipping Information. </li>
-									
-									<li style='margin: 0 0 20px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
-									
-									<li style='margin : 0 0 15px;'>Thank you for using YouGotRated.</li>
-									<li style='margin : 0 0 15px;'>Sincerely,</li>
-									<li style='margin : 0 0 15px;'>YouGotRated</li>
-									<li style='margin : 0 0 15px;'>BC : YGR-".$review['id']."</li>
-									
-									<li style='font-size : 10px; margin : 0'>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further</li>
-									<li style='font-size : 10px; margin : 0 0 15px;'>assistance, please communicate with the Merchant through the Resolution Center,</li>
-									
-									<li style='font-size : 10px; margin : 0'>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</li>
-									
-  								</ul>
-							</td>
-						</tr>
-					</table>		
-					");
-			$this->email->send();
+				$mail_msg = $this->common->get_email_byid(28);
+				
+				$mail = str_replace("%reviewid%", $review['id'], str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))));
+								
+				$this->mail($site_name,$site_email,$site_url,$user[0]['email'],$mail_msg[0]['subject'],$mail);
+				
+				$this->email->send();
 			}
 					
 			else if ($days >= 7 and $status == 1)
@@ -675,40 +599,7 @@ class Review extends CI_Controller {
 			$this->email->to($user[0]['email']);
 			$this->email->subject('Resolution of Negative Review Case # YGR-'.$review['id']);	
 			$this->email->message("
-					<table>
-						<tr>
-							<td>
-								<ul style='font-size : 13px; list-style : none; padding : 10px 0; margin : 0;'>
-															
-									<li style='margin : 15px 0;'>Hello ".ucfirst($company[0]['company']).",</li>
-									<li style='margin : 0 0 15px;'>".ucfirst($user[0]['firstname']." ".$user[0]['lastname'])." has shipped the item with the following shipping information:</li>					
-									
-									<li style='margin : 0'>Carrier:</li>
-									<li style='margin : 0'>Tracking Number:</li>
-									<li style='margin : 0 0 15px;'>Date Shipped:</li>
-									
-									
-									<li style='margin : 0'>Once you receive the item please issue the Buyer a Full Refund and follow the link below to upload Proof</li>
-									<li style='margin : 0 0 15px;'>of Refund so we can close this case in your favor.</li>			
-														
-									<li style='margin : 30px 0 15px; color : #347C91; font-weight : bold;'> Please follow this link to Upload Proof of Refund. </li>
-									
-									<li style='margin : 0 0 20px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
-									
-									<li style='margin : 0 0 15px;'>Thank you for using YouGotRated.</li>
-									<li style='margin : 0 0 15px;'>Sincerely,</li>
-									<li style='margin : 0 0 15px;'>YouGotRated</li>
-									<li style='margin : 0 0 15px;'>BC : YGR-".$review['id']."</li>
-									
-									<li style='font-size : 10px; margin : 0'>Please do not reply to this email. This mailbox is not monitored and we are unable to respond to inquiries sent to this address. For further</li>
-									<li style='font-size : 10px; margin : 0 0 15px;'>assistance, please communicate with the Merchant through the Resolution Center,</li>
-									
-									<li style='font-size : 10px; margin : 0'>Copyright © 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</li>
-									
-  								</ul>
-							</td>
-						</tr>
-					</table>		
+					
 					");
 				if($this->email->send())
 				{
