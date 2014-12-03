@@ -400,12 +400,12 @@ class Reviews extends CI_Model
 		return $this->db->get_where('youg_reviewmail',array('user_id' => $userid, 'company_id' => $companyid))->row_array();
 	}
 	
-	function get_status_reviewupdate($userid, $companyid)
+	function get_status_reviewupdate($userid, $companyid, $reviewid)
 	{
 		$data = array(
-			'status' => '2'
+			'status' => 'Enable'
 		);
-		$this->db->where(array('user_id' => $userid, 'company_id' => $companyid ))->update('youg_reviewmail',$data);
+		$this->db->where(array('user_id' => $userid, 'company_id' => $companyid, 'id' => $reviewid ))->update('youg_reviews',$data);
 	}
 	
 	function insert_reviewmail($companyid, $userid, $review, $option, $textarea, $status)

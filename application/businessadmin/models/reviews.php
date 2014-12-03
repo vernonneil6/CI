@@ -175,6 +175,16 @@ class Reviews extends CI_Model
 		return true;
 	}
 	
+	function review_mail($reviewid, $companyid)
+	{
+		return $this->db->get_where('youg_reviewmail',array('company_id' => $companyid, 'review_id' => $reviewid))->row_array();
+	}
+	
+	function reviewmail_update($data, $reviewid)
+	{
+		$this->db->where('id', $reviewid))->update('youg_reviewmail', $data);
+	}
+	
 	//Changing Status to "Disable"
 	function disable_review_byid($id)
 	{

@@ -259,6 +259,30 @@ class Review extends CI_Controller {
 		$this->data['companyname'] = $company[0]['company'];
 		$this->load->view('removalreview',$this->data);
 	}
+	
+	public function resolution($reviewid)
+	{
+		$companyid = $this->session->userdata['youg_admin']['id'];
+
+		$this->data['review'] = $this->reviews->review_mail($reviewid, $companyid);
+		$this->load->view('review', $this->data);
+	}
+	
+	public function review_updates()
+	{
+		if($this->input->post('submit'))
+		{
+			$data = array(
+			'carrier' => $this->input->post('carrier'),
+			'trackingno' => $this->input->post('trackingno'),
+			'dateshipped' => $this->input->post('dateshipped')
+			);
+			
+			$reviewid = $this->input->post('id');
+			$this->reviews->reviewmail_update($data, $reviewid);
+			redirect("review/reviews","refresh");
+		}
+	}
 	public function request($reviewid='',$userid='')
 	{
 		// Your own constructor code
