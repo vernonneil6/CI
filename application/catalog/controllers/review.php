@@ -519,8 +519,7 @@ class Review extends CI_Controller {
 		$company 	= $this->reviews->get_company_byid($companyid);
 		$review  	= $this->reviews->get_status_review($userid, $companyid);
 		
-		if($this->input->post('submit'))
-		{
+		
 			$buyeroption 	= $this->input->post('buyeroption');
 			$textarea   	= $this->input->post('buyer_textarea');
 			
@@ -530,14 +529,7 @@ class Review extends CI_Controller {
 			$option   	= $reviewmail['resolution'];
 			$status   	= $reviewmail['status'];
 			$date1  	= $reviewmail['date'];
-		}
-		else
-		{
-			$reviewmail	= $this->reviews->get_reviewmail($userid, $companyid);
-			$option   	= $reviewmail['resolution'];
-			$status   	= $reviewmail['status'];
-			$date1  	= $reviewmail['date'];
-		}
+		
 		
 		$date2  = date("Y-m-d");
 		$diff   = abs(strtotime($date2) - strtotime($date1));
