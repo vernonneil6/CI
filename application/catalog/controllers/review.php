@@ -519,7 +519,7 @@ class Review extends CI_Controller {
 		$company 	= $this->reviews->get_company_byid($companyid);
 		$review  	= $this->reviews->get_status_review($userid, $companyid);
 		
-		if(isset($this->input->post('submit')))
+		if($this->input->post('submit'))
 		{
 			$buyeroption 	= $this->input->post('buyeroption');
 			$textarea   	= $this->input->post('buyer_textarea');
@@ -533,6 +533,7 @@ class Review extends CI_Controller {
 		}
 		else
 		{
+			echo "test";
 			$reviewmail	= $this->reviews->get_reviewmail($userid, $companyid);
 			$option   	= $reviewmail['resolution'];
 			$status   	= $reviewmail['status'];
@@ -784,6 +785,7 @@ class Review extends CI_Controller {
 				$this->email->send();
 			}
 		}
+		return true;
 	}
 	
 	public function checkvote()
