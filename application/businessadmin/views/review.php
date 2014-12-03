@@ -162,13 +162,15 @@
     if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'resolution' )
   	{
 	?>
-	<form action="review/review_updates" method="post">
+	<div class="box-content">
+    <fieldset>
+	<form action="review/review_updates" method="post" class ="formBox broker">
 		<div class="clearfix">
 			<div class="lab">
 				<label for="name">Resolution</label>
 			</div>
 			<div class="con">
-				<input value="<?php echo $review['resolution']; ?>" class="input" readonly>
+				<input type = "text" value="<?php echo $review['resolution']; ?>" class="input" readonly>
 			</div>
 		</div>
 		
@@ -177,7 +179,7 @@
 				<label for="name">Comments</label>
 			</div>
 			<div class="con">
-				<input value="<?php echo $review['comment']; ?>" class="input" readonly>
+				<input type = "text" value="<?php echo $review['comment']; ?>" class="input" readonly>
 			</div>
 		</div>
 		
@@ -186,7 +188,7 @@
 				<label for="name">Carrier</label>
 			</div>
 			<div class="con">
-				<input value="<?php echo $review['comment']; ?>" class="input" name = "carrier">
+				<input type = "text" value="<?php echo $review['comment']; ?>" class="input" name = "carrier">
 			</div>
 		</div>
 		
@@ -195,7 +197,7 @@
 				<label for="name">Tracking Number</label>
 			</div>
 			<div class="con">
-				<input value="<?php echo $review['comment']; ?>" class="input" name = "trackingno" >
+				<input type = "text" value="<?php echo $review['comment']; ?>" class="input" name = "trackingno" >
 			</div>
 		</div>
 		
@@ -204,15 +206,17 @@
 				<label for="name">Date Shipped</label>
 			</div>
 			<div class="con">
-				<input value="<?php echo $review['comment']; ?>" class="input" name = "dateshipped" >
+				<input type = "text" value="<?php echo $review['comment']; ?>" class="input" name = "dateshipped" >
 			</div>
 		</div>
 		<input type = "hidden" value = "<?php echo $review['id'];?>" name = "id" >
-		<div class="btn-submit">
+		<div class="btn-submit" style = "padding : 15px 0 0 14%; border : none;">
 			<input class="button" type="submit" value="Submit" name="submit">
 		</div>
 		
 	</form>
+	</fieldset>
+    </div>
 	<?php
 	}
 	?>

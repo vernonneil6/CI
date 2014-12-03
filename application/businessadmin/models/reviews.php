@@ -182,7 +182,7 @@ class Reviews extends CI_Model
 	
 	function reviewmail_update($data, $reviewid)
 	{
-		$this->db->where('id', $reviewid))->update('youg_reviewmail', $data);
+		$this->db->where('id', $reviewid)->update('youg_reviewmail', $data);
 	}
 	
 	//Changing Status to "Disable"
