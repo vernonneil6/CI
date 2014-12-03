@@ -784,7 +784,6 @@ class Review extends CI_Controller {
 				$this->email->send();
 			}
 		}
-		return true;
 	}
 	
 	public function checkvote()
