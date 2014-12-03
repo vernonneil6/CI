@@ -528,7 +528,7 @@ class Review extends CI_Controller {
 		}
 		
 		$reviewmail	= $this->reviews->get_reviewmail($userid, $companyid);
-		$option   	= $reviewmail['option'];
+		$option   	= $reviewmail['resolution'];
 		$status   	= $reviewmail['status'];
 		
 		$date1  = $reviewmail['date'];
@@ -546,8 +546,7 @@ class Review extends CI_Controller {
 			
 		if ($option == 'Ship the Item and/or Provide Proof of Shipping')
 		{
-			if ($status == 1)
-			{
+			
 				$mail_msg = $this->common->get_email_byid(23);
 				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
 				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));			
@@ -555,9 +554,8 @@ class Review extends CI_Controller {
 						
 				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 				$this->email->send();
-			}
 			
-			else if ($days == 5 and $status == 0)
+			if ($days == 5 and $status == 0)
 			{
 				$mail_msg = $this->common->get_email_byid(24);
 				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));				
