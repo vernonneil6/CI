@@ -510,6 +510,14 @@ class Review extends CI_Controller {
 			$this->email->subject($subject);	
 			$this->email->message($mail);		
 	}
+	function mail_content ($site_name, $site_email, $site_url, $to)
+	{
+		$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
+			
+		$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
+														
+		$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
+	}
 	
 	public function merchantbuyermail($userid, $companyid)
 	{
@@ -541,34 +549,31 @@ class Review extends CI_Controller {
 			
 			$mail_msg = $this->common->get_email_byid(23);
 			
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
+			$to = $user[0]['email'];
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$this->mail_content($site_name, $site_email, $site_url, $to, $mail_msg, $company, $user);
 			
 			$this->email->send();
+			
 			
 			
 			$mail_msg = $this->common->get_email_byid(24);
 			
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
+			$to = $user[0]['email'];
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$this->mail_content($site_name, $site_email, $site_url, $to, $mail_msg, $company, $user);
 			
 			$this->email->send();
+			
+			
 			
 	
 	
 			$mail_msg = $this->common->get_email_byid(26);
 			
-			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-			
-			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
+			$to = $user[0]['email'];
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$this->mail_content($site_name, $site_email, $site_url, $to, $mail_msg, $company, $user);
 			
 			$this->email->send();
 			
@@ -583,7 +588,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 	
@@ -594,7 +601,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 			
@@ -605,7 +614,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 			
@@ -616,7 +627,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 			
@@ -627,7 +640,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 			
@@ -643,7 +658,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 			
@@ -655,7 +672,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 			
@@ -666,8 +685,10 @@ class Review extends CI_Controller {
 			$subject = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
+			
+			$to = $user[0]['email'];
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 		
@@ -679,7 +700,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 			
@@ -691,7 +714,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 			
@@ -706,7 +731,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 		
@@ -718,7 +745,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 	
@@ -730,7 +759,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 		
@@ -742,7 +773,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 			
@@ -757,7 +790,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 		
@@ -781,7 +816,9 @@ class Review extends CI_Controller {
 			
 			$mail = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));
 							
-			$this->mail($site_name, $site_email, $site_url, $user[0]['email'], $subject, $mail);
+			$to = $user[0]['email'];
+							
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			
 			$this->email->send();
 			
