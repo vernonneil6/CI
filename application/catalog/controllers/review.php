@@ -519,7 +519,7 @@ class Review extends CI_Controller {
 		$company 	= $this->reviews->get_company_byid($companyid);
 		$review  	= $this->reviews->get_status_review($userid, $companyid);
 		
-		if($this->input->post('submit'))
+		if(isset($this->input->post('submit')))
 		{
 			$buyeroption 	= $this->input->post('buyeroption');
 			$textarea   	= $this->input->post('buyer_textarea');
