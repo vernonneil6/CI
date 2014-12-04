@@ -22,6 +22,21 @@ Class Settings extends CI_Model
 		}
  	}
 	
+	//Getting Email value
+	function get_email_byid($id)
+ 	{
+		$query = $this->db->get_where('emails', array('id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+	
 	//Getting value for editing
 	function get_company_byid($id)
  	{

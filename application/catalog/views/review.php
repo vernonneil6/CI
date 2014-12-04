@@ -1071,6 +1071,7 @@
       <?php echo form_close();?> 
       <!-- /box -->
       <?php } ?>
+     
     </div>
   </section>
 </section>

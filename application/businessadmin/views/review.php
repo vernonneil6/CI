@@ -164,6 +164,7 @@
 	?>
 	<div class="box-content">
     <fieldset>
+	<?php if($review['resolution'] == 'Ship the Item and/or Provide Proof of Shipping') { ?>
 	<form action="review/review_updates" method="post" class ="formBox broker">
 		<div class="clearfix">
 			<div class="lab">
@@ -188,7 +189,7 @@
 				<label for="name">Carrier</label>
 			</div>
 			<div class="con">
-				<input type = "text" value="<?php echo $review['comment']; ?>" class="input" name = "carrier">
+				<input type = "text" value="" class="input" name = "carrier">
 			</div>
 		</div>
 		
@@ -197,7 +198,7 @@
 				<label for="name">Tracking Number</label>
 			</div>
 			<div class="con">
-				<input type = "text" value="<?php echo $review['comment']; ?>" class="input" name = "trackingno" >
+				<input type = "text" value="" class="input" name = "trackingno" >
 			</div>
 		</div>
 		
@@ -206,15 +207,42 @@
 				<label for="name">Date Shipped</label>
 			</div>
 			<div class="con">
-				<input type = "text" value="<?php echo $review['comment']; ?>" class="input" name = "dateshipped" >
+				<input type = "text" value="" class="input" name = "dateshipped" >
 			</div>
 		</div>
 		<input type = "hidden" value = "<?php echo $review['id'];?>" name = "id" >
+		<input type = "hidden" value = "<?php echo $review['user_id'];?>" name = "userid" >
+		<input type = "hidden" value = "<?php echo $review['company_id'];?>" name = "companyid" >
+		<input type = "hidden" value = "<?php echo $review['review_id'];?>" name = "reviewid" >
 		<div class="btn-submit" style = "padding : 15px 0 0 14%; border : none;">
 			<input class="button" type="submit" value="Submit" name="submit">
 		</div>
 		
 	</form>
+	<?php } ?>
+	
+	<?php if($review['resolution'] == 'Would like a Full Refund') { ?>
+	<form action="review/review_refund" method="post" class ="formBox broker" enctype = "multipart/form-data">
+		<div class="clearfix">
+			<div class="lab">
+				<label for="name">Upload Proof</label>
+			</div>
+			<div class="con">
+				<input type = "file" name="refundproof" value="">
+			</div>
+		</div>
+		
+		<input type = "hidden" value = "<?php echo $review['id'];?>" name = "id" >
+		<input type = "hidden" value = "<?php echo $review['user_id'];?>" name = "userid" >
+		<input type = "hidden" value = "<?php echo $review['company_id'];?>" name = "companyid" >
+		<input type = "hidden" value = "<?php echo $review['review_id'];?>" name = "reviewid" >
+		<div class="btn-submit" style = "padding : 15px 0 0; border : none;">
+			<input class="button" type="submit" value="Submit" name="submit">
+		</div>
+		
+	</form>
+	<?php } ?>
+	
 	</fieldset>
     </div>
 	<?php

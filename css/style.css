@@ -1170,3 +1170,37 @@ color:#2c6a99;
 {
 	width:100%!important;
 }
+.reviewmail
+{
+	width:850px!important;
+	text-align: center;
+	margin: 25px 0 0!important;
+}
+.reviewmail_text
+{
+	height: 60px!important;
+}
+.reviewmail_text h2
+{
+	font-size: 16px!important;
+}
+.reviewmail_textbox
+{
+	width: 315px!important;
+}
+.reviewmail_outline
+{
+	width: 325px!important;
+}
+.reviewmail_carrier
+{
+	margin: 4px 88px 0 0!important;
+}
+.reviewmail_trackingno
+{
+
+}
+.reviewmail_dateshipped
+{
+	margin: 4px 47px 0 0!important;
+}

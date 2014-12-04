@@ -180,10 +180,50 @@ class Reviews extends CI_Model
 		return $this->db->get_where('youg_reviewmail',array('company_id' => $companyid, 'review_id' => $reviewid))->row_array();
 	}
 	
-	function reviewmail_update($data, $reviewid)
+	function reviewmail_update($data, $id)
 	{
-		$this->db->where('id', $reviewid)->update('youg_reviewmail', $data);
+		$this->db->where('id', $id)->update('youg_reviewmail', $data);
 	}
+	
+	function delete_review_byid($id)
+ 	{	
+	  $this->db->where('id',$id);
+		
+		if($this->db->delete('reviews'))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+ 	}
+ 	
+ 	function delete_comment($reviewid)
+ 	{
+		$this->db->where('reviewid', $reviewid);
+		if( $this->db->delete('comments'))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}	
+ 	}
+ 	
+ 	function delete_reviewmail($reviewid)
+ 	{
+		$this->db->where('review_id', $reviewid);
+		if( $this->db->delete('youg_reviewmail'))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}	
+ 	}
 	
 	//Changing Status to "Disable"
 	function disable_review_byid($id)

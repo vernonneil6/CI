@@ -392,20 +392,25 @@ class Reviews extends CI_Model
 	
 	function get_reviewmail_byid($id)
  	{
-		return $this->db->get_where('youg_reviewmail',array('id' => $id))->row_array();
+		return $this->db->get_where('youg_reviewmail', array('id' => $id))->row_array();
 	}
 	
-	function get_reviewmail($userid, $companyid)
+	function get_reviewmail_byreviewid($id)
  	{
-		return $this->db->get_where('youg_reviewmail',array('user_id' => $userid, 'company_id' => $companyid))->row_array();
+		return $this->db->get_where('youg_reviewmail', array('review_id' => $id))->row_array();
 	}
 	
+	function reviewmail_update($data, $id)
+	{
+		$this->db->where('review_id', $id)->update('youg_reviewmail', $data);
+	}
+		
 	function get_status_reviewupdate($userid, $companyid, $reviewid)
 	{
 		$data = array(
 			'status' => 'Enable'
 		);
-		$this->db->where(array('user_id' => $userid, 'company_id' => $companyid, 'id' => $reviewid ))->update('youg_reviews',$data);
+		$this->db->where(array('reviewby' => $userid, 'companyid' => $companyid, 'id' => $reviewid ))->update('youg_reviews',$data);
 	}
 	
 	function insert_reviewmail($companyid, $userid, $review, $option, $textarea, $status)
@@ -672,6 +677,19 @@ class Reviews extends CI_Model
 		}	
  	}
 	
+	function delete_reviewmail($reviewid)
+ 	{
+		$this->db->where('review_id', $reviewid);
+		if( $this->db->delete('youg_reviewmail'))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}	
+ 	}
+ 	
 	//Getting value for editing
 	function get_comment_byid($id)
  	{

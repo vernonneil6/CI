@@ -59,7 +59,7 @@
 	</ul>
 
 	<div class = "buyer_form">
-		<form action="../../../review/merchantbuyermail/<?php echo $userid; ?>/<?php echo $companyid; ?>" method="post">
+		<form action="../../../review/reviewmail_insert/<?php echo $userid; ?>/<?php echo $companyid; ?>" method="post">
 		<div class = "buyer_bottom"> What Resolution do you expect from the Merchant: </div>
 		<?php 
 			$data = array(
