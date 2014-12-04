@@ -526,7 +526,7 @@ class Review extends CI_Controller {
 	}
 	public function resolution()
 	{
-		$this->load->view('review');
+		$this->load->view('review/resolution');
 	}
 	public function merchantbuyermail($userid, $companyid, $id)
 	{

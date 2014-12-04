@@ -1071,35 +1071,7 @@
       <?php echo form_close();?> 
       <!-- /box -->
       <?php } ?>
-      <?php if($this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'resolution') { ?>
-		  
-		  <div class="main_bd_srchwrp">
-			  <div class="bdsrch_wrp">
-				<h2>Carrier</h2>
-				<div class="bd_srchwrp">
-				  <input type="text" required="" maxlength="100" name="carrier" class="bdsrch_txtbx">
-				</div>
-			  </div>
-			  <div class="bdsrch_wrp">
-				<h2>Tracking Number</h2>
-				<div class="bd_srchwrp">
-				  <input type="text" required="" maxlength="100" name="trackingno" class="bdsrch_txtbx">
-				</div>
-			  </div>
-			  <div class="bdsrch_wrp">
-				<h2>Date Shipped</h2>
-				<div class="bd_srchwrp">
-				  <input type="text" required="" maxlength="100" name="dateshipped" class="bdsrch_txtbx">
-				</div>
-			  </div>
-			  <div class="bdsrch_wrp">
-				<div class="bd_srchwrp">
-				  <input type="submit" value="" name="submit">
-				</div>
-			  </div>
-        </div>
-		  
-      <?php } ?>
+     
     </div>
   </section>
 </section>
