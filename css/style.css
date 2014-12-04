@@ -1170,3 +1170,19 @@ color:#2c6a99;
 {
 	width:100%!important;
 }
+.reviewmail
+{
+	width:850px!important;
+}
+.reviewmail_text h2
+{
+	font-size: 16px!important;
+}
+.reviewmail_textbox
+{
+	width: 315px!important;
+}
+.reviewmail_outline
+{
+	width: 325px!important;
+}
