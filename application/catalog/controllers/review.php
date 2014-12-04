@@ -556,10 +556,10 @@ class Review extends CI_Controller {
 				'dateshipped' 	=> $this->input->post('dateshipped'),
 				'status'		=> '1'
 			);
-			$this->reviews->reviewmail_update($data, $reviewid);
+				$this->reviews->reviewmail_update($data, $reviewid);
 			
-				$userid = $this->reviews->get_reviewmail_byreviewid($reviewid);
-				$option   	= $reviewmail['user_id'];
+				$reviewmail	= $this->reviews->get_reviewmail_byreviewid($reviewid);
+				$userid   	= $reviewmail['user_id'];
 				$companyid  = $reviewmail['company_id'];
 				$option   	= $reviewmail['resolution'];
 				$reviewids 	= $reviewid;
