@@ -222,78 +222,8 @@
 	<?php } ?>
 	
 	<?php if($review['resolution'] == 'Would like a Full Refund') { ?>
-	<form action="review/review_update_refund" method="post" class ="formBox broker">
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Resolution</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="<?php echo $review['resolution']; ?>" class="input" readonly>
-			</div>
-		</div>
-		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Comments</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="<?php echo $review['comment']; ?>" class="input" readonly>
-			</div>
-		</div>
-		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Merchant's Name</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="" class="input" name = "merchantname">
-			</div>
-		</div>
-		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Address</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="" class="input" name = "address" >
-			</div>
-		</div>
-		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">City</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="" class="input" name = "city" >
-			</div>
-		</div>
-		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">State</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="" class="input" name = "state" >
-			</div>
-		</div>
-		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Zip</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="" class="input" name = "zip" >
-			</div>
-		</div>
-		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Code</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="" class="input" name = "code" >
-			</div>
-		</div>
+	<form action="review/review_refund" method="post" class ="formBox broker" enctype = "multipart/form-data">
+		<input type = "file" name="refundproof" value="">
 		<input type = "hidden" value = "<?php echo $review['id'];?>" name = "id" >
 		<input type = "hidden" value = "<?php echo $review['user_id'];?>" name = "userid" >
 		<input type = "hidden" value = "<?php echo $review['company_id'];?>" name = "companyid" >

@@ -395,6 +395,11 @@ class Reviews extends CI_Model
 		return $this->db->get_where('youg_reviewmail', array('id' => $id))->row_array();
 	}
 	
+	function get_reviewmail_byreviewid($id)
+ 	{
+		return $this->db->get_where('youg_reviewmail', array('review_id' => $id))->row_array();
+	}
+	
 	function reviewmail_update($data, $id)
 	{
 		$this->db->where('review_id', $id)->update('youg_reviewmail', $data);
@@ -672,6 +677,19 @@ class Reviews extends CI_Model
 		}	
  	}
 	
+	function delete_reviewmail($reviewid)
+ 	{
+		$this->db->where('review_id', $reviewid);
+		if( $this->db->delete('youg_reviewmail'))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}	
+ 	}
+ 	
 	//Getting value for editing
 	function get_comment_byid($id)
  	{

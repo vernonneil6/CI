@@ -276,17 +276,12 @@ class Review extends CI_Controller {
 			$this->email->message($mail);		
 	}
 	
-	public function review_update_refund()
+	public function review_refund()
 	{
 		if($this->input->post('submit'))
 		{
 			$data = array(
-			'merchantname' => $this->input->post('merchantname'),
-			'address' => $this->input->post('address'),
-			'city' => $this->input->post('city'),
-			'state' => $this->input->post('state'),
-			'zip' => $this->input->post('zip'),
-			'code' => $this->input->post('code'),
+			'proof' => $this->input->post('refundproof'),
 			'status' 		=> '1',
 			'checkdate' => date('Y-m-d')
 			);
@@ -310,7 +305,7 @@ class Review extends CI_Controller {
 			
 			$mail_msg = $this->settings->get_email_byid(28);
 			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));
-			$mail     = str_replace("%address%", $this->input->post('address'), str_replace("%merchantname%", $this->input->post('merchantname'), str_replace("%city%", $this->input->post('city'),str_replace("%state%", $this->input->post('state'),str_replace("%zip%", $this->input->post('zip'),str_replace("%code%", $this->input->post('code'),str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))))));			
+			$mail     = str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));			
 			$to 	  = $user[0]['email'];
 						
 			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
