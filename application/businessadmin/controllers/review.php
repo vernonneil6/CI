@@ -268,6 +268,14 @@ class Review extends CI_Controller {
 		$this->load->view('review', $this->data);
 	}
 	
+	function mail($site_name,$site_email,$site_url,$to,$subject,$mail)
+	{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($to);
+			$this->email->subject($subject);	
+			$this->email->message($mail);		
+	}
+	
 	public function review_update_refund()
 	{
 		if($this->input->post('submit'))
@@ -282,9 +290,33 @@ class Review extends CI_Controller {
 			'checkdate' => date('Y-m-d')
 			);
 			
-			$reviewid = $this->input->post('id');
-			$this->reviews->reviewmail_update($data, $reviewid);
-			redirect("review/reviews","refresh");
+			$id = $this->input->post('id');
+			$userid = $this->input->post('userid');
+			$companyid = $this->input->post('companyid');
+			$reviewid = $this->input->post('reviewid');
+			
+			$this->reviews->reviewmail_update($data, $id);
+			
+			$this->load->library('email');	
+			
+			$user 		= $this->settings->get_user_byid($userid);
+			$company 	= $this->settings->get_company_byid($companyid);
+			
+			$site_name  = $this->settings->get_setting_value(1);
+			$site_email = $this->settings->get_setting_value(5);
+			$site_url   = $this->settings->get_setting_value(2);
+		
+			
+			$mail_msg = $this->settings->get_email_byid(28);
+			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));
+			$mail     = str_replace("%address%", $this->input->post('address'), str_replace("%merchantname%", $this->input->post('merchantname'), str_replace("%city%", $this->input->post('city'),str_replace("%state%", $this->input->post('state'),str_replace("%zip%", $this->input->post('zip'),str_replace("%code%", $this->input->post('code'),str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))))));			
+			$to 	  = $user[0]['email'];
+						
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
+			$this->email->send();
+			
+			
+			//redirect("review/reviews","refresh");
 		}
 	}
 	
@@ -300,8 +332,30 @@ class Review extends CI_Controller {
 			);
 			
 			$reviewid = $this->input->post('id');
+			$userid = $this->input->post('userid');
+			$companyid = $this->input->post('companyid');
+			$reviewid = $this->input->post('reviewid');
+			
 			$this->reviews->reviewmail_update($data, $reviewid);
-			redirect("review/reviews","refresh");
+			
+			$this->load->library('email');	
+			
+			$user 		= $this->settings->get_user_byid($userid);
+			$company 	= $this->settings->get_company_byid($companyid);
+			
+			$site_name  = $this->settings->get_setting_value(1);
+			$site_email = $this->settings->get_setting_value(5);
+			$site_url   = $this->settings->get_setting_value(2);
+		
+			
+			$mail_msg = $this->settings->get_email_byid(23);
+			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));
+			$mail     = str_replace("%carrier%", $this->input->post('carrier'), str_replace("%trackingno%", $this->input->post('trackingno'), str_replace("%dateshipped%", $this->input->post('dateshipped'),str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))))))));			
+			$to 	  = $user[0]['email'];
+						
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
+			$this->email->send();
+			//redirect("review/reviews","refresh");
 		}
 	}
 	
