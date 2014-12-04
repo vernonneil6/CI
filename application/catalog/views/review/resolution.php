@@ -1,8 +1,7 @@
 <?php echo $header; ?>
-
 <section class="content-wrap" style="margin-right:0">
   <section class="inner_main">
-    <div class="main_contentarea"> <?php echo $menu; ?> 
+    <div class="main_contentarea">
      <?php if($this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'resolution') { ?>
 		  
 		  <div class="main_bd_srchwrp">
@@ -26,7 +25,7 @@
 			  </div>
 			  <div class="bdsrch_wrp">
 				<div class="bd_srchwrp">
-				  <input type="submit" value="" name="submit">
+				  <input type="submit" value="" name="submit" value = "submit">
 				</div>
 			  </div>
         </div>
@@ -34,5 +33,4 @@
 	</div>
   </section>
 </section>
-
 <?php echo $footer; ?>
