@@ -3,7 +3,7 @@
   <section class="inner_main">
     <div class="main_contentarea">
      <?php if($this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'resolution') { ?>
-		  
+		  <form action = "/review/resolution/<?php echo $reviewid; ?>" method = "post">
 		  <div class="main_bd_srchwrp reviewmail">
 			  <div class="bdsrch_wrp reviewmail_text">
 				<h2 class = "reviewmail_carrier">Carrier</h2>
@@ -27,6 +27,7 @@
 				  <input type="submit" name="submit" value = "submit">
 			  </div>
         </div>
+        </form>
 	<?php } ?>
 	</div>
   </section>

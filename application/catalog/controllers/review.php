@@ -535,7 +535,7 @@ class Review extends CI_Controller {
 			);
 			$this->reviews->reviewmail_update($data, $reviewid);
 		}
-
+		$this->data['reviewid'] = $reviewid;
 		$this->load->view('review/resolution', $this->data);
 	}
 	public function merchantbuyermail($userid, $companyid, $id)
