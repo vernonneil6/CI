@@ -545,7 +545,7 @@ class Review extends CI_Controller {
 			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
 			$this->email->send();
 		}
-		if ($option == 'Would like a Full Refund')
+		if ($option == 'Would like a Replacement item')
 		{
 			$user 		= $this->users->get_user_byid($userid);
 			$company 	= $this->reviews->get_company_byid($companyid);
