@@ -428,17 +428,19 @@ public function eliteSubscribe($formpost) {
 	//data.php start
 	//$loginname = $this->common->get_setting_value(22);
 	//$transactionkey = $this->common->get_setting_value(23);
-	/*$loginname="2sRT3yAsr3tA";
-	$transactionkey="38UzuaL2c6y5BQ88";*/
-	
-	/*live*/
-	$loginname="5h7G7Sbr";
-	$transactionkey="94KU7Sznk72Kj3HK";
 	
 	
 	/*test mode*/
-	//$host = "apitest.authorize.net";
-	$host = "api.authorize.net";
+	$loginname="2sRT3yAsr3tA";
+	   $transactionkey="38UzuaL2c6y5BQ88";
+	   $host = "apitest.authorize.net"; 
+	
+	/*live*/
+	/* $loginname="5h7G7Sbr";
+	$transactionkey="94KU7Sznk72Kj3HK";
+	$host = "api.authorize.net";*/
+	
+	
 	$path = "/xml/v1/request.api";
 	//data.php end
 	
