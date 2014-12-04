@@ -583,6 +583,13 @@ class Review extends CI_Controller {
 		$this->data['reviewid'] = $reviewid;
 		$this->load->view('review/resolution', $this->data);
 	}
+	
+	public function proof($reviewid)
+	{
+		$this->data['reviewmail'] = $this->reviews->get_reviewmail_byreviewid($reviewid);
+		$this->load->view('review/resolution', $this->data);
+	}	
+		
 	public function merchantbuyermail($userid, $companyid, $id)
 	{
 		$user 		= $this->users->get_user_byid($userid);

@@ -281,7 +281,7 @@ class Review extends CI_Controller {
 		if($this->input->post('submit'))
 		{
 			
-			$config['upload_path'] = '../uploads/slider/';
+			$config['upload_path'] = '../uploads/proof/';
 			$config['allowed_types'] = 'gif|jpg|png';
 			$config['max_size']	= '1000000';
 			$config['max_width']  = '1024000';
@@ -318,7 +318,7 @@ class Review extends CI_Controller {
 			
 			$mail_msg = $this->settings->get_email_byid(30);
 			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));
-			$mail     = str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));			
+			$mail     = str_replace("%url%", site_url('/review/proof/'.$reviewid), str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))))));			
 			$to 	  = $user[0]['email'];
 						
 			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);

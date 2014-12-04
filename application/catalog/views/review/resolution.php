@@ -29,6 +29,21 @@
         </div>
         </form>
 	<?php } ?>
+	<?php if($this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'proof') { ?>
+		<form action = "/review/resolution/<?php echo $reviewid; ?>" method = "post">
+		  <div class="main_bd_srchwrp reviewmail">
+			  <div class="bdsrch_wrp reviewmail_text">
+				<h2 class = "reviewmail_carrier">Proof</h2>
+				<div class="bd_srchwrp reviewmail_outline">
+					<img src="uploads/proof/<?php echo $reviewmail['image'];?>">
+				</div>
+			  </div>
+		  </div>
+		  <div class = "bdsrch_wrp reviewmail_text">
+				<a href = "">Click here to close the case</a>
+		  </div>
+		</form>
+	<?php } ?>
 	</div>
   </section>
 </section>
