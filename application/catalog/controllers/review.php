@@ -524,6 +524,10 @@ class Review extends CI_Controller {
 		
 		$this->reviews->insert_reviewmail($companyid, $userid, $review['id'], $buyeroption, $textarea, '0');
 	}
+	public function resolution()
+	{
+		$this->load->view('review');
+	}
 	public function merchantbuyermail($userid, $companyid, $id)
 	{
 		$user 		= $this->users->get_user_byid($userid);
