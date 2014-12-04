@@ -590,7 +590,7 @@ class Review extends CI_Controller {
 			//{
 				$mail_msg = $this->common->get_email_byid(28);
 				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%url%", site_url('review/resolution/'), str_replace("%address%", $company[0]['streetaddress'], str_replace("%merchantname%", $company[0]['company'], str_replace("%city%", $company[0]['city'],str_replace("%state%", $company[0]['state'],str_replace("%zip%", $company[0]['zip'], str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))))));			
+				$mail     = str_replace("%url%", site_url('review/resolution'), str_replace("%address%", $company[0]['streetaddress'], str_replace("%merchantname%", $company[0]['company'], str_replace("%city%", $company[0]['city'], str_replace("%state%", $company[0]['state'], str_replace("%zip%", $company[0]['zip'], str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))))));			
 				$to       = $user[0]['email'];
 								
 				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
@@ -610,7 +610,7 @@ class Review extends CI_Controller {
 				$this->email->send();
 			}
 			
-			else if ($status == 0)
+			else if ($status == 1)
 			{
 				$mail_msg = $this->common->get_email_byid(30);
 				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
