@@ -573,7 +573,7 @@ class Review extends CI_Controller {
 				$this->load->library('email');
 				$mail_msg = $this->common->get_email_byid(29);
 				$subject  = str_replace("%reviewid%", $reviewids, stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%url%", site_url('review/resolution/'.$reviewids), str_replace("%carrier%", $reviewmail['carrier'], str_replace("%trackingno%", $reviewmail['trackingno'], str_replace("%dateshipped%", $reviewmail['dateshipped'], str_replace("%reviewid%", $reviewids, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))))));			
+				$mail     = str_replace("%url%", site_url('review/resolution/'.$reviewids), str_replace("%carrier%", $reviewmail['carrier'], str_replace("%trackingno%", $reviewmail['trackingno'], str_replace("%dateshipped%", $reviewmail['dateshipped'], str_replace("%reviewid%", $reviewids, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))));			
 				$to       = $user[0]['email'];
 									
 				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
