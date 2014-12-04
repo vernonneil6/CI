@@ -589,6 +589,14 @@ class Review extends CI_Controller {
 		$this->data['reviewmail'] = $this->reviews->get_reviewmail_byreviewid($reviewid);
 		$this->load->view('review/resolution', $this->data);
 	}	
+	
+	public function closecase($reviewid)
+	{
+		$this->reviews->delete_review_byid($reviewid);
+		$this->reviews->delete_comment($reviewid);
+		$this->reviews->delete_reviewmail($reviewid);
+		redirect('review', 'refresh');
+	}
 		
 	public function merchantbuyermail($userid, $companyid, $id)
 	{

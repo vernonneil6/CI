@@ -30,17 +30,17 @@
         </form>
 	<?php } ?>
 	<?php if($this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'proof') { ?>
-		<form action = "/review/resolution/<?php echo $reviewmail; ?>" method = "post">
+		<form action = "/review/closecase/<?php echo $reviewmail['review_id']; ?>" method = "post">
 		  <div class="main_bd_srchwrp reviewmail">
 			  <div class="bdsrch_wrp reviewmail_text">
 				<h2 class = "reviewmail_carrier">Proof</h2>
-				<div class="bd_srchwrp reviewmail_outline">
-					<img src="uploads/proof/<?php echo $reviewmail['proof'];?>">
+				<div class="reviewmail_outline">
+					<img src="uploads/proof/<?php echo $reviewmail['proof'];?>" width = "110" height = "110">
 				</div>
 			  </div>
 		  </div>
-		  <div class = "bdsrch_wrp reviewmail_text">
-				<a href = "">Click here to close the case</a>
+		  <div class="bdsrch_wrp reviewmail_text">
+				<input type="submit" name="submit" value = "Click here to close the case">
 		  </div>
 		</form>
 	<?php } ?>
