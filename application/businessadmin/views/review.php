@@ -223,12 +223,20 @@
 	
 	<?php if($review['resolution'] == 'Would like a Full Refund') { ?>
 	<form action="review/review_refund" method="post" class ="formBox broker" enctype = "multipart/form-data">
-		<input type = "file" name="refundproof" value="">
+		<div class="clearfix">
+			<div class="lab">
+				<label for="name">Upload Proof</label>
+			</div>
+			<div class="con">
+				<input type = "file" name="refundproof" value="">
+			</div>
+		</div>
+		
 		<input type = "hidden" value = "<?php echo $review['id'];?>" name = "id" >
 		<input type = "hidden" value = "<?php echo $review['user_id'];?>" name = "userid" >
 		<input type = "hidden" value = "<?php echo $review['company_id'];?>" name = "companyid" >
 		<input type = "hidden" value = "<?php echo $review['review_id'];?>" name = "reviewid" >
-		<div class="btn-submit" style = "padding : 15px 0 0 14%; border : none;">
+		<div class="btn-submit" style = "padding : 15px 0 0; border : none;">
 			<input class="button" type="submit" value="Submit" name="submit">
 		</div>
 		

@@ -280,12 +280,25 @@ class Review extends CI_Controller {
 	{
 		if($this->input->post('submit'))
 		{
-			$data = array(
-			'proof' => $this->input->post('refundproof'),
-			'status' 		=> '1',
-			'checkdate' => date('Y-m-d')
-			);
 			
+			$config['upload_path'] = '../uploads/slider/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size']	= '1000000';
+			$config['max_width']  = '1024000';
+			$config['max_height']  = '768000';
+			$this->load->library('upload', $config);
+			
+			if($this->upload->do_upload('refundproof'))
+			{
+				$title = $this->input->post('refundproof') ;	
+				$imgdata = $this->upload->data();
+				
+				$data = array(
+					'proof' => $imgdata['file_name'],
+					'status' 		=> '1',
+					'checkdate' => date('Y-m-d')
+					);	
+		
 			$id = $this->input->post('id');
 			$userid = $this->input->post('userid');
 			$companyid = $this->input->post('companyid');
@@ -303,7 +316,7 @@ class Review extends CI_Controller {
 			$site_url   = $this->settings->get_setting_value(2);
 		
 			
-			$mail_msg = $this->settings->get_email_byid(28);
+			$mail_msg = $this->settings->get_email_byid(30);
 			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));
 			$mail     = str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));			
 			$to 	  = $user[0]['email'];
@@ -311,8 +324,9 @@ class Review extends CI_Controller {
 			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			$this->email->send();
 			
-			
 			redirect("review/reviews","refresh");
+			
+			}
 		}
 	}
 	
