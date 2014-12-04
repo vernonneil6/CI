@@ -618,6 +618,12 @@ class Review extends CI_Controller {
 	{
 		$this->data['reviewmail'] = $this->reviews->get_reviewmail_byreviewid($reviewid);
 		$this->load->view('review/resolution', $this->data);
+	}
+	
+	public function replacement($reviewid)
+	{
+		$this->data['reviewmail'] = $this->reviews->get_reviewmail_byreviewid($reviewid);
+		$this->load->view('review/resolution', $this->data);
 	}	
 	
 	public function closecase($reviewid)
