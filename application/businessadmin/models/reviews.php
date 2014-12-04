@@ -175,6 +175,11 @@ class Reviews extends CI_Model
 		return true;
 	}
 	
+	function get_reviewmail_byreviewid($id)
+ 	{
+		return $this->db->get_where('youg_reviewmail', array('review_id' => $id))->row_array();
+	}
+	
 	function review_mail($reviewid, $companyid)
 	{
 		return $this->db->get_where('youg_reviewmail',array('company_id' => $companyid, 'review_id' => $reviewid))->row_array();

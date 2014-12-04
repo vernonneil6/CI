@@ -39,7 +39,7 @@
 				</div>
 			  </div>
 		  </div>
-		  <div class="bdsrch_wrp reviewmail_text">
+		  <div class="bdsrch_wrp reviewmail_text" style ="margin: 40px 0 0 310px;">
 				<input type="submit" name="submit" value = "Click here to close the case">
 		  </div>
 		</form>
