@@ -1508,5 +1508,11 @@ class Complaints extends CI_Model
 		$query = $this->db->get_where('youg_broker',array('id'=>$id));
 		return $query->row_array();
 	}
+	function get_country_by_countryid($cid)
+	{
+		$query = $this->db->get_where('youg_country',array('country_id'=>$cid));
+		return $query->row_array();
+		
+	}
 }
 ?>
