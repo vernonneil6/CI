@@ -30,12 +30,12 @@
         </form>
 	<?php } ?>
 	<?php if($this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'proof') { ?>
-		<form action = "/review/resolution/<?php echo $reviewid; ?>" method = "post">
+		<form action = "/review/resolution/<?php echo $reviewmail; ?>" method = "post">
 		  <div class="main_bd_srchwrp reviewmail">
 			  <div class="bdsrch_wrp reviewmail_text">
 				<h2 class = "reviewmail_carrier">Proof</h2>
 				<div class="bd_srchwrp reviewmail_outline">
-					<img src="uploads/proof/<?php echo $reviewmail['image'];?>">
+					<img src="uploads/proof/<?php echo $reviewmail['proof'];?>">
 				</div>
 			  </div>
 		  </div>
