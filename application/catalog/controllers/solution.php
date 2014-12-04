@@ -689,7 +689,7 @@ public function eliteSubscribe($formpost) {
 															</tr>
 															</table>');
 					//Sending mail to admin
-					//$this->email->send();
+					$this->email->send();
 									
 					//For sending mail to user
 					$this->email->from($site_mail,$site_name);
@@ -806,7 +806,7 @@ public function eliteSubscribe($formpost) {
 											');
 									
 					//Sending mail user
-					//$this->email->send();
+					$this->email->send();
 					$this->session->set_flashdata('success','Payment is made and your business is claimed successfully.');
 					//redirect('complaint', 'refresh');
 				}
