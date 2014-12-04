@@ -531,9 +531,10 @@ class Review extends CI_Controller {
 		$review  	= $this->reviews->get_status_review($userid, $companyid);
 		
 		$reviewmail = $this->reviews->get_reviewmail_byid($id);
-		$option   	= $reviewmail['resolution'];
-		$status   	= $reviewmail['status'];
-		$date1  	= $reviewmail['date'];
+		print_r($reviewmail);
+		echo $option   	= $reviewmail['resolution'];
+		echo $status   	= $reviewmail['status'];
+		echo $date1  	= $reviewmail['date'];
 		$date2 		= date("Y-m-d");
 		$diff   	= abs(strtotime($date2) - strtotime($date1));
 		$years  	= floor($diff / (365*60*60*24));
@@ -545,6 +546,14 @@ class Review extends CI_Controller {
 		$site_url   = $this->reviews->get_setting_value(2);
 		
 		$this->load->library('email');
+		
+		$mail_msg = $this->common->get_email_byid(24);
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));				
+				$mail	  = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));								
+				$to 	  = $company[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);				
+				$this->email->send();
 			
 		if ($option == 'Ship the Item and/or Provide Proof of Shipping')
 		{

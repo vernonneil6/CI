@@ -358,7 +358,7 @@ class Review extends CI_Controller {
 			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 			if($this->email->send())
 			{
-				$this->reviews->delete_review_byid($id);
+				$this->reviews->delete_review_byid($reviewid);
 				$this->reviews->delete_comment($reviewid);
 				$this->reviews->delete_reviewmail($reviewid);
 			}
