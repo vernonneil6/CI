@@ -287,6 +287,7 @@ class Review extends CI_Controller {
 			'state' => $this->input->post('state'),
 			'zip' => $this->input->post('zip'),
 			'code' => $this->input->post('code'),
+			'status' 		=> '1',
 			'checkdate' => date('Y-m-d')
 			);
 			
@@ -316,7 +317,7 @@ class Review extends CI_Controller {
 			$this->email->send();
 			
 			
-			//redirect("review/reviews","refresh");
+			redirect("review/reviews","refresh");
 		}
 	}
 	
@@ -325,18 +326,19 @@ class Review extends CI_Controller {
 		if($this->input->post('submit'))
 		{
 			$data = array(
-			'carrier' => $this->input->post('carrier'),
-			'trackingno' => $this->input->post('trackingno'),
-			'dateshipped' => $this->input->post('dateshipped'),
-			'checkdate' => date('Y-m-d')
+			'carrier'	 	=> $this->input->post('carrier'),
+			'trackingno' 	=> $this->input->post('trackingno'),
+			'dateshipped' 	=> $this->input->post('dateshipped'),
+			'status' 		=> '1',
+			'checkdate' 	=> date('Y-m-d')
 			);
 			
-			$reviewid = $this->input->post('id');
+			$id = $this->input->post('id');
 			$userid = $this->input->post('userid');
 			$companyid = $this->input->post('companyid');
 			$reviewid = $this->input->post('reviewid');
 			
-			$this->reviews->reviewmail_update($data, $reviewid);
+			$this->reviews->reviewmail_update($data, $id);
 			
 			$this->load->library('email');	
 			
@@ -354,8 +356,13 @@ class Review extends CI_Controller {
 			$to 	  = $user[0]['email'];
 						
 			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-			$this->email->send();
-			//redirect("review/reviews","refresh");
+			if($this->email->send())
+			{
+				$this->reviews->delete_review_byid($id);
+				$this->reviews->delete_comment($reviewid);
+				$this->reviews->delete_reviewmail($reviewid);
+			}
+			redirect("review/reviews","refresh");
 		}
 	}
 	

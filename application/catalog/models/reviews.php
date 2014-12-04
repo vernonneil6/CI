@@ -405,7 +405,7 @@ class Reviews extends CI_Model
 		$data = array(
 			'status' => 'Enable'
 		);
-		$this->db->where(array('user_id' => $userid, 'company_id' => $companyid, 'id' => $reviewid ))->update('youg_reviews',$data);
+		$this->db->where(array('reviewby' => $userid, 'companyid' => $companyid, 'id' => $reviewid ))->update('youg_reviews',$data);
 	}
 	
 	function insert_reviewmail($companyid, $userid, $review, $option, $textarea, $status)

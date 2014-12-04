@@ -500,7 +500,7 @@ class Review extends CI_Controller {
 		$result = $this->reviews->get_all_reviewmail();
 		foreach ( $result as $record )
 		{
-			$this->merchantbuyermail($record['user_id'], $record['company_id']);
+			$this->merchantbuyermail($record['user_id'], $record['company_id'], $record['id']);
 		}
 		die;
 	}
@@ -524,38 +524,21 @@ class Review extends CI_Controller {
 		
 		$this->reviews->insert_reviewmail($companyid, $userid, $review['id'], $buyeroption, $textarea, '0');
 	}
-	public function merchantbuyermail($userid, $companyid)
+	public function merchantbuyermail($userid, $companyid, $id)
 	{
 		$user 		= $this->users->get_user_byid($userid);
 		$company 	= $this->reviews->get_company_byid($companyid);
 		$review  	= $this->reviews->get_status_review($userid, $companyid);
 		
-		//if($this->input->post('submit'))
-		//{
-			$buyeroption 	= $this->input->post('buyeroption');
-			$textarea   	= $this->input->post('buyer_textarea');
-			
-			$this->reviews->insert_reviewmail($companyid, $userid, $review['id'], $buyeroption, $textarea, '0');
-			echo $id = $this->db->insert_id();
-			$reviewmail = $this->reviews->get_reviewmail_byid($id);
-			$option   	= $reviewmail['resolution'];
-			$status   	= $reviewmail['status'];
-			$date1  	= $reviewmail['date'];
-		//}
-		//else
-		//{
-			//echo "test";
-		//	$reviewmail	= $this->reviews->get_reviewmail($userid, $companyid);
-		//	$option   	= $reviewmail['resolution'];
-		//	$status   	= $reviewmail['status'];
-		//	$date1  	= $reviewmail['date'];
-		//}
-		
-		$date2  = date("Y-m-d");
-		$diff   = abs(strtotime($date2) - strtotime($date1));
-		$years  = floor($diff / (365*60*60*24));
-		$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-		$days 	= floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+		$reviewmail = $this->reviews->get_reviewmail_byid($id);
+		$option   	= $reviewmail['resolution'];
+		$status   	= $reviewmail['status'];
+		$date1  	= $reviewmail['date'];
+		$date2 		= date("Y-m-d");
+		$diff   	= abs(strtotime($date2) - strtotime($date1));
+		$years  	= floor($diff / (365*60*60*24));
+		$months 	= floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+		$days 		= floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
 		
 		$site_name  = $this->common->get_setting_value(1);
 		$site_email = $this->common->get_setting_value(5);
@@ -565,19 +548,6 @@ class Review extends CI_Controller {
 			
 		if ($option == 'Ship the Item and/or Provide Proof of Shipping')
 		{
-			if($status == 0)
-			{
-				$mail_msg = $this->common->get_email_byid(23);
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));			
-				$to 	  = $user[0]['email'];
-						
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
-				$this->email->send();
-				$this->reviews->delete_comment($review['id']);
-				$this->reviews->delete_review_byid($review['id']);
-			}
-			
 			if ($days == 5 and $status == 0)
 			{
 				$mail_msg = $this->common->get_email_byid(24);
