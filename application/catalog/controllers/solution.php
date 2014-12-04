@@ -196,7 +196,7 @@ class Solution extends CI_Controller {
 		$this->load->view('solution/claimbusiness',$this->data);
 	}
 	public function update()
-	{ 
+	{   		
 		if($this->input->post('email'))
 		{
 			
@@ -431,9 +431,15 @@ public function eliteSubscribe($formpost) {
 	
 	
 	/*test mode*/
-	$loginname="2sRT3yAsr3tA";
+	  /* $loginname="2sRT3yAsr3tA";
 	   $transactionkey="38UzuaL2c6y5BQ88";
+	   $host = "apitest.authorize.net"; */
+	
+	/*sandbox test mode*/
+	   $loginname="9um8JTf3W";
+	   $transactionkey="9q24FTz678hQ9mAD";
 	   $host = "apitest.authorize.net"; 
+	
 	
 	/*live*/
 	/* $loginname="5h7G7Sbr";
@@ -472,8 +478,17 @@ public function eliteSubscribe($formpost) {
 	$firstName = $_POST["fname"];
 	$lastName = $_POST["lname"];	
 	$email = $this->input->post('email');					
-			
+	$address=$_POST["streetaddress"];
+	$city=$_POST["city"];	
+	$state=$_POST["state"];
+	$zip=$_POST["zip"];
+	$cid=$_POST["country"];
+	$c_code=$this->complaints->get_country_by_countryid($cid);
+	$country=$c_code['name'];
+		
+	
 	$company = $this->complaints->get_company_by_emailid($email);
+	
 	if(count($company)>0)
 	{
 		$companyid = $company[0]['id'];
@@ -512,6 +527,11 @@ public function eliteSubscribe($formpost) {
 			"<billTo>".
 			"<firstName>". $firstName . "</firstName>".
 			"<lastName>" . $lastName . "</lastName>".
+			"<address>" . $address . "</address>".
+			"<city>" . $city . "</city>".
+			"<state>" . $state . "</state>".
+			"<zip>" . $zip . "</zip>".
+			"<country>" . $country . "</country>".
 			"</billTo>".
 			"</subscription>".
 			"</ARBCreateSubscriptionRequest>";
