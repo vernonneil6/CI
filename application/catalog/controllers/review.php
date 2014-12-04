@@ -524,8 +524,18 @@ class Review extends CI_Controller {
 		
 		$this->reviews->insert_reviewmail($companyid, $userid, $review['id'], $buyeroption, $textarea, '0');
 	}
-	public function resolution()
+	public function resolution($reviewid)
 	{
+		if($this->input->post('submit'))
+		{
+			$data = array(
+				'carrier' 		=> $this->input->post('carrier'),
+				'trackingno' 	=> $this->input->post('trackingno'),
+				'dateshipped' 	=> $this->input->post('dateshipped')
+			);
+			$this->reviews->reviewmail_update($data, $reviewid);
+		}
+
 		$this->load->view('review/resolution', $this->data);
 	}
 	public function merchantbuyermail($userid, $companyid, $id)
@@ -594,7 +604,7 @@ class Review extends CI_Controller {
 			//{
 				$mail_msg = $this->common->get_email_byid(28);
 				$subject  = str_replace("%reviewid%", $reviewids, stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%url%", site_url('review/resolution'), str_replace("%address%", $company[0]['streetaddress'], str_replace("%merchantname%", $company[0]['company'], str_replace("%city%", $company[0]['city'], str_replace("%state%", $company[0]['state'], str_replace("%zip%", $company[0]['zip'], str_replace("%reviewid%", $reviewids, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))))));			
+				$mail     = str_replace("%url%", site_url('review/resolution'.$reviewids), str_replace("%address%", $company[0]['streetaddress'], str_replace("%merchantname%", $company[0]['company'], str_replace("%city%", $company[0]['city'], str_replace("%state%", $company[0]['state'], str_replace("%zip%", $company[0]['zip'], str_replace("%reviewid%", $reviewids, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))))));			
 				$to       = $user[0]['email'];
 								
 				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
