@@ -23,7 +23,7 @@
 				  <input type="text" required="" maxlength="100" name="dateshipped" class="bdsrch_txtbx reviewmail_textbox">
 				</div>
 			  </div>  
-			  <div>
+			  <div class = "bdsrch_wrp reviewmail_text">
 				  <input type="submit" name="submit" value = "submit">
 			  </div>
         </div>
