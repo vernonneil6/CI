@@ -1173,6 +1173,7 @@ color:#2c6a99;
 .reviewmail
 {
 	width:850px!important;
+	text-align: center;
 }
 .reviewmail_text h2
 {
@@ -1185,4 +1186,16 @@ color:#2c6a99;
 .reviewmail_outline
 {
 	width: 325px!important;
+}
+.reviewmail_carrier
+{
+	margin: 4px 88px 0 0!important;
+}
+.reviewmail_trackingno
+{
+
+}
+.reviewmail_dateshipped
+{
+	margin: 4px 47px 0 0!important;
 }

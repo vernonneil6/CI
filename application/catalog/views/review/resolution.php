@@ -6,24 +6,26 @@
 		  
 		  <div class="main_bd_srchwrp reviewmail">
 			  <div class="bdsrch_wrp reviewmail_text">
-				<h2>Carrier</h2>
+				<h2 class = "reviewmail_carrier">Carrier</h2>
 				<div class="bd_srchwrp reviewmail_outline">
 				  <input type="text" required="" maxlength="100" name="carrier" class="bdsrch_txtbx reviewmail_textbox">
 				</div>
 			  </div>
 			  <div class="bdsrch_wrp reviewmail_text">
-				<h2>Tracking Number</h2>
+				<h2 class = "reviewmail_trackingno">Tracking Number</h2>
 				<div class="bd_srchwrp reviewmail_outline">
 				  <input type="text" required="" maxlength="100" name="trackingno" class="bdsrch_txtbx reviewmail_textbox">
 				</div>
 			  </div>
 			  <div class="bdsrch_wrp reviewmail_text">
-				<h2>Date Shipped</h2>
+				<h2 class = "reviewmail_dateshipped">Date Shipped</h2>
 				<div class="bd_srchwrp reviewmail_outline">
 				  <input type="text" required="" maxlength="100" name="dateshipped" class="bdsrch_txtbx reviewmail_textbox">
 				</div>
 			  </div>  
-			  <input type="submit" value="" name="submit" value = "submit">
+			  <div>
+				  <input type="submit" name="submit" value = "submit">
+			  </div>
         </div>
 	<?php } ?>
 	</div>
