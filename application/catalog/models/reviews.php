@@ -390,11 +390,6 @@ class Reviews extends CI_Model
 		return $this->db->get_where('reviews',array('reviewby' => $userid, 'companyid' => $companyid))->row_array();
 	}
 	
-	function get_reviewid($reviewid)
- 	{
-		return $this->db->get_where('youg_reviewmail',array('review_id' => $reviewid))->row_array();
-	}
-	
 	function get_reviewmail_byid($id)
  	{
 		return $this->db->get_where('youg_reviewmail', array('id' => $id))->row_array();

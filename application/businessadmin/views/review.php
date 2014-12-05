@@ -1,321 +1,675 @@
-<?php echo $heading; ?>
-<!-- #content -->
-<div id="content">
-  <div class="breadcrumbs">
-    <ul>
-      <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
-      <li><a href="<?php echo site_url('review');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
-    </ul>
-  </div>
-  <!-- box -->
-  <div class="box">
-    <div class="headlines">
-      <h2><span> Reviews</span></h2>
-    </div>
-    
-    <?php if( $this->uri->segment(1) == 'review' && ( $this->uri->segment(2) == 'index' || $this->uri->segment(2) == '' ) )
-	{
-    if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == '' )
-  	{ ?>
-    <script language="javascript" type="text/javascript">
-	  $(document).ready(function(){
-		$('#uploadcsv').click(function() {
-			$('#divupload').show();
-			$('#submitupload').show();
-		});
-	  });
-	</script> 
-    <!-- Correct form message -->
-    <?php if( $this->session->flashdata('success') ) { ?>
-    <div class="form-message correct">
-      <p><?php echo $this->session->flashdata('success'); ?></p>
-    </div>
-    <?php } ?>
-    <!-- Error form message -->
-    <?php if( $this->session->flashdata('error') ) { ?>
-    <div class="form-message error1">
-      <p><?php echo $this->session->flashdata('error'); ?></p>
-    </div>
-    <?php } ?>
-    <?php echo form_open_multipart('review/import_csv',array('class'=>'formBox','id'=>'frmupload')); ?>
-    <?php 
-	$site = site_url();			
-	$url = explode("/businessadmin",$site);
-	$path = $url[0];
-	?>
-    <div class="clearfix file uploadbox" style="width:auto">
-      <div id="divlink"><a title="Upload CSV" id="uploadcsv" style="cursor:pointer; display:block">Upload CSV</a> or <a title="Download Sample CSV" href="<?php echo site_url('review/download');?>" id="downloadcsv" style="cursor:pointer">( Download Sample CSV )</a></div>
-      <div class="con" id="divupload"> <?php echo form_input( array( 'name'=>'csvfile','id'=>'csvfile','class'=>'input file upload-file','type'=>'file') ); ?> </div>
-      <div class="btn-submit" id="submitupload"> <?php echo form_input(array('name'=>'btnupload','id'=>'btnupload','class'=>'button','type'=>'submit','value'=>'Submit')); ?> or <a href="<?php echo site_url('review');?>" class="Cancel">Cancel</a> </div>
-    </div>
-    <?php echo form_close();?>
-    <?php } ?>
-    <?php if( count($reviews) > 0 ) { ?>
-    <!-- table -->
-    <table class="tab tab-drag">
-      <tr class="top nodrop nodrag">
-        <th width="10%">Title</th>
-        <th width="50%">Review</th>
-        <th width="8%">User</th>
-        <th width="8%">Rating</th>
-        <th width="20%">Review Date</th>
-      </tr>
-      <?php for($i=0;$i<count($reviews);$i++) { ?>
-      <tr>
-        <td><?php echo (stripslashes($reviews[$i]['reviewtitle'])); ?></td>
-        <td><?php echo nl2br(stripslashes($reviews[$i]['comment'])); ?></td>
-        <td><?php echo ucwords(stripslashes($reviews[$i]['reviewby'])); ?></td>
-        <td><img src="images/stars/<?php echo stripslashes($reviews[$i]['rate']); ?>.png" title="<?php echo stripslashes($reviews[$i]['rate']); ?> Stars" /></td>
-        <td><?php echo date("M d Y",strtotime($reviews[$i]['reviewdate'])); ?></td>
-      </tr>
-      <?php } ?>
-    </table>
-    <!-- /table --> 
-    <!-- /pagination -->
-    <?php  if($this->pagination->create_links()) { ?>
-    <div class="pagination"> <?php echo $this->pagination->create_links(); ?> </div>
-    <?php } ?>
-    <!-- /pagination -->
-    <?php } 
-	else { ?>
-    <!-- Warning form message -->
-    <div class="form-message warning">
-      <p>No records found.</p>
-    </div>
-    <?php } 
-    }
-	if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'reviews' )
-	{ ?>
-	<!-- Correct form message -->
-    <?php if( $this->session->flashdata('success') ) { ?>
-    <div class="form-message correct">
-      <p><?php echo $this->session->flashdata('success'); ?></p>
-    </div>
-    <?php } ?>
-    <!-- Error form message -->
-    <?php if( $this->session->flashdata('error') ) { ?>
-    <div class="form-message error1">
-      <p><?php echo $this->session->flashdata('error'); ?></p>
-    </div>
-    <?php } 
-    if( count($reviews) > 0 ) {	 ?>
-    <!-- table -->
-    <table class="tab tab-drag">
-      <tr class="top nodrop nodrag">
-        <th>Review</th>
-        <th>User</th>
-        <th>Review Date</th>
-        <th>Removal Request</th>
-        <th>Resolution</th>
-        <th width="15%">Share On</th>
-      </tr>
-      <?php $id = $this->session->userdata('siteid');?>
-      <?php $url1 = $this->reviews->get_url_byid($id);?>
-	  <?php $pageurl = $url1[0]['siteurl'].'review/browse/';?>
-      <?php for($i=0;$i<count($reviews);$i++) { ?>
-      <?php $user = $this->settings->get_user_byid($reviews[$i]['reviewby']);?>
-      <?php $reviewstatus =$this->reviews->get_reviewstatus_by_reviewid($reviews[$i]['id']); ?>
-      <tr>
-        <td><?php echo nl2br(stripslashes($reviews[$i]['comment'])); ?></td>
-        <td><?php if(count($user)>0) { echo ucwords(stripslashes($user[0]['firstname'] .' '.$user[0]['lastname'])); } else { echo "---"; } ?></td>
-        <td><?php echo date("M d Y",strtotime($reviews[$i]['reviewdate'])); ?></td>
-       <?php if(count($user)>0) { ?>
-        <td><?php if(count($reviewstatus)>0) { ?>
-          <a title="REQUEST ALREADY SENT"><span><img width="16" height="17" border="0" src="images/button_ok.png" alt="SENT"></span></a>
-          <?php } else { ?>
-          <a href="<?php echo site_url('review/request/'.$reviews[$i]['id'].'/'.$user[0]['id']);?>" title="REQUEST FOR REVIEW REMOVAL" onClick="return confirm('Are you sure to sent removal request to this user?');"><span><img width="16" height="17" border="0" src="images/delete-icon.png" alt="REQUEST"></span></a>
-          <?php } ?></td>
-          <?php }else{?>
-          <td>---</td>
-		  <?php }?>
-		  <td><a href="<?php echo site_url('review/resolution/'.$reviews[$i]['id']); ?>">Click Here</a></td>
-          <td>  <?php $title=urlencode('My post');
-                $url=urlencode($pageurl.$reviews[$i]['seokeyword']);
-                $image=urlencode('http://livemarketnews.com/dressfinity/skin/frontend/default/default/images/logo.jpg');
-                ?>
-                <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $title;?>&amp;p[url]=<?php echo $url; ?>&amp;&p[images][0]=<?php echo $image;?>', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)" title="Facebook">
-                    <img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
-                </a>
-                <a href="https://plus.google.com/share?url=<?php echo urlencode($pageurl.$reviews[$i]['seokeyword']);?>" title="Google+"><img width="16" height="17" border="0" src="images/go.jpg" alt="googleshare"></a>
-          		<a href="https://twitter.com/share" class="twitter-share-button" data-url="google.com" data-text="<?php echo $pageurl.$reviews[$i]['id'];?>" data-count="none">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        
-        </td>
+<?php ob_start();?>
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-      </tr>
-      <?php } ?>
-    </table>
-    <!-- /table --> 
-    <!-- /pagination -->
-    <?php  if($this->pagination->create_links()) { ?>
-    <div class="pagination"> <?php echo $this->pagination->create_links(); ?> </div>
-    <?php } ?>
-    <!-- /pagination -->
-    <?php } 
-	else { ?>
-    <!-- Warning form message -->
-    <div class="form-message warning">
-      <p>No records found.</p>
-    </div>
-    <?php } 
-    }
-    if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'resolution' )
+class Review extends CI_Controller {
+
+	/**
+	 * You wrote a review about '.ucfirst($company[0]['company']).' on <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a>,<br/>
+								'.ucfirst($company[0]['company']).' sent a request for Removing review ID ' .$reviewid.' Below are Details.
+								* 
+								* <a href="'.site_url('review/feedback/'.$rid.'/'.$userid.'/'.'agree').'"
+	* Index Page for this controller.
+	*
+	* Maps to the following URL
+	* 		http://example.com/index.php/dashboard
+	*	- or -  
+	* 		http://example.com/index.php/dashboard/index
+	*	- or -
+	* Since this controller is set as the default controller in 
+	* config/routes.php, it's displayed at http://example.com/
+	*
+	* So any other public methods not prefixed with an underscore will
+	* map to /index.php/dashboard/<method_name>
+	* @see http://codeigniter.com/user_guide/general/urls.html
+	*/
+	
+	public $paging;
+	public $data;
+	
+	public function __construct()
   	{
-	?>
-	<div class="box-content">
-    <fieldset>
-	<?php if($review['resolution'] == 'Ship the Item and/or Provide Proof of Shipping' || $review['resolution'] == 'Would like the missing items to be shipped immediately') { ?>
-	<form action="review/review_updates" method="post" class ="formBox broker">
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Resolution</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="<?php echo $review['resolution']; ?>" class="input" readonly>
-			</div>
-		</div>
+  	parent::__construct();
 		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Comments</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="<?php echo $review['comment']; ?>" class="input" readonly>
-			</div>
-		</div>
+		//Loading Helper File
+	  	$this->load->helper('form');
+			
+		//Loading Model File
+	 	$this->load->model('reviews');
+		$this->load->model('companys');
 		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Carrier</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="" class="input" name = "carrier">
-			</div>
-		</div>
+		//Loadin Pagination Custome Config File
+		$this->config->load('paging',TRUE);
+		$this->paging = $this->config->item('paging');
 		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Tracking Number</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="" class="input" name = "trackingno" >
-			</div>
-		</div>
+		//Setting Page Title and Comman Variable
+		$this->data['title'] = $this->settings->get_setting_value(1).' : Business Reviews';
+		$this->data['section_title'] = 'Business Reviews';
 		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Date Shipped</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="" class="input" name = "dateshipped" >
-			</div>
-		</div>
-		<input type = "hidden" value = "<?php echo $review['id'];?>" name = "id" >
-		<input type = "hidden" value = "<?php echo $review['user_id'];?>" name = "userid" >
-		<input type = "hidden" value = "<?php echo $review['company_id'];?>" name = "companyid" >
-		<input type = "hidden" value = "<?php echo $review['review_id'];?>" name = "reviewid" >
-		<div class="btn-submit" style = "padding : 15px 0 0 14%; border : none;">
-			<input class="button" type="submit" value="Submit" name="submit">
-		</div>
+		$this->data['site_name'] = $this->settings->get_setting_value(1);
+		$this->data['site_url'] = $this->settings->get_setting_value(2);
+		$websites = $this->settings->get_all_urls();
 		
-	</form>
-	<?php } ?>
-	
-	<?php if($review['resolution'] == 'Would like a Full Refund') { ?>
-	<form action="review/review_refund" method="post" class ="formBox broker" enctype = "multipart/form-data">
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Upload Proof</label>
-			</div>
-			<div class="con">
-				<input type = "file" name="refundproof" value="">
-			</div>
-		</div>
+		if( count($websites) > 0 )
+				{
+					$this->data['selsite']['zero'] = 'Select Site';
+					$this->data['selsite']['all'] = 'All Websites';
+					for($c=0;$c<count($websites);$c++)
+					{
+						$this->data['selsite'][stripslashes($websites[$c]['id'])] = ucwords(stripslashes($websites[$c]['title']));
+					}
+				}
+				else
+				{
+					$this->data['selsite']['all'] = 'All Websites';
+					$this->data['selsite'] = array();
+				}
 		
-		<input type = "hidden" value = "<?php echo $review['id'];?>" name = "id" >
-		<input type = "hidden" value = "<?php echo $review['user_id'];?>" name = "userid" >
-		<input type = "hidden" value = "<?php echo $review['company_id'];?>" name = "companyid" >
-		<input type = "hidden" value = "<?php echo $review['review_id'];?>" name = "reviewid" >
-		<div class="btn-submit" style = "padding : 15px 0 0; border : none;">
-			<input class="button" type="submit" value="Submit" name="submit">
-		</div>
-		
-	</form>
-	<?php } ?>
-	
-	<?php if($review['resolution'] == 'Would like a Replacement item') { ?>
-	<form action="review/review_replacement" method="post" class ="formBox broker">
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Resolution</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="<?php echo $review['resolution']; ?>" class="input" readonly>
-			</div>
-		</div>
-		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Comments</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="<?php echo $review['comment']; ?>" class="input" readonly>
-			</div>
-		</div>
-		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Carrier</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="" class="input" name = "carrier">
-			</div>
-		</div>
-		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Tracking Number</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="" class="input" name = "trackingno" >
-			</div>
-		</div>
-		
-		<div class="clearfix">
-			<div class="lab">
-				<label for="name">Date Shipped</label>
-			</div>
-			<div class="con">
-				<input type = "text" value="" class="input" name = "dateshipped" >
-			</div>
-		</div>
-		<input type = "hidden" value = "<?php echo $review['id'];?>" name = "id" >
-		<input type = "hidden" value = "<?php echo $review['user_id'];?>" name = "userid" >
-		<input type = "hidden" value = "<?php echo $review['company_id'];?>" name = "companyid" >
-		<input type = "hidden" value = "<?php echo $review['review_id'];?>" name = "reviewid" >
-		<div class="btn-submit" style = "padding : 15px 0 0 14%; border : none;">
-			<input class="button" type="submit" value="Submit" name="submit">
-		</div>
-		
-	</form>
-	<?php } ?>
-	
-	
-	
-	</fieldset>
-    </div>
-	<?php
+		//Load heading and save in variable
+		$this->data['heading'] = $this->load->view('header',$this->data,true);
+		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
-	?>
-  </div>
-  <!-- /box --> 
-  
-</div>
-<!-- /#content -->
-<?php  ?>
-<!-- #sidebar -->
+	
+	public function index()
+	{
+		
+		// Your own constructor code
+		if( !$this->session->userdata('youg_admin'))
+	  	{
+		   	//If no session, redirect to login page
+			//echo site_url();die();
+	  	  	redirect('adminlogin', 'refresh');
+		}
+		
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+			$limit = $this->paging['per_page'];
+			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+			
+			$companyid = $this->session->userdata['youg_admin']['id'];
+			$siteid = $this->session->userdata['siteid'];
+			//Addingg Setting Result to variable
+			$this->data['reviews'] = $this->reviews->get_all_reviews($companyid,$siteid,$limit,$offset);
+			//echo "<pre>";
+			//print_r($this->data['reviews']);
+			//die();
+			
+			$this->paging['base_url'] = site_url("review/index/");
+			$this->paging['uri_segment'] = 3;
+			$this->paging['total_rows'] = $this->reviews->get_all_reviews_count($companyid,$siteid);
+			$this->pagination->initialize($this->paging);
+			//echo "<pre>";
+			//print_r($this->paging);
+			//die();
+			
+			//Loading View File
+			$this->load->view('review',$this->data);
+	  	}
+	}
 
-<?php include('leftmenu.php'); ?>
-<!-- /#sidebar --> 
-<!-- #footer --> 
-<?php echo $footer; ?> 
+	public function import_csv()
+	{
+		// Your own constructor code
+		if( !$this->session->userdata('youg_admin'))
+	  	{
+		   	//If no session, redirect to login page
+			//echo site_url();die();
+	  	  	redirect('adminlogin', 'refresh');
+		}
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+			if($this->input->post('btnupload'))
+			{
+				//Loading Model File
+	  	  		$config['upload_path'] = '../uploads/reviewcsv/';
+				$config['allowed_types'] = 'csv';
+				//$config['max_size'] = '5000';
+				//$config['file_name'] = $_FILES['csvfile']['name'];
+			
+				$this->load->library('upload', $config);
+				
+				if(!$this->upload->do_upload('csvfile')) 
+				{
+					//Error in upload
+					$this->session->set_flashdata('error', "Error while uploading file. 'Valid File Type ( csv )");
+					redirect('review','refresh');
+				}
+				else
+				 {
+								$file_info = $this->upload->data();
+								$filePath = "../uploads/reviewcsv/";
+								$file = $filePath.$file_info['file_name'];
+								$row = 0;
+								$reviews = array();
+								$handle = fopen($file, "r");
+			
+								$fcontents = file('../uploads/reviewcsv/'.$file_info['file_name']);
+								//echo "<pre>";
+								//print_r($fcontents);
+								//die();
+								$companyid = $this->session->userdata['youg_admin']['id'];
+								unset($fcontents[0]);
+								//echo "<pre>";
+								//print_r($fcontents);
+								//die();
+								if(count($fcontents)>0)
+								 {
+									for($i=1;$i<(sizeof($fcontents)+1); $i++)
+									{
+												$line = trim($fcontents[$i]);
+												$arr = explode(",",$line);
+
+														$title = $arr[0];
+														$username = $arr[1];
+														$rating = $arr[2];
+														$review = $arr[3];
+														$date = $arr[4];
+														
+							$siteid = $this->session->userdata('siteid');	
+							if($title!='' && $username!='' && $rating!='' && $review!='' && $date!=''){
+							if( $this->reviews->insert($companyid,$username,$rating,$review,$date,$siteid,$title) )
+												{
+													if(file_exists($file))
+													{
+														unlink($file);
+													}
+													$this->session->set_flashdata('success', 'reviews inserted successfully.');
+												 }
+												else
+												{
+													$this->session->set_flashdata('error', 'There is error in inserting reviews. Try later!');
+												 }
+											}
+									}
+									$this->session->set_flashdata('success', 'reviews inserted successfully.');
+									redirect('review','refresh');
+											
+
+											
+								 }
+								else
+								{
+								redirect('review','refresh');
+								}
+						}
+				}
+			else
+			{
+				redirect('review','refresh');
+			}
+		}
+	}
+
+	public function download()
+	{
+		// Your own constructor code
+		if( !$this->session->userdata('youg_admin'))
+	  	{
+		   	//If no session, redirect to login page
+			//echo site_url();die();
+	  	  	redirect('adminlogin', 'refresh');
+		}
+		
+		$this->load->helper('download');
+		$site = site_url();			
+		$url = explode("/businessadmin",$site);
+		$path = $url[0];
+		$file = file_get_contents($path.'/review.csv');
+		$name = 'reviewexample.csv';
+		force_download($name, $file); 
+	}
+	
+	public function reviews()
+	{
+		// Your own constructor code
+		if( !$this->session->userdata('youg_admin'))
+	  	{
+		   	redirect('adminlogin', 'refresh');
+		}
+		
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+			$limit = $this->paging['per_page'];
+			$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+			
+			$companyid = $this->session->userdata['youg_admin']['id'];
+			$siteid = $this->session->userdata('siteid');	
+			//Addingg Setting Result to variable
+			$this->data['reviews'] = $this->reviews->get_all_mainreviews($companyid,$siteid,$limit,$offset);
+			//echo "<pre>";
+			//print_r($this->data['reviews']);
+			//die();
+			
+			$this->paging['base_url'] = site_url("review/reviews/index");
+			$this->paging['uri_segment'] = 4;
+			$this->paging['total_rows'] = count($this->reviews->get_all_mainreviews($companyid,$siteid));
+			$this->pagination->initialize($this->paging);
+			//echo "<pre>";
+			//print_r($this->paging);
+			//die();
+			
+			//Loading View File
+			$this->load->view('review',$this->data);
+	  	}
+	}
+	
+	public function removalrequest()
+	{
+		$companyid = $this->session->userdata['youg_admin']['id'];
+		$company = $this->companys->get_company_byid($companyid);
+		$this->data['companyname'] = $company[0]['company'];
+		$this->load->view('removalreview',$this->data);
+	}
+	
+	public function resolution($reviewid)
+	{
+		$companyid = $this->session->userdata['youg_admin']['id'];
+
+		$this->data['review'] = $this->reviews->review_mail($reviewid, $companyid);
+		$this->load->view('review', $this->data);
+	}
+	
+	function mail($site_name,$site_email,$site_url,$to,$subject,$mail)
+	{
+			$this->email->from($site_email,$site_name);
+			$this->email->to($to);
+			$this->email->subject($subject);	
+			$this->email->message($mail);		
+	}
+	
+	public function review_refund()
+	{
+		if($this->input->post('submit'))
+		{
+			
+			$config['upload_path'] = '../uploads/proof/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size']	= '1000000';
+			$config['max_width']  = '1024000';
+			$config['max_height']  = '768000';
+			$this->load->library('upload', $config);
+			
+			if($this->upload->do_upload('refundproof'))
+			{
+				$title = $this->input->post('refundproof') ;	
+				$imgdata = $this->upload->data();
+				
+				$data = array(
+					'proof' => $imgdata['file_name'],
+					'status' 		=> '1',
+					'checkdate' => date('Y-m-d')
+					);	
+		
+			$id = $this->input->post('id');
+			$userid = $this->input->post('userid');
+			$companyid = $this->input->post('companyid');
+			$reviewid = $this->input->post('reviewid');
+			
+			$this->reviews->reviewmail_update($data, $id);
+			
+			$this->load->library('email');	
+			
+			$user 		= $this->settings->get_user_byid($userid);
+			$company 	= $this->settings->get_company_byid($companyid);
+			
+			$site_name  = $this->settings->get_setting_value(1);
+			$site_email = $this->settings->get_setting_value(5);
+			$site_url   = $this->settings->get_setting_value(2);
+		
+			
+			$mail_msg = $this->settings->get_email_byid(30);
+			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));
+			$mail     = str_replace("%url%", site_url('../review/proof/'.$reviewid), str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))))));			
+			$to 	  = $user[0]['email'];
+						
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
+			$this->email->send();
+			
+			redirect("review/reviews","refresh");
+			
+			}
+		}
+	}
+	
+	public function	review_updates()
+	{
+		if($this->input->post('submit'))
+		{
+			$data = array(
+			'carrier'	 	=> $this->input->post('carrier'),
+			'trackingno' 	=> $this->input->post('trackingno'),
+			'dateshipped' 	=> $this->input->post('dateshipped'),
+			'status' 		=> '1',
+			'checkdate' 	=> date('Y-m-d')
+			);
+			
+			$id = $this->input->post('id');
+			$userid = $this->input->post('userid');
+			$companyid = $this->input->post('companyid');
+			$reviewid = $this->input->post('reviewid');
+			
+			$this->reviews->reviewmail_update($data, $id);
+			
+			$this->load->library('email');	
+			
+			$user 		= $this->settings->get_user_byid($userid);
+			$company 	= $this->settings->get_company_byid($companyid);
+			
+			$site_name  = $this->settings->get_setting_value(1);
+			$site_email = $this->settings->get_setting_value(5);
+			$site_url   = $this->settings->get_setting_value(2);
+		
+			
+			$mail_msg = $this->settings->get_email_byid(23);
+			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));
+			$mail     = str_replace("%carrier%", $this->input->post('carrier'), str_replace("%trackingno%", $this->input->post('trackingno'), str_replace("%dateshipped%", $this->input->post('dateshipped'),str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))))))));			
+			$to 	  = $user[0]['email'];
+						
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
+			if($this->email->send())
+			{
+				$this->reviews->delete_review_byid($reviewid);
+				$this->reviews->delete_comment($reviewid);
+				$this->reviews->delete_reviewmail($reviewid);
+			}
+			redirect("review/reviews","refresh");
+		}
+	}
+	
+	public function	review_replacement()
+	{
+		if($this->input->post('submit'))
+		{
+			$data = array(
+			'new_carrier'	 	=> $this->input->post('carrier'),
+			'new_trackingno' 	=> $this->input->post('trackingno'),
+			'new_dateshipped' 	=> $this->input->post('dateshipped'),
+			'status' 			=> '1',
+			'checkdate' 		=> date('Y-m-d')
+			);
+			
+			$id = $this->input->post('id');
+			$userid = $this->input->post('userid');
+			$companyid = $this->input->post('companyid');
+			$reviewid = $this->input->post('reviewid');
+			
+			$this->reviews->reviewmail_update($data, $id);
+			
+			$this->load->library('email');	
+			
+			$user 		= $this->settings->get_user_byid($userid);
+			$company 	= $this->settings->get_company_byid($companyid);
+			
+			$site_name  = $this->settings->get_setting_value(1);
+			$site_email = $this->settings->get_setting_value(5);
+			$site_url   = $this->settings->get_setting_value(2);
+		
+			
+			$mail_msg = $this->settings->get_email_byid(34);
+			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));
+			$mail     = str_replace("%carrier%", $this->input->post('carrier'), str_replace("%trackingno%", $this->input->post('trackingno'), str_replace("%dateshipped%", $this->input->post('dateshipped'),str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))))))));			
+			$to 	  = $user[0]['email'];
+						
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
+			$this->email->send();
+	
+			redirect("review/reviews","refresh");
+		}
+	}
+	
+	public function request($reviewid='',$userid='')
+	{
+		// Your own constructor code
+		if( !$this->session->userdata('youg_admin'))
+	  	{
+		   	//If no session, redirect to login page
+			//echo site_url();die();
+	  	  	redirect('adminlogin', 'refresh');
+		}
+		
+		if($reviewid!='' && $reviewid!=0 && $userid!='' && $userid!=0)
+		 {
+			if( $this->session->userdata['youg_admin'] )
+	  		 {
+					$rid = base64_encode($reviewid);
+									
+					$companyid = $this->session->userdata['youg_admin']['id'];
+				
+					$company=$this->companys->get_company_byid($companyid);
+					$user=$this->settings->get_user_byid($userid);
+					$review=$this->reviews->get_mainreview_byid($reviewid);
+					
+					$site_name = $this->settings->get_setting_value(1);
+					$site_url  = $this->settings->get_setting_value(2);
+					$site_mail = $this->settings->get_setting_value(5);
+					
+					//Loading E-mail library
+					$this->load->library('email');
+					
+					//Loading E-mail config file
+					$this->config->load('email',TRUE);
+					
+					//Payment mail for Admin
+					$from = $company[0]['email'];
+					$subject = 'Request for Information About Your Review:  Case #YGR-'.$reviewid;
+					$to = $user[0]['email'];
+					
+					$this->email->from($site_mail,$site_name);
+					$this->email->to($to);
+					$this->email->subject($subject);
+				
+					$mailbody = 
+					"<table>
+						
+						<label style='color: #B32317; font-size: 23px; padding: 15px 0;'> 
+								You filed a Negative Review and the Merchant would like to have it removed. 
+						</label>
+						
+						<tr>
+							<td>
+								<ul style='font-size : 16px; list-style : none; padding : 10px 0; margin : 0;'>
+								
+									<li style='font-size : 13px; margin: 20px 0;  padding : 0;'>Hello ".ucwords($user[0]['firstname'].' '.$user[0]['lastname']).",</li>
+									
+									<li style='margin: 8px 0 4px; padding : 0 0 0 15px;'> Your merchant has received your Negative </li>								
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> Review and would like to work out a </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> solution with you. </li>
+									
+									<li style='margin: 30px 0 4px; padding : 0 0 0 15px;'> By communicating directly with the </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> merchant through YouGotRated you can </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> reach a satisfactory resolution to your </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> complaint that can be mutually beneficial. </li>
+									
+									<li style='margin: 30px 0 4px; padding : 0 0 0 15px;'> Please note that the reason you are </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> receiving this email is because the </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> Merchant is already aware of your </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> complaint and has pledged his willingness </li>
+									<li style='margin: 4px 0; padding : 0 0 0 15px;'> to assist you.  </li>
+									
+									
+									<li style='font-size : 13px; margin: 30px 0 4px; padding : 0 0 0 15px;'>In the next page you will have several options that you </li>
+									<li style='font-size : 13px; margin: 4px 0; padding : 0 0 0 15px;'>can choose from that will be emailed to the Merchant on </li>
+									<li style='font-size : 13px; margin: 4px 0; padding : 0 0 0 15px;'>your behalf in order to resolve your complaint. </li>
+									
+									
+									<li style='font-size : 13px; margin: 30px 0 4px; color : #347C91; padding : 0 0 0 15px; font-weight : bold;'> Please Reply to this email here with your selection. </li>
+																		
+  									<li style='margin: 4px 0; padding : 0 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
+
+									<li style='font-size : 13px; margin: 25px 0 8px; padding : 0 0 0 15px;'> Sincerely, </li>
+
+									<li style='font-size : 13px; margin: 8px 0; padding : 0 0 0 15px;'>YouGotRated </li>
+
+									<li style='font-size : 13px; margin: 8px 0; padding : 0 0 0 15px;'> BC:  YGR-".$reviewid." </li>
+									
+								</ul>
+							</td>
+							<td style = 'display : block;'>
+								<ul style = 'list-style : none;'>
+									<li><img src='".$site_url."images/email.jpg'></li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+					";
+						/*<html>
+							<body>
+							<table cellpadding="0" cellspacing="0" width="100%" border="0">
+							<tr>
+								<td>Hello '.ucwords($user[0]['firstname'].' '.$user[0]['lastname']).',</td>
+							</tr>
+							<tr><td>&nbsp;</td></tr>
+							<tr>
+								<td style="padding-left:50px;">
+								'.ucfirst($company[0]['company']).' has requested your approval to remedy your concern, so that the negative review on <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a> could be removed.<br/>
+								Please click the link below to see if you can reach an agreement with this business.
+								</td>
+							</tr>
+							<tr><td>&nbsp;</td></tr>
+							<tr>
+								<td>
+									<table cellpadding="0" cellspacing="0" width="100%" border="0">
+									<tr><td colspan="3"><h4>Review Details</h4></td></tr>
+									<tr>
+										<td width="200">Review ID</td>
+										<td>:</td>
+										<td>'.$reviewid.'</td>
+									</tr>
+                                    <tr><td colspan="3">&nbsp;</td></tr>
+                                    <tr>
+										<td width="200">Review</td>
+										<td>:</td>
+										<td>'.$review[0]['comment'].'</td>
+									</tr>
+                                    <tr><td colspan="3">&nbsp;</td></tr>
+                                    <tr>
+										<td width="200">reviewdate</td>
+										<td>:</td>
+										<td>'.date('M d Y H:i:s',strtotime($review[0]['reviewdate'])).'</td>
+									</tr>
+									<tr><td colspan="3">&nbsp;</td></tr>
+									</table>
+                                    <table cellpadding="0" cellspacing="0" width="100%" border="0">
+									<tr><td colspan="3"><h4>Please give your feedback by clicking below option</h4></td></tr>
+                                    <tr><td colspan="3">&nbsp;</td></tr>
+                                    <tr><td colspan="3"><a href="'.'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/reviewfeedback/'.'" title="I AGREE TO THE REMOVAL REQUEST">I AGREE TO THE REMOVAL REQUEST</a>&nbsp;
+                                        <a href="'.site_url('review/feedback/'.$rid.'/'.$userid.'/'.'disagree').'" title="I DECLINE THE REMOVAL REQUEST">I DECLINE THE REMOVAL REQUEST</a>
+                                        </td>
+									</tr>
+									</table>
+								</td>
+							</tr>
+							<tr><td><br/><br/></td></tr>
+							<tr>
+								<td>
+									Kind Regards,<br/>
+									'.$site_name.'
+								</td>
+							</tr>
+							</table>
+							</body>
+						</html>/*;
+					 
+					/*echo"<pre>";
+					print_r($mailbody);
+					die();*/
+				
+					$this->email->message($mailbody);
+					
+					//Sending mail to Admin
+					if($this->email->send())
+			 		{
+						$this->session->set_flashdata('success', 'Request for review removal has been sent successfully to user.');
+						if($this->reviews->insert_review_status($companyid,$reviewid))
+						{
+							$id = $this->db->insert_id();
+							if($this->reviews->update_checkdate($id,$companyid,$reviewid))
+							{
+								redirect('review/removalrequest', 'refresh');
+							}
+							else
+							{
+								//$this->session->set_flashdata('error', 'There is error in sending request. Try later!');
+								redirect('review/reviews', 'refresh');				
+							}
+						}
+						else
+						{
+								//$this->session->set_flashdata('error', 'There is error in sending request. Try later!');
+								redirect('review/reviews', 'refresh');
+						}
+					}
+					else
+					{
+								$this->session->set_flashdata('error', 'There is error in sending request. Try later!');
+								redirect('review/reviews', 'refresh');
+					}
+					
+					//Loading View File
+				$this->load->view('review',$this->data);
+	     	 }
+			else
+			{
+				redirect('adminlogin','refresh');
+			}
+	     }
+		 else
+		 {
+				redirect('review/reviews','refresh');
+		 }
+	}
+		
+		public function feedback($reviewid='',$userid='',$status='')
+		{
+			$rid = base64_decode($reviewid);
+			$site_url  = $this->settings->get_setting_value(2);
+			$clickstatus = $this->reviews->get_reviewstatus_by_reviewid($rid);
+			
+			if($reviewid!='' &&  $userid!='')
+		 	{
+				$date1 = date("Y-m-d H:i:s");
+				$date2 = $clickstatus[0]['checkdate'];
+				$diff = abs(strtotime($date2) - strtotime($date1));
+				$years = floor($diff / (365*60*60*24));
+				$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+				$days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+						
+				if($days <=5)			
+				{
+					if($clickstatus[0]['click']=="No")
+					{
+		 					if($status=='agree')
+							{
+								if($this->reviews->disable_review_byid($rid))
+								{
+									redirect($site_url.'welcome/feedback', 'refresh');
+								}
+							}
+							if($status=='disagree')
+							{
+	
+								if($this->reviews->enable_review_byid($rid))
+								{
+									redirect($site_url.'welcome/feedback', 'refresh');
+								}
+							}
+					}
+					else
+					{
+						redirect($site_url, 'refresh');
+					}
+				}
+				else
+				{
+					redirect($site_url, 'refresh');
+				}
+			
+			}
+			else
+			{
+				redirect($site_url,'refresh');
+			}
+		}
+}
+
+/* End of file page.php */
+/* Location: ./application/controllers/page.php */
