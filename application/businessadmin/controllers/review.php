@@ -330,6 +330,42 @@ class Review extends CI_Controller {
 		}
 	}
 	
+	public function review_gift()
+	{
+		if($this->input->post('submit'))
+		{
+			
+			$config['upload_path'] = '../uploads/proof/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size']	= '1000000';
+			$config['max_width']  = '1024000';
+			$config['max_height']  = '768000';
+			$this->load->library('upload', $config);
+			
+			if($this->upload->do_upload('refundproof'))
+			{
+				$title = $this->input->post('refundproof') ;	
+				$imgdata = $this->upload->data();
+				
+				$data = array(
+					'proof' => $imgdata['file_name'],
+					'status' 		=> '1',
+					'checkdate' => date('Y-m-d')
+					);	
+		
+			$id = $this->input->post('id');
+			$userid = $this->input->post('userid');
+			$companyid = $this->input->post('companyid');
+			$reviewid = $this->input->post('reviewid');
+			
+			$this->reviews->reviewmail_update($data, $id);
+						
+			redirect("review/reviews","refresh");
+			
+			}
+		}
+	}
+	
 	public function	review_updates()
 	{
 		if($this->input->post('submit'))
