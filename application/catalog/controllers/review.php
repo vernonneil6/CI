@@ -545,7 +545,7 @@ class Review extends CI_Controller {
 		}
 		else if ($data['option'] == 'Would like the missing items to be shipped immediately')
 		{
-			$url = '';
+			$url = 'review/resolution/'.$data['reviewid'];
 			$this->review_mail($data['userid'], $data['companyid'], $data['reviewid'], '36', $url, $user[0]['email']);			
 			$this->email->send();
 		}
@@ -581,7 +581,7 @@ class Review extends CI_Controller {
 					$mail_msg = $this->common->get_email_byid(29);
 					$subject  = str_replace("%reviewid%", $reviewids, stripslashes($mail_msg[0]['subject']));			
 					$mail     = str_replace("%url%", site_url('businessadmin/review/resolution/'.$reviewids), str_replace("%carrier%", $reviewmail['carrier'], str_replace("%trackingno%", $reviewmail['trackingno'], str_replace("%dateshipped%", $reviewmail['dateshipped'], str_replace("%reviewid%", $reviewids, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))));			
-					$to       = $user[0]['email'];
+					$to       = $company[0]['email'];
 										
 					$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
 					$this->email->send();
@@ -591,7 +591,7 @@ class Review extends CI_Controller {
 					$mail_msg = $this->common->get_email_byid(33);
 					$subject  = str_replace("%reviewid%", $reviewids, stripslashes($mail_msg[0]['subject']));			
 					$mail     = str_replace("%url%", site_url('businessadmin/review/resolution/'.$reviewids), str_replace("%carrier%", $reviewmail['carrier'], str_replace("%trackingno%", $reviewmail['trackingno'], str_replace("%dateshipped%", $reviewmail['dateshipped'], str_replace("%reviewid%", $reviewids, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))));			
-					$to       = $user[0]['email'];
+					$to       = $company[0]['email'];
 										
 					$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
 					$this->email->send();
@@ -684,7 +684,7 @@ class Review extends CI_Controller {
 		
 		if($option == 'Would like a Full Refund')
 		{
-			if ($days == 7 and $status == 0)
+			if ($days == 7 and $status == 0 || $checkdays == 15 and $status == 2)
 			{
 				$this->reviews->delete_review_byid($reviewids);
 				$this->reviews->delete_comment($reviewids);
@@ -696,7 +696,7 @@ class Review extends CI_Controller {
 				$mail_msg = $this->common->get_email_byid(31);		
 				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
 				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
-				$to       = $user[0]['email'];
+				$to       = $company[0]['email'];
 								
 				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
 				$this->email->send();
@@ -714,15 +714,7 @@ class Review extends CI_Controller {
 				{
 					$this->reviews->get_status_reviewupdate($userid, $companyid, $review['id']);
 				}
-			}
-			
-			else if ($checkdays == 15 and $status == 2)
-			{
-				$this->reviews->delete_review_byid($reviewids);
-				$this->reviews->delete_comment($reviewids);
-				$this->reviews->delete_reviewmail($reviewids);
-			}
-			
+			}			
 		}
 		
 		if($option == 'Would like a Replacement item')
@@ -809,7 +801,7 @@ class Review extends CI_Controller {
 				$mail_msg = $this->common->get_email_byid(40);			
 				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
 				$mail     = str_replace("%url%", site_url('businessadmin/review/resolution/'.$reviewids),str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))))));							
-				$to       = $user[0]['email'];
+				$to       = $company[0]['email'];
 								
 				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
 				$this->email->send();
