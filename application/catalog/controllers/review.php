@@ -549,12 +549,6 @@ class Review extends CI_Controller {
 			$this->review_mail($data['userid'], $data['companyid'], $data['reviewid'], '36', $url, $user[0]['email']);			
 			$this->email->send();
 		}
-		else if ($data['option'] == 'Would like a Partial Refund and/or Gift Card in compensation for the service received')
-		{
-			$url = 'review/proof/'.$data['reviewid'];
-			$this->review_mail($data['userid'], $data['companyid'], $data['reviewid'], '39', $url, $user[0]['email']);			
-			$this->email->send();
-		}
 	}
 	public function resolution($reviewid)
 	{
