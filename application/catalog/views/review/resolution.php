@@ -44,6 +44,29 @@
 		  </div>
 		</form>
 	<?php } ?>
+	<?php if($this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'replacement') { ?>
+		<form action = "/review/closecase/<?php echo $reviewmail['review_id']; ?>" method = "post">
+		  <div class="main_bd_srchwrp reviewmail">
+			  <div class="bdsrch_wrp reviewmail_text">
+				<h2 class = "reviewmail_carrier">Resolution</h2>
+				<div class="reviewmail_outline">
+					<input type="text" required="" value="<?php echo $reviewmail['resolution'];?>" class="bdsrch_txtbx reviewmail_textbox">
+				</div>
+			  </div>
+		  </div>
+		  <div class="main_bd_srchwrp reviewmail">
+			  <div class="bdsrch_wrp reviewmail_text">
+				<h2 class = "reviewmail_carrier">Comment</h2>
+				<div class="reviewmail_outline">
+					<input type="text" required="" value="<?php echo $reviewmail['comment'];?>" class="bdsrch_txtbx reviewmail_textbox">
+				</div>
+			  </div>
+		  </div>
+		  <div class="bdsrch_wrp reviewmail_text" style ="margin: 40px 0 0 310px;">
+				<input type="submit" name="submit" value = "Click here to close the case">
+		  </div>
+		</form>
+	<?php } ?>
 	</div>
   </section>
 </section>

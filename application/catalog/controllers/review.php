@@ -514,6 +514,38 @@ class Review extends CI_Controller {
 			$this->email->message($mail);		
 	}
 	
+	function review_mail($userid, $companyid, $reviewid, $emailid, $url, $to)
+	{
+			$user 		= $this->users->get_user_byid($userid);
+			$company 	= $this->reviews->get_company_byid($companyid);
+			
+			$site_name  = $this->common->get_setting_value(1);
+			$site_email = $this->common->get_setting_value(5);
+			$site_url   = $this->reviews->get_setting_value(2);
+			
+			$this->load->library('email');
+			$message  = $this->common->get_email_byid($emailid);
+			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($message[0]['subject']));			
+			$mail     = str_replace("%url%", site_url($url), str_replace("%address%", $company[0]['streetaddress'], str_replace("%merchantname%", $company[0]['company'], str_replace("%city%", $company[0]['city'], str_replace("%state%", $company[0]['state'], str_replace("%zip%", $company[0]['zip'], str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($message[0]['mailformat'])))))))))));			
+			
+			$this->email->from($site_email,$site_name);
+			$this->email->to($to);
+			$this->email->subject($subject);	
+			$this->email->message($mail);		
+	}
+	
+	function review_data($id)
+	{
+		$review = $this->reviews->get_reviewmail_byid($id);
+		$data 	= array(
+			'userid'   	=> $review['user_id'],
+			'companyid'	=> $review['company_id'],
+			'reviewid' 	=> $review['review_id'],
+			'option'   	=> $review['resolution']
+		);
+		return $data;
+	}
+	
 	public function reviewmail_insert($userid, $companyid)
 	{
 		$user 		= $this->users->get_user_byid($userid);
@@ -525,41 +557,32 @@ class Review extends CI_Controller {
 		
 		$this->reviews->insert_reviewmail($companyid, $userid, $review['id'], $buyeroption, $textarea, '0');
 		$id = $this->db->insert_id();
-		$reviewmail = $this->reviews->get_reviewmail_byid($id);
-		$option   	= $reviewmail['resolution'];
-		$reviewids 	= $reviewmail['review_id'];
-		if ($option == 'Would like a Full Refund')
+		
+		
+		$data = $this->review_data($id);
+		
+		if ($data['option'] == 'Would like a Full Refund')
 		{
-			$user 		= $this->users->get_user_byid($userid);
-			$company 	= $this->reviews->get_company_byid($companyid);
-			$site_name  = $this->common->get_setting_value(1);
-			$site_email = $this->common->get_setting_value(5);
-			$site_url   = $this->reviews->get_setting_value(2);
-			
-			$this->load->library('email');
-			$mail_msg = $this->common->get_email_byid(28);
-			$subject  = str_replace("%reviewid%", $reviewids, stripslashes($mail_msg[0]['subject']));			
-			$mail     = str_replace("%url%", site_url('review/resolution/'.$reviewids), str_replace("%address%", $company[0]['streetaddress'], str_replace("%merchantname%", $company[0]['company'], str_replace("%city%", $company[0]['city'], str_replace("%state%", $company[0]['state'], str_replace("%zip%", $company[0]['zip'], str_replace("%reviewid%", $reviewids, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))))));			
-			$to       = $user[0]['email'];
-								
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+			$url = 'review/resolution/'.$data['reviewid'];
+			$this->review_mail($data['userid'], $data['companyid'], $data['reviewid'], '28', $url, $user[0]['email']);			
 			$this->email->send();
 		}
-		if ($option == 'Would like a Replacement item')
+		else if ($data['option'] == 'Would like a Replacement item')
 		{
-			$user 		= $this->users->get_user_byid($userid);
-			$company 	= $this->reviews->get_company_byid($companyid);
-			$site_name  = $this->common->get_setting_value(1);
-			$site_email = $this->common->get_setting_value(5);
-			$site_url   = $this->reviews->get_setting_value(2);
-			
-			$this->load->library('email');
-			$mail_msg = $this->common->get_email_byid(32);
-			$subject  = str_replace("%reviewid%", $reviewids, stripslashes($mail_msg[0]['subject']));			
-			$mail     = str_replace("%url%", site_url('review/resolution/'.$reviewids), str_replace("%address%", $company[0]['streetaddress'], str_replace("%merchantname%", $company[0]['company'], str_replace("%city%", $company[0]['city'], str_replace("%state%", $company[0]['state'], str_replace("%zip%", $company[0]['zip'], str_replace("%reviewid%", $reviewids, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))))));			
-			$to       = $user[0]['email'];
-								
-			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+			$url = 'review/resolution/'.$data['reviewid'];
+			$this->review_mail($data['userid'], $data['companyid'], $data['reviewid'], '32', $url, $user[0]['email']);			
+			$this->email->send();
+		}
+		else if ($data['option'] == 'Would like the missing items to be shipped immediately')
+		{
+			$url = 'review/resolution/'.$data['reviewid'];
+			$this->review_mail($data['userid'], $data['companyid'], $data['reviewid'], '36', $url, $user[0]['email']);			
+			$this->email->send();
+		}
+		else if ($data['option'] == 'Would like a Partial Refund and/or Gift Card in compensation for the service received')
+		{
+			$url = 'review/resolution/'.$data['reviewid'];
+			$this->review_mail($data['userid'], $data['companyid'], $data['reviewid'], '38', $url, $user[0]['email']);			
 			$this->email->send();
 		}
 	}
@@ -608,16 +631,6 @@ class Review extends CI_Controller {
 					$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
 					$this->email->send();
 				}
-				if($option == 'Would like the missing items to be shipped immediately')
-				{
-					$mail_msg = $this->common->get_email_byid(36);
-					$subject  = str_replace("%reviewid%", $reviewids, stripslashes($mail_msg[0]['subject']));			
-					$mail     = str_replace("%url%", site_url('businessadmin/review/resolution/'.$reviewids), str_replace("%carrier%", $reviewmail['carrier'], str_replace("%trackingno%", $reviewmail['trackingno'], str_replace("%dateshipped%", $reviewmail['dateshipped'], str_replace("%reviewid%", $reviewids, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))));			
-					$to       = $user[0]['email'];
-										
-					$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
-					$this->email->send();
-				}
 			
 		}
 		$this->data['reviewid'] = $reviewid;
@@ -625,6 +638,12 @@ class Review extends CI_Controller {
 	}
 	
 	public function proof($reviewid)
+	{
+		$this->data['reviewmail'] = $this->reviews->get_reviewmail_byreviewid($reviewid);
+		$this->load->view('review/resolution', $this->data);
+	}
+	
+	public function replacement($reviewid)
 	{
 		$this->data['reviewmail'] = $this->reviews->get_reviewmail_byreviewid($reviewid);
 		$this->load->view('review/resolution', $this->data);
@@ -725,7 +744,42 @@ class Review extends CI_Controller {
 		
 		if($option == 'Would like a Replacement item')
 		{
-			if ($days == 10 and $status == 0)
+			if ($days == 7 and $status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(32);
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+				$this->reviews->delete_comment($review['id']);
+				$this->reviews->delete_review_byid($review['id']);
+			}
+			
+			else if ($days == 7 and $status == 1)
+			{
+				$mail_msg = $this->common->get_email_byid(33);	
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $company[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
+			
+			else if ($status == 0)
+			{
+				$mail_msg = $this->common->get_email_byid(34);	
+				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
+				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$to       = $user[0]['email'];
+								
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$this->email->send();
+			}
+		
+			else if ($days == 10 and $status == 0)
 			{
 				$mail_msg = $this->common->get_email_byid(35);	
 				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
@@ -753,29 +807,7 @@ class Review extends CI_Controller {
 		
 		if($option == 'Would like the missing items to be shipped immediately')
 		{
-			if ($status == 1)
-			{
-				$mail_msg = $this->common->get_email_byid(36);
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
-				$to       = $user[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
-				$this->email->send();
-			}
-			
-			else if ($status == 0)
-			{
-				$mail_msg = $this->common->get_email_byid(37);
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
-				$to       = $user[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
-				$this->email->send();
-			}
-	
-			else if ($days == 15 and $status == 0)
+			if ($days == 15 and $status == 0)
 			{
 				$mail_msg = $this->common->get_email_byid(38);
 				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
@@ -803,18 +835,7 @@ class Review extends CI_Controller {
 		
 		if($option == 'Would like a Partial Refund and/or Gift Card in compensation for the service received')
 		{
-			if ($status == 0)
-			{
-				$mail_msg = $this->common->get_email_byid(39);			
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
-				$to       = $user[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
-				$this->email->send();
-			}
-		
-			else if ($days == 15 and $status == 0)
+			if ($days == 15 and $status == 0)
 			{
 				$mail_msg = $this->common->get_email_byid(40);			
 				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
@@ -1360,7 +1381,6 @@ class Review extends CI_Controller {
 	 }
 	 public function reviewfeedback()
 	 {
-		 
 		 $this->load->view('review/feedback');
 	 }
 }
