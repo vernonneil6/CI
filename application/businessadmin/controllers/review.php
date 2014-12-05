@@ -295,7 +295,7 @@ class Review extends CI_Controller {
 				
 				$data = array(
 					'proof' => $imgdata['file_name'],
-					'status' 		=> '1',
+					'status' 		=> '2',
 					'checkdate' => date('Y-m-d')
 					);	
 		
@@ -349,7 +349,7 @@ class Review extends CI_Controller {
 				
 				$data = array(
 					'proof' => $imgdata['file_name'],
-					'status' 		=> '1',
+					'status' 		=> '2',
 					'checkdate' => date('Y-m-d')
 					);	
 		
@@ -392,7 +392,7 @@ class Review extends CI_Controller {
 			'carrier'	 	=> $this->input->post('carrier'),
 			'trackingno' 	=> $this->input->post('trackingno'),
 			'dateshipped' 	=> $this->input->post('dateshipped'),
-			'status' 		=> '1',
+			'status' 		=> '2',
 			'checkdate' 	=> date('Y-m-d')
 			);
 			
@@ -450,7 +450,7 @@ class Review extends CI_Controller {
 			'new_carrier'	 	=> $this->input->post('carrier'),
 			'new_trackingno' 	=> $this->input->post('trackingno'),
 			'new_dateshipped' 	=> $this->input->post('dateshipped'),
-			'status' 			=> '1',
+			'status' 			=> '2',
 			'checkdate' 		=> date('Y-m-d')
 			);
 			
