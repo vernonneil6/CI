@@ -545,13 +545,13 @@ class Review extends CI_Controller {
 		}
 		else if ($data['option'] == 'Would like the missing items to be shipped immediately')
 		{
-			$url = 'review/resolution/'.$data['reviewid'];
+			$url = '';
 			$this->review_mail($data['userid'], $data['companyid'], $data['reviewid'], '36', $url, $user[0]['email']);			
 			$this->email->send();
 		}
 		else if ($data['option'] == 'Would like a Partial Refund and/or Gift Card in compensation for the service received')
 		{
-			$url = 'review/resolution/'.$data['reviewid'];
+			$url = 'review/proof/'.$data['reviewid'];
 			$this->review_mail($data['userid'], $data['companyid'], $data['reviewid'], '39', $url, $user[0]['email']);			
 			$this->email->send();
 		}
@@ -774,7 +774,7 @@ class Review extends CI_Controller {
 			{
 				$mail_msg = $this->common->get_email_byid(40);			
 				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
+				$mail     = str_replace("%url%", site_url('businessadmin/review/resolution/'.$reviewids),str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))))));							
 				$to       = $user[0]['email'];
 								
 				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			

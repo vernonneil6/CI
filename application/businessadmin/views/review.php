@@ -221,7 +221,7 @@
 	</form>
 	<?php } ?>
 	
-	<?php if($review['resolution'] == 'Would like a Full Refund') { ?>
+	<?php if($review['resolution'] == 'Would like a Full Refund' || $review['resolution'] == 'Would like a Partial Refund and/or Gift Card in compensation for the service received') { ?>
 	<form action="review/review_refund" method="post" class ="formBox broker" enctype = "multipart/form-data">
 		<div class="clearfix">
 			<div class="lab">
