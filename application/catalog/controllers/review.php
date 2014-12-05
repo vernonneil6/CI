@@ -316,36 +316,6 @@ class Review extends CI_Controller {
 					$this->email->to($to);
 					$this->email->subject('A Review about you company has been posted on YouGotRated.');
 					
-					
-				/*	$link1 = "<a href='".base_url('welcome/confirm/'.base64_encode($companyid).'/'.base64_encode($userid))."' title='Confirm Customer' class='mailbutton' style='background-image:url(".$site_url."images/type_btn.png);border: 1px solid #CCCCCC;
-    color: #373737;
-    float: left;
-    font-family: aller;
-    font-size: 16px;
-    height: auto;
-    list-style: none outside none;
-    text-shadow: 0 1px 1px #FFFFFF;
-    width: auto;
-	padding:7px 20px;cursor: pointer;
-	text-decoration:none;'>Confirm Customer</a>";
-					$link2 = "<a href='".base_url('welcome/decline/'.base64_encode($companyid).'/'.base64_encode($userid))."' title='Decline Customer' class='mailbutton' style='background-image:url(".$site_url."images/type_btn.png);border: 1px solid #CCCCCC;
-    color: #373737;
-    float: left;
-    font-family: aller;
-    font-size: 16px;
-    height: auto;
-    list-style: none outside none;
-    text-shadow: 0 1px 1px #FFFFFF;
-    width: auto;
-	padding:7px 20px;cursor: pointer;
-	text-decoration:none;
-	margin-left:15px;
-	'>Decline Customer</a>";
-            	
-					$mail_body = str_replace("%username%",ucfirst($user[0]['firstname'].' '.$user[0]['lastname']),str_replace("%company%",ucfirst($company[0]['company']),str_replace("%useremail%",$user[0]['email'],str_replace("%link1%",$link1,str_replace("%link2%",$link2,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat)))))))));
-					
-					$this->email->message($mail_body);*/
-					
 					$this->email->message("
 					<table>
 						
@@ -744,42 +714,7 @@ class Review extends CI_Controller {
 		
 		if($option == 'Would like a Replacement item')
 		{
-			if ($days == 7 and $status == 0)
-			{
-				$mail_msg = $this->common->get_email_byid(32);
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
-				$to       = $user[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
-				$this->email->send();
-				$this->reviews->delete_comment($review['id']);
-				$this->reviews->delete_review_byid($review['id']);
-			}
-			
-			else if ($days == 7 and $status == 1)
-			{
-				$mail_msg = $this->common->get_email_byid(33);	
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
-				$to       = $company[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
-				$this->email->send();
-			}
-			
-			else if ($status == 0)
-			{
-				$mail_msg = $this->common->get_email_byid(34);	
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
-				$to       = $user[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
-				$this->email->send();
-			}
-		
-			else if ($days == 10 and $status == 0)
+			if ($days == 10 and $status == 0)
 			{
 				$mail_msg = $this->common->get_email_byid(35);	
 				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			

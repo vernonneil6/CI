@@ -455,6 +455,7 @@ class Review extends CI_Controller {
 					$site_url  = $this->settings->get_setting_value(2);
 					$site_mail = $this->settings->get_setting_value(5);
 					
+					
 					//Loading E-mail library
 					$this->load->library('email');
 					
@@ -464,8 +465,8 @@ class Review extends CI_Controller {
 					//Payment mail for Admin
 					$from = $company[0]['email'];
 					$subject = 'Request for Information About Your Review:  Case #YGR-'.$reviewid;
-					$to = $user[0]['email'];
-					
+					echo $to = $user[0]['email'];
+					die;
 					$this->email->from($site_mail,$site_name);
 					$this->email->to($to);
 					$this->email->subject($subject);
@@ -524,67 +525,6 @@ class Review extends CI_Controller {
 						</tr>
 					</table>
 					";
-						/*<html>
-							<body>
-							<table cellpadding="0" cellspacing="0" width="100%" border="0">
-							<tr>
-								<td>Hello '.ucwords($user[0]['firstname'].' '.$user[0]['lastname']).',</td>
-							</tr>
-							<tr><td>&nbsp;</td></tr>
-							<tr>
-								<td style="padding-left:50px;">
-								'.ucfirst($company[0]['company']).' has requested your approval to remedy your concern, so that the negative review on <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a> could be removed.<br/>
-								Please click the link below to see if you can reach an agreement with this business.
-								</td>
-							</tr>
-							<tr><td>&nbsp;</td></tr>
-							<tr>
-								<td>
-									<table cellpadding="0" cellspacing="0" width="100%" border="0">
-									<tr><td colspan="3"><h4>Review Details</h4></td></tr>
-									<tr>
-										<td width="200">Review ID</td>
-										<td>:</td>
-										<td>'.$reviewid.'</td>
-									</tr>
-                                    <tr><td colspan="3">&nbsp;</td></tr>
-                                    <tr>
-										<td width="200">Review</td>
-										<td>:</td>
-										<td>'.$review[0]['comment'].'</td>
-									</tr>
-                                    <tr><td colspan="3">&nbsp;</td></tr>
-                                    <tr>
-										<td width="200">reviewdate</td>
-										<td>:</td>
-										<td>'.date('M d Y H:i:s',strtotime($review[0]['reviewdate'])).'</td>
-									</tr>
-									<tr><td colspan="3">&nbsp;</td></tr>
-									</table>
-                                    <table cellpadding="0" cellspacing="0" width="100%" border="0">
-									<tr><td colspan="3"><h4>Please give your feedback by clicking below option</h4></td></tr>
-                                    <tr><td colspan="3">&nbsp;</td></tr>
-                                    <tr><td colspan="3"><a href="'.'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/reviewfeedback/'.'" title="I AGREE TO THE REMOVAL REQUEST">I AGREE TO THE REMOVAL REQUEST</a>&nbsp;
-                                        <a href="'.site_url('review/feedback/'.$rid.'/'.$userid.'/'.'disagree').'" title="I DECLINE THE REMOVAL REQUEST">I DECLINE THE REMOVAL REQUEST</a>
-                                        </td>
-									</tr>
-									</table>
-								</td>
-							</tr>
-							<tr><td><br/><br/></td></tr>
-							<tr>
-								<td>
-									Kind Regards,<br/>
-									'.$site_name.'
-								</td>
-							</tr>
-							</table>
-							</body>
-						</html>/*;
-					 
-					/*echo"<pre>";
-					print_r($mailbody);
-					die();*/
 				
 					$this->email->message($mailbody);
 					
