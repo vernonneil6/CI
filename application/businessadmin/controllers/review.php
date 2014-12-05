@@ -465,8 +465,8 @@ class Review extends CI_Controller {
 					//Payment mail for Admin
 					$from = $company[0]['email'];
 					$subject = 'Request for Information About Your Review:  Case #YGR-'.$reviewid;
-					echo $to = $user[0]['email'];
-					die;
+					$to = $user[0]['email'];
+				
 					$this->email->from($site_mail,$site_name);
 					$this->email->to($to);
 					$this->email->subject($subject);
