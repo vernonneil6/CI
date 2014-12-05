@@ -164,7 +164,7 @@
 	?>
 	<div class="box-content">
     <fieldset>
-	<?php if($review['resolution'] == 'Ship the Item and/or Provide Proof of Shipping') { ?>
+	<?php if($review['resolution'] == 'Ship the Item and/or Provide Proof of Shipping' || $review['resolution'] == 'Would like the missing items to be shipped immediately') { ?>
 	<form action="review/review_updates" method="post" class ="formBox broker">
 		<div class="clearfix">
 			<div class="lab">
