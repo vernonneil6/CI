@@ -28,7 +28,7 @@
       <div class="srch_result_blck">
         <div class="innr_wrap">
           <div class="srch_rslt_left">
-            <div class="verified_wrp srch_rslt_vrfy">
+            <div class="verified_wrp srch_rslt_vrfy vfy_rvw">
               <?php if(count($elitemem_status)==0){?>
               <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/notverified.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>
               <?php }else{
@@ -36,13 +36,14 @@
               <div class="vry_logo"> <a href="<?php echo site_url('company/'.urlencode($companies[$i]['companyseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/verifiedlogo.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
                   <?php
 				  } ?>
-              <?php if(count($elitemem_status)==0){?>
+              <!--<php if(count($elitemem_status)==0){?>
               <div class="notvry_title"></div>
-              <?php }else{
+              <php }else{
 				  ?>
               <div class="vry_title"></div>
-              <?php
-				  } ?>
+              <php
+				  } ?>-->
+			<div>
               <div class="compny_name cpyynme">
                 <h2>
 				<a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" style="height:auto;color:#333333 !important;" target="_blank">
@@ -61,8 +62,9 @@
                 </div>
               </div>
               <div class="vry_btn"><a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a></div>
+			 </div>
             </div>
-            <div class="contct_dtl">
+            <div class="contct_dtl cntdll">
               <ul>
                 <li><span>ADDRESS</span> <a> <?php echo ucfirst($companies[$i]['streetaddress']);?>,<?php echo ucfirst($companies[$i]['city']);?>,<?php echo ucfirst($companies[$i]['state']);?>,<?php echo ucfirst($companies[$i]['country']);?>,<?php echo ($companies[$i]['zip']);?> </a></li>
                 <li><span>PHONE</span> <a href="tel:<?php echo ($companies[$i]['phone']);?>" title="call us"><?php echo ($companies[$i]['phone']);?></a></li>
