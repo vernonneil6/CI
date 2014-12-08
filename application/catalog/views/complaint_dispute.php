@@ -66,7 +66,7 @@ if( $this->session->userdata('youg_user') )
 ?>
   <div class="submit_dispute"></div>
      <div class="reg_frm_wrap">
-     <div class="reg-row dispute"><label class="names">Dispute form</label><br><div class="reg_fld">PLEASE PROVIDE A DETAILS OF YOUR DISPUTE HERE.</div><br></div>
+     <div class="reg-row dispute"><label class="names">Dispute form</label><br><div class="reg_fld">PLEASE PROVIDE ALL DETAILS OF YOUR DISPUTE HERE.</div><br></div>
            
 			<?php echo form_open('complaint/dispute_insert'); ?>
 			
