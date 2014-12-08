@@ -43,7 +43,7 @@
               <div class="vry_title"></div>
               <?php
 				  } ?>
-              <div class="compny_name">
+              <div class="compny_name cpyynme">
                 <h2>
 				<a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" style="height:auto;color:#333333 !important;" target="_blank">
 				<?php echo strtoupper($companies[$i]['company']);?>
