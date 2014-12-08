@@ -90,7 +90,7 @@ class Solution extends CI_Controller {
 				}
 				else
 				{
-					$this->session->set_flashdata('error', 'This Businessss is already claim. Try later!');
+					$this->session->set_flashdata('error', 'This business has already been claimed. Please Contact Us for assistance.');
 					redirect('solution', 'refresh');
 				}
 			}
