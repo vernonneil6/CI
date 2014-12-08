@@ -888,7 +888,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 /*============ Search Result ===========================*/
 .srch_rslt_wrp{ display:inline-block; width:100%;}
 .serch_result h1{width:1050px;}
-.srch_result_blck{ display: inline-block; margin-top: 10px; width: 100%; border-bottom:1px solid #999;}
+.srch_result_blck{ display: inline-block; margin-top: 20px; width: 100%; border-bottom:1px solid #999;}
 .srch_rslt_left{width:510px; float:left; height:auto;}
 .srch_rslt_right{width:510px; float:left; height:auto; margin-left:10px;}
 .verified_wrp.srch_rslt_vrfy{width:510px;}
@@ -1226,6 +1226,8 @@ color:#2c6a99;
 {
 	display:inline-block!important;
 	float:none!important;
+	font-size: 90px!important;
+	padding: 20px 0!important;
 }
 .vfy_rvw
 {
