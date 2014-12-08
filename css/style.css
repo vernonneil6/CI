@@ -803,7 +803,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .pre_titlewrp p{font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#fff; text-transform:uppercase; margin:6px 0 0 0 ; line-height:25px;}
 .pressfact{color: #fff!important}
 .pressnotice{color: #fff!important;font-size: 15px;}
-.bannertext{font-family:'MyriadPro-BlackSemiCn';font-size:100px;font-weight:bold;color: #2c6a99;letter-spacing: 3px;text-transform:uppercase;}
+.bannertext{font-family:'MyriadPro-BlackSemiCn';font-size:100px;font-weight:normal;color: #2c6a99;letter-spacing: 3px;text-transform:uppercase;}
 .bannertextregular{color:black;}
 .pagination{width:800px; margin:0 auto 30px auto; display:table; padding-top:10px; border-top:1px solid #666;}
 .pagination ul{margin:0 auto; display:table; padding:0;}
