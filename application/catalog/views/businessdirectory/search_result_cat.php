@@ -25,16 +25,16 @@
               <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/verifiedlogo.png" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
                   <?php
 				  } ?>
-              <?php if(count($elitemem_status)==0){?>
+              <!--<php if(count($elitemem_status)==0){?>
               <div class="notvry_title"></div>
-              <?php }else{
+              <php }else{
 				  ?>
               <div class="vry_title"></div>
-              <?php
-				  } ?>
+              <php
+				  } ?>-->
               <div class="compny_name">
                 <h2>
 				<a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" style="height:auto;color:#333333 !important;" target="_blank">
@@ -56,7 +56,7 @@
             </div>
             <div class="contct_dtl">
               <ul>
-                <li><span>ADDRESS</span> <a> <?php echo ucfirst($companies[$i]['streetaddress']);?>,<?php echo ucfirst($companies[$i]['city']);?>,<?php echo ucfirst($companies[$i]['state']);?>,<?php echo ucfirst($companies[$i]['country']);?>,<?php echo ($companies[$i]['zip']);?> </a></li>
+                <li><span>ADDRESS</span> <a> <?php echo ucfirst($companies[$i]['streetaddress']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['city']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['state']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['country']);?>,&nbsp;&nbsp;&nbsp;<?php echo ($companies[$i]['zip']);?> </a></li>
                 <li><span>PHONE</span> <a href="tel:<?php echo ($companies[$i]['phone']);?>" title="call us"><?php echo ($companies[$i]['phone']);?></a></li>
                 <!--<li><span>FAX</span> <a href="" title="Fax"><php echo ($companies[$i]['fax']);?></a></li>-->
                 <li><span>WEBSITE</span> <a href="<?php echo ($companies[$i]['siteurl']);?>" title="company website"><?php echo ($companies[$i]['siteurl']);?></a></li>
