@@ -3,14 +3,14 @@
 <section class="container">
   <section class="main_contentarea">
     <div class="innr_wrap">
-      <h1  class="bannertextcoupon"><!--<a href="" style="margin-left:-25px;"><img src="images/YouGotRated_HeaderGraphics_CouponsDealsSteals.png" alt="CouponsDealsSteals" title="CouponsDealsSteals"></a>-->
-		<span class="bannertextregular">Coupon,Deals </span>& Steals	
+      <h1  class="bannertextcoupon bnrtxt"><!--<a href="" style="margin-left:-25px;"><img src="images/YouGotRated_HeaderGraphics_CouponsDealsSteals.png" alt="CouponsDealsSteals" title="CouponsDealsSteals"></a>-->
+		<span class="bannertextregular">Coupon, Deals </span>& Steals	
       </h1>
       <div class="coupon_wrap">
         <?php if(count($coupons)>0) {?>
         <?php for($i=0; $i<count($coupons); $i++) { ?>
         <div class="revw_blck">
-          <div class="revw_blck_img"><a href="<?php echo site_url('coupon/browse/'.$coupons[$i]['seokeyword']); ?>" title="view coupon detail"><img src="<?php if( strlen($coupons[$i]['image'])>5 ){ echo $this->common->get_setting_value('2').$this->config->item('coupon_thumb_upload_path');?><?php echo stripslashes($coupons[$i]['image']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($coupons[$i]['company'])); ?>" width="100px" height="60px"/></a> </div>
+          <div class="revw_blck_img"><a href="<?php echo site_url('coupon/browse/'.$coupons[$i]['seokeyword']); ?>" title="view coupon detail"><img src="<?php if( strlen($coupons[$i]['image'])>5 ){ echo $this->common->get_setting_value('2').$this->config->item('coupon_thumb_upload_path');?><?php echo stripslashes($coupons[$i]['image']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($coupons[$i]['company'])); ?>" width="80px" height="65px"/></a> </div>
           <div class="revw_blck_cnt">
             <h2><?php echo $coupons[$i]['title'];?> <span>EXPIRES: <?php echo date('d.m.Y',strtotime($coupons[$i]['enddate']));?></span></h2>
             <div class="coupon_dscrwrp">
