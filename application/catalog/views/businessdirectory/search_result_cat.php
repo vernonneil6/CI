@@ -22,10 +22,10 @@
           <div class="srch_rslt_left">
             <div class="verified_wrp srch_rslt_vrfy">
               <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/YouGotRated_BusinessProfile_NotVerified-ReviewsTag.png" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>
+              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/verified_img.png" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/verifiedlogo.png" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
                   <?php
 				  } ?>
               <?php if(count($elitemem_status)==0){?>
@@ -58,7 +58,7 @@
               <ul>
                 <li><span>ADDRESS</span> <a> <?php echo ucfirst($companies[$i]['streetaddress']);?>,<?php echo ucfirst($companies[$i]['city']);?>,<?php echo ucfirst($companies[$i]['state']);?>,<?php echo ucfirst($companies[$i]['country']);?>,<?php echo ($companies[$i]['zip']);?> </a></li>
                 <li><span>PHONE</span> <a href="tel:<?php echo ($companies[$i]['phone']);?>" title="call us"><?php echo ($companies[$i]['phone']);?></a></li>
-                <li><span>FAX</span> <a href="" title="Fax"><?php echo ($companies[$i]['fax']);?></a></li>
+                <!--<li><span>FAX</span> <a href="" title="Fax"><php echo ($companies[$i]['fax']);?></a></li>-->
                 <li><span>WEBSITE</span> <a href="<?php echo ($companies[$i]['siteurl']);?>" title="company website"><?php echo ($companies[$i]['siteurl']);?></a></li>
                 <li><span>E-MAIL</span> <a href="mailto:<?php echo ($companies[$i]['email']);?>" title="mail us"><?php echo ($companies[$i]['email']);?></a></li>
               </ul>
