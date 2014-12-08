@@ -22,10 +22,10 @@
           <div class="srch_rslt_left">
             <div class="verified_wrp srch_rslt_vrfy">
               <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>
+              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/notverified.png" class="reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/verifiedlogo.jpg" class="reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
                   <?php
 				  } ?>
               <!--<php if(count($elitemem_status)==0){?>
@@ -70,7 +70,7 @@
 
    $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
 			  ?>
-          <div class="srch_rslt_right">
+          <div class="srch_rslt_right srh_rght">
             <!--<div class="map_wrap">-->
              <div class="" align="center">
               <div class="Flexible-container">
