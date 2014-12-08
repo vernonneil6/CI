@@ -13,7 +13,7 @@
 
 
 </style>
-<script>
+<!--<script>
 $(function(){
     $("#widdiv").hover(function(){
       $(this).find(".overlay").fadeIn();
@@ -23,7 +23,7 @@ $(function(){
                     }
                    );        
 });
-</script>
+</script>-->
 <?php if( !empty($name) ) { ?>
 <div id="widdiv">
 <div class="box">
@@ -54,7 +54,7 @@ $(function(){
     </a> </div>
   <?php } ?>
 </div>
-<div class="box" align="center"> <!--<img src="<php echo base_url();?>images/verified_logonew.png" alt="Verified Logo" width="230" height="120" />-->
+<!--<div class="box" align="center"> <img src="<php echo base_url();?>images/verified_logonew.png" alt="Verified Logo" width="230" height="120" />
   <div class="overlay">
     <?php for($j=0;$j<count($sites);$j++)
 	{
@@ -65,7 +65,7 @@ $(function(){
 	}
 	?>
   </div>
-</div>
+</div>-->
 </div>
 <?php } ?>
 </body>
