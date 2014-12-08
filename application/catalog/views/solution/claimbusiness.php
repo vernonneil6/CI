@@ -289,7 +289,7 @@
     <div class="banner_wrp"> <img class="containerimg" src="images/YouGotRated_HeaderGraphics_SignUpPage.png" alt="Register" title="Register"> </div>
     <div class="regr_lnk">
       <div class="innr_wrap">
-        <div class="new_usr"> REGISTRATION: <a title="New Business">NEW BUSINESS</a> </div>
+        <div class="new_usr"> Elite Member Registration: <a title="New Business">New Business</a> </div>
         
       </div>
     </div>
