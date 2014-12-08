@@ -240,7 +240,7 @@
           
          <div class="reg-row_free"> 
              <div class="free_elite_box">
-				<div class="free_click">Or <a href="<?php echo base_url();?>/solution">CLICK HERE</a> to become an Elite Member</div>
+				<div class="free_click">Or <a href="<?php echo base_url();?>solution">CLICK HERE</a> to become an Elite Member</div>
                    <div class="quotetext">Elite Members receive the following benefits:</div>
 				<ul class="elist">
 					<li>Access to our Buyer Protection program</li>
