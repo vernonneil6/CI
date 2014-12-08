@@ -4,8 +4,8 @@
   <section class="main_contentarea serch_result">
     
     <div class="srch_rslt_wrp">
-      <div class="main_bd_srchwrp">
-        <div class="bdsrch_wrp">
+      <div class="main_bd_srchwrp bd_scr">
+        <div class="bdsrch_wrp bd_wp">
           <h2>Search results for <?php echo $this->uri->segment(3);?> category</h2>
           
         </div>
@@ -54,7 +54,7 @@
               </div>
               <div class="vry_btn"><a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add');?>" title="File Complaint"> FILE COMPLAINT</a></div>
             </div>
-            <div class="contct_dtl">
+            <div class="contct_dtl cntdll">
               <ul>
                 <li><span>ADDRESS</span> <a> <?php echo ucfirst($companies[$i]['streetaddress']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['city']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['state']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['country']);?>,&nbsp;&nbsp;&nbsp;<?php echo ($companies[$i]['zip']);?> </a></li>
                 <li><span>PHONE</span> <a href="tel:<?php echo ($companies[$i]['phone']);?>" title="call us"><?php echo ($companies[$i]['phone']);?></a></li>
@@ -70,7 +70,7 @@
 
    $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
 			  ?>
-          <div class="srch_rslt_right srh_rght">
+          <div class="srch_rslt_right srh_rght sh_srhh">
             <!--<div class="map_wrap">-->
              <div class="" align="center">
               <div class="Flexible-container">
