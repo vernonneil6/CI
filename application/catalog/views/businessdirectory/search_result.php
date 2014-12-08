@@ -68,7 +68,7 @@
               <ul>
                 <li><span>ADDRESS</span> <a> <?php echo ucfirst($companies[$i]['streetaddress']);?>,<?php echo ucfirst($companies[$i]['city']);?>,<?php echo ucfirst($companies[$i]['state']);?>,<?php echo ucfirst($companies[$i]['country']);?>,<?php echo ($companies[$i]['zip']);?> </a></li>
                 <li><span>PHONE</span> <a href="tel:<?php echo ($companies[$i]['phone']);?>" title="call us"><?php echo ($companies[$i]['phone']);?></a></li>
-                <li><span>FAX</span> <a href="" title="Fax"><?php echo ($companies[$i]['fax']);?></a></li>
+                <!--<li><span>FAX</span> <a href="" title="Fax"><php echo ($companies[$i]['fax']);?></a></li>-->
                 <li><span>WEBSITE</span> <a href="<?php echo ($companies[$i]['siteurl']);?>" title="company website"><?php echo ($companies[$i]['siteurl']);?></a></li>
                 <li><span>E-MAIL</span> <a href="mailto:<?php echo ($companies[$i]['email']);?>" title="mail us"><?php echo ($companies[$i]['email']);?></a></li>
               </ul>
@@ -80,7 +80,7 @@
 
    $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
 			  ?>
-          <div class="srch_rslt_right">
+          <div class="srch_rslt_right srh_rght">
 <!--            <div class="map_wrap">-->
             <div class="" align="center">
               <div class="Flexible-container">
