@@ -81,7 +81,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
 
 <section class="container">
   <section class="main_contentarea">
-    <div class="verified_wrp pr_rwrp">
+    <div class="verified_wrp pr_rwrp verfs_top">
       <?php $company=$this->reviews->get_company_byid($review[0]['companyid']);?>
       <?php  //get avg star by cmpyid
 			$avgstar = $this->common->get_avg_ratings_bycmid($review[0]['companyid']);
