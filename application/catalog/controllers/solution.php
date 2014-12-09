@@ -837,7 +837,7 @@ public function eliteSubscribe($formpost) {
 public function cron()
 {	
 	$crons=$this->complaints->elitecrondetails();
-	print_r($crons);
+	//print_r($crons);
 	foreach($crons as $con)	{
 	   
 	   
@@ -898,8 +898,8 @@ public function cron()
 															</tr>
 															<tr>
 																<td>
-																	<table cellpadding="0" cellspacing="0" width="100%" border="0">
-																	<tr><td colspan="3"><h3>Payment Detail</h3></td></tr>
+																	<table cellpadding="0" cellspacing="0" width="10px" border="0">
+																	<tr><td colspan="3"><h3>Payment Transaction Detail</h3></td></tr>
 																	<tr>
 																		<td>Subscription ID</td>
 																		<td>:</td>
@@ -943,39 +943,42 @@ public function cron()
 											
 					//Sending mail to admin
 					$this->email->send();
+	}
+	
+}
+public function adminreport()
+{
+	///ALERT EMAIL LISTING SUCCESS AND FAILED PAYMENT  TO ADMIN USER 
+					$reportfailed=$this->complaints->getexpired_payment();
+					$reportsuccess=$this->complaints->getsuccess_payment();
 					
-					
-					///ALERT EMAIL LISTING SUCCESS AND FAILED PAYMENT  TO ADMIN USER 
-					
-					$sn_count = 1;
-					$html = '';
-					foreach($crons as $failed){
-						$html .= "<td>"
-							. "<td class=\"serial\">".$sn_count."</td>"
-							. "<td class=\"pointsdesc\">"
-							. "</td></td>"
-							. "<td>Failed</td>";
-						$sn_count++;
+					/*echo '<pre>';print_r($reportsuccess);
+					die;*/
+					//echo '<pre>';print_r($reportfailed);	
+					$list = '';
+					foreach($reportfailed as $key => $val){
+						
+						//$list .= '<td>'.$val['id'].'</td>'; 
+						        '<td>'.$val['company_id'].'</td>';
 					}
-					
-					
-					$s_count = 1;
-					$success=$this->complaints->get_list_new_elite_signup();
-					$htmls = '';
-					foreach($success as $today){
-						$htmls .= "<td>"
-							. "<td class=\"serial\">".$s_count."</td>"
-							. "<td class=\"pointsdesc\">"
-							. "</td></td>"
-							. "<td>success</td>";
-						$s_count++;
-					}
-					
-				
+                 $msg='<table>
+                         <th> Failed payments</th>
+                         <tr>'.$list.'</tr>
+                
+                         </table>';
+          
+					/*echo $msg = '<html><head>
+						<title>Commande de photos</title>
+					</head><body>
+						<p>Voici la liste des photos demand&eacute;es :<br />
+					<ul>'.$list.'</ul>';*/
+					//die;			
+					//print_r($reportsuccess);
+									
 					$this->email->from('noreply@yougotrated.com');
 					$this->email->to('alankenn@grossmaninteractive.com');	
 					$this->email->subject('Todays Report On Success and Failed Payments');
-					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
+					$this->email->message('<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
 																<td>Hello Administration,</td>
 															</tr>
@@ -996,7 +999,7 @@ public function cron()
 																	    <td>Status</td>
 																	</tr>
 																	<tr>
-																	'.$html.'
+																	
 																	</tr>
 																	    
 																	<tr>
@@ -1006,7 +1009,7 @@ public function cron()
 																	    <td>Status</td>
 																	</tr>
 																	<tr>
-																	'.$htmls.'
+																	
 																	</tr>
 																	<tr>
 																		<td style="padding-top:20px;">
@@ -1030,9 +1033,8 @@ public function cron()
 											
 											
 					//Sending mail to admin
-					$this->email->send();
-	  echo $this->email->print_debugger();
-	}
+					//$this->email->send();
+	
 	
 }
 public function renew($id)
@@ -1158,7 +1160,7 @@ public function renew_update($id)
 		$content;
 		"<br \>";
 		"<br \>";
-		echo $resultCode;
+		//echo $resultCode;
 		
 		if($resultCode=='Ok')
 		{
@@ -1226,7 +1228,7 @@ public function renew_update($id)
 															</tr>
 															<tr>
 																<td>
-																	<table cellpadding="0" cellspacing="0" width="100%" border="0">
+																	<table cellpadding="0" cellspacing="0" width="10px" border="0">
 																	<tr><td colspan="3"><h3>Renewal Payment Detail</h3></td></tr>
 																	<tr>
 																		<td>Payment Amount</td>
@@ -1267,7 +1269,7 @@ public function renew_update($id)
 												<td style="padding-left:20px;"> Your Transaction Details are as follows. </td>
 											  </tr>
 											  <tr>
-												<td><table cellpadding="0" cellspacing="0" width="100%" border="0">
+												<td><table cellpadding="0" cellspacing="0" width="10px" border="0">
 													<tr>
 													  <td colspan="3"><h3>Renewal Payment Detail</h3></td>
 													</tr>
@@ -1316,7 +1318,7 @@ public function renew_update($id)
 		{
 			
 			$this->session->set_flashdata('Error','Error Payment.');
-			
+			redirect('solution', 'refresh');
 		}
 			
 	}
