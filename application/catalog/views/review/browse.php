@@ -160,17 +160,17 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
               </div>
             </li>
             <li>
-              <div class="cnt_content"> <span>Funny</span>
+              <div class="cnt_content cnt_cnet"> <span>Funny</span>
                 <p><?php echo $funny = $this->common->get_votes($review[0]['id'],'funny');?></p>
               </div>
             </li>
             <li>
-              <div class="cnt_content"> <span>Agree</span>
+              <div class="cnt_content cnt_cnet"> <span>Agree</span>
                 <p><?php echo $agree = $this->common->get_votes($review[0]['id'],'agree');?></p>
               </div>
             </li>
             <li>
-              <div class="cnt_content"> <span>Disagree</span>
+              <div class="cnt_content cnt_cnet"> <span>Disagree</span>
                 <p><?php echo $disagree = $this->common->get_votes($review[0]['id'],'disagree');?></p>
               </div>
             </li>
