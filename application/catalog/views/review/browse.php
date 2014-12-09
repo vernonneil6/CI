@@ -92,10 +92,10 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
         <?php /*?><div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view complaint Detail"><img src="<?php if( $review[0]['logo'] ) { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($review[0]['logo']); } else { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" width="103px" height="88px" /></a> </div><?php */?>
         
         <?php if(count($elitemem_status)==0){?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewnotverifiedlogo" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
         <?php }else{
 				  ?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewnotverifiedlogo" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
         <?php
 				  } ?>
         
