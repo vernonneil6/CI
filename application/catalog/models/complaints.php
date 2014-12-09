@@ -1523,7 +1523,7 @@ class Complaints extends CI_Model
 						->like('expires',$checkdate)
 						->get()
 			            ->result_array();
-		//echo $this->db->last_query();	
+		echo $this->db->last_query();	
 		//print_r($query);
 		return $query;
 		
@@ -1567,7 +1567,7 @@ class Complaints extends CI_Model
 		);
 		$this->db->where(array('subscr_id'=>$subscriptionId,'company_id'=>$companyid));
 		$this->db->update('subscription',$data);
-		if ($this->db->update('subscription',$data))
+		if($this->db->update('subscription',$data))
 		{
 			return true;
 		}
@@ -1595,6 +1595,36 @@ class Complaints extends CI_Model
 						);
 		$this->db->where('company_id',$companyid);				
 		$this->db->update('elite', $data); 
+		
+	}
+	function getexpired_payment()
+	{
+		
+	    $checkdate=date('Y-m-d');
+		$query=$this->db->select('*')
+						->from('youg_subscription')
+						->where(array('transactionstatus'=>'0','paymentmethod'=>'authorize','subscr_id !='=>''))
+						->like('expires',$checkdate)
+						->get()
+			            ->result_array();
+		//echo $this->db->last_query();	
+		return $query;	
+		
+		
+	}
+	function getsuccess_payment()
+	{
+		
+		$checkdate=date('Y-m-d');
+		$query=$this->db->select('*')
+						->from('youg_subscription')
+						->where(array('transactionstatus'=>'1','paymentmethod'=>'authorize','subscr_id !='=>''))
+						->like('payment_date',$checkdate)
+						->get()
+			            ->result_array();
+		//echo $this->db->last_query();	
+		return $query;	
+		
 		
 	}
 }
