@@ -607,6 +607,7 @@ class Review extends CI_Controller {
 										
 					$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
 					$this->email->send();
+					redirect('review','refresh');
 				}
 				if($option == 'Would like a Replacement item')
 				{
@@ -617,6 +618,7 @@ class Review extends CI_Controller {
 										
 					$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
 					$this->email->send();
+					redirect('review','refresh');
 				}
 			
 		}
