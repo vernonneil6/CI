@@ -57,7 +57,7 @@
           </tr>
         </table>
       </div>
-      <?php }
+      <?php } ?>
       <h1 class="bannertext"><!--<a href="#"><img src="images/YouGotRated_HeaderGraphics_BusinessReviews.png" alt="Business Directory" title="Business Directory"></a>--><span class="bannertextregular">RECENT </span>REVIEWS</h1>
       <?php if(count($reviews)>0)
 				 { ?>
