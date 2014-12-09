@@ -221,10 +221,11 @@ class Review extends CI_Controller {
 	public function reviews()
 	{
 		// Your own constructor code
-		if( !$this->session->userdata('youg_admin'))
-	  	{
+		if( !array_key_exists('youg_admin',$this->session->userdata) )
+		{
+			$this->session->set_flashdata('error', 'Please login to continue!');
 			$this->session->set_userdata('last_url','review/reviews');
-		   	redirect('adminlogin', 'refresh');
+			redirect('adminlogin', 'refresh');
 		}
 		
 		if( $this->session->userdata['youg_admin'] )
