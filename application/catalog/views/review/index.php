@@ -49,16 +49,7 @@
 <section class="container">
   <section class="main_contentarea">
     <div class="innr_wrap">
-	<?php if( $this->session->flashdata('mailsuccess') ) { ?>
-      <div id="message-green">
-        <table border="0" width="100%" cellpadding="0" cellspacing="0">
-          <tr>
-            <td class="green-left"><?php echo $this->session->flashdata('mailsuccess'); ?></td>
-          </tr>
-        </table>
-      </div>
-      <?php } ?>
-      <h1 class="bannertext"><!--<a href="#"><img src="images/YouGotRated_HeaderGraphics_BusinessReviews.png" alt="Business Directory" title="Business Directory"></a>--><span class="bannertextregular">RECENT </span>REVIEWS</h1>
+	  <h1 class="bannertext"><!--<a href="#"><img src="images/YouGotRated_HeaderGraphics_BusinessReviews.png" alt="Business Directory" title="Business Directory"></a>--><span class="bannertextregular">RECENT </span>REVIEWS</h1>
       <?php if(count($reviews)>0)
 				 { ?>
       <div class="dir_rew_wrap">
