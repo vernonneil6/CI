@@ -231,13 +231,23 @@
 					  }
 					  else
 					  {
-						  if( isNaN(trim($("#cphone").val())) || $("#cphone").val().length < 10)
+						  var characterReg = /^\d{3}-\d{3}-\d{4}$/;
+						  if(!characterReg.test($("#phone").val())) 
 						  {
-							  $("#cphoneerror").hide();
-						  	  $("#cphoneverror").show();
-							  $("#cphone").focus();
+							  $("#phoneerror").hide();
+						  	  $("#phoneverror").show();
+							  $("#phone").focus();
 							  return false;
+							  alert('hi');
 						  }
+						  
+						  //if( isNaN(trim($("#cphone").val())) || $("#cphone").val().length < 10)
+						  //{
+							  //$("#cphoneerror").hide();
+						  	  //$("#cphoneverror").show();
+							  //$("#cphone").focus();
+							  //return false;
+						  //}
 						  else
 						  {
 							  $("#cphoneerror").hide();
