@@ -223,8 +223,8 @@ class Review extends CI_Controller {
 		// Your own constructor code
 		if( !$this->session->userdata('youg_admin'))
 	  	{
+			$this->session->set_userdata('last_url','review/reviews');
 		   	redirect('adminlogin', 'refresh');
-		   	$this->session->set_userdata('last_url','review/resolution/'.$reviewid);
 		}
 		
 		if( $this->session->userdata['youg_admin'] )
@@ -270,8 +270,9 @@ class Review extends CI_Controller {
 	{
 		if( !$this->session->userdata('youg_admin'))
 	  	{
+			$this->session->set_userdata('last_url','review/resolution/'.$reviewid);
 		   	redirect('adminlogin', 'refresh');
-		   	$this->session->set_userdata('last_url','review/resolution/'.$reviewid);
+		   	
 		}
 		
 		$companyid = $this->session->userdata['youg_admin']['id'];
