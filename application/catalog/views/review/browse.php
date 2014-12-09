@@ -92,22 +92,22 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
         <?php /*?><div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view complaint Detail"><img src="<?php if( $review[0]['logo'] ) { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($review[0]['logo']); } else { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" width="103px" height="88px" /></a> </div><?php */?>
         
         <?php if(count($elitemem_status)==0){?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/YouGotRated_BusinessProfile_NotVerified-ReviewsTag.png" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewnotverifiedlogo" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
         <?php }else{
 				  ?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verified_img.png" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewnotverifiedlogo" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
         <?php
 				  } ?>
         
-        <?php if(count($elitemem_status)>0){?>
+        <!--<php if(count($elitemem_status)>0){?>
         <div class="vry_title"></div>
-        <?php }else { ?>
+        <php }else { ?>
         <div class="bsntvry_title">
           <div class="bsvry_tag"> <span>IS THIS YOUR BUSINESS?</span>
             <p><a href="solution/claimbusiness" title="CLICK HERE TO BECOME VERIFIED">CLICK HERE TO BECOME VERIFIED</a></p>
           </div>
         </div>
-        <?php } ?>
+        <php } ?>-->
         <div class="compny_name">
           <h1><?php echo $review[0]['company'];?></h1>
           <?php 
@@ -150,7 +150,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
         <div class="pr_countwrp">
           <ul>
             <li>
-              <div class="cnt_content"> <span>HELPFUL</span>
+              <div class="cnt_content cnt_cnet"> <span>HELPFUL</span>
                 <p><?php 
 				
 				echo $helpful = $this->common->get_votes($review[0]['id'],'helpful');?>
@@ -177,11 +177,11 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
           </ul>
         </div>
         <div class="pr_testmnl_wrp">
-          <p>"<?php echo stripslashes($review[0]['comment']); ?>"</p>
-          <div class="testmnl_clntwrp">
+          <p class = "testmnl_p">"<?php echo stripslashes($review[0]['comment']); ?>"</p>
+          <div class="testmnl_clntwrp testmnl_cln">
             <div class="clnt_intr"> - &nbsp;&nbsp;
               <div class="clnt_pic"> <img src="images/user_icn.png" alt="Client Image" title="Client Image"> </div>
-              <div class="clnt_name">
+              <div class="clnt_name clt_nme">
                 <?php if($review[0]['type']=='csv') {?>
                 <h4><a title="<?php echo stripslashes($review[0]['reviewby']); ?>"> <?php echo stripslashes($review[0]['reviewby']); ?></a></h4>
                 <?php } else { ?>
