@@ -524,6 +524,11 @@ class Review extends CI_Controller {
 	
 	public function reviewmail_insert($userid, $companyid)
 	{
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			redirect('login','refresh');
+		}
+		
 		$user 		= $this->users->get_user_byid($userid);
 		$company 	= $this->reviews->get_company_byid($companyid);
 		$review  	= $this->reviews->get_status_review($userid, $companyid);
@@ -621,22 +626,40 @@ class Review extends CI_Controller {
 	
 	public function proof($reviewid)
 	{
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			$this->session->set_flashdata('error', 'Please login to continue!');
+			$this->session->set_userdata('last_url','review/proof/'.$reviewid);
+			redirect('login','refresh');
+		}
 		$this->data['reviewmail'] = $this->reviews->get_reviewmail_byreviewid($reviewid);
 		$this->load->view('review/resolution', $this->data);
 	}
 	
 	public function replacement($reviewid)
 	{
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			$this->session->set_flashdata('error', 'Please login to continue!');
+			$this->session->set_userdata('last_url','review/replacement/'.$reviewid);
+			redirect('login','refresh');
+		}
 		$this->data['reviewmail'] = $this->reviews->get_reviewmail_byreviewid($reviewid);
 		$this->load->view('review/resolution', $this->data);
 	}	
 	
 	public function closecase($reviewid)
 	{
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			redirect('login','refresh');
+		}
 		$this->reviews->delete_review_byid($reviewid);
 		$this->reviews->delete_comment($reviewid);
 		$this->reviews->delete_reviewmail($reviewid);
-		redirect('review', 'refresh');
+		
+		$this->session->set_flashdata('success', 'You have successfully closed the case.');
+		redirect('review','refresh');
 	}
 		
 	public function merchantbuyermail($userid, $companyid, $id)
