@@ -224,6 +224,7 @@ class Review extends CI_Controller {
 		if( !$this->session->userdata('youg_admin'))
 	  	{
 		   	redirect('adminlogin', 'refresh');
+		   	$this->session->set_userdata('last_url','review/resolution/'.$reviewid);
 		}
 		
 		if( $this->session->userdata['youg_admin'] )
