@@ -952,32 +952,96 @@ public function adminreport()
 					$reportfailed=$this->complaints->getexpired_payment();
 					$reportsuccess=$this->complaints->getsuccess_payment();
 					
-					/*echo '<pre>';print_r($reportsuccess);
-					die;*/
-					//echo '<pre>';print_r($reportfailed);	
-					$list = '';
+			    ///Failed data retreive
+				
+				//echo '<pre>';print_r($reportfailed);	
+					$paymentdate= '';
+					$subscr_id = '';
+					$Expire='';
+					$status='';
+					$fail='<table border="1">
+                         <tr>
+                         <th>Subscription ID</th>
+                         <th>Payment Date</th>
+                         <th>Payment Expired Date</th>
+                         <th>Transaction Status</th>
+                         </tr>';
 					foreach($reportfailed as $key => $val){
-						
-						//$list .= '<td>'.$val['id'].'</td>'; 
-						        '<td>'.$val['company_id'].'</td>';
+												
+						$subscr_id = $val['subscr_id']; 
+						$paymentdate =$val['payment_date']; 
+						$Expire = $val['expires']; 
+						$status ='Payment Failed'; 
+						$fail .='<tr>
+                         <td>'.$subscr_id.'</td>
+                         <td>'.$paymentdate.'</td>
+                         <td>'.$Expire.'</td>
+                         <td>'.$status.'</td>
+                         </tr>';
+                         
 					}
-                 $msg='<table>
-                         <th> Failed payments</th>
-                         <tr>'.$list.'</tr>
-                
-                         </table>';
-          
-					/*echo $msg = '<html><head>
-						<title>Commande de photos</title>
-					</head><body>
-						<p>Voici la liste des photos demand&eacute;es :<br />
-					<ul>'.$list.'</ul>';*/
-					//die;			
-					//print_r($reportsuccess);
-									
+                $fail .='</table>';      
+                         
+                         
+                    //success retreive   
+                    
+                    echo '<pre>';print_r($reportsuccess); 
+                    
+                    $paymentdate= '';
+					$subscr_id = '';
+					$Expire='';
+					$status='';
+					$success='<table border="1">
+                         <tr>
+                         <th>Subscription ID</th>
+                         <th>Payment Date</th>
+                         <th>Payment Expired Date</th>
+                         <th>Transaction Status</th>
+                         </tr>';
+					foreach($reportsuccess as $key => $val){
+												
+						$subscr_id = $val['subscr_id']; 
+						$paymentdate =$val['payment_date']; 
+						$Expire = $val['expires']; 
+						$status ='Payment Success'; 
+						$success .='<tr>
+                         <td>'.$subscr_id.'</td>
+                         <td>'.$paymentdate.'</td>
+                         <td>'.$Expire.'</td>
+                         <td>'.$status.'</td>
+                         </tr>';
+                         
+					}
+                $success .='</table>';    
+                     
+                     
+                     
+                     $site_name = $this->common->get_setting_value(1);
+					 $site_url = $this->common->get_setting_value(2);
+					 $site_email = $this->common->get_setting_value(5);      
+        //Loading E-mail library
+					$config = Array(
+					'protocol' => 'smtp',
+					'smtp_host' => 'smtp.mandrillapp.com',
+					'smtp_port' => 587,
+					'smtp_user' => 'alankenn@grossmaninteractive.com',
+					'smtp_pass' => 'vPVq6nWolBWIKNp1LaWNFw',
+					'mailtype'  => 'html', 
+					'charset'   => 'iso-8859-1'
+				);	
+					$this->load->library('email');
+					$this->email->set_newline("\r\n");				
+					//Loading E-mail config file
+					$this->config->load('email',TRUE);
+					$this->cnfemail = $this->config->item('email');
+										
+				//CHANGE THE RECEPTIENT AND URL LINK AFTER CHECKING
+				
+				   $this->email->initialize($config);     
+                    $todaysdate=date('Y-m-d');
 					$this->email->from('noreply@yougotrated.com');
 					$this->email->to('alankenn@grossmaninteractive.com');	
-					$this->email->subject('Todays Report On Success and Failed Payments');
+					$this->email->subject('Todays Report On Success and Failed Payments On Date  '.$todaysdate.'');
 					$this->email->message('<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
 																<td>Hello Administration,</td>
@@ -993,28 +1057,21 @@ public function adminreport()
 																	<table cellpadding="0" cellspacing="0" width="100%" border="0">
 																	<tr><td colspan="3"><h3>Payment Detail</h3></td></tr>
 																	<tr>
-																	    <td>Subscription ID</td>
-																		<td>Payment Date</td>
-																		<td>Expire</td>
-																	    <td>Status</td>
+																		<td><b>Failed Transaction Payments Today</b></td><br>
 																	</tr>
 																	<tr>
-																	
+																	   '.$fail.'
 																	</tr>
 																	    
 																	<tr>
-																		<td>Subscription ID</td>
-																		<td>Payment Date</td>
-																		<td>Expire</td>
-																	    <td>Status</td>
+																		<td><b>Successful Transaction Payments Today</b></td><br>
 																	</tr>
 																	<tr>
-																	
+																	    '.$success.'
 																	</tr>
 																	<tr>
 																		<td style="padding-top:20px;">
-																		 Please Renew Your Elitemembership Subscription at Following link. <a href="'.$site_base_url.'" title="'.$site_name.'">'.$site_base_url.'</a>. <br>
-																		 Till then Your Elite account will be in deactive.
+																		 
 																		</td>
 																	</tr>	
 																	</table>
@@ -1027,13 +1084,13 @@ public function adminreport()
 											  <tr>
 												<td> Regards,<br/>
 												  The YouGotRated Team.<br/>
-												  <a href="'.$site_base_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
+												  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
 											   </tr>
 											</table>');
 											
 											
 					//Sending mail to admin
-					//$this->email->send();
+					$this->email->send();
 	
 	
 }
@@ -1228,7 +1285,7 @@ public function renew_update($id)
 															</tr>
 															<tr>
 																<td>
-																	<table cellpadding="0" cellspacing="0" width="10px" border="0">
+																	<table cellpadding="0" cellspacing="0" width="20%" border="0">
 																	<tr><td colspan="3"><h3>Renewal Payment Detail</h3></td></tr>
 																	<tr>
 																		<td>Payment Amount</td>
@@ -1269,7 +1326,7 @@ public function renew_update($id)
 												<td style="padding-left:20px;"> Your Transaction Details are as follows. </td>
 											  </tr>
 											  <tr>
-												<td><table cellpadding="0" cellspacing="0" width="10px" border="0">
+												<td><table cellpadding="0" cellspacing="0" width="20%" border="0">
 													<tr>
 													  <td colspan="3"><h3>Renewal Payment Detail</h3></td>
 													</tr>
