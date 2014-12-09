@@ -234,11 +234,11 @@
 						  var characterReg = /^\d{3}-\d{3}-\d{4}$/;
 						  if(!characterReg.test($("#phone").val())) 
 						  {
+							  alert('hi');
 							  $("#phoneerror").hide();
 						  	  $("#phoneverror").show();
 							  $("#phone").focus();
 							  return false;
-							  alert('hi');
 						  }
 						  
 						  //if( isNaN(trim($("#cphone").val())) || $("#cphone").val().length < 10)
