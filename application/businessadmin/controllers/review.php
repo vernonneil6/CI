@@ -254,6 +254,11 @@ class Review extends CI_Controller {
 	
 	public function removalrequest()
 	{
+		if( !$this->session->userdata('youg_admin'))
+	  	{
+		   	redirect('adminlogin', 'refresh');
+		}
+		
 		$companyid = $this->session->userdata['youg_admin']['id'];
 		$company = $this->companys->get_company_byid($companyid);
 		$this->data['companyname'] = $company[0]['company'];
@@ -262,6 +267,13 @@ class Review extends CI_Controller {
 	
 	public function resolution($reviewid)
 	{
+		if( !$this->session->userdata('youg_admin'))
+	  	{
+			$this->session->set_userdata('last_url','review/resolution/'.$reviewid);
+		   	redirect('adminlogin', 'refresh');
+		   	
+		}
+		
 		$companyid = $this->session->userdata['youg_admin']['id'];
 
 		$this->data['review'] = $this->reviews->review_mail($reviewid, $companyid);
@@ -278,6 +290,11 @@ class Review extends CI_Controller {
 	
 	public function review_refund()
 	{
+		if( !$this->session->userdata('youg_admin'))
+	  	{
+		   	redirect('adminlogin', 'refresh');
+		}
+		
 		if($this->input->post('submit'))
 		{
 			
@@ -332,6 +349,11 @@ class Review extends CI_Controller {
 	
 	public function review_gift()
 	{
+		if( !$this->session->userdata('youg_admin'))
+	  	{
+		   	redirect('adminlogin', 'refresh');
+		}
+		
 		if($this->input->post('submit'))
 		{
 			
@@ -386,6 +408,11 @@ class Review extends CI_Controller {
 	
 	public function	review_updates()
 	{
+		if( !$this->session->userdata('youg_admin'))
+	  	{
+		   	redirect('adminlogin', 'refresh');
+		}
+		
 		if($this->input->post('submit'))
 		{
 			$data = array(
@@ -444,6 +471,11 @@ class Review extends CI_Controller {
 	
 	public function	review_replacement()
 	{
+		if( !$this->session->userdata('youg_admin'))
+	  	{
+		   	redirect('adminlogin', 'refresh');
+		}
+		
 		if($this->input->post('submit'))
 		{
 			$data = array(

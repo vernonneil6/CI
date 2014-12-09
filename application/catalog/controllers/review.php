@@ -458,6 +458,12 @@ class Review extends CI_Controller {
 	
 	public function buyerreview($userid, $companyid)
 	{
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			$this->session->set_flashdata('error', 'Please login to continue!');
+			$this->session->set_userdata('last_url','review/buyerreview/'.$userid.'/'.$companyid);
+			redirect('login','refresh');
+		}
 		$user = $this->users->get_user_byid($userid);
 		$this->data['userid'] = $userid;
 		$this->data['companyid'] = $companyid;
@@ -518,6 +524,11 @@ class Review extends CI_Controller {
 	
 	public function reviewmail_insert($userid, $companyid)
 	{
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			redirect('login','refresh');
+		}
+		
 		$user 		= $this->users->get_user_byid($userid);
 		$company 	= $this->reviews->get_company_byid($companyid);
 		$review  	= $this->reviews->get_status_review($userid, $companyid);
@@ -549,9 +560,20 @@ class Review extends CI_Controller {
 			$this->review_mail($data['userid'], $data['companyid'], $data['reviewid'], '36', $url, $user[0]['email']);			
 			$this->email->send();
 		}
+		
+		
+		$this->session->set_flashdata('success', 'You have successfully send mail to merchant.');
+		redirect('review','refresh');
 	}
 	public function resolution($reviewid)
 	{
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			$this->session->set_flashdata('error', 'Please login to continue!');
+			$this->session->set_userdata('last_url','review/resolution/'.$reviewid);
+			redirect('login','refresh');
+		}
+		
 		if($this->input->post('submit'))
 		{
 			$data = array(
@@ -585,6 +607,8 @@ class Review extends CI_Controller {
 										
 					$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
 					$this->email->send();
+					$this->session->set_flashdata('success', 'You have successfully send mail to merchant.');
+					redirect('review','refresh');
 				}
 				if($option == 'Would like a Replacement item')
 				{
@@ -595,6 +619,8 @@ class Review extends CI_Controller {
 										
 					$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
 					$this->email->send();
+					$this->session->set_flashdata('success', 'You have successfully send mail to merchant.');
+					redirect('review','refresh');
 				}
 			
 		}
@@ -604,22 +630,40 @@ class Review extends CI_Controller {
 	
 	public function proof($reviewid)
 	{
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			$this->session->set_flashdata('error', 'Please login to continue!');
+			$this->session->set_userdata('last_url','review/proof/'.$reviewid);
+			redirect('login','refresh');
+		}
 		$this->data['reviewmail'] = $this->reviews->get_reviewmail_byreviewid($reviewid);
 		$this->load->view('review/resolution', $this->data);
 	}
 	
 	public function replacement($reviewid)
 	{
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			$this->session->set_flashdata('error', 'Please login to continue!');
+			$this->session->set_userdata('last_url','review/replacement/'.$reviewid);
+			redirect('login','refresh');
+		}
 		$this->data['reviewmail'] = $this->reviews->get_reviewmail_byreviewid($reviewid);
 		$this->load->view('review/resolution', $this->data);
 	}	
 	
 	public function closecase($reviewid)
 	{
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			redirect('login','refresh');
+		}
 		$this->reviews->delete_review_byid($reviewid);
 		$this->reviews->delete_comment($reviewid);
 		$this->reviews->delete_reviewmail($reviewid);
-		redirect('review', 'refresh');
+		
+		$this->session->set_flashdata('success', 'You have successfully closed the case.');
+		redirect('review','refresh');
 	}
 		
 	public function merchantbuyermail($userid, $companyid, $id)
@@ -641,7 +685,6 @@ class Review extends CI_Controller {
 		$days 		= floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
 		
 		$checkdate1 = $reviewmail['checkdate'];
-		$date2 		= date("Y-m-d");
 		$diff1   	= abs(strtotime($date2) - strtotime($checkdate1));
 		$years1  	= floor($diff1 / (365*60*60*24));
 		$months1 	= floor(($diff1 - $years1 * 365*60*60*24) / (30*60*60*24));
