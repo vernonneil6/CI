@@ -552,6 +552,13 @@ class Review extends CI_Controller {
 	}
 	public function resolution($reviewid)
 	{
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			$this->session->set_flashdata('error', 'Please login to continue!');
+			$this->session->set_userdata('last_url','review/resolution/'.$reviewid);
+			redirect('login','refresh');
+		}
+		
 		if($this->input->post('submit'))
 		{
 			$data = array(
@@ -641,7 +648,6 @@ class Review extends CI_Controller {
 		$days 		= floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
 		
 		$checkdate1 = $reviewmail['checkdate'];
-		$date2 		= date("Y-m-d");
 		$diff1   	= abs(strtotime($date2) - strtotime($checkdate1));
 		$years1  	= floor($diff1 / (365*60*60*24));
 		$months1 	= floor(($diff1 - $years1 * 365*60*60*24) / (30*60*60*24));
