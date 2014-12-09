@@ -232,7 +232,7 @@
 					  else
 					  {
 						  var characterReg = /^\d{3}-\d{3}-\d{4}$/;
-						  if(!characterReg.test($("#phone").val())) 
+						  if(!characterReg.test($("#cphone").val())) 
 						  {
 							  alert('hi');
 							  $("#phoneerror").hide();
