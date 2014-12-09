@@ -331,61 +331,7 @@
 	?>
 	
 <?php if($this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'removalrequest') { ?>	
-<style>
-.removal_request
-{
-	font-size: 15px;
-    padding: 0 22% 2%;
-}
-.removal_request1
-{
-	font-size: 18px;
-    font-weight: bold;
-    padding: 0 22%;
-    list-style: none;
-}
-.removal_request1 .removal_text
-{
-	padding-bottom: 4%;
-}
-.removal_request2
-{
-    padding: 0 20%;
-    font-size: 14px;
-    list-style: none;
-}
-.removal_request2 li
-{
-	padding-bottom: 3%;
-}
-.removal_request2 .first
-{
-	color : #0000FF;
-	font-weight: bold;
-}
-
-.removal_request2 .request_result
-{
-	text-align : center;
-	padding-bottom: 1%;
-}
-.removal_request2 .request_middle
-{
-	padding-bottom: 6%;
-}
-.removal_request2 .request_last
-{
-	padding-top: 4%;
-}
-.request_footer
-{
-	text-align : center;
-	padding-top: 4%;
-}
-</style>
-
 <div class="removal_request">	Dear <?php echo $companyname;?> : </div>
-
 
 <ul class="removal_request1">
 	
