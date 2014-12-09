@@ -1520,8 +1520,7 @@ class Complaints extends CI_Model
 		$query=$this->db->select('*')
 						->from('youg_subscription')
 						->where(array('transactionstatus'=>'0','paymentmethod'=>'authorize','subscr_id !='=>''))
-						//->like('payment_date',$checkdate)
-						->like('payment_date','2014-12-08')
+						->like('expires','2014-12-08')
 						->get()
 			            ->result_array();
 		//echo $this->db->last_query();	

@@ -942,7 +942,7 @@ public function cron()
 											
 											
 					//Sending mail to admin
-					//$this->email->send();
+					$this->email->send();
 					
 					
 					///ALERT EMAIL LISTING SUCCESS AND FAILED PAYMENT  TO ADMIN USER 
@@ -1030,7 +1030,7 @@ public function cron()
 											
 											
 					//Sending mail to admin
-					//$this->email->send();
+					$this->email->send();
 	  echo $this->email->print_debugger();
 	}
 	
