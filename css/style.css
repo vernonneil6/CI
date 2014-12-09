@@ -1262,12 +1262,17 @@ color:#2c6a99;
 .testmnl_cln
 {
 	width:auto!important;
+	float: right;
 }
 .clt_nme
 {
     vertical-align: super!important;
 }
-.cnt_cnet
+.cnt_cnet span
 {
 	font-size: 13px!important;
+}
+.reviewnotverifiedlogo
+{
+	height : 100px;
 }
