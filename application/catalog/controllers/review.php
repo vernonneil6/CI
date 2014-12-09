@@ -562,7 +562,7 @@ class Review extends CI_Controller {
 		}
 		
 		
-		$this->session->set_flashdata('success', 'You have successfully sended mail to merchant.');
+		$this->session->set_flashdata('success', 'You have successfully send mail to merchant.');
 		redirect('review','refresh');
 	}
 	public function resolution($reviewid)
@@ -607,6 +607,7 @@ class Review extends CI_Controller {
 										
 					$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
 					$this->email->send();
+					$this->session->set_flashdata('success', 'You have successfully send mail to merchant.');
 					redirect('review','refresh');
 				}
 				if($option == 'Would like a Replacement item')
@@ -618,6 +619,7 @@ class Review extends CI_Controller {
 										
 					$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
 					$this->email->send();
+					$this->session->set_flashdata('success', 'You have successfully send mail to merchant.');
 					redirect('review','refresh');
 				}
 			
