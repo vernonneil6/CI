@@ -1218,6 +1218,12 @@ color:#2c6a99;
     width  : 100%;
     margin : 0!important;
 }
+.searchlogoss
+{
+	height : 90px;
+    width  : 90%;
+    margin : 0!important;
+}
 .cpyynme
 {
 	margin-top: 5px;
@@ -1280,4 +1286,13 @@ color:#2c6a99;
 .verfs_top
 {
 	margin : 20px 0 0;
+}
+.member_condition
+{
+	font-family : "myriadpro-regular";
+	font-size 	: 25px;
+}
+.members_part1 h1
+{
+	color: rgb(128, 0, 0);
 }

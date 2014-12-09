@@ -458,6 +458,12 @@ class Review extends CI_Controller {
 	
 	public function buyerreview($userid, $companyid)
 	{
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			$this->session->set_flashdata('error', 'Please login to continue!');
+			$this->session->set_userdata('last_url','review/buyerreview/'.$userid.'/'.$companyid);
+			redirect('login','refresh');
+		}
 		$user = $this->users->get_user_byid($userid);
 		$this->data['userid'] = $userid;
 		$this->data['companyid'] = $companyid;
