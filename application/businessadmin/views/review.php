@@ -330,7 +330,7 @@
 	}
 	?>
 	
-<?php if($this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'removalrequest') { ?>	
+<?php if($this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'removalreview') { ?>	
 <style>
 .removal_request
 {
