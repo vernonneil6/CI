@@ -2,7 +2,9 @@
 
 <section class="container">
   <section class="main_contentarea serch_result">
-    <h1><a href="#"><img src="images/search_result_title.png" alt="Business Search Result" title="Business Search Result"></a></h1>
+    <h1 class="bannertext btxt"><!--<a href="#"><img src="images/search_result_title.png" alt="Business Search Result" title="Business Search Result"></a>-->
+		<span class="bannertextregular">YOUR SEARCH </span>RESULTS</h1>
+    </h1>
     <div class="srch_rslt_wrp">
       <form class="busdt_wrap" method="post" id="frmcompany" action="businessdirectory/search">
       <div class="main_bd_srchwrp">
@@ -26,22 +28,23 @@
       <div class="srch_result_blck">
         <div class="innr_wrap">
           <div class="srch_rslt_left">
-            <div class="verified_wrp srch_rslt_vrfy">
+            <div class="verified_wrp srch_rslt_vrfy vfy_rvw">
               <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/YouGotRated_BusinessProfile_NotVerified-ReviewsTag.png" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>
+              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/notverified.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.urlencode($companies[$i]['companyseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/verified_img.png" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url('company/'.urlencode($companies[$i]['companyseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/verifiedlogo.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
                   <?php
 				  } ?>
-              <?php if(count($elitemem_status)==0){?>
+              <!--<php if(count($elitemem_status)==0){?>
               <div class="notvry_title"></div>
-              <?php }else{
+              <php }else{
 				  ?>
               <div class="vry_title"></div>
-              <?php
-				  } ?>
-              <div class="compny_name">
+              <php
+				  } ?>-->
+			<div>
+              <div class="compny_name cpyynme">
                 <h2>
 				<a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" style="height:auto;color:#333333 !important;" target="_blank">
 				<?php echo strtoupper($companies[$i]['company']);?>
@@ -59,12 +62,13 @@
                 </div>
               </div>
               <div class="vry_btn"><a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a></div>
+			 </div>
             </div>
-            <div class="contct_dtl">
+            <div class="contct_dtl cntdll">
               <ul>
-                <li><span>ADDRESS</span> <a> <?php echo ucfirst($companies[$i]['streetaddress']);?>,<?php echo ucfirst($companies[$i]['city']);?>,<?php echo ucfirst($companies[$i]['state']);?>,<?php echo ucfirst($companies[$i]['country']);?>,<?php echo ($companies[$i]['zip']);?> </a></li>
+                <li><span>ADDRESS</span> <a> <?php echo ucfirst($companies[$i]['streetaddress']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['city']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['state']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['country']);?>,&nbsp;&nbsp;&nbsp;<?php echo ($companies[$i]['zip']);?> </a></li>
                 <li><span>PHONE</span> <a href="tel:<?php echo ($companies[$i]['phone']);?>" title="call us"><?php echo ($companies[$i]['phone']);?></a></li>
-                <li><span>FAX</span> <a href="" title="Fax"><?php echo ($companies[$i]['fax']);?></a></li>
+                <!--<li><span>FAX</span> <a href="" title="Fax"><php echo ($companies[$i]['fax']);?></a></li>-->
                 <li><span>WEBSITE</span> <a href="<?php echo ($companies[$i]['siteurl']);?>" title="company website"><?php echo ($companies[$i]['siteurl']);?></a></li>
                 <li><span>E-MAIL</span> <a href="mailto:<?php echo ($companies[$i]['email']);?>" title="mail us"><?php echo ($companies[$i]['email']);?></a></li>
               </ul>
@@ -76,7 +80,7 @@
 
    $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
 			  ?>
-          <div class="srch_rslt_right">
+          <div class="srch_rslt_right srh_rght">
 <!--            <div class="map_wrap">-->
             <div class="" align="center">
               <div class="Flexible-container">

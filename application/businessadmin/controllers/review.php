@@ -295,7 +295,7 @@ class Review extends CI_Controller {
 				
 				$data = array(
 					'proof' => $imgdata['file_name'],
-					'status' 		=> '1',
+					'status' 		=> '2',
 					'checkdate' => date('Y-m-d')
 					);	
 		
@@ -330,18 +330,29 @@ class Review extends CI_Controller {
 		}
 	}
 	
-	public function	review_updates()
+	public function review_gift()
 	{
 		if($this->input->post('submit'))
 		{
-			$data = array(
-			'carrier'	 	=> $this->input->post('carrier'),
-			'trackingno' 	=> $this->input->post('trackingno'),
-			'dateshipped' 	=> $this->input->post('dateshipped'),
-			'status' 		=> '1',
-			'checkdate' 	=> date('Y-m-d')
-			);
 			
+			$config['upload_path'] = '../uploads/proof/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size']	= '1000000';
+			$config['max_width']  = '1024000';
+			$config['max_height']  = '768000';
+			$this->load->library('upload', $config);
+			
+			if($this->upload->do_upload('refundproof'))
+			{
+				$title = $this->input->post('refundproof') ;	
+				$imgdata = $this->upload->data();
+				
+				$data = array(
+					'proof' => $imgdata['file_name'],
+					'status' 		=> '2',
+					'checkdate' => date('Y-m-d')
+					);	
+		
 			$id = $this->input->post('id');
 			$userid = $this->input->post('userid');
 			$companyid = $this->input->post('companyid');
@@ -359,6 +370,51 @@ class Review extends CI_Controller {
 			$site_url   = $this->settings->get_setting_value(2);
 		
 			
+			$mail_msg = $this->settings->get_email_byid(39);
+			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));
+			$mail     = str_replace("%url%", site_url('../review/proof/'.$reviewid), str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))))));			
+			$to 	  = $user[0]['email'];
+						
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
+			$this->email->send();
+			
+			redirect("review/reviews","refresh");
+			
+			}
+		}
+	}
+	
+	public function	review_updates()
+	{
+		if($this->input->post('submit'))
+		{
+			$data = array(
+			'carrier'	 	=> $this->input->post('carrier'),
+			'trackingno' 	=> $this->input->post('trackingno'),
+			'dateshipped' 	=> $this->input->post('dateshipped'),
+			'status' 		=> '2',
+			'checkdate' 	=> date('Y-m-d')
+			);
+			
+			$id = $this->input->post('id');
+			$userid = $this->input->post('userid');
+			$companyid = $this->input->post('companyid');
+			$reviewid = $this->input->post('reviewid');
+			
+			$this->reviews->reviewmail_update($data, $id);
+			$reviewmail = $this->reviews->get_reviewmail_byreviewid($reviewid);
+			$option = $reviewmail['resolution'];
+			$this->load->library('email');	
+			
+			$user 		= $this->settings->get_user_byid($userid);
+			$company 	= $this->settings->get_company_byid($companyid);
+			
+			$site_name  = $this->settings->get_setting_value(1);
+			$site_email = $this->settings->get_setting_value(5);
+			$site_url   = $this->settings->get_setting_value(2);
+		
+			if($option == 'Ship the Item and/or Provide Proof of Shipping')
+			{
 			$mail_msg = $this->settings->get_email_byid(23);
 			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));
 			$mail     = str_replace("%carrier%", $this->input->post('carrier'), str_replace("%trackingno%", $this->input->post('trackingno'), str_replace("%dateshipped%", $this->input->post('dateshipped'),str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))))))));			
@@ -370,6 +426,17 @@ class Review extends CI_Controller {
 				$this->reviews->delete_review_byid($reviewid);
 				$this->reviews->delete_comment($reviewid);
 				$this->reviews->delete_reviewmail($reviewid);
+			}
+			}
+			if($option == 'Would like the missing items to be shipped immediately')
+			{
+			$mail_msg = $this->settings->get_email_byid(37);
+			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));
+			$mail     = str_replace("%url%", site_url('../review/replacement/'.$reviewid), str_replace("%carrier%", $this->input->post('carrier'), str_replace("%trackingno%", $this->input->post('trackingno'), str_replace("%dateshipped%", $this->input->post('dateshipped'),str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))));			
+			$to 	  = $user[0]['email'];
+						
+			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
+			$this->email->send();
 			}
 			redirect("review/reviews","refresh");
 		}
@@ -383,7 +450,7 @@ class Review extends CI_Controller {
 			'new_carrier'	 	=> $this->input->post('carrier'),
 			'new_trackingno' 	=> $this->input->post('trackingno'),
 			'new_dateshipped' 	=> $this->input->post('dateshipped'),
-			'status' 			=> '1',
+			'status' 			=> '2',
 			'checkdate' 		=> date('Y-m-d')
 			);
 			
@@ -406,7 +473,7 @@ class Review extends CI_Controller {
 			
 			$mail_msg = $this->settings->get_email_byid(34);
 			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));
-			$mail     = str_replace("%carrier%", $this->input->post('carrier'), str_replace("%trackingno%", $this->input->post('trackingno'), str_replace("%dateshipped%", $this->input->post('dateshipped'),str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))))))));			
+			$mail     = str_replace("%url%", site_url('../review/replacement/'.$reviewid), str_replace("%carrier%", $this->input->post('carrier'), str_replace("%trackingno%", $this->input->post('trackingno'), str_replace("%dateshipped%", $this->input->post('dateshipped'),str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))));			
 			$to 	  = $user[0]['email'];
 						
 			$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
@@ -442,6 +509,7 @@ class Review extends CI_Controller {
 					$site_url  = $this->settings->get_setting_value(2);
 					$site_mail = $this->settings->get_setting_value(5);
 					
+					
 					//Loading E-mail library
 					$this->load->library('email');
 					
@@ -452,7 +520,7 @@ class Review extends CI_Controller {
 					$from = $company[0]['email'];
 					$subject = 'Request for Information About Your Review:  Case #YGR-'.$reviewid;
 					$to = $user[0]['email'];
-					
+				
 					$this->email->from($site_mail,$site_name);
 					$this->email->to($to);
 					$this->email->subject($subject);
@@ -511,67 +579,6 @@ class Review extends CI_Controller {
 						</tr>
 					</table>
 					";
-						/*<html>
-							<body>
-							<table cellpadding="0" cellspacing="0" width="100%" border="0">
-							<tr>
-								<td>Hello '.ucwords($user[0]['firstname'].' '.$user[0]['lastname']).',</td>
-							</tr>
-							<tr><td>&nbsp;</td></tr>
-							<tr>
-								<td style="padding-left:50px;">
-								'.ucfirst($company[0]['company']).' has requested your approval to remedy your concern, so that the negative review on <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a> could be removed.<br/>
-								Please click the link below to see if you can reach an agreement with this business.
-								</td>
-							</tr>
-							<tr><td>&nbsp;</td></tr>
-							<tr>
-								<td>
-									<table cellpadding="0" cellspacing="0" width="100%" border="0">
-									<tr><td colspan="3"><h4>Review Details</h4></td></tr>
-									<tr>
-										<td width="200">Review ID</td>
-										<td>:</td>
-										<td>'.$reviewid.'</td>
-									</tr>
-                                    <tr><td colspan="3">&nbsp;</td></tr>
-                                    <tr>
-										<td width="200">Review</td>
-										<td>:</td>
-										<td>'.$review[0]['comment'].'</td>
-									</tr>
-                                    <tr><td colspan="3">&nbsp;</td></tr>
-                                    <tr>
-										<td width="200">reviewdate</td>
-										<td>:</td>
-										<td>'.date('M d Y H:i:s',strtotime($review[0]['reviewdate'])).'</td>
-									</tr>
-									<tr><td colspan="3">&nbsp;</td></tr>
-									</table>
-                                    <table cellpadding="0" cellspacing="0" width="100%" border="0">
-									<tr><td colspan="3"><h4>Please give your feedback by clicking below option</h4></td></tr>
-                                    <tr><td colspan="3">&nbsp;</td></tr>
-                                    <tr><td colspan="3"><a href="'.'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/reviewfeedback/'.'" title="I AGREE TO THE REMOVAL REQUEST">I AGREE TO THE REMOVAL REQUEST</a>&nbsp;
-                                        <a href="'.site_url('review/feedback/'.$rid.'/'.$userid.'/'.'disagree').'" title="I DECLINE THE REMOVAL REQUEST">I DECLINE THE REMOVAL REQUEST</a>
-                                        </td>
-									</tr>
-									</table>
-								</td>
-							</tr>
-							<tr><td><br/><br/></td></tr>
-							<tr>
-								<td>
-									Kind Regards,<br/>
-									'.$site_name.'
-								</td>
-							</tr>
-							</table>
-							</body>
-						</html>/*;
-					 
-					/*echo"<pre>";
-					print_r($mailbody);
-					die();*/
 				
 					$this->email->message($mailbody);
 					

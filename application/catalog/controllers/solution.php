@@ -90,7 +90,7 @@ class Solution extends CI_Controller {
 				}
 				else
 				{
-					$this->session->set_flashdata('error', 'This Businessss is already claim. Try later!');
+					$this->session->set_flashdata('error', 'This business has already been claimed. Please Contact Us for assistance.');
 					redirect('solution', 'refresh');
 				}
 			}
@@ -315,7 +315,7 @@ class Solution extends CI_Controller {
 								$this->email->message($mail_body);
 								$this->email->send();
 								
-								$this->session->set_flashdata('success', 'Business added successfully. claim your business here');
+								$this->session->set_flashdata('success', 'Your business has successfully been registered for Elite membership!');
 								///redirect('solution/claim/'.$companyid, 'refresh');
 								redirect('solution', 'refresh');
 								

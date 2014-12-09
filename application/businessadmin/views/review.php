@@ -164,7 +164,7 @@
 	?>
 	<div class="box-content">
     <fieldset>
-	<?php if($review['resolution'] == 'Ship the Item and/or Provide Proof of Shipping') { ?>
+	<?php if($review['resolution'] == 'Ship the Item and/or Provide Proof of Shipping' || $review['resolution'] == 'Would like the missing items to be shipped immediately') { ?>
 	<form action="review/review_updates" method="post" class ="formBox broker">
 		<div class="clearfix">
 			<div class="lab">
@@ -223,6 +223,28 @@
 	
 	<?php if($review['resolution'] == 'Would like a Full Refund') { ?>
 	<form action="review/review_refund" method="post" class ="formBox broker" enctype = "multipart/form-data">
+		<div class="clearfix">
+			<div class="lab">
+				<label for="name">Upload Proof</label>
+			</div>
+			<div class="con">
+				<input type = "file" name="refundproof" value="">
+			</div>
+		</div>
+		
+		<input type = "hidden" value = "<?php echo $review['id'];?>" name = "id" >
+		<input type = "hidden" value = "<?php echo $review['user_id'];?>" name = "userid" >
+		<input type = "hidden" value = "<?php echo $review['company_id'];?>" name = "companyid" >
+		<input type = "hidden" value = "<?php echo $review['review_id'];?>" name = "reviewid" >
+		<div class="btn-submit" style = "padding : 15px 0 0; border : none;">
+			<input class="button" type="submit" value="Submit" name="submit">
+		</div>
+		
+	</form>
+	<?php } ?>
+	
+	<?php if($review['resolution'] == 'Would like a Partial Refund and/or Gift Card in compensation for the service received') { ?>
+	<form action="review/review_gift" method="post" class ="formBox broker" enctype = "multipart/form-data">
 		<div class="clearfix">
 			<div class="lab">
 				<label for="name">Upload Proof</label>
