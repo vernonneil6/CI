@@ -131,13 +131,22 @@
 					  }
 					  else
 					  {
-						  if( isNaN(trim($("#phone").val())) || $("#phone").val().length < 10)
+						  var characterReg = /^\d{3}-\d{3}-\d{4}$/;
+						  if(!characterReg.test($("#phone").val())) 
 						  {
 							  $("#phoneerror").hide();
 						  	  $("#phoneverror").show();
 							  $("#phone").focus();
 							  return false;
 						  }
+						  
+						  //if( isNaN(trim($("#phone").val())) || $("#phone").val().length < 10)
+						  //{
+							  //$("#phoneerror").hide();
+						  	  //$("#phoneverror").show();
+							  //$("#phone").focus();
+							  //return false;
+						  //}
 						  else
 						  {
 							  $("#phoneerror").hide();
@@ -421,18 +430,18 @@
           </div>
           <div class="reg-row" style="margin-top:10px !important;">
             <div class="reg_fld">EXPIRATION DATE</div>
-            <select id="expirationdatey" name="expirationdatey">
+            <select id="expirationdatem" name="expirationdatem">
+                <option value="">--Select--</option>
+                <?php for($i=1;$i<13;$i++) {?>
+                <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                <?php } ?>
+              </select>
+              &nbsp;
+              <select id="expirationdatey" name="expirationdatey">
                 <option value="">--Select--</option>
                 <?php for($k=0;$k<10;$k++) {?>
                 <?php $a = date('Y')+$k;?>
                 <option value="<?php echo $a;?>"><?php echo $a;?></option>
-                <?php } ?>
-              </select>
-              &nbsp;
-              <select id="expirationdatem" name="expirationdatem">
-                <option value="">--Select--</option>
-                <?php for($i=1;$i<13;$i++) {?>
-                <option value="<?php echo $i;?>"><?php echo $i;?></option>
                 <?php } ?>
               </select>
               <div id="ccnumbererror" class="error">Credit Card Number is required.</div><div id="expirationdateerror" class="error">Select Expiration Date.</div>
