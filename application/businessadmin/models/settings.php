@@ -228,11 +228,71 @@ Class Settings extends CI_Model
 			return false;
 		}
  	}
-	}
+	
 	function brokerlimitview($idea)
 	{
 		return  $this->db->get_where('youg_broker',array('subbrokerid'=>$idea,'type'=>''))->row_array();
 	}
+	function get_subscriptionid($sid)
+	{
+		$query = $this->db->get_where('youg_subscription',array('company_id'=>$sid));
+		return $query->row_array();
+				         
+	}
+	function get_elitesubscription_detailsbycompanyid($emailcompany)
+	{
+		
+		$query = $this->db->get_where('youg_company',array('id'=>$emailcompany));
+		return $query->row_array();
+		
+	}
+	function update_subscription($subscriptionId,$companyid,$amt,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag)
+	{
+	    $date = date("Y-m-d H:i:s");
+		$payment_ip = $_SERVER['REMOTE_ADDR'];
+		$data = array(
+					'amount'  		=> $amt,
+					'txn_id'		=> $tx,
+					'payment_date'	=> $date,
+					'payment_ip'	=> $payment_ip,
+					'expires'		=> $expires,
+					'sign'			=> $sig,
+					'payer_id'		=> $payer_id,
+					'paymentmethod'	=> $paymentmethod,
+		);
+		$this->db->where(array('subscr_id'=>$subscriptionId,'company_id'=>$companyid));
+		$this->db->update('subscription',$data);
+		if ($this->db->update('subscription',$data))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}	
+		
+		
+	}
+	function update_elite($companyid,$payment_amount,$payment_currency,$transactionid,$payment_date)
+	{
+		$varipaddress = $_SERVER['REMOTE_ADDR'];
+		$emailflag='1';
+		  $date = date("Y-m-d H:i:s");
+		$data = array(   
+							'payment_amount'	=> $payment_amount,
+							'payment_currency'	=> $payment_currency,
+							'transactionid'		=> $transactionid,
+							'payment_date' 		=> $payment_date,
+							'payment_ip'		=> $varipaddress,
+							'renew_emailflag'   => $emailflag,
+							'dateofrenew'		=>$date
+						);
+		$this->db->where('company_id',$companyid);				
+		$this->db->update('elite', $data); 
+		
+	}
 	
 	
+
+}
 ?>
