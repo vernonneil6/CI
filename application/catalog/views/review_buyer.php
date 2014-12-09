@@ -43,7 +43,7 @@
 <?php echo $header; ?>
 <section class="content-wrap" style="margin-right:0">
   <section class="inner_main">
-    <div class="main_contentarea"> <?php echo $menu; ?> 
+    <div class="main_contentarea">
     
 	<label class = "buyer_form">Dear <?php echo $name; ?>:</label>
 	<ul class="removal_request">	
