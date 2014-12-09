@@ -262,7 +262,7 @@ class Review extends CI_Controller {
 		$companyid = $this->session->userdata['youg_admin']['id'];
 		$company = $this->companys->get_company_byid($companyid);
 		$this->data['companyname'] = $company[0]['company'];
-		$this->load->view('removalreview',$this->data);
+		$this->load->view('review',$this->data);
 	}
 	
 	public function resolution($reviewid)

@@ -322,13 +322,67 @@
 	</form>
 	<?php } ?>
 	
-	
-	
+
+
 	</fieldset>
     </div>
 	<?php
 	}
 	?>
+	
+<?php if($this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'removalrequest') { ?>	
+<div class="removal_request">	Dear <?php echo $companyname;?> : </div>
+
+<ul class="removal_request1">
+	
+<li>By choosing to have the review removed from your profile, you must agree to </li>
+<li>work with your customer to resolve their complaint. These are the available </li>
+<li class="removal_text">options that will be presented to your buyer on your behalf.</li>
+
+<li>Please understand that YouGotRated cannot influence your buyer's decision, and </li>
+<li class="removal_text">that it is entirely up to you and your buyer to reach an amicable resolution.</li>
+
+<li>The following are the options that will be emailed to your buyer.</li>
+<li>Your buyer will have 7 days to respond to the email with their selection. If for any </li>
+<li>reason, they choose not to respond, the negative review will be permanently </li>
+<li class="removal_text">deleted from the site and this case will be closed.</li>
+
+<li>If the buyer responds within 7 days, you will receive an email with their selected </li>
+<li>choice and it is up to you to complete the process to have the review permanently </li>
+<li class="removal_text">deleted.</li>
+</ul>
+	
+<ul>
+
+<ul class="removal_request2">
+	
+<li class="first">Options that will be presented to the Buyer on your behalf:</li>
+
+<li>a) Item not received: Ship the purchased item and provide Proof of Shipping.</li>
+
+<li>b) Would like a Full Refund.</li>
+
+<li>c) Item is damaged or defective / Would like a Replacement item.</li>
+
+<li>d) Would like the missing items to be shipped immediately.</li>
+
+<li class = "request_middle">e) Would like a Partial Refund and/or Gift Card in compensation for the service received.</li>
+
+
+
+<li class = "request_result"> We have emailed your Buyer and we expect to resolve this matter as quickly and fairly as possible. We </li>
+<li class = "request_result"> will contact you as soon as your buyer responds.</li>
+
+
+<li class = "request_last">Sincerely,</li>
+
+<li>YouGotRated</li>
+
+<li class = "request_footer">Copyright 2014 YouGotRated, LLC. All rights reserved. YouGotRated, Tampa, FL 33624.</li>
+
+</ul>
+<?php } ?>
+
   </div>
   <!-- /box --> 
   
