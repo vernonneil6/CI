@@ -1318,7 +1318,7 @@ public function renew_update($id)
 		{
 			
 			$this->session->set_flashdata('Error','Error Payment.');
-			
+			redirect('solution', 'refresh');
 		}
 			
 	}
