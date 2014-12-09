@@ -1285,7 +1285,7 @@ public function renew_update($id)
 															</tr>
 															<tr>
 																<td>
-																	<table cellpadding="0" cellspacing="0" width="20%" border="0">
+																	<table cellpadding="0" cellspacing="0" width="50%" border="0">
 																	<tr><td colspan="3"><h3>Renewal Payment Detail</h3></td></tr>
 																	<tr>
 																		<td>Payment Amount</td>
@@ -1326,7 +1326,7 @@ public function renew_update($id)
 												<td style="padding-left:20px;"> Your Transaction Details are as follows. </td>
 											  </tr>
 											  <tr>
-												<td><table cellpadding="0" cellspacing="0" width="20%" border="0">
+												<td><table cellpadding="0" cellspacing="0" width="50%" border="0">
 													<tr>
 													  <td colspan="3"><h3>Renewal Payment Detail</h3></td>
 													</tr>
