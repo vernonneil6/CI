@@ -40,7 +40,11 @@
     width: 140px;
 }
 </style>
-
+<?php echo $header; ?>
+<section class="content-wrap" style="margin-right:0">
+  <section class="inner_main">
+    <div class="main_contentarea"> <?php echo $menu; ?> 
+    
 	<label class = "buyer_form">Dear <?php echo $name; ?>:</label>
 	<ul class="removal_request">	
 		<li class = "buyer_space">By choosing one of the options below, you agree that once the Merchant provides us with proof of </li>
@@ -85,5 +89,9 @@
 			<input type="submit" class = "sbtbtn" value = "" name = "submit"></div>
 		<?php echo form_close();?>
 	</div>
-
+	
+	</div>
+  </section>
+</section>
+<?php echo $footer; ?>
 
