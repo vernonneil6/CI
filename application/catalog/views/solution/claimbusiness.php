@@ -234,9 +234,9 @@
 						  var characterReg = /^\d{3}-\d{3}-\d{4}$/;
 						  if(!characterReg.test($("#cphone").val())) 
 						  {
-							  $("#phoneerror").hide();
-						  	  $("#phoneverror").show();
-							  $("#phone").focus();
+							  $("#cphoneerror").hide();
+						  	  $("#cphoneverror").show();
+							  $("#cphone").focus();
 							  return false;
 						  }
 						  
