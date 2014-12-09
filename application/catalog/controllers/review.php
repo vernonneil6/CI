@@ -556,8 +556,9 @@ class Review extends CI_Controller {
 			$this->email->send();
 		}
 		
+		
+		$this->session->set_flashdata('mailsucess', 'You have successfully sended mail to merchant.');
 		redirect('review','refresh');
-		$this->session->set_flashdata('mailsucess', 'Your Resoultion is sended to merchant.');
 	}
 	public function resolution($reviewid)
 	{
