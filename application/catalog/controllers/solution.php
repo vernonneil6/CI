@@ -1073,7 +1073,6 @@ public function adminreport()
 															<tr>
 																<td>
 																	<table cellpadding="10" cellspacing="10" width="100%" border="0">
-																	<tr><td colspan="3"><h3>Payment Details</h3></td></tr>
 																	<tr>
 																		<td><b>Successful Transaction Payments Today</b></td><br>
 																	</tr>
