@@ -37,6 +37,21 @@ if (!mysql_query($sql,$con))
   die('Error: ' . mysql_error());
   }
 echo "1 record added";
+
+if($sql!='')
+{
+ if($tn_status==1){
+	 $tn_status=1;
+	 $query="UPDATE youg_subscription SET `datereturn`='$date' , `transactionstatus`='$tn_status' WHERE subscr_id='$sub_id'";
+ } else {
+	 $tn_status=0;
+	 $query="UPDATE youg_subscription SET `datereturn`='$date' , `transactionstatus`='$tn_status' WHERE subscr_id='$sub_id'";	  
+   }
+}
+
+if (!mysql_query($query,$con)){
+  die('Error: ' . mysql_error());
+  }
  
 mysql_close($con)
 ?>
