@@ -1307,7 +1307,14 @@ color:#2c6a99;
     height: auto;
     padding: 0px;
 }
-.form-message p,.noblock p
+.form-message p, .noblock p
 {
 	font-family : "myriadpro-regular";
+}
+.noblock
+{
+	float: none!important;
+    margin-bottom: 0!important;
+    padding: 0!important;
+    width: auto!important;
 }
