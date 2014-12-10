@@ -284,8 +284,6 @@
           </div>
         </div>
       </div>
-      
-      <?php } ?>
 <!--<script>
 $(document).ready(function(){
 $('#directions').click(function(){
