@@ -315,7 +315,7 @@ class Elite extends CI_Controller {
 				$content;
 				"<br \>";
 				"<br \>";
-				echo $resultCode;
+				//echo $resultCode;
 				
 				if($resultCode=='Ok')
 				{
