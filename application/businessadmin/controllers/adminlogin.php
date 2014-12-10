@@ -88,7 +88,7 @@ class AdminLogin extends CI_Controller {
 				if($result1)
 				{
 					$id = $result1['id'];
-					$this->session->set_flashdata('error', 'Subscription expired.Please renew your account here.');
+					$this->session->set_flashdata('success', 'Subscription expired.Please renew your account here.');
 					$url =  'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/solution/renew/'.$id;
 					redirect($url,'refresh');
 				}
