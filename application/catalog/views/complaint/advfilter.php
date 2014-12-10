@@ -2,30 +2,31 @@
 
 <section class="container">
   <section class="main_contentarea">
-    <div class="hm_bnnr">
-      <h1><?php echo $tag_line;?></h1>
+	  <h1 class="bannertext advancefiltertitle"><span class="bannertextregular">ADVANCE </span>FILTER</h1>
+    <!--<div class="hm_bnnr">
+      <h1><php echo $tag_line;?></h1>
       <div class="hm_bnnr_innr"> <img src="images/hm_banner.png" alt="How it works" title="How it works"> </div>
     </div>
-    <div class="hm_tag_wrp"> <span><img src="images/hm_tagline.png" alt="Complaint resolved" title="Complaint resolved"></span> <span><a href="#"><img src="images/start_here.png" alt="Start Here" title="Start Here"></a></span> </div>
+    <div class="hm_tag_wrp"> <span><img src="images/hm_tagline.png" alt="Complaint resolved" title="Complaint resolved"></span> <span><a href="#"><img src="images/start_here.png" alt="Start Here" title="Start Here"></a></span> </div>-->
     <div class="container">
-      <div class="hm_lft_panel">
+      <!--<div class="hm_lft_panel">
         <h2>TRENDING <small>SEARCHES</small></h2>
         <div class="tag_lnkwrp">
-          <?php if(count($search_keywords)>0){?>
-          <?php for($sk=0;$sk<count($search_keywords);$sk++){?>
-          <a title="Search <?php echo $search_keywords[$sk]['keyword'];?>" href="<?php echo site_url('complaint/keysearch').'/'.$search_keywords[$sk]['keyword'];?>"><?php echo $search_keywords[$sk]['keyword'];?></a>
-          <?php } ?>
-          <?php } ?>
+          <php if(count($search_keywords)>0){?>
+          <php for($sk=0;$sk<count($search_keywords);$sk++){?>
+          <a title="Search <php echo $search_keywords[$sk]['keyword'];?>" href="<php echo site_url('complaint/keysearch').'/'.$search_keywords[$sk]['keyword'];?>"><php echo $search_keywords[$sk]['keyword'];?></a>
+          <php } ?>
+          <php } ?>
         </div>
-      </div>
+      </div>-->
       <div class="hm_rght_panel">
-        <div class="hm_live_menu"> <span><img src="images/ygr_live_logo.png" alt="Yougotrated live" title="Yougotrated live"></span>
+        <!--<div class="hm_live_menu"> <span><img src="images/ygr_live_logo.png" alt="Yougotrated live" title="Yougotrated live"></span>
           <ul>
-          <li><a href="<?php echo base_url();?>" title="RECENT ACTIVITY" >RECENT ACTIVITY</a></li>
-            <li><a href="<?php echo site_url('complaint/weektrending');?>" title="Trending Complaints" >TRENDING COMPLAINTS</a></li>
-            <li><a href="<?php echo site_url('complaint/advfilter');?>" title="Advance Filter" style="color:#333333 !important;">ADVANCED FILTER</a></li>
+          <li><a href="<php echo base_url();?>" title="RECENT ACTIVITY" >RECENT ACTIVITY</a></li>
+            <li><a href="<php echo site_url('complaint/weektrending');?>" title="Trending Complaints" >TRENDING COMPLAINTS</a></li>
+            <li><a href="<php echo site_url('complaint/advfilter');?>" title="Advance Filter" style="color:#333333 !important;">ADVANCED FILTER</a></li>
           </ul>
-        </div>
+        </div>-->
         <script type="text/javascript">
 					function trim(stringToTrim) {
               return stringToTrim.replace(/^\s+|\s+$/g,"");
@@ -149,20 +150,20 @@
         <?php } ?>
       </div>
     </div>
-    <div class="brws_category">
+    <!--<div class="brws_category">
       <div class="brwse_titl"> <img src="images/brwse_cat_title.png" alt="Browse Categories" title="Browse Categories"> </div>
       <div class="catgry_blck_wrp">
-        <?php if(count($home_categorys)>0){?>
+        <php if(count($home_categorys)>0){?>
         <ul>
-          <?php for($hc=0;$hc<count($home_categorys);$hc++){?>
+          <php for($hc=0;$hc<count($home_categorys);$hc++){?>
           <li> <a href="#">
-            <div class="ctgr_blck"> <span><?php echo $home_categorys[$hc]['category'];?></span> <img src="<?php if( $home_categorys[$hc]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('buscat_main_upload_path');?><?php echo ($home_categorys[$hc]['image']); } else { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."no_image.png"; } ?>" alt="<?php echo $home_categorys[$hc]['category'];?>" title="<?php echo $home_categorys[$hc]['category'];?>"> </div>
+            <div class="ctgr_blck"> <span><php echo $home_categorys[$hc]['category'];?></span> <img src="<php if( $home_categorys[$hc]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('buscat_main_upload_path');?><php echo ($home_categorys[$hc]['image']); } else { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."no_image.png"; } ?>" alt="<php echo $home_categorys[$hc]['category'];?>" title="<php echo $home_categorys[$hc]['category'];?>"> </div>
             </a> </li>
-          <?php } ?>
+          <php } ?>
         </ul>
-        <?php } ?>
+        <php } ?>
       </div>
-    </div>
+    </div>-->
   </section>
 </section>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">

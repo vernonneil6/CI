@@ -1287,26 +1287,6 @@ color:#2c6a99;
 {
 	margin : 20px 0 0;
 }
-.members_condition
-{
-	font-family : "myriadpro-regular";
-	font-size 	: 35px;
-	text-align  : center;
-}
-.members_part1 h1
-{
-	border: medium none;
-    color: rgb(128, 0, 0);
-    height: auto;
-    padding: 0px;
-}
-.members_part2 h1
-{
-	border: medium none;
-    color: rgb(128, 0, 0);
-    height: auto;
-    padding: 0px;
-}
 .form-message p, .noblock p, .contenttag
 {
 	font-family : "myriadpro-regular";
@@ -1317,4 +1297,34 @@ color:#2c6a99;
     margin-bottom: 0!important;
     padding: 0!important;
     width: auto!important;
+}
+.advancefiltertitle
+{
+	font-size : 85px!important;
+}
+.members_condition
+{
+	font-family : "myriadpro-regular";
+	font-size 	: 25px;
+	text-align  : center;
+}
+.members_part h1
+{
+	border: medium none;
+    color: rgb(128, 0, 0);
+    height: auto;
+    padding: 0px;
+}
+.members_part .members_title
+{
+	color: rgb(0, 0, 128);
+	font-size: 40px;
+}
+.members_part ul li
+{
+	color: rgb(165, 42, 42);
+}
+.members_part .member_blue
+{
+	color: rgb(0, 0, 128);
 }
