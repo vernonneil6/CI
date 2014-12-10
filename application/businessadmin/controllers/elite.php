@@ -383,12 +383,12 @@ class Elite extends CI_Controller {
 																	</tr>
 																	<tr>
 																		<td>
-																			<table cellpadding="0" cellspacing="0" width="100%" border="0">
+																			<table cellpadding="0" cellspacing="10" width="50%" border="0">
 																			<tr><td colspan="3"><h3>Elitemembership Subscription Detail</h3></td></tr>
 																			<tr>
 																				<td>Subscription ID</td>
 																				<td>:</td>
-																				<td>USD '.$subscriptionId.'</td>
+																				<td>'.$subscriptionId.'</td>
 																			</tr>
 																		</table>
 																		<tr>
@@ -426,14 +426,14 @@ class Elite extends CI_Controller {
 													  </tr>
 													  
 													  <tr>
-														<td><table cellpadding="0" cellspacing="0" width="100%" border="0">
+														<td><table cellpadding="0" cellspacing="10" width="50%" border="0">
 															<tr>
 															  <td colspan="3"><h3>Elitemembership Subscription Detail</h3></td>
 															</tr>
 															<tr>
 															  <td>Subscription ID</td>
 																<td>:</td>
-															<td>USD '.$subscriptionId.'</td>
+															<td>'.$subscriptionId.'</td>
 															</tr>
 															
 															<td colspan="3">&nbsp;</td>
