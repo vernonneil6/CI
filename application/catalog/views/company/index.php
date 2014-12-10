@@ -82,7 +82,7 @@
         <div class="contct_dtl">
           <ul>
             <li><a><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></a></li>
-            <li><a><?php echo strtoupper(stripslashes($company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip'])); ?></a></li>
+            <li><a><?php echo strtoupper(stripslashes($company[0]['city'].','&nbsp;&nbsp;.$company[0]['state'].','.&nbsp;&nbsp;$company[0]['country'].','.&nbsp;&nbsp;$company[0]['zip'])); ?></a></li>
             <li><a class="colors" href="tel:<?php echo $company[0]['phone'];?>" title="<?php echo $company[0]['phone'];?>"><?php echo $company[0]['phone']; ?></a></li>
             <?php if(strlen($company[0]['fax']>8)){?>
             <li><a><?php echo $company[0]['fax'];?></a></li>
@@ -225,7 +225,7 @@
         </div>
 
 
-       <!-- <?php if(count($elitemem_status)!=0){?>
+       <!-- <php if(count($elitemem_status)!=0){?>
         <div class="hour_operatn">
           <div class="hr_title">
             <h2>Hours</h2>
@@ -244,23 +244,49 @@
             </thead>
             <tbody>
               <tr>
-                <?php for($t=0;$t<count($company_timings); $t++) { ?>
-                <td><?php echo date("h:i A",strtotime($company_timings[$t]['start']));?></td>
-                <?php } ?>
+                <php for($t=0;$t<count($company_timings); $t++) { ?>
+                <td><php echo date("h:i A",strtotime($company_timings[$t]['start']));?></td>
+                <php } ?>
               </tr>
               <tr>
-                <?php for($t=0; $t<count($company_timings); $t++) { ?>
-                <td><?php echo date("h:i A",strtotime($company_timings[$t]['end']));?></td>
-                <?php } ?>
+                <php for($t=0; $t<count($company_timings); $t++) { ?>
+                <td><php echo date("h:i A",strtotime($company_timings[$t]['end']));?></td>
+                <php } ?>
               </tr>
             </tbody>
           </table>
         </div>
-        <?php } ?>-->
+        <php } ?>-->
         
         </ul>
+<?php 
+			  $mapaddress = stripslashes($companies[$i]['streetaddress'].','.$companies[$i]['city'].','.$companies[$i]['state'].','.$companies[$i]['country'].','.$companies[$i]['zip']);
+			  $string = str_replace(' ', '-', $mapaddress); // Replaces all spaces with hyphens.
 
-<script>
+   $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
+			  ?>
+          <div class="srch_rslt_right srh_rght">
+<!--            <div class="map_wrap">-->
+            <div class="" align="center">
+              <div class="Flexible-container">
+                <?php /*?><iframe width="424" height="214" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBkUSG003UBp7IiqoZXZUJjtC_-N4BOZ_c&q=<?php echo $mapaddress; ?>"></iframe><?php */?>
+                <script>
+			function PopupCenter(pageURL, title,w,h)
+			 {
+			  var left = (screen.width/2)-(w/2);
+		  	  var top = (screen.height/2)-(h/2);
+			  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+  
+}
+			</script><a style="cursor: pointer;" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">View Map</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <?php } ?>
+<!--<script>
 $(document).ready(function(){
 $('#directions').click(function(){
 $('#mapshow').addClass('mapshow');
@@ -275,7 +301,7 @@ $('#mapshow').removeClass('mapshow');
 <div id="maps"></div>       
           <div class="map_wrap">
             <div class="Flexible-container">
-              <?php 
+              <php 
 			  $mapaddress = stripslashes($company[0]['streetaddress'].','.$company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip']);
 			  $string = str_replace(' ', '-', $mapaddress); // Replaces all spaces with hyphens.
 	      ?>
@@ -286,7 +312,7 @@ $('#mapshow').removeClass('mapshow');
 	 // When the window has finished loading create our google map below
             google.maps.event.addDomListener(window, 'load', init);
         
-<?php 
+<php 
     $json = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=$mapaddress&sensor=false");
     $json = json_decode($json);
     $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
@@ -303,7 +329,7 @@ $('#mapshow').removeClass('mapshow');
                     zoom: 10,
 
                  // The latitude and longitude to center the map (always required)
-                    center: new google.maps.LatLng(<?php echo $lat?>,<?php echo $long;?>), // New York
+                    center: new google.maps.LatLng(<php echo $lat?>,<php echo $long;?>), // New York
 
                 // How you would like to style the map. 
                 // This is where you would paste any style found on Snazzy Maps.
@@ -325,7 +351,7 @@ $('#mapshow').removeClass('mapshow');
 </div>
 
 
-        </div>
+        </div>-->
 
 
 
@@ -336,10 +362,10 @@ $('#mapshow').removeClass('mapshow');
 
         <!--<div class="abt_dtwrap">
           <div class="abt_title">
-            <h2><?php echo strtoupper($company[0]['company']);?></h2>
+            <h2><php echo strtoupper($company[0]['company']);?></h2>
             <i class="line"></i> <span>ABOUT US</span> 
 	</div>
-          <p> <?php echo ucfirst($company[0]['aboutus']);?> </p>
+          <p> <php echo ucfirst($company[0]['aboutus']);?> </p>
         </div> -->
    
 
