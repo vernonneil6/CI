@@ -66,7 +66,7 @@
             </div>
             <div class="contct_dtl cntdll">
               <ul>
-                <li><span>ADDRESS</span> <a> <?php echo ucfirst($companies[$i]['streetaddress']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['city']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['state']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['country']);?>,&nbsp;&nbsp;&nbsp;<?php echo ($companies[$i]['zip']);?> </a></li>
+                <li><span>ADDRESS</span> <a> <?php echo ucfirst($companies[$i]['streetaddress']);?>&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['city']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['state']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['country']);?>,&nbsp;&nbsp;&nbsp;<?php echo ($companies[$i]['zip']);?> </a></li>
                 <li><span>PHONE</span> <a href="tel:<?php echo ($companies[$i]['phone']);?>" title="call us"><?php echo ($companies[$i]['phone']);?></a></li>
                 <!--<li><span>FAX</span> <a href="" title="Fax"><php echo ($companies[$i]['fax']);?></a></li>-->
                 <li><span>WEBSITE</span> <a href="<?php echo ($companies[$i]['siteurl']);?>" title="company website"><?php echo ($companies[$i]['siteurl']);?></a></li>

@@ -81,8 +81,9 @@
 
         <div class="contct_dtl">
           <ul>
-            <li><a> <?php echo strtoupper(stripslashes($company[0]['streetaddress'].','.$company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip'])); ?> </a></li>
-            <li> <a class="colors" href="tel:<?php echo $company[0]['phone'];?>" title="<?php echo $company[0]['phone'];?>"><?php echo $company[0]['phone']; ?></a></li>
+            <li><a><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></a></li>
+            <li><a><?php echo strtoupper(stripslashes($company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip'])); ?></a></li>
+            <li><a class="colors" href="tel:<?php echo $company[0]['phone'];?>" title="<?php echo $company[0]['phone'];?>"><?php echo $company[0]['phone']; ?></a></li>
             <?php if(strlen($company[0]['fax']>8)){?>
             <li><a><?php echo $company[0]['fax'];?></a></li>
             <?php } ?>
@@ -454,7 +455,7 @@ $('#mapshow').removeClass('mapshow');
             <div class="review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="review_lft">
                 <div class="user_img"><img src="images/default_user.png" alt="User image" title="User image"></div>
-	    </div>
+	    
                 
               
               <div class="review_rgt reviewstab">
@@ -480,7 +481,7 @@ $('#mapshow').removeClass('mapshow');
 		<div class="cmnt_wrp wrps "><a class="valigns" href="<?php echo site_url('company/complaints/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a></div>
               </div>
               <?php } }else{?>
-              <div class="review_block">
+              <div class="review_block noblock">
                 <p>No Complaints.</p>
               </div>
               <?php } ?>
@@ -507,7 +508,7 @@ $('#mapshow').removeClass('mapshow');
             <p align="right" class="cmnt_wrp wrps">
             <a href="<?php echo site_url('company/pressreleases/'.$company[0]['companyseokeyword']);?>" title="View All">View All</a></p>
             <?php }else{ ?>
-            <div class="review_block">
+            <div class="review_block noblock">
               <p> No Pressreleases. </p>
             </div>
             <?php } ?>
@@ -544,7 +545,7 @@ $('#mapshow').removeClass('mapshow');
             </p>
             <?php } 
                 else { ?>
-            <div class="review_block">
+            <div class="review_block noblock">
               <p>No Coupons.</p>
             </div>
             <?php } ?>
@@ -610,7 +611,8 @@ $('#mapshow').removeClass('mapshow');
           </div>
         </div>
       </div>
-<div class="load_rvw"> <a href="<?php echo site_url('company/reviews/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="Click here to see more review"><div ><label class="load_label">Click here to see more review</label></div> <img class="logo_btm" src="images/ygr_logos.png" alt="Click here to see more review" title="Click here to see more review"> </a> </div>
+      </div>
+<div class="load_rvw"> <a href="<?php echo site_url('company/reviews/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="Click here to see more review"><div ><label class="load_label">Click here to view more recent business reviews</label></div> <img class="logo_btm" src="images/ygr_logos.png" alt="Click here to see more review" title="Click here to see more review"> </a> </div>
     </div>
   </section>
 </section>
