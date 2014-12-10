@@ -460,7 +460,7 @@ class Elite extends CI_Controller {
 											
 							//Sending mail user
 							$this->email->send();
-							$this->session->set_flashdata('success','Payment is made and your Elitemembership subscription is Updated successfully.');
+							$this->session->set_flashdata('success','Payment For Your Elitemembership subscription is Updated with New Credit card successfully.');
 							redirect('elite', 'refresh');
 					}
 					else
