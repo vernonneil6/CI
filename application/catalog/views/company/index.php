@@ -178,7 +178,35 @@
 
          <div class="get_dirct">
           <div class="getdir_title">
-            <label id="directions">GET DIRECTIONS</label>
+            <label>
+            <?php 
+			  $mapaddress = stripslashes($company[0]['streetaddress'].','.$company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip']);
+			  $string = str_replace(' ', '-', $mapaddress); // Replaces all spaces with hyphens.
+
+   $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
+			  ?>
+          <div class="srch_rslt_right srh_rght">
+<!--            <div class="map_wrap">-->
+            <div class="" align="center">
+              <div class="Flexible-container">
+                <?php /*?><iframe width="424" height="214" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBkUSG003UBp7IiqoZXZUJjtC_-N4BOZ_c&q=<?php echo $mapaddress; ?>"></iframe><?php */?>
+                <script>
+			function PopupCenter(pageURL, title,w,h)
+			 {
+			  var left = (screen.width/2)-(w/2);
+		  	  var top = (screen.height/2)-(h/2);
+			  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+  
+}
+			</script><a style="cursor: pointer;" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">GET DIRECTIONS</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+            
+            
+            </label>
            <!-- <i class="line"></i>--> 
 	</div>
 	   </div>
@@ -259,31 +287,7 @@
         <php } ?>-->
         
         </ul>
-<?php 
-			  $mapaddress = stripslashes($company[0]['streetaddress'].','.$company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip']);
-			  $string = str_replace(' ', '-', $mapaddress); // Replaces all spaces with hyphens.
 
-   $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
-			  ?>
-          <div class="srch_rslt_right srh_rght">
-<!--            <div class="map_wrap">-->
-            <div class="" align="center">
-              <div class="Flexible-container">
-                <?php /*?><iframe width="424" height="214" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBkUSG003UBp7IiqoZXZUJjtC_-N4BOZ_c&q=<?php echo $mapaddress; ?>"></iframe><?php */?>
-                <script>
-			function PopupCenter(pageURL, title,w,h)
-			 {
-			  var left = (screen.width/2)-(w/2);
-		  	  var top = (screen.height/2)-(h/2);
-			  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-  
-}
-			</script><a style="cursor: pointer;" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">View Map</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 <!--<script>
 $(document).ready(function(){
 $('#directions').click(function(){
