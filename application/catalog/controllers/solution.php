@@ -959,7 +959,7 @@ public function adminreport()
 					$subscr_id = '';
 					$Expire='';
 					$status='';
-					$fail='<table border="1">
+					$fail='<table>
                          <tr>
                          <th>Subscription ID</th>
                          <th>Payment Date</th>
@@ -985,13 +985,13 @@ public function adminreport()
                          
                     //success retreive   
                     
-                    //echo '<pre>';print_r($reportsuccess); 
+                    echo '<pre>';print_r($reportsuccess); 
                     
                     $paymentdate= '';
 					$subscr_id = '';
 					$Expire='';
 					$status='';
-					$success='<table border="1">
+					$success='<table>
                          <tr>
                          <th>Subscription ID</th>
                          <th>Payment Date</th>
@@ -1042,7 +1042,7 @@ public function adminreport()
 					$this->email->from('noreply@yougotrated.com');
 					$this->email->to('alankenn@grossmaninteractive.com');	
 					$this->email->subject('Todays Report On Success and Failed Payments On Date  '.$todaysdate.'');
-					$this->email->message('<table cellpadding="0" cellspacing="0" width="100%" border="0">
+					$this->email->message('<table cellpadding="0" cellspacing="10" width="100%" border="0">
 															<tr>
 																<td>Hello Administration,</td>
 															</tr>
@@ -1054,15 +1054,26 @@ public function adminreport()
 															</tr>
 															<tr>
 																<td>
-																	<table cellpadding="0" cellspacing="0" width="100%" border="0">
-																	<tr><td colspan="3"><h3>Payment Detail</h3></td></tr>
+																	<table cellpadding="10" cellspacing="10" width="100%" border="0">
+																	<tr><td colspan="3"><h3>Payment Details</h3></td></tr>
 																	<tr>
 																		<td><b>Failed Transaction Payments Today</b></td><br>
 																	</tr>
 																	<tr>
 																	   '.$fail.'
 																	</tr>
-																	    
+																	<tr>
+																		<td style="padding-top:20px;">
+																		 
+																		</td>
+																	</tr>	
+																	</table>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<table cellpadding="10" cellspacing="10" width="100%" border="0">
+																	<tr><td colspan="3"><h3>Payment Details</h3></td></tr>
 																	<tr>
 																		<td><b>Successful Transaction Payments Today</b></td><br>
 																	</tr>
@@ -1077,6 +1088,7 @@ public function adminreport()
 																	</table>
 																</td>
 															</tr>
+															
 															<tr>
 												<td><br/>
 												  <br/></td>
@@ -1091,7 +1103,7 @@ public function adminreport()
 											
 					//Sending mail to admin
 					$this->email->send();
-	//echo $this->email->print_debugger();
+	
 	
 }
 public function renew($id)
@@ -1368,7 +1380,7 @@ public function renew_update($id)
 			else
 			{
 				$this->session->set_flashdata('Error','Payment is Failed.');
-				redirect('solution', 'refresh');
+				//redirect('authorize', 'refresh');
 			}
 		}
 		else
