@@ -584,7 +584,7 @@ $('#mapshow').removeClass('mapshow');
               <?php } ?>
               <?php } ?>
               <?php } else { ?>
-              <div class="form-message warning">
+              <div class="form-message warning noblock">
                 <p>No Photos.</p>
               </div>
               <?php } ?>
@@ -596,8 +596,8 @@ $('#mapshow').removeClass('mapshow');
             </div>
             <?php if( count($videos) > 0 ) { ?>
             <?php for($i=0; $i<count($videos); $i++) { ?>
-            <div class="review_block <?php if($i%2==0){echo "fadeout";}?>">
-              <div class="company_content_title"><?php echo $videos[$i]['title'];?></div>
+            <div class="review_block noblock <?php if($i%2==0){echo "fadeout";}?>">
+              <div class="company_content_title contenttag"><?php echo $videos[$i]['title'];?></div>
               <br />
               <div>
                 <?php $link = strstr($videos[$i]['videourl'], '=');?>
