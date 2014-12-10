@@ -481,7 +481,7 @@ $('#mapshow').removeClass('mapshow');
 		<div class="cmnt_wrp wrps "><a class="valigns" href="<?php echo site_url('company/complaints/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a></div>
               </div>
               <?php } }else{?>
-              <div class="review_block">
+              <div class="review_block noblock">
                 <p>No Complaints.</p>
               </div>
               <?php } ?>
@@ -508,7 +508,7 @@ $('#mapshow').removeClass('mapshow');
             <p align="right" class="cmnt_wrp wrps">
             <a href="<?php echo site_url('company/pressreleases/'.$company[0]['companyseokeyword']);?>" title="View All">View All</a></p>
             <?php }else{ ?>
-            <div class="review_block">
+            <div class="review_block noblock">
               <p> No Pressreleases. </p>
             </div>
             <?php } ?>
@@ -545,7 +545,7 @@ $('#mapshow').removeClass('mapshow');
             </p>
             <?php } 
                 else { ?>
-            <div class="review_block">
+            <div class="review_block noblock">
               <p>No Coupons.</p>
             </div>
             <?php } ?>
