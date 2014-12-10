@@ -985,7 +985,7 @@ public function adminreport()
                          
                     //success retreive   
                     
-                    echo '<pre>';print_r($reportsuccess); 
+                    //echo '<pre>';print_r($reportsuccess); 
                     
                     $paymentdate= '';
 					$subscr_id = '';
@@ -1090,8 +1090,8 @@ public function adminreport()
 											
 											
 					//Sending mail to admin
-					//$this->email->send();
-	echo $this->email->print_debugger();
+					$this->email->send();
+	//echo $this->email->print_debugger();
 	
 }
 public function renew($id)
