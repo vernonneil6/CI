@@ -554,7 +554,7 @@ $('#mapshow').removeClass('mapshow');
             <div class="review_title">
               <h2>RECENT PHOTOS</h2>
             </div>
-            <div class="review_block">
+            <div class="review_block noblock">
               <link rel="stylesheet" href="<?php echo base_url();?>js/orbit/orbit-1.2.3.css" type="text/css">
               <script type="text/javascript" src="<?php echo base_url();?>js/orbit/jquery.orbit-1.2.3.min.js"></script>
               <?php if( count($gallerys) > 0 ) { ?>
@@ -578,13 +578,13 @@ $('#mapshow').removeClass('mapshow');
               </div>
               <div style="padding-bottom:15; margin-top:15px;"></div>
               <?php } else { ?>
-              <div class="noblock form-message warning">
+              <div class="form-message warning">
                 <p>No photos in this gallery.</p>
               </div>
               <?php } ?>
               <?php } ?>
               <?php } else { ?>
-              <div class="noblock form-message warning">
+              <div class="form-message warning">
                 <p>No Photos.</p>
               </div>
               <?php } ?>
