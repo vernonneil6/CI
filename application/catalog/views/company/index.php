@@ -82,7 +82,7 @@
         <div class="contct_dtl">
           <ul>
             <li><a><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></a></li>
-            <li><a><?php echo strtoupper(stripslashes($company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip'])); ?></a></li>
+            <li><a><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['country'].',     '.$company[0]['zip'])); ?></a></li>
             <li><a class="colors" href="tel:<?php echo $company[0]['phone'];?>" title="<?php echo $company[0]['phone'];?>"><?php echo $company[0]['phone']; ?></a></li>
             <?php if(strlen($company[0]['fax']>8)){?>
             <li><a><?php echo $company[0]['fax'];?></a></li>
