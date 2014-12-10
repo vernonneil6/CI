@@ -578,14 +578,14 @@ $('#mapshow').removeClass('mapshow');
               </div>
               <div style="padding-bottom:15; margin-top:15px;"></div>
               <?php } else { ?>
-              <div class="form-message warning">
+              <div class="noblock form-message warning">
                 <p>No photos in this gallery.</p>
               </div>
               <?php } ?>
               <?php } ?>
               <?php } else { ?>
-              <div class="form-message warning">
-                <p class = "contenttag">No Photos.</p>
+              <div class="noblock form-message warning">
+                <p>No Photos.</p>
               </div>
               <?php } ?>
             </div>
