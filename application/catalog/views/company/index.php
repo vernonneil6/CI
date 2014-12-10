@@ -455,7 +455,7 @@ $('#mapshow').removeClass('mapshow');
             <div class="review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="review_lft">
                 <div class="user_img"><img src="images/default_user.png" alt="User image" title="User image"></div>
-	    </div>
+	    
                 
               
               <div class="review_rgt reviewstab">
@@ -610,6 +610,7 @@ $('#mapshow').removeClass('mapshow');
             <?php }?>
           </div>
         </div>
+      </div>
       </div>
 <div class="load_rvw"> <a href="<?php echo site_url('company/reviews/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="Click here to see more review"><div ><label class="load_label">Click here to view more recent business reviews</label></div> <img class="logo_btm" src="images/ygr_logos.png" alt="Click here to see more review" title="Click here to see more review"> </a> </div>
     </div>
