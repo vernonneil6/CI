@@ -320,14 +320,14 @@ class Elite extends CI_Controller {
 				if($resultCode=='Ok')
 				{
 					//update status in elite table and subscription table
-					echo $sid=$id;
+					$sid=$id;
 					$sub_id=$this->settings->get_subscriptionid($sid);
 					$subscriptionId=$sub_id['subscr_id'];
 					$sig=$sub_id['sign'];
 					$tx  = $transactionkey;
 					$amt = $amount;
 					$companyid  = $sid;
-					echo $time = '1';
+					 $time = '1';
 					$expires = date('Y-m-d H:i:s', strtotime("+$time Month"));
 					$payer_id=$email;
 					$paymentmethod = 'authorize';
@@ -341,14 +341,14 @@ class Elite extends CI_Controller {
 					  $update_elite= $this->settings->update_elite($companyid,$amount,'USD',$transactionkey,date('Y-m-d H:i:s'));
 							//echo '<pre>';print_r($update_elite);
 							
-						   
-				$site_name ='YouGotRated';
-				$site_url = 'http://www.yougotrated.writerbin.com/';
-				$site_mail ='yougotrated813@gmail.com';
-				$emailcompany=$id;
-				$cronemail=$this->settings->get_elitesubscription_detailsbycompanyid($emailcompany);	
-				
-				//CHANGE THE RECEPTIENT AND URL LINK AFTER CHECKING
+									   
+					$site_name ='YouGotRated';
+					$site_url = 'http://www.yougotrated.writerbin.com/';
+					$site_mail ='yougotrated813@gmail.com';
+					$emailcompany=$id;
+					$cronemail=$this->settings->get_elitesubscription_detailsbycompanyid($emailcompany);	
+					
+					//CHANGE THE RECEPTIENT AND URL LINK AFTER CHECKING
 						   $config = Array(
 							'protocol' => 'smtp',
 							'smtp_host' => 'smtp.mandrillapp.com',
@@ -370,7 +370,7 @@ class Elite extends CI_Controller {
 							//$this->email->from('alankenn@grossmaninteractive.com');
 							//$this->email->to($site_mail);	
 							$this->email->to('alankenn@grossmaninteractive.com');	
-							$this->email->subject('Payment Received for Elitemembership New card.');
+							$this->email->subject('Elitemembership Subscription For User '.ucfirst($cronemail['company']).' Updated With  New credit card Details.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 																	<tr>
 																		<td>Hello administration,</td>
@@ -384,18 +384,22 @@ class Elite extends CI_Controller {
 																	<tr>
 																		<td>
 																			<table cellpadding="0" cellspacing="0" width="100%" border="0">
-																			<tr><td colspan="3"><h3>Renewal Payment Detail</h3></td></tr>
+																			<tr><td colspan="3"><h3>Elitemembership Subscription Detail</h3></td></tr>
 																			<tr>
-																				<td>Payment Amount</td>
+																				<td>Subscription ID</td>
 																				<td>:</td>
-																				<td>USD '.$amount.'</td>
+																				<td>USD '.$subscriptionId.'</td>
 																			</tr>
-																			<tr>
-																				<td>Transacion ID</td>
-																				<td>:</td>
-																				<td><b>'.$transactionkey.'</b></td>
-																			</tr>
-																			</table>
+																		</table>
+																		<tr>
+																		<td><br/>
+																		  <br/></td>
+																	  </tr>
+																	  <tr>
+																		<td> Regards,<br/>
+																		  The '.$site_name.' Team.<br/>
+																		</td>
+																	  </tr>
 																		</td>
 																	</tr>
 																	</table>');
@@ -406,7 +410,7 @@ class Elite extends CI_Controller {
 							$this->email->from($site_mail,$site_name);
 							//$this->email->to($email);	
 							$this->email->to('alankenn@grossmaninteractive.com');	
-							$this->email->subject('Elitemembership has been Updated successfully With New credit card.');
+							$this->email->subject('Elitemembership Subscription Details has been Updated successfully With New credit card.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 													  <tr>
 														<td>Hello <b>'.ucfirst($cronemail['company']).'</b>,</td>
@@ -415,29 +419,23 @@ class Elite extends CI_Controller {
 														<td><br/></td>
 													  </tr>
 													  <tr>
-														<td style="padding-left:20px;"> You have successfully updated Your Elitemembership Subscription with New credit card<b>'.ucfirst($cronemail['company']).'</b>. </td>
+														<td style="padding-left:20px;"> You have successfully updated Your Elitemembership Subscription Details with New credit card<b>'.ucfirst($cronemail['company']).'</b>. </td>
 													  </tr>
 													 <tr>
-														<td style="padding-left:20px;">Continue Enjoying your Elitemembership login at  <a href="'.$site_url.'businessadmin/'.'" title="'.$site_name.'">'.$site_name.'</a>  With login details You already Provided.</td>
+														<td style="padding-left:20px;">You can Access Your Elitemembership login at  <a href="'.$site_url.'businessadmin/'.'" title="'.$site_name.'">'.$site_name.'</a>  With login details You already Provided.</td>
 													  </tr>
-													  <tr>
-														<td style="padding-left:20px;"> Your Transaction Details are as follows. </td>
-													  </tr>
+													  
 													  <tr>
 														<td><table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
-															  <td colspan="3"><h3>New credit card Payment Detail</h3></td>
+															  <td colspan="3"><h3>Elitemembership Subscription Detail</h3></td>
 															</tr>
 															<tr>
-															  <td>Payment Amount</td>
-															  <td>:</td>
-															  <td>USD '.$amount.'</td>
+															  <td>Subscription ID</td>
+																<td>:</td>
+															<td>USD '.$subscriptionId.'</td>
 															</tr>
-															<tr>
-															  <td>Transacion ID</td>
-															  <td>:</td>
-															  <td><b>'.$transactionkey.'</b></td>
-															</tr>
+															
 															<td colspan="3">&nbsp;</td>
 															</tr>
 															<tr>
@@ -460,19 +458,19 @@ class Elite extends CI_Controller {
 											
 							//Sending mail user
 							$this->email->send();
-							$this->session->set_flashdata('success','Payment For Your Elitemembership subscription is Updated with New Credit card successfully.');
+							$this->session->set_flashdata('success','Your Elitemembership subscription Details is Updated with New Credit card successfully.');
 							redirect('elite', 'refresh');
 					}
 					else
 					{
-						$this->session->set_flashdata('Error','Payment is Failed.');
-						//redirect('authorize', 'refresh');
+						$this->session->set_flashdata('Error','New credit card Updation Failed due to incorrect Detail or Invalid credit card provided.');
+						redirect('elite', 'refresh');
 					}
 				}
 				else
 				{
 					
-					$this->session->set_flashdata('Error','Error Payment.');
+					$this->session->set_flashdata('Error','Error in Payment.');
 					
 				}
 					
