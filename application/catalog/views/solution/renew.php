@@ -282,6 +282,12 @@
 						});
 			}
 			}
+			function number(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+} 
 </script>
 <section class="container">
   <section class="main_contentarea">
@@ -292,7 +298,8 @@
 	      
         <form class="reg_frm" action="index.php/solution/renew_update/<?php echo $renewelite[0]['id'];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
           <div class="reg-row">
-            <label>RENEW YOUR BUSINESS HERE</label>
+            <label>RENEW YOUR SUBSCRIPTION HERE</label>
+            <div class="reg_fld">PLEASE RENEW YOUR ELITEMEMBERSHIP SUBSCRIPTION HERE FOR ACTIVATING IT.</div>
             <?php //print_r($renewelite[0]);?>
             <input type="hidden" class="reg_txt_box" placeholder="companyid" id="companyid" name="companyid"  maxlength="30" value="<?php echo $renewelite[0]['id'];?>" />
             <input type="hidden" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30" value="<?php echo $renewelite[0]['company'];?>" />
@@ -322,7 +329,7 @@
           </div>
           <div class="reg-row" style="margin-top:10px !important;">
             <div class="reg_fld">CREDIT CARD NUMBER</div>
-            <input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" /><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+            <input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
               
           </div>
           <div class="reg-row" style="margin-top:10px !important;">

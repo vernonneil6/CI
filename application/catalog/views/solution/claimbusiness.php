@@ -300,6 +300,12 @@
 						});
 			}
 			}
+			function number(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+  }  
 </script>
 
 <section class="container">
@@ -434,7 +440,7 @@
           </div>
           <div class="reg-row" style="margin-top:10px !important;">
             <div class="reg_fld">CREDIT CARD NUMBER</div>
-            <input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" /><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+            <input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
               
           </div>
           <div class="reg-row" style="margin-top:10px !important;">
