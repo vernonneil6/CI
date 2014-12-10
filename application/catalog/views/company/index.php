@@ -178,9 +178,23 @@
 
          <div class="get_dirct">
           <div class="getdir_title">
-            <label id="directions">GET DIRECTIONS</label>
-           <!-- <i class="line"></i>--> 
-	</div>
+            <!--<label id="directions">GET DIRECTIONS</label>
+            <i class="line"></i>--> 
+            <?php 
+			  $mapaddress = stripslashes($company[0]['streetaddress'].','.$company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip']);
+			  $string = str_replace(' ', '-', $mapaddress);
+			  $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
+			?>
+            <script>
+			function PopupCenter(pageURL, title,w,h)
+			 {
+			  var left = (screen.width/2)-(w/2);
+		  	  var top = (screen.height/2)-(h/2);
+			  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+			 }
+			</script>
+			<label style="cursor: pointer;" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">GET DIRECTIONS</label>       		         
+		</div>
 	   </div>
 
 	<div class="get_dirct">
@@ -225,7 +239,7 @@
         </div>
 
 
-       <!-- <?php if(count($elitemem_status)!=0){?>
+       <!-- <php if(count($elitemem_status)!=0){?>
         <div class="hour_operatn">
           <div class="hr_title">
             <h2>Hours</h2>
@@ -244,23 +258,23 @@
             </thead>
             <tbody>
               <tr>
-                <?php for($t=0;$t<count($company_timings); $t++) { ?>
-                <td><?php echo date("h:i A",strtotime($company_timings[$t]['start']));?></td>
-                <?php } ?>
+                <php for($t=0;$t<count($company_timings); $t++) { ?>
+                <td><php echo date("h:i A",strtotime($company_timings[$t]['start']));?></td>
+                <php } ?>
               </tr>
               <tr>
-                <?php for($t=0; $t<count($company_timings); $t++) { ?>
-                <td><?php echo date("h:i A",strtotime($company_timings[$t]['end']));?></td>
-                <?php } ?>
+                <php for($t=0; $t<count($company_timings); $t++) { ?>
+                <td><php echo date("h:i A",strtotime($company_timings[$t]['end']));?></td>
+                <php } ?>
               </tr>
             </tbody>
           </table>
         </div>
-        <?php } ?>-->
+        <php } ?>-->
         
         </ul>
 
-<script>
+<!--<script>
 $(document).ready(function(){
 $('#directions').click(function(){
 $('#mapshow').addClass('mapshow');
@@ -275,7 +289,7 @@ $('#mapshow').removeClass('mapshow');
 <div id="maps"></div>       
           <div class="map_wrap">
             <div class="Flexible-container">
-              <?php 
+              <php 
 			  $mapaddress = stripslashes($company[0]['streetaddress'].','.$company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip']);
 			  $string = str_replace(' ', '-', $mapaddress); // Replaces all spaces with hyphens.
 	      ?>
@@ -286,7 +300,7 @@ $('#mapshow').removeClass('mapshow');
 	 // When the window has finished loading create our google map below
             google.maps.event.addDomListener(window, 'load', init);
         
-<?php 
+<php 
     $json = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=$mapaddress&sensor=false");
     $json = json_decode($json);
     $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
@@ -303,7 +317,7 @@ $('#mapshow').removeClass('mapshow');
                     zoom: 10,
 
                  // The latitude and longitude to center the map (always required)
-                    center: new google.maps.LatLng(<?php echo $lat?>,<?php echo $long;?>), // New York
+                    center: new google.maps.LatLng(<php echo $lat?>,<php echo $long;?>), // New York
 
                 // How you would like to style the map. 
                 // This is where you would paste any style found on Snazzy Maps.
@@ -323,7 +337,7 @@ $('#mapshow').removeClass('mapshow');
             </div>
           </div>
 </div>
-
+-->
 
         </div>
 
@@ -336,10 +350,10 @@ $('#mapshow').removeClass('mapshow');
 
         <!--<div class="abt_dtwrap">
           <div class="abt_title">
-            <h2><?php echo strtoupper($company[0]['company']);?></h2>
+            <h2><php echo strtoupper($company[0]['company']);?></h2>
             <i class="line"></i> <span>ABOUT US</span> 
 	</div>
-          <p> <?php echo ucfirst($company[0]['aboutus']);?> </p>
+          <p> <php echo ucfirst($company[0]['aboutus']);?> </p>
         </div> -->
    
 
@@ -554,7 +568,7 @@ $('#mapshow').removeClass('mapshow');
             <div class="review_title">
               <h2>RECENT PHOTOS</h2>
             </div>
-            <div class="review_block">
+            <div class="review_block noblock">
               <link rel="stylesheet" href="<?php echo base_url();?>js/orbit/orbit-1.2.3.css" type="text/css">
               <script type="text/javascript" src="<?php echo base_url();?>js/orbit/jquery.orbit-1.2.3.min.js"></script>
               <?php if( count($gallerys) > 0 ) { ?>
@@ -596,8 +610,8 @@ $('#mapshow').removeClass('mapshow');
             </div>
             <?php if( count($videos) > 0 ) { ?>
             <?php for($i=0; $i<count($videos); $i++) { ?>
-            <div class="review_block <?php if($i%2==0){echo "fadeout";}?>">
-              <div class="company_content_title"><?php echo $videos[$i]['title'];?></div>
+            <div class="noblock review_block <?php if($i%2==0){echo "fadeout";}?>">
+              <div class="company_content_title contenttag"><?php echo $videos[$i]['title'];?></div>
               <br />
               <div>
                 <?php $link = strstr($videos[$i]['videourl'], '=');?>
