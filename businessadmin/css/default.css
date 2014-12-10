@@ -438,3 +438,11 @@ a:hover.ico   { background-position: 0 0; }
 	text-align : center;
 	padding-top: 4%;
 }
+#cc-error
+{
+    text-transform: capitalize;
+	color: #FF0000;
+	font-size: 12px;
+	margin-top: 51px;
+	margin-left: 75%;
+}

@@ -823,7 +823,7 @@ public function eliteSubscribe($formpost) {
 		}
 		else
 		{
-			$this->session->set_flashdata('success', $text);
+			$this->session->set_flashdata('error', $text);
 			//redirect('authorize', 'refresh');
 		}
 			
@@ -943,6 +943,7 @@ public function cron()
 											
 					//Sending mail to admin
 					$this->email->send();
+					$this->adminreport();
 	}
 	
 }
@@ -985,7 +986,7 @@ public function adminreport()
                          
                     //success retreive   
                     
-                    echo '<pre>';print_r($reportsuccess); 
+                    //echo '<pre>';print_r($reportsuccess); 
                     
                     $paymentdate= '';
 					$subscr_id = '';
@@ -1378,14 +1379,14 @@ public function renew_update($id)
 			}
 			else
 			{
-				$this->session->set_flashdata('Error','Payment is Failed.');
+				$this->session->set_flashdata('error','Payment is Failed.');
 				//redirect('authorize', 'refresh');
 			}
 		}
 		else
 		{
 			
-			$this->session->set_flashdata('Error','Error Payment.');
+			$this->session->set_flashdata('error',$text);
 			redirect('solution', 'refresh');
 		}
 			

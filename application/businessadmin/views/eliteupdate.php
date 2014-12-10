@@ -1,6 +1,5 @@
 <?php echo $heading; ?>
 <!-- #content -->
-
 <div id="content">
   <div class="breadcrumbs">
     <ul>
@@ -9,14 +8,26 @@
     </ul>
   </div>
 
-  <?php if($this->uri->segment(2)=='update')  {
-	  ?>
-     <div class="box">
+<?php if($this->uri->segment(2)=='update')  {	  ?>
+	  
+	  
+<script type="text/javascript">
+function number(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+} 	
+</script>
+
+  <div class="box">
     <div class="headlines">
       <h2><span>Elite Update</span></h2>
     </div>
     <?php // print_r($elite[0]);?>
-        <div class="box-content"> <?php echo form_open('elite/renew/'.$elite[0]['id'],array('class'=>'formBox','id'=>'frmvideo')); ?>
+        <div class="box-content"> 
+			<?php echo form_open('elite/renew/'.$elite[0]['id'],array('class'=>'formBox','id'=>'frmelite')); ?>
+			
       <fieldset>
 		    <input type="hidden" class="reg_txt_box" placeholder="companyid" id="companyid" name="companyid"  maxlength="30" value="<?php echo $elite[0]['id'];?>" />
             <input type="hidden" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30" value="<?php echo $elite[0]['company'];?>" />
@@ -34,15 +45,16 @@
           <div class="lab">
              <p style="width: 272px;">Enter Your New Credit Card Information</p>
             <label for="title">Credit Card<span class="errorsign">*</span></label>
-          </div>
+        </div>
           <div class="con">
-      
-            <?php echo form_input(array( 'name'=>'ccnumber','id'=>'ccnumber','class'=>'input','type'=>'text','placeholder'=>'Enter Your credit card number')); ?>
-            </div>
-             <div class="con" style='margin-top:10px'>
+			  <?php echo form_input(array( 'name'=>'ccnumber','id'=>'ccnumber','class'=>'input','type'=>'text','placeholder'=>'Enter Your credit card number','onkeypress'=>'return number(event)')); ?>
+          </div>
+        <div class="con" style='margin-top:10px'>
                <?php echo form_input(array( 'name'=>'fname','id'=>'fname','class'=>'input','type'=>'text','placeholder'=>'Enter Your first name')); ?>
             </div>
-             <div class="con" style='margin-top:10px'>
+           <div id="cc-error"><?php echo $this->session->flashdata('success_msg'); ?></div>
+           
+        <div class="con" style='margin-top:10px'>
             <?php echo form_input(array( 'name'=>'lname','id'=>'lname','class'=>'input','type'=>'text','placeholder'=>'Enter Your last name')); ?>
              </div> 
           <div id="titleerror" class="error" style="width:auto">title is required.</div>
@@ -71,7 +83,7 @@
         <div class="btn-submit"> 
           <!-- Submit form -->
           
-          <?php echo form_input(array('name'=>'btnupdate','id'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Update')); ?>
+          <?php echo form_input(array('name'=>'btnupdate','id'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Update','onclick'=>'checkcard()')); ?>
     
           </div>
       </fieldset>
