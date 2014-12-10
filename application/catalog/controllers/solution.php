@@ -1049,7 +1049,7 @@ public function adminreport()
 															<tr><td><br/></td></tr>
 															<tr>
 																<td style="padding-left:20px;">
-																Your subscription to Elitemembership has been deactivated due to payment failure. Details are as follows.
+																Todays Report on Success and Failed payments On following Date '.$todaysdate.' . Details are as follows.
 																</td>
 															</tr>
 															<tr>
@@ -1090,8 +1090,8 @@ public function adminreport()
 											
 											
 					//Sending mail to admin
-					$this->email->send();
-	
+					//$this->email->send();
+	echo $this->email->print_debugger();
 	
 }
 public function renew($id)
@@ -1368,7 +1368,7 @@ public function renew_update($id)
 			else
 			{
 				$this->session->set_flashdata('Error','Payment is Failed.');
-				//redirect('authorize', 'refresh');
+				redirect('solution', 'refresh');
 			}
 		}
 		else
