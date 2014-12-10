@@ -1101,7 +1101,7 @@ ul.tabbs li {
     list-style: none outside none;
     height: 35px;
     list-style: none outside none;
-   margin-right: 12.5px;
+	margin-right: 11px;
 }
 ul.tabbs li:hover {
     background: #AAA000;   
@@ -1112,7 +1112,7 @@ ul.tabbs li:hover a{
 ul.tabbs li a {
    color: #a09507;
     display: block;
-    font-family: "myriadpro-regular";
+    font-family: myriadpro-blacksemicn;
     font-size: 12px;
     font-weight: bold;
     margin-top: 11px;
@@ -1306,4 +1306,8 @@ color:#2c6a99;
     color: rgb(128, 0, 0);
     height: auto;
     padding: 0px;
+}
+.form-message p
+{
+	font-family : "myriadpro-regular";
 }
