@@ -50,7 +50,8 @@
 <section class="container">
   <section class="main_contentarea">
     <div class="innr_wrap">
-      <h1><a href="#"><img src="images/YouGotRated_HeaderGraphics_BusinessReviews.png" alt="Business Directory" title="Business Directory"></a></h1>
+      <!--<h1><a href="#"><img src="images/YouGotRated_HeaderGraphics_BusinessReviews.png" alt="Business Directory" title="Business Directory"></a></h1>-->
+      <h1 class="bannertext"><span class="bannertextregular">RECENT </span>REVIEWS</h1>
       <?php if(count($reviews)>0)
 				 { ?>
       <div class="dir_rew_wrap">
