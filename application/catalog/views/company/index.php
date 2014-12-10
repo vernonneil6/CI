@@ -260,7 +260,7 @@
         
         </ul>
 <?php 
-			  $mapaddress = stripslashes($companies[$i]['streetaddress'].','.$companies[$i]['city'].','.$companies[$i]['state'].','.$companies[$i]['country'].','.$companies[$i]['zip']);
+			  $mapaddress = stripslashes($company[0]['streetaddress'].','.$company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip']);
 			  $string = str_replace(' ', '-', $mapaddress); // Replaces all spaces with hyphens.
 
    $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
