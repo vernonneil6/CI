@@ -596,7 +596,7 @@ $('#mapshow').removeClass('mapshow');
             </div>
             <?php if( count($videos) > 0 ) { ?>
             <?php for($i=0; $i<count($videos); $i++) { ?>
-            <div class="review_block <?php if($i%2==0){echo "fadeout";}?>">
+            <div class="noblock review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="company_content_title contenttag"><?php echo $videos[$i]['title'];?></div>
               <br />
               <div>
