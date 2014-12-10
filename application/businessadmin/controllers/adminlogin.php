@@ -69,6 +69,7 @@ class AdminLogin extends CI_Controller {
 				
 				//query the database
 				$result = $this->login->logincheck($user_name, $user_pass);
+				$result1 = $this->login->disablelogincheck($user_name, $user_pass);
 				//print_r($result);die();
 				if($result)
 				{
@@ -83,6 +84,11 @@ class AdminLogin extends CI_Controller {
 					
 					// user has been logged in
 					redirect('dashboard', 'refresh');
+				}
+				if($result1)
+				{
+					echo "hi";
+					
 				}
 				
 				else
