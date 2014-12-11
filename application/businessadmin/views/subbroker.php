@@ -240,7 +240,7 @@
 			<form class="formBox broker" action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
 			<fieldset>
 				
-            <h1>Registration For Elite BUSSINESS</h1>
+            <h1>Registration</h1>
                         
             <div class="clearfix">
 			  <div class="lab">
