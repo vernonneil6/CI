@@ -315,7 +315,7 @@ class Elite extends CI_Controller {
 				$content;
 				"<br \>";
 				"<br \>";
-				echo $resultCode;
+				//echo $resultCode;
 				
 				if($resultCode=='Ok')
 				{
@@ -342,13 +342,13 @@ class Elite extends CI_Controller {
 							//echo '<pre>';print_r($update_elite);
 							
 									   
-					$site_name ='YouGotRated';
-					$site_url = 'http://www.yougotrated.writerbin.com/';
-					$site_mail ='yougotrated813@gmail.com';
-					$emailcompany=$id;
-					$cronemail=$this->settings->get_elitesubscription_detailsbycompanyid($emailcompany);	
-					
-					//CHANGE THE RECEPTIENT AND URL LINK AFTER CHECKING
+						$site_name ='YouGotRated';
+						$site_url = 'http://www.yougotrated.writerbin.com/';
+						$site_mail ='yougotrated813@gmail.com';
+						$emailcompany=$id;
+						$cronemail=$this->settings->get_elitesubscription_detailsbycompanyid($emailcompany);	
+						
+						//CHANGE THE RECEPTIENT AND URL LINK AFTER CHECKING
 						   $config = Array(
 							'protocol' => 'smtp',
 							'smtp_host' => 'smtp.mandrillapp.com',
@@ -383,12 +383,12 @@ class Elite extends CI_Controller {
 																	</tr>
 																	<tr>
 																		<td>
-																			<table cellpadding="0" cellspacing="0" width="100%" border="0">
+																			<table cellpadding="0" cellspacing="10" width="50%" border="0">
 																			<tr><td colspan="3"><h3>Elitemembership Subscription Detail</h3></td></tr>
 																			<tr>
 																				<td>Subscription ID</td>
 																				<td>:</td>
-																				<td>USD '.$subscriptionId.'</td>
+																				<td>'.$subscriptionId.'</td>
 																			</tr>
 																		</table>
 																		<tr>
@@ -426,14 +426,14 @@ class Elite extends CI_Controller {
 													  </tr>
 													  
 													  <tr>
-														<td><table cellpadding="0" cellspacing="0" width="100%" border="0">
+														<td><table cellpadding="0" cellspacing="10" width="50%" border="0">
 															<tr>
 															  <td colspan="3"><h3>Elitemembership Subscription Detail</h3></td>
 															</tr>
 															<tr>
 															  <td>Subscription ID</td>
 																<td>:</td>
-															<td>USD '.$subscriptionId.'</td>
+															<td>'.$subscriptionId.'</td>
 															</tr>
 															
 															<td colspan="3">&nbsp;</td>
@@ -459,18 +459,19 @@ class Elite extends CI_Controller {
 							//Sending mail user
 							$this->email->send();
 							$this->session->set_flashdata('success','Your Elitemembership subscription Details is Updated with New Credit card successfully.');
-							redirect('elite', 'refresh');
+							redirect('elite/update', 'refresh');
 					}
 					else
 					{
-						$this->session->set_flashdata('Error','New credit card Updation Failed due to incorrect Detail or Invalid credit card provided.');
-						redirect('elite', 'refresh');
+						$this->session->set_flashdata('error','New credit card Updation Failed. Please Try later !.');
+						redirect('elite/update', 'refresh');
 					}
 				}
 				else
 				{
-					
-					$this->session->set_flashdata('Error','Error in Payment.');
+				
+					$this->session->set_flashdata('success_msg', $text);
+					redirect('elite/update', 'refresh');
 					
 				}
 					
