@@ -1307,6 +1307,11 @@ color:#2c6a99;
 	font-family : "myriadpro-regular";
 	font-size 	: 25px;
 	text-align  : center;
+	margin		: 60px 0 0;
+}
+.members_part1
+{
+	font-style: italic;
 }
 .members_part1 h1
 {
@@ -1328,6 +1333,177 @@ color:#2c6a99;
 {
 	color: rgb(0, 0, 128);
 }
+.members_part2
+{
+	margin : 60px 0 0;
+}
+.members_part2 p
+{
+	font-size: 21px;
+    text-align: center;
+}
+.member_outline
+{
+	margin: 0px; 
+	padding: 30px 0px 0px; 
+	position: relative; 
+	z-index: 3; 
+	color: rgb(0, 0, 0); 
+	line-height: 18px;
+}
+.member_img2
+{
+	background-image: url(http://d2stxld4m448hz.cloudfront.net/v3/images/CssImages/frame_1_pp.png); 
+	background-attachment: scroll; 
+	background-color: transparent; 
+	height: 319px; 
+	left: 0px; 
+	position: absolute; 
+	top: 0px; 
+	width: 372px; 
+	z-index: 1; 
+	background-position: 0px 0px; 
+	background-repeat: no-repeat no-repeat;
+}
+.member_img2_1
+{
+	height: 268px; 
+	padding: 15px 24px 12px 22px; 
+	width: 327px;
+}
+.member_img2_1_1
+{
+	background-image: url(http://d2stxld4m448hz.cloudfront.net/v3/images/CssImages/pp_before.png); 
+	background-attachment: scroll; 
+	background-color: transparent; 
+	height: 59px; left: 15px; 
+	position: absolute; 
+	top: -16px; 
+	width: 197px; 
+	z-index: 1; 
+	background-position: 0px 0px; 
+	background-repeat: no-repeat no-repeat;
+}
+.member_img2_2_1_1
+{
+	border: none; 
+	padding: 0px; 
+	margin: 0px;
+}
+.member_img2_1_text
+{
+	font-style: italic; 
+	font-weight: bold; 
+	font-size: 16px; 
+	line-height: 19px; 
+	padding: 0px 0px 0px 375px; 
+	width: 180px;
+	text-align: left;
+}
+.member_arrow1
+{
+	background-image: url(http://d2stxld4m448hz.cloudfront.net/v3/images/CssImages/pp_arrow.png); 
+	background-attachment: scroll; 
+	background-color: transparent; 
+	height: 201px; 
+	left: 40px; 
+	position: absolute; 
+	top: 270px; 
+	width: 159px; 
+	background-position: 0px 0px; 
+	background-repeat: no-repeat no-repeat;
+}
+.member_block
+{
+	height: 355px; 
+	margin: -65px 0px 0px; 
+	padding: 0px; 
+	position: relative;
+}
+.member_img2_2
+{
+	background-image: url(http://d2stxld4m448hz.cloudfront.net/v3/images/CssImages/frame_2_pp.png); 
+	background-attachment: scroll; 
+	background-color: transparent; 
+	height: 345px; 
+	position: absolute; 
+	right: 0px; 
+	top: 0px; 
+	width: 372px; 
+	z-index: 1; 
+	background-position: 0px 0px; 
+	background-repeat: no-repeat no-repeat;
+}
+.member_img2_2_1
+{
+	height: 296px; 
+	padding: 15px 24px 12px 22px; 
+	width: 327px;
+}
+.member_arrow2
+{
+	background-image: url(http://d2stxld4m448hz.cloudfront.net/v3/images/CssImages/pp_after.png); 
+	background-attachment: scroll; 
+	background-color: transparent; 
+	height: 59px; 
+	position: absolute; 
+	right: 10px; 
+	top: -18px; 
+	width: 197px; 
+	z-index: 1; 
+	background-position: 0px 0px; 
+	background-repeat: no-repeat no-repeat;
+}
+.member_description
+{
+	font-size: 16px;
+    line-height: 20px;
+    margin: 0;
+    padding: 178px 0 0;
+    text-align: left;
+    width: 200px !important;
+}
+.member_img3
+{
+	margin: 0px; 
+	color: rgb(0, 0, 0); 
+	line-height: 18px;
+	padding: 50px 0 10px;
+}
+.member_img3_1
+{
+	float: left; 
+	padding-right: 10px;
+}
+.member_img3_1_1
+{
+	color: rgb(128, 0, 0);
+}
+.member_img3_2
+{
+	float: left; 
+	max-width: 390px; 
+	font-size: 17px; 
+	line-height: 22px;
+	text-align: left;
+}
+.member_img3_2_1
+{
+	padding: 0px; 
+	margin: 0px; 
+	font-weight: bold; 
+	font-style: italic; 
+	font-size: 22px; 
+	line-height: 26px; 
+	display: block;
+}
+.members_part3
+{
+	display: inline-block;
+	font-family: myriadpro-regular;
+	text-align: center;
+	margin : 20px 0 0;
+}
 .members_part3 ul li
 {
 	font-size: 20px;
@@ -1342,7 +1518,9 @@ color:#2c6a99;
 }
 .members_part4
 {
-	margin : 75px 0 0;
+	margin : 60px 0 0;
+	font-family: myriadpro-regular;
+	text-align: center;
 }
 .members_part4 p
 {
