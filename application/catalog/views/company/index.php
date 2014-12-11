@@ -37,12 +37,12 @@
         <div class="vry_logo"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
         <?php
 				  } ?>
-        <?php if(count($elitemem_status)==0){?>
-        <div class="bsntvry_title">
+		<?php if(count($elitemem_status)==0){?>
+         <!--<div class="bsntvry_title">
           <div class="bsvry_tag"> <span>IS THIS YOUR BUSINESS?</span>
             <p><a href="solution/claimbusiness" title="CLICK HERE TO BECOME VERIFIED">CLICK HERE TO BECOME VERIFIED</a></p>
           </div>
-        </div>
+        </div>-->
 	<div class="compny_name">
           <h1><?php echo strtoupper($company[0]['company']);?></h1>
           <div class="vry_rating vryrating">
