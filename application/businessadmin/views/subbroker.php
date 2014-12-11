@@ -310,7 +310,7 @@
 					}
 					</style>
 				  <div style="float:left;" class = "con_register">
-				   <?php echo form_dropdown('country',$selcon,'','id="country" class="select" onchange="getstates(this.value);"');?>
+				   <?php echo form_dropdown('country',$selcon,'','id="country" class="select con_register" onchange="getstates(this.value);"');?>
 				   </div>
 				   <?php 
 				  $selstate=array(''=>'--Select State--');
@@ -349,7 +349,6 @@
 				<label for="name">YOUR CONTACT INFORMATION</label>
 			  </div>
 			  <div class="con">
-				<div class="reg_fld">CONTACT NAME</div>
 				<input type="text" class="input" placeholder="CONTACT NAME" id="cname" name="cname" maxlength="30" /><div id="cnameerror" class="error">contact name is required.</div>
 			  </div>
 			</div>
@@ -384,11 +383,11 @@
 			  </div>
 			  
 			  <div class="con con_register"> 
-				<input type="text" class="input" placeholder="LAST NAME" id="lname" name="lname" maxlength="30" /><div id="lnameerror" class="error">Last Name is required.</div>
+				<input type="text" class="input con_register" placeholder="LAST NAME" id="lname" name="lname" maxlength="30" /><div id="lnameerror" class="error">Last Name is required.</div>
 			  </div>
 			  
 			  <div class="con con_register"> 
-				<input type="text" class="input" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+				<input type="text" class="input con_register" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
 			  </div>
 			   
 			</div>
