@@ -379,17 +379,15 @@
 			  </div>
 			  
 			  <div class="con"> 
-				<input type="text" class="input" placeholder="FIRST NAME" id="fname" name="fname" maxlength="30" /><div id="fnameerror" class="error">First Name is required.</div>
+				<input type="text" class="input" placeholder="FIRST NAME" id="fname" name="fname" maxlength="30" />
+				<input type="text" class="input con_register" placeholder="LAST NAME" id="lname" name="lname" maxlength="30" />
+				<input type="text" class="input con_register" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)"/>
 			  </div>
 			  
-			  <div class="con con_register"> 
-				<input type="text" class="input con_register" placeholder="LAST NAME" id="lname" name="lname" maxlength="30" /><div id="lnameerror" class="error">Last Name is required.</div>
-			  </div>
+			  <div id="ccnumbererror" class="error">Credit Card Number is required.</div> 
+			  <div id="lnameerror" class="error">Last Name is required.</div>
+			  <div id="fnameerror" class="error">First Name is required.</div>
 			  
-			  <div class="con con_register"> 
-				<input type="text" class="input con_register" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
-			  </div>
-			   
 			</div>
  
 			<div class="clearfix">
