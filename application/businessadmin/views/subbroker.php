@@ -309,14 +309,15 @@
 						width: 249px;
 					}
 					</style>
-				  <div style="float:left;" class = "con_register">
+				  <div style="float:left; width:100%" class = "con_register">
 				   <?php echo form_dropdown('country',$selcon,'','id="country" class="select con_register" onchange="getstates(this.value);"');?>
 				   </div>
 				   <?php 
 				  $selstate=array(''=>'--Select State--');
 				  ?>
-				  <div id="selstatediv" style="float:right;margin-right:127px;">
-				  <?php echo form_dropdown('state',$selstate,'','id="state" class="select con_register"');?></div>
+				  <div id="selstatediv" style="float:right; width:100%;">
+					<?php echo form_dropdown('state',$selstate,'','id="state" class="select con_register"');?>
+				  </div>
 				  <br/>
 					<input type="text" class="input con_register" placeholder="CITY" id="city" name="city" maxlength="50" />					  
 					<input type="text" class="input con_register" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
@@ -429,7 +430,7 @@
 				<label for="name">CREATE YOUR ACCOUNT</label>
 			  </div>
 			  <div>
-				<button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CONTINUE TO CHECKOUT</button>
+				<button type="submit" class="lgn_btn" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CONTINUE TO CHECKOUT</button>
 			  </div>
 			</div>
 
