@@ -1319,15 +1319,19 @@ color:#2c6a99;
     color: rgb(128, 0, 0);
     height: auto;
     padding: 0px;
+    text-align: left;
+    font-size:14px;
 }
 .members_part1 .members_title
 {
 	color: rgb(0, 0, 128);
-	font-size: 40px;
+	font-size: 25px;
 }
 .members_part1 ul li
 {
 	color: rgb(165, 42, 42);
+	text-align: left;
+	font-size: 14px;
 }
 .members_part1 .member_blue
 {
