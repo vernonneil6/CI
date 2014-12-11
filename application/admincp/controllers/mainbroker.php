@@ -93,7 +93,6 @@ class Mainbroker extends CI_Controller
 		'signup'=>date("Y-m-d H:i:s")
 		);
 		
-		$this->mainbrokers->brokeradd($data);
 		$this->mainbrokers->allbroker($data);
 		}
 		$this->load->view('mainbroker');
