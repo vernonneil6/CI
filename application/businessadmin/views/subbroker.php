@@ -237,7 +237,7 @@
 		</div>
 		<div class="box-content"> 
 		
-			<form class="reg_frm" action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
+			<form class="formBox broker" action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
 			<fieldset>
             <label>INTRODUCE YOUR BUSINESS</label>
             
@@ -280,87 +280,122 @@
 					<div id="websiteerror" class="error">Website is required.</div>
 			  </div>
 			</div>
+			
+			
+			<div class="clearfix">
+			  <div class="lab">
+				<label for="name">YOUR EMAIL ADDRESS</label>
+			  </div>
+			  <div class="con">
+					<div class="reg_fld">WHERE DO YOU RECEIVE YOUR E-MAIL?</div>
+					<input type="email" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" onchange="chkmail(this.value);">
+					<div id="emailerror" class="error">Enter valid Emailid.</div>
+					<div id="emailtknerror" class="error">This Emailid already taken.</div>
+			  </div>
+			</div>
+			
+			
+			<div class="clearfix">
+			  <div class="lab">
+				<label for="name">YOUR ADDRESS INFORMATION</label>
+			  </div>
+			  <div class="con">
+				  
+					<div class="reg_fld">WHAT IS YOUR ADDRESS?</div>
+					<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50" />
+					<br/>
+					<style>
+					.seldrop
+					{
+						background: none repeat scroll 0 0 #FFFFFF;
+						border: 1px solid #000000;
+						margin-top: 8px;
+						width: 249px;
+					}
+					</style>
+				  <div style="float:left;">
+				   <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange="getstates(this.value);"');?>
+				   </div>
+				   <?php 
+				  $selstate=array(''=>'--Select State--');
+				  ?>
+				  <div id="selstatediv" style="float:right;margin-right:127px;">
+				  <?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?></div>
+				  <br/>
+					<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
+					<?php /*?><input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" /><?php */?>
+					<?php /*?><input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" /><?php */?>
+					  
+					<input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
+					<div id="streetaddresserror" class="error">Street Address is required.</div>
+					<div id="cityerror" class="error">City is required.</div>
+					<div id="stateerror" class="error">State is required.</div>
+					<div id="countryerror" class="error">Country is required.</div>
+					<div id="ziperror" class="error">Zip Code is required.</div>
+					<div id="zipverror" class="error">Enter digits only valid format 123456</div>
+					<div style="margin-top:36px;" class="reg_fld">WHAT IS YOUR PHONE NUMBER?</div>
+					<div>
+					  <input type="text" class="reg_txt_box-md" placeholder="XXX-XXX-XXXX" name="phone" maxlength="12" id="phone">
+					  <div id="phoneerror" class="error">Phone is required.</div>
+					  <div id="phoneverror" class="error">Enter valid format - i.e. XXX-XXX-XXXX</div>
+					</div>
+					<div id="streeterror" class="error">Street Address is required.</div>
+					<div id="cityerror" class="error">City is required.</div>
+					<div id="stateerror" class="error">State is required.</div>
+					<div id="streeterror" class="error">Street Address is required.</div>
+					<div id="zipcodeerror" class="error">Enter digits only.</div>
+					<div id="phonenoerror" class="error">Enter Phone number.</div>
             
             
-           
-          <div class="reg-row">
-            <label>YOUR EMAIL ADDRESS</label>
-            <div class="reg_fld">WHERE DO YOU RECEIVE YOUR E-MAIL?</div>
-            <input type="email" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" onchange="chkmail(this.value);">
-            <div id="emailerror" class="error">Enter valid Emailid.</div>
-            <div id="emailtknerror" class="error">This Emailid already taken.</div>
-          </div>
-          <div class="reg-row">
-            <label>YOUR ADDRESS INFORMATION</label>
-            <div class="reg_fld">WHAT IS YOUR ADDRESS?</div>
-            <input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50" />
-            <br/>
-            <style>
-			.seldrop
-			{background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #000000;
-    margin-top: 8px;
-    width: 249px;
-			}
-			</style>
-          <div style="float:left;">
-           <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange="getstates(this.value);"');?>
-           </div>
-           <?php 
-		  $selstate=array(''=>'--Select State--');
-		  ?>
-		  <div id="selstatediv" style="float:right;margin-right:127px;">
-		  <?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?></div>
-          <br/>
-            <input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
-            <?php /*?><input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" /><?php */?>
-            <?php /*?><input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" /><?php */?>
-              
-            <input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
-            <div id="streetaddresserror" class="error">Street Address is required.</div>
-            <div id="cityerror" class="error">City is required.</div>
-            <div id="stateerror" class="error">State is required.</div>
-            <div id="countryerror" class="error">Country is required.</div>
-            <div id="ziperror" class="error">Zip Code is required.</div>
-            <div id="zipverror" class="error">Enter digits only valid format 123456</div>
-            <div style="margin-top:36px;" class="reg_fld">WHAT IS YOUR PHONE NUMBER?</div>
-            <div>
-              <input type="text" class="reg_txt_box-md" placeholder="XXX-XXX-XXXX" name="phone" maxlength="12" id="phone">
-              <div id="phoneerror" class="error">Phone is required.</div>
-              <div id="phoneverror" class="error">Enter valid format - i.e. XXX-XXX-XXXX</div>
-            </div>
-            <div id="streeterror" class="error">Street Address is required.</div>
-            <div id="cityerror" class="error">City is required.</div>
-            <div id="stateerror" class="error">State is required.</div>
-            <div id="streeterror" class="error">Street Address is required.</div>
-            <div id="zipcodeerror" class="error">Enter digits only.</div>
-          </div>
-          <div id="phonenoerror" class="error">Enter Phone number.</div>
-          <div class="reg-row" style="margin-top:55px;">
-            <label>YOUR CONTACT INFORMATION</label>
-            <div class="reg_fld"><?php echo strtoupper('The following information will not be published YouGotRated and is used for administration purposes only.This information is where you will receive emails,and receipts from YouGotRated.com');?></div>
-            <div class="reg_fld">CONTACT NAME</div>
+			  </div>
+			</div>
             
-            <input type="text" class="reg_txt_box" placeholder="CONTACT NAME" id="cname" name="cname" maxlength="30" /><div id="cnameerror" class="error">contact name is required.</div>
-          </div>
-          <div class="reg-row" style="margin-top:10px !important;">
-            <div class="reg_fld">CONTACT NUMBER</div>
-            <input type="text" class="reg_txt_box" placeholder="XXX-XXX-XXXX" id="cphone" name="cphone" maxlength="12" /><div id="cphoneerror" class="error">Contactphone is required.</div>
-              <div id="cphoneverror" class="error">Enter valid format - i.e. XXX-XXX-XXXX</div>
-          </div>
-          <div class="reg-row" style="margin-top:10px !important;">
-            <div class="reg_fld">CONTACT EMAIL</div>
-            <input type="text" class="reg_txt_box" placeholder="CONTACT EMAIL" id="cemail" name="cemail" maxlength="200" /><div id="cemailerror" class="error">Enter valid Emailid.</div>
-              
-          </div>
-          <!-- payment details -->
-          <div class="reg-row" style="margin-top:55px;">
-            <label>YOUR PAYMENT INFORMATION</label>
             
-            <div class="reg_fld">FIRST NAME</div>
-            
-            <input type="text" class="reg_txt_box" placeholder="FIRST NAME" id="fname" name="fname" maxlength="30" /><div id="fnameerror" class="error">First Name is required.</div>
-          </div>
+           <div class="clearfix">
+			  <div class="lab">
+				<label for="name">YOUR CONTACT INFORMATION</label>
+			  </div>
+			  <div class="con">
+				<div class="reg_fld"><?php echo strtoupper('The following information will not be published YouGotRated and is used for administration purposes only.This information is where you will receive emails,and receipts from YouGotRated.com');?></div>
+				<div class="reg_fld">CONTACT NAME</div>
+				<input type="text" class="reg_txt_box" placeholder="CONTACT NAME" id="cname" name="cname" maxlength="30" /><div id="cnameerror" class="error">contact name is required.</div>
+			  </div>
+			</div>
+			
+			<div class="clearfix">
+			  <div class="lab">
+				<label for="name">CONTACT NUMBER</label>
+			  </div>
+			  <div class="con">
+				 <input type="text" class="reg_txt_box" placeholder="XXX-XXX-XXXX" id="cphone" name="cphone" maxlength="12" /><div id="cphoneerror" class="error">Contactphone is required.</div>
+				 <div id="cphoneverror" class="error">Enter valid format - i.e. XXX-XXX-XXXX</div>
+			  </div>
+			</div>
+			
+			<div class="clearfix">
+			  <div class="lab">
+				<label for="name">CONTACT EMAIL</label>
+			  </div>
+			  <div class="con">
+				 <input type="text" class="reg_txt_box" placeholder="CONTACT EMAIL" id="cemail" name="cemail" maxlength="200" /><div id="cemailerror" class="error">Enter valid Emailid.</div>
+			  </div>
+			</div>
+			
+			<div class="clearfix">
+			  <div class="lab">
+				<label for="name">YOUR PAYMENT INFORMATION</label>
+			  </div>
+			  <div class="con">
+				 <div class="reg_fld">FIRST NAME</div>
+				<input type="text" class="reg_txt_box" placeholder="FIRST NAME" id="fname" name="fname" maxlength="30" /><div id="fnameerror" class="error">First Name is required.</div>
+			  </div>
+			</div>
+ 
+         
+         
+       
+         
+         
           <div class="reg-row" style="margin-top:10px !important;">
             <div class="reg_fld">LAST NAME</div>
             <input type="text" class="reg_txt_box" placeholder="LAST NAME" id="lname" name="lname" maxlength="30" /><div id="lnameerror" class="error">Last Name is required.</div>
