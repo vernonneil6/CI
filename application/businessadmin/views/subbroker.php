@@ -249,7 +249,7 @@
 				<label for="name">WHAT IS YOUR COMPANY NAME?</label>
 			  </div>
 			  <div class="con">
-				<input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30">
+				<input type="text" class="input" placeholder="NAME" id="name" name="name"  maxlength="30">
 				 <div id="nameerror" class="error">Name is required.</div>
 				 <div id="nametknerror" class="error">This compnay name is already exists.</div>
 			  </div>
@@ -260,7 +260,7 @@
 				<label for="name">WHAT IS YOUR COMPANY WEBSITE?</label>
 			  </div>
 			  <div class="con">
-				<input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150">
+				<input type="text" class="input" placeholder="WEBSITE" id="website" name="website"  maxlength="150">
 				<div id="websiteerror" class="error">Website is required.</div>
 			  </div>
 			</div>
@@ -288,7 +288,7 @@
 			  </div>
 			  <div class="con">
 					<div class="reg_fld">WHERE DO YOU RECEIVE YOUR E-MAIL?</div>
-					<input type="email" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" onchange="chkmail(this.value);">
+					<input type="email" class="input" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" onchange="chkmail(this.value);">
 					<div id="emailerror" class="error">Enter valid Emailid.</div>
 					<div id="emailtknerror" class="error">This Emailid already taken.</div>
 			  </div>
@@ -302,7 +302,7 @@
 			  <div class="con">
 				  
 					<div class="reg_fld">WHAT IS YOUR ADDRESS?</div>
-					<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50" />
+					<input type="text" class="input" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50" />
 					<br/>
 					<style>
 					.seldrop
@@ -322,11 +322,8 @@
 				  <div id="selstatediv" style="float:right;margin-right:127px;">
 				  <?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?></div>
 				  <br/>
-					<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
-					<?php /*?><input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" /><?php */?>
-					<?php /*?><input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" /><?php */?>
-					  
-					<input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
+					<input type="text" class="input" placeholder="CITY" id="city" name="city" maxlength="50" />					  
+					<input type="text" class="input" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
 					<div id="streetaddresserror" class="error">Street Address is required.</div>
 					<div id="cityerror" class="error">City is required.</div>
 					<div id="stateerror" class="error">State is required.</div>
@@ -335,7 +332,7 @@
 					<div id="zipverror" class="error">Enter digits only valid format 123456</div>
 					<div style="margin-top:36px;" class="reg_fld">WHAT IS YOUR PHONE NUMBER?</div>
 					<div>
-					  <input type="text" class="reg_txt_box-md" placeholder="XXX-XXX-XXXX" name="phone" maxlength="12" id="phone">
+					  <input type="text" class="input" placeholder="XXX-XXX-XXXX" name="phone" maxlength="12" id="phone">
 					  <div id="phoneerror" class="error">Phone is required.</div>
 					  <div id="phoneverror" class="error">Enter valid format - i.e. XXX-XXX-XXXX</div>
 					</div>
@@ -358,7 +355,7 @@
 			  <div class="con">
 				<div class="reg_fld"><?php echo strtoupper('The following information will not be published YouGotRated and is used for administration purposes only.This information is where you will receive emails,and receipts from YouGotRated.com');?></div>
 				<div class="reg_fld">CONTACT NAME</div>
-				<input type="text" class="reg_txt_box" placeholder="CONTACT NAME" id="cname" name="cname" maxlength="30" /><div id="cnameerror" class="error">contact name is required.</div>
+				<input type="text" class="input" placeholder="CONTACT NAME" id="cname" name="cname" maxlength="30" /><div id="cnameerror" class="error">contact name is required.</div>
 			  </div>
 			</div>
 			
@@ -367,7 +364,7 @@
 				<label for="name">CONTACT NUMBER</label>
 			  </div>
 			  <div class="con">
-				 <input type="text" class="reg_txt_box" placeholder="XXX-XXX-XXXX" id="cphone" name="cphone" maxlength="12" /><div id="cphoneerror" class="error">Contactphone is required.</div>
+				 <input type="text" class="input" placeholder="XXX-XXX-XXXX" id="cphone" name="cphone" maxlength="12" /><div id="cphoneerror" class="error">Contactphone is required.</div>
 				 <div id="cphoneverror" class="error">Enter valid format - i.e. XXX-XXX-XXXX</div>
 			  </div>
 			</div>
@@ -377,7 +374,7 @@
 				<label for="name">CONTACT EMAIL</label>
 			  </div>
 			  <div class="con">
-				 <input type="text" class="reg_txt_box" placeholder="CONTACT EMAIL" id="cemail" name="cemail" maxlength="200" /><div id="cemailerror" class="error">Enter valid Emailid.</div>
+				 <input type="text" class="input" placeholder="CONTACT EMAIL" id="cemail" name="cemail" maxlength="200" /><div id="cemailerror" class="error">Enter valid Emailid.</div>
 			  </div>
 			</div>
 			
@@ -387,13 +384,13 @@
 			  </div>
 			  <div class="con">
 				 <div class="reg_fld">FIRST NAME</div>
-				<input type="text" class="reg_txt_box" placeholder="FIRST NAME" id="fname" name="fname" maxlength="30" /><div id="fnameerror" class="error">First Name is required.</div>
+				<input type="text" class="input" placeholder="FIRST NAME" id="fname" name="fname" maxlength="30" /><div id="fnameerror" class="error">First Name is required.</div>
 			  </div>
 			  <div class="reg_fld">LAST NAME</div>
-              <input type="text" class="reg_txt_box" placeholder="LAST NAME" id="lname" name="lname" maxlength="30" /><div id="lnameerror" class="error">Last Name is required.</div>
+              <input type="text" class="input" placeholder="LAST NAME" id="lname" name="lname" maxlength="30" /><div id="lnameerror" class="error">Last Name is required.</div>
 			  
 			  <div class="reg_fld">CREDIT CARD NUMBER</div>
-			  <input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+			  <input type="text" class="input" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
           
 			</div>
  
@@ -428,7 +425,7 @@
 			  </div>
 			  <div class="con">
 				<div class="reg_fld">ENTER DISCOUNT CODE</div>
-				<input type="text" class="reg_txt_box" placeholder="DISCOUNT CODE" id="discountcode" name="discountcode" maxlength="50" />
+				<input type="text" class="input" placeholder="DISCOUNT CODE" id="discountcode" name="discountcode" maxlength="50" />
 			  </div>
 			</div>
          
