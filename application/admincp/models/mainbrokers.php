@@ -19,10 +19,7 @@ Class Mainbrokers extends CI_Model
 			return array();
 		}
  	}
-	function brokeradd($data)
-	{
-		$this->db->insert('youg_subbroker',$data);
-	}
+	
 	function allbroker($data)
  	{
    	   	$this->db->insert('youg_broker',$data);
