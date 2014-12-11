@@ -13,6 +13,11 @@
         <li><a href="<?php echo site_url('subbroker/agent'); ?>" title="List All Agent">List All Agent</a></li>
       </ul>
     </li>
-    <li><a href="<?php echo site_url('subbroker/elitemember'); ?>" class="link" title="Elitemember">Elite Member</a></li>
+    <li><a href="<?php echo site_url('subbroker'); ?>" title="Agent">Elite Member</a>
+      <ul class="submenu">
+        <li><a href="<?php echo site_url('subbroker/addelitemember'); ?>" title="Add Agent">Add Agent</a></li>
+        <li><a href="<?php echo site_url('subbroker/elitemember'); ?>" title="List All Agent">List All Agent</a></li>
+      </ul>
+    </li>
   </ul>
 </div>
