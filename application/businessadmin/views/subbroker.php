@@ -379,19 +379,26 @@
 			</div>
 			
 			<div class="clearfix">
+				
 			  <div class="lab">
 				<label for="name">YOUR PAYMENT INFORMATION</label>
 			  </div>
-			  <div class="con">
-				 <div class="reg_fld">FIRST NAME</div>
+			  
+			  <div>FIRST NAME</div>
+			  <div class="con"> 
 				<input type="text" class="input" placeholder="FIRST NAME" id="fname" name="fname" maxlength="30" /><div id="fnameerror" class="error">First Name is required.</div>
 			  </div>
-			  <div class="reg_fld">LAST NAME</div>
-              <input type="text" class="input" placeholder="LAST NAME" id="lname" name="lname" maxlength="30" /><div id="lnameerror" class="error">Last Name is required.</div>
 			  
-			  <div class="reg_fld">CREDIT CARD NUMBER</div>
-			  <input type="text" class="input" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
-          
+			  <div>LAST NAME</div>
+			  <div class="con"> 
+				<input type="text" class="input" placeholder="LAST NAME" id="lname" name="lname" maxlength="30" /><div id="lnameerror" class="error">Last Name is required.</div>
+			  </div>
+			  
+			  <div>CREDIT CARD NUMBER</div>
+			  <div class="con"> 
+				<input type="text" class="input" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+			  </div>
+			   
 			</div>
  
 			<div class="clearfix">
