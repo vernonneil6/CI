@@ -27,9 +27,9 @@
 			<li>
 				<a href="<?php echo site_url('mainbroker/add'); ?>" title="Add Broker">Add Broker</a>
 			</li>
-			<!--<li>
-				<a href="<?php echo site_url('mainbroker'); ?>" title="List All Brokers">List All Brokers</a>
-			</li>-->
+			<li>
+				<a href="<?php echo site_url('mainbroker'); ?>" title="List All Brokers">List All Subbroker</a>
+			</li>
 		</ul>
 	</li>
     <li class="<?=($this->uri->segment(1)==='seo')?'active':''?>">
