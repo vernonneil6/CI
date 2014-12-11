@@ -238,7 +238,7 @@
 		<div class="box-content"> 
 		
 			<form class="reg_frm" action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
-        
+			<fieldset>
             <label>INTRODUCE YOUR BUSINESS</label>
             
             <div class="reg_fld">THIS INFORMATION WILL BE PUBLISHED ON YOUGOTRATED'S BUSINESS DATABASE</div>
@@ -402,6 +402,7 @@
             <div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
             <button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CONTINUE TO CHECKOUT</button>
           </div>
+        </fieldset>
         </form>
 		
 		
