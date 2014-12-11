@@ -66,63 +66,22 @@ else
 
 	<table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-        <th width="30%">Subbroker</th>
-        <th width="20%">Marketer</th>
-	  <th width="20%">Agent</th>
-        <th width="20%">Username</th>
-        <th width="7%">Password</th>
+        <td width="30%">Username</td>
+        <td width="20%">Type</td>
+		<td width="20%">Marketer</td>
+        <td width="20%">Agent</td>
       </tr>
       <?php
-	foreach($brokerview as $subbroker)
+	foreach($subbroker as $subbrokerview)
 	{
-	if($subbroker->subbroker!='')
-	{
-       ?>
-       <tr>
-        <td><?php echo $subbroker->subbroker;?></td>
-        <td></td>
-        <td></td>
-        <td></td>
-	 <td></td>
-      </tr>
+	?>
+	<tr>
+		<td width="30%"><?php echo $subbrokerview['name']; ?></td>
+        <td width="20%"><?php echo $subbrokerview['type']; ?></td>
+		<td width="20%"><?php echo $subbrokerview['marketer']; ?></td>
+        <td width="20%"><?php echo $subbrokerview['agent']; ?></td>
+	</tr>
 	<?php
-	}
-	foreach($marketerview as $marketers)
-	{
-	foreach($marketers as $marketer)
-	{
-	if($subbroker->id == $marketer->brokerid)
-	{
-	?>
-      <tr>
-      	<td></td>
-        <td><?php echo $marketer->type;?></td>
-	<td></td>
-        <td><?php echo $marketer->username;?></td>
-        <td><?php echo $marketer->password;?></td>
-      </tr>
-       <?php
-	foreach($agentview as $agents)
-	{
-	foreach($agents as $agent)
-	{
-	if($marketer->id == $agent->marketerid)
-	{
-	?>
-      <tr>
-      	<td></td>
-	<td></td>
-        <td><?php echo $agent->type;?></td>
-        <td><?php echo $agent->username;?></td>
-        <td><?php echo $agent->password;?></td>
-      </tr>
-       <?php
-	}
-	}
-	}
-	}
-	}
-	}
 	}
 	?> 
 </table >

@@ -56,9 +56,9 @@ class Mainbroker extends CI_Controller
 	
 	public function index()
 	{
-		if($this->session->userdata['youg_admin'])
+	  if($this->session->userdata['youg_admin'])
 	  {
-			$siteid = $this->session->userdata('siteid');
+			/*$siteid = $this->session->userdata('siteid');
 			$this->data['mainbrokers'] = $this->mainbrokers->get_all_brokersetting($siteid);
 			$this->data['brokerview'] = $this->mainbrokers->brokerview();
 			$i=0;
@@ -72,7 +72,9 @@ class Mainbroker extends CI_Controller
 			{
 				$this->data['agentview'][$i] = $this->mainbrokers->agentview($marketerid->id);
 				$i++;
-			}	
+			}	*/
+			
+			$this->data['subbroker'] = $this->mainbrokers->subbroker();
 				
 			$this->load->view('mainbroker',$this->data);
 	  }
