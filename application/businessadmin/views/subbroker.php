@@ -238,34 +238,51 @@
 		<div class="box-content"> 
 		
 			<form class="reg_frm" action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
-          <div class="reg-row">
+        
             <label>INTRODUCE YOUR BUSINESS</label>
             
             <div class="reg_fld">THIS INFORMATION WILL BE PUBLISHED ON YOUGOTRATED'S BUSINESS DATABASE</div>
             
-            <div class="reg_fld">WHAT IS YOUR COMPANY NAME?</div>
+            
+            <div class="clearfix">
+			  <div class="lab">
+				<label for="name">WHAT IS YOUR COMPANY NAME?</label>
+			  </div>
+			  <div class="con">
+				<input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30">
+				 <div id="nameerror" class="error">Name is required.</div>
+				 <div id="nametknerror" class="error">This compnay name is already exists.</div>
+			  </div>
+			</div>
+            
+             <div class="clearfix">
+			  <div class="lab">
+				<label for="name">WHAT IS YOUR COMPANY WEBSITE?</label>
+			  </div>
+			  <div class="con">
+				<input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150">
+				<div id="websiteerror" class="error">Website is required.</div>
+			  </div>
+			</div>
+			
+			<div class="clearfix">
+			  <div class="lab">
+				<label for="name">CATEGORY</label>
+			  </div>
+			  <div class="con">
+					<div id="" style="overflow-y: scroll; height:180px;border: 1px solid #D9D9D9;width:100%;">
+					<?php for($i=0;$i<count($categories);$i++) { ?>
+					<?php  $option = array( 'name'=>'cat[]', 'id'=>'cat[]', 'value'=>$categories[$i]['id'],'class'=>'checkboxLabel' );
+					echo form_checkbox( $option ); ?>
+					&nbsp; <span style="color:#666666;"> <?php echo stripslashes($categories[$i]['category'])."<br/>";?> </span>
+					<?php } ?>
+					</div>
+					<div id="websiteerror" class="error">Website is required.</div>
+			  </div>
+			</div>
             
             
-            <input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30">
-            <div id="nameerror" class="error">Name is required.</div>
-            <div id="nametknerror" class="error">This compnay name is already exists.</div>
-          </div>
-          <div class="reg-row" style="margin-top:10px;">
-            <div class="reg_fld">WHAT IS YOUR COMPANY WEBSITE?</div>
-            <input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150">
-            <div id="websiteerror" class="error">Website is required.</div>
-          </div>
-          <div class="reg-row" style="margin-top:10px;">
-            <div class="reg_fld">CATEGORY</div>
-            <div id="" style="overflow-y: scroll; height:180px;border: 1px solid #D9D9D9;width:100%;">
-                <?php for($i=0;$i<count($categories);$i++) { ?>
-                <?php  $option = array( 'name'=>'cat[]', 'id'=>'cat[]', 'value'=>$categories[$i]['id'],'class'=>'checkboxLabel' );
-        	    echo form_checkbox( $option ); ?>
-                &nbsp; <span style="color:#666666;"> <?php echo stripslashes($categories[$i]['category'])."<br/>";?> </span>
-                <?php } ?>
-              </div>
-            <div id="websiteerror" class="error">Website is required.</div>
-          </div>
+           
           <div class="reg-row">
             <label>YOUR EMAIL ADDRESS</label>
             <div class="reg_fld">WHERE DO YOU RECEIVE YOUR E-MAIL?</div>

@@ -15,8 +15,8 @@
     </li>
     <li><a href="<?php echo site_url('subbroker'); ?>" title="Agent">Elite Member</a>
       <ul class="submenu">
-        <li><a href="<?php echo site_url('subbroker/addelitemember'); ?>" title="Add Agent">Add Agent</a></li>
-        <li><a href="<?php echo site_url('subbroker/elitemember'); ?>" title="List All Agent">List All Agent</a></li>
+        <li><a href="<?php echo site_url('subbroker/addelitemember'); ?>" title="Add Agent">Add Elite Member</a></li>
+        <li><a href="<?php echo site_url('subbroker/elitemember'); ?>" title="List All Agent">List All Elite Member</a></li>
       </ul>
     </li>
   </ul>
