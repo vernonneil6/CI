@@ -14,7 +14,7 @@
     <div class="headlines">
       <h2><span><?php echo "Agent Url" ?></span></h2>
     </div>
-    <div class = "broker_heading"><label>Welcome to your YouGotRated Sub Broker dashboard! You can use the link below to recruit new Elite members, and when signed up - you will receive credit for the signup. You can also use the left column menu to create new Elite members, which will bring you to the creation form that will give you this credit.</label></div>
+    <div class = "broker_heading"><label>Welcome to the YouGotRated Agent dashboard! You can use this link below to give potential Elite Members to sign up, which will give you and your business credit for the signup.You can also use the links to the left to view your signed up members, and take newsignups over the phone.</label></div>
     <table class="tab tab-drag">
      <tbody><tr class="top nodrop nodrag"> </tr>       
      <tr class="odd">
