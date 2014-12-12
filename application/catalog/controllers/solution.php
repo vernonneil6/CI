@@ -694,7 +694,7 @@ public function eliteSubscribe($formpost) {
 					//For sending mail to user
 					$this->email->from($site_mail,$site_name);
 					$this->email->to($email);	
-					$this->email->subject('Business has been claimed successfully.');
+					$this->email->subject('YouGotRated: Your business has been claimed successfully.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 											  <tr>
 												<td>Hello '.$company[0]['company'].',</td>
@@ -725,7 +725,7 @@ public function eliteSubscribe($formpost) {
 											  <tr>
 												<td><table cellpadding="0" cellspacing="0" width="100%" border="0">
 													<tr>
-													  <td colspan="3"><h3>Payment Detail</h3></td>
+													  <td colspan="3"><h3>Payment Transaction Details:</h3></td>
 													</tr>
 													<tr>
 													  <td>Payment Amount</td>
@@ -738,60 +738,10 @@ public function eliteSubscribe($formpost) {
 													  <td><b>'.$transactionkey.'</b></td>
 													</tr>
 													<tr>
-													  <td colspan="3"><h3>Widget</h3></td>
-													</tr>
-												   <tr>
-													  <td colspan="3">&lt;iframe src=&quot;'.site_url("widget/business/".$companyid).'&quot; style=&quot;border:none;&quot;&gt;&lt;/iframe&gt;
-																	<br/>
-																&lt;div style=&quot;display:none;&quot;&gt;
-																&lt;a href=&quot;'.$websites[0]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[1]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[2]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[3]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[4]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[5]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[6]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[7]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[8]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[9]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[10]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[11]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[12]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[13]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[14]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;a href=&quot;'.$websites[15]['url'].("/company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints").'&quot; &gt;
-																&lt;/a&gt;
-																&lt;/div&gt;
-																</td>
-													</tr>
-													<tr>
 													  <td colspan="3">&nbsp;</td>
 													</tr>
-													<tr>
-													  <td colspan="3">&nbsp;</td>
-													</tr>
-													<tr>
-													  <td colspan="3"><h3>'.$institle.'</h3></td>
-													</tr>
-													<tr>
-													  <td colspan="3">'.$inssteps.' </td>
-													</tr>
-												  </table></td>
+												</table>
+												</td>
 											  </tr>
 											  <tr>
 												<td><br/>
@@ -884,7 +834,7 @@ public function cron()
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
 					$this->email->from('noreply@yougotrated.com');
-					$this->email->to('alankenn@grossmaninteractive.com');	
+					$this->email->to($alertemailid);	
 					$this->email->subject('Your EliteMembership Subscription has been Expired.Please Renew');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
@@ -1041,7 +991,7 @@ public function adminreport()
 				   $this->email->initialize($config);     
                     $todaysdate=date('Y-m-d');
 					$this->email->from('noreply@yougotrated.com');
-					$this->email->to('alankenn@grossmaninteractive.com');	
+					$this->email->to($site_email);	
 					$this->email->subject('Todays Report On Success and Failed Payments On Date  '.$todaysdate.'');
 					$this->email->message('<table cellpadding="0" cellspacing="10" width="100%" border="0">
 															<tr>
@@ -1280,10 +1230,8 @@ public function renew_update($id)
 										
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
-					$this->email->from($site_mail,$site_name);
-					//$this->email->from('alankenn@grossmaninteractive.com');
-					//$this->email->to($site_mail);	
-					$this->email->to('alankenn@grossmaninteractive.com');	
+					$this->email->from($cronemail['payer_id'],$cronemail['company']);
+					$this->email->to($site_mail);	
 					$this->email->subject('Payment Received for Elitemembership Renewal.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
@@ -1318,8 +1266,7 @@ public function renew_update($id)
 									
 					//For sending mail to user
 					$this->email->from($site_mail,$site_name);
-					//$this->email->to($email);	
-					$this->email->to('alankenn@grossmaninteractive.com');	
+					$this->email->to($email);	
 					$this->email->subject('Elitemembership has been Renewed successfully.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 											  <tr>
