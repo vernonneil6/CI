@@ -33,7 +33,7 @@ class Marketers extends CI_Model
 		$this->db->where('id',$id)->update('youg_broker', $data);
 	}
 	
-	function agentedits()
+	function agentedits($id)
  	{
 		return $this->db->get_where('youg_broker', array('id' => $id))->row_array();
 	}

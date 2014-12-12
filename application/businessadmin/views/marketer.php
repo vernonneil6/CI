@@ -141,7 +141,8 @@
             <label for="name">Agent Username</label>
           </div>
           <div class="con">
-            <?php echo form_input( array( 'name'=>'agentname','class'=>'input','type'=>'text','value'=> $agentedit['name'] ) ); ?>
+			 <input type="text" value = "<?php echo $agentedits['name'];?>"  class = "input" name = "agentname">
+            <!--<php echo form_input( array( 'name'=>'agentname','class'=>'input','type'=>'text','value'=> $agentedit['name'] ) ); ?>-->
           </div>
         </div>
 	<div class="clearfix">
@@ -149,7 +150,8 @@
             <label for="name">Password</label>
           </div>
           <div class="con">
-            <?php echo form_input( array( 'name'=>'agentpassword','class'=>'input','type'=>'password','value'=> $agentedit['password'] ) ); ?>
+			  <input type="password" value = "<?php echo $agentedits['password'];?>"  class = "input" name = "agentpassword">
+            <!--<php echo form_input( array( 'name'=>'agentpassword','class'=>'input','type'=>'password','value'=> $agentedit['password'] ) ); ?>-->
           </div>
         </div>
         <?php echo form_input(array('name'=>'agentsubmit','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
