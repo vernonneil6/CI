@@ -15,7 +15,7 @@
     <div class="headlines">
       <h2><span><?php echo "Sub Broker Url" ?></span></h2>
     </div>
-    <div class = "subbroker_heading"><label>Welcome to your YouGotRated Sub Broker dashboard! You can use the link below to recruit new Elite members, and when signed up - you will receive credit for the signup. You can also use the left column menu to create new Elite members, which will bring you to the creation form that will give you this credit.</label></div>
+    <div class = "broker_heading"><label>Welcome to your YouGotRated Sub Broker dashboard! You can use the link below to recruit new Elite members, and when signed up - you will receive credit for the signup. You can also use the left column menu to create new Elite members, which will bring you to the creation form that will give you this credit.</label></div>
     <table class="tab tab-drag">
      <tbody>
 	 <tr class="odd">
