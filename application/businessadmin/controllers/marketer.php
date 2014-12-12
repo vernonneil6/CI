@@ -92,13 +92,11 @@ class Marketer extends CI_Controller {
 	function agentedit($id)
 	{
 		$this->data['agentedits'] = $this->marketers->agentedits($id);
-		if($this->input->post('agentsubmit'))
+		if($this->input->post('agentupdatesubmit'))
 		{
-			$data=array(
-					'name'=>$this->input->post('agentname'),
-					'password'=>$this->input->post('agentpassword')
-					);
-			$this->marketers->agentupdates($data, $id);
+			$name = $this->input->post('agentname');
+			$password = $this->input->post('agentpassword');		
+			$this->marketers->agentupdates($name, $password, $id);
 			redirect('marketer/agent','refresh');
 		}
 		$this->load->view('marketer',$this->data);

@@ -154,7 +154,7 @@
             <!--<php echo form_input( array( 'name'=>'agentpassword','class'=>'input','type'=>'password','value'=> $agentedit['password'] ) ); ?>-->
           </div>
         </div>
-        <?php echo form_input(array('name'=>'agentsubmit','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+        <?php echo form_input(array('name'=>'agentupdatesubmit','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
 	
       </fieldset>
        <?php echo form_close(); ?>
