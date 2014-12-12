@@ -446,3 +446,9 @@ a:hover.ico   { background-position: 0 0; }
 	margin-top: 51px;
 	margin-left: 75%;
 }
+.subbroker_heading
+{
+	font-weight: bold;
+    margin: 0 0 10px;
+    padding: 0 45px;
+}
