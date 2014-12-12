@@ -9,9 +9,14 @@
   </div>
 
 <?php if($this->uri->segment(2)=='update')  {	  ?>
-
+	  
+<link rel="stylesheet" type="text/css" href="../businessadmin/css/demo.css">
+<script src="../businessadmin/js/jquery-1.11.1.min.js"></script>
+<script src="../businessadmin/js/jquery.validate.min.js"></script>
+<script src="../businessadmin/js/additional-methods.min.js"></script>	  
 <script type="text/javascript">
-$(document).ready(function(){
+
+ $(document).ready(function(){
 $("#ccnumber").click(function(){
 	if ($("#ccnumber").val()) {
 		$("#ccnumber").removeClass('error');
@@ -116,7 +121,7 @@ $( "#frmelite" ).validate({
         <div class="btn-submit"> 
           <!-- Submit form -->
           
-          <?php echo form_input(array('name'=>'btnupdate','id'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Update','onclick'=>'checkcard()')); ?>
+          <?php echo form_input(array('name'=>'btnupdate','id'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Update','onclick'=>'return checkcard();')); ?>
     
           </div>
       </fieldset>
