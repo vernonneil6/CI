@@ -13,12 +13,12 @@
 
 	<div class="box">
     <div class="headlines">
-      <h2><span><?php echo "Subbroker Url" ?></span></h2>
+      <h2><span><?php echo "Sub Broker Url" ?></span></h2>
     </div>
     <table class="tab tab-drag">
      <tbody><tr class="top nodrop nodrag"> </tr>       
      <tr class="odd">
-        <td>Subbroker Url</td>
+        <td>Sub Broker Url</td>
         <td>
         <textarea cols='90' rows='10'>
 			<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/signuppage/affid/'.$this->session->userdata['subbroker_data'][0]->id;?>
