@@ -15,7 +15,7 @@
     </li>
     <li><a href="<?php echo site_url('subbroker'); ?>" title="Agent">Elite Member</a>
       <ul class="submenu">
-        <li><a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/signuppage/affid/'.$this->session->userdata['subbroker_data'][0]->id;?>" target="_blank" title="Create Elite Member">Create Elite Member</a></li>
+        <li><a target = "_blank" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/signuppage/affid/'.$this->session->userdata['subbroker_data'][0]->id;?>" title="Create Elite Member">Create Elite Member</a></li>
         <li><a href="<?php echo site_url('subbroker/elitemember'); ?>" title="List All Agent">List All Elite Member</a></li>
       </ul>
     </li>
