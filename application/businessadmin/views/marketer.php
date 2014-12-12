@@ -134,7 +134,7 @@
     </div>
     <div class="box-content"> 
 		
-    <?php echo form_open('marketer/agentedit',array('class'=>'formBox broker')); ?>
+    <?php echo form_open('marketer/agentedit/'. $agentedits['id'],array('class'=>'formBox broker')); ?>
 	<fieldset>
 	<div class="clearfix">
           <div class="lab">
