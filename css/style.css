@@ -773,7 +773,7 @@ h1 a{display:inline-block;}
 .revw_ratpoint .cmnt_wrp{line-height:20px;}
 .bs_banner{width:1050px; float:left; height:540px; display:inline-block; margin-top:10px;}
 
-.bs_sol_menu{float:left; display:block;width:1050px; box-sizing:border-box; border:1px solid #999999; /*background: url(../images/ptrn_bg.png) no-repeat;*/ background:none; height:29px;}
+.bs_sol_menu{float:left; display:block;width:1050px; box-sizing:border-box; /*background: url(../images/ptrn_bg.png) no-repeat;*/ background:none; height:29px;}
 .bs_sol_menu ul{margin:0; padding:0;}
 .bs_sol_menu ul li{list-style:none; float:left; font-family:"myriadpro-regular"; font-size:20px; color:#999; line-height:20px;  border-right:1px solid #666; margin-top:5px;}
 .bs_sol_menu ul li a{font-family:"myriadpro-regular"; font-size:20px;color:#2C6A99; padding:0 10px;}
@@ -1320,18 +1320,21 @@ color:#2c6a99;
     padding: 0px;
     text-align: left;
     font-size:14px;
-    margin: 15px;
+    margin: 0;
 }
 .members_part1 .members_title
 {
 	color: black;
 	font-size: 25px;
+	margin: 0 0 0 25px;
 }
 .members_part1 ul li
 {
 	color: black;
 	text-align: left;
 	font-size: 14px;
+	padding: 5px;
+	text-transform: uppercase;
 }
 .members_part1 .member_blue
 {
