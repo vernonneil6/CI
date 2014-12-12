@@ -12,6 +12,10 @@
 <link href="<?php echo base_url();?>css/stylesheet.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url();?>css/blue.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="<?php echo base_url();?>css/visualize.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/demo.css">
+<script src="<?php echo base_url();?>js/jquery-1.11.1.min.js"></script>
+<script src="<?php echo base_url();?>js/jquery.validate.min.js"></script>
+<script src="<?php echo base_url();?>js/additional-methods.min.js"></script>	
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.dimensions.min.js"></script>

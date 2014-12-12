@@ -9,15 +9,47 @@
   </div>
 
 <?php if($this->uri->segment(2)=='update')  {	  ?>
-	  
-	  
+
 <script type="text/javascript">
+$(document).ready(function(){
+$("#ccnumber").click(function(){
+	if ($("#ccnumber").val()) {
+		$("#ccnumber").removeClass('error');
+		$("#ccnumber-error").removeClass('error');
+		$("#ccnumber-error").hide('');
+	} else {
+		$("#ccnumber-error").removeClass('error');
+	}
+});
+$("#ccnumber").blur(function(){
+	$("#ccnumber-error").removeClass('error');
+	$("#ccnumber-error").hide('');
+});	
+});	
+
+ 
 function number(evt){
     var charCode = (evt.which) ? evt.which : event.keyCode
     if (charCode > 31 && (charCode < 48 || charCode > 57))
         return false;
     return true;
-} 	
+}
+function checkcard()
+{
+  $.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+$( "#frmelite" ).validate({
+  rules: {
+    ccnumber: {
+      required: true,
+      creditcard: true
+    }
+  }
+});
+
+}  	
 </script>
 
   <div class="box">
@@ -27,6 +59,7 @@ function number(evt){
     <?php // print_r($elite[0]);?>
         <div class="box-content"> 
 			<?php echo form_open('elite/renew/'.$elite[0]['id'],array('class'=>'formBox','id'=>'frmelite')); ?>
+			<?php //echo form_open('elite/update',array('class'=>'formBox','id'=>'frmelite')); ?>
 			
       <fieldset>
 		    <input type="hidden" class="reg_txt_box" placeholder="companyid" id="companyid" name="companyid"  maxlength="30" value="<?php echo $elite[0]['id'];?>" />
@@ -57,7 +90,7 @@ function number(evt){
         <div class="con" style='margin-top:10px'>
             <?php echo form_input(array( 'name'=>'lname','id'=>'lname','class'=>'input','type'=>'text','placeholder'=>'Enter Your last name')); ?>
              </div> 
-          <div id="titleerror" class="error" style="width:auto">title is required.</div>
+          
         </div>
         <div class="clearfix" style="width: 71%;padding-left: 10px;">
           <div class="lab">
