@@ -28,8 +28,13 @@ class Marketers extends CI_Model
 		$this->db->delete('youg_broker', array('id' => $id));
 	}
 	
-	function agentupdates($data, $id)
+	function agentupdates($name, $password, $id)
  	{
+		 $data = array(	
+						'name'		=> $name,
+						'password'		=> $password
+								
+					     );
 		$this->db->where('id',$id)->update('youg_broker', $data);
 	}
 	
