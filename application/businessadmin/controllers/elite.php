@@ -367,9 +367,7 @@ class Elite extends CI_Controller {
 							//$this->email->initialize($this->cnfemail);
 							$this->email->initialize($config);
 							$this->email->from($site_mail,$site_name);
-							//$this->email->from('alankenn@grossmaninteractive.com');
-							//$this->email->to($site_mail);	
-							$this->email->to('alankenn@grossmaninteractive.com');	
+							$this->email->to($site_mail);	
 							$this->email->subject('Elitemembership Subscription For User '.ucfirst($cronemail['company']).' Updated With  New credit card Details.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 																	<tr>
@@ -408,8 +406,7 @@ class Elite extends CI_Controller {
 											
 							//For sending mail to user
 							$this->email->from($site_mail,$site_name);
-							//$this->email->to($email);	
-							$this->email->to('alankenn@grossmaninteractive.com');	
+							$this->email->to($email);	
 							$this->email->subject('Elitemembership Subscription Details has been Updated successfully With New credit card.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 													  <tr>
