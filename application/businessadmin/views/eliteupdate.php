@@ -1,4 +1,4 @@
-<?php echo $heading; ?>
+<?php echo $header; ?>
 <!-- #content -->
 <div id="content">
   <div class="breadcrumbs">
