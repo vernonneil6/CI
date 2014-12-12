@@ -86,7 +86,7 @@
 		
 		<div class = "members_part2">
 		
-			<p>The Elite Members Plan proactively populates SERPs ( SERCH ENGINE REVIEW PAGES) &nbsp;to give your company control of its search results before someone else DESTROYS YOUR BUSINESS.</p>
+			<p>The Elite Members Plan proactively populates SERPs ( SEARCH ENGINE REVIEW PAGES) &nbsp;to give your company control of its search results before someone else DESTROYS YOUR BUSINESS.</p>
 			
 			<div class="pp_before_after_block member_outline">
 				<div style="height: 315px; margin: 0px; padding: 0px; position: relative;" class="pp_before_block">
