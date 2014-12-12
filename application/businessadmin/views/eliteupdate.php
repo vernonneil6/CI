@@ -1,4 +1,3 @@
-<?php echo $header; ?>
 <?php echo $heading; ?>
 <!-- #content -->
 <div id="content">
