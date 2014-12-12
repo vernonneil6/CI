@@ -13,17 +13,17 @@
     
 
     <div>
-     <!-- <div class="bs_sol_menu">
+      <div class="bs_sol_menu">
         <ul>
           <?php for($i=0;$i<count($solutions);$i++) { ?>
 <?php /*?>          <li><a href="solution" title="BUSINESS SOLUTIONS">BUSINESS SOLUTIONS</a></li>
           <li><a href="pressrelease" title="PRESS RELEASES">PRESS RELEASES</a></li>
           <li><a href="go/register" title="SIGN-UP">SIGN-UP</a></li>
 <?php */?>          
-		<li><a href="solution/detail/<?php //echo stripslashes($solutions[$i]['urlkey']);?>" title="view"><?php //echo ucwords(stripslashes($solutions[$i]['title']));?></a></li>
+		<li><a href="solution/detail/<?php echo stripslashes($solutions[$i]['urlkey']);?>" title="view"><?php echo ucwords(stripslashes($solutions[$i]['title']));?></a></li>
 <?php } ?>
         </ul>
-      </div>-->
+      </div>
       <div class="innr_wrap">
         <div class="blnk_contarea">
           <div style="margin-top:10px;" align="center" id="claimdiv"> <span style="font-family:MyriadPro-Regular;" class="colorcode">To sign up for an Elite Membership - please click the link below:</span> <br/>
@@ -34,8 +34,26 @@
            
               
              </div>
-             
-             
+            
+          <?php if( count($solution) > 0 ) { ?>
+          
+          <!-- table -->
+          <table border="0" width="100%">
+            <?php for($i=0;$i<1;$i++) { ?>
+            <tr>
+              <table width="100%" style="border-bottom: 1px solid #CCCCCC;" border="0">
+                <tr>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="login_box_title" style="font-size:20px;"><?php echo ucwords(stripslashes($solution[$i]['title']));?></td>
+                </tr>
+                <tr>
+                  <td style="line-height:17px;"><?php echo stripslashes($solution[$i]['detail']);?></td>
+                </tr>
+              </table>
+            </tr>
+            <?php } ?>      
              
     
 	<div class = "members_condition">
@@ -156,41 +174,8 @@
 		
 	</div>
 	
-      
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-          <?php if( count($solution) > 0 ) { ?>
-          
-          <!-- table -->
-          <table border="0" width="100%">
-            <?php for($i=0;$i<1;$i++) { ?>
-            <tr>
-             <?php /* <table width="100%" style="border-bottom: 1px solid #CCCCCC;" border="0">
-                <tr>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="login_box_title" style="font-size:20px;"><?php echo ucwords(stripslashes($solution[$i]['title']));?></td>
-                </tr>
-                <tr>
-                  <td style="line-height:17px;"><?php echo stripslashes($solution[$i]['detail']);?></td>
-                </tr>
-              </table>
-            </tr>*/?>
-            <?php } 
-       ?>
+     
+  
             <style>
 		.box_txtbox11{
 		background: none repeat scroll 0 0 #FFFFFF;
