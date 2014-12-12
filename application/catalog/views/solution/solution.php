@@ -34,8 +34,7 @@
            
               
              </div>
-             
-                  
+            
           <?php if( count($solution) > 0 ) { ?>
           
           <!-- table -->
