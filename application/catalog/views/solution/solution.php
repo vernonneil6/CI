@@ -34,11 +34,12 @@
            
               
              </div>
-            
+             
+                  
           <?php if( count($solution) > 0 ) { ?>
           
           <!-- table -->
-          <table border="0" width="100%">
+         <!-- <table border="0" width="100%">
             <?php for($i=0;$i<1;$i++) { ?>
             <tr>
               <table width="100%" style="border-bottom: 1px solid #CCCCCC;" border="0">
@@ -46,12 +47,12 @@
                   <td></td>
                 </tr>
                 <tr>
-                  <td class="login_box_title" style="font-size:20px;"><?php echo ucwords(stripslashes($solution[$i]['title']));?></td>
+                  <td class="login_box_title" style="font-size:20px;"><?php //echo ucwords(stripslashes($solution[$i]['title']));?></td>
                 </tr>
                 <tr>
-                  <td style="line-height:17px;"><?php echo stripslashes($solution[$i]['detail']);?></td>
+                  <td style="line-height:17px;"><?php //echo stripslashes($solution[$i]['detail']);?></td>
                 </tr>
-              </table>
+              </table>-->
             </tr>
             <?php } ?>      
              
