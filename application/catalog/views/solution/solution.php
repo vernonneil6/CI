@@ -59,30 +59,32 @@
     
 	<div class = "members_condition">
 		<div class = "members_part1">
-			
-			<h1>Risk Free 30 Day Trial</h1>
-			<h1>Low Monthly Price $299</h1>
-			<h1>Are you listed on RipoffReport.com, ComplaintsBoard.com, Scam.com, PissedConsumer.com,Yelp.com, ResellerRatings.com</h1>
-			<h1>Outrank Them All - &nbsp;Take Control Today</h1>
-			<h1>YouGotRated.com Is A Revalutionary Business Solution Geared to Protect Merchants From Fake Reviews Being Posted By Competition</h1>
-			<h1>UPLOAD AS MANY POSITIVE REVIEWS AS YOU WANT THE DAY YOU SIGN UP, AND INSTANTLY CREATE BUYERS CONFIDENCE!!</h1>		
-			
-			<h1 class ="members_title">UNLIMITED PRESS RELEASES!</h1>
-			
 			<ul>
-				<li>GUARRANTEED TO BE POSTED INSTANTLY ACROSS 16 HIGHLY RANKED FORUMS</li>
-				<li>ABILITILITY TO META TAG THE ACTUAL PRESS RELEASE PAGE AS WELL AS META DESRIPTION!</li>
-				<li>YOUR PRESS RELEASE TITLE WILL BE INCLUDED IN THE URL EXTENTION FOR ULIMATE SEARCH ENGINE PAGE RANK RESULTS</li>
+			<li><h1>Risk Free 30 Day Trial</h1></li>
+			<li><h1>Low Monthly Price $299</h1></li>
+			<li><h1>Are you listed on RipoffReport.com, ComplaintsBoard.com, Scam.com, PissedConsumer.com,Yelp.com, ResellerRatings.com</h1></li>
+			<li><h1>Outrank Them All - &nbsp;Take Control Today</h1></li>
+			<li><h1>YouGotRated.com Is A Revalutionary Business Solution Geared to Protect Merchants From Fake Reviews Being Posted By Competition</h1></li>
+			<li><h1>UPLOAD AS MANY POSITIVE REVIEWS AS YOU WANT THE DAY YOU SIGN UP, AND INSTANTLY CREATE BUYERS CONFIDENCE!!</h1></li>	
+			</ul>
+			<h1 class ="members_title">UNLIMITED PRESS RELEASES!</h1>
+		
+   
+    
+			<ul>
+				<li>GUARANTEED TO BE POSTED INSTANTLY ACROSS 16 HIGHLY RANKED FORUMS</li>
+				<li>ABILITY TO META TAG THE ACTUAL PRESS RELEASE PAGE AS WELL AS META DESCRIPTION!</li>
+				<li>YOUR PRESS RELEASE TITLE WILL BE INCLUDED IN THE URL EXTENSION FOR ULTIMATE SEARCH ENGINE PAGE RANK RESULTS</li>
 			</ul>		
 			
-			<h1>ADD YOUR BUSINESS TO 16 HIGHLY RANKED</h1>
-			<h1>BUSINESS DIRECTORY WEBSITES</h1>
-			<h1>ALL FOR ONE LOW MONTHLY MEBERSHIP FEE!</h1>
+			<h1>ADD YOUR BUSINESS TO 16 HIGHLY RANKED BUSINESS DIRECTORY WEBSITES</h1>
+			<h1>ALL FOR ONE LOW MONTHLY MEMBERSHIP FEE!</h1>
 			
-			<h1 class = "member_blue">Control Your Brand Name In Search Engines</h1>
-			<h1 class = "member_blue">Your Business will be instatly listed on 16 Websites You Control!</h1>
-			<h1 class = "member_blue">THE ULTIMATE SOLUTION FOR ONLINE REPUTATION MANMAGEMENT!</h1>
-			<h1 class = "member_blue">INCREASE SALE CONVERTIONS BY 70%</h1>
+			
+			<h1>Control Your Brand Name In Search Engines</h1>
+			<h1>Your Business will be instantly listed on 16 Websites You Control!</h1>
+			<h1>THE ULTIMATE SOLUTION FOR ONLINE REPUTATION MANAGEMENT!</h1>
+			<h1>INCREASE SALE CONVERSIONS BY 70%</h1>
 		
 		</div>
 		
