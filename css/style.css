@@ -1311,25 +1311,25 @@ color:#2c6a99;
 }
 .members_part1
 {
-	font-style: italic;
+	
 }
 .members_part1 h1
 {
 	border: medium none;
-    color: rgb(128, 0, 0);
     height: auto;
     padding: 0px;
     text-align: left;
     font-size:14px;
+    margin: 15px;
 }
 .members_part1 .members_title
 {
-	color: rgb(0, 0, 128);
+	color: black;
 	font-size: 25px;
 }
 .members_part1 ul li
 {
-	color: rgb(165, 42, 42);
+	color: black;
 	text-align: left;
 	font-size: 14px;
 }
