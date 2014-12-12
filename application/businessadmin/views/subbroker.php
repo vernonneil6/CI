@@ -92,7 +92,7 @@
 	 <fieldset>
 	<div class="clearfix">
           <div class="lab">
-            <label for="name">Marketer Name</label>
+            <label for="name">Marketer Username</label>
           </div>
           <div class="con">
             <?php echo form_input( array( 'name'=>'marketername','class'=>'input','type'=>'text' ) ); ?>
