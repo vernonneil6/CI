@@ -55,12 +55,17 @@
 		<td>Username</td>
 		<td>Password</td>
 		<td>Signup</td>
+		<td>Action</td>
       </tr>
       <?php foreach($allagent as $agents){ ?>
       <tr>
 		<td><?php echo $agents['name']; ?></td>
         <td><?php echo $agents['password']; ?></td>
         <td><?php echo $agents['signup']; ?></td>
+        <td class="action">
+			<a href="<?php echo site_url('marketer/agentdelete/'.$agents['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this FAQ?');">Delete</a>
+			<a href="<?php echo site_url('marketer/agentedit/'.$agents['id']); ?>" title="Edit" class="ico ico-edit">Edit</a>
+		</td>
       </tr>
       <?php } ?>
     </table>
@@ -112,8 +117,52 @@
        
     </div>
 	</div>
-	<?php } ?>
+<?php } ?>
 
+<?php if($this->uri->segment(1)=='marketer' && $this->uri->segment(2)=='agentedit') { ?>
+	
+	<div class="breadcrumbs">
+		<ul>
+		  <li class="home"><a href="<?php echo site_url('marketer/agentedit');?>" title="editagent">Edit Agent</a></li>
+		</ul>
+	  </div>
+
+
+	<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Edit Agent" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+		
+    <?php echo form_open('marketer/agentedit/'. $agentedits['id'],array('class'=>'formBox broker')); ?>
+	<fieldset>
+	<div class="clearfix">
+          <div class="lab">
+            <label for="name">Agent Username</label>
+          </div>
+          <div class="con">
+			 <input type="text" value = "<?php echo $agentedits['name'];?>"  class = "input" name = "agentname">
+            <!--<php echo form_input( array( 'name'=>'agentname','class'=>'input','type'=>'text','value'=> $agentedit['name'] ) ); ?>-->
+          </div>
+        </div>
+	<div class="clearfix">
+          <div class="lab">
+            <label for="name">Password</label>
+          </div>
+          <div class="con">
+			  <input type="password" value = "<?php echo $agentedits['password'];?>"  class = "input" name = "agentpassword">
+            <!--<php echo form_input( array( 'name'=>'agentpassword','class'=>'input','type'=>'password','value'=> $agentedit['password'] ) ); ?>-->
+          </div>
+        </div>
+        <?php echo form_input(array('name'=>'agentupdatesubmit','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+	
+      </fieldset>
+       <?php echo form_close(); ?>
+       
+    </div>
+	</div>
+	
+<?php } ?>
 
 
 <?php if($this->uri->segment(1)=='marketer' && $this->uri->segment(2)=='elitemember') {?>
@@ -142,6 +191,7 @@
 			<td>Company</td>
 			<td>Email</td>
 			<td>Phone</td>
+			
 		  </tr>
 			<?php  
 			foreach($elitemembers as $elite) 
