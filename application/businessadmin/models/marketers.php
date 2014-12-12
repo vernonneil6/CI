@@ -7,10 +7,12 @@ class Marketers extends CI_Model
  	{
    	   	return $this->db->insert('youg_broker',$data);
  	}	
+ 	
  	function data_allagent()
  	{
    	   	return $this->db->get_where('youg_broker',array('marketerid'=>$this->session->userdata['marketer_data'][0]->id,'type'=>'agent'))->result_array();
  	}
+ 	
  	function elitemembers()
  	{
    	   	return $this->db
@@ -20,6 +22,22 @@ class Marketers extends CI_Model
 		->get()
 		->result_array();			
  	}	
+ 	
+ 	function agentdeletes($id)
+ 	{
+		$this->db->delete('youg_broker', array('id' => $id));
+	}
+	
+	function agentupdates($data, $id)
+ 	{
+		$this->db->where('id',$id)->update('youg_broker', $data);
+	}
+	
+	function agentedits()
+ 	{
+		return $this->db->get_where('youg_broker', array('id' => $id))->row_array();
+	}
+	
 
 }
 ?>

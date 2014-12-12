@@ -81,5 +81,27 @@ class Marketer extends CI_Controller {
 			redirect('marketerlogin', 'refresh');
 		}	
 	}
+	
+	function agentdelete($id)
+	{
+		$this->marketers->agentdeletes($id);
+		redirect('marketer/agent','refresh');
+		
+	}
+	
+	function agentedit($id)
+	{
+		$this->data['agentedit'] = $this->marketers->agentedits($id);
+		if($this->input->post('agentsubmit'))
+		{
+			$data=array(
+					'name'=>$this->input->post('agentname'),
+					'password'=>$this->input->post('agentpassword')
+					);
+			$this->marketers->agentupdates($data, $id);
+			redirect('marketer/agent','refresh');
+		}
+		$this->load->view('marketer',$this->data);
+	}
 
 }
