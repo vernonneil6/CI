@@ -1,0 +1,31 @@
+#ccnumber { margin-left: .5em; float: left; }
+#ccnumber, label { float: left; font-family: Arial, Helvetica, sans-serif; font-size: small; }
+br { clear: both; }
+input { border: 1px solid black; margin-bottom: .5em;  }
+input .error { border: 1px solid red; }
+label .error {
+	background: url('../images/error.gif') no-repeat;
+	display: block;
+	position: absolute;
+	float: right;
+	margin: 7px 0 0 61%;
+	padding: 0px 0 0 10px;
+	width: 37%;
+
+}
+.error {
+	display: block;
+	background: url('../images/error.gif') no-repeat;
+	margin: 10px 0 0 61%;
+	padding: 1px 0 5px 18px;
+	width: 37%;
+	
+}
+	/*margin-top: 5px;padding-top: 0px;width: 34%;*/
+label.valid {
+	background: url('../images/correct.gif') no-repeat;
+	display: block;
+	width: 16px;
+	height: 16px;
+	margin-top: -23px;
+}
