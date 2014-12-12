@@ -16,7 +16,8 @@
       <h2><span><?php echo "Sub Broker Url" ?></span></h2>
     </div>
     <table class="tab tab-drag">
-     <tbody><tr class="top nodrop nodrag"> </tr>       
+     <tbody>
+	 <div><label>Welcome to your YouGotRated Sub Broker dashboard! You can use the link below to recruit new Elite members, and when signed up - you will receive credit for the signup. You can also use the left column menu to create new Elite members, which will bring you to the creation form that will give you this credit.</label></div>
      <tr class="odd">
         <td>Sub Broker Url</td>
         <td>
