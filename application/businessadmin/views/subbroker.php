@@ -218,26 +218,6 @@
 
 
 
-
-
-
-
-<?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='addelitemember') {?>
-
-	
-<?php } ?>
-
-
-
-
-
-
-
-
-
-
-
-
 <?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='elitemember') {?>
 	
 	
