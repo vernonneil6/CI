@@ -14,6 +14,7 @@
     <div class="headlines">
       <h2><span><?php echo "Marketer Url" ?></span></h2>
     </div>
+    <div class="broker_heading">Welcome to the YouGotRated Marketer dashboard. From here, you can manage your agents, see your staff's Elite Member signups, and more. Note you can also use this URL below to recruit new Elite members, and receive credit.</div>
     <table class="tab tab-drag">
      <tbody><tr class="top nodrop nodrag"> </tr>       
      <tr class="odd">
@@ -90,7 +91,7 @@
 	<fieldset>
 	<div class="clearfix">
           <div class="lab">
-            <label for="name">Agent Name</label>
+            <label for="name">Agent Username</label>
           </div>
           <div class="con">
             <?php echo form_input( array( 'name'=>'agentname','class'=>'input','type'=>'text' ) ); ?>

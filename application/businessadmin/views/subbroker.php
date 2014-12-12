@@ -15,10 +15,10 @@
     <div class="headlines">
       <h2><span><?php echo "Sub Broker Url" ?></span></h2>
     </div>
+    <div class = "broker_heading"><label>Welcome to your YouGotRated Sub Broker dashboard! You can use the link below to recruit new Elite members, and when signed up - you will receive credit for the signup. You can also use the left column menu to create new Elite members, which will bring you to the creation form that will give you this credit.</label></div>
     <table class="tab tab-drag">
      <tbody>
-	 <div><label>Welcome to your YouGotRated Sub Broker dashboard! You can use the link below to recruit new Elite members, and when signed up - you will receive credit for the signup. You can also use the left column menu to create new Elite members, which will bring you to the creation form that will give you this credit.</label></div>
-     <tr class="odd">
+	 <tr class="odd">
         <td>Sub Broker Url</td>
         <td>
         <textarea cols='90' rows='10'>
@@ -92,7 +92,7 @@
 	 <fieldset>
 	<div class="clearfix">
           <div class="lab">
-            <label for="name">Marketer Name</label>
+            <label for="name">Marketer Username</label>
           </div>
           <div class="con">
             <?php echo form_input( array( 'name'=>'marketername','class'=>'input','type'=>'text' ) ); ?>
@@ -177,7 +177,7 @@
 	 <fieldset>
 	<div class="clearfix">
           <div class="lab">
-            <label for="name">Marketer Name</label>
+            <label for="name">Marketer Username</label>
           </div>
           <div class="con">
 				<select name="agentmarketer" class="select">
@@ -189,7 +189,7 @@
     </div>
 	<div class="clearfix">
           <div class="lab">
-            <label for="name">Agent Name</label>
+            <label for="name">Agent Username</label>
           </div>
           <div class="con">
             <?php echo form_input( array( 'name'=>'agentname','class'=>'input','type'=>'text' ) ); ?>
