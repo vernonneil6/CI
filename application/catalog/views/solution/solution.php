@@ -59,6 +59,7 @@
     
 	<div class = "members_condition">
 		<div class = "members_part1">
+			<h1 class ="members_title">ADDITIONAL BENEFITS:</h1>
 			<ul>
 			<li>Risk Free 30 Day Trial</li>
 			<li>Low Monthly Price $299</li>
