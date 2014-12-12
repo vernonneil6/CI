@@ -177,7 +177,7 @@
 	 <fieldset>
 	<div class="clearfix">
           <div class="lab">
-            <label for="name">Marketer Name</label>
+            <label for="name">Marketer Username</label>
           </div>
           <div class="con">
 				<select name="agentmarketer" class="select">
@@ -189,7 +189,7 @@
     </div>
 	<div class="clearfix">
           <div class="lab">
-            <label for="name">Agent Name</label>
+            <label for="name">Agent Username</label>
           </div>
           <div class="con">
             <?php echo form_input( array( 'name'=>'agentname','class'=>'input','type'=>'text' ) ); ?>
