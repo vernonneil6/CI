@@ -102,15 +102,14 @@ class Mainbroker extends CI_Controller
 	
 	function elitemember()
 	{
-		$elites = array();
-		$this->data['elitemember'] = $this->mainbrokers->elitemembers();
-		foreach ($this->data['elitemember'] as $elite )
+		$subbrokers = array();
+		$this->data['subbroker'] = $this->mainbrokers->elitemembers();
+		foreach($this->data['subbroker'] as $subbroker)
 		{
-			$id = $elite['id'];
-			$elites[] = $this->mainbrokers->elite_company($id);
-			
+			$id = $subbroker['id'];
+			$subbrokers = $this->mainbrokers->elite_company($id);
 		}
-		$this->data['elitecompany'] = $elites;
+		$this->data['subbroker'] = $subbrokers;
 		$this->load->view('mainbroker', $this->data);
 	}
 	
