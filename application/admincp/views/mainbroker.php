@@ -111,20 +111,23 @@ if( $this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'eliteme
 	{
 	foreach($subbrokerviews as $subbrokerview)
 	{
-	foreach($elitemembers as $elite)
-	{
 	?>
 	<tr>
 		<td width="30%"><?php echo $subbrokerview['company']; ?></td>
+		<?php foreach($elitemembers as $elite)
+		{
+		?>
 		<td width="30%"><?php echo $elite['name']; ?></td>
-        	<td width="20%"><?php echo $subbrokerview['brokertype']; ?></td>
+		<?php
+		}
+		?>
+		<td width="20%"><?php echo $subbrokerview['brokertype']; ?></td>
 		<td width="20%"><?php echo $subbrokerview['email']; ?></td>
-        	<td width="20%"><?php echo $subbrokerview['streetaddress']; ?></td>
+        <td width="20%"><?php echo $subbrokerview['streetaddress']; ?></td>
 	</tr>
 	<?php
 	}
 	}
-}
 	?> 
    </table>
    </div>
