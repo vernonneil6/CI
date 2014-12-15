@@ -178,19 +178,6 @@
             <p>No Records found.</p>
           </div>
           <?php  }*/?>
-          <div class = "members_condition">
-			  
-				<h1 class ="members_title">Become a certified YouGotRated Elite Member today!</h1>
-				<h3>Elite members receive the following benefits:</h3>
-				<ul class = "ygr_benefits">
-					<li>Free posting to popular press release websites</li>
-					<li>Receive a YGR verified seal for your emails and website</li>
-					<li>Ability to use our negative review removal tool</li>
-					<li>Buyer protection program to ensure customers are confident buying with you</li>
-					<li>Significant SEO benefits with Google,Yahoo and other major search providers</li>
-					<li>And much more!</li>
-				</ul>
-		  </div>
 	</div>
 	</div>
     </div>
