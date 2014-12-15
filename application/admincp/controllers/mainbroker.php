@@ -100,5 +100,11 @@ class Mainbroker extends CI_Controller
 		$this->load->view('mainbroker');
 	}
 	
+	function elitemember()
+	{
+		$this->mainbrokers->elitemembers();
+		$this->load->view('mainbroker');
+	}
+	
 }
 ?>
