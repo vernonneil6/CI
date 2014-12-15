@@ -24,9 +24,10 @@ Class Mainbrokers extends CI_Model
  	{
    	   	$this->db->insert('youg_broker',$data);
  	}
- 	function subbroker()
+ 	
+ 	function elitemembers()
  	{
-   	   	return $this->db->get_where('youg_broker', array('type' => 'subbroker'))->result_array();
+   	   	return $this->db->get('youg_broker')->result_array();
  	}	
 }
 ?>
