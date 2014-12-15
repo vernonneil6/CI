@@ -48,9 +48,9 @@
           
           <!-- table -->
 				 <table border="0" width="100%">
-					<?php for($i=0;$i<1;$i++) { ?>
+					<?php for($i=0;$i<count($solution);$i++) { ?>
 					<tr>
-					  <table width="100%" style="border-bottom: 1px solid #CCCCCC;" border="0">
+					  <table width="100%" border="0">
 						<tr>
 						  <td></td>
 						</tr>
