@@ -199,7 +199,7 @@
 
 	<div class="get_dirct">
 	<div class="getdir_title">
-            <label>MENU</label>
+            <label class = "view_direction_map">MENU</label>
 	</div></div>
 
         <div class="review_wrp">
