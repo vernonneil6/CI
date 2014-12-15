@@ -32,5 +32,9 @@ Class Mainbrokers extends CI_Model
  	{
    	   	return $this->db->get('youg_broker')->result_array();
  	}	
+ 	function elite_company($id)
+ 	{
+   	   	return $this->db->get_where('youg_company',array('id' => $id))->result_array();
+ 	}	
 }
 ?>
