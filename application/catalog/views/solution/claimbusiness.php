@@ -305,7 +305,72 @@
     if (charCode > 31 && (charCode < 48 || charCode > 57))
         return false;
     return true;
-  }  
+  } 
+  function checkcard(){
+	  
+  var result = "unknown";
+  var card=document.getElementById('ccnumber').value;
+  var success=document.getElementById('cardsuccess');
+  var fail=document.getElementById('carderror'); 
+     
+   if(card)
+   {
+	fail.innerHTML="";   
+    if (/^5[1-5]/.test(card))
+	  {
+		success.innerHTML="mastercard";
+	  }
+	 else if (/^4/.test(card))
+	  {
+	   success.innerHTML="visa";
+	  }
+      else if (/^3[47]/.test(card))
+	  {
+	   success.innerHTML="American Express";
+	  }
+	  else if(/^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/.test(card))
+	  {
+	   success.innerHTML="discover"; 
+	  }
+	  else if(/^(?:3(?:0[0-5]|[68][0-9])[0-9]{11})$/.test(card))
+	  {
+	   success.innerHTML="diner"; 
+	  }
+	  else if(/^(?:(?:2131|1800|35\d{3})\d{11})$/.test(card))
+	  {
+		success.innerHTML="jcb";   
+	  }
+	  else if(/^((?:6334|6767)\d{12}(?:\d\d)?\d?)$/.test(card))
+	  {
+		 success.innerHTML="solo";  
+	  }
+	  else if(/^(?:(?:(?:4903|4905|4911|4936|6333|6759)\d{12})|(?:(?:564182|633110)\d{10})(\d\d)?\d?)$/.test(card))
+	  {
+		success.innerHTML="switch";
+	  }
+	  else if(/^(5019)\d+$/.test(card))
+	  {
+		success.innerHTML="dankort";  
+	  }
+	  else if(/^((?:5020|5038|6304|6579|6761)\d{12}(?:\d\d)?)$/.test(card))
+	  {
+		success.innerHTML="maestro";  
+	  }
+	  else
+	  {
+	   success.innerHTML="";
+	   fail.innerHTML="not a valid card. Please Enter the valid !";   
+	  }
+    }
+    else
+    {
+		success.innerHTML="";
+		fail.innerHTML="Please Enter the card information!";
+	
+	}
+    return false;
+	  
+  } 
 </script>
 
 <section class="container">
@@ -440,7 +505,10 @@
           </div>
           <div class="reg-row" style="margin-top:10px !important;">
             <div class="reg_fld">CREDIT CARD NUMBER</div>
-            <input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+            <input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)" onblur="return checkcard()"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+            <div id="carderror" class="carderror"></div>
+            <div id="cardsuccess" class="cardsuccess"></div>
+           
               
           </div>
           <div class="reg-row" style="margin-top:10px !important;">
@@ -472,7 +540,7 @@
           <div class="reg-row" style="margin-top:27px;">
             <label>CREATE YOUR ACCOUNT</label>
             <div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
-            <button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CONTINUE TO CHECKOUT</button>
+            <button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany" onclick="return checkcard()">CONTINUE TO CHECKOUT</button>
           </div>
         </form>
         <div class="lgn_btnlogo" > <a href="<?php echo base_url();?>" title="<?php echo $site_name;?>" ><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
