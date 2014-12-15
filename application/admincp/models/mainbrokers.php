@@ -24,10 +24,17 @@ Class Mainbrokers extends CI_Model
  	{
    	   	$this->db->insert('youg_broker',$data);
  	}
- 	
+ 	function subbroker()
+ 	{
+   	   	return $this->db->get_where('youg_broker', array('type' => 'subbroker'))->result_array();
+ 	}	
  	function elitemembers()
  	{
    	   	return $this->db->get('youg_broker')->result_array();
+ 	}	
+ 	function elite_company($id)
+ 	{
+   	   	return $this->db->get_where('youg_company',array('brokerid' => $id))->result_array();
  	}	
 }
 ?>

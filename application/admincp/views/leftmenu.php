@@ -30,6 +30,9 @@
 			<li>
 				<a href="<?php echo site_url('mainbroker'); ?>" title="List All Brokers">List All Subbroker</a>
 			</li>
+			<li>
+				<a href="<?php echo site_url('mainbroker/elitemember'); ?>" title="List All Elitemember">List All Elitemember</a>
+			</li>
 		</ul>
 	</li>
     <li class="<?=($this->uri->segment(1)==='seo')?'active':''?>">
