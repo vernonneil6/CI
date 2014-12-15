@@ -22,7 +22,7 @@
 							  <li><a href="pressrelease" title="PRESS RELEASES">PRESS RELEASES</a></li>
 							  <li><a href="go/register" title="SIGN-UP">SIGN-UP</a></li>
 					<?php */
-					if($i!=1)
+					if($i!=0)
 					{ 
 					?>          
 					<li><a href="solution/detail/<?php echo stripslashes($solutions[$i]['urlkey']);?>" title="view"><?php echo ucwords(stripslashes($solutions[$i]['title']));?></a></li>
