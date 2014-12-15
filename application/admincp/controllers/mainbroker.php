@@ -109,7 +109,7 @@ class Mainbroker extends CI_Controller
 			$id = $subbroker['id'];
 			$subbrokers = $this->mainbrokers->elite_company($id);
 		}
-		$this->data['subbroker'] = $subbrokers;
+		$this->data['subbrokers'] = $subbrokers;
 		$this->load->view('mainbroker', $this->data);
 	}
 	
