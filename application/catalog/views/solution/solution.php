@@ -48,17 +48,15 @@
           
           <!-- table -->
 				 <table border="0" width="100%">
-					<?php for($i=0;$i<count($solution);$i++) { ?>
+					<?php for($i=0;$i<1;$i++) { ?>
 					<tr>
 					  <table width="100%" border="0">
 						<tr>
 						  <td></td>
 						</tr>
-						<?php if($i!=0) { ?>
 						<tr>
 						  <td class="login_box_title" style="font-size:20px;"><?php echo ucwords(stripslashes($solution[$i]['title']));?></td>
 						</tr>
-						<?php } ?>
 						<tr>
 						  <td style="line-height:17px;"><?php echo stripslashes($solution[$i]['detail']);?></td>
 						</tr>
