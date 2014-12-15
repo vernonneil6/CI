@@ -107,14 +107,14 @@ if( $this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'eliteme
         <td width="20%">Street Address</td>
       </tr>
      <?php
-	foreach($subbroker as $subbrokers)
+	foreach($subbrokers as $subbroker)
 	{
 	?>
 	<tr>
-		<td width="30%"><?php echo $subbrokers['company']; ?></td>
-		<td width="20%"><?php echo $subbrokers['brokertype']; ?></td>
-		<td width="20%"><?php echo $subbrokers['email']; ?></td>
-        <td width="20%"><?php echo $subbrokers['streetaddress']; ?></td>
+		<td width="30%"><?php echo $subbroker['company']; ?></td>
+		<td width="20%"><?php echo $subbroker['brokertype']; ?></td>
+		<td width="20%"><?php echo $subbroker['email']; ?></td>
+        <td width="20%"><?php echo $subbroker['streetaddress']; ?></td>
 	</tr>
 	<?php
 	}
