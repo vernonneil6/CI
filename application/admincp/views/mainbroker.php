@@ -59,7 +59,7 @@
 </div>
 <?php
 }
-else
+if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == '' )
 {
 ?>
 <div class="box">
