@@ -71,10 +71,10 @@
         <?php } ?>
         
         <?php if(count($elitemem_status)==0){?>
-        <div class="vry_btn"><a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint">FILE COMPLAINT</a></div>
+        <div class="vry_btn vry_width"><a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint">FILE COMPLAINT</a></div>
         
         <?php } else { ?>
-		<div class="vry_btn"><a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint">FILE COMPLAINT</a><a href="complaint/dispute/<?php echo $company[0]['id'];?>" title="File A Dispute">FILE A DISPUTE</a></div>	
+		<div class="vry_btn vry_width"><a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint">FILE COMPLAINT</a><a href="complaint/dispute/<?php echo $company[0]['id'];?>" title="File A Dispute">FILE A DISPUTE</a></div>	
        <?php } ?>
       </div>
 
@@ -193,7 +193,7 @@
 			  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 			 }
 			</script>
-			<label style="cursor: pointer;" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">GET DIRECTIONS</label>       		         
+			<label class = "view_direction_map" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">GET DIRECTIONS</label>       		         
 		</div>
 	   </div>
 
