@@ -1539,4 +1539,12 @@ color:#2c6a99;
 {
 	margin: 20px 0 0 174px;
 }
-
+.vry_width
+{
+	width : 100%;
+}
+.view_direction_map
+{
+	cursor: pointer;
+	width: 100px;
+}
