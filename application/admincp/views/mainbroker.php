@@ -7,11 +7,7 @@
       <li><a href="<?php echo site_url('mainbroker');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
     </ul>
   </div>
-<?php if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'elitemember' ) { ?>
-	
-	hi
 
-<?php } ?>
 <?php if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'add' ) { ?>
 <div class="box">
     <div class="headlines">
@@ -59,7 +55,7 @@
 </div>
 <?php
 }
-if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == '' )
+else
 {
 ?>
 <div class="box">
