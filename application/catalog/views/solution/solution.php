@@ -23,7 +23,7 @@
 							  <li><a href="go/register" title="SIGN-UP">SIGN-UP</a></li>
 					<?php */
 					if($i!=1)
-					{
+					{ 
 					?>          
 					<li><a href="solution/detail/<?php echo stripslashes($solutions[$i]['urlkey']);?>" title="view"><?php echo ucwords(stripslashes($solutions[$i]['title']));?></a></li>
 				    <?php } } ?>
