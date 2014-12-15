@@ -22,9 +22,10 @@
 							  <li><a href="pressrelease" title="PRESS RELEASES">PRESS RELEASES</a></li>
 							  <li><a href="go/register" title="SIGN-UP">SIGN-UP</a></li>
 					<?php */
-					if($i==0)
+					if($i==1)
 					{
-						$class = "pipe_line";
+						$class = "";
+						$i++;
 					}
 					else
 					{
