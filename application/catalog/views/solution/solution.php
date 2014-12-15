@@ -190,7 +190,6 @@
 					<li>Significant SEO benefits with Google,Yahoo and other major search providers</li>
 					<li>And much more!</li>
 				</ul>
-		
 		  </div>
 	</div>
 	</div>
