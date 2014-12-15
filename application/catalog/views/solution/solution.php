@@ -21,9 +21,12 @@
 					<?php /*?><li><a href="solution" title="BUSINESS SOLUTIONS">BUSINESS SOLUTIONS</a></li>
 							  <li><a href="pressrelease" title="PRESS RELEASES">PRESS RELEASES</a></li>
 							  <li><a href="go/register" title="SIGN-UP">SIGN-UP</a></li>
-					<?php */?>          
+					<?php */
+					if($i!=1)
+					{ 
+					?>          
 					<li><a href="solution/detail/<?php echo stripslashes($solutions[$i]['urlkey']);?>" title="view"><?php echo ucwords(stripslashes($solutions[$i]['title']));?></a></li>
-				      <?php } ?>
+				    <?php } } ?>
         
 				 </ul>
 			</div>
