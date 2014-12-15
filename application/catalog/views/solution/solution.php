@@ -47,7 +47,7 @@
           <?php if( count($solution) > 0 ) { ?>
           
           <!-- table -->
-				 <table border="0" width="100%">
+				 <table border="0" width="100%" class = "solution_margin">
 					<?php for($i=0;$i<1;$i++) { ?>
 					<tr>
 					  <table width="100%" border="0">
