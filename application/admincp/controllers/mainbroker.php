@@ -102,8 +102,8 @@ class Mainbroker extends CI_Controller
 	
 	function elitemember()
 	{
-		$this->mainbrokers->elitemembers();
-		$this->load->view('mainbroker');
+		$this->data['elitemember'] = $this->mainbrokers->elitemembers();
+		$this->load->view('mainbroker', $this->data);
 	}
 	
 }
