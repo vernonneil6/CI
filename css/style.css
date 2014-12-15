@@ -1305,8 +1305,7 @@ color:#2c6a99;
 .members_condition
 {
 	font-family : "myriadpro-regular";
-	font-size 	: 25px;
-	text-align  : center;
+	font-size 	: 14px;
 	margin		: 60px 0 0;
 }
 .members_part1
@@ -1322,11 +1321,13 @@ color:#2c6a99;
     font-size:14px;
     margin: 0;
 }
-.members_part1 .members_title
+.members_title
 {
 	color: black;
 	font-size: 25px;
 	margin: 0 0 0 25px;
+	border-bottom: none;
+    height: auto;
 }
 .members_part1 ul li
 {
@@ -1547,4 +1548,12 @@ color:#2c6a99;
 {
 	cursor: pointer;
 	width : 100px!important;
+}
+.ygr_benefits li
+{
+	margin-bottom: 10px;
+}
+.ygr_benefits
+{
+	padding: 0 0 0 15px;
 }
