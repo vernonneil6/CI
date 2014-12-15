@@ -785,7 +785,7 @@ h1 a{display:inline-block;}
 .solution_menu {margin: 0 0 15px 130px;}
 .solution_menu ul li {border-left: 1px solid; padding: 0 30px;}
 .solution_margin{margin : 35px 0 0;}
-.pipe_line{border : none;}
+.pipe_line{border : none!important;}
 
 /*============ Business_Directory ===========================*/
 .p_realese_head{text-align:center; margin:40px auto 0 auto; width:940px; height:97px; padding-bottom:12px; border-bottom:1px solid #999;}
