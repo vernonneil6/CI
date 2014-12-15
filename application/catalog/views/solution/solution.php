@@ -54,7 +54,7 @@
 						<tr>
 						  <td></td>
 						</tr>
-						<?php if($i!=0) ?>
+						<?php if($i!=0) { ?>
 						<tr>
 						  <td class="login_box_title" style="font-size:20px;"><?php echo ucwords(stripslashes($solution[$i]['title']));?></td>
 						</tr>
