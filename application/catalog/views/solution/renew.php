@@ -303,7 +303,7 @@ function checkcard(){
 	  {
 		success.innerHTML="mastercard";
 	  }
-	 else if (/^4/.test(card))
+	 else if (/^4[0-9]{6,}/.test(card))
 	  {
 	   success.innerHTML="visa";
 	  }
