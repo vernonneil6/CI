@@ -21,9 +21,12 @@
 					<?php /*?><li><a href="solution" title="BUSINESS SOLUTIONS">BUSINESS SOLUTIONS</a></li>
 							  <li><a href="pressrelease" title="PRESS RELEASES">PRESS RELEASES</a></li>
 							  <li><a href="go/register" title="SIGN-UP">SIGN-UP</a></li>
-					<?php */?>          
+					<?php */
+					if($i!=0)
+					{ 
+					?>          
 					<li><a href="solution/detail/<?php echo stripslashes($solutions[$i]['urlkey']);?>" title="view"><?php echo ucwords(stripslashes($solutions[$i]['title']));?></a></li>
-				      <?php } ?>
+				    <?php } } ?>
         
 				 </ul>
 			</div>
@@ -44,10 +47,10 @@
           <?php if( count($solution) > 0 ) { ?>
           
           <!-- table -->
-				 <table border="0" width="100%">
+				 <table border="0" width="100%" class = "solution_margin">
 					<?php for($i=0;$i<1;$i++) { ?>
 					<tr>
-					  <table width="100%" style="border-bottom: 1px solid #CCCCCC;" border="0">
+					  <table width="100%" border="0">
 						<tr>
 						  <td></td>
 						</tr>

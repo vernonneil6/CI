@@ -782,8 +782,9 @@ h1 a{display:inline-block;}
 .bs_sol_menu ul li a:hover{font-family:"myriadpro-regular"; font-size:20px; color:#0080ff; padding:0 10px; color:#333;}
 .blnk_contarea{width:100%; float:left; min-height:500px;}
 
-.solution_menu {margin: 0 0 15px 75px;}
+.solution_menu {margin: 0 0 15px 130px;}
 .solution_menu ul li {margin: 0 30px;}
+.solution_margin{margin : 35px 0 0;}
 /*============ Business_Directory ===========================*/
 .p_realese_head{text-align:center; margin:40px auto 0 auto; width:940px; height:97px; padding-bottom:12px; border-bottom:1px solid #999;}
 .p_realese_head a{/*display:inline-block;*/}
