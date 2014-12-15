@@ -24,7 +24,7 @@
 					<?php */
 					if($i==1)
 					{
-						$class = "";
+						$class = "pipe_line";
 						$i++;
 					}
 					else
