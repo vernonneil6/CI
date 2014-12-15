@@ -55,7 +55,7 @@
 </div>
 <?php
 }
-else
+if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == '' )
 {
 ?>
 <div class="box">
@@ -84,9 +84,43 @@ else
 	<?php
 	}
 	?> 
-</table >
+	</table >
    </div>
 </div>
+<?php
+}
+if( $this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'elitemember' )
+{
+?>
+<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Main Broker" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+
+	<table class="tab tab-drag">
+      <tr class="top nodrop nodrag">
+        <td width="30%">Username</td>
+        <td width="20%">Type</td>
+		<td width="20%">Marketer</td>
+        <td width="20%">Agent</td>
+      </tr>
+      <?php
+	foreach($subbroker as $subbrokerview)
+	{
+	?>
+	<tr>
+		<td width="30%"><?php echo $subbrokerview['name']; ?></td>
+        <td width="20%"><?php echo $subbrokerview['type']; ?></td>
+		<td width="20%"><?php echo $subbrokerview['marketer']; ?></td>
+        <td width="20%"><?php echo $subbrokerview['agent']; ?></td>
+	</tr>
+	<?php
+	}
+	?> 
+   </table>
+   </div>
+</div>	
 <?php
 }
 ?>
