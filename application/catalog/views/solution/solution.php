@@ -15,7 +15,7 @@
       
        
         <?php if( count($solution) > 0 ) { ?>
-			<div class="bs_sol_menu">
+			<div class="bs_sol_menu solution_menu menu">
 				 <ul>
 					  <?php for($i=0;$i<count($solutions);$i++) { ?>	  
 					<?php /*?><li><a href="solution" title="BUSINESS SOLUTIONS">BUSINESS SOLUTIONS</a></li>
