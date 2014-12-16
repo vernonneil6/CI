@@ -107,6 +107,7 @@ class Mainbroker extends CI_Controller
 		foreach($this->data['wholebroker'] as $whole_broker)
 		{
 			$id = $whole_broker['id'];
+			$array[] = $this->mainbrokers->brokerids($id);
 			$array[] = $this->mainbrokers->subbroker_company($id);
 		}
 		$this->data['subbroker'] = $array;
