@@ -112,6 +112,32 @@ class Mainbroker extends CI_Controller
 		$this->data['subbrokers'] = $subbrokers;
 		$this->load->view('mainbroker', $this->data);
 	}
+	function view($id='')
+	{
+		if( $this->session->userdata['youg_admin'] )
+		{
+					if(!$id)
+					{
+						redirect('mainbroker', 'refresh');
+					}
+					$this->data['views']=$this->mainbrokers->view_details($id);
+					
+					//print_r($this->data['views']);
+			       					
+					if(count($this->data['views']) > 0)
+					{			
+						//Loading View File
+						$this->load->view('mainbrokerview',$this->data);
+					}
+					else
+					{
+						$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
+						redirect('mainbroker', 'refresh');
+					}
+		}
+		
+		
+	}
 	
 }
 ?>
