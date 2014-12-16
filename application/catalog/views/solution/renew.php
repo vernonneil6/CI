@@ -6,6 +6,10 @@
               $(document).ready(function() {
                   $("#btnaddcompany").click(function () {
 					  
+					  if(checkcard()==false)
+					  {
+						return false;  
+					  }
 					  if( trim($("#name").val()) == "" )
 					  {
 						  $("#nameerror").show();
@@ -342,7 +346,8 @@ function checkcard(){
 	  else
 	  {
 	   success.innerHTML="";
-	   fail.innerHTML="not a valid card. Please Enter the valid !";   
+	   fail.innerHTML="not a valid card. Please Enter the valid !"; 
+	   return false;  
 	  }
     }
     else
@@ -351,8 +356,7 @@ function checkcard(){
 		fail.innerHTML="Please Enter the card information!";
 	
 	}
-    return false;
-	  
+   
   }  
 </script>
 <section class="container">
@@ -362,7 +366,7 @@ function checkcard(){
       <div class="reg_step_edit_claim" style="display:none;"></div>
       <div class="reg_frm_wrap">
 	      
-        <form class="reg_frm" action="index.php/solution/renew_update/<?php echo $renewelite[0]['id'];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
+        <form class="reg_frm" action="solution/renew_update/<?php echo $renewelite[0]['id'];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
           <div class="reg-row">
             <label>RENEW YOUR SUBSCRIPTION HERE</label>
             <div class="reg_fld">PLEASE RENEW YOUR ELITEMEMBERSHIP SUBSCRIPTION HERE FOR ACTIVATING IT.</div>

@@ -6,6 +6,10 @@
               $(document).ready(function() {
                   $("#btnaddcompany").click(function () {
 					  
+					  if(checkcard()==false)
+					  {
+						return false;  
+					  }
 					  if( trim($("#name").val()) == "" )
 					  {
 						  $("#nameerror").show();
@@ -359,16 +363,16 @@
 	  else
 	  {
 	   success.innerHTML="";
-	   fail.innerHTML="not a valid card. Please Enter the valid !";   
+	   fail.innerHTML="not a valid card. Please Enter the valid !";
+	    return false;    
 	  }
     }
     else
     {
 		success.innerHTML="";
 		fail.innerHTML="Please Enter the card information!";
-	
 	}
-    return false;
+    
 	  
   } 
 </script>
