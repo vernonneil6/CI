@@ -204,7 +204,7 @@ if($this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'nodetail
 
 	<table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-        <td width="30%"><div class="form-message warning">No Records Found</div></td>
+        <td width="30%"><div class="form-message warning">No Sales Records Found</div></td>
       </tr>
     </table >
    </div>

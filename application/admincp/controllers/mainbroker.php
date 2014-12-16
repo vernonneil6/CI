@@ -152,7 +152,7 @@ class Mainbroker extends CI_Controller
 					else
 					{
 						$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
-						redirect('mainbroker', 'refresh');
+						redirect('mainbroker/nodetail', 'refresh');
 					}
 		}
 		
