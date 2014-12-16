@@ -114,8 +114,8 @@ if( $this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'eliteme
 	{
 	?>
 	<tr>
-		<td width="30%"><?php echo $subbrokers['yccompany']; ?></td>
-		<td width="20%"><?php echo $subbrokers['ybname'];?></td>
+		<td width="30%"><?php echo ucfirst($subbrokers['yccompany']); ?></td>
+		<td width="20%"><?php echo ucfirst($subbrokers['ybname']);?></td>
 		<td width="20%"><?php echo $subbrokers['ybtype']; ?></td>
 		<td width="20%"><?php echo $subbrokers['ycemail']; ?></td>
     </tr>
