@@ -127,6 +127,11 @@ class Mainbroker extends CI_Controller
 		$this->load->view('mainbroker', $this->data);
 	
 	}
+	function nodetail()
+	{
+		$this->load->view('mainbroker');
+		
+	}
 	function view($id='')
 	{
 		if( $this->session->userdata['youg_admin'] )
@@ -173,7 +178,7 @@ class Mainbroker extends CI_Controller
 					else
 					{
 						$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
-						redirect('mainbroker/marketer', 'refresh');
+						redirect('mainbroker/nodetail', 'refresh');
 					}
 		}
 		
@@ -199,7 +204,7 @@ class Mainbroker extends CI_Controller
 					else
 					{
 						$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
-						redirect('mainbroker/agent', 'refresh');
+						redirect('mainbroker/nodetail', 'refresh');
 					}
 		}
 		

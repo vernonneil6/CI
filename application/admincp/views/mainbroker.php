@@ -193,8 +193,25 @@ if($this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'agent') 
 </div>
 <?php
 }
+if($this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'nodetail')
+{
 ?>
+<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Broker details" ?></span></h2>
+    </div>
+    <div class="box-content"> 
 
+	<table class="tab tab-drag">
+      <tr class="top nodrop nodrag">
+        <td width="30%"><div class="form-message warning">No Records Found</div></td>
+      </tr>
+    </table >
+   </div>
+</div>
+<?php
+}
+?>
 </div>
 <?php include('leftmenu.php'); ?>
 <?php echo $footer; ?>

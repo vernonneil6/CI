@@ -4,7 +4,7 @@
   <div class="breadcrumbs">
     <ul>
       <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
-      <li><a href="<?php echo site_url('mainbrokerview');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
+      <li><a href="<?php echo site_url('mainbroker');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
     </ul>
   </div>
 <?php

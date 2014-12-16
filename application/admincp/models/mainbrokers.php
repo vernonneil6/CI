@@ -70,7 +70,7 @@ Class Mainbrokers extends CI_Model
 		if($query1[0]['type'] =='marketer' and $query1[0]['id']==$id)
    	    {
    	     $query = $this->db
-			->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid,yc.brokerid ycbrokerid,(SELECT count(*) FROM `youg_company` where brokerid='.$id.' or subbrokerid='.$id.') as totalelite ')
+			->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid,yc.brokerid ycbrokerid,(SELECT count(*) FROM `youg_company` where brokerid='.$id.' or marketerid='.$id.') as totalelite ')
 			->from('youg_broker yb')
 			->join('youg_company yc','yb.id = yc.brokerid and yc.brokertype = yb.type','left')
 			->where('yc.brokerid',$id)
@@ -78,6 +78,9 @@ Class Mainbrokers extends CI_Model
 			->group_by('yb.id')
 			->get()
 			->result_array();
+			
+			//echo $this->db->last_query();
+			//echo '<pre>';print_r($query);die;
 		}
 		if($query1[0]['type'] =='agent' and $query1[0]['id']==$id)
    	    {
@@ -93,10 +96,11 @@ Class Mainbrokers extends CI_Model
 			$totalelite='';
 			foreach ($query as $key => $row)
 			{	
-			
-				$brokerquery = $this->db->query('select count(*) as count from youg_company where brokerid='.$row['ybid'].'')->result_array();
-				$query[$key]['count'] = $brokerquery[0]['count'];
+				$ybid=$row['ybid'];
+				$individualsale = $this->db->query('select count(*) as individualsale from youg_company where brokerid='.$ybid.'')->result_array();
+				$query[$key]['count'] = $individualsale[0]['individualsale'];
 				$total = $query[$key]['totalelite'];
+				
 				if($total != $totalelite){
 									
 					$query[$key]['totalelites'] = $total;
