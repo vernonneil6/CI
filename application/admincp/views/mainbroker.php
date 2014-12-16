@@ -102,7 +102,7 @@ if( $this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'eliteme
 
 	<table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-        <td width="30%">Username</td>
+        <td width="30%">Elite-name</td>
         <td width="30%">Brokername</td>
         <td width="20%">Type</td>
 		<td width="20%">Email</td>
