@@ -38,7 +38,7 @@ Class Mainbrokers extends CI_Model
  	}	
  	function subbroker_company($id)
  	{
-   	   	return $this->db->get_where('youg_company',array('brokerid' => $id, 'brokertype' => 'subbroker'))->result_array();
+   	   	return $this->db->get_where('youg_company',array('brokerid' => $id, 'brokertype' => 'subbroker'))->row_array();
  	}
  	function marketers()
  	{
