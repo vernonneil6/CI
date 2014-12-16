@@ -31,6 +31,12 @@
 				<a href="<?php echo site_url('mainbroker'); ?>" title="List All Brokers">List All Subbroker</a>
 			</li>
 			<li>
+				<a href="<?php echo site_url('mainbroker/marketer'); ?>" title="List All Brokers">List All Marketer</a>
+			</li>
+			<li>
+				<a href="<?php echo site_url('mainbroker/agent'); ?>" title="List All Brokers">List All Agent</a>
+			</li>
+			<li>
 				<a href="<?php echo site_url('mainbroker/elitemember'); ?>" title="List All Elitemember">List All Elitemember</a>
 			</li>
 		</ul>

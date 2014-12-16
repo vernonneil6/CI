@@ -112,6 +112,19 @@ class Mainbroker extends CI_Controller
 		$this->data['subbrokers'] = $subbrokers;
 		$this->load->view('mainbroker', $this->data);
 	}
+	function marketer()
+	{
+		
+		$this->data['marketers']=$this->mainbrokers->marketers();
+		$this->load->view('mainbroker', $this->data);
+			
+	}
+	function agent()
+	{
+		$this->data['agents']=$this->mainbrokers->agents();
+		$this->load->view('mainbroker', $this->data);
+	
+	}
 	function view($id='')
 	{
 		if( $this->session->userdata['youg_admin'] )
@@ -133,6 +146,58 @@ class Mainbroker extends CI_Controller
 					{
 						$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
 						redirect('mainbroker', 'refresh');
+					}
+		}
+		
+		
+	}
+	function mview($id='')
+	{
+		if( $this->session->userdata['youg_admin'] )
+		{
+					if(!$id)
+					{
+						redirect('mainbroker', 'refresh');
+					}
+					$this->data['views']=$this->mainbrokers->view_details($id);
+					
+					//print_r($this->data['views']);
+			       					
+					if(count($this->data['views']) > 0)
+					{			
+						//Loading View File
+						$this->load->view('mainbrokerview',$this->data);
+					}
+					else
+					{
+						$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
+						redirect('mainbroker/marketer', 'refresh');
+					}
+		}
+		
+		
+	}
+	function aview($id='')
+	{
+		if( $this->session->userdata['youg_admin'] )
+		{
+					if(!$id)
+					{
+						redirect('mainbroker', 'refresh');
+					}
+					$this->data['views']=$this->mainbrokers->view_details($id);
+					
+					//print_r($this->data['views']);
+			       					
+					if(count($this->data['views']) > 0)
+					{			
+						//Loading View File
+						$this->load->view('mainbrokerview',$this->data);
+					}
+					else
+					{
+						$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
+						redirect('mainbroker/agent', 'refresh');
 					}
 		}
 		

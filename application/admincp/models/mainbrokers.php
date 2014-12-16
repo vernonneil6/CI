@@ -36,6 +36,16 @@ Class Mainbrokers extends CI_Model
  	{
    	   	return $this->db->get_where('youg_company',array('brokerid' => $id))->result_array();
  	}
+ 	function marketers()
+ 	{
+			return $this->db->get_where('youg_broker',array('type'=>'marketer'))->result_array();
+	}
+	
+ 	function agents()
+ 	{
+			return $this->db->get_where('youg_broker',array('type'=>'agent'))->result_array();
+	}
+	
  	function view_details($id)
  	{
 		
