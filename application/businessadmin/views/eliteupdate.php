@@ -26,12 +26,7 @@ $("#ccnumber").click(function(){
 		$("#ccnumber-error").removeClass('error');
 	}
 });
-$("#ccnumber").blur(function(){
-	$("#ccnumber-error").removeClass('error');
-	$("#ccnumber-error").hide('');
 });	
-});	
-
  
 function number(evt){
     var charCode = (evt.which) ? evt.which : event.keyCode
@@ -45,16 +40,19 @@ function checkcard()
   debug: true,
   success: "valid"
 });
-$( "#frmelite" ).validate({
+$("#frmelite").validate({
   rules: {
     ccnumber: {
       required: true,
       creditcard: true
     }
+  },
+submitHandler : function(form) {
+    form.submit();
   }
+  
 });
-
-}  	
+}
 </script>
 
   <div class="box">
@@ -85,7 +83,7 @@ $( "#frmelite" ).validate({
             <label for="title">Credit Card<span class="errorsign">*</span></label>
         </div>
           <div class="con">
-			  <?php echo form_input(array( 'name'=>'ccnumber','id'=>'ccnumber','class'=>'input','type'=>'text','placeholder'=>'Enter Your credit card number','onkeypress'=>'return number(event)')); ?>
+			  <?php echo form_input(array( 'name'=>'ccnumber','id'=>'ccnumber','class'=>'input','type'=>'text','placeholder'=>'Enter Your credit card number','onkeypress'=>'return number(event)','onblur'=>'return checkcard();')); ?>
           </div>
         <div class="con" style='margin-top:10px'>
                <?php echo form_input(array( 'name'=>'fname','id'=>'fname','class'=>'input','type'=>'text','placeholder'=>'Enter Your first name')); ?>
@@ -121,7 +119,7 @@ $( "#frmelite" ).validate({
         <div class="btn-submit"> 
           <!-- Submit form -->
           
-          <?php echo form_input(array('name'=>'btnupdate','id'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Update','onclick'=>'return checkcard();')); ?>
+          <?php echo form_input(array('name'=>'btnupdate','id'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Update')); ?>
     
           </div>
       </fieldset>
