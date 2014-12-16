@@ -108,8 +108,7 @@ class Mainbroker extends CI_Controller
 		{
 			$id = $whole_broker['id'];
 			$data = $this->mainbrokers->brokerids($id);
-			$array[] = $data['name'];
-			$array[] = $this->mainbrokers->subbroker_company($id);
+			$array[] = $this->mainbrokers->view_details($id);
 		}
 		$this->data['subbroker'] = $array;
 		$this->load->view('mainbroker', $this->data);

@@ -96,7 +96,7 @@ if( $this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'eliteme
 ?>
 <div class="box">
     <div class="headlines">
-      <h2><span><?php echo "Main Broker" ?></span></h2>
+      <h2><span><?php echo "Elite Member" ?></span></h2>
     </div>
     <div class="box-content"> 
 
@@ -106,7 +106,6 @@ if( $this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'eliteme
         <td width="30%">Brokername</td>
         <td width="20%">Type</td>
 		<td width="20%">Email</td>
-        <td width="20%">Street Address</td>
       </tr>
      <?php
 	foreach($subbroker as $subbrok)
@@ -115,12 +114,11 @@ if( $this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'eliteme
 	{
 	?>
 	<tr>
-		<td width="30%"><?php echo $subbrokers['company']; ?></td>
-		<td width="20%"><?php echo $name; ?></td>
-		<td width="20%"><?php echo $subbrokers['brokertype']; ?></td>
-		<td width="20%"><?php echo $subbrokers['email']; ?></td>
-        <td width="20%"><?php echo $subbrokers['streetaddress']; ?></td>
-	</tr>
+		<td width="30%"><?php echo $subbrokers['yccompany']; ?></td>
+		<td width="20%"><?php echo $subbrokers['ybname'];?></td>
+		<td width="20%"><?php echo $subbrokers['ybtype']; ?></td>
+		<td width="20%"><?php echo $subbrokers['ycemail']; ?></td>
+    </tr>
 	<?php
 	}
 	}
