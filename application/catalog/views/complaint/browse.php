@@ -6,10 +6,10 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
   <section class="main_contentarea">
     <div class="verified_wrp pr_rwrp">
         <?php if(count($elitemem_status)==0){?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class = "reviewnotverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo verified_browse"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class = "reviewnotverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>" /></a> </div>
         <?php }else{
 				  ?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo verified_browse"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>" /></a> </div>
         <?php
 				  } ?>
         <?php if(count($elitemem_status)==0){?>
@@ -49,13 +49,13 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
       </div>
       <div class="pr_countwrp"> </div>
       <div class="pr_testmnl_wrp">
-        <p>"<?php echo $complaints[0]['detail'];?>"</p>
+        <p class = "browse_ptag">"<?php echo $complaints[0]['detail'];?>"</p>
         <?php $user=$this->users->get_user_byid($complaints[0]['userid']);
 				if(count($user)>0){
 				?>
-        <div class="testmnl_clntwrp">
+        <div class="testmnl_clntwrp browse_user">
           <div class="clnt_intr"> - &nbsp;&nbsp;
-            <div class="clnt_pic"> <a href="<?php echo site_url('complaint/viewuser/'.$complaints[0]['companyid'].'/'.$complaints[0]['userid']);?>" title="view profile"><img src="images/user_icn.png" alt="Client Image" title="Client Image"> </a></div>
+            <div class="clnt_pic"> <a href="<?php echo site_url('complaint/viewuser/'.$complaints[0]['companyid'].'/'.$complaints[0]['userid']);?>" title="view profile"><img src="images/default_user.png" alt="Client Image" title="Client Image"> </a></div>
             <div class="clnt_name">
               <h4><a href="<?php echo site_url('complaint/viewuser/'.$complaints[0]['companyid'].'/'.$complaints[0]['userid']);?>" title="view profile"><?php echo $user[0]['username'];?></a></h4>
                <h4><?php echo $user[0]['city'];?></h4>
@@ -80,7 +80,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
             
             
           </div>
-          <div class="clnt_pic"> <img src="images/user_icn.png" alt="Client Image" title="Client Image"> </div>
+          <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
         </div>
         <div class="review_rgt cmnt_dscr">
           <p><?php echo $othercomplaints[$j]['detail'];?></p>
