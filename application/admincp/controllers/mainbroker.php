@@ -107,9 +107,10 @@ class Mainbroker extends CI_Controller
 		foreach($this->data['subbroker'] as $subbroker)
 		{
 			$id = $subbroker['id'];
-			$subbrokers = $this->mainbrokers->elite_company($id);
+			//$subbrokers[] = $this->mainbrokers->brokerids($id);
+			$subbrokers[] = $this->mainbrokers->subbroker_company($id);
 		}
-		$this->data['subbrokers'] = $subbrokers;
+		$this->data['subbrok'] = $subbrokers;
 		$this->load->view('mainbroker', $this->data);
 	}
 	function marketer()

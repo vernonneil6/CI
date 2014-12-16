@@ -109,7 +109,7 @@ if( $this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'eliteme
         <td width="20%">Street Address</td>
       </tr>
      <?php
-	foreach($subbrokers as $subbroker)
+	foreach($subbrok as $subbroker)
 	{
 	?>
 	<tr>
