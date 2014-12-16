@@ -120,8 +120,6 @@ Class Mainbrokers extends CI_Model
 			->from('youg_broker yb')
 			->join('youg_company yc','yb.id = yc.brokerid and yc.brokertype = yb.type','left')
 			->where('yc.brokerid',$id)
-			->or_where('yc.subbrokerid',$id)
-			->or_where('yc.marketerid',$id)
 			->group_by('yb.id')
 			->get()
 			->result_array();	
