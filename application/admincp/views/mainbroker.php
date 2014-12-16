@@ -55,7 +55,7 @@
 </div>
 <?php
 }
-if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == '' )
+if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == '' )
 {
 ?>
 <div class="box">
@@ -66,7 +66,7 @@ if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == '' )
 
 	<table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-        <td width="30%">Username</td>
+        <td width="30%">Subbroker-name</td>
         <td width="20%">Type</td>
 		<td width="20%">Marketer</td>
         <td width="20%">Agent</td>
@@ -77,8 +77,8 @@ if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == '' )
 	{
 	?>
 	<tr>
-		<td width="30%"><?php echo $subbrokerview['name']; ?></td>
-        <td width="20%"><?php echo $subbrokerview['type']; ?></td>
+		<td width="30%"><?php echo ucfirst($subbrokerview['name']); ?></td>
+        <td width="20%"><?php echo ucfirst($subbrokerview['type']); ?></td>
 		<td width="20%"><?php echo $subbrokerview['marketer']; ?></td>
         <td width="20%"><?php echo $subbrokerview['agent']; ?></td>
         <td width="100px"><a href="<?php echo site_url('mainbroker/view/'.$subbrokerview['id']); ?>" title="View Detail of <?php echo stripslashes($subbrokerview['name']); ?>" ><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>
@@ -126,7 +126,71 @@ if( $this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'eliteme
 </div>	
 <?php
 }
+if($this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'marketer')
+{
 ?>
+<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Main broker" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+
+	<table class="tab tab-drag">
+      <tr class="top nodrop nodrag">
+        <td width="30%">Marketer-name</td>
+        <td width="20%">Type</td>
+	    <td width="20%">Action</td>
+      </tr>
+      <?php
+	foreach($marketers as $subbrokerview)
+	{
+	?>
+	<tr>
+		<td width="30%"><?php echo ucfirst($subbrokerview['name']); ?></td>
+        <td width="20%"><?php echo ucfirst($subbrokerview['type']); ?></td>
+		<td width="100px"><a href="<?php echo site_url('mainbroker/mview/'.$subbrokerview['id']); ?>" title="View Detail of <?php echo stripslashes($subbrokerview['name']); ?>" ><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>
+	</tr>
+	<?php
+	}
+	?> 
+	</table >
+   </div>
+</div>
+<?php
+}
+if($this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'agent') {
+?>
+<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Main broker" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+
+	<table class="tab tab-drag">
+      <tr class="top nodrop nodrag">
+        <td width="30%">Agent-name</td>
+        <td width="20%">Type</td>
+	    <td width="20%">Action</td>
+      </tr>
+      <?php
+	foreach($agents as $subbrokerview)
+	{
+	?>
+	<tr>
+		<td width="30%"><?php echo ucfirst($subbrokerview['name']); ?></td>
+        <td width="20%"><?php echo ucfirst($subbrokerview['type']); ?></td>
+		<td width="100px"><a href="<?php echo site_url('mainbroker/aview/'.$subbrokerview['id']); ?>" title="View Detail of <?php echo stripslashes($subbrokerview['name']); ?>" ><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>
+	</tr>
+	<?php
+	}
+	?> 
+	</table >
+   </div>
+</div>
+<?php
+}
+?>
+
 </div>
 <?php include('leftmenu.php'); ?>
 <?php echo $footer; ?>
