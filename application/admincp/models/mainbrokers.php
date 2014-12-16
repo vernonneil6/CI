@@ -34,20 +34,20 @@ Class Mainbrokers extends CI_Model
  	}	
  	function brokerids($id)
  	{
-   	   	return $this->db->get_where('youg_broker',array('id' => $id))->result_array();
+   	   	return $this->db->get_where('youg_broker',array('id' => $id))->row_array();
  	}	
  	function subbroker_company($id)
  	{
-   	   	return $this->db->get_where('youg_company',array('brokerid' => $id, 'brokertype' => 'subbroker'))->result_array();
+   	   	return $this->db->get_where('youg_company',array('brokerid' => $id, 'brokertype' => 'subbroker'))->row_array();
  	}
  	function marketers()
  	{
-			return $this->db->get_where('youg_broker',array('type'=>'marketer'))->result_array();
+		return $this->db->get_where('youg_broker',array('type'=>'marketer'))->result_array();
 	}
 	
  	function agents()
  	{
-			return $this->db->get_where('youg_broker',array('type'=>'agent'))->result_array();
+		return $this->db->get_where('youg_broker',array('type'=>'agent'))->result_array();
 	}
 	
  	function view_details($id)
