@@ -34,7 +34,7 @@ Class Mainbrokers extends CI_Model
  	}	
  	function brokerids($id)
  	{
-   	   	return $this->db->get_where('youg_broker',array('id' => $id))->result_array();
+   	   	return $this->db->get_where('youg_broker',array('id' => $id))->row_array();
  	}	
  	function subbroker_company($id)
  	{
@@ -42,12 +42,12 @@ Class Mainbrokers extends CI_Model
  	}
  	function marketers()
  	{
-			return $this->db->get_where('youg_broker',array('type'=>'marketer'))->result_array();
+		return $this->db->get_where('youg_broker',array('type'=>'marketer'))->result_array();
 	}
 	
  	function agents()
  	{
-			return $this->db->get_where('youg_broker',array('type'=>'agent'))->result_array();
+		return $this->db->get_where('youg_broker',array('type'=>'agent'))->result_array();
 	}
 	
  	function view_details($id)
