@@ -357,7 +357,7 @@ class Reports extends CI_Model
 	}                                 
                              
   
-	public function brokersearches($search_broker,$search_marketer,$search_agent,$from,$end)
+	public function brokersearches($search_broker,$search_marketer,$search_agent,$from,$end,$limit='',$offset='')
 	{
 		
 				
@@ -418,6 +418,12 @@ class Reports extends CI_Model
 		}
 		if($from != '' and $end != '' and $search_broker ==0 and $search_marketer ==0 and $search_agent ==0)
 		{
+			//Setting Limit for Paging
+			if( $limit != '' && $offset == 0)
+			{ $this->db->limit($limit); }
+			else if( $limit != '' && $offset != 0)
+			{	$this->db->limit($limit, $offset);	}
+		
 			$this->db->select('*')
 			         ->where('registerdate >=',$from)
 			         ->where('registerdate <=',$end);
@@ -746,7 +752,7 @@ class Reports extends CI_Model
 		if($query1[0]['type'] =='marketer' and $query1[0]['id']==$id)
    	    {
    	     $query = $this->db
-			->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid,yc.brokerid ycbrokerid,(SELECT count(*) FROM `youg_company` where brokerid='.$id.' or subbrokerid='.$id.') as totalelite ')
+			->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid,yc.brokerid ycbrokerid,(SELECT count(*) FROM `youg_company` where brokerid='.$id.' or marketerid='.$id.') as totalelite ')
 			->from('youg_broker yb')
 			->join('youg_company yc','yb.id = yc.brokerid and yc.brokertype = yb.type','left')
 			->where('yc.brokerid',$id)
@@ -785,37 +791,6 @@ class Reports extends CI_Model
 			
 	}
    	    
-	
-	
- 	 	
- 	 
- 	/*function totalelites($id)
- 	{
-	            $this->db->select('*');
-				$this->db->from('youg_company');
-				$this->db->where(array('brokerid'=>$id));
-				$this->db->or_where(array('subbrokerid'=>$id));
-			return	$num_results = $this->db->count_all_results();
-		
-	}
- 	function marketer_totalelites($id)
- 	{
-	            $this->db->select('*');
-				$this->db->from('youg_company');
-				$this->db->where(array('brokerid'=>$id));
-				$this->db->or_where(array('marketerid'=>$id));
-			return	$num_results = $this->db->count_all_results();
-		
-	}
- 	function agent_totalelites($id)
- 	{
-	            $this->db->select('*');
-				$this->db->from('youg_company');
-				$this->db->where(array('brokerid'=>$id,'brokertype'=>'agent'));
-				
-			return	$num_results = $this->db->count_all_results();
-		
-	}*/
  	
  	function signbtndate($from,$to)
  	{
@@ -834,6 +809,8 @@ class Reports extends CI_Model
 		->result_array();	
 		
 	}
+	
+	//for pagination check
 	function listdispute($limit ='',$offset='')
  	{
 		
@@ -857,8 +834,13 @@ class Reports extends CI_Model
  	}
  	public function report_count()
 	{
-		$query = $this->db->count_all('youg_dispute');
-		return $query;
+	    $query=$this->db->select('*')
+						->from('youg_company c')
+						->join('youg_broker b', 'c.brokerid = b.id', 'left')
+						->get()
+						->num_rows();
+	    return $query;    
+		
 	}
  	
 }
