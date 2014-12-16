@@ -70,6 +70,7 @@ if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == '' )
         <td width="20%">Type</td>
 		<td width="20%">Marketer</td>
         <td width="20%">Agent</td>
+        <td width="20%">Action</td>
       </tr>
       <?php
 	foreach($subbroker as $subbrokerview)
@@ -80,6 +81,7 @@ if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == '' )
         <td width="20%"><?php echo $subbrokerview['type']; ?></td>
 		<td width="20%"><?php echo $subbrokerview['marketer']; ?></td>
         <td width="20%"><?php echo $subbrokerview['agent']; ?></td>
+        <td width="100px"><a href="<?php echo site_url('mainbroker/view/'.$subbrokerview['id']); ?>" title="View Detail of <?php echo stripslashes($subbrokerview['name']); ?>" ><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>
 	</tr>
 	<?php
 	}
