@@ -54,7 +54,7 @@
     <?php $a = $this->session->userdata['youg_admin']['id'];?>
     <?php $com = $this->settings->get_company_byid($a);?>
     <?php if(count($com)>0) { echo "Elite Admin - Logged in as ".$com[0]['company'];} ?>
-    <a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a> - <a href="<?php echo site_url('dashboard/logout');?>" title="Logout">Logout</a></div>
+    <div><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a> - <a href="<?php echo site_url('dashboard/logout');?>" title="Logout">Logout</a></div></div>
     <!--<div style="color: #C6C6C6;
     position: absolute;
     right: 25px;
