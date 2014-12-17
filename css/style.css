@@ -1603,3 +1603,7 @@ padding-left: 18px;
 {
 	width : 120px!important;
 }
+.lefter{width: 142px;text-align: left; }
+.photo{float: right;}
+.namespace{ padding: 13px 0 0;}
+.righter{vertical-align: sub;}
