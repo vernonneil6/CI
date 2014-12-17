@@ -99,32 +99,6 @@
           <?php } ?>
         </div>
       </div>
-<!--<div class="hm_lft_panel">
-	<div class='browsecategories'></div>	
-	<div class='browselink'>
-	<div><img src="../images/img/browseicons/food&groument.jpg" class="foodandgourment"><a href='#'></span>FOOD & GOURMET</a></div>
-	<div><img src="../images/img/browseicons/Health.jpg" class="foodandgourment"><a href='#'>HEALTH, FITNESS & BEAUTY</a></div>
-	<div><img src="../images/img/browseicons/electronics.jpg" class="foodandgourment"><a href='#'>CONSUMER ELECTRONICS</a></div>
-	<div><img src="../images/img/browseicons/computer.jpg" class="foodandgourment"><a href='#'>COMPUTER HARDWARE & SOFTWARE</a></div>
-	<div><img src="../images/img/browseicons/music.jpg" class="foodandgourment"><a href='#'>MUSIC, INSRUMENTS & CDS</a></div>
-	<div><img src="../images/img/browseicons/dvd&videos.jpg" class="foodandgourment"><a href='#'>DVDS & VIDEOS</a></div>
-	<div><img src="../images/img/browseicons/book.jpg" class="foodandgourment"><a href='#'>BOOK & MAGAZINES</a></div>
-	<div><img src="../images/img/browseicons/home.jpg" class="foodandgourment"><a href='#'>HOME & GARDEN</a></div>
-	<div><img src="../images/img/browseicons/toys.jpg" class="foodandgourment"><a href='#'>TOYS, GAMES & HOBBIES</a></div>
-	<div><img src="../images/img/browseicons/sports.jpg" class="foodandgourment"><a href='#'>SPORTS & OUTDOORS</a></div>
-	<div><img src="../images/img/browseicons/apparael.jpg" class="foodandgourment"><a href='#'>APPAREL & JEWELRY</a></div>
-	<div><img src="../images/img/browseicons/automotive.jpg" class="foodandgourment"><a href='#'>AUTOMOTIVE</a></div>
-	<div><img src="../images/img/browseicons/pets.jpg" class="foodandgourment"><a href='#'>PETS</a></div>
-	<div><img src="../images/img/browseicons/gifts.jpg" class="foodandgourment"><a href='#'>GIFTS & FLOWERS</a></div>
-	<div><img src="../images/img/browseicons/furniture.jpg" class="foodandgourment"><a href='#'>OFFICES FURNITURES &SUPPLIES</a></div>
-	<div><img src="../images/img/browseicons/celluar.jpg" class="foodandgourment"><a href='#'>CELLULAR & ACCESSORIES</a></div>
-	<div><img src="../images/img/browseicons/aviation.jpg" class="foodandgourment"><a href='#'>AVIATION & MARINE</a></div>
-	<div><img src="../images/img/browseicons/service.jpg" class="foodandgourment"><a href='#'>SERVICES</a></div>
-	<div><img src="../images/img/browseicons/tools.jpg" class="foodandgourment"><a href='#'>TOOLS & MACHINERY</a></div>
-	<div><img src="../images/img/browseicons/misc.jpg" class="foodandgourment"><a href='#'>MISCELLANEOUS</a></div>
-
-	</div>
-</div>-->
 
 <div class="hm_lft_panel">
 <div class='browsecategories'></div>	
@@ -143,10 +117,17 @@
 	$categoryname = preg_replace("/[\s]/", "-", $categoryname);
 
 ?>
+<script>
+function catys()
+{
+	alert('hi');
+}
+
+</script>
      <div id='browsecategory' class="browses">
            <img id="browseimg" src="<?php if( $home_categorys[$hc]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('buscat_main_upload_path');?><?php echo ($home_categorys[$hc]['image']); } else { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."no_image.png"; } ?>" alt="<?php echo $home_categorys[$hc]['category'];?>" title="<?php echo $home_categorys[$hc]['category'];?>">
 	   <img class="hoverimg"  src="<?php if( $home_categorys[$hc]['hover'] ) { echo $this->common->get_setting_value('2').$this->config->item('buscat_main_upload_path');?><?php echo ($home_categorys[$hc]['hover']); } else { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."no_image.png"; } ?>" alt="<?php echo $home_categorys[$hc]['category'];?>" title="<?php echo $home_categorys[$hc]['category'];?>">
-           <a class='hovertxt' href="businessdirectory/category/<?php echo $categoryname;?>/<?php echo $home_categorys[$hc]['id'];?>" title="find all companies for <?php echo $home_categorys[$hc]['category'];?>"> <span><?php echo $home_categorys[$hc]['category'];?></span>  </a> 
+           <a class='hovertxt' href="" onclick="catys()" title="find all companies for <?php echo $home_categorys[$hc]['category'];?>"> <span><?php echo $home_categorys[$hc]['category'];?></span>  </a> 
        
        </div>
 <?php 
