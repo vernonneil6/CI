@@ -20,9 +20,9 @@
         <!--<div class="vry_logo"> <a href="<php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view complaint Detail"><img src="<php if( $coupons[0]['logo'] ) { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><php echo stripslashes($coupons[0]['logo']); } else { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."no_image.png"; } ?>" alt="<php echo ucfirst(stripslashes($coupons[0]['company'])); ?>" width="103px" height="88px" /></a> </div>-->
         
         <?php if(count($elitemem_status)==0){?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class="imgverify" alt="<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class="reviewnotverifiedlogo" alt="<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?>" /></a> </div>
         <?php }else{ ?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="imgverify" alt="<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?>" /></a> </div>
         <?php  } ?>
 				  
         <?php if(count($elitemem_status)==0){?>
