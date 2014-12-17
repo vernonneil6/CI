@@ -70,17 +70,17 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
       </div>
     </div>
     <?php if(count($othercomplaints)>0){?>
-    <div class="cmnt_mainwrp">
+	<div class="cmnt_mainwrp">
       <h2>WHAT OTHERS HAVE BEEN SAYING</h2>
       <?php for($j=0;$j<count($othercomplaints);$j++){?>
       <div class="cmnt_blckwrp">
-        <div class="clnt_intr cmt_lft">
-          <div class="clnt_name txt_right">
-            <h4><?php echo $othercomplaints[$j]['username'];?></h4>
+        <div class="clnt_intr cmt_lft lefter">
+          <div class="clnt_name txt_right righter">
+            <h4 class="namespace"><?php echo $othercomplaints[$j]['username'];?></h4>
             
             
           </div>
-          <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
+          <div class="clnt_pic photo"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
         </div>
         <div class="review_rgt cmnt_dscr">
           <p><?php echo $othercomplaints[$j]['detail'];?></p>
