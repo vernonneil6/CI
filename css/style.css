@@ -748,7 +748,9 @@ i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/star
 .bus_btm_tag{display:block; font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#0080ff; text-transform:uppercase; margin-top:50%;}
 .bus_btm_tag span{display:inline-block; color:#333;}
 .bus_btm_tag a{color:#0080ff;} 
-
+.bsntitle{background : none!important; width : auto!important;}
+.bsnntverified{float:left;}
+.bsntg{position : unset!important; float:left; padding : 0 0 0 10px;}
 
 /*============ Business_Review ===========================*/
 h1{text-align:center; margin:40px auto 0 auto; width:940px; height:86px; padding-bottom:23px; border-bottom:1px solid #999;}

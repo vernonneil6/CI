@@ -19,9 +19,9 @@
       <div class="verified_wrp pr_rwrp pr_rwrp">
         <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view complaint Detail"><img src="<?php if( $coupons[0]['logo'] ) { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($coupons[0]['logo']); } else { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?>" width="103px" height="88px" /></a> </div>
         <?php if(count($elitemem_status)==0){?>
-       <div class="bsntvry_title">
-          <img src = <?php echo base_url()."images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg"; ?> >
-          <div class="bsvry_tag"> <span>IS THIS YOUR BUSINESS?</span>
+       <div class="bsntvry_title bsntitle">
+          <img src = <?php echo base_url()."images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg"; class = "bsnntverified" ?> >
+          <div class="bsvry_tag bsntg"> <span>IS THIS YOUR BUSINESS?</span>
             <p><a href="solution/claimbusiness" title="CLICK HERE TO BECOME VERIFIED">CLICK HERE TO BECOME VERIFIED</a></p>
           </div>
         </div>
