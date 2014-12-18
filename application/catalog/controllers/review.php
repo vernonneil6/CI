@@ -686,11 +686,11 @@ class Review extends CI_Controller {
 		$company 	= $this->reviews->get_company_byid($companyid);
 		$review  	= $this->reviews->get_status_review($userid, $companyid);
 		
-		$company 	= $company[0]['company']
-		$cmpy_mail 	= $company[0]['email']
-		$usr_mail 	= $user[0]['email']
-		$fuser 		= $user[0]['firstname']
-		$luser 		= $user[0]['lastname']
+		$company 	= $company[0]['company'];
+		$cmpy_mail 	= $company[0]['email'];
+		$usr_mail 	= $user[0]['email'];
+		$fuser 		= $user[0]['firstname'];
+		$luser 		= $user[0]['lastname']; 
 		
 		
 		$reviewmail = $this->reviews->get_reviewmail_byid($id);
