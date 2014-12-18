@@ -33,12 +33,12 @@
     <tr>
       <td width="120"><b>Payment Date</b></td>
       <td><b>:</b></td>
-      <td><?php echo date('d M Y',strtotime($subscription[0]['payment_date']));?></td>
+      <td><?php echo date('M d Y',strtotime($subscription[0]['payment_date']));?></td>
     </tr>
     <tr>
       <td width="120"><b>Expire Date</b></td>
       <td><b>:</b></td>
-      <td><?php echo date('d M Y',strtotime($subscription[0]['expires']));?></td>
+      <td><?php echo date('M d Y',strtotime($subscription[0]['expires']));?></td>
     </tr>
     <tr>
       <td width="120"><b>Payment method</b></td>
@@ -338,7 +338,7 @@ function submitfrm()
           <?php } ?></td>
         <td><?php echo stripslashes($elitemembers[$i]['payment_currency']).' '.$elitemembers[$i]['payment_amount'];?></td>
         <td><?php echo stripslashes($elitemembers[$i]['status']);?></td>
-        <td><?php echo date('d M Y',strtotime($elitemembers[$i]['payment_date']));?></td>
+        <td><?php echo date('M d Y',strtotime($elitemembers[$i]['payment_date']));?></td>
         <td><?php echo stripslashes($elitemembers[$i]['discountcode']);?></td>
         <td>
         <form action="<?php echo $site_url;?>businessadmin/adminlogin/index/" method="post" id="formBox<?php echo $i;?>" class="formBox" target="_blank" style="padding-bottom:0px;">

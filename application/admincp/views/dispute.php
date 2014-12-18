@@ -33,7 +33,7 @@
 			<td>
 			<?php 
 				 $dates=substr($disp->ondate,0,11);
-				 echo $change=date("d-M-Y",strtotime($dates));
+				 echo $change=date("M d Y",strtotime($dates));
 			?>
 			</td>
 			<td><a href='dispute/review/<?php echo $disp->id;?>'>Click here</a></td>

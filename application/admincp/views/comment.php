@@ -29,7 +29,7 @@
     <tr>
       <td width="120"><b>Comment Date</b></td>
       <td><b>:</b></td>
-      <td><?php echo date('d M y',strtotime($comment[0]['commentdate']));?></td>
+      <td><?php echo date('M d Y',strtotime($comment[0]['commentdate']));?></td>
     </tr>
   </table>
   <?php } else { ?>
