@@ -100,7 +100,7 @@
           <?php } ?>
           <td><?php echo date('M d Y',strtotime($elitepayment['startdate'])); ?></td>
           <td><?php echo date('M d Y',strtotime($elitepayment['expires'])); ?></td>
-          <td><?php echo $elitepayment['sub_amt']; ?></td>
+          <td><?php echo "$".$elitepayment['sub_amt']; ?></td>
           <td><?php echo $elitepayment['subscription_paynumber']; ?></td>
           </td>
         
