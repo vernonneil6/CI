@@ -227,6 +227,7 @@ ul.mainmenu li ul.submenu li a:hover  { color: #404040; }
 .tab td.action, .tab th.action { width: 35px; text-align: right; }
 .tab td.action a.ico { float: right; }
 table.complaint td, table.complaint th{padding:8px 15px;}
+table.elites td, table.elites th{padding:8px 30px;}
 .tab tr.odd   { background: #f8f8f8; }
 .tab tr:hover { background: #efefef; }
 
