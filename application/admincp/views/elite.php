@@ -319,7 +319,7 @@ function submitfrm()
     </tr>
     </table>
     </form>
-    <table class="tab tab-drag">
+    <table class="tab tab-drag elites">
       <tr class="top nodrop nodrag">
         <th width="7%"><input type="checkbox" id="selectall" name="maincheck"/></th>
         <th>Company</th>
