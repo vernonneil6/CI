@@ -226,7 +226,7 @@ ul.mainmenu li ul.submenu li a:hover  { color: #404040; }
 .tab th.checkbox, .tab td.checkbox { padding: 8px 2px;width: 20px; }
 .tab td.action, .tab th.action { width: 35px; text-align: right; }
 .tab td.action a.ico { float: right; }
-
+table.complaint td, table.complaint th{padding:8px 15px;}
 .tab tr.odd   { background: #f8f8f8; }
 .tab tr:hover { background: #efefef; }
 
