@@ -68,6 +68,7 @@ class Elite extends CI_Controller {
 	  	{
 			$id = $this->session->userdata['youg_admin']['id'];
 			$this->data['elite'] = $this->settings->get_elitecompany_byid($id);
+			$this->data['elitepayment'] = $this->settings->get_elitepayment_byid($id);
 			
 			//echo "<pre>";
 			//print_r($this->data['elite']);
@@ -227,13 +228,13 @@ class Elite extends CI_Controller {
 			//data.php end
 			
 			include('authorize/authnetfunction.php');   
-			//$subscriptionprice = $this->common->get_setting_value(19);
+			$subscriptionprice = $this->common->get_setting_value(19);
 				
 			//define variables to send
 				
-			$amount = '0.10';
+			$amount = $subscriptionprice;
 			$refId = uniqid();
-			$name = "elite membership";
+			$name = "Elite membership";
 			$length = 10;
 			$unit = "months";
 			$startDate = date("Y-m-d");
