@@ -81,7 +81,28 @@ Class Settings extends CI_Model
 			return array();
 		}
  	}
-	
+ 	function get_elitepayment_byid($id)
+	{
+		$enablecheck=$this->db->get_where('elite', array('company_id' => $id))->row_array();
+		$subscription_amount = $this->db->get_where('setting', array('id' => '19'))->row_array();
+		if(trim($enablecheck['status'])=='Enable')
+		 {
+		   $sub_id=$this->db->get_where('subscription', array('company_id' => $id))->row_array();
+		   $query= $this->db->select('*')
+							->from('subscription sb')
+							->join('silent si', 'sb.subscr_id = si.subscription_id', 'left')
+							->where(array('sb.subscr_id'=>$sub_id['subscr_id'],'sb.company_id'=>$id))
+							->get()
+							->row_array();
+		 }
+		 //echo $this->db->last_query();				
+		 //echo '<pre>';print_r($query);
+		 $startdate=$this->db->get_where('company', array('id' => $id))->row_array();
+		 $query['startdate']=$startdate['registerdate'];
+		 $query['sub_amt']=$subscription_amount['value'];
+		 return $query;	
+			
+	}
 	function cancel_elitemembership_bycompnayid($id,$companyid)
  	{
 		$data = array('status' =>'Disable' );
