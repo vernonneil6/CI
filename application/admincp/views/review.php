@@ -34,7 +34,7 @@
     <tr>
       <td width="120"><b>Reviewed on</b></td>
       <td><b>:</b></td>
-      <td><?php echo date('d M Y',strtotime($review[0]['reviewdate'])); ?></td>
+      <td><?php echo date('M d Y',strtotime($review[0]['reviewdate'])); ?></td>
     </tr>
   </table>
   <?php } else { ?>

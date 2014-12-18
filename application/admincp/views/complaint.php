@@ -39,7 +39,7 @@
     <tr>
       <td width="120"><b>When Date</b></td>
       <td><b>:</b></td>
-      <td><?php echo date('d M Y',strtotime($complaint[0]['whendate'])); ?></td>
+      <td><?php echo date('M d Y',strtotime($complaint[0]['whendate'])); ?></td>
     </tr>
     <tr>
       <td width="120"><b>Location</b></td>
@@ -76,7 +76,7 @@
     <tr>
       <td width="120"><b>Transaction Date</b></td>
       <td><b>:</b></td>
-      <td><?php echo date('d M y',strtotime($complaint[0]['transaction_date'])); ?></td>
+      <td><?php echo date('M d Y',strtotime($complaint[0]['transaction_date'])); ?></td>
     </tr>
     <?php
     }
@@ -322,7 +322,7 @@ else { ?>
               </div>
               <div class="con" style="width: 77% !important; float:left">
                 <?php 
-				echo form_input( array( 'name'=>'whendate','id'=>'whendate','class'=>'input datetimepicker','type'=>'text','value'=>stripslashes($complaint[0]['whendate']) ) );
+				echo form_input( array( 'name'=>'whendate','id'=>'whendate','class'=>'input datetimepicker','type'=>'text','value'=>date('M d Y',strtotime(stripslashes($complaint[0]['whendate']))) ) );
 				?>
               </div>
             </div>
@@ -443,13 +443,13 @@ else { ?>
   <?php } 
   elseif( $this->uri->segment(2) && ( $this->uri->segment(2) == 'removed' ) ) { ?>
   <!-- box -->
-  <div class="box">
+   <div class="box">
     <div class="headlines">
       <h2><span>Removed Complaints</span></h2>
     </div>
-        <?php if( count($removedcomplaints) > 0 ) { ?>
+        <?php if(count($removedcomplaints) > 0 ) { ?>
     <!-- table -->
-    <table class="tab tab-drag">
+    <table class="tab tab-drag complaint">
       <tr class="top nodrop nodrag">
         <th width="40%">Complaint</th>
 	    <th>Complaint By</th>
@@ -457,7 +457,6 @@ else { ?>
         <th width="20%">Paid Date</th>
         <th>Paid By</th>
         <th>Action</th>
-        
       </tr>
       <?php 
 	$site = site_url();			
@@ -470,7 +469,7 @@ else { ?>
       <tr>
         <td><?php echo substr(stripslashes($removedcomplaints[$i]['detail']),0,75)."..."; ?></td>
         <td><?php if(count($user)>0) { ?>
-          <img width="40" height="40" src="<?php if( $user[0]['avatarbig'] ){ echo $this->settings->get_setting_value('2').substr($this->config->item('user_thumb_upload_path'),3);?><?php echo stripslashes($user[0]['avatarbig']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('user_thumb_upload_path'),3)."/no-image.gif"; } ?>" alt="<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']); ?>" title="<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']); ?>"/>
+          <img width="40" height="40" src="<?php if($user[0]['avatarbig']){ echo $this->settings->get_setting_value('2').substr($this->config->item('user_thumb_upload_path'),3);?><?php echo stripslashes($user[0]['avatarbig']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('user_thumb_upload_path'),3)."/no-image.gif"; } ?>" alt="<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']); ?>" title="<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']); ?>"/>
           <?php } else { ?>
           <span title="Anonymous">Anonymous</span>
           <?php } ?></td>

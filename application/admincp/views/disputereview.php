@@ -98,7 +98,7 @@
 						  </div>
 						  <div class="con">
 							  <?php  $ondate=substr($date,0,11); ?>
-							  <input type="text" class="input" id="date" value="<?php echo $dates=date("d-M-Y", strtotime($ondate)); ?>">
+							  <input type="text" class="input" id="date" value="<?php echo $dates=date("M d Y", strtotime($ondate)); ?>">
 						  </div>
 					</div>
 					<div class="clearfix">
@@ -110,7 +110,7 @@
 							  <input type="text" class="input" id="closedate" value="Not yet Closed">
 							  <?php } else { ?>
 								<?php $closed=substr($closedate,0,11); ?>  
-							  <input type="text" class="input" id="closedate" value="<?php echo $close=date("d-M-Y",strtotime($closed)); ?>">
+							  <input type="text" class="input" id="closedate" value="<?php echo $close=date("M d Y",strtotime($closed)); ?>">
 							  <?php } ?>
 						  </div>
 					</div>
