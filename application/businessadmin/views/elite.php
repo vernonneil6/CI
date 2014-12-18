@@ -35,6 +35,7 @@
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
         <th>Payment Date</th>
+        <th>Payment Date</th>
         <th>Membership Status</th>
       </tr>
       <?php for($i=0;$i<count($elite);$i++) { ?>
@@ -85,14 +86,22 @@
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
         <th>Payment Date</th>
-        <th>Membership Status</th>
-      </tr>
+        <th>Status</th>
+        <th>Start date</th>
+        <th>Expire date</th>
+        <th>Subscription price</th>
+        <th>Total payments</th>
+    </tr>
       <?php for($i=0;$i<count($elite);$i++) { ?>
       <tr>
           <td><?php echo date("M d Y",strtotime($elite[$i]['payment_date'])); ?></td>
           <td><?php if( stripslashes($elite[$i]['status']) == 'Enable' ) { ?>
           <a href="<?php echo site_url('elite/disable/'.$elite[$i]['id'].'/'.$elite[$i]['company_id']);?>" title="Click to Cancel Membership" class="btn btn-small btn-success" onClick="return confirm('Are you sure to cancel elite membership,after cancellation of membership you will not any access to your business admin account ?');"><span>Enable</span></a>
           <?php } ?>
+          <td><?php echo date('M d Y',strtotime($elitepayment['startdate'])); ?></td>
+          <td><?php echo date('M d Y',strtotime($elitepayment['expires'])); ?></td>
+          <td><?php echo $elitepayment['sub_amt']; ?></td>
+          <td><?php echo $elitepayment['subscription_paynumber']; ?></td>
           </td>
         
       </tr>
