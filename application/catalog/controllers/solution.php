@@ -436,15 +436,15 @@ public function eliteSubscribe($formpost) {
 	   $host = "apitest.authorize.net"; */
 	
 	/*sandbox test mode*/
-	  $loginname="9um8JTf3W";
+	 /* $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
-	   $host = "apitest.authorize.net"; 
+	   $host = "apitest.authorize.net";*/
 	
 	
 	/*live*/
-	/* $loginname="5h7G7Sbr";
+	 $loginname="5h7G7Sbr";
 	$transactionkey="94KU7Sznk72Kj3HK";
-	$host = "api.authorize.net";*/
+	$host = "api.authorize.net";
 	
 	
 	$path = "/xml/v1/request.api";
@@ -658,7 +658,7 @@ public function eliteSubscribe($formpost) {
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
 					$this->email->from($email,$company[0]['company']);
-					$this->email->to($site_mail);	
+					$this->email->to($site_mail,'alankenn@grossmaninteractive.com');	
 					$this->email->subject('Payment Received for Business Claim.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
@@ -693,7 +693,7 @@ public function eliteSubscribe($formpost) {
 									
 					//For sending mail to user
 					$this->email->from($site_mail,$site_name);
-					$this->email->to($email);	
+					$this->email->to($email,'alankenn@grossmaninteractive.com');	
 					$this->email->subject('YouGotRated: Your business has been claimed successfully.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 											  <tr>
@@ -789,11 +789,8 @@ public function cron()
 	$crons=$this->complaints->elitecrondetails();
 	//print_r($crons);
 	foreach($crons as $con)	{
-	   
-	   
-	   			//echo '<pre>';print_r($con);
-		
-		$subscription_id=$con['subscr_id'];
+	  
+	  	$subscription_id=$con['subscr_id'];
 		$subscription_amount=$con['amount'];
 		$alertemailid=$con['payer_id'];
 		$paymentfailed_date=$con['payment_date'];
@@ -834,7 +831,7 @@ public function cron()
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
 					$this->email->from('noreply@yougotrated.com');
-					$this->email->to($alertemailid);	
+					$this->email->to($alertemailid,'alankenn@grossmaninteractive.com');	
 					$this->email->subject('Your EliteMembership Subscription has been Expired.Please Renew');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
@@ -991,7 +988,7 @@ public function adminreport()
 				   $this->email->initialize($config);     
                     $todaysdate=date('Y-m-d');
 					$this->email->from('noreply@yougotrated.com');
-					$this->email->to($site_email);	
+					$this->email->to($site_email,'alankenn@grossmaninteractive.com');	
 					$this->email->subject('Todays Report On Success and Failed Payments On Date  '.$todaysdate.'');
 					$this->email->message('<table cellpadding="0" cellspacing="10" width="100%" border="0">
 															<tr>
@@ -1077,15 +1074,15 @@ public function renew_update($id)
 	   $host = "apitest.authorize.net"; */
 	
 	/*sandbox test mode*/
-	  $loginname="9um8JTf3W";
+	  /* $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
-	   $host = "apitest.authorize.net"; 
+	   $host = "apitest.authorize.net"; */
 	
 	
 	/*live*/
-	/* $loginname="5h7G7Sbr";
+	$loginname="5h7G7Sbr";
 	$transactionkey="94KU7Sznk72Kj3HK";
-	$host = "api.authorize.net";*/
+	$host = "api.authorize.net";
 	
 	
 	$path = "/xml/v1/request.api";
@@ -1231,7 +1228,7 @@ public function renew_update($id)
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
 					$this->email->from($cronemail['payer_id'],$cronemail['company']);
-					$this->email->to($site_mail);	
+					$this->email->to($site_mail,'alankenn@grossmaninteractive.com');	
 					$this->email->subject('Payment Received for Elitemembership Renewal.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
@@ -1266,7 +1263,7 @@ public function renew_update($id)
 									
 					//For sending mail to user
 					$this->email->from($site_mail,$site_name);
-					$this->email->to($email);	
+					$this->email->to($email,'alankenn@grossmaninteractive.com');	
 					$this->email->subject('Elitemembership has been Renewed successfully.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 											  <tr>
@@ -1342,69 +1339,6 @@ public function renew_update($id)
 			
 }
 
-
-/*public function freesign()
-{
-	if($this->input->post('btnadd'))
-	{ 
-		
-	echo $username=$this->input->post('name');	
-	echo $emails=$this->input->post('emailid');	
-	 
-	 $config = Array(
-					'protocol' => 'smtp',
-					'smtp_host' => 'smtp.mandrillapp.com',
-					'smtp_port' => 587,
-					'smtp_user' => 'alankenn@grossmaninteractive.com',
-					'smtp_pass' => 'vPVq6nWolBWIKNp1LaWNFw',
-					'mailtype'  => 'html', 
-					'charset'   => 'iso-8859-1'
-				);	
-					$this->load->library('email');
-					$this->email->set_newline("\r\n");				
-					//Loading E-mail config file
-					$this->config->load('email',TRUE);
-					$this->cnfemail = $this->config->item('email');
-										
-					$this->email->initialize($config);
-					$this->email->from('noreply@yougotrated.com');
-					$this->email->to($emails);	
-					$this->email->subject('Free signup successfully.');
-					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
-															<tr>
-																<td>Hello User,</td>
-															</tr>
-															<tr><td><br/></td></tr>
-															<tr>
-																<td style="padding-left:20px;">
-																Following User has claimed the freesignup <b>'.ucwords($username).'</b>. Transaction Details are as follows.
-																</td>
-															</tr>
-															<tr>
-																<td>
-																	<table cellpadding="0" cellspacing="0" width="100%" border="0">
-																	<tr><td colspan="3"><h3>Payment Detail</h3></td></tr>
-																	<tr>
-																		<td>Payment Amount</td>
-																		<td>:</td>
-																		<td>USD "US 100"</td>
-																	</tr>
-																	<tr>
-																		<td>Transacion ID</td>
-																		<td>:</td>
-																		<td><b>"id-10"</b></td>
-																	</tr>
-																	</table>
-																</td>
-															</tr>
-															</table>');
-					//Sending mail to admin
-					$this->email->send();
-					$this->session->set_flashdata('success','Free signups successfully.');
-					redirect('solution','refresh');
-	}
-
-}*/
 /* End of file dashboard.php */
 /* Location: ./application/controllers/dashboard.php */
 }
