@@ -670,8 +670,8 @@ class Review extends CI_Controller {
 	{
 		$mail_msg = $this->common->get_email_byid($emailid);		
 		$data = array(
-		'subject'  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject'])),
-		'mail'     = str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($cpyname), str_replace("%name%", ucfirst($fname." ".$lname), stripslashes($mail_msg[0]['mailformat'])))))
+		'subject'  => str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject'])),
+		'mail'     => str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($cpyname), str_replace("%name%", ucfirst($fname." ".$lname), stripslashes($mail_msg[0]['mailformat'])))))
 		);
 		return $data;
 	}
