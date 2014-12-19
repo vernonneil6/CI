@@ -717,27 +717,18 @@ class Review extends CI_Controller {
 		{
 			if ($days == 5 and $status == 0)
 			{
-				$mail_msg = $this->common->get_email_byid(24);
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));				
-				$mail	  = str_replace("%url%", site_url('businessadmin/review/resolution/'.$reviewids), str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))))));								
-				$to 	  = $company[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);				
+				$mailinfo = $this->review_email(24, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 			
 			else if ($days == 7 and $status == 0)
 			{
-				$mail_msg = $this->common->get_email_byid(26);				
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));
-				$mail 	  = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));		
-				$to 	  = $user[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);				
-				
+				$mailinfo = $this->review_email(26, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $review['id']);
+					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
 				}
 			}
 		}
@@ -761,15 +752,11 @@ class Review extends CI_Controller {
 			
 			else if ($checkdays == 13 and $status == 1)
 			{
-				$mail_msg = $this->common->get_email_byid(26);
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
-				$to       = $user[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$mailinfo = $this->review_email(26, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $review['id']);
+					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
 				}
 			}			
 		}
@@ -785,26 +772,18 @@ class Review extends CI_Controller {
 			
 			else if ($checkdays == 10 and $status == 1)
 			{
-				$mail_msg = $this->common->get_email_byid(35);	
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
-				$to       = $company[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$mailinfo = $this->review_email(35, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 			
 			else if ($checkdays == 12 and $status == 1)
 			{
-				$mail_msg = $this->common->get_email_byid(26);
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
-				$to       = $user[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$mailinfo = $this->review_email(26, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $review['id']);
+					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
 				}
 			}
 			
@@ -820,26 +799,18 @@ class Review extends CI_Controller {
 		{
 			if ($days == 15 and $status == 0)
 			{
-				$mail_msg = $this->common->get_email_byid(38);
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
-				$to       = $company[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$mailinfo = $this->review_email(38, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 		
 			else if ($days == 17 and $status == 0)
 			{
-				$mail_msg = $this->common->get_email_byid(26);	
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
-				$to       = $user[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$mailinfo = $this->review_email(26, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $review['id']);
+					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
 				}
 			}
 			
@@ -855,26 +826,18 @@ class Review extends CI_Controller {
 		{
 			if ($days == 15 and $status == 0)
 			{
-				$mail_msg = $this->common->get_email_byid(40);			
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%url%", site_url('businessadmin/review/resolution/'.$reviewids),str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat']))))));							
-				$to       = $company[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$mailinfo = $this->review_email(40, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 			
 			else if ($days == 17 and $status == 0)
 			{
-				$mail_msg = $this->common->get_email_byid(26);
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
-				$to       = $user[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				$mailinfo = $this->review_email(26, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $review['id']);
+					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
 				}
 			}
 			
