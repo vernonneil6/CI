@@ -669,19 +669,21 @@ class Review extends CI_Controller {
 	
 	public function review_email($email_id, $to, $reviewids, $reviewids1, $company, $fuser, $luser)
 	{
-		$site_name  = $this->common->get_setting_value(1);
-		$site_email = $this->common->get_setting_value(5);
-		$site_url   = $this->reviews->get_setting_value(2);
+		
 		
 		$mail_msg = $this->common->get_email_byid($email_id);
 		$subject  = str_replace("%reviewid%", $reviewids1, stripslashes($mail_msg[0]['subject']));				
 		$mail	  = str_replace("%url%", site_url('businessadmin/review/resolution/'.$reviewids), str_replace("%reviewid%", $review_ids1, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company), str_replace("%name%", ucfirst($fuser." ".$luser), stripslashes($mail_msg[0]['mailformat']))))));								
 								
-		$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);	
+			
 	}
 	
 	public function merchantbuyermail($userid, $companyid, $id)
 	{
+		$site_name  = $this->common->get_setting_value(1);
+		$site_email = $this->common->get_setting_value(5);
+		$site_url   = $this->reviews->get_setting_value(2);
+		
 		$user 		= $this->users->get_user_byid($userid);
 		$company 	= $this->reviews->get_company_byid($companyid);
 		$review  	= $this->reviews->get_status_review($userid, $companyid);
@@ -719,7 +721,9 @@ class Review extends CI_Controller {
 		{
 			if ($days == 5 and $status == 0)
 			{
+				
 				$this->review_email('24', $cmpy_mail, $reviewids, $reviewids1, $company, $fuser, $luser);		
+				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);
 				$this->email->send();
 			}
 			
