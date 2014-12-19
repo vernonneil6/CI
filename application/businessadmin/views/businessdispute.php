@@ -26,7 +26,7 @@
 			<th>Review</th>
 			
         </tr>
-      <?php foreach($companydispute as $cdisp){ ?>
+      <?php foreach($companydispute as $cdisp): ?>
         
 						<tr>
 							<td><?php echo $cdisp->username;?></td>
@@ -48,7 +48,18 @@
 							
 						</tr>
 				
-			  <?php } ?>
+			  <?php  endforeach; ?>
+			  
+			 <?php if(count($companydispute) ==0) {?>
+			  <tr>
+			    <td>No records found</td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			    <td></td>
+			  </tr>
+		   <?php } ?>
      
     </table>
     <?php if($this->pagination->create_links()) { ?>
