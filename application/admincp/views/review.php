@@ -99,7 +99,7 @@ else
       <tr>
         <td><?php echo nl2br(stripslashes($comments[$i]['comment'])); ?></td>
         <td><?php if(count($user)>0) {?>
-          <img width="60" height="40" src="<?php if( $user[0]['avatarbig'] ){ echo $this->settings->get_setting_value('2').substr($this->config->item('user_thumb_upload_path'),3);?><?php echo stripslashes($user[0]['avatarbig']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('user_thumb_upload_path'),3)."/no-image.gif"; } ?>" alt="<?php echo stripslashes($user[0]['avatarbig']); ?>" title="<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']);?>"/>
+          <img width="60" height="40" src="<?php if( $user[0]['avatarbig'] ){ echo $this->settings->get_setting_value('2').substr($this->config->item('user_thumb_upload_path'),3);?><?php echo stripslashes($user[0]['avatarbig']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('user_thumb_upload_path'),3)."/no_image.png"; } ?>" alt="<?php echo stripslashes($user[0]['avatarbig']); ?>" title="<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']);?>"/>
           <?php } else { echo "Anonymous"; } ?></td>
         <td><?php echo date('d M y',strtotime($comments[$i]['commentdate']));?></td>
         <td><?php echo $comments[$i]['commentip'];?></td>
@@ -380,13 +380,13 @@ function submitfrm()
 		
 		<?php echo substr(stripslashes($reviews[$i]['comment']),0,150).'...'; ?></td>
         <td>
-          <img width="40" height="40" src="<?php if( $reviews[$i]['logo'] ){ echo $site_url.substr($this->config->item('company_thumb_upload_path'),3);?><?php echo stripslashes($reviews[$i]['logo']); } else{echo $site_url.substr($this->config->item('company_thumb_upload_path'),3)."/no-image.gif"; } ?>" alt="<?php echo stripslashes($reviews[$i]['company']);?>" title="<?php echo stripslashes($reviews[$i]['company']);?>"/>
+          <img width="40" height="40" src="<?php if( $reviews[$i]['logo'] ){ echo $site_url.substr($this->config->item('company_thumb_upload_path'),3);?><?php echo stripslashes($reviews[$i]['logo']); } else{echo $site_url.substr($this->config->item('company_thumb_upload_path'),3)."/no_image.png"; } ?>" alt="<?php echo stripslashes($reviews[$i]['company']);?>" title="<?php echo stripslashes($reviews[$i]['company']);?>"/>
           </td>
         <td>
 			
         <?php if(strlen($reviews[$i]['avatarbig'])>5){?>
-			<a class='fancybox' href="<?php if( $reviews[$i]['avatarbig'] ){ echo $site_url.substr($this->config->item('user_thumb_upload_path'),3); echo stripslashes($reviews[$i]['avatarbig']); } else{echo $site_url.substr($this->config->item('user_thumb_upload_path'),3)."/no-image.gif"; } ?>" alt="<?php echo stripslashes($reviews[$i]['firstname'].' '.$reviews[$i]['firstname']['lastname']);?>">
-				<img width="40" height="40" src="<?php if( $reviews[$i]['avatarbig'] ){ echo $site_url.substr($this->config->item('user_thumb_upload_path'),3);?><?php echo stripslashes($reviews[$i]['avatarbig']); } else{echo $site_url.substr($this->config->item('user_thumb_upload_path'),3)."/no-image.gif"; } ?>" alt="<?php echo stripslashes($reviews[$i]['firstname'].' '.$reviews[$i]['firstname']['lastname']);?>" title="<?php echo stripslashes($reviews[$i]['firstname'].' '.$reviews[$i]['lastname']);?>"/>
+			<a class='fancybox' href="<?php if( $reviews[$i]['avatarbig'] ){ echo $site_url.substr($this->config->item('user_thumb_upload_path'),3); echo stripslashes($reviews[$i]['avatarbig']); } else{echo $site_url.substr($this->config->item('user_thumb_upload_path'),3)."/no_image.png"; } ?>" alt="<?php echo stripslashes($reviews[$i]['firstname'].' '.$reviews[$i]['firstname']['lastname']);?>">
+				<img width="40" height="40" src="<?php if( $reviews[$i]['avatarbig'] ){ echo $site_url.substr($this->config->item('user_thumb_upload_path'),3);?><?php echo stripslashes($reviews[$i]['avatarbig']); } else{echo $site_url.substr($this->config->item('user_thumb_upload_path'),3)."/no_image.png"; } ?>" alt="<?php echo stripslashes($reviews[$i]['firstname'].' '.$reviews[$i]['firstname']['lastname']);?>" title="<?php echo stripslashes($reviews[$i]['firstname'].' '.$reviews[$i]['lastname']);?>"/>
 			</a>
           <?php } else { echo $reviews[$i]['reviewby'];} ?>
           </td>
