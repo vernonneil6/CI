@@ -37,7 +37,7 @@
     	<td width="120"><b>coupon image</b></td>
         <td><b>:</b></td>
         <td>
-        <img style="margin-left:0px;" width="50" height="50" src="<?php if( $coupon[0]['image'] ){ echo $this->settings->get_setting_value('2').substr($this->config->item('coupon_thumb_upload_path'),3);?><?php echo stripslashes($coupon[0]['image']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('coupon_thumb_upload_path'),3)."/no-image.gif"; } ?>" /> 
+        <img style="margin-left:0px;" width="50" height="50" src="<?php if( $coupon[0]['image'] ){ echo $this->settings->get_setting_value('2').substr($this->config->item('coupon_thumb_upload_path'),3);?><?php echo stripslashes($coupon[0]['image']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('coupon_thumb_upload_path'),3)."/no_image.png"; } ?>" /> 
           
         </td>
     </tr>
@@ -403,7 +403,7 @@ else { ?>
           <div class="con" style="width:50%; float:left"> <?php echo form_input( array( 'name'=>'image','id'=>'image','class'=>'input file upload-file','type'=>'file') ); ?> 
           
           <?php if($this->uri->segment(2) == 'edit') { ?>
-          <img style="margin-left:120px;" width="50" height="50" src="<?php if( $coupon[0]['image'] ){ echo $this->settings->get_setting_value('2').substr($this->config->item('coupon_thumb_upload_path'),3);?><?php echo stripslashes($coupon[0]['image']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('coupon_thumb_upload_path'),3)."/no-image.gif"; } ?>" /> 
+          <img style="margin-left:120px;" width="50" height="50" src="<?php if( $coupon[0]['image'] ){ echo $this->settings->get_setting_value('2').substr($this->config->item('coupon_thumb_upload_path'),3);?><?php echo stripslashes($coupon[0]['image']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('coupon_thumb_upload_path'),3)."/no_image.png"; } ?>" /> 
           <?php echo form_input( array( 'name'=>'couponhiddenimage','value'=>$coupon[0]['image'],'type'=>'hidden' ) ); ?>
           <?php } ?>
           </div>
