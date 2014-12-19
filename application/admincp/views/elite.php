@@ -268,7 +268,8 @@ else { ?>
           <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('elite');?>" class="Cancel">Cancel</a> </div>
       </fieldset>
       <?php echo form_close(); ?> </div>
-      <?php } ?>
+<?php } ?>
+		  
     <?php if( count($elitemembers) > 0 ) { ?>
     <script language="javascript">
 $(function(){
@@ -327,6 +328,7 @@ function submitfrm()
         <th>Status</th>
         <th width="17%">Payment date</th>
         <th>Discount Code</th>
+        <th>Payment details</th>
         <th>Business admin</th>
       </tr>
       <?php for($i=0;$i<count($elitemembers);$i++) { ?>
@@ -340,6 +342,7 @@ function submitfrm()
         <td><?php echo stripslashes($elitemembers[$i]['status']);?></td>
         <td><?php echo date('M d Y',strtotime($elitemembers[$i]['payment_date']));?></td>
         <td><?php echo stripslashes($elitemembers[$i]['discountcode']);?></td>
+       <td width="100px"><a href="<?php echo site_url('elite/payview/'.$elitemembers[$i]['company_id']); ?>" title="View Detail of <?php echo stripslashes($elitemembers[$i]['company_id']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
         <td>
         <form action="<?php echo $site_url;?>businessadmin/adminlogin/index/" method="post" id="formBox<?php echo $i;?>" class="formBox" target="_blank" style="padding-bottom:0px;">
         	<input name="user_name" id="user_name" type="hidden" value="<?php echo $company[0]['email'];?>" />
@@ -350,13 +353,48 @@ function submitfrm()
       </tr>
       <?php } ?>
     </table>
+    
     <!-- /table --> 
     <!-- /pagination -->
     <?php  if($this->pagination->create_links()) { ?>
     <div class="pagination"> <?php echo $this->pagination->create_links(); ?> </div>
     <?php } ?>
     <!-- /pagination -->
-    <?php } 
+    <?php } if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'payview' ) ) {?>
+	
+	<table class="tab tab-drag">
+		  <tr class="top nodrop nodrag">
+			  <?php //echo '<pre>';print_r($payment);?>
+			<th>Started date</th>
+			<th>Subscription amount</th>
+			<th>Payment date</th>
+			<th>Expire date</th>
+			<th>Total payments</th>
+			<th>Status</th>
+		  </tr>
+		  <?php if($payment) { ?>
+          <tr>
+			<td><?php echo date('M d Y',strtotime($payment['startdate']));?></td>
+			<td><?php echo '$'.$payment['amount'];?></td>
+			<td><?php echo date('M d Y',strtotime($payment['payment_date']));?></td>
+			<td><?php echo date('M d Y',strtotime($payment['expires']));?></td>
+			<td><?php if($payment['subscription_paynumber']!='') {echo $payment['subscription_paynumber'].'/'.'12';} else { echo '0/12';} ?></td>
+			<td><?php echo $payment['status'];?></td>
+		  </tr>
+        <?php } else { ?>
+			<tr>
+			 <td>No records found</td>
+			 <td></td>
+			 <td></td>
+			 <td></td>
+			 <td></td>
+			 <td></td>
+			</tr>
+			
+		<?php } ?>	
+    </table>  
+      
+     <?php }     
 	else { ?>
     <!-- Warning form message -->
     <div class="form-message warning">

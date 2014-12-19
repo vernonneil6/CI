@@ -209,6 +209,33 @@ class Elite extends CI_Controller {
 			redirect('elite', 'refresh');
 		}
 	}
+	public function payview($id='')
+	{
+		
+				if( $this->session->userdata['youg_admin'] )
+				{
+					if(!$id)
+					{
+						redirect('elite', 'refresh');
+					}
+				
+				//Getting detail for displaying in form
+				$this->data['payment'] = $this->elites->get_elitepayment_byid($id);
+	
+				if( count($this->data['payment'])>0 )
+				{			
+					//Loading View File
+					$this->load->view('elite',$this->data);
+				}
+				else
+				{
+					$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
+					redirect('elite', 'refresh');
+				}
+			}
+		
+		
+	}
 	
 	function foo()
 	{

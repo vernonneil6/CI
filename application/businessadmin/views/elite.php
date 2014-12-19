@@ -100,8 +100,8 @@
           <?php } ?>
           <td><?php echo date('M d Y',strtotime($elitepayment['startdate'])); ?></td>
           <td><?php echo date('M d Y',strtotime($elitepayment['expires'])); ?></td>
-          <td><?php echo "$".$elitepayment['sub_amt']; ?></td>
-          <td><?php echo $elitepayment['subscription_paynumber']; ?></td>
+          <td><?php echo "$ ".$elitepayment['sub_amt']; ?></td>
+          <td><?php if($elitepayment['subscription_paynumber']!='') {echo $elitepayment['subscription_paynumber'].'/'.'12';} else { echo '0/12';} ?></td>
           </td>
         
       </tr>
