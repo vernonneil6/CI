@@ -669,10 +669,11 @@ class Review extends CI_Controller {
 	public function review_email($emailid, $reviewid, $site_url, $cpyname, $fname, $lname)
 	{
 		$mail_msg = $this->common->get_email_byid($emailid);		
-		$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));			
-		$mail     = str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($cpyname), str_replace("%name%", ucfirst($fname." ".$lname), stripslashes($mail_msg[0]['mailformat'])))));							
-		return $subject;
-		return $mail;
+		$data = array(
+		'subject'  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject'])),
+		'mail'     = str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($cpyname), str_replace("%name%", ucfirst($fname." ".$lname), stripslashes($mail_msg[0]['mailformat'])))))
+		);
+		return $data;
 	}
 		
 	public function merchantbuyermail($userid, $companyid, $id)
