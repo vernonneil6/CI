@@ -651,7 +651,7 @@ class Review extends CI_Controller {
 		$this->data['reviewmail'] = $this->reviews->get_reviewmail_byreviewid($reviewid);
 		$this->load->view('review/resolution', $this->data);
 	}	
-
+	
 	public function closecase($reviewid)
 	{
 		if( !array_key_exists('youg_user',$this->session->userdata) )
@@ -666,35 +666,30 @@ class Review extends CI_Controller {
 		redirect('review','refresh');
 	}
 	
-	
-	public function review_email($email_id, $to, $reviewids, $reviewids1, $company, $fuser, $luser)
+	public function review_email($emailid, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname)
 	{
-		$site_name  = $this->common->get_setting_value(1);
-		$site_email = $this->common->get_setting_value(5);
-		$site_url   = $this->reviews->get_setting_value(2);
-		
-		$mail_msg = $this->common->get_email_byid($email_id);
-		$subject  = str_replace("%reviewid%", $reviewids1, stripslashes($mail_msg[0]['subject']));				
-		$mail	  = str_replace("%url%", site_url('businessadmin/review/resolution/'.$reviewids), str_replace("%reviewid%", $review_ids1, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company), str_replace("%name%", ucfirst($fuser." ".$luser), stripslashes($mail_msg[0]['mailformat']))))));								
-								
-		$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);	
+		$mail_msg = $this->common->get_email_byid($emailid);		
+		$data = array(
+		'subject'  => str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject'])),
+		'mail'     =>  str_replace("%url%", site_url('businessadmin/review/resolution/'.$reviewids), str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($cpyname), str_replace("%name%", ucfirst($fname." ".$lname), stripslashes($mail_msg[0]['mailformat']))))))
+		);
+		return $data;
 	}
-	
+		
 	public function merchantbuyermail($userid, $companyid, $id)
 	{
 		$user 		= $this->users->get_user_byid($userid);
 		$company 	= $this->reviews->get_company_byid($companyid);
 		$review  	= $this->reviews->get_status_review($userid, $companyid);
+		$cpyemail	= $company[0]['email'];
+		$usremail 	= $user[0]['email'];
+		$reviewid  	= $review['id'];
 		
-		$company 	= $company[0]['company'];
-		$cmpy_mail 	= $company[0]['email'];
-		$usr_mail 	= $user[0]['email'];
-		$fuser 		= $user[0]['firstname'];
-		$luser 		= $user[0]['lastname']; 
-		
+		$cpyname	= $company[0]['company'];
+		$fname		= $user[0]['firstname'];
+		$lname		= $user[0]['lastname'];
 		
 		$reviewmail = $this->reviews->get_reviewmail_byid($id);
-		$reviewids1 = $review['id'];
 		$reviewids 	= $reviewmail['review_id'];
 		$option   	= $reviewmail['resolution'];
 		$status   	= $reviewmail['status'];
@@ -712,6 +707,9 @@ class Review extends CI_Controller {
 		$months1 	= floor(($diff1 - $years1 * 365*60*60*24) / (30*60*60*24));
 		$checkdays 	= floor(($diff1 - $years1 * 365*60*60*24 - $months1*30*60*60*24)/ (60*60*24));
 		
+		$site_name  = $this->common->get_setting_value(1);
+		$site_email = $this->common->get_setting_value(5);
+		$site_url   = $this->reviews->get_setting_value(2);
 		
 		$this->load->library('email');
 			
@@ -719,17 +717,18 @@ class Review extends CI_Controller {
 		{
 			if ($days == 5 and $status == 0)
 			{
-				$this->review_email('24', $cmpy_mail, $reviewids, $reviewids1, $company, $fuser, $luser);		
+				$mailinfo = $this->review_email(24, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 			
 			else if ($days == 7 and $status == 0)
 			{
-				$this->review_email('26', $usr_mail, $reviewids, $reviewids1, $company, $fuser, $luser);			
-				
+				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $review['id']);
+					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
 				}
 			}
 		}
@@ -738,22 +737,26 @@ class Review extends CI_Controller {
 		{
 			if ($days == 7 and $status == 0 || $checkdays == 15 and $status == 2)
 			{
-				$this->closecase($reviewids);
+				$this->reviews->delete_review_byid($reviewids);
+				$this->reviews->delete_comment($reviewids);
+				$this->reviews->delete_reviewmail($reviewids);
 			}
 			
 			else if ($checkdays == 10 and $status == 1)
 			{
-				$this->review_email('24', $cmpy_mail, $reviewids, $reviewids1, $company, $fuser, $luser);	
+				
+				$mailinfo = $this->review_email(31, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 			
 			else if ($checkdays == 13 and $status == 1)
 			{
-				$this->review_email('26', $usr_mail, $reviewids, $reviewids1, $company, $fuser, $luser);
-						
+				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $review['id']);
+					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
 				}
 			}			
 		}
@@ -762,28 +765,33 @@ class Review extends CI_Controller {
 		{
 			if ($days == 7 and $status == 0)
 			{
-				$this->closecase($reviewids);
+				$this->reviews->delete_review_byid($reviewids);
+				$this->reviews->delete_comment($reviewids);
+				$this->reviews->delete_reviewmail($reviewids);
 			}
 			
 			else if ($checkdays == 10 and $status == 1)
 			{
-				$this->review_email('35', $cmpy_mail, $reviewids, $reviewids1, $company, $fuser, $luser);	
+				$mailinfo = $this->review_email(35, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 			
 			else if ($checkdays == 12 and $status == 1)
 			{
-				
-				$this->review_email('26', $usr_mail, $reviewids, $reviewids1, $company, $fuser, $luser);
+				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $review['id']);
+					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
 				}
 			}
 			
 			else if ($checkdays == 30 and $status == 2)
 			{
-				$this->closecase($reviewids);
+				$this->reviews->delete_review_byid($reviewids);
+				$this->reviews->delete_comment($reviewids);
+				$this->reviews->delete_reviewmail($reviewids);
 			}
 		}
 		
@@ -791,23 +799,26 @@ class Review extends CI_Controller {
 		{
 			if ($days == 15 and $status == 0)
 			{
-				$this->review_email('38', $usr_mail, $reviewids, $reviewids1, $company, $fuser, $luser);			
+				$mailinfo = $this->review_email(38, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 		
 			else if ($days == 17 and $status == 0)
 			{
-				$this->review_email('26', $usr_mail, $reviewids, $reviewids1, $company, $fuser, $luser);
-							
+				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $review['id']);
+					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
 				}
 			}
 			
 			else if ($checkdays == 30 and $status == 2)
 			{
-				$this->closecase($reviewids);
+				$this->reviews->delete_review_byid($reviewids);
+				$this->reviews->delete_comment($reviewids);
+				$this->reviews->delete_reviewmail($reviewids);
 			}
 		}
 		
@@ -815,23 +826,26 @@ class Review extends CI_Controller {
 		{
 			if ($days == 15 and $status == 0)
 			{
-				$this->review_email('40', $usr_mail, $reviewids, $reviewids1, $company, $fuser, $luser);			
+				$mailinfo = $this->review_email(40, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 			
 			else if ($days == 17 and $status == 0)
 			{
-				$this->review_email('26', $usr_mail, $reviewids, $reviewids1, $company, $fuser, $luser);
-							
+				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $review['id']);
+					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
 				}
 			}
 			
 			else if ($checkdays == 15 and $status == 2)
 			{
-				$this->closecase($reviewids);
+				$this->reviews->delete_review_byid($reviewids);
+				$this->reviews->delete_comment($reviewids);
+				$this->reviews->delete_reviewmail($reviewids);
 			}
 		}
 		return true;
