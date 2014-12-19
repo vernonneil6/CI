@@ -666,12 +666,12 @@ class Review extends CI_Controller {
 		redirect('review','refresh');
 	}
 	
-	public function review_email($emailid, $reviewid, $site_url, $cpyname, $fname, $lname)
+	public function review_email($emailid, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname)
 	{
 		$mail_msg = $this->common->get_email_byid($emailid);		
 		$data = array(
 		'subject'  => str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject'])),
-		'mail'     => str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($cpyname), str_replace("%name%", ucfirst($fname." ".$lname), stripslashes($mail_msg[0]['mailformat'])))))
+		'mail'     =>  str_replace("%url%", site_url('businessadmin/review/resolution/'.$reviewids), str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($cpyname), str_replace("%name%", ucfirst($fname." ".$lname), stripslashes($mail_msg[0]['mailformat']))))))
 		);
 		return $data;
 	}
@@ -717,14 +717,14 @@ class Review extends CI_Controller {
 		{
 			if ($days == 5 and $status == 0)
 			{
-				$mailinfo = $this->review_email(24, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$mailinfo = $this->review_email(24, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
 				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 			
 			else if ($days == 7 and $status == 0)
 			{
-				$mailinfo = $this->review_email(26, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
 				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
@@ -745,14 +745,14 @@ class Review extends CI_Controller {
 			else if ($checkdays == 10 and $status == 1)
 			{
 				
-				$mailinfo = $this->review_email(31, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$mailinfo = $this->review_email(31, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
 				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 			
 			else if ($checkdays == 13 and $status == 1)
 			{
-				$mailinfo = $this->review_email(26, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
 				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
@@ -772,14 +772,14 @@ class Review extends CI_Controller {
 			
 			else if ($checkdays == 10 and $status == 1)
 			{
-				$mailinfo = $this->review_email(35, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$mailinfo = $this->review_email(35, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
 				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 			
 			else if ($checkdays == 12 and $status == 1)
 			{
-				$mailinfo = $this->review_email(26, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
 				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
@@ -799,14 +799,14 @@ class Review extends CI_Controller {
 		{
 			if ($days == 15 and $status == 0)
 			{
-				$mailinfo = $this->review_email(38, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$mailinfo = $this->review_email(38, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
 				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 		
 			else if ($days == 17 and $status == 0)
 			{
-				$mailinfo = $this->review_email(26, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
 				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
@@ -826,14 +826,14 @@ class Review extends CI_Controller {
 		{
 			if ($days == 15 and $status == 0)
 			{
-				$mailinfo = $this->review_email(40, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$mailinfo = $this->review_email(40, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
 				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 			
 			else if ($days == 17 and $status == 0)
 			{
-				$mailinfo = $this->review_email(26, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
 				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
 				if($this->email->send())
 				{
