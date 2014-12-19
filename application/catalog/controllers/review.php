@@ -665,12 +665,28 @@ class Review extends CI_Controller {
 		$this->session->set_flashdata('success', 'You have successfully closed the case.');
 		redirect('review','refresh');
 	}
+	
+	public function review_email($emailid, $reviewid, $site_url, $cpyname, $fname, $lname)
+	{
+		$mail_msg = $this->common->get_email_byid($emailid);		
+		$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));			
+		$mail     = str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($cpyname), str_replace("%name%", ucfirst($fname." ".$lname), stripslashes($mail_msg[0]['mailformat'])))));							
+		return $subject;
+		return $mail;
+	}
 		
 	public function merchantbuyermail($userid, $companyid, $id)
 	{
 		$user 		= $this->users->get_user_byid($userid);
 		$company 	= $this->reviews->get_company_byid($companyid);
 		$review  	= $this->reviews->get_status_review($userid, $companyid);
+		$cpyemail	= $company[0]['email'];
+		$usremail 	= $user[0]['email'];
+		$reviewid  	= $review['id'];
+		
+		$cpyname	= $company[0]['company'];
+		$fname		= $user[0]['firstname'];
+		$lname		= $user[0]['lastname'];
 		
 		$reviewmail = $this->reviews->get_reviewmail_byid($id);
 		$reviewids 	= $reviewmail['review_id'];
@@ -736,12 +752,9 @@ class Review extends CI_Controller {
 			
 			else if ($checkdays == 10 and $status == 1)
 			{
-				$mail_msg = $this->common->get_email_byid(31);		
-				$subject  = str_replace("%reviewid%", $review['id'], stripslashes($mail_msg[0]['subject']));			
-				$mail     = str_replace("%reviewid%", $review['id'], str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))));							
-				$to       = $company[0]['email'];
-								
-				$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
+				
+				$mailinfo = $this->review_email(31, $reviewid, $site_url, $cpyname, $fname, $lname);
+				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
 				$this->email->send();
 			}
 			
