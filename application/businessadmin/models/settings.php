@@ -95,12 +95,14 @@ Class Settings extends CI_Model
 							->get()
 							->row_array();
 		 }
-		 //echo $this->db->last_query();				
-		 //echo '<pre>';print_r($query);
-		 $startdate=$this->db->get_where('company', array('id' => $id))->row_array();
-		 $query['startdate']=$startdate['registerdate'];
-		 $query['sub_amt']=$subscription_amount['value'];
-		 return $query;	
+	    $eid=$query['subscr_id'];
+		$individual= $this->db->query('select count(subscription_paynumber) as count from youg_silent where subscription_id="'.$eid.'" and subscription_paynumber=1')->row_array();
+		$startdate=$this->db->get_where('company', array('id' => $id))->result_array();
+		$query['startdate']=$startdate['registerdate'];
+		$query['sub_amt']=$subscription_amount['value'];
+		$query['totalpayment']=$individual['count'];
+		
+		return $query;	
 			
 	}
 	function cancel_elitemembership_bycompnayid($id,$companyid)
