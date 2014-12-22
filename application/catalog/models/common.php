@@ -751,7 +751,224 @@ $query=$this->db->query("SELECT sum(`damagesinamt`) as total FROM `youg_complain
 		{
 			return array();
 		}
-	}	
+	}
+	function get_country_by_countryid($cid)
+	{
+		$query = $this->db->get_where('youg_country',array('country_id'=>$cid));
+		return $query->row_array();
+		
+	}
+	function get_company_by_emailid($email)
+ 	{
+		//Executing Query
+		$this->db->select('*');
+		$this->db->from('company');
+		$this->db->where('email',$email);
+	
+		$query = $this->db->get();
+	
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+ 	function insert_subscription($companyid,$amt,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscr_id)
+ 	{
+		$date = date("Y-m-d H:i:s");
+		$payment_ip = $_SERVER['REMOTE_ADDR'];
+		$data = array(
+					'company_id' 	=> $companyid,
+					'amount'  		=> $amt,
+					'txn_id'		=> $tx,
+					'payment_date'	=> $date,
+					'payment_ip'	=> $payment_ip,
+					'expires'		=> $expires,
+					'sign'			=> $sig,
+					'payer_id'		=> $payer_id,
+					'paymentmethod'	=> $paymentmethod,
+					'subscr_id'		=> $subscr_id
+					
+		);
+		
+		if ($this->db->insert('subscription',$data))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+ 	}
+ 	function get_videos_bycompanyid($id)
+ 	{
+		$siteid = $this->session->userdata('siteid');
+		$query = $this->db->get_where('video',array('status'=>'Enable','companyid'=>$id,'websiteid'=>$siteid));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+ 	function get_companysem_bycompanyid($id)
+ 	{
+		$siteid = $this->session->userdata('siteid');
+		$query = $this->db->get_where('companysem',array('status'=>'Enable','companyid'=>$id,'websiteid'=>$siteid));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+ 	function get_companyseo_bycompanyid($id)
+ 	{
+		$siteid = $this->session->userdata('siteid');
+		$query = $this->db->get_where('companyseo',array('status'=>'Enable','companyid'=>$id,'websiteid'=>$siteid));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+ 	function set_password($companyid,$password)
+	{
+		$data = array(	'password' 	=> $password );
+
+		$this->db->where('id', $companyid);
+		if( $this->db->update('company', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	function set_sem($companyid,$title,$url,$mainimg,$thumbimg,$siteid,$semtype)
+	{
+		$data = array(	'companyid' => $companyid,
+						'title' 	=> $title,
+						'url'		=> $url,
+						'mainimg'	=> $mainimg,
+						'thumbimg'	=> $thumbimg,
+						'status'	=> 'Enable',
+						'websiteid'	=> $siteid,
+						'type'		=> $semtype
+						 );
+
+		if( $this->db->insert('companysem', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	function set_seo($companyid,$fieldname,$value,$siteid)
+	{
+		$data = array(	'companyid'		=>$companyid,
+						'value' 		=> $value,
+						'fieldname'		=> $fieldname,
+						'status'		=>'Enable',
+						'websiteid'	 	=> $siteid
+						 );
+
+		if( $this->db->insert('companyseo', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	function set_video($companyid,$title,$videourl,$siteid,$videono)
+	{
+		$data = array(	'companyid'	 => $companyid,
+						'title' 	 => $title,
+						'videourl'	 => $videourl,
+						'status'	 => 'Enable',
+						'websiteid'	 => $siteid,
+						'videono'	 => $videono
+						 );
+
+		if( $this->db->insert('video', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	function add_transaction($company_id,$payment_amount,$payment_currency,$transactionid,$payment_date)
+	{
+		$varipaddress = $_SERVER['REMOTE_ADDR'];
+		$data = array(
+							'company_id' 		=> $company_id,
+							'payment_amount'	=> $payment_amount,
+							'payment_currency'	=> $payment_currency,
+							'transactionid'		=> $transactionid,
+							'payment_date' 		=> $payment_date,
+							'payment_ip'		=> $varipaddress,
+							'status'			=> 'Enable'
+						);
+		if( $this->db->insert('elite', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	function get_all_websites()
+ 	{
+		$this->db->select('*');
+		$this->db->from('url');
+		//$this->db->where('status','Enable');
+		
+		$query = $this->db->get();
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+ 	function insert_discountcode($companyid,$disc)
+ 	{
+		$data = array('discountcode' => $disc);
+		
+		$this->db->where('company_id',$companyid);
+	
+		if ($this->db->update('elite',$data))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+ 	}	
 		
 }
 ?>
