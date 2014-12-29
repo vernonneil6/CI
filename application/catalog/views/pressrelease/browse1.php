@@ -12,10 +12,10 @@
     
     <div class="verified_wrp pr_rwrp pr_rwrp">
       <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$pressrelease[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/YouGotRated_BusinessProfile_NotVerified-ReviewsTag.png" alt="<?php echo ucfirst(stripslashes($pressrelease[0]['company'])); ?>" /></a> </div>
+              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$pressrelease[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewnotverifiedlogo"  src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($pressrelease[0]['company'])); ?>" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$pressrelease[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verified_img.png" alt="<?php echo ucfirst(stripslashes($pressrelease[0]['company'])); ?>" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$pressrelease[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewverifiedlogo" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($pressrelease[0]['company'])); ?>" /></a> </div>    
                   <?php
 				  } ?>
       <?php if(count($elitemem_status)>0){?>
