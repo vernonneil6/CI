@@ -1611,4 +1611,5 @@ padding-left: 18px;
 .cmt_none{float:none!important;}
 .cmt_word{width : auto!important; text-align :left;  padding: 30px 0 30px 45px!important;}
 .cmt_single{float : right; padding : 0 0 40px;}
-.txt_left{text-align : left!important;}
+.txt_left{text-align : left!important;margin: 10px 0 0!important;}
+.txt_img{margin: 0 0 0 60px;}

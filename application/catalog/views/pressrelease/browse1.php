@@ -66,12 +66,12 @@
             </div>
             <br/>
             <?php /*?><?php echo $address;?><br/><?php */?>
-            <div style="margin:0px 0px 0px 65px;"><a href="tel:<?php echo $phone;?>" style="color: #999999;font-size: 12px;font-family: "nimbus-sans-condensed""><?php echo $phone;?></a><br/>
+            <div  class ="txt_img"><a href="tel:<?php echo $phone;?>" style="color: #999999;font-size: 12px;font-family: "nimbus-sans-condensed""><?php echo $phone;?></a><br/>
             <a href="<?php echo $url;?>" title="<?php echo $url;?>" target="_blank" style="color: #999999;
     font-family: "nimbus-sans-condensed";
     font-size: 12px;
 "><?php echo $url;?></a></div>
-            <div style = "margin:0px 0px 0px 65px;">
+            <div class ="txt_img">
               <?php if( count($sems)>0 ) {?>
               <?php for($j=0;$j<count($sems);$j++){?>
               <a href="<?php echo $sems[$j]['url'];?>" title="<?php echo $sems[$j]['title']; ?>" target="_blank"> <img src="<?php echo base_url(); ?>uploads/companysem/thumb/<?php echo $sems[$j]['thumbimg']; ?>" title="<?php echo $sems[$j]['title']; ?>" width="30px;" height="30px;" alt="<?php echo $sems[$j]['title']; ?>"/> </a>
