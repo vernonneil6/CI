@@ -71,7 +71,7 @@
     font-family: "nimbus-sans-condensed";
     font-size: 12px;
 "><?php echo $url;?></a></div>
-            <div>
+            <div style = "margin:0px 0px 0px 65px;">
               <?php if( count($sems)>0 ) {?>
               <?php for($j=0;$j<count($sems);$j++){?>
               <a href="<?php echo $sems[$j]['url'];?>" title="<?php echo $sems[$j]['title']; ?>" target="_blank"> <img src="<?php echo base_url(); ?>uploads/companysem/thumb/<?php echo $sems[$j]['thumbimg']; ?>" title="<?php echo $sems[$j]['title']; ?>" width="30px;" height="30px;" alt="<?php echo $sems[$j]['title']; ?>"/> </a>
@@ -93,7 +93,7 @@
       <div class="cmnt_blckwrp">
         <div class="clnt_intr cmt_none">
 		  <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
-          <div class="clnt_name txt_right">
+          <div class="clnt_name txt_right txt_left">
             <h4><a href="<?php echo site_url('company/'.$otherpressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View company"><?php echo stripslashes(ucfirst($otherpressreleases[$i]['company'])); ?></a></h4>
             <span><?php echo stripslashes(ucfirst($otherpressreleases[$i]['country'])); ?></span>
             <p><?php echo $this->pressreleases->get_count_for_pressreleases($otherpressreleases[$i]['companyid']);?> POSTS</p>
