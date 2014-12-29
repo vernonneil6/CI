@@ -12,10 +12,10 @@
     
     <div class="verified_wrp pr_rwrp pr_rwrp">
       <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$pressrelease[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewnotverifiedlogo"  src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($pressrelease[0]['company'])); ?>" /></a> </div>
+              <div class="vry_logo pressrelease_logos"> <a href="<?php echo site_url('company/'.$pressrelease[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewnotverifiedlogo"  src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($pressrelease[0]['company'])); ?>" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$pressrelease[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewverifiedlogo" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($pressrelease[0]['company'])); ?>" /></a> </div>    
+              <div class="vry_logo pressrelease_logos"> <a href="<?php echo site_url('company/'.$pressrelease[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewverifiedlogo" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($pressrelease[0]['company'])); ?>" /></a> </div>    
                   <?php
 				  } ?>
       <?php if(count($elitemem_status)>0){?>
@@ -97,7 +97,7 @@
             <span><?php echo stripslashes(ucfirst($otherpressreleases[$i]['country'])); ?></span>
             <p><?php echo $this->pressreleases->get_count_for_pressreleases($otherpressreleases[$i]['companyid']);?> POSTS</p>
           </div>
-          <div class="clnt_pic"> <img src="images/user_icn.png" alt="Client Image" title="Client Image"> </div>
+          <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
         </div>
         <div class="review_rgt cmnt_dscr">
           <p><?php echo stripslashes(($otherpressreleases[$i]['sortdesc'])); ?></p>
