@@ -1608,3 +1608,6 @@ padding-left: 18px;
 .namespace{ padding: 13px 0 0;}
 .righter{vertical-align: sub;}
 .pressrelease_logos{padding : 0 10px 0;}
+.cmt_none{float:none!important;}
+.cmt_word{width : auto; text-align :left; padding: 40px 0 40px 60px;}
+.cmt_single{float : right; padding : 0 0 40px;}

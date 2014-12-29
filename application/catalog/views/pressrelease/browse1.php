@@ -56,7 +56,7 @@
         <p><?php echo stripslashes(ucfirst($pressrelease[0]['subtitle'])); ?></p>
         <p><?php echo stripslashes(($pressrelease[0]['sortdesc'])); ?></p>
         <p><?php echo stripslashes(($pressrelease[0]['presscontent'])); ?></p>
-        <div class="testmnl_clntwrp">
+        <div class="testmnl_clntwrp cmt_single">
           <div class="clnt_intr"> - &nbsp;&nbsp;
             <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
             <div class="clnt_name">
@@ -91,15 +91,15 @@
       <h2>WHAT OTHERS HAVE BEEN SAYING</h2>
       <?php for($i=0;$i<count($otherpressreleases);$i++){?>
       <div class="cmnt_blckwrp">
-        <div class="clnt_intr cmt_lft">
+        <div class="clnt_intr cmt_none">
+		  <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
           <div class="clnt_name txt_right">
             <h4><a href="<?php echo site_url('company/'.$otherpressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View company"><?php echo stripslashes(ucfirst($otherpressreleases[$i]['company'])); ?></a></h4>
             <span><?php echo stripslashes(ucfirst($otherpressreleases[$i]['country'])); ?></span>
             <p><?php echo $this->pressreleases->get_count_for_pressreleases($otherpressreleases[$i]['companyid']);?> POSTS</p>
           </div>
-          <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
         </div>
-        <div class="review_rgt cmnt_dscr">
+        <div class="review_rgt cmnt_dscr cmt_none cmt_word">
           <p><?php echo stripslashes(($otherpressreleases[$i]['sortdesc'])); ?></p>
         </div>
       </div>
