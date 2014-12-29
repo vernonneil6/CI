@@ -58,7 +58,7 @@
         <p><?php echo stripslashes(($pressrelease[0]['presscontent'])); ?></p>
         <div class="testmnl_clntwrp">
           <div class="clnt_intr"> - &nbsp;&nbsp;
-            <div class="clnt_pic"> <img src="images/user_icn.png" alt="Client Image" title="Client Image"> </div>
+            <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
             <div class="clnt_name">
               <h4><?php echo $companyname;?></h4>
               <span><?php echo $country;?></span>
