@@ -189,8 +189,9 @@ class Subbroker extends CI_Controller {
 				$old = $this->input->post('oldpassword');
 				$new = $this->input->post('password');
 				$retype = $this->input->post('retypepassword');
+				$pwd = $this->input->post('pwd');
 				
-				if($old != $id)
+				if($old != $pwd)
 				{
 					$this->session->set_flashdata('error', 'Old Password is incorrect');
 				}
