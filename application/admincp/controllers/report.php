@@ -71,10 +71,11 @@ class Report extends CI_Controller {
 	  	{
 			
 			//Addingg Setting Result to variable
-			$this->reportsearch();   
+			//$this->reportsearch();   
 			//$this->data['elitemembers'] = $this->reports->get_all_elitemembersforreport();
 			//Loading View File
-			//$this->load->view('report',$this->data);
+			$this->data['allsubbroker']=$this->reports->get_subbrokerdetails();  
+			$this->load->view('report',$this->data);
 	  	}
 		else
 		{
@@ -990,7 +991,7 @@ class Report extends CI_Controller {
 	{   
 		
 		
-		$this->data['allsubbroker']=$this->reports->get_subbrokerdetails();  
+		
 		$this->data['sub']= $this->input->post('subbroker');
 		$this->data['mark']= $this->input->post('marketer');
 		$this->data['agent']= $this->input->post('agent');
@@ -1033,7 +1034,7 @@ class Report extends CI_Controller {
 			}
 			
 			
-			//$this->data['reports']=$this->reports->brokersearch($keyword,$option,$from,$end);	
+				
 			$this->data['reports']=$this->reports->brokersearches($search_broker,$search_marketer,$search_agent,$from,$end);	
 			$this->data['companyname']=$datas['company'];
 			$this->data['country']=$datas['country'];
@@ -1041,31 +1042,24 @@ class Report extends CI_Controller {
 				
 		} 
 		
+		    
 			$this->load->library('pagination');
-			
-			$limit = $this->paging['per_page'];
+			$this->paging['per_page']=5;
+			$limit =$this->paging['per_page']; 
 			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
 			//Addingg Setting Result to variable
-			$this->data['companydispute'] = $this->reports->listdispute($limit,$offset);
 			
+			$this->data['reports']=$this->reports->brokersearches($search_broker,$search_marketer,$search_agent,$from,$end,$limit,$offset);	
 			$this->paging['base_url'] = site_url("report/reportsearch");
 			$this->paging['uri_segment'] = 3;
 			$this->paging['total_rows'] = $this->reports->report_count();
-			$this->pagination->initialize($this->paging);
-			
-
-		
-		  /*  $this->load->library('pagination');
-		   	$limit=$this->paging['per_page'];
-			$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-			$this->paging['base_url'] = site_url("report/reportsearch");
-			$this->paging['uri_segment'] = 4;
-			$this->paging['total_rows'] = $this->reports->brokersearch_count($limit,$offset);
-			$this->pagination->initialize($this->paging);
-			//print_r($this->paging); */
+		    $this->pagination->initialize($this->paging);
+			//print_r($this->paging);
+					
 		    $this->load->view('report',$this->data);
 						
 	}
+	
 	public function searchresult($keyword='')
 	{
 		
@@ -1074,13 +1068,6 @@ class Report extends CI_Controller {
 		$limit = $this->paging['per_page'];
 		$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
 		$option=$this->input->post('type');
-		//$this->data['reports'] = $this->reports->brokersearch($keyword,$option);
-		
-		/*$this->paging['base_url'] = site_url("reports/searchresult/".$keyword."/index");
-		$this->paging['uri_segment'] = 5;
-		$this->paging['total_rows'] = $this->reports->brokersearch_count($keyword,$limit,$offset);
-		$this->pagination->initialize($this->paging);*/
-		
 		$this->paging['base_url'] = site_url("report/reportsearch");
 		$this->paging['uri_segment'] = 5;
 		$this->paging['total_rows'] = $this->reports->brokersearch_count($keyword,$limit,$offset);
@@ -1104,10 +1091,7 @@ class Report extends CI_Controller {
 					$this->data['elitemembers'] = $this->reports->elitemembers($id);
 			        $this->data['titletype'] = $this->reports->get_types($id);
 			        $this->data['signups'] = $this->reports->get_signupview_bycompanyid($id);
-			        /*$this->data['totalelite'] = $this->reports->totalelites($id);
-			        $this->data['marketer_totalelite'] = $this->reports->marketer_totalelites($id);
-			        $this->data['agent_totalelite'] = $this->reports->agent_totalelites($id);*/
-					
+			       				
 					
 					if(count($this->data['elitemembers']) > 0 || count($this->data['elitemember']) > 0 || count($this->data['titletype']) > 0 || count($this->data['signups']) > 0)
 					{			
