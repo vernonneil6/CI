@@ -44,10 +44,58 @@
           <div class="lab">
             <label for="broker">Number of Allowed Agents</label>
           </div>
-	<div class="con">
-	  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'agent','required'=>'required')); ?>
-	</div>
-        </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'agent','required'=>'required')); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Company Name</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'companyname')); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Company Contact Name</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'companycontactno')); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Email Address</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'emailaddress')); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Phone</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'phone')); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Address </label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'address')); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>ID #</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'id')); ?>
+		</div>
+    </div>
         <?php echo form_input(array('name'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
       </fieldset>
        <?php echo form_close(); ?>

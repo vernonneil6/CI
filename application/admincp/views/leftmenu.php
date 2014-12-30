@@ -22,22 +22,22 @@
 		</ul>
 	</li>
     <li class="<?=($this->uri->segment(1)==='mainbroker')?'active':''?>">
-		<a href="<?php echo site_url('mainbroker'); ?>" title="Main Broker">Main Broker</a>
+		<a href="<?php echo site_url('mainbroker'); ?>" title="Multi-Tier Marketing">Multi-Tier Marketing</a>
 		<ul class="submenu">
 			<li>
 				<a href="<?php echo site_url('mainbroker/add'); ?>" title="Add Broker">Add Broker</a>
 			</li>
 			<li>
-				<a href="<?php echo site_url('mainbroker'); ?>" title="List All Brokers">List All Subbroker</a>
+				<a href="<?php echo site_url('mainbroker'); ?>" title="List All Subbrokers">List All Subbrokers</a>
 			</li>
 			<li>
-				<a href="<?php echo site_url('mainbroker/marketer'); ?>" title="List All Brokers">List All Marketer</a>
+				<a href="<?php echo site_url('mainbroker/marketer'); ?>" title="List All Marketers">List All Marketers</a>
 			</li>
 			<li>
-				<a href="<?php echo site_url('mainbroker/agent'); ?>" title="List All Brokers">List All Agent</a>
+				<a href="<?php echo site_url('mainbroker/agent'); ?>" title="List All Agents">List All Agents</a>
 			</li>
 			<li>
-				<a href="<?php echo site_url('mainbroker/elitemember'); ?>" title="List All Elitemember">List All Elitemember</a>
+				<a href="<?php echo site_url('mainbroker/elitemember'); ?>" title="List All Elite Members">List All Elite Members</a>
 			</li>
 		</ul>
 	</li>
