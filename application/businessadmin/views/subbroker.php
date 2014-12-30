@@ -1,18 +1,5 @@
 <?php echo $header; ?>
 <div id="content">
-
-
-	<?php if( $this->session->flashdata('success') ) { ?>
-		<div class="lab form-message correct">
-		  <p><?php echo $this->session->flashdata('success'); ?></p>
-		</div>
-    <?php } ?>
-    
-    <?php if( $this->session->flashdata('error') ) { ?>
-		<div class="lab form-message error1">
-		  <p><?php echo $this->session->flashdata('error'); ?></p>
-		</div>
-    <?php } ?>	
 	
 <?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='') { ?>
  
@@ -475,6 +462,18 @@
 <?php } ?>
 
 <?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='resetpassword') { ?>
+	
+	<?php if( $this->session->flashdata('success') ) { ?>
+		<div class="lab form-message correct">
+		  <p><?php echo $this->session->flashdata('success'); ?></p>
+		</div>
+    <?php } ?>
+    
+    <?php if( $this->session->flashdata('error') ) { ?>
+		<div class="lab form-message error1">
+		  <p><?php echo $this->session->flashdata('error'); ?></p>
+		</div>
+    <?php } ?>	
 	
 	<div class="breadcrumbs">
 		<ul>
