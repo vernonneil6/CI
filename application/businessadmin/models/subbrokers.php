@@ -81,5 +81,14 @@ class Subbrokers extends CI_Model
 		$this->db->where('id' , $id)->update('youg_broker', $data);
 	}
 	
+	function userprofileupdate($new,$id)
+	{
+		$data=array(
+			'password'=>$new
+		);
+				
+		$this->db->where('id' , $id)->update('youg_broker', $data);
+	}
+	
 }
 ?>

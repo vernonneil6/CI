@@ -62,7 +62,7 @@
       <tr>
 		<td><?php echo $agents['name']; ?></td>
         <td><?php echo $agents['password']; ?></td>
-        <td><?php echo $agents['signup']; ?></td>
+        <td><?php echo date('m-d-Y', strtotime($agents['signup'])); ?></td>
         <td class="action">
 			<a href="<?php echo site_url('marketer/agentdelete/'.$agents['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this Agent?');">Delete</a>
 			<a href="<?php echo site_url('marketer/agentedit/'.$agents['id']); ?>" title="Edit" class="ico ico-edit">Edit</a>
