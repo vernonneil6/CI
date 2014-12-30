@@ -62,7 +62,7 @@
       <tr>
 		<td><?php echo $marketers['name']; ?></td>
         <td><?php echo $marketers['password']; ?></td>
-        <td><?php echo $marketers['signup']; ?></td>
+        <td><?php echo date('m-d-Y',$marketers['signup']); ?></td>
       </tr>
       <?php } ?>
     </table>
@@ -149,7 +149,7 @@
       <tr>
 		<td><?php echo $agents['name']; ?></td>
         <td><?php echo $agents['password']; ?></td>
-        <td><?php echo $agents['signup']; ?></td>
+        <td><?php echo date('m-d-Y',$agents['signup']); ?></td>
       </tr>
       <?php } ?>
     </table>
