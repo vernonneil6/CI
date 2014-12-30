@@ -167,6 +167,45 @@ class Subbroker extends CI_Controller {
 	  	}
                 
 	}
+	
+	public function userprofile()
+	{
+		if( $this->session->userdata['subbroker_data'] )
+	  	{
+			$this->load->view('subbroker');
+	  	}
+                
+	}
+	
+	public function resetpassword($id)
+	{
+		if( $this->session->userdata['subbroker_data'] )
+	  	{
+			$this->load->view('subbroker');
+			
+			if($this->input->post('newpassword'))
+			{
+				$old = $this->input->post('oldpassword');
+				$new = $this->input->post('password');
+				$retype = $this->input->post('retypepassword');
+				
+				if($new != $retype)
+				{
+					$this->session->set_flashdata('Password is incorrect');
+				}
+				else if($old != $id)
+				{
+					$this->session->set_flashdata('Password is incorrect');
+				}
+				else
+				{
+					$this->subbrokers->userprofileupdate($new, $id);
+					redirect('subbroker/userprofile','refresh');
+				}
+			}
+	  	}     
+	}
+	
 	function logout()
 	{
 		if( isset($this->session->userdata['subbroker_data']) )
