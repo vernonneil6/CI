@@ -57,6 +57,7 @@
 		<td>Username</td>
 		<td>Password</td>
 		<td>Signup</td>
+		<td>Action</td>
       </tr>
       <?php foreach($allmarketer as $marketers){ ?>
       <tr>
