@@ -150,7 +150,7 @@
             <label for="name">Marketer Username</label>
           </div>
           <div class="con">
-            <?php echo form_input( array( 'name'=>'marketername','value' = $getmarketerdata['name'] ,'class'=>'input','type'=>'text' ) ); ?>
+            <?php echo form_input( array( 'name'=>'marketername','value' => $getmarketerdata['name'] ,'class'=>'input','type'=>'text' ) ); ?>
           </div>
         </div>
 	<div class="clearfix">
@@ -158,7 +158,7 @@
             <label for="name">Password</label>
           </div>
           <div class="con">
-            <?php echo form_input( array( 'name'=>'marketerpassword','value' = $getmarketerdata['password'],'class'=>'input','type'=>'password' ) ); ?>
+            <?php echo form_input( array( 'name'=>'marketerpassword','value' => $getmarketerdata['password'],'class'=>'input','type'=>'password' ) ); ?>
           </div>
         </div>
         <?php echo form_input(array('name'=>'marketersubmit','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
