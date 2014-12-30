@@ -516,6 +516,7 @@
 					 <?php echo form_input( array( 'name'=>'retypepassword','class'=>'input','type'=>'password','required'=>'required' ) ); ?>
 				  </div>
 			 </div>
+			 <input type = "hidden" value = "<?php echo $getdata['password']; ?>" name = "pwd">
 			 <?php echo form_input(array('name'=>'newpassword','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
 		 </fieldset>
 		 <?php echo form_close(); ?>
