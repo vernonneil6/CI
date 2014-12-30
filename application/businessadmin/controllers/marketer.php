@@ -101,5 +101,53 @@ class Marketer extends CI_Controller {
 		}
 		$this->load->view('marketer',$this->data);
 	}
+	
+	public function userprofile($id)
+	{
+		if( $this->session->userdata['marketer_data'] )
+	  	{
+			$this->data['getdata'] = $this->marketers->agentedits($id);
+			$this->load->view('marketer', $this->data);
+	  	}
+	}
+	
+	public function resetpassword($id)
+	{
+		if( $this->session->userdata['marketer_data'] )
+	  	{
+			$this->data['getdata'] = $this->marketers->agentedits($id);
+			$this->load->view('marketer', $this->data);
+			
+			if($this->input->post('newpassword'))
+			{
+				$old = $this->input->post('oldpassword');
+				$new = $this->input->post('password');
+				$retype = $this->input->post('retypepassword');
+				$pwd = $this->input->post('pwd');
+				
+				if($old != $pwd)
+				{
+					$this->session->set_flashdata('error', 'Old Password is incorrect');
+					redirect('marketer/resetpassword/'.$id,'refresh');
+				}
+				else
+				{
+					if($new != $retype)
+					{
+						$this->session->set_flashdata('error', 'Password not matched');
+						redirect('marketer/resetpassword/'.$id,'refresh');
+					}
+					else
+					{
+						$this->marketers->userprofileupdate($new, $id);
+						$this->session->set_flashdata('success', 'Password changed successfully');
+						redirect('marketer/userprofile/'.$id,'refresh');
+					}		
+				}	
+			}
+	  	}     
+	}
+	
+	
 
 }
