@@ -439,7 +439,7 @@
 				  <div class="lab">
 					<label>Username</label>
 				  </div>
-				  <div class="con">
+				  <div class="lab">
 					<?php echo $this->session->userdata['subbroker_data'][0]->name; ?>
 				  </div>
 			</div>
@@ -447,11 +447,11 @@
 				  <div class="lab">
 					<label>Password</label>
 				  </div>
-				  <div class="con">
+				  <div class="lab">
 					<?php echo $this->session->userdata['subbroker_data'][0]->password; ?>
 				  </div>
 			 </div>
-			 <?php echo form_input(array('name'=>'updatepassword','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+			 <?php echo form_input(array('name'=>'updatepassword','class'=>'button','type'=>'submit','value'=>'Update Password')); ?>
 		 </fieldset>
 		 
 		 <?php echo form_close(); ?>
@@ -462,8 +462,6 @@
 	
 <?php } ?>
 
-</div>
-
 <?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='resetpassword') { ?>
 	
 	<div class="breadcrumbs">
@@ -471,7 +469,7 @@
 		  <li class="home"><a href="<?php echo site_url('subbroker');?>" title="Dashboard">Dashboard</a></li>
 		  <li><a href="<?php echo site_url('subbroker/userprofile');?>" title="User Profile">User Profile</a></li>
 		</ul>
-	  </div>
+	</div>
 
 
 	<div class="box">
@@ -487,7 +485,7 @@
 					<label>Old Password</label>
 				  </div>
 				  <div class="con">
-					 <?php echo form_input( array( 'name'=>'oldpassword', 'class'=>'input','type'=>'text' ) ); ?>
+					 <?php echo form_input( array( 'name'=>'oldpassword', 'class'=>'input','type'=>'password' ) ); ?>
 				  </div>
 			</div>
 			<div class="clearfix">
@@ -495,7 +493,7 @@
 					<label>New Password</label>
 				  </div>
 				  <div class="con">
-					 <?php echo form_input( array( 'name'=>'password', 'class'=>'input','type'=>'text' ) ); ?>
+					 <?php echo form_input( array( 'name'=>'password', 'class'=>'input','type'=>'password' ) ); ?>
 				  </div>
 			 </div>
 			 <div class="clearfix">
@@ -503,13 +501,12 @@
 					<label>Retype Password</label>
 				  </div>
 				  <div class="con">
-					 <?php echo form_input( array( 'name'=>'retypepassword','class'=>'input','type'=>'text' ) ); ?>
+					 <?php echo form_input( array( 'name'=>'retypepassword','class'=>'input','type'=>'password' ) ); ?>
 				  </div>
 			 </div>
 			 <?php echo form_input(array('name'=>'newpassword','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
 		 </fieldset>
 		 <?php echo form_close(); ?>
- 
 		</div>
 	</div>
 	
