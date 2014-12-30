@@ -128,6 +128,7 @@ class Subbroker extends CI_Controller {
 	{
 		if( $this->session->userdata['subbroker_data'] )
 	  	{
+			$this->data['marketername'] = $this->subbrokers->data_allmarketer();
 			$this->data['agent_data'] = $this->subbrokers->agentsedit($id);
 			$this->load->view('subbroker',$this->data);
 			
