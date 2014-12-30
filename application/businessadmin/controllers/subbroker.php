@@ -64,7 +64,7 @@ class Subbroker extends CI_Controller {
 	{
 		if( $this->session->userdata['subbroker_data'] )
 	  	{
-			$this->data['getmarketerdata'] = $this->subbrokers->marketeredits($id);
+			$this->data['getmarketerdata'] = $this->subbrokers->data_by_id($id);
 			$this->load->view('subbroker',$this->data);
 			
 			if($this->input->post('marketersubmit'))
@@ -87,7 +87,7 @@ class Subbroker extends CI_Controller {
 	{
 		if( $this->session->userdata['subbroker_data'] )
 	  	{
-			$this->subbrokers->marketerdeletes($id);
+			$this->subbrokers->data_delete($id);
 			redirect('subbroker/marketer','refresh');
 		}
 	}
@@ -129,7 +129,7 @@ class Subbroker extends CI_Controller {
 		if( $this->session->userdata['subbroker_data'] )
 	  	{
 			$this->data['marketername'] = $this->subbrokers->data_allmarketer();
-			$this->data['getagentdata'] = $this->subbrokers->agentedits($id); 
+			$this->data['getagentdata'] = $this->subbrokers->data_by_id($id); 
 			$this->load->view('subbroker',$this->data);
 			
 			if($this->input->post('agentsubmit'))
@@ -152,7 +152,7 @@ class Subbroker extends CI_Controller {
 	{
 		if( $this->session->userdata['subbroker_data'] )
 	  	{
-			$this->subbrokers->agentdeletes($id);
+			$this->subbrokers->data_delete($id);
 			redirect('subbroker/agent','refresh');
 		}
 	}
@@ -172,7 +172,8 @@ class Subbroker extends CI_Controller {
 	{
 		if( $this->session->userdata['subbroker_data'] )
 	  	{
-			$this->load->view('subbroker');
+			$this->data['getdata'] = $this->subbrokers->data_by_id($id);
+			$this->load->view('subbroker', $this->data);
 	  	}
                 
 	}
@@ -181,7 +182,8 @@ class Subbroker extends CI_Controller {
 	{
 		if( $this->session->userdata['subbroker_data'] )
 	  	{
-			$this->load->view('subbroker');
+			$this->data['getdata'] = $this->subbrokers->data_by_id($id);
+			$this->load->view('subbroker', $this->data);
 			
 			if($this->input->post('newpassword'))
 			{
@@ -189,20 +191,23 @@ class Subbroker extends CI_Controller {
 				$new = $this->input->post('password');
 				$retype = $this->input->post('retypepassword');
 				
-				if($new != $retype)
-				{
-					$this->session->set_flashdata('error', 'Password not matched');
-				}
-				else if($old != $id)
+				if($old != $id)
 				{
 					$this->session->set_flashdata('error', 'Old Password is incorrect');
 				}
 				else
 				{
-					$this->subbrokers->userprofileupdate($new, $id);
-					$this->session->set_flashdata('success', 'Password changed successfully');
-					redirect('subbroker/userprofile','refresh');
-				}
+					if($new != $retype)
+					{
+						$this->session->set_flashdata('error', 'Password not matched');
+					}
+					else
+					{
+						$this->subbrokers->userprofileupdate($new, $id);
+						$this->session->set_flashdata('success', 'Password changed successfully');
+						redirect('subbroker/userprofile','refresh');
+					}		
+				}	
 			}
 	  	}     
 	}
