@@ -19,6 +19,6 @@
         <li><a href="<?php echo site_url('subbroker/elitemember'); ?>" title="List All Elite Members">List All Elite Members</a></li>
       </ul>
     </li>
-    <li><a href="<?php echo site_url('subbroker/userprofile/'); ?><?php echo $this->session->userdata['subbroker_data'][0]->id; ?>" class="link" title="User Profile">User Profile</a></li>
+    <li><a href="<?php echo site_url('subbroker/userprofile'); ?>/<?php echo $this->session->userdata['subbroker_data'][0]->id; ?>" class="link" title="User Profile">User Profile</a></li>
   </ul>
 </div>

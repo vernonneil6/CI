@@ -463,7 +463,7 @@
 					<?php echo $getdata['password'] ?>
 				  </div>
 			 </div>
-			 <?php echo form_input(array('name'=>'updatepassword','class'=>'button','type'=>'submit','value'=>'Update Password')); ?>
+			 <?php echo form_input(array('name'=>'updatepassword','class'=>'button','type'=>'submit','value'=>'Update')); ?>
 		 </fieldset>
 		 
 		 <?php echo form_close(); ?>
