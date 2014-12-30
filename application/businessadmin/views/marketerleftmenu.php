@@ -13,5 +13,6 @@
         <li><a href="<?php echo site_url('marketer/elitemember'); ?>" title="List All Elite Members">List All Elite Members</a></li>
       </ul>
     </li>
+    <li><a href="<?php echo site_url('marketer/userprofile'); ?>/<?php echo $this->session->userdata['marketer_data'][0]->id; ?>" class="link" title="User Profile">User Profile</a></li>
   </ul>
 </div>
