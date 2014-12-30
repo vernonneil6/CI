@@ -168,14 +168,13 @@ class Subbroker extends CI_Controller {
                 
 	}
 	
-	public function userprofile()
+	public function userprofile($id)
 	{
 		if( $this->session->userdata['subbroker_data'] )
 	  	{
 			$this->data['getdata'] = $this->subbrokers->data_by_id($id);
 			$this->load->view('subbroker', $this->data);
 	  	}
-                
 	}
 	
 	public function resetpassword($id)
