@@ -194,12 +194,14 @@ class Subbroker extends CI_Controller {
 				if($old != $pwd)
 				{
 					$this->session->set_flashdata('error', 'Old Password is incorrect');
+					redirect('subbroker/resetpassword/'.$id,'refresh');
 				}
 				else
 				{
 					if($new != $retype)
 					{
 						$this->session->set_flashdata('error', 'Password not matched');
+						redirect('subbroker/resetpassword/'.$id,'refresh');
 					}
 					else
 					{
