@@ -3,13 +3,13 @@
 
 
 	<?php if( $this->session->flashdata('success') ) { ?>
-		<div class="lab">
+		<div class="lab form-message correct">
 		  <p><?php echo $this->session->flashdata('success'); ?></p>
 		</div>
     <?php } ?>
     
     <?php if( $this->session->flashdata('error') ) { ?>
-		<div class="lab">
+		<div class="lab form-message error1">
 		  <p><?php echo $this->session->flashdata('error'); ?></p>
 		</div>
     <?php } ?>	
