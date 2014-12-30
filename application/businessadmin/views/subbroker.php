@@ -1,6 +1,18 @@
 <?php echo $header; ?>
 <div id="content">
-	
+
+
+	<?php if( $this->session->flashdata('success') ) { ?>
+		<div class="lab">
+		  <p><?php echo $this->session->flashdata('success'); ?></p>
+		</div>
+    <?php } ?>
+    
+    <?php if( $this->session->flashdata('error') ) { ?>
+		<div class="lab">
+		  <p><?php echo $this->session->flashdata('error'); ?></p>
+		</div>
+    <?php } ?>	
 	
 <?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='') { ?>
  
@@ -467,7 +479,7 @@
 	<div class="breadcrumbs">
 		<ul>
 		  <li class="home"><a href="<?php echo site_url('subbroker');?>" title="Dashboard">Dashboard</a></li>
-		  <li><a href="<?php echo site_url('subbroker/userprofile');?>" title="User Profile">User Profile</a></li>
+		  <li><a href="<?php echo site_url('subbroker/resetpassword');?>" title="Reset Password">Reset Password</a></li>
 		</ul>
 	</div>
 
