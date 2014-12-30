@@ -34,14 +34,14 @@ class Subbrokers extends CI_Model
 		->result_array();		
  	}	
  	
- 	function agentsedit($id)
+ 	function agentedits($id)
  	{
-		return $this->db->get_where('youg_broker', array('id' => $id));
+		return $this->db->get_where('youg_broker', array('id' => $id))->row_array();
 	}
 	
-	function marketersedit($id)
+	function marketeredits($id)
  	{
-		return $this->db->get_where('youg_broker', array('id' => $id));
+		return $this->db->get_where('youg_broker', array('id' => $id))->row_array();
 	}
  	
  	function agentdeletes($id)
@@ -64,7 +64,7 @@ class Subbrokers extends CI_Model
 			'subbrokerid'=>$subbrokerid
 		);
 		
-		$this->db->where('id' => $id)->update('youg_broker', $data);
+		$this->db->where('id' , $id)->update('youg_broker', $data);
 	}
 	
 	function agentupdates($type,$name,$password,$signup,$marketerid,$subbrokerid,$id)
@@ -78,7 +78,7 @@ class Subbrokers extends CI_Model
 			'subbrokerid'=>$subbrokerid
 		);
 				
-		$this->db->where('id' => $id)->update('youg_broker', $data);
+		$this->db->where('id' , $id)->update('youg_broker', $data);
 	}
 	
 }
