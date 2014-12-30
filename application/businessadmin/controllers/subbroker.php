@@ -200,6 +200,7 @@ class Subbroker extends CI_Controller {
 				else
 				{
 					$this->subbrokers->userprofileupdate($new, $id);
+					$this->session->set_flashdata('success', 'Password changed successfully');
 					redirect('subbroker/userprofile','refresh');
 				}
 			}
