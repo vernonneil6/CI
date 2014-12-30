@@ -63,6 +63,10 @@
 		<td><?php echo $marketers['name']; ?></td>
         <td><?php echo $marketers['password']; ?></td>
         <td><?php echo date('m-d-Y', strtotime($marketers['signup'])); ?></td>
+        <td class="action">
+			<a href="<?php echo site_url('subbroker/deletemarketer/'.$marketers['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this Marketer?');">Delete</a>
+			<a href="<?php echo site_url('subbroker/editmarketer/'.$marketers['id']); ?>" title="Edit" class="ico ico-edit">Edit</a>
+		</td>
       </tr>
       <?php } ?>
     </table>
@@ -121,6 +125,55 @@
 <?php } ?>
 
 
+
+<?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='editmarketer') {?>
+	
+ <div class="breadcrumbs">
+    <ul>
+	  <li class="home"><a href="<?php echo site_url('subbroker');?>" title="Dashboard">Dashboard</a></li>
+      <li><a href="<?php echo site_url('subbroker/editmarketer');?>" title="Edit Marketer">Edit Marketer</a></li>
+    </ul>
+  </div>
+
+
+	<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Edit Marketer" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+		
+    	 <?php echo form_open('subbroker/editmarketer',array('class'=>'formBox broker')); ?>
+	 <fieldset>
+	<div class="clearfix">
+          <div class="lab">
+            <label for="name">Marketer Username</label>
+          </div>
+          <div class="con">
+            <?php echo form_input( array( 'name'=>'marketername','class'=>'input','type'=>'text' ) ); ?>
+          </div>
+        </div>
+	<div class="clearfix">
+          <div class="lab">
+            <label for="name">Password</label>
+          </div>
+          <div class="con">
+            <?php echo form_input( array( 'name'=>'marketerpassword','class'=>'input','type'=>'password' ) ); ?>
+          </div>
+        </div>
+        <?php echo form_input(array('name'=>'marketersubmit','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+	
+      </fieldset>
+       <?php echo form_close(); ?>
+       
+    </div>
+	</div>
+
+	
+
+<?php } ?>
+
+
+
 <?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='agent') { ?>
  <div class="breadcrumbs">
     <ul>
@@ -144,12 +197,17 @@
 		<td>Username</td>
 		<td>Password</td>
 		<td>Signup</td>
+		<td>Action</td>
       </tr>
       <?php foreach($allagent as $agents){ ?>
       <tr>
 		<td><?php echo $agents['name']; ?></td>
         <td><?php echo $agents['password']; ?></td>
         <td><?php echo date('m-d-Y', strtotime($agents['signup'])); ?></td>
+        <td class="action">
+			<a href="<?php echo site_url('subbroker/deleteagent/'.$agents['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this Agent?');">Delete</a>
+			<a href="<?php echo site_url('subbroker/editagent/'.$agents['id']); ?>" title="Edit" class="ico ico-edit">Edit</a>
+		</td>
       </tr>
       <?php } ?>
     </table>
@@ -219,6 +277,63 @@
 <?php } ?>
 
 
+
+<?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='editagent') { ?>
+
+	<div class="breadcrumbs">
+		<ul>
+		  <li class="home"><a href="<?php echo site_url('subbroker');?>" title="Dashboard">Dashboard</a></li>
+		  <li><a href="<?php echo site_url('subbroker/editagent');?>" title="Edit Agent">Edit Agent</a></li>
+		</ul>
+	  </div>
+
+
+	<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Edit Agent" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+		
+    	 <?php echo form_open('subbroker/editagent',array('class'=>'formBox broker')); ?>
+	 <fieldset>
+	<div class="clearfix">
+          <div class="lab">
+            <label for="name">Marketer Username</label>
+          </div>
+          <div class="con">
+				<select name="agentmarketer" class="select">
+					<?php foreach($marketername as $name) { ?>
+						<option value="<?php echo $name['id']; ?>"><?php echo $name['name']; ?></option>
+					<?php } ?>
+				</select>
+          </div>
+    </div>
+	<div class="clearfix">
+          <div class="lab">
+            <label for="name">Agent Username</label>
+          </div>
+          <div class="con">
+            <?php echo form_input( array( 'name'=>'agentname','class'=>'input','type'=>'text' ) ); ?>
+          </div>
+        </div>
+	<div class="clearfix">
+          <div class="lab">
+            <label for="name">Password</label>
+          </div>
+          <div class="con">
+            <?php echo form_input( array( 'name'=>'agentpassword','class'=>'input','type'=>'password' ) ); ?>
+          </div>
+        </div>
+        <?php echo form_input(array('name'=>'agentsubmit','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+	
+      </fieldset>
+       <?php echo form_close(); ?>
+       
+    </div>
+	</div>
+
+
+<?php } ?>
 
 
 

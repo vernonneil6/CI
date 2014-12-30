@@ -5,7 +5,7 @@
 
 <div class="breadcrumbs">
     <ul>
-      <li class="home"><a href="<?php echo site_url('marketer');?>" title="Dashboard">Dashboard</a></li>
+      <li class="home"><a href="<?php echo site_url('agent');?>" title="Dashboard">Dashboard</a></li>
     </ul>
   </div>
 
@@ -39,7 +39,8 @@
 	
 	<div class="breadcrumbs">
     <ul>
-      <li class="home"><a href="<?php echo site_url('agent/elitemember');?>" title="elitemember">Elite Member</a></li>
+      <li class="home"><a href="<?php echo site_url('agent');?>" title="Dashboard">Dashboard</a></li>
+      <li><a href="<?php echo site_url('agent/elitemember');?>" title="Elite Member">Elite Member</a></li>
     </ul>
   </div>
 
