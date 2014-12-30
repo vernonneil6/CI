@@ -7,5 +7,6 @@
         <li><a href="<?php echo site_url('agent/elitemember'); ?>" title="List All Elite Members">List All Elite Members</a></li>
       </ul>
     </li>
+    <li><a href="<?php echo site_url('agent/userprofile'); ?>/<?php echo $this->session->userdata['agent_data'][0]->id; ?>" class="link" title="User Profile">User Profile</a></li>
     </ul>
 </div>
