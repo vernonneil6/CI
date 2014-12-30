@@ -37,14 +37,15 @@
 	
   <div class="breadcrumbs">
     <ul>
-      <li class="home"><a href="<?php echo site_url('subbroker/agent');?>" title="agent">Agent</a></li>
+	  <li class="home"><a href="<?php echo site_url('subbroker');?>" title="Dashboard">Dashboard</a></li>
+      <li><a href="<?php echo site_url('subbroker/agent');?>" title="Marketer">Marketer</a></li>
     </ul>
   </div>
 
 
 	<div class="box">
     <div class="headlines">
-      <h2><span><?php echo "Agent" ?></span></h2>
+      <h2><span><?php echo "Marketer" ?></span></h2>
     </div>
     <div class="box-content"> 
 			
@@ -77,7 +78,8 @@
 	
  <div class="breadcrumbs">
     <ul>
-      <li class="home"><a href="<?php echo site_url('subbroker/addmarketer');?>" title="addmarketer">Add Marketer</a></li>
+	  <li class="home"><a href="<?php echo site_url('subbroker');?>" title="Dashboard">Dashboard</a></li>
+      <li><a href="<?php echo site_url('subbroker/addmarketer');?>" title="Add Marketer">Add Marketer</a></li>
     </ul>
   </div>
 
@@ -122,7 +124,8 @@
 <?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='agent') { ?>
  <div class="breadcrumbs">
     <ul>
-      <li class="home"><a href="<?php echo site_url('subbroker/agent');?>" title="agent">Agent</a></li>
+	  <li class="home"><a href="<?php echo site_url('subbroker');?>" title="Dashboard">Dashboard</a></li>
+      <li><a href="<?php echo site_url('subbroker/agent');?>" title="Agent">Agent</a></li>
     </ul>
   </div>
 
@@ -162,7 +165,8 @@
 
 	<div class="breadcrumbs">
 		<ul>
-		  <li class="home"><a href="<?php echo site_url('subbroker/addagent');?>" title="addagent">Add Agent</a></li>
+		  <li class="home"><a href="<?php echo site_url('subbroker');?>" title="Dashboard">Dashboard</a></li>
+		  <li><a href="<?php echo site_url('subbroker/addagent');?>" title="Add Agent">Add Agent</a></li>
 		</ul>
 	  </div>
 
@@ -224,7 +228,8 @@
 	
 	<div class="breadcrumbs">
 		<ul>
-		  <li class="home"><a href="<?php echo site_url('subbroker/elitemember');?>" title="elitemember">Elite Member</a></li>
+		  <li class="home"><a href="<?php echo site_url('subbroker');?>" title="Dashboard">Dashboard</a></li>
+		  <li><a href="<?php echo site_url('subbroker/elitemember');?>" title="Elite Member">Elite Member</a></li>
 		</ul>
 	</div>
 
