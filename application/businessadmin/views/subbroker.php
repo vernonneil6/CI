@@ -445,14 +445,14 @@
 		</div>
 		
 		<div class="box-content"> 
-		<?php echo form_open('subbroker/resetpassword/'.$this->session->userdata['subbroker_data'][0]->id, array('class'=>'formBox broker')); ?>	
+		<?php echo form_open('subbroker/resetpassword/'.$getdata['id'], array('class'=>'formBox broker')); ?>	
 		<fieldset>
 			<div class="clearfix">
 				  <div class="lab">
 					<label>Username</label>
 				  </div>
 				  <div class="lab">
-					<?php echo $this->session->userdata['subbroker_data'][0]->name; ?>
+					<?php echo $getdata['name'] ?>
 				  </div>
 			</div>
 			<div class="clearfix">
@@ -460,7 +460,7 @@
 					<label>Password</label>
 				  </div>
 				  <div class="lab">
-					<?php echo $this->session->userdata['subbroker_data'][0]->password; ?>
+					<?php echo $getdata['password'] ?>
 				  </div>
 			 </div>
 			 <?php echo form_input(array('name'=>'updatepassword','class'=>'button','type'=>'submit','value'=>'Update Password')); ?>
@@ -490,14 +490,14 @@
 		</div>
 		
 		<div class="box-content"> 
-		<?php echo form_open('subbroker/resetpassword/'.$this->session->userdata['subbroker_data'][0]->id, array('class'=>'formBox broker')); ?>	
+		<?php echo form_open('subbroker/resetpassword/'.$getdata['id'], array('class'=>'formBox broker')); ?>	
 		<fieldset>
 			<div class="clearfix">
 				  <div class="lab">
 					<label>Old Password</label>
 				  </div>
 				  <div class="con">
-					 <?php echo form_input( array( 'name'=>'oldpassword', 'class'=>'input','type'=>'password' ) ); ?>
+					 <?php echo form_input( array( 'name'=>'oldpassword', 'class'=>'input','type'=>'password','required'=>'required' ) ); ?>
 				  </div>
 			</div>
 			<div class="clearfix">
@@ -505,7 +505,7 @@
 					<label>New Password</label>
 				  </div>
 				  <div class="con">
-					 <?php echo form_input( array( 'name'=>'password', 'class'=>'input','type'=>'password' ) ); ?>
+					 <?php echo form_input( array( 'name'=>'password', 'class'=>'input','type'=>'password','required'=>'required' ) ); ?>
 				  </div>
 			 </div>
 			 <div class="clearfix">
@@ -513,7 +513,7 @@
 					<label>Retype Password</label>
 				  </div>
 				  <div class="con">
-					 <?php echo form_input( array( 'name'=>'retypepassword','class'=>'input','type'=>'password' ) ); ?>
+					 <?php echo form_input( array( 'name'=>'retypepassword','class'=>'input','type'=>'password','required'=>'required' ) ); ?>
 				  </div>
 			 </div>
 			 <?php echo form_input(array('name'=>'newpassword','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
