@@ -37,6 +37,7 @@ class Subbroker extends CI_Controller {
 	  	}
                 
 	}
+	
 	public function addmarketer()
 	{
 		if( $this->session->userdata['subbroker_data'] )
@@ -58,6 +59,39 @@ class Subbroker extends CI_Controller {
 	  	}
                 
 	}
+	
+	public function editmarketer($id)
+	{
+		if( $this->session->userdata['subbroker_data'] )
+	  	{
+			$this->data['marketer_data'] = $this->subbrokers->marketersedit($id);
+			$this->load->view('subbroker',$this->data);
+			
+			if($this->input->post('marketersubmit'))
+			{
+			
+				$type = 'marketer';
+				$name = $this->input->post('marketername');
+				$password = $this->input->post('marketerpassword');
+				$signup = date("Y-m-d H:i:s");
+				$subbrokerid = $this->session->userdata['subbroker_data'][0]->id;
+			
+				$this->subbrokers->marketerupdates($type,$name,$password,$signup,$subbrokerid,$id);
+				redirect('subbroker/marketer','refresh');
+			}
+	  	}
+                
+	}
+	
+	public function deletemarketer($id)
+	{
+		if( $this->session->userdata['subbroker_data'] )
+	  	{
+			$this->subbrokers->marketerdeletes($id);
+			redirect('subbroker/marketer','refresh');
+		}
+	}
+	
 	public function agent()
 	{
 		if( $this->session->userdata['subbroker_data'] )
@@ -90,7 +124,37 @@ class Subbroker extends CI_Controller {
                 
 	}
 	
+	public function editagent($id)
+	{
+		if( $this->session->userdata['subbroker_data'] )
+	  	{
+			$this->data['agent_data'] = $this->subbrokers->agentsedit($id);
+			$this->load->view('subbroker',$this->data);
+			
+			if($this->input->post('agentsubmit'))
+			{
+				$type = 'agent';
+				$name = $this->input->post('agentname');
+				$password = $this->input->post('agentpassword');
+				$signup = date("Y-m-d H:i:s");
+				$marketerid = $this->input->post('agentmarketer');
+				$subbrokerid = $this->session->userdata['subbroker_data'][0]->id;
+				
+				 $this->subbrokers->agentupdates($type,$name,$password,$signup,$marketerid,$subbrokerid,$id);
+				 redirect('subbroker/agent','refresh');
+			}
+	  	}
+                
+	}
 	
+	public function deleteagent($id)
+	{
+		if( $this->session->userdata['subbroker_data'] )
+	  	{
+			$this->subbrokers->agentdeletes($id);
+			redirect('subbroker/agent','refresh');
+		}
+	}
 	
 	public function elitemember()
 	{

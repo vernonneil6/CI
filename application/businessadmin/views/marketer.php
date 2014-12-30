@@ -36,7 +36,8 @@
 <?php if($this->uri->segment(1)=='marketer' && $this->uri->segment(2)=='agent') { ?>
  <div class="breadcrumbs">
     <ul>
-      <li class="home"><a href="<?php echo site_url('marketer/agent');?>" title="agent">Agent</a></li>
+	  <li class="home"><a href="<?php echo site_url('marketer');?>" title="Dashboard">Dashboard</a></li>
+      <li><a href="<?php echo site_url('marketer/agent');?>" title="Agent">Agent</a></li>
     </ul>
   </div>
 
@@ -63,7 +64,7 @@
         <td><?php echo $agents['password']; ?></td>
         <td><?php echo $agents['signup']; ?></td>
         <td class="action">
-			<a href="<?php echo site_url('marketer/agentdelete/'.$agents['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this FAQ?');">Delete</a>
+			<a href="<?php echo site_url('marketer/agentdelete/'.$agents['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this Agent?');">Delete</a>
 			<a href="<?php echo site_url('marketer/agentedit/'.$agents['id']); ?>" title="Edit" class="ico ico-edit">Edit</a>
 		</td>
       </tr>
@@ -81,7 +82,8 @@
 
 	<div class="breadcrumbs">
 		<ul>
-		  <li class="home"><a href="<?php echo site_url('marketer/addagent');?>" title="addagent">Add Agent</a></li>
+		  <li class="home"><a href="<?php echo site_url('marketer');?>" title="Dashboard">Dashboard</a></li>
+		  <li><a href="<?php echo site_url('marketer/addagent');?>" title="Add Agent">Add Agent</a></li>
 		</ul>
 	  </div>
 
@@ -123,7 +125,8 @@
 	
 	<div class="breadcrumbs">
 		<ul>
-		  <li class="home"><a href="<?php echo site_url('marketer/agentedit');?>" title="editagent">Edit Agent</a></li>
+		  <li class="home"><a href="<?php echo site_url('marketer');?>" title="Dashboard">Dashboard</a></li>
+		  <li><a href="<?php echo site_url('marketer/agentedit');?>" title="Edit Agent">Edit Agent</a></li>
 		</ul>
 	  </div>
 
@@ -170,7 +173,8 @@
 	
 	<div class="breadcrumbs">
     <ul>
-      <li class="home"><a href="<?php echo site_url('marketer/elitemember');?>" title="elitemember">Elite Member</a></li>
+      <li class="home"><a href="<?php echo site_url('marketer');?>" title="Dashboard">Dashboard</a></li>
+      <li><a href="<?php echo site_url('marketer/elitemember');?>" title="Elite Member">Elite Member</a></li>
     </ul>
   </div>
 
