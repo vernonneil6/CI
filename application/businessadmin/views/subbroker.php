@@ -57,6 +57,7 @@
 		<td>Username</td>
 		<td>Password</td>
 		<td>Signup</td>
+		<td>Action</td>
       </tr>
       <?php foreach($allmarketer as $marketers){ ?>
       <tr>
@@ -142,14 +143,14 @@
     </div>
     <div class="box-content"> 
 		
-    	 <?php echo form_open('subbroker/editmarketer',array('class'=>'formBox broker')); ?>
+    	 <?php echo form_open('subbroker/editmarketer'$getmarketerdata['id'],array('class'=>'formBox broker')); ?>
 	 <fieldset>
 	<div class="clearfix">
           <div class="lab">
             <label for="name">Marketer Username</label>
           </div>
           <div class="con">
-            <?php echo form_input( array( 'name'=>'marketername','class'=>'input','type'=>'text' ) ); ?>
+            <?php echo form_input( array( 'name'=>'marketername','value' => $getmarketerdata['name'],'class'=>'input','type'=>'text' ) ); ?>
           </div>
         </div>
 	<div class="clearfix">
@@ -157,7 +158,7 @@
             <label for="name">Password</label>
           </div>
           <div class="con">
-            <?php echo form_input( array( 'name'=>'marketerpassword','class'=>'input','type'=>'password' ) ); ?>
+            <?php echo form_input( array( 'name'=>'marketerpassword','value' => $getmarketerdata['password'],'class'=>'input','type'=>'password' ) ); ?>
           </div>
         </div>
         <?php echo form_input(array('name'=>'marketersubmit','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
@@ -294,7 +295,7 @@
     </div>
     <div class="box-content"> 
 		
-    	 <?php echo form_open('subbroker/editagent',array('class'=>'formBox broker')); ?>
+    	 <?php echo form_open('subbroker/editagent/'$getagentdata['id'],array('class'=>'formBox broker')); ?>
 	 <fieldset>
 	<div class="clearfix">
           <div class="lab">
@@ -313,7 +314,7 @@
             <label for="name">Agent Username</label>
           </div>
           <div class="con">
-            <?php echo form_input( array( 'name'=>'agentname','class'=>'input','type'=>'text' ) ); ?>
+            <?php echo form_input( array( 'name'=>'agentname','value' => $getagentdata['name'],'class'=>'input','type'=>'text' ) ); ?>
           </div>
         </div>
 	<div class="clearfix">
@@ -321,7 +322,7 @@
             <label for="name">Password</label>
           </div>
           <div class="con">
-            <?php echo form_input( array( 'name'=>'agentpassword','class'=>'input','type'=>'password' ) ); ?>
+            <?php echo form_input( array( 'name'=>'agentpassword','value' => $getagentdata['password'],'class'=>'input','type'=>'password' ) ); ?>
           </div>
         </div>
         <?php echo form_input(array('name'=>'agentsubmit','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
