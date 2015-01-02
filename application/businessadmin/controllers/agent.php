@@ -50,5 +50,51 @@ class Agent extends CI_Controller {
 				redirect('agentlogin', 'refresh');
 			}	
 	}
+	
+	public function userprofile($id)
+	{
+		if( $this->session->userdata['agent_data'] )
+	  	{
+			$this->data['getdata'] = $this->agents->data_by_id($id);
+			$this->load->view('agent', $this->data);
+	  	}
+	}
+	
+	public function resetpassword($id)
+	{
+		if( $this->session->userdata['agent_data'] )
+	  	{
+			$this->data['getdata'] = $this->agents->data_by_id($id);
+			$this->load->view('agent', $this->data);
+			
+			if($this->input->post('newpassword'))
+			{
+				$old = $this->input->post('oldpassword');
+				$new = $this->input->post('password');
+				$retype = $this->input->post('retypepassword');
+				$pwd = $this->input->post('pwd');
+				
+				if($old != $pwd)
+				{
+					$this->session->set_flashdata('error', 'Old Password is incorrect');
+					redirect('agent/resetpassword/'.$id,'refresh');
+				}
+				else
+				{
+					if($new != $retype)
+					{
+						$this->session->set_flashdata('error', 'Password not matched');
+						redirect('agent/resetpassword/'.$id,'refresh');
+					}
+					else
+					{
+						$this->agents->userprofileupdate($new, $id);
+						$this->session->set_flashdata('success', 'Password changed successfully');
+						redirect('agent/userprofile/'.$id,'refresh');
+					}		
+				}	
+			}
+	  	}     
+	}
 
 }

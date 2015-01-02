@@ -11,5 +11,19 @@ class Agents extends CI_Model
 		->get()
 		->result_array();			
  	}
+ 	
+ 	function data_by_id($id)
+ 	{
+		return $this->db->get_where('youg_broker', array('id' => $id))->row_array();
+	}
+ 	
+ 	function userprofileupdate($new,$id)
+	{
+		$data=array(
+			'password'=>$new
+		);
+				
+		$this->db->where('id' , $id)->update('youg_broker', $data);
+	}
 }
 ?>

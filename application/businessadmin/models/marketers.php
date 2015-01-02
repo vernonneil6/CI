@@ -43,6 +43,15 @@ class Marketers extends CI_Model
 		return $this->db->get_where('youg_broker', array('id' => $id))->row_array();
 	}
 	
+	function userprofileupdate($new,$id)
+	{
+		$data=array(
+			'password'=>$new
+		);
+				
+		$this->db->where('id' , $id)->update('youg_broker', $data);
+	}
+	
 
 }
 ?>

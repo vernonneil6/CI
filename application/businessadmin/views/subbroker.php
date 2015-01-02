@@ -1,7 +1,6 @@
 <?php echo $header; ?>
 <div id="content">
 	
-	
 <?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='') { ?>
  
   <div class="breadcrumbs">
@@ -143,14 +142,14 @@
     </div>
     <div class="box-content"> 
 		
-    	 <?php echo form_open('subbroker/editmarketer',array('class'=>'formBox broker')); ?>
+    	 <?php echo form_open('subbroker/editmarketer/'.$getmarketerdata['id'],array('class'=>'formBox broker')); ?> 
 	 <fieldset>
 	<div class="clearfix">
           <div class="lab">
             <label for="name">Marketer Username</label>
           </div>
           <div class="con">
-            <?php echo form_input( array( 'name'=>'marketername','class'=>'input','type'=>'text' ) ); ?>
+            <?php echo form_input( array( 'name'=>'marketername','value' => $getmarketerdata['name'] ,'class'=>'input','type'=>'text' ) ); ?>
           </div>
         </div>
 	<div class="clearfix">
@@ -158,7 +157,7 @@
             <label for="name">Password</label>
           </div>
           <div class="con">
-            <?php echo form_input( array( 'name'=>'marketerpassword','class'=>'input','type'=>'password' ) ); ?>
+            <?php echo form_input( array( 'name'=>'marketerpassword','value' => $getmarketerdata['password'],'class'=>'input','type'=>'password' ) ); ?>
           </div>
         </div>
         <?php echo form_input(array('name'=>'marketersubmit','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
@@ -295,7 +294,7 @@
     </div>
     <div class="box-content"> 
 		
-    	 <?php echo form_open('subbroker/editagent',array('class'=>'formBox broker')); ?>
+    	 <?php echo form_open('subbroker/editagent/'.$getagentdata['id'],array('class'=>'formBox broker')); ?>
 	 <fieldset>
 	<div class="clearfix">
           <div class="lab">
@@ -314,7 +313,7 @@
             <label for="name">Agent Username</label>
           </div>
           <div class="con">
-            <?php echo form_input( array( 'name'=>'agentname','class'=>'input','type'=>'text' ) ); ?>
+            <?php echo form_input( array( 'name'=>'agentname','value'=>$getagentdata['name'],'class'=>'input','type'=>'text' ) ); ?>
           </div>
         </div>
 	<div class="clearfix">
@@ -322,7 +321,7 @@
             <label for="name">Password</label>
           </div>
           <div class="con">
-            <?php echo form_input( array( 'name'=>'agentpassword','class'=>'input','type'=>'password' ) ); ?>
+            <?php echo form_input( array( 'name'=>'agentpassword','value'=>$getagentdata['password'],'class'=>'input','type'=>'password' ) ); ?>
           </div>
         </div>
         <?php echo form_input(array('name'=>'agentsubmit','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
@@ -415,6 +414,115 @@
 		
 		</div>
 	</div>	
+<?php } ?>
+
+<?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='userprofile') { ?>
+	
+	<div class="breadcrumbs">
+		<ul>
+		  <li class="home"><a href="<?php echo site_url('subbroker');?>" title="Dashboard">Dashboard</a></li>
+		  <li><a href="<?php echo site_url('subbroker/userprofile');?>" title="User Profile">User Profile</a></li>
+		</ul>
+	  </div>
+
+
+	<div class="box">
+		<div class="headlines">
+		  <h2><span><?php echo "User Profile" ?></span></h2>
+		</div>
+		
+		<div class="box-content"> 
+		<?php echo form_open('subbroker/resetpassword/'.$getdata['id'], array('class'=>'formBox broker')); ?>	
+		<fieldset>
+			<div class="clearfix">
+				  <div class="lab">
+					<label>Username</label>
+				  </div>
+				  <div class="lab">
+					<?php echo $getdata['name'] ?>
+				  </div>
+			</div>
+			<div class="clearfix">
+				  <div class="lab">
+					<label>Password</label>
+				  </div>
+				  <div class="lab">
+					<?php echo $getdata['password'] ?>
+				  </div>
+			 </div>
+			 <?php echo form_input(array('name'=>'updatepassword','class'=>'button','type'=>'submit','value'=>'Update')); ?>
+		 </fieldset>
+		 
+		 <?php echo form_close(); ?>
+ 
+		</div>
+	</div>
+	
+	
+<?php } ?>
+
+<?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='resetpassword') { ?>
+	
+	<?php if( $this->session->flashdata('success') ) { ?>
+		<div class="lab form-message correct">
+		  <p><?php echo $this->session->flashdata('success'); ?></p>
+		</div>
+    <?php } ?>
+    
+    <?php if( $this->session->flashdata('error') ) { ?>
+		<div class="lab form-message error1">
+		  <p><?php echo $this->session->flashdata('error'); ?></p>
+		</div>
+    <?php } ?>	
+	
+	<div class="breadcrumbs">
+		<ul>
+		  <li class="home"><a href="<?php echo site_url('subbroker');?>" title="Dashboard">Dashboard</a></li>
+		  <li><a href="<?php echo site_url('subbroker/resetpassword');?>" title="Reset Password">Reset Password</a></li>
+		</ul>
+	</div>
+
+
+	<div class="box">
+		<div class="headlines">
+		  <h2><span><?php echo "User Profile" ?></span></h2>
+		</div>
+		
+		<div class="box-content"> 
+		<?php echo form_open('subbroker/resetpassword/'.$getdata['id'], array('class'=>'formBox broker')); ?>	
+		<fieldset>
+			<div class="clearfix">
+				  <div class="lab">
+					<label>Old Password</label>
+				  </div>
+				  <div class="con">
+					 <?php echo form_input( array( 'name'=>'oldpassword', 'class'=>'input','type'=>'password','required'=>'required' ) ); ?>
+				  </div>
+			</div>
+			<div class="clearfix">
+				  <div class="lab">
+					<label>New Password</label>
+				  </div>
+				  <div class="con">
+					 <?php echo form_input( array( 'name'=>'password', 'class'=>'input','type'=>'password','required'=>'required' ) ); ?>
+				  </div>
+			 </div>
+			 <div class="clearfix">
+				  <div class="lab">
+					<label>Retype Password</label>
+				  </div>
+				  <div class="con">
+					 <?php echo form_input( array( 'name'=>'retypepassword','class'=>'input','type'=>'password','required'=>'required' ) ); ?>
+				  </div>
+			 </div>
+			 <input type = "hidden" value = "<?php echo $getdata['password']; ?>" name = "pwd">
+			 <?php echo form_input(array('name'=>'newpassword','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+		 </fieldset>
+		 <?php echo form_close(); ?>
+		</div>
+	</div>
+	
+	
 <?php } ?>
 
 </div>

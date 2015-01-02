@@ -62,7 +62,7 @@
       <tr>
 		<td><?php echo $agents['name']; ?></td>
         <td><?php echo $agents['password']; ?></td>
-        <td><?php echo $agents['signup']; ?></td>
+        <td><?php echo date('m-d-Y', strtotime($agents['signup'])); ?></td>
         <td class="action">
 			<a href="<?php echo site_url('marketer/agentdelete/'.$agents['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this Agent?');">Delete</a>
 			<a href="<?php echo site_url('marketer/agentedit/'.$agents['id']); ?>" title="Edit" class="ico ico-edit">Edit</a>
@@ -232,6 +232,110 @@
 		
     
 	</div>
+	</div>
+	
+	
+<?php } ?>
+
+
+<?php if($this->uri->segment(1)=='marketer' && $this->uri->segment(2)=='userprofile') { ?>
+	
+	<div class="breadcrumbs">
+		<ul>
+		  <li class="home"><a href="<?php echo site_url('marketer');?>" title="Dashboard">Dashboard</a></li>
+		  <li><a href="<?php echo site_url('marketer/userprofile');?>" title="User Profile">User Profile</a></li>
+		</ul>
+	  </div>
+
+
+	<div class="box">
+		<div class="headlines">
+		  <h2><span><?php echo "User Profile" ?></span></h2>
+		</div>
+		
+		<div class="box-content"> 
+		<?php echo form_open('marketer/resetpassword/'.$getdata['id'], array('class'=>'formBox broker')); ?>	
+		<fieldset>
+			<div class="clearfix">
+				  <div class="lab">
+					<label>Username</label>
+				  </div>
+				  <div class="lab">
+					<?php echo $getdata['name'] ?>
+				  </div>
+			</div>
+			<div class="clearfix">
+				  <div class="lab">
+					<label>Password</label>
+				  </div>
+				  <div class="lab">
+					<?php echo $getdata['password'] ?>
+				  </div>
+			 </div>
+			 <?php echo form_input(array('name'=>'updatepassword','class'=>'button','type'=>'submit','value'=>'Update')); ?>
+		 </fieldset>
+		 
+		 <?php echo form_close(); ?>
+ 
+		</div>
+	</div>
+	
+	
+<?php } ?>
+
+<?php if($this->uri->segment(1)=='marketer' && $this->uri->segment(2)=='resetpassword') { ?>
+	    
+    <?php if( $this->session->flashdata('error') ) { ?>
+		<div class="lab form-message error1">
+		  <p><?php echo $this->session->flashdata('error'); ?></p>
+		</div>
+    <?php } ?>	
+	
+	<div class="breadcrumbs">
+		<ul>
+		  <li class="home"><a href="<?php echo site_url('marketer');?>" title="Dashboard">Dashboard</a></li>
+		  <li><a href="<?php echo site_url('marketer/resetpassword');?>" title="Reset Password">Reset Password</a></li>
+		</ul>
+	</div>
+
+
+	<div class="box">
+		<div class="headlines">
+		  <h2><span><?php echo "User Profile" ?></span></h2>
+		</div>
+		
+		<div class="box-content"> 
+		<?php echo form_open('marketer/resetpassword/'.$getdata['id'], array('class'=>'formBox broker')); ?>	
+		<fieldset>
+			<div class="clearfix">
+				  <div class="lab">
+					<label>Old Password</label>
+				  </div>
+				  <div class="con">
+					 <?php echo form_input( array( 'name'=>'oldpassword', 'class'=>'input','type'=>'password','required'=>'required' ) ); ?>
+				  </div>
+			</div>
+			<div class="clearfix">
+				  <div class="lab">
+					<label>New Password</label>
+				  </div>
+				  <div class="con">
+					 <?php echo form_input( array( 'name'=>'password', 'class'=>'input','type'=>'password','required'=>'required' ) ); ?>
+				  </div>
+			 </div>
+			 <div class="clearfix">
+				  <div class="lab">
+					<label>Retype Password</label>
+				  </div>
+				  <div class="con">
+					 <?php echo form_input( array( 'name'=>'retypepassword','class'=>'input','type'=>'password','required'=>'required' ) ); ?>
+				  </div>
+			 </div>
+			 <input type = "hidden" value = "<?php echo $getdata['password']; ?>" name = "pwd">
+			 <?php echo form_input(array('name'=>'newpassword','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+		 </fieldset>
+		 <?php echo form_close(); ?>
+		</div>
 	</div>
 	
 	
