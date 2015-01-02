@@ -651,62 +651,45 @@ class Report extends CI_Controller {
 					 
 					$objPHPExcel->getActiveSheet()->setTitle('Report');
 
-					$objPHPExcel->getActiveSheet()->getStyle("A1:G1")->getFont()->setBold(true);
+					$objPHPExcel->getActiveSheet()->getStyle("A1:M1")->getFont()->setBold(true);
 
 					$objPHPExcel->getActiveSheet()
-							->setCellValue('A1', 'Name')							
-							->setCellValue('B1', 'Type')							
-							->setCellValue('C1', 'Marketer_allowed')	
-							->setCellValue('D1', 'Agent_allowed')	
-							->setCellValue('E1', 'Signup_date')	
-							->setCellValue('F1', 'Individual_sale')	
-							->setCellValue('G1', 'Total_sale');	
+							->setCellValue('A1', 'Elite Member First/Lastname')							
+							->setCellValue('B1', 'Elite Company Name')							
+							->setCellValue('C1', 'Elite Mem Phone')	
+							->setCellValue('D1', 'Elite Mem Email')	
+							->setCellValue('E1', 'Date of Signup')	
+							->setCellValue('F1', 'SubBroker Name')	
+							->setCellValue('G1', 'Marketer Name')	
+							->setCellValue('H1', 'Agent Name')	
+							->setCellValue('I1', 'CC Expiration Date')	
+							->setCellValue('J1', 'Date Last CC Charge Occurred')	
+							->setCellValue('K1', 'Status')	
+							->setCellValue('L1', 'Number of Payments Made')
+							->setCellValue('M1', 'ID#');	
+							
 														  
-					$items = $this->reports->get_subbrokerdetails_byid($id);
-					$items1 = $this->reports->get_subbrokermarketerdetails_byid($id);
-					$items2 = $this->reports->get_subbrokeragentdetails_byid($id);
-					$row=2;
-					foreach($items as $row_data)
-					{
+					//$items = $this->reports->get_subbrokerdetails_byid($id);
+					$items = $this->reports->new_subbrokerdetails($id);
 					
-					$col = 0;	
-						foreach($row_data as $key=>$value)
-						{
-							if(!$value)
-							$value='-';
-							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-							$col++;
-						}
-					$row++;
-			    	}
-			    	foreach($items1 as $row_data)
+					$row=2;
+			foreach($items as $row_data)
+			{
+				$col = 0;	
+				foreach($row_data as $key=>$value)
+				{
+					if(!$value)
+					$value='-';
+					if($value=='0000-00-00 00:00:00')
 					{
-					$col = 0;	
-					foreach($row_data as $key=>$value)
-					{
-						if(!$value)
-						$value='-';
-						$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-						$col++;
+						$value='NA';
 					}
-					$row++;
-						foreach($items2 as $rowdata)
-						{
-						if($row_data['ybid']==$rowdata['ycmarketerid'])
-						{
-						$col = 0;	
-							foreach($rowdata as $key=>$value)
-							{
-								
-								if(!$value)
-								$value='-';
-								$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-								$col++;
-							}
-						$row++;
-						}
-						}
-			    	}
+					
+					$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+					$col++;
+				}
+				$row++;
+			}
                    
 					$objPHPExcel->setActiveSheetIndex(0);
 					$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
@@ -744,46 +727,45 @@ class Report extends CI_Controller {
 					 
 					$objPHPExcel->getActiveSheet()->setTitle('Report');
 
-					$objPHPExcel->getActiveSheet()->getStyle("A1:G1")->getFont()->setBold(true);
+					$objPHPExcel->getActiveSheet()->getStyle("A1:M1")->getFont()->setBold(true);
 
+					
 					$objPHPExcel->getActiveSheet()
-							->setCellValue('A1', 'Name')							
-							->setCellValue('B1', 'Type')							
-							->setCellValue('C1', 'Marketer_allowed')	
-							->setCellValue('D1', 'Agent_allowed')	
-							->setCellValue('E1', 'Signup_date')	
-							->setCellValue('F1', 'Individual_sale')	
-							->setCellValue('G1', 'Total_sale');	
+							->setCellValue('A1', 'Elite Member First/Lastname')							
+							->setCellValue('B1', 'Elite Company Name')							
+							->setCellValue('C1', 'Elite Mem Phone')	
+							->setCellValue('D1', 'Elite Mem Email')	
+							->setCellValue('E1', 'Date of Signup')	
+							->setCellValue('F1', 'SubBroker Name')	
+							->setCellValue('G1', 'Marketer Name')	
+							->setCellValue('H1', 'Agent Name')	
+							->setCellValue('I1', 'CC Expiration Date')	
+							->setCellValue('J1', 'Date Last CC Charge Occurred')	
+							->setCellValue('K1', 'Status')	
+							->setCellValue('L1', 'Number of Payments Made')
+							->setCellValue('M1', 'ID#');	
 														  
-					$items = $this->reports->get_marketerdetails_byid($id);
-					$items1 = $this->reports->get_marketeragentdetails_byid($id);
+					//$items = $this->reports->get_marketerdetails_byid($id);
+					$items = $this->reports->new_marketerdetails($id);
+					//$items1 = $this->reports->get_marketeragentdetails_byid($id);
 					$row=2;
-					foreach($items as $row_data)
-					{
-					//print_r($items);die;
-					$col = 0;	
-						foreach($row_data as $key=>$value)
+						foreach($items as $row_data)
 						{
-							if(!$value)
-							$value='-';
-							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-							$col++;
+							$col = 0;	
+							foreach($row_data as $key=>$value)
+							{
+								if(!$value)
+								$value='-';
+								if($value=='0000-00-00 00:00:00')
+								{
+									$value='NA';
+								}
+								
+								$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+								$col++;
+							}
+							$row++;
 						}
-					$row++;
-			    	}
-			    	foreach($items1 as $row_data)
-					{
-					//print_r($items1);die;
-					$col = 0;	
-						foreach($row_data as $key=>$value)
-						{
-							if(!$value)
-							$value='-';
-							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-							$col++;
-						}
-					$row++;
-			    	}
                     
 					$objPHPExcel->setActiveSheetIndex(0);
 					$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
@@ -821,32 +803,43 @@ class Report extends CI_Controller {
 					 
 					$objPHPExcel->getActiveSheet()->setTitle('Report');
 
-					$objPHPExcel->getActiveSheet()->getStyle("A1:G1")->getFont()->setBold(true);
+					$objPHPExcel->getActiveSheet()->getStyle("A1:M1")->getFont()->setBold(true);
 
 					$objPHPExcel->getActiveSheet()
-							->setCellValue('A1', 'Name')							
-							->setCellValue('B1', 'Type')							
-							->setCellValue('C1', 'Marketer_allowed')	
-							->setCellValue('D1', 'Agent_allowed')	
-							->setCellValue('E1', 'Signup_date')	
-							->setCellValue('F1', 'Individual_sale')	
-							->setCellValue('G1', 'Total_sale');	
+							->setCellValue('A1', 'Elite Member First/Lastname')							
+							->setCellValue('B1', 'Elite Company Name')							
+							->setCellValue('C1', 'Elite Mem Phone')	
+							->setCellValue('D1', 'Elite Mem Email')	
+							->setCellValue('E1', 'Date of Signup')	
+							->setCellValue('F1', 'SubBroker Name')	
+							->setCellValue('G1', 'Marketer Name')	
+							->setCellValue('H1', 'Agent Name')	
+							->setCellValue('I1', 'CC Expiration Date')	
+							->setCellValue('J1', 'Date Last CC Charge Occurred')	
+							->setCellValue('K1', 'Status')	
+							->setCellValue('L1', 'Number of Payments Made')
+							->setCellValue('M1', 'ID#');
 														  
-					$items = $this->reports->get_agentdetails_byid($id);
+					//$items = $this->reports->get_agentdetails_byid($id);
+					$items = $this->reports->new_agentdetails($id);
 					$row=2;
-					foreach($items as $row_data)
-					{
-					
-					$col = 0;	
-						foreach($row_data as $key=>$value)
+						foreach($items as $row_data)
 						{
-							if(!$value)
-							$value='-';
-							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-							$col++;
+							$col = 0;	
+							foreach($row_data as $key=>$value)
+							{
+								if(!$value)
+								$value='-';
+								if($value=='0000-00-00 00:00:00')
+								{
+									$value='NA';
+								}
+								
+								$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+								$col++;
+							}
+							$row++;
 						}
-					$row++;
-			    	}
                     
 					$objPHPExcel->setActiveSheetIndex(0);
 					$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
@@ -989,9 +982,6 @@ class Report extends CI_Controller {
 	}
 	public function reportsearch()
 	{   
-		
-		
-		
 		$this->data['sub']= $this->input->post('subbroker');
 		$this->data['mark']= $this->input->post('marketer');
 		$this->data['agent']= $this->input->post('agent');
