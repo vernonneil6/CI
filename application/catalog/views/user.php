@@ -968,7 +968,7 @@
 									{
 							?>
 										<tr><td>Status </td><td><b>: Send shipping information of your product to merchant</b></td></tr>
-										<tr><td></td><td><a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></td></tr>
+										<div><a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></div>
 							<?php 
 									} 
 								}
