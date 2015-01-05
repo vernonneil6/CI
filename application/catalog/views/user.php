@@ -968,7 +968,7 @@
 									{
 							?>
 										<tr><td>Status </td><td>:</td><td><b>Send shipping information of your product to merchant</b></td></tr>
-										<tr><td><a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></td></tr>
+										<tr><td></td><td></td><td><a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></td></tr>
 							<?php 
 									} 
 									if($review['status'] == '1')
@@ -976,6 +976,8 @@
 							?>
 										<tr><td>Status </td><td>:</td><td><b>Your shipping information has been sent to merchant.</b></td></tr>
 										<tr>
+											<td></td>
+											<td></td>
 											<td>
 												If merchant Upload proof of your refund you will get mail to close this case. 
 												If he fail to upload proof within 13 days then the review will be automatically posted in online.
@@ -987,7 +989,39 @@
 									{
 							?>
 										<tr><td>Status </td><td>:</td><td><b>Company has upload proof of full refund.If u like to close the case click below link</b></td></tr>
-										<tr><td><a href = "/review/proof/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
+										<tr><td></td><td></td><td><a href = "/review/proof/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
+							<?php 
+									} 
+								}
+								
+								if($review['resolution'] == 'Would Like a Replacement Item') 
+								{
+									if($review['status'] == '0')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Send shipping information of your product to merchant</b></td></tr>
+										<tr><td></td><td></td><td><a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></td></tr>
+							<?php 
+									} 
+									if($review['status'] == '1')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Your shipping information has been sent to merchant.</b></td></tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td>
+												If merchant Upload proof of your refund you will get mail to close this case. 
+												If he fail to upload proof within 13 days then the review will be automatically posted in online.
+											</td>
+										</tr>
+							<?php 
+									} 
+									if($review['status'] == '2')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Company has upload proof of full refund.If u like to close the case click below link</b></td></tr>
+										<tr><td></td><td></td><td><a href = "/review/proof/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
 							<?php 
 									} 
 								}
