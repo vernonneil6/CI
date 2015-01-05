@@ -868,7 +868,7 @@ class Reviews extends CI_Model
  	
  	function update_reviewmail($companyid, $userid, $reviewid)
  	{
-		$data = array ('flag' => '0');
+		$data = array ('flag' => '2');
 		$query = $this->db->where(array('id' => $reviewid, 'companyid'=>$companyid, 'reviewby'=>$userid))->update('youg_reviews', $data);
 		
 		if ($query)
