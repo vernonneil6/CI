@@ -273,6 +273,22 @@
 			return array();
 		}
  	}
+ 	
+ 	function get_all_rating($id)
+ 	{
+		//Executing Query
+		$siteid = $this->session->userdata('siteid');
+		$query = $this->db->get_where('youg_reviewmail',array('status'=>'Enable','user_id'=>$id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 	function get_company_byid($id)
  	{
