@@ -294,7 +294,7 @@
  	{
 		//Executing Query
 		$siteid = $this->session->userdata('siteid');
-		$query = $this->db->get_where('youg_reviewmail',array('user_id'=>$id, 'company_id'=>$companyid));
+		$query = $this->db->get_where('youg_reviewmail',array('user_id'=>$userid, 'company_id'=>$companyid));
 		
 		if ($query->num_rows() > 0)
 		{
