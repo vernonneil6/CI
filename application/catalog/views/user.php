@@ -962,6 +962,25 @@
 							<tr><td>Resolution</td><td>:</td><td><b><?php echo $review['resolution']; ?> </b></td></tr>
 							<tr><td>Comment</td><td>:</td><td><b><?php echo $review['comment']; ?> </b></td></tr>
 							<?php 
+								if($review['resolution'] == 'Ship the Item and/or Provide Proof of Shipping') 
+								{
+									if($review['status'] == '0')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Merchant to upload shipping information of your purchase.</b></td></tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td>
+												If merchant upload shipping information then review will be deleted automatically.
+												If he fail to upload information within 7 days then the review will be automatically posted in online.
+											</td>
+										</tr>
+							<?php 
+									} 
+								}
+								
+								
 								if($review['resolution'] == 'Would like a Full Refund') 
 								{
 									if($review['status'] == '0')
@@ -993,6 +1012,7 @@
 									} 
 								}
 								
+								
 								if($review['resolution'] == 'Would like a Replacement item') 
 								{
 									if($review['status'] == '0')
@@ -1019,9 +1039,59 @@
 									{
 							?>
 										<tr><td>Status </td><td>:</td><td><b>Merchant has upload new shipping information.If u like to close the case click below link</b></td></tr>
+										<tr><td></td><td></td><td><a href = "/review/replacement/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
+							<?php 
+									} 
+								}
+								
+								
+								if($review['resolution'] == 'Would like the missing items to be shipped immediately') 
+								{
+									if($review['status'] == '0')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Merchant to upload information of missing item.</b></td></tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td>
+												If he fail to upload information of missing item within 17 days then the review will be automatically posted in online.
+											</td>
+										</tr>
+							<?php 
+									} 
+									if($review['status'] == '1')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Merchant has upload information of missing item. If u like to close the case click below link</b></td></tr>
 										<tr><td></td><td></td><td><a href = "/review/proof/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
 							<?php 
 									} 
+								}
+								
+								
+								if($review['resolution'] == 'Would like a Partial Refund and/or Gift Card in compensation for the service received') 
+								{
+									if($review['status'] == '0')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Merchant to upload proof of refund.</b></td></tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td>
+												If he fail to upload proof of refund within 17 days then the review will be automatically posted in online.
+											</td>
+										</tr>
+							<?php 
+									} 
+									if($review['status'] == '1')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Merchant has upload proof of refund. If u like to close the case click below link</b></td></tr>
+										<tr><td></td><td></td><td><a href = "/review/proof/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
+							<?php 
+									}  
 								}
 							?>
 							</table>
