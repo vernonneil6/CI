@@ -1624,6 +1624,6 @@ padding-left: 18px;
 }
 .negative_review_user
 {
-	border-bottom: 1px solid #cccccc;
-	padding: 7px 0;
+	border-top : 1px solid #cccccc;
+	padding : 7px 0;
 }

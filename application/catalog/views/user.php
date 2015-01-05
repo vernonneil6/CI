@@ -952,11 +952,13 @@
 				  <?php $review = $this->users->get_single_rating($user[0]['id'], $myratings[$i]['companyid']); ?>
                   <div class="main_livepost <?php if($i!=0) { echo "negative_review_user";} ?>">
                     <div class="post_maincontent">
-                      <div class="search_content_date user_view mg_btm">
-						  <div>Against company <b> <?php echo $cmyname['company']; ?> </b></div>
+                      <div class="search_content_date user_view">
+						  <div class = "treding_title">Against company <b> <?php echo $cmyname['company']; ?> </b></div>
 					  </div>
-					  <div><?php echo $myratings[$i]['reviewtitle']; ?></div>
-					  <div class = "mg_btm"><?php echo $myratings[$i]['comment']; ?></div>
+					  <table>
+						<tr><td>Review title</td><td>:</td><td><b><?php echo $myratings[$i]['reviewtitle']; ?></b></td></div>
+						<tr class = "mg_btm"><td>Review comment</td><td>:</td><td><b><?php echo $myratings[$i]['comment']; ?></b></td></div>
+					  </table>
 					  <?php if(count($review)>0) { ?>
 						  <table>
 							<tr><td>Resolution</td><td>:</td><td><b><?php echo $review['resolution']; ?> </b></td></tr>
