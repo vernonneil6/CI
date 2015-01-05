@@ -120,7 +120,7 @@
         <td><?php if(count($user)>0) { echo ucwords(stripslashes($user[0]['firstname'] .' '.$user[0]['lastname'])); } else { echo "---"; } ?></td>
         <td><?php echo date("M d Y",strtotime($reviews[$i]['reviewdate'])); ?></td>
        <?php if(count($user)>0) { ?>
-        <td><?php if($review[$i]['flag'] == 2 or $review[$i]['flag'] == 1) { ?>
+        <td><?php if($reviews[$i]['flag'] == 2 or $reviews[$i]['flag'] == 1) { ?>
           <a title="REQUEST ALREADY SENT"><span><img width="16" height="17" border="0" src="images/button_ok.png" alt="SENT"></span></a>
           <?php } else { ?>
           <a href="<?php echo site_url('review/request/'.$reviews[$i]['id'].'/'.$user[0]['id']);?>" title="REQUEST FOR REVIEW REMOVAL" onClick="return confirm('Are you sure to sent removal request to this user?');"><span><img width="16" height="17" border="0" src="images/delete-icon.png" alt="REQUEST"></span></a>
