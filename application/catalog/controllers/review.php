@@ -538,7 +538,7 @@ class Review extends CI_Controller {
 		
 		$this->reviews->insert_reviewmail($companyid, $userid, $review['id'], $buyeroption, $textarea, '0');
 		$id = $this->db->insert_id();
-		
+		$this->reviews->update_reviewmail($companyid, $userid, $review['id']);
 		
 		$data = $this->review_data($id);
 		

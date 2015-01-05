@@ -865,6 +865,21 @@ class Reviews extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	function update_reviewmail($companyid, $userid, $reviewid)
+ 	{
+		$data = array ('flag' => '0');
+		$query = $this->db->where(array('id' => $reviewid, 'companyid'=>$companyid, 'reviewby'=>$userid))->update('youg_reviews', $data);
+		
+		if ($query)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+ 	}
 	
 }
 ?>
