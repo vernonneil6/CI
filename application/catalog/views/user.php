@@ -933,6 +933,7 @@
                 <?php $totalcomments=$this->users->get_all_commentsby_userid($user[0]['id']);?>
                 <?php $totaldisputes=$this->users->get_all_disputesby_userid($user[0]['id']);?>
                 <?php $totalrating = $this->users->get_all_rating($user[0]['id']);?>
+                
                 <div class="user_view"><a href="<?php echo site_url('user/complaints'); ?>" title="Complaints">Complaints ( <?php echo count($totalcomplaints);?> )</a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/comments'); ?>" title="Comments">Comments ( <?php echo count($totalcomments);?> )</a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes"><span class="colorcode">Disputes ( <?php echo count($totaldisputes);?> )</span></a></div>
@@ -947,13 +948,12 @@
                   <div class="treding_title" >My Ratings</div>
                   <?php if(count($myratings)>0){ ?>
                   <?php for($i=0; $i<count($myratings); $i++) { ?>
+				  <?php $cmyname = $this->users->get_company_byid($myratings[$i]['companyid']); ?>
                   <div class="main_livepost">
                     <div class="post_maincontent">
                       <div class="search_content_date user_view" style="margin-bottom:15px;">
-						  <div class="post_content_dscr user_view"></div><br>
-						  <div class="treding_title">Against company <b> <?php echo $myratings[$i]['comment']; ?> </b></div>
-						  <div class="post_content_dscr user_view"></div><br>
-						  <div class="post_content_dscr user_view">
+						  <div>Against company <b> <?php echo $cmyname['company']; ?> </b></div>
+						  <div class="post_content_dscr user_view"></div>
 					  </div>
 					  <div  class="treding_title"></div>
                     </div>
