@@ -959,8 +959,8 @@
 					  <div class = "mg_btm"><?php echo $myratings[$i]['comment']; ?></div>
 					  <?php if(count($review)>0) { ?>
 						  <table>
-							<tr><td>Resolution</td><td><b>: <?php echo $review['resolution']; ?> </b></td></tr>
-							<tr><td>Comment</td><td><b>: <?php echo $review['comment']; ?> </b></td></tr>
+							<tr><td>Resolution</td><td>:</td><td><b><?php echo $review['resolution']; ?> </b></td></tr>
+							<tr><td>Comment</td><td>:</td><td><b><?php echo $review['comment']; ?> </b></td></tr>
 							<?php 
 								if($review['resolution'] == 'Would like a Full Refund') 
 								{
