@@ -950,7 +950,7 @@
                   <?php for($i=0; $i<count($myratings); $i++) { ?>
 				  <?php $cmyname = $this->users->get_company_bysingleid($myratings[$i]['companyid']); ?>
 				  <?php $review = $this->users->get_single_rating($user[0]['id'], $myratings[$i]['companyid']); ?>
-                  <div class="main_livepost">
+                  <div class="main_livepost <?php if($i!=0) { echo "negative_review_user";} ?>">
                     <div class="post_maincontent">
                       <div class="search_content_date user_view mg_btm">
 						  <div>Against company <b> <?php echo $cmyname['company']; ?> </b></div>
@@ -1060,11 +1060,11 @@
 										</tr>
 							<?php 
 									} 
-									if($review['status'] == '1')
+									if($review['status'] == '2')
 									{
 							?>
 										<tr><td>Status </td><td>:</td><td><b>Merchant has upload information of missing item. If u like to close the case click below link</b></td></tr>
-										<tr><td></td><td></td><td><a href = "/review/proof/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
+										<tr><td></td><td></td><td><a href = "/review/replacement/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
 							<?php 
 									} 
 								}
@@ -1085,7 +1085,7 @@
 										</tr>
 							<?php 
 									} 
-									if($review['status'] == '1')
+									if($review['status'] == '2')
 									{
 							?>
 										<tr><td>Status </td><td>:</td><td><b>Merchant has upload proof of refund. If u like to close the case click below link</b></td></tr>
