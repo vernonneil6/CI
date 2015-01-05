@@ -960,6 +960,18 @@
 					  <?php if(count($review)>0) { ?>
 							<div>Resolution : <b> <?php echo $review['resolution']; ?> </b></div>
 							<div>Comment : <b> <?php echo $review['comment']; ?> </b></div>
+							<?php 
+								if($review['resolution'] == 'Would like a Full Refund') 
+								{
+									if($review['status'] == '0')
+									{
+							?>
+										<div>Status : <b>Send shipping information of your product to merchant</b></div>
+										<div><a href = "/review/resolution/<?php echo $review['review_id']; ?>">Click here to enter details</a></div>
+							<?php 
+									} 
+								}
+							?>
 					  <?php } ?>
                     </div>
                   </div>
