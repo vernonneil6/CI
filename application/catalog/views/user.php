@@ -955,7 +955,7 @@
 						  <div>Against company <b> <?php echo $cmyname['company']; ?> </b></div>
 						  <div class="post_content_dscr user_view"></div>
 					  </div>
-					  <div class = "mg_btm"><?php echo $myratings[$i]['reviewtitle']; ?></div>
+					  <div><?php echo $myratings[$i]['reviewtitle']; ?></div>
 					  <div><?php echo $myratings[$i]['comment']; ?></div>
                     </div>
                   </div>
