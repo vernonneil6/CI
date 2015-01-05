@@ -959,16 +959,16 @@
 					  <div class = "mg_btm"><?php echo $myratings[$i]['comment']; ?></div>
 					  <?php if(count($review)>0) { ?>
 						  <table>
-							<tr><td>Resolution : </td><td><b> <?php echo $review['resolution']; ?> </b></td></tr>
-							<tr><td>Comment : </td><td><b> <?php echo $review['comment']; ?> </b></td></tr>
+							<tr><td>Resolution</td><td><b>: <?php echo $review['resolution']; ?> </b></td></tr>
+							<tr><td>Comment</td><td><b>: <?php echo $review['comment']; ?> </b></td></tr>
 							<?php 
 								if($review['resolution'] == 'Would like a Full Refund') 
 								{
 									if($review['status'] == '0')
 									{
 							?>
-										<tr><td>Status : </td><td><b>Send shipping information of your product to merchant</b></td></tr>
-										<tr><a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></tr>
+										<tr><td>Status </td><td><b>: Send shipping information of your product to merchant</b></td></tr>
+										<tr><td></td><td><a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></td></tr>
 							<?php 
 									} 
 								}
