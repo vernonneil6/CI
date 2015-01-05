@@ -948,7 +948,7 @@
                   <div class="treding_title" >My Ratings</div>
                   <?php if(count($myratings)>0){ ?>
                   <?php for($i=0; $i<count($myratings); $i++) { ?>
-				  <?php $cmyname = $this->users->get_company_byid($myratings[$i]['companyid']); ?>
+				  <?php $cmyname = $this->users->get_company_bysingleid($myratings[$i]['companyid']); ?>
                   <div class="main_livepost">
                     <div class="post_maincontent">
                       <div class="search_content_date user_view" style="margin-bottom:15px;">
