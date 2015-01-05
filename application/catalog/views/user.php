@@ -955,9 +955,13 @@
                       <div class="search_content_date user_view">
 						  <div class = "treding_title">Against company <b> <?php echo $cmyname['company']; ?> </b></div>
 					  </div>
-					  <table>
-						<tr><td>Review title</td><td>:</td><td><b><?php echo $myratings[$i]['reviewtitle']; ?></b></td></div>
-						<tr class = "mg_btm"><td>Review comment</td><td>:</td><td><b><?php echo $myratings[$i]['comment']; ?></b></td></div>
+					  <table class = "mg_btm">
+						<tr><td>Review title</td><td>:</td><td><b><?php echo $myratings[$i]['reviewtitle']; ?></b></td></tr>
+						<tr><td>Review comment</td><td>:</td><td><b><?php echo $myratings[$i]['comment']; ?></b></td></tr>
+						<?php if($myratings[$i]['flag'] == '1') { ?>
+							<tr><td>Status</td><td>:</td><td><b>Merchant request to remove negative review.Click below link to remove review.</b></td></tr>
+							<tr><td></td><td></td><td><b><a href = "/review/buyerreview/<?php echo $user[0]['id']; ?>/<?php echo $myratings[$i]['companyid']; ?>" target = "_blank" class = "font_size_1">Click here</a></b></td></tr>
+						<?php } ?>
 					  </table>
 					  <?php if(count($review)>0) { ?>
 						  <table>
