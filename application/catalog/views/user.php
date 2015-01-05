@@ -958,20 +958,22 @@
 					  <div><?php echo $myratings[$i]['reviewtitle']; ?></div>
 					  <div class = "mg_btm"><?php echo $myratings[$i]['comment']; ?></div>
 					  <?php if(count($review)>0) { ?>
-							<div>Resolution : <b> <?php echo $review['resolution']; ?> </b></div>
-							<div>Comment : <b> <?php echo $review['comment']; ?> </b></div>
+						  <table>
+							<tr><td>Resolution : </td><td><b> <?php echo $review['resolution']; ?> </b></td></tr>
+							<tr><td>Comment : </td><td><b> <?php echo $review['comment']; ?> </b></td></tr>
 							<?php 
 								if($review['resolution'] == 'Would like a Full Refund') 
 								{
 									if($review['status'] == '0')
 									{
 							?>
-										<div>Status : <b>Send shipping information of your product to merchant</b></div>
-										<div><a href = "/review/resolution/<?php echo $review['review_id']; ?>">Click here to enter details</a></div>
+										<tr><td>Status : </td><td><b>Send shipping information of your product to merchant</b></td></tr>
+										<tr><a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></tr>
 							<?php 
 									} 
 								}
 							?>
+							</table>
 					  <?php } ?>
                     </div>
                   </div>
