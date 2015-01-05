@@ -976,12 +976,18 @@
 							?>
 										<tr><td>Status </td><td><b>: Your shipping information has been sent to merchant.</b></td></tr>
 										<tr>
-											<td></td>
 											<td>
 												If merchant Upload proof of your refund you will get mail to close this case. 
 												If he fail to upload proof within 13 days then the review will be automatically posted in online.
 											</td>
 										</tr>
+							<?php 
+									} 
+									if($review['status'] == '2')
+									{
+							?>
+										<tr><td>Status </td><td><b>: Company has upload proof of full refund.If u like to close the case click below link</b></td></tr>
+										<tr><td><a href = "/review/proof/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
 							<?php 
 									} 
 								}
