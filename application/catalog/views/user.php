@@ -944,27 +944,30 @@
           <?php }  ?>
           <table align="right" border="0" class="tablecompliant">
             <tr>
-              <td><div class="right_content_panel" >
+              <td>
+				  <div class="right_content_panel" >
                   <div class="treding_title" >My Ratings</div>
                   <?php if(count($myratings)>0){ ?>
                   <?php for($i=0; $i<count($myratings); $i++) { ?>
 				  <?php $cmyname = $this->users->get_company_bysingleid($myratings[$i]['companyid']); ?>
 				  <?php $review = $this->users->get_single_rating($user[0]['id'], $myratings[$i]['companyid']); ?>
                   <div class="main_livepost negative_review_user">
-                    <div class="post_maincontent">
+                  <div class="post_maincontent">
                       <div class="search_content_date user_view">
 						  <div class = "treding_title">Against company <b> <?php echo $cmyname['company']; ?> </b></div>
 					  </div>
 					  <table class = "mg_btm">
+						  
 						<tr><td>Review title</td><td>:</td><td><b><?php echo $myratings[$i]['reviewtitle']; ?></b></td></tr>
 						<tr><td>Review comment</td><td>:</td><td><b><?php echo $myratings[$i]['comment']; ?></b></td></tr>
+						
 						<?php if($myratings[$i]['flag'] == '1') { ?>
 							<tr><td>Status</td><td>:</td><td><b>Merchant request to remove negative review.Click below link to remove review.</b></td></tr>
 							<tr><td></td><td></td><td><b><a href = "/review/buyerreview/<?php echo $user[0]['id']; ?>/<?php echo $myratings[$i]['companyid']; ?>" target = "_blank" class = "font_size_1">Click here</a></b></td></tr>
-						<?php } ?>
-					  </table>
-					  <?php if(count($review)>0) { ?>
-						  <table>
+						<?php } 
+						
+						if(count($review)>0) { ?>
+						  
 							<tr><td>Resolution</td><td>:</td><td><b><?php echo $review['resolution']; ?> </b></td></tr>
 							<tr><td>Comment</td><td>:</td><td><b><?php echo $review['comment']; ?> </b></td></tr>
 							<?php 
@@ -1100,8 +1103,9 @@
 									}  
 								}
 							?>
-							</table>
+							
 					  <?php } ?>
+					  </table>
                     </div>
                   </div>
                   <?php } ?>
@@ -1115,7 +1119,8 @@
                   </div>
                   <?php 
 				} ?>
-                </div></td>
+                </div>
+                </td>
             </tr>
           </table>
         </div>
