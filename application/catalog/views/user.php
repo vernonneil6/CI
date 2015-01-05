@@ -971,6 +971,19 @@
 										<tr><td><a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></td></tr>
 							<?php 
 									} 
+									if($review['status'] == '1')
+									{
+							?>
+										<tr><td>Status </td><td><b>: Your shipping information has been sent to merchant.</b></td></tr>
+										<tr>
+											<td></td>
+											<td>
+												If merchant Upload proof of your refund you will get mail to close this case. 
+												If he fail to upload proof within 13 days then the review will be automatically posted in online.
+											</td>
+										</tr>
+							<?php 
+									} 
 								}
 							?>
 							</table>
