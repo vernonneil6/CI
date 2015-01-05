@@ -1613,3 +1613,8 @@ padding-left: 18px;
 .cmt_single{float : right; padding : 0 0 40px;}
 .txt_left{text-align : left!important;margin: 10px 0 0!important;}
 .txt_img{margin: 0 0 0 60px;}
+
+.mg_btm
+{
+	margin : 0 0 10px ;
+}

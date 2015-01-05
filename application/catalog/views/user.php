@@ -951,11 +951,12 @@
 				  <?php $cmyname = $this->users->get_company_bysingleid($myratings[$i]['companyid']); ?>
                   <div class="main_livepost">
                     <div class="post_maincontent">
-                      <div class="search_content_date user_view" style="margin-bottom:15px;">
+                      <div class="search_content_date user_view" class = "mg_btm">
 						  <div>Against company <b> <?php echo $cmyname['company']; ?> </b></div>
 						  <div class="post_content_dscr user_view"></div>
 					  </div>
-					  <div  class="treding_title"></div>
+					  <div class = "mg_btm"><?php echo $myratings[$i]['reviewtitle']; ?></div>
+					  <div><?php echo $myratings[$i]['comment']; ?></div>
                     </div>
                   </div>
                   <?php } ?>
