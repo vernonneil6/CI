@@ -949,14 +949,18 @@
                   <?php if(count($myratings)>0){ ?>
                   <?php for($i=0; $i<count($myratings); $i++) { ?>
 				  <?php $cmyname = $this->users->get_company_bysingleid($myratings[$i]['companyid']); ?>
+				  <?php $review = $this->users->get_single_rating($user[0]['id'], $myratings[$i]['companyid']); ?>
                   <div class="main_livepost">
                     <div class="post_maincontent">
-                      <div class="search_content_date user_view" class = "mg_btm">
+                      <div class="search_content_date user_view mg_btm">
 						  <div>Against company <b> <?php echo $cmyname['company']; ?> </b></div>
-						  <div class="post_content_dscr user_view"></div>
 					  </div>
 					  <div><?php echo $myratings[$i]['reviewtitle']; ?></div>
-					  <div><?php echo $myratings[$i]['comment']; ?></div>
+					  <div class = "mg_btm"><?php echo $myratings[$i]['comment']; ?></div>
+					  <?php if(count($review)>0) { ?>
+							<div>Resolution : <b> <?php echo $review['resolution']; ?> </b></div>
+							<div>Comment : <b> <?php echo $review['comment']; ?> </b></div>
+					  <?php } ?>
                     </div>
                   </div>
                   <?php } ?>

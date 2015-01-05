@@ -289,6 +289,22 @@
 			return array();
 		}
  	}
+ 	
+ 	function get_single_rating($userid, $companyid)
+ 	{
+		//Executing Query
+		$siteid = $this->session->userdata('siteid');
+		$query = $this->db->get_where('youg_reviewmail',array('user_id'=>$id, 'company_id'=>$companyid));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 	function get_company_byid($id)
  	{
