@@ -278,7 +278,7 @@
  	{
 		//Executing Query
 		$siteid = $this->session->userdata('siteid');
-		$query = $this->db->get_where('youg_reviewmail',array('status'=>'Enable','user_id'=>$id));
+		$query = $this->db->get_where('youg_reviews',array('reviewby'=>$id));
 		
 		if ($query->num_rows() > 0)
 		{
