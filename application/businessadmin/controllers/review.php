@@ -618,7 +618,7 @@ class Review extends CI_Controller {
 					if($this->email->send())
 			 		{
 						$this->session->set_flashdata('success', 'Request for review removal has been sent successfully to user.');
-						if($this->reviews->insert_review_status($companyid,$reviewid))
+						/*if($this->reviews->insert_review_status($companyid,$reviewid))
 						{
 							$id = $this->db->insert_id();
 							if($this->reviews->update_checkdate($id,$companyid,$reviewid))
@@ -630,6 +630,10 @@ class Review extends CI_Controller {
 								//$this->session->set_flashdata('error', 'There is error in sending request. Try later!');
 								redirect('review/reviews', 'refresh');				
 							}
+						}*/
+						if($this->reviews->update_review_status($companyid,$reviewid))
+						{
+							redirect('review/removalrequest', 'refresh');
 						}
 						else
 						{
