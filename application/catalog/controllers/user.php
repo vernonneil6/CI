@@ -797,6 +797,26 @@ class User extends CI_Controller {
 			$this->load->view('user',$this->data);
 		}
 	}
+	public function myratings()
+	{
+		if( !array_key_exists('youg_user',$this->session->userdata) )
+		{
+			redirect('login', 'refresh');
+		}
+		else
+		{
+			$id = $this->session->userdata['youg_user']['userid'];
+			$this->data['user'] = $this->users->get_user_byid($id);
+			
+			if(!$id)
+			{
+				redirect('user','refresh');
+			}
+			
+			$this->data['myratings']=$this->users->get_all_rating($id);
+			$this->load->view('user',$this->data);
+		}
+	}
 }
 
 /* End of file dashboard.php */
