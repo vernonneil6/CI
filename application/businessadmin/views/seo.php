@@ -105,12 +105,17 @@ else { ?>
         <th>Title</th>
         <th class="action">Action</th>
       </tr>
-      <?php for($i=0;$i<count($seos);$i++) { ?>
+      <?php for($i=0;$i<count($seos);$i++) { 
+		if($seos[$i]['fieldname']=='Google Analytic' or $seos[$i]['fieldname']=='Google Webmaster')
+		{}
+		else
+		{
+	  ?>
       <tr>
         <td><?php echo stripslashes($seos[$i]['fieldname']); ?></td>
             <td class="action"><a href="<?php echo site_url('seo/edit/'.$seos[$i]['id']); ?>" title="Edit" class="ico ico-edit" style="margin:3px 15px 0;">Edit</a></td>
       </tr>
-      <?php } ?>
+      <?php } }?>
     </table>
     <!-- /table -->
     <?php } else {?>
