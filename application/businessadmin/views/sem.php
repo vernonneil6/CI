@@ -126,13 +126,13 @@
           </div>
           <div id="urlerror" class="error">URL is required.</div>
         </div>
-        <div class="clearfix file">
+        <?php /*<div class="clearfix file">
           <div class="lab" style="width:17%">
             <label for="logoimage">Upload Logo</label>
           </div>
           <div class="con" style="width:44%; float:left"> <?php echo form_input( array( 'name'=>'logoimage','id'=>'logoimage','class'=>'input file upload-file','type'=>'file','style'=>'width: 95% !important') ); ?> </div>
           <div id="logoerror" class="error">Logo is required.</div>
-        </div>
+        </div>*/ ?>
         <div class="btn-submit"> 
           <!-- Submit form -->
           <?php if($this->uri->segment(2) == 'add') { ?>
