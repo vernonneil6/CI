@@ -213,7 +213,7 @@
 				}
 			}
 			
-			if( $("#creditcard1").val().length > 0 )
+			/*if( $("#creditcard1").val().length > 0 )
 				{
 					var re16digit = /^\d{16}$/;
 				    if (!re16digit.test($("#creditcard1").val()))
@@ -241,7 +241,7 @@
 					 {
 						$("#creditcard2error").hide();	
 					 }
-				}	
+				}*/	
 				
 			if(trim($("#price_range").val())!= "")
 			{
@@ -468,7 +468,7 @@
           </div>
           <div id="abouterror" class="error">Company Detail is required.</div>
         </div>
-        <div class="form-cols"><!-- two form cols -->
+       <?php /* <div class="form-cols"><!-- two form cols -->
           <div class="col1">
             <div class="clearfix">
               <div class="lab">
@@ -497,7 +497,7 @@
             </div>
           </div>
           <div id="creditcard2error" class="error">Enter valid number.</div>
-        </div>
+        </div>*/?>
         <div class="form-cols">
           <style>
 		.check{ float: right; position: relative;}
@@ -508,7 +508,7 @@
                 <label for="cat">Category</label>
               </div>
               <div class="check" style="width:80%;">
-                <div style="overflow-y: scroll; height:180px;">
+                <div style="overflow-y: scroll; height:185px;">
                   <?php for($i=0;$i<count($categories);$i++) { ?>
                   <?php 
         if( $this->uri->segment(2) == 'edit' && array_key_exists($categories[$i]['id'],$buscategories) )
@@ -808,14 +808,14 @@ else { ?>
         <td valign="top">Description</td>
         <td><?php echo $company[0]['aboutus'];?></td>
       </tr>
-      <tr>
+     <?php/* <tr>
         <td valign="top">Creditcard 1</td>
         <td><?php echo $company[0]['creditcard1'];?></td>
       </tr>
       <tr>
         <td valign="top">Creditcard 2</td>
         <td><?php echo $company[0]['creditcard2'];?></td>
-      </tr>
+      </tr>*/?>
       <tr> </tr>
     </table>
     <?php } ?>
