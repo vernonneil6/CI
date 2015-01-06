@@ -3,39 +3,27 @@
 <section class="container">
   <section class="main_contentarea">
     
-    <?php if( count($solution) > 0 ) { ?>
+    <?php /** if( count($solution) > 0 ) { ?>
 			<?php if( strlen($solution[0]['image']) > 5 ) { ?>
 			<div class="bs_banner" style="display:none">
-			<img src="<?php echo base_url().$this->config->item('solution_main_upload_path').$solution[0]['image'];?>" alt="Business Solution" title="Business Solution" width="1050" height="540">
-			<?php } ?>
+				<img src="<?php echo base_url().$this->config->item('solution_main_upload_path').$solution[0]['image'];?>" alt="Business Solution" title="Business Solution" width="1050" height="540">
 			</div>
-    <?php } ?>
-    <div>
+			<?php } ?>
+    <?php } **/?>
     
-      
-       
+    
+    <div>
         <?php if( count($solution) > 0 ) { ?>
 			<div class="solution_menu menu">
 				 <ul>
-					  <?php for($i=0;$i<count($solutions);$i++) { ?>	  
-					<?php /*?><li><a href="solution" title="BUSINESS SOLUTIONS">BUSINESS SOLUTIONS</a></li>
-							  <li><a href="pressrelease" title="PRESS RELEASES">PRESS RELEASES</a></li>
-							  <li><a href="go/register" title="SIGN-UP">SIGN-UP</a></li>
-					<?php */
-					if($i==1)
-					{
-						$class = "pipe_line";
-					}
-					else
-					{
-						$class = "";
-					}
-					if($i!=0)
-					{ 
-					?>          
-					<li class = <?php echo $class; ?> ><a href="solution/detail/<?php echo stripslashes($solutions[$i]['urlkey']);?>" title="view"><?php echo ucwords(stripslashes($solutions[$i]['title']));?></a></li>
-				    <?php } } ?>
-        
+				  <?php 
+				  for($i=0;$i<count($solutions);$i++) 
+				  { 
+				  ?>          
+					<li class = "<?php if($i==0) { echo "pipe_line"; } ?>" ><a href="solution/detail/<?php echo stripslashes($solutions[$i]['urlkey']);?>" title="view"><?php echo ucwords(stripslashes($solutions[$i]['title']));?></a></li>
+				  <?php
+				  } 
+				  ?>        
 				 </ul>
 			</div>
         <?php } ?>
