@@ -443,7 +443,14 @@ class Reviews extends CI_Model
 		
 		$this->db->select('*');
 		$this->db->from('company');
-		$this->db->or_like(array('streetaddress'=> $keyword,'city'=>$keyword,'state'=>$keyword,'country'=>$keyword,'zip'=>$keyword,'LOWER(company)'=>strtolower($keyword),'companyseokeyword'=>$keyword));
+		//$this->db->or_like(array('streetaddress'=> $keyword,'city'=>$keyword,'state'=>$keyword,'country'=>$keyword,'zip'=>$keyword,'LOWER(company)'=>strtolower($keyword),'companyseokeyword'=>$keyword));
+		$this->db->or_like('city',$keyword,'after');
+	    $this->db->or_like('state',$keyword,'after');
+	    $this->db->or_like('country',$keyword,'after');
+	    $this->db->or_like('zip',$keyword,'after');
+	    $this->db->or_like('company',strtolower($keyword),'after');
+	    $this->db->or_like('companyseokeyword',$keyword,'after');
+		
 		$query = $this->db->get();
 		//echo "<pre>";
 		//echo $this->db->last_query();
@@ -463,11 +470,20 @@ class Reviews extends CI_Model
  	{
 		$this->db->select('*');
 		$this->db->from('company');
-		$this->db->or_like(array('streetaddress'=> $keyword,'city'=>$keyword,'state'=>$keyword,'country'=>$keyword,'zip'=>$keyword,'LOWER(company)'=>strtolower($keyword),'companyseokeyword'=>$keyword));
+		//$this->db->or_like(array('streetaddress'=> $keyword,'city'=>$keyword,'state'=>$keyword,'country'=>$keyword,'zip'=>$keyword,'LOWER(company)'=>strtolower($keyword),'companyseokeyword'=>$keyword));
+		$this->db->or_like('city',$keyword,'after');
+		$this->db->or_like('state',$keyword,'after');
+	    $this->db->or_like('country',$keyword,'after');
+	    $this->db->or_like('zip',$keyword,'after');
+	    $this->db->or_like('company',strtolower($keyword),'after');
+	    $this->db->or_like('companyseokeyword',$keyword,'after');
+		
 		$query = $this->db->count_all_results();
 		return $query;
 		
  	}
+ 	
+ 	
 	//Inserting Record
 	function insertvote($reviewid,$vote)
 	{
