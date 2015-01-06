@@ -277,8 +277,6 @@ echo $header; ?>
                 
                 ?>
               </div>
-              <div id="titleerror" class="error" style="width:95px">Title is required.</div>
-              <div id="titletknerror" class="error" style="width:140px">Title already exists.</div>
             </div>
           </div>
         </div>
