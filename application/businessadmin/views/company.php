@@ -427,16 +427,16 @@
           </div>
           <div id="siteurlerror" class="error">Site Url is required.</div>
         </div>
-        <div class="clearfix file">
+        <?php /*<div class="clearfix file">
           <div class="lab" style="width:18%">
             <label for="companylogo">Logo <span class="errorsign">*</span></label>
           </div>
           <div class="con" style="width:57%; float:left"> <?php echo form_input( array( 'name'=>'companylogo','id'=>'companylogo','class'=>'input file upload-file','type'=>'file') ); ?> </div>
           <?php /*if($this->uri->segment(2) == 'edit') { ?>
           <div class="task-photo"> <img width="60" height="40" src="<?php if( $company[0]['logo'] ){ echo $this->settings->get_setting_value('2').substr($this->config->item('company_thumb_upload_path'),3);?><?php echo stripslashes($company[0]['logo']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('company_thumb_upload_path'),3)."/no-image.gif"; } ?>" alt="<?php echo stripslashes($company[0]['logo']); ?>"/> </div>
-          <?php } */ ?>
+          <?php } 
           <div id="companylogoerror" class="error" style="width:123px">Logo is required.</div>
-        </div>
+        </div>*/ ?>
         <div class="form-cols">
           <div class="col1">
             <div class="clearfix">
