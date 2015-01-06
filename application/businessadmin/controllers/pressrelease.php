@@ -162,7 +162,7 @@ class Pressrelease extends CI_Controller {
 					$metadescription = addslashes($this->input->post('metadescription'));
 					$presscontent = $this->input->post('presscontent');
 					$companyid = $this->session->userdata['youg_admin']['id'];
-					$siteid = $this->session->userdata['siteid'];
+					$siteid = $this->input->post('siteid');
 					
 					if( $presscontent!='')
 						{
@@ -228,6 +228,7 @@ class Pressrelease extends CI_Controller {
 				$metakeywords = addslashes($this->input->post('metakeywords'));
 				$metadescription = addslashes($this->input->post('metadescription'));
 				$presscontent = addslashes($this->input->post('presscontent'));
+				$siteid = addslashes($this->input->post('siteid'));
 				$companyid = $this->session->userdata['youg_admin']['id'];
 				
 				if( $presscontent !='')
@@ -260,7 +261,7 @@ class Pressrelease extends CI_Controller {
 										}
 										
 				//Updating Record 
-				if( $this->pressreleases->update($id,$companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$seokeyword))
+				if( $this->pressreleases->update($id,$companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$seokeyword,$siteid))
 				{
 					$this->session->set_flashdata('success', 'Press Release updated successfully.');
 					redirect('pressrelease', 'refresh');

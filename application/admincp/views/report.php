@@ -229,7 +229,7 @@ function viewlist(sel,id)
     <ul>
       <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
       <li><a href="<?php echo site_url('report');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
-      <li> Reports </li>
+      <li> Reportsearch </li>
     </ul>
   </div>
   <!-- /breadcrumbs --> 
@@ -343,43 +343,47 @@ function viewlist(sel,id)
     .tab th {
 		padding: 8px 10px;
 	}
-	.dateinput
-	{
-		width: 150px;
-		height: 22px;
-		margin-top: 14px;	
-	}
+	
 	</style>
-	<?php if( count($reports) > 0 ) { ?>
+	<?php if(count($reports) > 0){ ?>
+				<div class="form-message correct">
+					 <p><?php 
+					    $counts=count($reports);
+					    //echo "No.of.datas".'&nbsp;'.$counts;
+					    echo "Results...".'&nbsp;';
+					    ?>
+				     </p>
+				</div>
+			 <?php if($_POST['subbroker']==0 and $_POST['marketername']==null and $_POST['agentname']==null and $_POST['fromdate']==null and $_POST['enddate']==null ) { ?>
+					 
+					<a href="<?php echo site_url('report/elitereport_csv'); ?>">Download Total Elitemembers-Reports CSV</a>
+					
+			 <?php }  ?>	 
+			
+	 <?php } ?>
+			
+			<?php if($_POST['fromdate'] != '') {?>
+				<a href="<?php echo site_url('report/signupdetailss?fromdates='.$_POST['fromdate'].'&todates='.$_POST['enddate']); ?>">Download Total EliteSales-Reports CSV</a><br>
+				<p>Date Range Searched &nbsp;<input type="text" name="from" class="dateinput" value="<?php echo $_POST['fromdate'];?>"> To <input type="text" name="end" class="dateinput" value="<?php echo $_POST['enddate'];?>"></p>
+			<?php } ?>
+			
+	<?php if( count($reports) > 0 and $_POST['subbroker']!=0 and $_POST['fromdate']=='' ) { ?>
     <!-- table -->
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
         	<th>Name</th>
 			<th>Signup</th>
 			<th>Download report</th>
-			<th>Action</th>
+			<!--<th>Action</th>-->
 	  </tr>
+	 
 		  <?php 
 				$site = site_url();			
 				$url = explode("/admincp",$site);
 				$path = $url[0];
 		  ?>
 				
-			<?php if($reports != ''){ ?>
-				<div class="form-message correct">
-					 <p><?php $counts=count($reports);echo "No.of.datas".'&nbsp;'.$counts;?></p>
-				</div>
-				<?php } else { ?>
-					
-					 <div class="form-message warning">
-					  <p>No records found.</p>
-					</div>
-			<?php } ?>
 			
-			<?php if($_POST['fromdate'] != '') {?>
-			<a href="<?php echo site_url('report/signupdetailss?fromdates='.$_POST['fromdate'].'&todates='.$_POST['enddate']); ?>">Download Total EliteSales-Reports CSV</a><br>
-			<p>Date Range Searched &nbsp;<input type="text" name="from" class="dateinput" value="<?php echo $_POST['fromdate'];?>"> To <input type="text" name="end" class="dateinput" value="<?php echo $_POST['enddate'];?>"></p>
-			<?php } ?>
 						
 			<?php if(count($reports) > 0) { ?>
 				<?php  foreach($reports as $search) {   
@@ -390,7 +394,7 @@ function viewlist(sel,id)
 										<td style="font-weight:bold;"><?php echo ucfirst(stripslashes($search['name']));?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
 										<td><a href="<?php echo site_url('report/subbrokerdetails/'.$search['id']); ?>">Download subbroker-details CSV</a></td>
-										<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['name']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>
+										<?php /*<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['name']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>*/?>
 									  </tr>
 								
 								     <?php }  ?>
@@ -401,7 +405,7 @@ function viewlist(sel,id)
 										<td style="font-weight:bold;"><?php echo ucfirst(stripslashes($search['name']));?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
 										<td><a href="<?php echo site_url('report/marketerdetails/'.$search['id']); ?>">Download marketers details CSV</a></td>
-										<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['name']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>
+										<?php /*<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['name']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>*/?>
 
 									  </tr>	 
 								<?php } ?>
@@ -412,20 +416,23 @@ function viewlist(sel,id)
 										<td style="font-weight:bold;"><?php echo ucfirst(stripslashes($search['name']));?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
 										<td><a href="<?php echo site_url('report/agentdetails/'.$search['id']); ?>">Download agents details CSV</a></td>
-										<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['name']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
+										<?php /*<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['name']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>*/?>
 
 									</tr> 
 								<?php } ?> 
 								
 								<!--Search with only SingUpdate And multiple date-->
 								<?php if($_POST['fromdate'] != '' and $_POST['subbroker'] =='all') { ?>
-									    <tr>
-											
+									
+									
+									 <tr>
 										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo substr(stripslashes($search['registerdate']),0,10);?></td>
 										<td><a href="<?php echo site_url('report/csv/signup'); ?>">Download Signup details CSV</a></td>
-										<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['company']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
-									</tr>  
+										<?php /*<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['company']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>*/?>
+									</tr>
+									
+										
 								<?php } ?> 
 								
 								<!--subroker , marketer , agent search with Single date-->
@@ -434,31 +441,31 @@ function viewlist(sel,id)
 									<tr>
 										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo substr(stripslashes($search['registerdate']),0,10);?></td>
-										<td><a href="<?php echo site_url('report/csv/signup'); ?>">Download Sub-Signup details CSV</a></td>
-										<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['company']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
+										<!--<td><a href="<?php echo site_url('report/csv/signupdetailss'); ?>">Download Sub-Signup details CSV</a></td>-->
+										<td><a href="<?php echo site_url('report/csv/signupdetailss'); ?>">--</a></td>
+										<?php /*<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['company']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>*/?>
 									</tr>  
 								<?php } ?> 
 								
-								<!--subroker search with Multiple date-->
+								<!--subroker,marketer,agent search with Multiple date-->
 								<?php if($_POST['fromdate'] != '' and $_POST['enddate'] !='') { ?>
 									
 									<tr>
 										<td style="font-weight:bold;"><?php echo stripslashes($search['company']);?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo substr(stripslashes($search['registerdate']),0,10);?></td>
-										<td><a href="<?php echo site_url('report/csv/signup'); ?>">Download TotalSub-Signup details CSV</a></td>
-										<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['company']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
+										<!--<td><a href="<?php echo site_url('report/csv/signupdetailss'); ?>">Download TotalSub-Signup details CSV</a></td>-->
+										<td><a href="<?php echo site_url('report/csv/signupdetailss'); ?>">--</a></td>
+										<?php /*<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['company']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>*/?>
 									</tr>  
 								<?php } ?> 
-								
-								
-								
-								
-								 
+															 
 					  <?php }  ?>
+					  
 	</table>
-	<?php if($this->pagination->create_links()) { ?>
+	
+	<?php /*if($this->pagination->create_links()) { ?>
         <div class="pagination"><?php echo $this->pagination->create_links(); ?></div>
-    <?php } ?>
+    <?php } */?>
     <?php  /*if($this->pagination->create_links()) { ?>
     <tr style="background:#ffffff">
       <td></td>
@@ -475,7 +482,7 @@ function viewlist(sel,id)
     </div> */?>
     <?php } ?>
 <?php } ?>
-    <table class="tab tab-drag">
+    <table class="tab tab-drag" style="margin-top:15px;">
       <tr class="top nodrop nodrag"> </tr>
       <tr>
         <td><a href="<?php echo site_url('report/csv/allenable'); ?>" title="Export as CSV file"> Download Reports for Elite members that are currently Enabled status</a></td>

@@ -126,7 +126,7 @@
           </div>
           <div id="urlerror" class="error">URL is required.</div>
         </div>
-        <div class="clearfix file">
+        <div class="clearfix file" style = "display:none;">
           <div class="lab" style="width:17%">
             <label for="logoimage">Upload Logo</label>
           </div>

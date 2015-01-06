@@ -119,7 +119,7 @@ Class Pressreleases extends CI_Model
  	}
 	
 	//Updating Record
-	function update($id,$companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$seokeyword)
+	function update($id,$companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$seokeyword,$siteid)
  	{
 		$data = array(		
 							'companyid' 		=> $companyid,
@@ -129,7 +129,9 @@ Class Pressreleases extends CI_Model
 							'metakeywords'		=> $metakeywords,
 							'metadescription'	=> $metadescription,
 							'presscontent'  	=> $presscontent,
-							'seokeyword'		=> $seokeyword);
+							'seokeyword'		=> $seokeyword,
+							'websiteid'  		=> $siteid
+					);
 		$this->db->where('id', $id);
 		if( $this->db->update('pressrelease', $data) )
 		{

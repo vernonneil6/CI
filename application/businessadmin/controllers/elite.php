@@ -343,9 +343,9 @@ class Elite extends CI_Controller {
 							//echo '<pre>';print_r($update_elite);
 							
 									   
-						$site_name ='YouGotRated';
-						$site_url = 'http://www.yougotrated.writerbin.com/';
-						$site_mail ='yougotrated813@gmail.com';
+						$site_name = $this->settings->get_setting_value(1);
+						$site_url = $this->settings->get_setting_value(2);
+						$site_email = $this->settings->get_setting_value(5);
 						$emailcompany=$id;
 						$cronemail=$this->settings->get_elitesubscription_detailsbycompanyid($emailcompany);	
 						

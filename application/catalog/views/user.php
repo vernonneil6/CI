@@ -704,10 +704,12 @@
                 <?php $totalcomplaints=$this->users->get_all_complaintsby_userid($user[0]['id']);?>
                 <?php $totalcomments=$this->users->get_all_commentsby_userid($user[0]['id']);?>
                 <?php $totaldisputes=$this->users->get_all_disputesby_userid($user[0]['id']);?>
+                <?php $totalrating = $this->users->get_all_rating($user[0]['id']);?>
                 <div class="user_view"><a href="<?php echo site_url('user/complaints'); ?>" title="Complaints"><span class="colorcode">Complaints ( <?php echo count($totalcomplaints);?> )</span></a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/comments'); ?>" title="Comments">Comments ( <?php echo count($totalcomments);?> )</a></div>
-                <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes">Disputes ( <?php echo count($totaldisputes);?> )</a></div></td>
-                
+                <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes">Disputes ( <?php echo count($totaldisputes);?> )</a></div>
+                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Ratings"><span class="colorcode">My Ratings ( <?php echo count($totalrating);?> )</span></a></div>
+              </td>              
             </tr>
           </table>
           <?php }  ?>
@@ -778,9 +780,12 @@
                 <?php $totalcomplaints=$this->users->get_all_complaintsby_userid($user[0]['id']);?>
                 <?php $totalcomments=$this->users->get_all_commentsby_userid($user[0]['id']);?>
                 <?php $totaldisputes=$this->users->get_all_disputesby_userid($user[0]['id']);?>
+                <?php $totalrating = $this->users->get_all_rating($user[0]['id']);?>
                 <div class="user_view"><a href="<?php echo site_url('user/complaints'); ?>" title="Complaints">Complaints ( <?php echo count($totalcomplaints);?> )</a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/comments'); ?>" title="Comments"><span class="colorcode">Comments ( <?php echo count($totalcomments);?> )</span></a></div>
-                <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes">Disputes ( <?php echo count($totaldisputes);?> )</a></div></td>
+                <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes">Disputes ( <?php echo count($totaldisputes);?> )</a></div>
+                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Ratings"><span class="colorcode">My Ratings ( <?php echo count($totalrating);?> )</span></a></div>
+              </td>
             </tr>
           </table>
           <?php }  ?>
@@ -844,9 +849,12 @@
                 <?php $totalcomplaints=$this->users->get_all_complaintsby_userid($user[0]['id']);?>
                 <?php $totalcomments=$this->users->get_all_commentsby_userid($user[0]['id']);?>
                 <?php $totaldisputes=$this->users->get_all_disputesby_userid($user[0]['id']);?>
+                <?php $totalrating = $this->users->get_all_rating($user[0]['id']);?>
                 <div class="user_view"><a href="<?php echo site_url('user/complaints'); ?>" title="Complaints">Complaints ( <?php echo count($totalcomplaints);?> )</a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/comments'); ?>" title="Comments">Comments ( <?php echo count($totalcomments);?> )</a></div>
-                <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes"><span class="colorcode">Disputes ( <?php echo count($totaldisputes);?> )</span></a></div></td>
+                <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes"><span class="colorcode">Disputes ( <?php echo count($totaldisputes);?> )</span></a></div>
+                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Ratings"><span class="colorcode">My Ratings ( <?php echo count($totalrating);?> )</span></a></div>
+              </td>
             </tr>
           </table>
           <?php }  ?>
@@ -902,6 +910,223 @@
           </table>
         </div>
         <?php	} 
+        
+        
+        //rating
+        else if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'myratings'))
+					{ ?>
+        <div class="login_box">
+          <?php if( $this->session->userdata('youg_user') ){ ?>
+          <table align="left" border="0" style="margin-top:22px;">
+            <tr>
+            <td valign="top"><div class="task-photo"> <img width="60px" src="<?php if( strlen($user[0]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($user[0]['avatarbig']); } else { if($user[0]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/male.png"; } 
+		  	if($user[0]['gender']=='Female') { echo $this->common->get_setting_value('2')."images/female.png"; } 
+		  } 
+		   ?>" alt="<?php echo stripslashes($user[0]['firstname']); ?>"/> </div>
+              </td>
+            </tr>
+            <tr>
+              <td><div class="login_box_title" ><?php echo $user[0]['username']; ?></div>
+                <div class="user_view"><a href="<?php echo site_url('user/edit'); ?>" title="edit personal details">Edit Personal Details</a></div>
+                <div class="user_view"><a href="<?php echo site_url('user/changepassword'); ?>" title="change password">Change Password</a></div>
+                <?php $totalcomplaints=$this->users->get_all_complaintsby_userid($user[0]['id']);?>
+                <?php $totalcomments=$this->users->get_all_commentsby_userid($user[0]['id']);?>
+                <?php $totaldisputes=$this->users->get_all_disputesby_userid($user[0]['id']);?>
+                <?php $totalrating = $this->users->get_all_rating($user[0]['id']);?>
+                
+                <div class="user_view"><a href="<?php echo site_url('user/complaints'); ?>" title="Complaints">Complaints ( <?php echo count($totalcomplaints);?> )</a></div>
+                <div class="user_view"><a href="<?php echo site_url('user/comments'); ?>" title="Comments">Comments ( <?php echo count($totalcomments);?> )</a></div>
+                <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes"><span class="colorcode">Disputes ( <?php echo count($totaldisputes);?> )</span></a></div>
+                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Ratings"><span class="colorcode">My Ratings ( <?php echo count($totalrating);?> )</span></a></div>
+              </td>
+            </tr>
+          </table>
+          <?php }  ?>
+          <table align="right" border="0" class="tablecompliant">
+            <tr>
+              <td>
+				  <div class="right_content_panel" >
+                  <div class="treding_title" >My Ratings</div>
+                  <?php if(count($myratings)>0){ ?>
+                  <?php for($i=0; $i<count($myratings); $i++) { ?>
+				  <?php $cmyname = $this->users->get_company_bysingleid($myratings[$i]['companyid']); ?>
+				  <?php $review = $this->users->get_single_rating($user[0]['id'], $myratings[$i]['companyid']); ?>
+                  <div class="main_livepost negative_review_user">
+                  <div class="post_maincontent">
+                      <div class="search_content_date user_view">
+						  <div class = "treding_title">Against company <b> <?php echo $cmyname['company']; ?> </b></div>
+					  </div>
+					  <table class = "mg_btm">
+						  
+						<tr><td>Review title</td><td>:</td><td><b><?php echo $myratings[$i]['reviewtitle']; ?></b></td></tr>
+						<tr><td>Review comment</td><td>:</td><td><b><?php echo $myratings[$i]['comment']; ?></b></td></tr>
+						
+						<?php if($myratings[$i]['flag'] == '1') { ?>
+							<tr><td>Status</td><td>:</td><td><b>Merchant request to remove negative review.Click below link to remove review.</b></td></tr>
+							<tr><td></td><td></td><td><b><a href = "/review/buyerreview/<?php echo $user[0]['id']; ?>/<?php echo $myratings[$i]['companyid']; ?>" target = "_blank" class = "font_size_1">Click here</a></b></td></tr>
+						<?php } 
+						
+						if(count($review)>0) { ?>
+						  
+							<tr><td>Resolution</td><td>:</td><td><b><?php echo $review['resolution']; ?> </b></td></tr>
+							<tr><td>Comment</td><td>:</td><td><b><?php echo $review['comment']; ?> </b></td></tr>
+							<?php 
+								if($review['resolution'] == 'Ship the Item and/or Provide Proof of Shipping') 
+								{
+									if($review['status'] == '0')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Merchant to upload shipping information of your purchase.</b></td></tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td>
+												If merchant upload shipping information then review will be deleted automatically.
+												If he fail to upload information within 7 days then the review will be automatically posted in online.
+											</td>
+										</tr>
+							<?php 
+									} 
+								}
+								
+								
+								if($review['resolution'] == 'Would like a Full Refund') 
+								{
+									if($review['status'] == '0')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Send shipping information of product to merchant</b></td></tr>
+										<tr><td></td><td></td><td><a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></td></tr>
+							<?php 
+									} 
+									if($review['status'] == '1')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Merchant to upload proof of refund.</b></td></tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td>
+												If he fail to upload proof within 13 days then the review will be automatically posted in online.
+											</td>
+										</tr>
+							<?php 
+									} 
+									if($review['status'] == '2')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Merchant has upload proof of full refund.If u like to close the case click below link</b></td></tr>
+										<tr><td></td><td></td><td><a href = "/review/proof/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
+							<?php 
+									} 
+								}
+								
+								
+								if($review['resolution'] == 'Would like a Replacement item') 
+								{
+									if($review['status'] == '0')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Send shipping information of product to merchant</b></td></tr>
+										<tr><td></td><td></td><td><a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></td></tr>
+							<?php 
+									} 
+									if($review['status'] == '1')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Merchant to upload new shipping information of product.</b></td></tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td>
+												If he fail to upload new shipping information within 12 days then the review will be automatically posted in online.
+											</td>
+										</tr>
+							<?php 
+									} 
+									if($review['status'] == '2')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Merchant has upload new shipping information.If u like to close the case click below link</b></td></tr>
+										<tr><td></td><td></td><td><a href = "/review/replacement/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
+							<?php 
+									} 
+								}
+								
+								
+								if($review['resolution'] == 'Would like the missing items to be shipped immediately') 
+								{
+									if($review['status'] == '0')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Merchant to upload information of missing item.</b></td></tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td>
+												If he fail to upload information of missing item within 17 days then the review will be automatically posted in online.
+											</td>
+										</tr>
+							<?php 
+									} 
+									if($review['status'] == '2')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Merchant has upload information of missing item. If u like to close the case click below link</b></td></tr>
+										<tr><td></td><td></td><td><a href = "/review/replacement/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
+							<?php 
+									} 
+								}
+								
+								
+								if($review['resolution'] == 'Would like a Partial Refund and/or Gift Card in compensation for the service received') 
+								{
+									if($review['status'] == '0')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Merchant to upload proof of refund.</b></td></tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td>
+												If he fail to upload proof of refund within 17 days then the review will be automatically posted in online.
+											</td>
+										</tr>
+							<?php 
+									} 
+									if($review['status'] == '2')
+									{
+							?>
+										<tr><td>Status </td><td>:</td><td><b>Merchant has upload proof of refund. If u like to close the case click below link</b></td></tr>
+										<tr><td></td><td></td><td><a href = "/review/proof/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
+							<?php 
+									}  
+								}
+							?>
+							
+					  <?php } ?>
+					  </table>
+                    </div>
+                  </div>
+                  <?php } ?>
+                  <?php } else { ?>
+                  <div class="main_livepost">
+                    <div class="post_maincontent">
+                      <div class="form-message warning">
+                        <p>No Ratings.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <?php 
+				} ?>
+                </div>
+                </td>
+            </tr>
+          </table>
+        </div>
+        <?php	}
+        
+        
           else { ?>
         
         <!-- box -->
@@ -922,9 +1147,12 @@
                 <?php $totalcomplaints=$this->users->get_all_complaintsby_userid($user[0]['id']);?>
                 <?php $totalcomments=$this->users->get_all_commentsby_userid($user[0]['id']);?>
                 <?php $totaldisputes=$this->users->get_all_disputesby_userid($user[0]['id']);?>
+                <?php $totalrating = $this->users->get_all_rating($user[0]['id']);?>
                 <div class="user_view"><a href="<?php echo site_url('user/complaints'); ?>" title="Complaints">Complaints ( <?php echo count($totalcomplaints);?> )</a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/comments'); ?>" title="Comments">Comments ( <?php echo count($totalcomments);?> )</a></div>
-                <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes"><span class="colorcode">Disputes ( <?php echo count($totaldisputes);?> )</span></a></div></td>
+                <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes"><span class="colorcode">Disputes ( <?php echo count($totaldisputes);?> )</span></a></div>
+                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Ratings"><span class="colorcode">My Ratings ( <?php echo count($totalrating);?> )</span></a></div>
+              </td>
             </tr>
           </table>
           <?php }  ?>

@@ -235,6 +235,52 @@ echo $header; ?>
     </div>
     <div class="box-content"> <?php echo form_open_multipart('pressrelease/update',array('class'=>'formBox','id'=>'frmpressrelease')); ?>
       <fieldset>
+		<div class="form-cols"><!-- two form cols -->
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 14% !important;">
+                <label for="site">Site</label>
+              </div>
+              <div class="con" style="width: 59% !important; float:left">
+				<?php 
+					
+				$options = array(
+					'1'  => 'YouGotRated',
+					'2'  => 'Bestratedseller',
+					'3'  => 'Topsellerratings',
+					'4'  => 'Business-reports-online',
+					'5'  => 'Consumer-magazine-ratings',
+					'6'  => 'Consumer-trusted-magazine',
+					'7'  => 'Customer-feedback-central',
+					'8'  => 'Merchant-informer',
+					'9'  => 'Safe-merchants',
+					'10' => 'Safe-online-shopper',
+					'11' => 'Seller-ratings',
+					'12' => 'Trusted-consumer-reports',
+					'13' => 'Trusted-online-merchants',
+					'14' => 'Verified-online-merchants',
+					'15' => 'Verified-trusted-merchants',
+					'16' => 'Your-business-report'
+					);
+				
+				$class = 'class = "select"';
+				
+                if($this->uri->segment(2) == 'add') 
+                { 
+					echo form_dropdown('siteid', $options, '1', $class);
+                } 
+                
+				if($this->uri->segment(2) == 'edit') 
+				{ 
+					echo form_dropdown('siteid', $options, $pressrelease[0]['websiteid'], $class);
+                } 
+                
+                ?>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <div class="form-cols"><!-- two form cols -->
           <div class="col1" style="width:100%">
             <div class="clearfix">

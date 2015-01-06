@@ -167,6 +167,21 @@ class Reviews extends CI_Model
 			return false;
 		}
 	}
+	
+	function update_review_status($companyid,$reviewid)
+	{
+		$data = array('flag' => '1');
+
+		if( $this->db->where(array('id'=>$reviewid, 'companyid'=>$companyid))->update('reviews', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
 	//Inserting Record
 	function update_checkdate($id,$companyid,$reviewid)
 	{

@@ -784,8 +784,9 @@ h1 a{display:inline-block;}
 .bs_sol_menu ul li a:hover{font-family:"myriadpro-regular"; font-size:20px; color:#0080ff; padding:0 10px; color:#333;}
 .blnk_contarea{width:100%; float:left; min-height:500px;}
 
-.solution_menu {margin: 0 0 15px 130px;}
-.solution_menu ul li {border-left: 1px solid; padding: 0 30px;}
+.solution_menu {float:none!important}
+.solution_menu ul{text-align : center;}
+.solution_menu ul li {border-left: 1px solid; padding: 0 15px; display: inline-block; float: none!important;}
 .solution_margin{margin : 35px 0 0;}
 .pipe_line{border : none!important;}
 
@@ -1613,3 +1614,16 @@ padding-left: 18px;
 .cmt_single{float : right; padding : 0 0 40px;}
 .txt_left{text-align : left!important;margin: 10px 0 0!important;}
 .txt_img{margin: 0 0 0 60px;}
+
+.mg_btm
+{
+	margin : 0 0 10px ;
+}
+.font_size_1
+{
+	font-size : 15px;
+}
+.negative_review_user
+{
+	margin : 0 0 25px;
+}

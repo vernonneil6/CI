@@ -218,14 +218,223 @@ class Reports extends CI_Model
 		}
 		
 	}                                 
-	function get_subbrokerdetails_byid($id)
-	{	
+	function new_subbrokerdetails($id)
+	{
+	 	$query=$this->db->select('yc.contactname yccname,yc.company yccompany,yc.contactphonenumber ycphone,yc.email ycemail,yc.registerdate ycreg,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yc.brokerid ycbrokerid,ys.subscr_id yssubscr_id,ys.payment_date yspay,ys.expires ysexp,yc.status ycstatus')
+						   ->from('youg_company yc') 
+						   ->join('youg_subscription ys', 'ys.company_id=yc.id', 'left')
+						   ->where('yc.brokerid',$id)
+							->or_where('yc.subbrokerid',$id)
+							->get()
+							->result_array(); 
+           
+        $i=0;
+        foreach($query as $q)
+        {
+		  if($q['yssubscr_id']!= null)
+			{	
+				$countquery = $this->db->query('select count(*) as payment_count from youg_silent where subscription_id="'.$q['yssubscr_id'].'"')->result_array();	
+				if(count($countquery) > 0)
+				{
+				 $query[$i]['pcount']=$countquery[0]['payment_count'];
+			    }
+			}
+			else
+			{
+				$query[$i]['pcount']='-'; 
+				$query[$i]['ycstatus']='Disable';
+			}
+			unset($query[$i]['yssubscr_id']);
+			$query[$i]['ycreg']=date('m/d/Y',strtotime($q['ycreg']));
+			$query[$i]['yspay']=date('m/d/Y',strtotime($q['yspay']));
+			$query[$i]['ysexp']=date('m/d/Y',strtotime($q['ysexp']));
+			if(isset($q['ycsubbrokerid']))
+			{
+				$subname=$this->db->query('select name from youg_broker where id='.$q['ycsubbrokerid'].'')->result_array();
+				$query[$i]['ycsubbrokerid']=$subname[0]['name'];
+				
+		    }
+		    else
+		    {
+				$query[$i]['ycsubbrokerid']=$q['ycsubbrokerid'];
+			}
+			 
+			if($q['ycmarketerid'] != null)
+			{
+    			$mname=$this->db->query('select name from youg_broker where id='.$q['ycmarketerid'].'')->result_array();
+				$query[$i]['ycmarketerid']=$mname[0]['name'];
+				
+		    }
+		    else
+		    {
+				$query[$i]['ycmarketerid']='-';
+			}
+			if($q['ycbrokerid'] != null)
+			{
+				$aname=$this->db->query('select name from youg_broker where id='.$q['ycbrokerid'].' and type="agent"')->result_array();
+				$query[$i]['ycbrokerid']=$aname[0]['name'];
+				
+		    }
+		    else
+		    {
+				$query[$i]['ycbrokerid']='-';
+			}
+			
+		    $query[$i]['dummyid']='ABC#';
+			$i++;
+		 
+		}
 		
-		// get subbroker details ->respective marketers -> agent and total elites sales count.
-		//fieldsshown-Name -Marketers_allowed -Agents_allowed -Marketers_name- Agents_name- Total_Elite_sales
-	    //$query = $this->db->query("select name,marketer as no_of_marketers,agent as no_of_agents,signup,(select group_concat(name SEPARATOR ', ') from youg_broker where subbrokerid =".$id." and type='marketer') as marketer_names ,(select group_concat(name SEPARATOR ', ') from youg_broker where subbrokerid =".$id." and type='agent') as agent_names ,(select count(*) from youg_company where subbrokerid =".$id." ) as total_elites from youg_broker where id=".$id);		
-	    $query = $this->db->query("select name,type,marketer as no_of_marketers,agent as no_of_agents,signup,(select count(*) from youg_company where brokerid =".$id." ) as individual_elites ,(select count(*) from youg_company where brokerid =".$id." ) + (select count(*) from youg_company where subbrokerid =".$id." ) as total_elites from youg_broker where id=".$id);		
-		//echo $this->db->last_query();die;
+			
+	   return $query;	
+		
+	}
+	function new_marketerdetails($id)
+	{
+	   $query=$this->db->select('yc.contactname yccname,yc.company yccompany,yc.contactphonenumber ycphone,yc.email ycemail,yc.registerdate ycreg,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yc.brokerid ycbrokerid,ys.subscr_id yssubscr_id,ys.payment_date yspay,ys.expires ysexp,yc.status ycstatus')
+						   ->from('youg_company yc') 
+						   ->join('youg_subscription ys', 'ys.company_id=yc.id', 'left')
+						   ->where('yc.brokerid',$id)
+							->or_where('yc.marketerid',$id)
+							->get()
+							->result_array(); 
+           
+        $i=0;
+        foreach($query as $q)
+        {
+		  	if($q['yssubscr_id']!= null)
+			{	
+				$countquery = $this->db->query('select count(*) as payment_count from youg_silent where subscription_id="'.$q['yssubscr_id'].'"')->result_array();	
+				if(count($countquery) > 0)
+				{
+				$query[$i]['pcount']=$countquery[0]['payment_count'];
+			    }
+			}
+			else
+			{
+				$query[$i]['pcount']='-'; 
+				$query[$i]['ycstatus']='Disable';
+			}
+			unset($query[$i]['yssubscr_id']);
+			$query[$i]['ycreg']=date('m/d/Y',strtotime($q['ycreg']));
+			$query[$i]['yspay']=date('m/d/Y',strtotime($q['yspay']));
+			$query[$i]['ysexp']=date('m/d/Y',strtotime($q['ysexp']));
+			if(isset($q['ycsubbrokerid']))
+			{
+				$subname=$this->db->query('select name from youg_broker where id='.$q['ycsubbrokerid'].'')->result_array();
+				$query[$i]['ycsubbrokerid']=$subname[0]['name'];
+				
+		    }
+		    else
+		    {
+				$query[$i]['ycsubbrokerid']=$q['ycsubbrokerid'];
+			}
+			 
+			if($q['ycmarketerid'] != null)
+			{
+				
+				$mname=$this->db->query('select name from youg_broker where id='.$q['ycmarketerid'].'')->result_array();
+				$query[$i]['ycmarketerid']=$mname[0]['name'];
+				
+		    }
+		    else
+		    {
+				$query[$i]['ycmarketerid']='-';
+			}
+			if($q['ycbrokerid'] != null)
+			{
+				$aname=$this->db->query('select name from youg_broker where id='.$q['ycbrokerid'].' and type="agent"')->result_array();
+				$query[$i]['ycbrokerid']=$aname[0]['name'];
+				
+		    }
+		    else
+		    {
+				$query[$i]['ycbrokerid']='-';
+			}
+			
+		    $query[$i]['dummyid']='ABC#';
+			$i++;
+		 
+		}
+		
+	   return $query;	
+		
+	}
+	function new_agentdetails($id)
+	{
+	   $query=$this->db->select('yc.contactname yccname,yc.company yccompany,yc.contactphonenumber ycphone,yc.email ycemail,yc.registerdate ycreg,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yc.brokerid ycbrokerid,ys.subscr_id yssubscr_id,ys.payment_date yspay,ys.expires ysexp,yc.status ycstatus')
+						   ->from('youg_company yc') 
+						   ->join('youg_subscription ys', 'ys.company_id=yc.id', 'left')
+						   ->where('yc.brokerid',$id)
+							->or_where('yc.brokertype','agent')
+							->get()
+							->result_array(); 
+           
+        $i=0;
+        foreach($query as $q)
+        {
+		  	if($q['yssubscr_id']!= null)
+			{	
+				$countquery = $this->db->query('select count(*) as payment_count from youg_silent where subscription_id="'.$q['yssubscr_id'].'"')->result_array();	
+				if(count($countquery) > 0)
+				{
+				 $query[$i]['pcount']=$countquery[0]['payment_count'];
+			    }
+			}
+			else
+			{
+				$query[$i]['pcount']='-'; 
+				$query[$i]['ycstatus']='Disable';
+			}
+			unset($query[$i]['yssubscr_id']);
+			$query[$i]['ycreg']=date('m/d/Y',strtotime($q['ycreg']));
+			$query[$i]['yspay']=date('m/d/Y',strtotime($q['yspay']));
+			$query[$i]['ysexp']=date('m/d/Y',strtotime($q['ysexp']));
+			if(isset($q['ycsubbrokerid']))
+			{
+				$subname=$this->db->query('select name from youg_broker where id='.$q['ycsubbrokerid'].'')->result_array();
+				$query[$i]['ycsubbrokerid']=$subname[0]['name'];
+				
+		    }
+		    else
+		    {
+				$query[$i]['ycsubbrokerid']=$q['ycsubbrokerid'];
+			}
+			 
+			if($q['ycmarketerid'] != null)
+			{
+				$mname=$this->db->query('select name from youg_broker where id='.$q['ycmarketerid'].'')->result_array();
+				$query[$i]['ycmarketerid']=$mname[0]['name'];
+				
+		    }
+		    else
+		    {
+				$query[$i]['ycmarketerid']='-';
+			}
+			if($q['ycbrokerid'] != null)
+			{
+				
+				$aname=$this->db->query('select name from youg_broker where id='.$q['ycbrokerid'].' and type="agent"')->result_array();
+				$query[$i]['ycbrokerid']=$aname[0]['name'];
+				
+		    }
+		    else
+		    {
+				$query[$i]['ycbrokerid']='-';
+			}
+			
+		    $query[$i]['dummyid']='ABC#';
+			$i++;
+		 
+		}
+	
+	   return $query;	
+		
+	}
+	/*function get_subbrokerdetails_byid($id)
+	{	
+		$query = $this->db->query("select name,type,marketer as no_of_marketers,agent as no_of_agents,signup,(select count(*) from youg_company where brokerid =".$id." ) as individual_elites ,(select count(*) from youg_company where brokerid =".$id." ) + (select count(*) from youg_company where subbrokerid =".$id." ) as total_elites from youg_broker where id=".$id);		
+		
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
@@ -249,7 +458,7 @@ class Reports extends CI_Model
 			return array();
 		}
 		
-	}
+	}*/
 	function get_subbrokermarketerdetails_byid($id)
 	{	
 		
@@ -280,7 +489,7 @@ class Reports extends CI_Model
 		}
 		
 	}
-	function get_marketeragentdetails_byid($id)
+	/*function get_marketeragentdetails_byid($id)
 	{	
 		
 		$query = $this->db->query("select yb.name name,yb.type type,yb.marketer no_of_marketers,yb.agent no_of_agents,yb.signup signup,(select count(*) from youg_company yc where yc.brokertype='agent' and yc.brokerid = yb.id and yc.marketerid =".$id." ) as individual_elites ,(select count(*) from youg_company yc where yc.brokertype='agent' and yc.brokerid = yb.id and yc.marketerid =".$id." ) as total_elites from youg_broker yb left join youg_company yc on yc.brokerid = yb.id and yb.type = 'agent' and yc.brokertype = 'agent' where yb.marketerid=".$id." and yc.marketerid=".$id." group by yb.id");		
@@ -309,7 +518,7 @@ class Reports extends CI_Model
 			return array();
 		}
 		
-	}                                 
+	}  */                               
 	function get_marketers_byid($id)
 	{
 		//checkit
@@ -792,7 +1001,7 @@ class Reports extends CI_Model
 	}
    	    
  	
- 	function signbtndate($from,$to)
+ 	/* backup function signbtndate($from,$to)
  	{
 		if($to == $from){
 			$where = "`registerdate` >= '".$from."'";
@@ -807,6 +1016,144 @@ class Reports extends CI_Model
 		->where($where)
 		->get()
 		->result_array();	
+		
+	}*/
+ 	function signbtndate($from,$to)
+ 	{
+		if($to == $from){
+			$where = "`registerdate` >= '".$from."'";
+		}
+		else{
+			$where = "(`registerdate` >= '".$from ."' AND `registerdate` <= '".$to."')";
+		}
+		$query=$this->db->select('yc.contactname yccname,yc.company yccompany,yc.contactphonenumber ycphone,yc.email ycemail,yc.registerdate ycreg,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yc.brokerid ycbrokerid,ys.subscr_id yssubscr_id,ys.payment_date yspay,ys.expires ysexp,yc.status ycstatus')
+						   ->from('youg_company yc') 
+						   ->join('youg_subscription ys', 'ys.company_id=yc.id', 'left')
+						   ->where($where)
+						   ->get()
+						   ->result_array(); 
+           
+        $i=0;
+        foreach($query as $q)
+        {
+		   if($q['yssubscr_id']!= null)
+			{	
+				$countquery = $this->db->query('select count(*) as payment_count from youg_silent where subscription_id="'.$q['yssubscr_id'].'"')->result_array();	
+				if(count($countquery) > 0)
+				{
+				$query[$i]['pcount']=$countquery[0]['payment_count'];
+			    }
+			}
+			else
+			{
+				$query[$i]['pcount']='-'; 
+				$query[$i]['ycstatus']='Disable';
+			}
+			unset($query[$i]['yssubscr_id']);
+			$query[$i]['ycreg']=date('m/d/Y',strtotime($q['ycreg']));
+			$query[$i]['yspay']=date('m/d/Y',strtotime($q['yspay']));
+			$query[$i]['ysexp']=date('m/d/Y',strtotime($q['ysexp']));
+			if(isset($q['ycsubbrokerid']))
+			{
+				$subname=$this->db->query('select name from youg_broker where id='.$q['ycsubbrokerid'].'')->result_array();
+				$query[$i]['ycsubbrokerid']=$subname[0]['name'];
+				
+		    }
+		    else
+		    {
+				$query[$i]['ycsubbrokerid']=$q['ycsubbrokerid'];
+			}
+			 
+			if($q['ycmarketerid'] != null)
+			{
+				$mname=$this->db->query('select name from youg_broker where id='.$q['ycmarketerid'].'')->result_array();
+				$query[$i]['ycmarketerid']=$mname[0]['name'];
+				
+		    }
+		    else
+		    {
+				$query[$i]['ycmarketerid']='-';
+			}
+			if($q['ycbrokerid'] != null)
+			{
+				$aname=$this->db->query('select name from youg_broker where id='.$q['ycbrokerid'].' and type="agent"')->result_array();
+				$query[$i]['ycbrokerid']=$aname[0]['name'];
+				
+		    }
+		    else
+		    {
+				$query[$i]['ycbrokerid']='-';
+			}
+			
+		    $query[$i]['dummyid']='ABC#';
+			$i++;
+		 
+		}
+		
+	return $query;		
+		
+	}
+	function total_elite()
+	{
+		$query = $this->db->query("SELECT c.contactname yccname,c.company yccompany,c.contactphonenumber ycphone,c.email ycemail,c.registerdate ycreg,c.subbrokerid ycsubbrokerid,c.marketerid ycmarketerid,c.brokerid ycbrokerid,s.subscr_id yssubscr_id,s.payment_date yspay,s.expires ysexp,e.status ycstatus FROM youg_elite e LEFT JOIN youg_company c ON c.id = e.company_id LEFT JOIN youg_subscription s ON c.id = s.company_id")->result_array();			    
+        
+       
+         $i=0;
+        $total_elites = array(); 
+        foreach($query as $query_data)  
+        {
+			$q=array_filter($query_data);
+			
+			if($q['yssubscr_id']!= null)
+				{	
+					$countquery = $this->db->query('select count(*) as payment_count from youg_silent where subscription_id="'.$q['yssubscr_id'].'"')->result_array();	
+								
+					if(count($countquery) > 0)
+					{
+						$total_elites[$i] = $query_data;	
+						$total_elites[$i]['pcount']=$countquery[0]['payment_count'];
+						$total_elites[$i]['dummyid']='ABC#';
+						$total_elites[$i]['ycreg']=date('m/d/Y',strtotime($q['ycreg']));
+						$total_elites[$i]['yspay']=date('m/d/Y',strtotime($q['yspay']));
+						$total_elites[$i]['ysexp']=date('m/d/Y',strtotime($q['ysexp']));
+					}
+					
+				}
+			if(isset($q['ycsubbrokerid']))
+			{
+				$subname=$this->db->query('select name from youg_broker where id='.$q['ycsubbrokerid'].'')->result_array();
+				$total_elites[$i]['ycsubbrokerid']=$subname[0]['name'];
+				
+		    }
+		    
+			 
+			if($q['ycmarketerid'] != null)
+			{
+				$mname=$this->db->query('select name from youg_broker where id='.$q['ycmarketerid'].'')->result_array();
+				$total_elites[$i]['ycmarketerid']=$mname[0]['name'];
+				
+		    }
+		   
+			if($q['ycbrokerid'] != null)
+			{
+				$aname=$this->db->query('select name from youg_broker where id='.$q['ycbrokerid'].' and type="agent"')->result_array();
+				$total_elites[$i]['ycbrokerid']=$aname[0]['name'];
+				
+		    }
+		   
+				
+			unset($total_elites[$i]['yssubscr_id']);
+			$i++;
+			
+        }
+        
+        
+		//echo '<pre>';print_r($total_elites);	
+		//die;
+		
+	   return $total_elites;	
+		
+		
 		
 	}
 	

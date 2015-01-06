@@ -273,6 +273,38 @@
 			return array();
 		}
  	}
+ 	
+ 	function get_all_rating($id)
+ 	{
+		//Executing Query
+		$siteid = $this->session->userdata('siteid');
+		$query = $this->db->get_where('youg_reviews',array('reviewby'=>$id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+ 	
+ 	function get_single_rating($userid, $companyid)
+ 	{
+		//Executing Query
+		$siteid = $this->session->userdata('siteid');
+		$query = $this->db->get_where('youg_reviewmail',array('user_id'=>$userid, 'company_id'=>$companyid));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 	function get_company_byid($id)
  	{
@@ -281,6 +313,20 @@
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+ 	
+ 	function get_company_bysingleid($id)
+ 	{
+		$query = $this->db->get_where('company', array('id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
 		}
 		else
 		{

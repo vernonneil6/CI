@@ -1,0 +1,251 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+    font-family: ubuntu;
+    src: url('../font/ubuntu-r-webfont.eot');
+    src: url('../font/ubuntu-r-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/ubuntu-r-webfont.woff') format('woff'),
+         url('../font/ubuntu-r-webfont.ttf') format('truetype'),
+         url('../font/ubuntu-r-webfont.svg#ubunturegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+				font-family: aller ;
+				src: url('../font/allerbold.eot');
+				src: url('../font/allerbold.eot?#iefix') format('embedded-opentype'),
+						 url('../font/allerbold.woff') format('woff'),
+						 url('../font/allerbold.ttf') format('truetype'),
+						 url('../font/allerbold.svg#allerbold') format('svg');
+				font-weight: normal;
+				font-style: normal;
+		}
+
+/* Global properties ======================================================== */
+html {width:100%}
+body {
+	font-family: ubuntu;  
+	font-size:14px; 
+	color:#333; 
+	background:#fff;
+	margin:0px;
+	padding:0px;
+	}
+a {color:#666; outline:none; text-decoration:none;}
+a:hover {text-decoration:none}
+img{border:none;}
+.clear{
+	clear: both;	
+	height: 0;
+	visibility: hidden;
+	display: block;
+}
+/*============font-face==============================*/
+
+
+/*========================logo=================================*/
+.main-logo{width:100%; margin:0 auto;}
+.yougot_logo{width:235px; height:43px; float:left; margin:33px 0 0 0px;}
+.yougot_logo a{width:235px; height:43px; float:left; }
+
+ /*============================Header===================================*/
+header{width:100%;	height:104px; position:relative; background:url(../images/head_bg.png) repeat-x;  margin:0 auto;}
+.head_bg{width:980px; float:left; height:104px; }
+.head_right{width:400px; float:right; height:auto; margin:12px 5px 0 0;}
+.head_right_lnk{width:auto; height:auto; float:right; text-align:right;}
+.head_right_lnk a{width:auto; height:auto; padding:0 5px; font-size:14px; color:#575656; }
+.head_right_lnk a:hover{font-size:14px; color:#0b85d3; }
+.main_searchbox{width:320px; height:32px; float:right; margin:30px 0px 0 0; background:url(../images/search_bg.png) no-repeat;}
+
+
+/*============================Menu===================================*/
+.menu{
+ 	    height: 50px;
+		width: 980px;
+		float:left;
+	
+	}
+.menu a {
+	color:#fff;
+	font-size:18px;	
+	font-family: ubuntu;
+	text-align:center;
+	margin-right:3px;
+	display:block;
+	background:url(../images/tab_bg.png) repeat-x;
+	padding:13px 23px;
+	border-radius:0 0 10px 10px; 
+	text-transform:capitalize;
+
+}
+.menu a:hover {
+	color:#3b3b3b;
+    text-decoration:none;
+}
+.menu a:focus {
+	color:#F96;
+  text-decoration:none;
+}
+.menu a:active {
+	color:#fff;
+  text-decoration:none;
+}
+
+.menu ul {
+	margin:0px;
+	padding:0px;
+}
+.menu li {
+	height:49px;
+	width:auto;
+	float:left;
+	text-align:center;
+	list-style:none;
+	position:relative;
+	
+}
+.menu li.last_menu {
+	background:none;
+}
+
+.menu ul li ul {
+	min-width:150px;
+	width:auto;
+	position:absolute;
+	display:none;
+	background:#f1f1f1;
+		top:48px;
+}
+.menu ul li ul li {
+	min-width:170px;
+	width:auto;
+	padding:10px 0;
+	border-bottom:#999 dotted 1px;
+	height:auto;
+}
+.menu ul li ul li:hover {
+	width:100%;
+	padding:10px 0;
+	border-bottom:#999 dotted 1px;
+	height:auto;
+}
+
+.menu ul li ul li a {
+	font-size:12px;
+	padding:0px 10px;
+	text-align:left;	
+}
+.menu ul li ul li a:hover {
+	color: #999;
+}
+.menu ul li:hover ul {
+	display:block;
+}
+
+.active {
+	color:#3b3b3b;
+	background:#c8c8c8;	
+    text-decoration:none;
+	border:1px solid #FFF;
+	text-shadow:1px 1px 0px #fff;
+	box-shadow:1px 1px 1px #666;
+}
+/*======================container=================================*/
+.container{width:100%; height:auto; float:left; background:url(../images/comp_area_bg.png) repeat;}
+.content_wrap{width:100%; height:auto; float:left; background: #FFF;}
+.inner_main{width:980px; margin:0 auto; height:auto;}
+.main_contentarea{width:980px; height:auto; float:left;}
+.main_demage{width:980px; height:52px; float:left; background:#e8e8e8;}
+.demage_count{width:auto; float:left; height:auto; margin:13px 0 0 5px;}
+.demage_count span{width:auto; float:none; height:auto; font-size:18px;font-family:aller; text-shadow:0 1px 1px #fff; position:relative; top:-7px; padding-left:20px}
+.addthis_div{width:auto; height:auto; float:right; margin:13px 10px 0 0;}
+.complain_tag{width:980px; float:left; height:auto; font-size:40px; color:#4e4e4e; text-shadow:0 1px 1px #fff;text-align:center; margin-top:5px; font-family:aller}
+.main_complain_div{width:980px; float:left; height:383px; background:#FFF; margin-top:10px;}
+.complain_leftmainbox{width:490px; float:left; height:auto; margin-left:29px;}
+.complain_box{width:490px; float:left; height:145px; border:1px solid #e6e6e6; box-shadow:0 0 20px #ccc; margin-top:30px;}
+.complain_box_title{width:auto; float:left; height:auto; margin:16px 0 0 7px;}
+.complain_box_title span{width:auto; float:none; height:auto; font-size:18px; font-family:aller; color:#067fcc; position:relative; top:-10px;}
+.complain_textboxdiv{width:456px; float:left; height:auto; margin:20px 0 0 14px;}
+.complain_textboxdiv ul{width:456px; float:left; height:auto; margin-left:7px; padding:0;}
+.complain_textboxdiv ul li{width:auto; float:left; height:auto;  background:url(../images/type_btn.png) repeat-x; 
+ list-style:none; border:1px solid #cccccc;}
+.complain_textboxdiv ul li:hover{width:auto; float:left; height:auto;  background:url(../images/type_btn_hover.png) repeat-x; 
+ list-style:none; border:1px solid #cccccc;}
+
+.complain_textboxdiv ul li:first-child{width:auto; float:left; height:auto;  background:url(../images/type_btn.png) repeat-x; 
+ list-style:none; border:1px solid #cccccc; border-radius:10px 0 0 10px;}
+.complain_textboxdiv ul li:last-child{width:auto; float:left; height:auto;  background:url(../images/type_btn.png) repeat-x; 
+ list-style:none; border:1px solid #cccccc;  border-radius:0 10px 10px 0;}
+
+.complain_textboxdiv ul li:first-child:hover{width:auto; float:left; height:auto;  background:url(../images/type_btn_hover.png) repeat-x;  list-style:none; border:1px solid #cccccc; border-radius:10px 0 0 10px;}
+.complain_textboxdiv ul li:last-child:hover{width:auto; float:left; height:auto;  background:url(../images/type_btn_hover.png) repeat-x;  list-style:none; border:1px solid #cccccc;  border-radius:0 10px 10px 0;}
+
+.complain_textboxdiv ul li a{width:auto; float:left; height:auto; padding:9px 42px; color:#373737; font-size:18px; font-family:aller; text-shadow:0 1px 1px #fff;}
+.complain_textboxdiv ul li a:hover{width:auto; float:left; height:auto; padding:9px 42px; color:#fff; font-size:18px; font-family:aller;text-shadow:0 1px 1px #666;}
+.shadow{width:980px; float:left; height:41px; background:url(../images/shadow.png) center no-repeat;}
+
+.complain_rightmainbox{width:420px; float:right; height:auto; }
+.complain_form_title{width:279px; float:right; height:70px;}
+.complain_dcsr{width:360px; float:right; height:auto; line-height:22px; margin:40px 40px 0 0; font-family:Verdana, Geneva, sans-serif}
+.complain_dcsr span{width:360px; float:left; height:auto; font-family:aller; font-size:30px; color:#067fcc; padding-bottom:20px;}
+
+/*=======================Vedio_frame ==============================*/
+.vedio_frame{width:980px; float:left; margin-top:17px; height:500px; padding-bottom:17px; border-bottom:3px solid #7b7b7b; text-align:center;}
+
+/*=======================Left_panel==============================*/
+.left_content_panel{width:290px; float:left; height:auto;  margin-top:25px;}
+.treding_title{width:290px; float:left; height:auto; color:#0573bf; font-family:aller; font-size:24px;}
+.treding_title span{width:290px; float:none; height:auto; color:#333; font-family:Verdana, Geneva, sans-serif; font-size:12px; font-style:italic; font-weight:normal;}
+.treding_lnk{width:290px; float:left; height:auto; margin-top:5px; border-top:1px solid #CCC; padding-top:15px;}
+.treding_lnk a{width:auto; float:left; height:auto; background:#e9e9e9; padding:7px; margin:0 5px 14px 0;}
+
+/*=======================Right_panel ==============================*/
+.right_content_panel{width:660px; float:left; height:auto; margin:25px 0 0 25px;}
+.filter{width:650px; float:left; height:auto; font-family:Verdana, Geneva, sans-serif; font-size:12px; color:#000; margin-top:20px;}
+.filter a{width:auto; margin-right:3px; padding:3px 5px;height:auto; font-family:Verdana, Geneva, sans-serif; font-size:12px; color:#000;}
+.filter a:hover{width:auto; margin-right:3px; padding:3px 5px; background:#0573bf; height:auto; font-family:Verdana, Geneva, sans-serif; font-size:12px; color:#fff; border-radius:5px;}
+.main_livepost{width:auto; float:left; height:auto; margin-top:25px; padding-bottom:15px; border-bottom:1px solid #CCC;}
+.main_livepost:last-child{width:auto; float:left; height:auto; margin-top:25px; padding-bottom:15px; border-bottom:none;}
+
+.view_all{ width:68px; float:left; height:85px; background:url(../images/view_bg.png) no-repeat; font-size:11px;}
+.view_all span{ width:68px; float:left; height:auto; color:#333; font-family:Verdana, Geneva, sans-serif; text-align:center;}
+.view_all span h3{ width:68px; float:left; height:auto; color:#333; font-family:Verdana, Geneva, sans-serif; font-size:20px; text-align:center; padding:0; margin:5px 0 5px 0;}
+.view_all span a{ width:68px; float:left; height:auto; color:#fff; margin-top:7px; font-weight:bold; font-family:Verdana, Geneva, sans-serif; text-align:center;}
+.post_maincontent{width:540px; float:left; height:auto; margin-left:10px;}
+.post_content_title{width:500px; float:left; height:auto; font-size:22px; color:#333; font-family:aller;}
+.post_content_dscr{width:500px; float:left; height:auto; color:#919191; font-size:12px; font-family:Verdana, Geneva, sans-serif; margin-top:10px; line-height:17px;}
+.timing{width:540px; float:left; height:auto; margin-top:10px;}
+.timing a span{width:auto; height:auto; font-family:Verdana, Geneva, sans-serif; font-size:12px; font-weight:bold; color:#000;}
+.timing a{width:auto; float:left; height:auto; font-family:Verdana, Geneva, sans-serif; font-size:11px; background:#e6e6e6; padding:2px 5px; margin-right:10px; color:#000;}
+
+.post_username{width:540px; float:left; height:auto;  background:url(../images/user_icn.png) left center no-repeat; margin-top:10px;}
+.post_username a{width:auto; float:left; height:auto; font-size:11px; color:#39F; font-family:Verdana, Geneva, sans-serif; text-indent:14px; }
+.post_username span{width:auto;  height:auto; font-size:11px; color:#999; font-family:Verdana, Geneva, sans-serif; font-size:11px; font-style:italic; padding-left:10px;}
+
+/*=======================footer ==============================*/
+footer{width:100%; float:left; height:auto; margin-top:20px; background:none}
+.main_footer{width:980px; margin:0px auto; height:auto; float:left; padding-top:25px; border-radius:7px 7px 0 0; background: url(../images/footer_bg.png) repeat;}
+.main_footer_block{width:auto; float:left; height:auto;}
+.footer_block{width:auto; float:left; height:auto; padding:0px 20px;}
+.footer_block#last{width:auto; float:left; height:auto; padding:0px 20px;}
+
+.footer_block ul{margin:0; padding:0;}
+.footer_block ul li{width:auto; height:auto;list-style:none; line-height:32px;}
+.footer_block ul li a{width:auto; height:auto;list-style:none; font-family:Verdana, Geneva, sans-serif; color:#000; font-size:13px;}
+.footer_block ul li a:hover{width:auto; height:auto;list-style:none; color:#0984d9; font-size:13px;}
+
+.footer_block ul li a span{width:auto; height:auto;list-style:none; font-family:aller; color:#808080; font-size:20px; position:relative; top:-10px;}
+.footer_block ul li a span:hover{width:auto; height:auto;list-style:none; color:#0984d9; font-size:20px;}
+
+
+
+.footer_block ul li.ftitle{width:auto; height:auto;list-style:none; font-family:aller; color:#333; font-size:20px; font-weight:bold; text-shadow:1px 0 0 #fff;  text-transform:uppercase;}
+
+
+.footer_menu{width:980px; float:left; font-size:14px; color:#968c87; }
+.footer_menu a{font-size:14px; color:#fff; text-transform:capitalize; padding:0 5px;}
+.footer_menu a:hover{font-size:14px; color:#000; }
+
+.copy_link{ font-size:12px; height:auto; color:#999; float:left; width:980px; text-align:center;  padding:10px 0;}
+
