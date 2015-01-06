@@ -162,7 +162,7 @@ class Pressrelease extends CI_Controller {
 					$metadescription = addslashes($this->input->post('metadescription'));
 					$presscontent = $this->input->post('presscontent');
 					$companyid = $this->session->userdata['youg_admin']['id'];
-					$siteid = $this->session->userdata['siteid'];
+					$siteid = $this->input->post('siteid');
 					
 					if( $presscontent!='')
 						{
