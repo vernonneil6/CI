@@ -49,14 +49,14 @@
             <div id="websiteerror" class="error">Website is required.</div>
           </div>
           <div class="reg-row">
-            <label>YOUR EMAIL ADDRESS</label>
+            <label>BUSINESS EMAIL ADDRESS</label>
             <div class="reg_fld">WHERE DO YOU RECEIVE YOUR E-MAIL?</div>
             <input type="email" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" onchange="chkmail(this.value);">
             <div id="emailerror" class="error">Enter valid Emailid.</div>
             <div id="emailtknerror" class="error">This Emailid already taken.</div>
           </div>
           <div class="reg-row">
-            <label>YOUR ADDRESS INFORMATION</label>
+            <label>BUSINESS ADDRESS INFORMATION</label>
             <div class="reg_fld">WHAT IS YOUR ADDRESS?</div>
             <input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50" />
             <br/>
@@ -102,7 +102,7 @@
           </div>
           <div id="phonenoerror" class="error">Enter Phone number.</div>
           <div class="reg-row" style="margin-top:55px;">
-            <label>YOUR CONTACT INFORMATION</label>
+            <label>BUSINESS CONTACT INFORMATION</label>
             <div class="reg_fld"><?php echo strtoupper('The following information will not be published YouGotRated and is used for administration purposes only.This information is where you will receive emails,and receipts from YouGotRated.com');?></div>
             <div class="reg_fld">CONTACT NAME</div>
             
@@ -120,7 +120,7 @@
           </div>
           <!-- payment details -->
           <div class="reg-row" style="margin-top:55px;">
-            <label>YOUR PAYMENT INFORMATION</label>
+            <label>BUSINESS PAYMENT INFORMATION</label>
             
             <div class="reg_fld">FIRST NAME</div>
             

@@ -28,7 +28,7 @@
           </div>
          <!-- payment details -->
           <div class="reg-row" style="margin-top:55px;">
-            <label>YOUR PAYMENT INFORMATION</label>
+            <label>BUSINESS PAYMENT INFORMATION</label>
             
             <div class="reg_fld">FIRST NAME</div>
             
@@ -67,7 +67,7 @@
           </div>
           <!-- payment details -->
         <div class="reg-row" style="margin-top:27px;">
-            <label>CREATE YOUR ACCOUNT</label>
+            <label>RENEW YOUR ACCOUNT</label>
             <div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
             <button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CONTINUE TO CHECKOUT</button>
           </div>

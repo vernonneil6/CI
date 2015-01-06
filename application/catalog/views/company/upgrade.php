@@ -21,7 +21,7 @@
           </div>
          <!-- payment details -->
           <div class="reg-row" style="margin-top:55px;">
-            <label>YOUR PAYMENT INFORMATION</label>
+            <label>BUSINESS PAYMENT INFORMATION</label>
             <div class="reg_fld">COMPANY</div>
                       <input type="text" class="reg_txt_box" placeholder="COMPANY" id="name" name="name" maxlength="30" value="<?php echo $makeelite[0]['company'];?>" />
             </div>
@@ -59,7 +59,7 @@
           </div>
           <!-- payment details -->
         <div class="reg-row" style="margin-top:27px;">
-            <label>CREATE YOUR ACCOUNT</label>
+            <label>UPGRADE YOUR ACCOUNT</label>
             <div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
             <button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CONTINUE TO CHECKOUT</button>
           </div>
