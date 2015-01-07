@@ -382,7 +382,8 @@ class Solution extends CI_Controller {
 		if( $this->input->is_ajax_request() && ( $this->input->post('cid') ) )
 		{
 			$selcatid = (($this->input->post('cid')));
-			
+			$state = (($this->input->post('state')));
+			$state = ($state!='') ? $state : 'state' ;
 			if( $selcatid!='' || $selcatid!='0' )
 			{
 				$subcats = $this->common->get_all_states_by_cid($selcatid);
@@ -407,10 +408,10 @@ class Solution extends CI_Controller {
 					//echo "<pre>";
 					//print_r($this->data['selstates']);
 					//die();
-					$js="id='state' class='seldrop'";
+					$js="id='".$state."' class='seldrop'";
 					$data='';
 					$data="";
-					echo form_dropdown('state',$this->data['selstates'],'',$js);
+					echo form_dropdown($state,$this->data['selstates'],'',$js);
 					$data="";
 					echo $data;   
 					return $data;
