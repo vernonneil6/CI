@@ -616,16 +616,10 @@ public function eliteSubscribe($formpost) {
 							$this->complaints->set_sem($companyid,"Google","http://www.google.com","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg",$i,'g');
 							$this->complaints->set_sem($companyid,"pintrest","http://www.pintrest.com","1519f4062fa76260346bfc61665e579d.jpeg","1519f4062fa76260346bfc61665e579d.jpeg",$i,'p');
 													
-
-
 							$this->complaints->set_seo($companyid,"Google Analytic","Google Analytic",$i);
 							$this->complaints->set_seo($companyid,"Google Webmaster","Google Webmaster",$i);
 							$this->complaints->set_seo($companyid,"General Meta Tag Keywords","General Meta Tag Keywords",$i);
 							$this->complaints->set_seo($companyid,"General Meta Tag Description","General Meta Tag Description",$i);
-
-
-							$this->complaints->set_video($companyid,"video1","http://www.youtube.com/watch?v=wPNZz1oeKaI",$i,'video1');
-							$this->complaints->set_video($companyid,"video2","http://www.youtube.com/watch?v=wPNZz1oeKaI",$i,'video2');
 
 						}
 					}
