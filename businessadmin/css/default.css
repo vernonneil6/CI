@@ -451,3 +451,8 @@ a:hover.ico   { background-position: 0 0; }
     margin: 0 0 20px;
     padding: 0 45px;
 }
+
+.review_download
+{
+	padding : 8px 40px;
+}
