@@ -11,9 +11,16 @@
 @font-face {
 	font-family: 'MyriadPro-BlackSemiCn';
 	
-	src:url('../font/MyriadPro-BlackSemiCn.ttf') format('truetype'),
-		url('../font/MyriadPro-BlackSemiCn.otf') format('opentype');
+	/*src:url('../font/MyriadPro-BlackSemiCn.ttf') format('truetype'),
+		url('../font/MyriadPro-BlackSemiCn.otf') format('opentype');*/
 	
+	  src: url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot'); 
+	  src: url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot?#iefix') format('embedded-opentype'), 
+		   url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.woff') format('woff'),
+		   url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.ttf')  format('truetype'), 
+		   url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.otf')  format('opentype'),
+		   url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.svg#MyriadPro-BlackSemiCn') format('svg'); 
+		   	
 }
 @font-face {
 	font-family: 'MyriadPro-Regular';
