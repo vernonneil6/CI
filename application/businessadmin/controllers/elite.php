@@ -188,7 +188,7 @@ class Elite extends CI_Controller {
 		{
 			if( $this->session->userdata['youg_admin'] )
 			{
-				$this->load->model('settings');
+				
 				$siteid = $this->session->userdata('siteid');
 				$countrylist = $this->settings->get_all_countrys();
 				
@@ -205,11 +205,11 @@ class Elite extends CI_Controller {
 					{
 						$this->data['selcon'][''] = '--Select Country--';
 					}
-						
+						$this->load->model('settings');
 						$id = $this->session->userdata['youg_admin']['id'];
 						$this->data['elite'] = $this->settings->get_company_byid($id);
 						$this->load->view('eliteupdate',$this->data);
-					}
+			}
 			
 		}
 		public function getallstates()
@@ -285,11 +285,23 @@ class Elite extends CI_Controller {
 			$transactionkey="94KU7Sznk72Kj3HK";
 			$host = "api.authorize.net";*/
 			
-			
+			$firstName=	$this->input->post('fname');				
+			$lastName=	$this->input->post('lname');				
+			$address=	$this->input->post('streetaddress');				
+			$city=	$this->input->post('city');				
+			$state=	$this->input->post('state');				
+			$zip=	$this->input->post('zip');				
+			$cid=	$this->input->post('country');
+			$c_code=$this->settings->get_country_by_countryid($cid);
+			$country=$c_code['name'];	
+			$Billingaddress=$this->settings->update_billingaddress($address,$city,$state,$country,$zip,$id); 
+						
 			$path = "/xml/v1/request.api";
+			
 			//data.php end
 			
-			include('authorize/authnetfunction.php');   
+			include('authorize/authnetfunction.php'); 
+			  
 			$subscriptionprice = $this->common->get_setting_value(19);
 				
 			//define variables to send
@@ -316,18 +328,8 @@ class Elite extends CI_Controller {
 			}
 					
 			$email = $this->input->post('email');
-			$firstName=	$this->input->post('fname');				
-			$lastName=	$this->input->post('lname');				
-			$address=	$this->input->post('streetaddress');				
-			$city=	$this->input->post('city');				
-			$state=	$this->input->post('state');				
-			$cid=	$this->input->post('country');
-			$c_code=$this->settings->get_country_by_countryid($cid);
-			$country=$c_code['name'];				
-			
-			
 			$sid=$id;
-			$sub_id=$this->settings->get_subscriptionid($sid);
+		    $sub_id=$this->settings->get_subscriptionid($sid);
 		    $subscriptionId=$sub_id['subscr_id'];
 				"Results <br><br>";
 
