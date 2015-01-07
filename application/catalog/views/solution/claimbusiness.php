@@ -13,12 +13,7 @@
     <div class="container">
       <div class="reg_step_edit_claim"></div>
       <div class="reg_frm_wrap">
-		  <?php /*echo form_open('solution/freesign',array('class'=>'formBox','id'=>'frmaddcompany')); ?>
-       <input type="text" name="name" value="" placeholder="Enter username">
-       <input type="text" name="emailid" value="" placeholder="Enter email">
-       <?php echo form_input(array('name'=>'btnadd','id'=>'btnadd','class'=>'dir-searchbtn','type'=>'submit','value'=>'Send email','style'=>'float:none;color:#fff; padding: 3px 16px;font-size:15px;text-shadow:none;')); ?></td>
-       <?php echo form_close(); */?> 
-       
+		 
         <form class="reg_frm" action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
           <div class="reg-row">
             <label>INTRODUCE YOUR BUSINESS</label>
@@ -57,31 +52,31 @@
           </div>
           <div class="reg-row">
             <label>BUSINESS ADDRESS INFORMATION</label>
-            <div class="reg_fld">WHAT IS YOUR ADDRESS?</div>
-            <input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50" />
+            <div class="reg_fld">WHAT IS YOUR COMPANY ADDRESS?</div>
+            <input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress1" id="streetaddress1" maxlength="50" />
             <br/>
             <style>
 			.seldrop
-			{background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #000000;
-    margin-top: 8px;
-    width: 249px;
+			{   background: none repeat scroll 0 0 #FFFFFF;
+				border: 1px solid #000000;
+				margin-top: 8px;
+				width: 249px;
 			}
 			</style>
           <div style="float:left;">
-           <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange="getstates(this.value);"');?>
+           <?php echo form_dropdown('country1',$selcon,'','id="country1" class="seldrop" onchange=getstates(this.value,"state1","#selstatediv1");');?>
            </div>
            <?php 
 		  $selstate=array(''=>'--Select State--');
 		  ?>
-		  <div id="selstatediv" style="float:right;margin-right:127px;">
-		  <?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?></div>
+		  <div id="selstatediv1" style="float:right;margin-right:127px;">
+		  <?php echo form_dropdown('state1',$selstate,'','id="state1" class="seldrop"');?></div>
           <br/>
-            <input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
+            <input type="text" class="reg_txt_box-md" placeholder="CITY" id="city1" name="city1" maxlength="50" />
             <?php /*?><input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" /><?php */?>
             <?php /*?><input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" /><?php */?>
               
-            <input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
+            <input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip1" name="zip1" maxlength="10" />
             <div id="streetaddresserror" class="error">Street Address is required.</div>
             <div id="cityerror" class="error">City is required.</div>
             <div id="stateerror" class="error">State is required.</div>
@@ -132,13 +127,47 @@
               
           </div>
           <div class="reg-row" style="margin-top:10px !important;">
-            <div class="reg_fld">CREDIT CARD NUMBER</div>
-            <input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)" onblur="return checkcard()"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
-            <div id="carderror" class="carderror"></div>
-            <div id="cardsuccess" class="cardsuccess"></div>
-           
-              
+				<div class="reg_fld">CREDIT CARD NUMBER</div>
+				<input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)" onblur="return checkcard()"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+				<div id="carderror" class="carderror"></div>
+				<div id="cardsuccess" class="cardsuccess"></div>
           </div>
+          <div class="reg-row" style="margin-top:-1px;">
+            <div class="reg_fld">WHAT IS YOUR BILLING ADDRESS?</div>
+            <input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50" />
+            <br/>
+            <style>
+			.seldrop
+			{   background: none repeat scroll 0 0 #FFFFFF;
+				border: 1px solid #000000;
+				margin-top: 8px;
+				width: 249px;
+			}
+			</style>
+          <div style="float:left;">
+           <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
+           </div>
+           <?php 
+		  $selstate=array(''=>'--Select State--');
+		  ?>
+		  <div id="selstatediv" style="float:right;margin-right:127px;">
+		  <?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?></div>
+          <br/>
+            <input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
+            <input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
+            <div id="streetaddresserror" class="error">Street Address is required.</div>
+            <div id="cityerror" class="error">City is required.</div>
+            <div id="stateerror" class="error">State is required.</div>
+            <div id="countryerror" class="error">Country is required.</div>
+            <div id="ziperror" class="error">Zip Code is required.</div>
+            <div id="zipverror" class="error">Enter digits only valid format 123456</div>
+            <div id="streeterror" class="error">Street Address is required.</div>
+            <div id="cityerror" class="error">City is required.</div>
+            <div id="stateerror" class="error">State is required.</div>
+            <div id="streeterror" class="error">Street Address is required.</div>
+            <div id="zipcodeerror" class="error">Enter digits only.</div>
+          </div>
+         
           <div class="reg-row" style="margin-top:10px !important;">
             <div class="reg_fld">EXPIRATION DATE</div>
             <select id="expirationdatem" name="expirationdatem">

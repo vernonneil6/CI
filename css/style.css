@@ -2,8 +2,8 @@
 /* CSS Document */
 @font-face {
 	font-family: 'MyriadProBoldCondensed';
-	src:url('../font/myraidpro/MyriadProBoldCondensed.eot');
-	src:url('../font/myraidpro/MyriadProBoldCondensed.eot?#iefix') format('embedded-opentype'),
+	src:url('../font/myraidpro/MyriadProBoldCondensed.eot'),
+		url('../font/myraidpro/MyriadProBoldCondensed.eot?#iefix') format('embedded-opentype'),
 		url('../font/myraidpro/MyriadProBoldCondensed.woff') format('woff'),
 		url('../font/myraidpro/MyriadProBoldCondensed.ttf') format('truetype');
 	
@@ -11,25 +11,32 @@
 @font-face {
 	font-family: 'MyriadPro-BlackSemiCn';
 	
-	src:url('../font/MyriadPro-BlackSemiCn.ttf') format('truetype');
+	src:url('../font/MyriadPro-BlackSemiCn.ttf') format('truetype'),
+		url('../font/MyriadPro-BlackSemiCn.otf') format('opentype');
 	
 }
 @font-face {
 	font-family: 'MyriadPro-Regular';
 	
-	src:url('../font/myriad/MyriadPro-Regular.otf') format('opentype');
+	src:url('../font/myriad/MyriadPro-Regular.eot'),
+		url('../font/myraid/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
+		url('../font/myriad/MyriadPro-Regular.otf') format('opentype'),
+		url('../font/myriad/MyriadPro-Regular.ttf') format('truetype');
 	
 }
 @font-face {
 	font-family: 'MyriadPro-BoldCond';
 	
-	src:url('../font/myriad/MyriadPro-BoldCond.otf') format('opentype');
+	src:url('../font/myriad/MyriadPro-BoldCond.eot'),
+		url('../font/myraid/MyriadPro-BoldCond.eot?#iefix') format('embedded-opentype'),
+		url('../font/myriad/MyriadPro-BoldCond.otf') format('opentype');
 	
 }
 @font-face {
 	font-family: 'MyriadPro-SemiboldCondIt';
 	
-	src:url('../font/myriad/MyriadPro-SemiboldCondIt.otf') format('opentype');
+	src:url('../font/myriad/MyriadPro-SemiboldCondIt.otf') format('opentype'),
+		url('../font/myriad/MyriadPro-SemiboldCondIt.ttf') format('truetype');
 	
 }
 
