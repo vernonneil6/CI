@@ -24,13 +24,13 @@
           <div class="lab">
             <label for="title">Title </label>
           </div>
-          <div class="con">
+          <div class="con slider_text">
             <?php echo form_input( array( 'name'=>'title','class'=>'input','type'=>'text' ) ); ?>
           </div>
         </div>
 	<div class="clearfix file">
-          <div class="lab" style="width:13%"> <label for="image">Image</label> </div>
-          <div class="con" style="width:40%; float:left"> <?php echo form_input( array( 'name'=>'images','class'=>'input file upload-file','type'=>'file') ); ?> </div>
+          <div class="lab slider_area" > <label for="image">Image</label> </div>
+          <div class="con slider_upload"> <?php echo form_input( array( 'name'=>'images','class'=>'input file upload-file','type'=>'file') ); ?> </div>
         </div>
         <?php echo form_input(array('name'=>'submitimage','class'=>'button','type'=>'submit','value'=>'Add')); ?>
       </fieldset>
@@ -100,11 +100,10 @@ else { ?>
       <tr>
         <td><?php echo $sliders->title; ?></td>
         <td><img src="../uploads/slider/<?php echo $sliders->image;?>" width="40" height="30" alt="<?php echo $image;?>"></td>
-	<td class="action">
-		  
-		  <a href="<?php echo site_url('homeslider/delete/'.$sliders->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this FAQ?');">Delete</a>
-<a href="<?php echo site_url('homeslider/edit/'.$sliders->id); ?>" title="Edit" class="ico ico-edit">Edit</a>
-	</td>
+		<td class="action">		  
+			<a href="<?php echo site_url('homeslider/delete/'.$sliders->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this slider image?');">Delete</a>
+			<a href="<?php echo site_url('homeslider/edit/'.$sliders->id); ?>" title="Edit" class="ico ico-edit">Edit</a>
+		</td>
       </tr>
       <?php } ?>
     </table>
