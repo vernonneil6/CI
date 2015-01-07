@@ -64,7 +64,7 @@
 			}
 			</style>
           <div style="float:left;">
-           <?php echo form_dropdown('country1',$selcon,'','id="country1" class="seldrop" onchange="getstates(this.value);"');?>
+           <?php echo form_dropdown('country1',$selcon,'','id="country1" class="seldrop" onchange=getstates(this.value,"state1","#selstatediv1");');?>
            </div>
            <?php 
 		  $selstate=array(''=>'--Select State--');
@@ -145,7 +145,7 @@
 			}
 			</style>
           <div style="float:left;">
-           <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange="getstates(this.value);"');?>
+           <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
            </div>
            <?php 
 		  $selstate=array(''=>'--Select State--');
