@@ -589,10 +589,6 @@ class Company extends CI_Controller {
 										$this->common->set_seo($companyid,"General Meta Tag Keywords","General Meta Tag Keywords",$i);
 										$this->common->set_seo($companyid,"General Meta Tag Description","General Meta Tag Description",$i);
 
-
-										$this->common->set_video($companyid,"video1","http://www.youtube.com/watch?v=wPNZz1oeKaI",$i,'video1');
-										$this->common->set_video($companyid,"video2","http://www.youtube.com/watch?v=wPNZz1oeKaI",$i,'video2');
-
 									}
 								}
 								
