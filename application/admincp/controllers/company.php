@@ -899,26 +899,23 @@ class Company extends CI_Controller {
 						
 						$this->settings->set_password($companyid,$password);
 						if(count($video)==0 && count($sem)==0 && count($seo)==0 ) {
-							for($i=1;$i<17;$i++) {
-$this->settings->set_sem($companyid,"Facebook","http://www.facebook.com","ade2c15ab85aef450fb2f6e53e8cb825.png","ade2c15ab85aef450fb2f6e53e8cb825.png",$i,'f');
-$this->settings->set_sem($companyid,"twitter","http://www.twitter.com","51e28dd5af6d2bb51b518b47ae717f1a.png","51e28dd5af6d2bb51b518b47ae717f1a.png",$i,'t');
-$this->settings->set_sem($companyid,"Linkedin","http://www.linkedin.com","ab5b4de4c8fa16f822635c942aafdfb5.jpg","ab5b4de4c8fa16f822635c942aafdfb5.jpg",$i,'l');
-$this->settings->set_sem($companyid,"Google","http://www.google.com","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg",$i,'g');
-$this->settings->set_sem($companyid,"pintrest","http://www.pintrest.com","1519f4062fa76260346bfc61665e579d.jpeg","1519f4062fa76260346bfc61665e579d.jpeg",$i,'p');
-$this->settings->set_sem($companyid,"amazon","http://www.amazon.in","","",$i,'a');
-$this->settings->set_sem($companyid,"ebay","http://www.ebay.in","","",$i,'e');
-$this->settings->set_sem($companyid,"youtube","http://www.youtube.com","","",$i,'y');
-						
+							for($i=1;$i<17;$i++) 
+						{
+								$this->settings->set_sem($companyid,"Facebook","http://www.facebook.com","ade2c15ab85aef450fb2f6e53e8cb825.png","ade2c15ab85aef450fb2f6e53e8cb825.png",$i,'f');
+								$this->settings->set_sem($companyid,"twitter","http://www.twitter.com","51e28dd5af6d2bb51b518b47ae717f1a.png","51e28dd5af6d2bb51b518b47ae717f1a.png",$i,'t');
+								$this->settings->set_sem($companyid,"Linkedin","http://www.linkedin.com","ab5b4de4c8fa16f822635c942aafdfb5.jpg","ab5b4de4c8fa16f822635c942aafdfb5.jpg",$i,'l');
+								$this->settings->set_sem($companyid,"Google","http://www.google.com","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg",$i,'g');
+								$this->settings->set_sem($companyid,"pintrest","http://www.pintrest.com","1519f4062fa76260346bfc61665e579d.jpeg","1519f4062fa76260346bfc61665e579d.jpeg",$i,'p');
+								$this->settings->set_sem($companyid,"amazon","http://www.amazon.in","","",$i,'a');
+								$this->settings->set_sem($companyid,"ebay","http://www.ebay.in","","",$i,'e');
+								$this->settings->set_sem($companyid,"youtube","http://www.youtube.com","","",$i,'y');
+														
 
 
-$this->settings->set_seo($companyid,"Google Analytic","Google Analytic",$i);
-$this->settings->set_seo($companyid,"Google Webmaster","Google Webmaster",$i);
-$this->settings->set_seo($companyid,"General Meta Tag Keywords","General Meta Tag Keywords",$i);
-$this->settings->set_seo($companyid,"General Meta Tag Description","General Meta Tag Description",$i);
-
-
-$this->settings->set_video($companyid,"video1","http://www.youtube.com/watch?v=wPNZz1oeKaI",$i,'video1');
-$this->settings->set_video($companyid,"video2","http://www.youtube.com/watch?v=wPNZz1oeKaI",$i,'video2');
+								$this->settings->set_seo($companyid,"Google Analytic","Google Analytic",$i);
+								$this->settings->set_seo($companyid,"Google Webmaster","Google Webmaster",$i);
+								$this->settings->set_seo($companyid,"General Meta Tag Keywords","General Meta Tag Keywords",$i);
+								$this->settings->set_seo($companyid,"General Meta Tag Description","General Meta Tag Description",$i);
 
 						}}
 						
@@ -937,8 +934,8 @@ $this->settings->set_video($companyid,"video2","http://www.youtube.com/watch?v=w
 								//Inserting Elite Membership Transaction Details for Company
 							$length = 20;
 
-$randomString = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
-$randomStringmy = $randomString;
+							$randomString = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+							$randomStringmy = $randomString;
 
 
 							
