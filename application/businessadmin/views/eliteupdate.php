@@ -14,6 +14,7 @@
 <script src="../businessadmin/js/jquery-1.11.1.min.js"></script>
 <script src="../businessadmin/js/jquery.validate.min.js"></script>
 <script src="../businessadmin/js/additional-methods.min.js"></script>	  
+<script src="../businessadmin/js/formsubmit.js"></script>	  
 <script type="text/javascript">
 
  $(document).ready(function(){
@@ -69,53 +70,82 @@ submitHandler : function(form) {
             <input type="hidden" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30" value="<?php echo $elite[0]['company'];?>" />
             <input type="hidden" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150" value="<?php echo $elite[0]['siteurl'];?>" />
             <input type="hidden" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" value="<?php echo $elite[0]['email'];?>" />
-            <input type="hidden" class="reg_txt_box" placeholder="Country" id="country" name="country"  maxlength="250" value="<?php echo $elite[0]['country'];?>" />
-            <input type="hidden" class="reg_txt_box" placeholder="State" id="state" name="state"  maxlength="250" value="<?php echo $elite[0]['state'];?>" />
-            <input type="hidden" class="reg_txt_box" placeholder="City" id="city" name="city"  maxlength="250" value="<?php echo $elite[0]['city'];?>" />
-            <input type="hidden" class="reg_txt_box" placeholder="Zip" id="zip" name="zip"  maxlength="250" value="<?php echo $elite[0]['zip'];?>" />
-            <input type="hidden" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50" value="<?php echo $elite[0]['streetaddress'];?>" />
             <input type="hidden" class="reg_txt_box-lg" placeholder="cname" name="cname" id="cname" maxlength="50" value="<?php echo $elite[0]['contactname'];?>" />
             <input type="hidden" class="reg_txt_box-lg" placeholder="cphone" name="cphone" id="cphone" maxlength="50" value="<?php echo $elite[0]['contactphonenumber'];?>" />
             <input type="hidden" class="reg_txt_box-lg" placeholder="cemail" name="cemail" id="cemail" maxlength="50" value="<?php echo $elite[0]['contactemail'];?>" />
         <div class="clearfix" style="width: 71%;padding-left: 10px;">
-          <div class="lab">
-             <p style="width: 272px;">Enter Your New Credit Card Information</p>
-            <label for="title">Credit Card<span class="errorsign">*</span></label>
-        </div>
-          <div class="con">
-			  <?php echo form_input(array( 'name'=>'ccnumber','id'=>'ccnumber','class'=>'input','type'=>'text','placeholder'=>'Enter Your credit card number','onkeypress'=>'return number(event)','onblur'=>'return checkcard();','required'=>'required')); ?>
-          </div>
-        <div class="con" style='margin-top:10px'>
-               <?php echo form_input(array( 'name'=>'fname','id'=>'fname','class'=>'input','type'=>'text','placeholder'=>'Enter Your first name')); ?>
-            </div>
-           <div id="cc-error"><?php echo $this->session->flashdata('success_msg'); ?></div>
-           
-        <div class="con" style='margin-top:10px'>
-            <?php echo form_input(array( 'name'=>'lname','id'=>'lname','class'=>'input','type'=>'text','placeholder'=>'Enter Your last name')); ?>
-             </div> 
+				<div class="lab">
+					 <p style="width: 272px;">Enter Your New Credit Card Information</p>
+					<label for="title">Credit Card<span class="errorsign">*</span></label>
+				</div>
+				  <div class="con">
+					  <?php echo form_input(array( 'name'=>'ccnumber','id'=>'ccnumber','class'=>'input','type'=>'text','placeholder'=>'Enter Your credit card number','onkeypress'=>'return number(event)','onblur'=>'return checkcard();','required'=>'required')); ?>
+				  </div>
+				<div class="con" style='margin-top:10px'> 
+			        <?php echo form_input(array( 'name'=>'cvv','id'=>'cvv','class'=>'input','type'=>'text','placeholder'=>'Enter Your CVV number')); ?>
+			   </div>
+			   <div class="con" style='margin-top:10px'>
+					   <?php echo form_input(array( 'name'=>'fname','id'=>'fname','class'=>'input','type'=>'text','placeholder'=>'Enter Your first name')); ?>
+					</div>
+				   <div id="cc-error"><?php echo $this->session->flashdata('success_msg'); ?></div>
+				   
+				<div class="con" style='margin-top:10px'>
+					<?php echo form_input(array( 'name'=>'lname','id'=>'lname','class'=>'input','type'=>'text','placeholder'=>'Enter Your last name')); ?>
+				</div>
+		</div>
+		
+		
+		<div class="clearfix" style="width: 71%;padding-left: 10px;">
+				<div class="lab">
+					 <p style="width: 272px;">Enter Your Billing Address Information</p>
+					
+				</div>	    
+				
+								
+				<div class="con" style='margin-top:10px'>
+				   <?php echo form_input(array( 'name'=>'streetaddress','id'=>'streetaddress','class'=>'input','type'=>'text','placeholder'=>'Enter Your streetaddress')); ?>
+                </div>
+               
+               <div class="con" style='margin-top:10px'> 
+			     <div style="float:left;">
+				   <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
+				   </div>
+				   <?php 
+				  $selstate=array(''=>'--Select State--');
+				  ?>
+				  <div id="selstatediv" style="float:right;margin-right:127px;">
+				  <?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?></div>
+				  <br/>
+			   </div> 	    
+               <div class="con" style='margin-top:10px'> 
+			      <?php echo form_input(array( 'name'=>'city','id'=>'city','class'=>'input','type'=>'text','placeholder'=>'Enter Your city')); ?>
+			   </div> 	    
+               <div class="con" style='margin-top:10px'> 
+			    <?php echo form_input(array( 'name'=>'zip','id'=>'zip','class'=>'input','type'=>'text','placeholder'=>'Enter Your zip')); ?>
+			   </div>
+			   	 	    
           
         </div>
-        <div class="clearfix" style="width: 71%;padding-left: 10px;">
-          <div class="lab">
-            <label for="videourl">Expiry date <span class="errorsign">*</span></label>
-          </div>
+        <div class="clearfix" style="width: 90%;padding-left: 10px;">
+			  <div class="lab">
+				<label for="videourl">Expiration date<span class="errorsign">*</span></label>
+			  </div>
           
-              <select id="expirationdatey" name="expirationdatey">
-                <option value="">--Select--</option>
-                <?php for($k=0;$k<10;$k++) {?>
-                <?php $a = date('Y')+$k;?>
-                <option value="<?php echo $a;?>"><?php echo $a;?></option>
-                <?php } ?>
-              </select>
-              &nbsp;
-              <select id="expirationdatem" name="expirationdatem">
-                <option value="">--Select--</option>
-                <?php for($i=1;$i<13;$i++) {?>
-                <option value="<?php echo $i;?>"><?php echo $i;?></option>
-                <?php } ?>
-              </select>
-           
-         </div>
+				  <select id="expirationdatey" name="expirationdatey">
+					<option value="">--Select--</option>
+					<?php for($k=0;$k<10;$k++) {?>
+					<?php $a = date('Y')+$k;?>
+					<option value="<?php echo $a;?>"><?php echo $a;?></option>
+					<?php } ?>
+				  </select>
+				  &nbsp;
+				  <select id="expirationdatem" name="expirationdatem">
+					<option value="">--Select--</option>
+					<?php for($i=1;$i<13;$i++) {?>
+					<option value="<?php echo $i;?>"><?php echo $i;?></option>
+					<?php } ?>
+				  </select>
+        </div>
         <div class="btn-submit"> 
           <!-- Submit form -->
           
