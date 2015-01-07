@@ -213,7 +213,36 @@
 				}
 			}
 			
-						
+			/*if( $("#creditcard1").val().length > 0 )
+				{
+					var re16digit = /^\d{16}$/;
+				    if (!re16digit.test($("#creditcard1").val()))
+					 {
+				        $("#error").attr('style','display:block;');
+						$("#creditcard1error").show();
+				        return false;
+					 }
+					 else
+					 {
+						$("#creditcard1error").hide();	
+					 }
+				}
+				
+			if( $("#creditcard2").val().length > 0 )
+				{
+					var re16digit = /^\d{16}$/;
+				    if (!re16digit.test($("#creditcard2").val()))
+					 {
+				        $("#error").attr('style','display:block;');
+						$("#creditcard2error").show();
+				        return false;
+					 }
+					  else
+					 {
+						$("#creditcard2error").hide();	
+					 }
+				}*/	
+				
 			if(trim($("#price_range").val())!= "")
 			{
 				if( !pfilter.test(trim($("#price_range").val())) || trim($("#price_range").val()).length <10)
@@ -398,6 +427,16 @@
           </div>
           <div id="siteurlerror" class="error">Site Url is required.</div>
         </div>
+        <div class="clearfix file" style = "display:none">
+          <div class="lab" style="width:18%">
+            <label for="companylogo">Logo <span class="errorsign">*</span></label>
+          </div>
+          <div class="con" style="width:57%; float:left"> <?php echo form_input( array( 'name'=>'companylogo','id'=>'companylogo','class'=>'input file upload-file','type'=>'file') ); ?> </div>
+          <?php if($this->uri->segment(2) == 'edit') { ?>
+          <div class="task-photo"> <img width="60" height="40" src="<?php if( $company[0]['logo'] ){ echo $this->settings->get_setting_value('2').substr($this->config->item('company_thumb_upload_path'),3);?><?php echo stripslashes($company[0]['logo']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('company_thumb_upload_path'),3)."/no-image.gif"; } ?>" alt="<?php echo stripslashes($company[0]['logo']); ?>"/> </div>
+          <?php } ?>
+          <div id="companylogoerror" class="error" style="width:123px">Logo is required.</div>
+        </div>
         <div class="form-cols">
           <div class="col1">
             <div class="clearfix">
@@ -429,6 +468,36 @@
           </div>
           <div id="abouterror" class="error">Company Detail is required.</div>
         </div>
+       <?php /* <div class="form-cols"><!-- two form cols -->
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+                <label for="creditcard1">Creditcard 1 </label>
+              </div>
+              <div class="con">
+                <?php if($this->uri->segment(2) == 'edit') { ?>
+                <?php echo form_input( array( 'name'=>'creditcard1','id'=>'creditcard1','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['creditcard1']) ) ); ?>
+                <?php } ?>
+              </div>
+            </div>
+          </div>
+          <div id="creditcard1error" class="error">Enter valid number.</div>
+        </div>
+        <div class="form-cols"><!-- two form cols -->
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+                <label for="creditcard2">Creditcard 2 </label>
+              </div>
+              <div class="con">
+                <?php if($this->uri->segment(2) == 'edit') { ?>
+                <?php echo form_input( array( 'name'=>'creditcard2','id'=>'creditcard2','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['creditcard2']) ) ); ?>
+                <?php } ?>
+              </div>
+            </div>
+          </div>
+          <div id="creditcard2error" class="error">Enter valid number.</div>
+        </div>*/?>
         <div class="form-cols">
           <style>
 		.check{ float: right; position: relative;}
@@ -739,7 +808,15 @@ else { ?>
         <td valign="top">Description</td>
         <td><?php echo $company[0]['aboutus'];?></td>
       </tr>
-    <tr> </tr>
+     <?php/* <tr>
+        <td valign="top">Creditcard 1</td>
+        <td><?php echo $company[0]['creditcard1'];?></td>
+      </tr>
+      <tr>
+        <td valign="top">Creditcard 2</td>
+        <td><?php echo $company[0]['creditcard2'];?></td>
+      </tr>*/?>
+      <tr> </tr>
     </table>
     <?php } ?>
   </div>
