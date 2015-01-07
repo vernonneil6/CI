@@ -593,7 +593,7 @@ public function eliteSubscribe($formpost) {
 		{
 			$tx  = $transactionkey;
 			$amt = $amount;
-			$companyid  = $companyid;
+			$companyid  = $company[0]['id'];
 			$sig = $refId;
 			$time = $this->common->get_setting_value(18);
 			$expires = date('Y-m-d H:i:s', strtotime("+$time Month"));
