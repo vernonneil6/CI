@@ -21,6 +21,47 @@ Class Settings extends CI_Model
 			return false;
 		}
  	}
+ 	function get_country_by_countryid($cid)
+	{
+		$query = $this->db->get_where('youg_country',array('country_id'=>$cid));
+		return $query->row_array();
+		
+	}
+ 	function get_all_countrys()
+	{
+		//Executing Query
+		$this->db->select('country_id,name');
+		$this->db->from('country');
+						
+		$query = $this->db->get();
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+	}
+	function get_all_states_by_cid($country_id)
+	{
+		//Executing Query
+		$this->db->select('country_id,name');
+		$this->db->from('state');
+		$this->db->where('country_id',$country_id);
+						
+		$query = $this->db->get();
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+	}
 	
 	//Getting Email value
 	function get_email_byid($id)
