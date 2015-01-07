@@ -500,7 +500,6 @@ public function eliteSubscribe($formpost) {
 		
 	
 	$company = $this->complaints->get_company_by_emailid($email);
-	
 	if(count($company)>0)
 	{
 		$companyid = $company[0]['id'];
@@ -552,7 +551,7 @@ public function eliteSubscribe($formpost) {
 	//send the xml via curl
 	$response = send_request_via_curl($host,$path,$content);
 	//if the connection and send worked $response holds the return from Authorize.net
-	//print_r($response);
+	
 	if ($response)
 	{
 		list ($refId, $resultCode, $code, $text, $subscriptionId) =parse_return($response);
@@ -590,7 +589,7 @@ public function eliteSubscribe($formpost) {
 		{
 			$tx  = $transactionkey;
 			$amt = $amount;
-			$companyid  = $company[0]['id'];
+			$companyid  = $companyid;
 			$sig = $refId;
 			$time = $this->common->get_setting_value(18);
 			$expires = date('Y-m-d H:i:s', strtotime("+$time Month"));
@@ -787,13 +786,13 @@ public function eliteSubscribe($formpost) {
 			}
 			else
 			{
-						$this->session->set_flashdata('error',"There was error during payment. Please try later!");
+						$this->session->set_flashdata('error',$text);
 						//redirect('authorize', 'refresh');
 			}
 		}
 		else
 		{
-			$this->session->set_flashdata('error',"There was error during payment. Please try later!");
+			$this->session->set_flashdata('error',$text);
 			//redirect('authorize', 'refresh');
 		}
 			
