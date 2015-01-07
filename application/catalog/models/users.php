@@ -338,8 +338,8 @@
 	
 	function insertfbuser($first_name,$last_name,$gender,$username,$email,$uid,$fbpassword,$fbdate,$isverified)
 {
-			if($gen == 'male'){ $gender = 'Male';}
-			if($gen == 'female'){ $gender = 'Female';}
+			if($gender == 'male'){ $gender = 'Male';}
+			if($gender == 'female'){ $gender = 'Female';}
 			$data = array(
 			'email'  			=> $email,
 			'password'  		=> $fbpassword,

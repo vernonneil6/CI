@@ -58,7 +58,7 @@ class Welcome extends CI_Controller {
 		$this->load->model('reviews');
 		$this->load->model('complaints');
 		$this->load->model('sliders');
-		$this->load->model('sphinxs');
+		//$this->load->model('sphinxs');
 		
 		//Loadin Pagination Custome Config File
 		$this->config->load('paging',TRUE);
@@ -677,7 +677,7 @@ public function fblogin()
 		 $this->email->subject(stripslashes($subject));
 		 
 		 //E-mail Body
-		// $site_logo = "<a href='".$site_url."' title='".$site_name."' ><img src='".base_url()."uploads/event_logo.png' border='0' alt='".$site_name."'></a>";
+		 $site_logo = "<a href='".$site_url."' title='".$site_name."' ><img src='".base_url()."uploads/event_logo.png' border='0' alt='".$site_name."'></a>";
 		 $this->email->message("<style>
 		 span{
 		 display:block;
