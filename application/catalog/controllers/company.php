@@ -595,6 +595,18 @@ class Company extends CI_Controller {
 
 									}
 								}
+								
+								$timings = $this->complaints->get_company_timings($company[0]['id']);
+								if(count($timings)==0) 
+								{
+								$this->complaints->set_timing(1,$companyid,"monday","No","09:00:00","21:00:00");
+								$this->complaints->set_timing(1,$companyid,"tuesday","No","09:00:00","21:00:00");
+								$this->complaints->set_timing(1,$companyid,"wednesday","No","09:00:00","21:00:00");
+								$this->complaints->set_timing(1,$companyid,"thursday","No","09:00:00","21:00:00");
+								$this->complaints->set_timing(1,$companyid,"friday","No","09:00:00","21:00:00");
+								$this->complaints->set_timing(1,$companyid,"saturday","No","09:00:00","21:00:00");
+								$this->complaints->set_timing(1,$companyid,"sunday","No","09:00:00","21:00:00");
+								}
 												
 								//Inserting Elite Membership Transaction Details for Company
 								$transaction = $this->common->add_transaction($companyid,$amount,'USD',$transactionkey,date('Y-m-d H:i:s'));
