@@ -115,7 +115,7 @@ class Video extends CI_Controller {
 				
 						//Getting value
 						$title = addslashes($this->input->post('title'));
-					  	$videourl = addslashes($this->input->post('videourl'));
+					  	$videourl = preg_replace("/^https:/i", "http:", $this->input->post('videourl'));
 						$videono = addslashes($this->input->post('videono'));
 						
 						//Updating Record With Image
@@ -205,8 +205,11 @@ class Video extends CI_Controller {
 		{
 	  	$id=$this->session->userdata['youg_admin']['id'];
 		$siteid = $this->session->userdata('siteid');
+		
 		$title=$this->input->post('addtitle');
-		$videourl=$this->input->post('addvideourl');
+		$videourl = preg_replace("/^https:/i", "http:", $this->input->post('addvideourl'));
+
+
 		$this->videos->addurl($title,$videourl,$id,$siteid);
 		}
 		
