@@ -282,24 +282,23 @@ $(document).ready(function() {
   });
 });
         
-function getstates(id) {	//alert(id);
-if(id !='') {
-
+function getstates(id,state,where) {	//alert(id);
+	if(id !='') {
 
 		$.ajax({
-	type 				: "POST",
-	url 				: "index.php/solution/getallstates",
-	data				:	{ 'cid' : id },
-	dataType 			: "html",
-	cache				: false,
-	success				: function(data){
-							//console.log(data);
-									//alert(data);
-						$('#selstatediv').empty();
-						$('#selstatediv').append(data);
-										}
-			});
-}
+			type 				: "POST",
+			url 				: "index.php/solution/getallstates",
+			data				:	{ 'cid' : id , 'state':state},
+			dataType 			: "html",
+			cache				: false,
+			success				: function(data){
+									//console.log(data);
+											//alert(data);
+										$(where).empty();
+										$(where).append(data);
+									}
+		});
+	}
 }
 function number(evt){
 	var charCode = (evt.which) ? evt.which : event.keyCode
