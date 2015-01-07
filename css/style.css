@@ -19,7 +19,8 @@
 	
 	src:url('../font/myriad/MyriadPro-Regular.eot'),
 		url('../font/myraid/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
-		url('../font/myriad/MyriadPro-Regular.otf') format('opentype');
+		url('../font/myriad/MyriadPro-Regular.otf') format('opentype'),
+		url('../font/myriad/MyriadPro-Regular.ttf') format('truetype');
 	
 }
 @font-face {
@@ -33,7 +34,8 @@
 @font-face {
 	font-family: 'MyriadPro-SemiboldCondIt';
 	
-	src:url('../font/myriad/MyriadPro-SemiboldCondIt.otf') format('opentype');
+	src:url('../font/myriad/MyriadPro-SemiboldCondIt.otf') format('opentype'),
+		url('../font/myriad/MyriadPro-SemiboldCondIt.ttf') format('truetype');
 	
 }
 
