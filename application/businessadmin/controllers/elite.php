@@ -189,12 +189,74 @@ class Elite extends CI_Controller {
 			if( $this->session->userdata['youg_admin'] )
 			{
 				$this->load->model('settings');
-				$id = $this->session->userdata['youg_admin']['id'];
-			    $this->data['elite'] = $this->settings->get_company_byid($id);
-				$this->load->view('eliteupdate',$this->data);
-			}
+				$siteid = $this->session->userdata('siteid');
+				$countrylist = $this->settings->get_all_countrys();
+				
+				if(count($countrylist) > 0 )
+					{
+						$this->data['selcon'][''] = '--Select Country--';
+						
+						for($c=0;$c<count($countrylist);$c++)
+						{
+							$this->data['selcon'][($countrylist[$c]['country_id'])] = ucfirst($countrylist[$c]['name']);
+						}
+					}
+					else
+					{
+						$this->data['selcon'][''] = '--Select Country--';
+					}
+						
+						$id = $this->session->userdata['youg_admin']['id'];
+						$this->data['elite'] = $this->settings->get_company_byid($id);
+						$this->load->view('eliteupdate',$this->data);
+					}
 			
 		}
+		public function getallstates()
+	    {
+			if( $this->input->is_ajax_request() && ( $this->input->post('cid') ) )
+			{
+				$selcatid = (($this->input->post('cid')));
+				$state = (($this->input->post('state')));
+				$state = ($state!='') ? $state : 'state' ;
+				if( $selcatid!='' || $selcatid!='0' )
+				{
+					$subcats = $this->settings->get_all_states_by_cid($selcatid);
+					//echo "<pre>";
+					//print_r($subcats);
+					if( count($subcats) > 0 )
+						{
+							$this->data['selstates'][''] = '--Select--';
+							
+							for($c=0;$c<count($subcats);$c++)
+							{
+							
+								$this->data['selstates'][($subcats[$c]['name'])] = ucfirst($subcats[$c]['name']);
+							
+							}
+						}
+						else
+						{
+							$this->data['selstates'][''] = '--Select--';
+						}
+						
+						//echo "<pre>";
+						//print_r($this->data['selstates']);
+						//die();
+						$js="id='".$state."' class='seldrop'";
+						$data='';
+						$data="";
+						echo form_dropdown($state,$this->data['selstates'],'',$js);
+						$data="";
+						echo $data;   
+						return $data;
+				}
+			}
+			else
+			{ 
+				redirect('eliteupdate', 'refresh');
+			}
+	}
 	public function renew($id)
 	{
 		 if( $this->session->userdata['youg_admin'] )
@@ -213,15 +275,15 @@ class Elite extends CI_Controller {
 			   $host = "apitest.authorize.net"; */
 			
 			/*sandbox test mode*/
-			   /* $loginname="9um8JTf3W";
+			   $loginname="9um8JTf3W";
 			   $transactionkey="9q24FTz678hQ9mAD";
-			   $host = "apitest.authorize.net"; */
+			   $host = "apitest.authorize.net";
 			
 			
-			/*live*/
+			/*live
 			$loginname="5h7G7Sbr";
 			$transactionkey="94KU7Sznk72Kj3HK";
-			$host = "api.authorize.net";
+			$host = "api.authorize.net";*/
 			
 			
 			$path = "/xml/v1/request.api";
@@ -253,7 +315,17 @@ class Elite extends CI_Controller {
 				 $expirationDate = $_POST["expirationdatey"].'-'.$_POST["expirationdatem"];
 			}
 					
-			$email = $this->input->post('email');					
+			$email = $this->input->post('email');
+			$firstName=	$this->input->post('fname');				
+			$lastName=	$this->input->post('lname');				
+			$address=	$this->input->post('streetaddress');				
+			$city=	$this->input->post('city');				
+			$state=	$this->input->post('state');				
+			$cid=	$this->input->post('country');
+			$c_code=$this->settings->get_country_by_countryid($cid);
+			$country=$c_code['name'];				
+			
+			
 			$sid=$id;
 			$sub_id=$this->settings->get_subscriptionid($sid);
 		    $subscriptionId=$sub_id['subscr_id'];
@@ -275,6 +347,15 @@ class Elite extends CI_Controller {
 				"<expirationDate>" . $expirationDate . "</expirationDate>".
 				"</creditCard>".
 				"</payment>".
+				"<billTo>".
+				"<firstName>". $firstName . "</firstName>".
+				"<lastName>" . $lastName . "</lastName>".
+				"<address>" . $address . "</address>".
+				"<city>" . $city . "</city>".
+				"<state>" . $state . "</state>".
+				"<zip>" . $zip . "</zip>".
+				"<country>" . $country . "</country>".
+				"</billTo>".
 				"</subscription>".
 				"</ARBUpdateSubscriptionRequest>";
 
@@ -468,7 +549,7 @@ class Elite extends CI_Controller {
 				else
 				{
 				
-					$this->session->set_flashdata('success_msg', $text);
+					$this->session->set_flashdata('success_msg', "There was error during payment. Please try later!");
 					redirect('elite/update', 'refresh');
 					
 				}

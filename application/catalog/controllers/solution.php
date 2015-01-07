@@ -201,10 +201,21 @@ class Solution extends CI_Controller {
 		{
 			
 			$name = $this->input->post('name');
+			
+			//Billing address
 			$streetaddress = $this->input->post('streetaddress');
 			$city = $this->input->post('city');
 			$state = $this->input->post('state');
 			$country = $this->input->post('country');
+			
+			
+			//company address 
+			
+			$streetaddress1 = $this->input->post('streetaddress1');
+			$city1 = $this->input->post('city1');
+			$state1 = $this->input->post('state1');
+			$country1 = $this->input->post('country1');
+			$zip1 = $this->input->post('zip1');
 			
 			//get country name
 			//$country_name =  $this->common->get_country_name($country);
@@ -254,7 +265,7 @@ class Solution extends CI_Controller {
 				if($email1=='new' && $name1=='new')
 				{
 						//Inserting Record
-						if( $this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,'','',$category,'' ))
+						if( $this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'' ))
 						{
 							
 							$companyid = $this->db->insert_id();							
@@ -437,15 +448,15 @@ public function eliteSubscribe($formpost) {
 	   $host = "apitest.authorize.net"; */
 	
 	/*sandbox test mode*/
-	 /* $loginname="9um8JTf3W";
+	  $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
-	   $host = "apitest.authorize.net";*/
+	   $host = "apitest.authorize.net";
 	
 	
-	/*live*/
-	 $loginname="5h7G7Sbr";
-	$transactionkey="94KU7Sznk72Kj3HK";
-	$host = "api.authorize.net";
+	/*live
+	    $loginname="5h7G7Sbr";
+		$transactionkey="94KU7Sznk72Kj3HK";
+		$host = "api.authorize.net";*/
 	
 	
 	$path = "/xml/v1/request.api";
@@ -788,7 +799,7 @@ public function eliteSubscribe($formpost) {
 		}
 		else
 		{
-			$this->session->set_flashdata('error', $text);
+			$this->session->set_flashdata('error',"There was error during payment. Please try later!");
 			//redirect('authorize', 'refresh');
 		}
 			
