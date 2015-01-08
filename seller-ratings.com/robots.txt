@@ -1,0 +1,8 @@
+# robots.txt generated at http://www.mcanerin.com
+User-agent: *
+Disallow: 
+Disallow: http://www.seller-ratings.com/admincp
+Disallow: http://www.seller-ratings.com/application/admincp
+Disallow: http://www.seller-ratings.com/application/businessadmin
+Sitemap: http://www.seller-ratings.com/sitemap.xml
+

@@ -1,0 +1,8 @@
+# robots.txt generated at http://www.mcanerin.com
+User-agent: *
+Disallow: 
+Disallow: http://www.consumer-trusted-magazine.com/admincp
+Disallow: http://www.consumer-trusted-magazine.com/application/admincp
+Disallow: http://www.consumer-trusted-magazine.com/application/businessadmin
+Sitemap: http://www.consumer-trusted-magazine.com/sitemap.xml
+

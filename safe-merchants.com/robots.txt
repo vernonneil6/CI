@@ -1,0 +1,8 @@
+# robots.txt generated at http://www.mcanerin.com
+User-agent: *
+Disallow: 
+Disallow: http://www.safe-merchants.com/admincp
+Disallow: http://www.safe-merchants.com/application/admincp
+Disallow: http://www.safe-merchants.com/application/businessadmin
+Sitemap: http://www.safe-merchants.com/sitemap.xml
+
