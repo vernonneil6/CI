@@ -40,7 +40,7 @@ class Businessdirectory extends CI_Controller {
 		    
 		 }
 		
-		 $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
+		 $website = $this->common->get_site_by_domain_name($site);
 		 
 		 if(count($website)>0)
 		 {
