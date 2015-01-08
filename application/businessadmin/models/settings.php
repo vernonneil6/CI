@@ -44,6 +44,29 @@ Class Settings extends CI_Model
 			return array();
 		}
 	}
+	function update_billingaddress($address,$city,$state,$country,$zip,$id)
+	{
+		
+		$data = array(
+					'streetaddress' => $address,
+					'city'		    => $city,
+					'state'	        => $state,
+					'country'	    => $country,
+					'zip'		    => $zip
+					
+		);
+		$query=$this->db->update('youg_company', $data, array('id' => $id));
+	  
+		if ($query)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}	
+			
+	}
 	function get_all_states_by_cid($country_id)
 	{
 		//Executing Query
