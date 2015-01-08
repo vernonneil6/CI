@@ -11,7 +11,7 @@ Class Pressreleases extends CI_Model
 		
 		if($siteid!='all')
 		{
-			$this->db->where('websiteid', $siteid);
+			//$this->db->where('websiteid', $siteid);
 			$this->db->where('companyid', $id);
 		}
 		else

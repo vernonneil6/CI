@@ -1,4 +1,4 @@
-<?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
+top nodrop nodrag<?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
 <!-- box -->
 
 <div class="box">
@@ -443,6 +443,7 @@ else { ?>
     <!-- table -->
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
+        <th>Site</th>
         <th>Title</th>
 		<th>Subtitle</th>
         <th>Release Date</th>
@@ -465,6 +466,7 @@ else { ?>
       <?php } ?>
 	  <?php for($i=0;$i<count($pressreleases);$i++) { ?>
        <tr>
+        <td><?php echo ucfirst(stripslashes($pressreleases[$i]['websiteid'])); ?></td>
         <td><?php echo ucfirst(stripslashes($pressreleases[$i]['title'])); ?></td>
         <td><?php echo ucfirst(stripslashes($pressreleases[$i]['subtitle'])); ?></td>
         <td><?php echo date("M d Y",strtotime($pressreleases[$i]['insertdate'])); ?></td>
