@@ -261,9 +261,6 @@ class Elite extends CI_Controller {
 	{
 		 if( $this->session->userdata['youg_admin'] )
 	  	{
-			
-				//echo $id;
-			
 			//data.php start
 			//$loginname = $this->common->get_setting_value(22);
 			//$transactionkey = $this->common->get_setting_value(23);
@@ -274,24 +271,25 @@ class Elite extends CI_Controller {
 			   $transactionkey="38UzuaL2c6y5BQ88";
 			   $host = "apitest.authorize.net"; */
 			
-			/*sandbox test mode*/
+			/*sandbox test mode
 			   $loginname="9um8JTf3W";
 			   $transactionkey="9q24FTz678hQ9mAD";
-			   $host = "apitest.authorize.net";
+			   $host = "apitest.authorize.net";*/
 			
 			
-			/*live
+			/*live*/
 			$loginname="5h7G7Sbr";
 			$transactionkey="94KU7Sznk72Kj3HK";
-			$host = "api.authorize.net";*/
-			//echo '<pre>';print_r($_POST);die('checks');
-			$firstName=	$this->input->post('fname');				
-			$lastName=	$this->input->post('lname');				
-			$address=	$this->input->post('streetaddress');				
-			$city=	$this->input->post('city');				
-			$state=	$this->input->post('state');				
-			$zip=	$this->input->post('zip');				
-			$cid=	$this->input->post('country');
+			$host = "api.authorize.net";
+			
+			$firstName=$this->input->post('fname');				
+			$lastName=$this->input->post('lname');
+			$cvv=$this->input->post('cvv');				
+			$address=$this->input->post('streetaddress');				
+			$city=$this->input->post('city');				
+			$state=$this->input->post('state');				
+			$zip=$this->input->post('zip');				
+			$cid=$this->input->post('country');
 			$c_code=$this->settings->get_country_by_countryid($cid);
 			$country=$c_code['name'];	
 			 
@@ -347,6 +345,7 @@ class Elite extends CI_Controller {
 				"<creditCard>".
 				"<cardNumber>" . $cardNumber ."</cardNumber>".
 				"<expirationDate>" . $expirationDate . "</expirationDate>".
+				"<cardCode>". $cvv . "</cardCode>".
 				"</creditCard>".
 				"</payment>".
 				"<billTo>".
@@ -417,13 +416,7 @@ class Elite extends CI_Controller {
 					$paymentmethod = 'authorize';
 					$emailflag='1';
 				
-				    echo $address;
-				    echo  $city;
-				    echo $state;
-				    echo $country;
-				    echo $zip;
-				    echo $id;
-					$Billingaddress=$this->settings->update_billingaddress($address,$city,$state,$country,$zip,$id);
+				   	$Billingaddress=$this->settings->update_billingaddress($address,$city,$state,$country,$zip,$id);
 					$update_subscription=$this->settings->update_subscription($subscriptionId,$companyid,$amt,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag);
 					//echo '<pre>';print_r($update_subscription);	
 					if($update_subscription)
@@ -457,7 +450,7 @@ class Elite extends CI_Controller {
 							//$this->email->initialize($this->cnfemail);
 							$this->email->initialize($config);
 							$this->email->from($site_mail,$site_name);
-							$this->email->to($site_mail,'alankenn@grossmaninteractive.com');	
+							$this->email->to($site_mail);	
 							$this->email->subject('Elitemembership Subscription For User '.ucfirst($cronemail['company']).' Updated With  New credit card Details.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 																	<tr>
@@ -496,7 +489,7 @@ class Elite extends CI_Controller {
 											
 							//For sending mail to user
 							$this->email->from($site_mail,$site_name);
-							$this->email->to($email,'alankenn@grossmaninteractive.com');	
+							$this->email->to($email);	
 							$this->email->subject('Elitemembership Subscription Details has been Updated successfully With New credit card.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 													  <tr>
