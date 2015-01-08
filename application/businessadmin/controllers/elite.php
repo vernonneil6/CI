@@ -261,9 +261,6 @@ class Elite extends CI_Controller {
 	{
 		 if( $this->session->userdata['youg_admin'] )
 	  	{
-			
-				//echo $id;
-			
 			//data.php start
 			//$loginname = $this->common->get_setting_value(22);
 			//$transactionkey = $this->common->get_setting_value(23);
@@ -285,13 +282,14 @@ class Elite extends CI_Controller {
 			$transactionkey="94KU7Sznk72Kj3HK";
 			$host = "api.authorize.net";
 			
-			$firstName=	$this->input->post('fname');				
-			$lastName=	$this->input->post('lname');				
-			$address=	$this->input->post('streetaddress');				
-			$city=	$this->input->post('city');				
-			$state=	$this->input->post('state');				
-			$zip=	$this->input->post('zip');				
-			$cid=	$this->input->post('country');
+			$firstName=$this->input->post('fname');				
+			$lastName=$this->input->post('lname');
+			$cvv=$this->input->post('cvv');				
+			$address=$this->input->post('streetaddress');				
+			$city=$this->input->post('city');				
+			$state=$this->input->post('state');				
+			$zip=$this->input->post('zip');				
+			$cid=$this->input->post('country');
 			$c_code=$this->settings->get_country_by_countryid($cid);
 			$country=$c_code['name'];	
 			 
@@ -347,6 +345,7 @@ class Elite extends CI_Controller {
 				"<creditCard>".
 				"<cardNumber>" . $cardNumber ."</cardNumber>".
 				"<expirationDate>" . $expirationDate . "</expirationDate>".
+				"<cardCode>". $cvv . "</cardCode>".
 				"</creditCard>".
 				"</payment>".
 				"<billTo>".
