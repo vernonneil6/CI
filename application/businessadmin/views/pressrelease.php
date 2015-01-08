@@ -466,7 +466,76 @@ else { ?>
       <?php } ?>
 	  <?php for($i=0;$i<count($pressreleases);$i++) { ?>
        <tr>
-        <td><?php echo ucfirst(stripslashes($pressreleases[$i]['websiteid'])); ?></td>
+        <td>
+			<?php  
+						
+				if($pressreleases[$i]['websiteid']=='1')
+				{
+					echo "Yougotrated.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='2')
+				{
+					echo "Bestratedseller.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='3')
+				{
+					echo "Topsellerratings.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='4')
+				{
+					echo "Business-reports-online.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='5')
+				{
+					echo "Consumer-magazine-ratings.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='6')
+				{
+					echo "Customer-trusted-magazine.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='7')
+				{
+					echo "Customer-feedback-central.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='8')
+				{
+					echo "Merchant-informer.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='9')
+				{
+					echo "Safe-merchants.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='10')
+				{
+					echo "Safe-online-shopper.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='11')
+				{
+					echo "Seller-ratings.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='12')
+				{
+					echo "Trusted-consumer-reports.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='13')
+				{
+					echo "Trusted-online-merchants.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='14')
+				{
+					echo "Verified-online-merchants.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='15')
+				{
+					echo "Verified-trusted-merchants.com";
+				}
+				elseif($pressreleases[$i]['websiteid']=='16')
+				{
+					echo "Your-business-report.com";
+				}
+			
+			?>
+		</td>
         <td><?php echo ucfirst(stripslashes($pressreleases[$i]['title'])); ?></td>
         <td><?php echo ucfirst(stripslashes($pressreleases[$i]['subtitle'])); ?></td>
         <td><?php echo date("M d Y",strtotime($pressreleases[$i]['insertdate'])); ?></td>
