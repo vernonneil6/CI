@@ -1,0 +1,8 @@
+# robots.txt generated at http://www.mcanerin.com
+User-agent: *
+Disallow: 
+Disallow: http://www.customer-feedback-central.com/admincp
+Disallow: http://www.customer-feedback-central.com/application/admincp
+Disallow: http://www.customer-feedback-central.com/application/businessadmin
+Sitemap: http://www.customer-feedback-central.com/sitemap.xml
+
