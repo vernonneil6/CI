@@ -194,9 +194,9 @@ function FBLogin(){
           <span style="color:#FFFFFF;">Welcome</span><a href="<?php echo site_url('user');?>" title="Dashboard"><?php echo $name; ?></a> <a href="<?php echo site_url('user/logout');?>" title="Logout">Logout</a>
           <div style="margin-top:32px;"></div>
           <?php } else {?>
-          <a href="<?php echo site_url('login');?>" title="Login">Login</a>|<a href="<?php echo site_url('go/register');?>" title="Signup">Signup</a><br/>
+          <a href="#<?php/* echo site_url('login');*/?>" title="Login">Login</a>|<a href="#<?php /* echo site_url('go/register'); */?>" title="Signup">Signup</a><br/>
           <?php if($this->uri->segment(1)!='login'){ ?>
-          <a onclick="FBLogin();"><img src="<?php echo site_url(); ?>images/fb_signin_btn.png" alt="Signin with Facebook" title="Signin with Facebook"></a>
+          <a onclick="<?php /* FBLogin(); */?>"><img src="<?php echo site_url(); ?>images/fb_signin_btn.png" alt="Signin with Facebook" title="Signin with Facebook"></a>
           <?php }else{?>
           <div style="margin-top:32px;"></div>
 		  <?php } }?>
@@ -205,16 +205,17 @@ function FBLogin(){
           <?php $this->load->helper('form'); ?>
           <script>$(document).ready(function(){
 								$("#btnsearch").click(function () {
-							    $("#frmsearch").submit();
+							    /* $("#frmsearch").submit();*/
+							   return false;
 						  });
 						 });
 						
 						</script> 
-          <?php echo form_open('complaint/searchresult',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
+          <?php echo form_open('',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
           <?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
           
           <input name="search" placeholder="Search here..." class="search_box" type="text" value="<?php echo $serkeyword;?>" title="Search complaints" id="search">
-          <input name="btnsearch" class="srch_btn" type="submit" value="">
+          <input name="btnsearch" id="btnsearch" class="srch_btn" type="submit" value="">
           <?php echo form_close();?> </div>
       </div>
     </div>

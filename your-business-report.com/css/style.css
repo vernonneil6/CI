@@ -816,3 +816,7 @@ border:#0573BF 5px solid;
     float: left;
     padding: 15px;
 }
+.addthis_div
+{
+	width : auto!important;
+}
