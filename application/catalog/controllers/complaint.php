@@ -1099,6 +1099,9 @@ $this->complaints->set_video($companyid,"video2","http://www.youtube.com/watch?v
 		 
 		if($this->input->post('mysubmit'))
 	    {   
+			$site_name = $this->common->get_setting_value(1);
+			$site_url = $this->common->get_setting_value(2);
+			$site_mail = $this->common->get_setting_value(5);
 			
 			$companyname=$this->input->post('companyname');
 			$companyid=$this->input->post('companyid');
@@ -1124,7 +1127,7 @@ $this->complaints->set_video($companyid,"video2","http://www.youtube.com/watch?v
 	         $disputecaseid=$lastid; //get lastinsert id here for caseID 
 	         $this->load->library('email');
               //send email to user 
-            					$this->email->from('noreply@Yougotrated.com','Yougotrated');
+            					$this->email->from($site_mail,$site_name);
 								$this->email->to($useremail);
 								$this->email->subject('Your Dispute has been successfully Filed.');
 								$this->email->message('<table cellpadding="0" cellspacing="0" width="100%" border="0">
@@ -1141,7 +1144,7 @@ $this->complaints->set_video($companyid,"video2","http://www.youtube.com/watch?v
     <td style="padding-left:20px;"> You can login into your User account to check the status of your dispute(CASEID-#'.$disputecaseid.') and communicate with customer support at. </td>
   </tr>
   <tr>
-    <td style="padding-left:20px;">Following link for communication <a href="http://www.yougotrated.writerbin.com/user/disputes">http://www.yougotrated.writerbin.com/user/disputes</a></td>
+    <td style="padding-left:20px;">Following link for communication <a href="'.$site_url.'user/disputes">'.$site_url.'user/disputes</a></td>
   </tr>
     <tr>
     <td><br/>
@@ -1158,7 +1161,7 @@ $this->complaints->set_video($companyid,"video2","http://www.youtube.com/watch?v
 			  $this->email->send(); // send email to admin
 	          $this->load->library('email');
               //send email to Merchant 
-            					$this->email->from('noreply@Yougotrated.com','Yougotrated');
+            					$this->email->from($site_mail,$site_name);
 								$this->email->to($companyemail);
 								$this->email->subject('Request for Information About Buyer Claim: Case #'.$disputecaseid.'');
 								$this->email->message('<table cellspacing="20" width="100%">
@@ -1240,7 +1243,7 @@ We are working to resolve this matter as quickly and fairly as possible, and you
 
 Thank you for your patience and cooperation.<br>
 
-Follow this LINK (<a href="http://www.yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputecaseid.'">http://www.yougotrated.writerbin.com/businessadmin/businessdispute/resolution/'.$disputecaseid.'</a>) to visit the Resolution Center.<br>
+Follow this LINK (<a href="'.$site_url.'businessadmin/businessdispute/resolution/'.$disputecaseid.'">'.$site_url.'businessadmin/businessdispute/resolution/'.$disputecaseid.'</a>) to visit the Resolution Center.<br>
 </td></tr><br>
 <tr>
 <td>
