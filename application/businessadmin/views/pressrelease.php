@@ -443,6 +443,7 @@ else { ?>
     <!-- table -->
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
+        <th>Site Name</th>
         <th>Title</th>
 		<th>Subtitle</th>
         <th>Release Date</th>
@@ -465,6 +466,7 @@ else { ?>
       <?php } ?>
 	  <?php for($i=0;$i<count($pressreleases);$i++) { ?>
        <tr>
+        <td><?php $url2 = $this->pressreleases->get_url_bysingleid($pressreleases[$i]['websiteid']); echo $url2['url'];?></td>
         <td><?php echo ucfirst(stripslashes($pressreleases[$i]['title'])); ?></td>
         <td><?php echo ucfirst(stripslashes($pressreleases[$i]['subtitle'])); ?></td>
         <td><?php echo date("M d Y",strtotime($pressreleases[$i]['insertdate'])); ?></td>

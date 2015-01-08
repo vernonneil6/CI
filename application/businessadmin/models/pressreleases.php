@@ -20,7 +20,8 @@ Class Pressreleases extends CI_Model
 		}*/
 		//Executing Query
 		
-		$query = $this->db->get_where('pressrelease', array('companyid', $id));
+		$this->db->where('companyid', $id);
+		$query = $this->db->get('pressrelease');
 		
 		if ($query->num_rows() > 0)
 		{
@@ -234,6 +235,22 @@ Class Pressreleases extends CI_Model
 
  	}
 	
+	function get_url_bysingleid($id)
+ 	{
+		$option = array('id' => $id);
+		$query = $this->db->get_where('url', $option);
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+
+ 	} 
+ 	
 	function get_company_byid($id)
  	{
 		$query = $this->db->get_where('company', array('id' => $id));
