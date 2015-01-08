@@ -9,7 +9,7 @@ Class Pressreleases extends CI_Model
 		else if( $limit != '' && $offset != 0)
 		{	$this->db->limit($limit, $offset);	}
 		
-		if($siteid!='all')
+		/*if($siteid!='all')
 		{
 			$this->db->where('websiteid', $siteid);
 			$this->db->where('companyid', $id);
@@ -17,9 +17,10 @@ Class Pressreleases extends CI_Model
 		else
 		{
 			$this->db->where('companyid', $id);
-		}
+		}*/
 		//Executing Query
-		$query = $this->db->get('pressrelease');
+		
+		$query = $this->db->get_where('pressrelease', array('companyid', $id));
 		
 		if ($query->num_rows() > 0)
 		{
