@@ -73,36 +73,14 @@ submitHandler : function(form) {
             <input type="hidden" class="reg_txt_box-lg" placeholder="cname" name="cname" id="cname" maxlength="50" value="<?php echo $elite[0]['contactname'];?>" />
             <input type="hidden" class="reg_txt_box-lg" placeholder="cphone" name="cphone" id="cphone" maxlength="50" value="<?php echo $elite[0]['contactphonenumber'];?>" />
             <input type="hidden" class="reg_txt_box-lg" placeholder="cemail" name="cemail" id="cemail" maxlength="50" value="<?php echo $elite[0]['contactemail'];?>" />
-        <div class="clearfix" style="width: 71%;padding-left: 10px;">
-				<div class="lab">
-					 <p style="width: 272px;">Enter Your New Credit Card Information</p>
-					<label for="title">Credit Card<span class="errorsign">*</span></label>
-				</div>
-				  <div class="con">
-					  <?php echo form_input(array( 'name'=>'ccnumber','id'=>'ccnumber','class'=>'input','type'=>'text','placeholder'=>'Enter Your credit card number','onkeypress'=>'return number(event)','onblur'=>'return checkcard();','required'=>'required')); ?>
-				  </div>
-				<div class="con" style='margin-top:10px'> 
-			        <?php echo form_input(array( 'name'=>'cvv','id'=>'cvv','class'=>'input','type'=>'text','placeholder'=>'Enter Your CVV number')); ?>
-			   </div>
-			   <div class="con" style='margin-top:10px'>
-					   <?php echo form_input(array( 'name'=>'fname','id'=>'fname','class'=>'input','type'=>'text','placeholder'=>'Enter Your first name')); ?>
-					</div>
-				   <div id="cc-error"><?php echo $this->session->flashdata('success_msg'); ?></div>
-				   
-				<div class="con" style='margin-top:10px'>
-					<?php echo form_input(array( 'name'=>'lname','id'=>'lname','class'=>'input','type'=>'text','placeholder'=>'Enter Your last name')); ?>
-				</div>
-		</div>
-		
-		
-		<div class="clearfix" style="width: 71%;padding-left: 10px;">
+       
+        <div class="clearfix" style="width: 71%;padding-left: 10px;margin-top:15px">
 				<div class="lab">
 					 <p style="width: 272px;">Enter Your Billing Address Information</p>
 					
 				</div>	    
-				
-								
-				<div class="con" style='margin-top:10px'>
+							
+				<div class="con">
 				   <?php echo form_input(array( 'name'=>'streetaddress','id'=>'streetaddress','class'=>'input','type'=>'text','placeholder'=>'Enter Your streetaddress')); ?>
                 </div>
                
@@ -126,6 +104,28 @@ submitHandler : function(form) {
 			   	 	    
           
         </div>
+        <div class="clearfix" style="width: 71%;padding-left: 10px;">
+				<div class="lab">
+					 <p style="width: 272px;">Enter Your New Credit Card Information</p>
+					<label for="title">Credit Card<span class="errorsign">*</span></label>
+				</div>
+				  <div class="con">
+					  <?php echo form_input(array( 'name'=>'ccnumber','id'=>'ccnumber','class'=>'input','type'=>'text','placeholder'=>'Enter Your credit card number','onkeypress'=>'return number(event)','onblur'=>'return checkcard();','required'=>'required')); ?>
+				  </div>
+				<div class="con" style='margin-top:10px'> 
+			        <?php echo form_input(array( 'name'=>'cvv','id'=>'cvv','class'=>'input','type'=>'text','placeholder'=>'Enter Your CVV number')); ?>
+			   </div>
+			   <div class="con" style='margin-top:10px'>
+					   <?php echo form_input(array( 'name'=>'fname','id'=>'fname','class'=>'input','type'=>'text','placeholder'=>'Enter Your first name')); ?>
+					</div>
+				   <div id="cc-error"><?php echo $this->session->flashdata('success_msg'); ?></div>
+				   
+				<div class="con" style='margin-top:10px'>
+					<?php echo form_input(array( 'name'=>'lname','id'=>'lname','class'=>'input','type'=>'text','placeholder'=>'Enter Your last name')); ?>
+				</div>
+		</div>
+		
+		
         <div class="clearfix" style="width: 90%;padding-left: 10px;">
 			  <div class="lab">
 				<label for="videourl">Expiration date<span class="errorsign">*</span></label>
