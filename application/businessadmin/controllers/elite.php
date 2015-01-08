@@ -274,17 +274,17 @@ class Elite extends CI_Controller {
 			   $transactionkey="38UzuaL2c6y5BQ88";
 			   $host = "apitest.authorize.net"; */
 			
-			/*sandbox test mode*/
+			/*sandbox test mode
 			   $loginname="9um8JTf3W";
 			   $transactionkey="9q24FTz678hQ9mAD";
-			   $host = "apitest.authorize.net";
+			   $host = "apitest.authorize.net";*/
 			
 			
-			/*live
+			/*live*/
 			$loginname="5h7G7Sbr";
 			$transactionkey="94KU7Sznk72Kj3HK";
-			$host = "api.authorize.net";*/
-			//echo '<pre>';print_r($_POST);die('checks');
+			$host = "api.authorize.net";
+			
 			$firstName=	$this->input->post('fname');				
 			$lastName=	$this->input->post('lname');				
 			$address=	$this->input->post('streetaddress');				
@@ -417,13 +417,7 @@ class Elite extends CI_Controller {
 					$paymentmethod = 'authorize';
 					$emailflag='1';
 				
-				    echo $address;
-				    echo  $city;
-				    echo $state;
-				    echo $country;
-				    echo $zip;
-				    echo $id;
-					$Billingaddress=$this->settings->update_billingaddress($address,$city,$state,$country,$zip,$id);
+				   	$Billingaddress=$this->settings->update_billingaddress($address,$city,$state,$country,$zip,$id);
 					$update_subscription=$this->settings->update_subscription($subscriptionId,$companyid,$amt,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag);
 					//echo '<pre>';print_r($update_subscription);	
 					if($update_subscription)
@@ -457,7 +451,7 @@ class Elite extends CI_Controller {
 							//$this->email->initialize($this->cnfemail);
 							$this->email->initialize($config);
 							$this->email->from($site_mail,$site_name);
-							$this->email->to($site_mail,'alankenn@grossmaninteractive.com');	
+							$this->email->to($site_mail);	
 							$this->email->subject('Elitemembership Subscription For User '.ucfirst($cronemail['company']).' Updated With  New credit card Details.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 																	<tr>
@@ -496,7 +490,7 @@ class Elite extends CI_Controller {
 											
 							//For sending mail to user
 							$this->email->from($site_mail,$site_name);
-							$this->email->to($email,'alankenn@grossmaninteractive.com');	
+							$this->email->to($email);	
 							$this->email->subject('Elitemembership Subscription Details has been Updated successfully With New credit card.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 													  <tr>

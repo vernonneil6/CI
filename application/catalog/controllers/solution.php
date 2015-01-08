@@ -448,16 +448,16 @@ public function eliteSubscribe($formpost) {
 	   $transactionkey="38UzuaL2c6y5BQ88";
 	   $host = "apitest.authorize.net"; */
 	
-	/*sandbox test mode*/
+	/*sandbox test mode
 	  $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
-	   $host = "apitest.authorize.net";
+	   $host = "apitest.authorize.net";*/
 	
 	
-	/*live
+	/*live*/
 	    $loginname="5h7G7Sbr";
 		$transactionkey="94KU7Sznk72Kj3HK";
-		$host = "api.authorize.net";*/
+		$host = "api.authorize.net";
 	
 	
 	$path = "/xml/v1/request.api";
@@ -676,7 +676,7 @@ public function eliteSubscribe($formpost) {
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
 					$this->email->from($email,$company[0]['company']);
-					$this->email->to($site_mail,'alankenn@grossmaninteractive.com');	
+					$this->email->to($site_mail);	
 					$this->email->subject('Payment Received for Business Claim.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
@@ -711,7 +711,7 @@ public function eliteSubscribe($formpost) {
 									
 					//For sending mail to user
 					$this->email->from($site_mail,$site_name);
-					$this->email->to($email,'alankenn@grossmaninteractive.com');	
+					$this->email->to($email);	
 					$this->email->subject('YouGotRated: Your business has been claimed successfully.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 											  <tr>
@@ -850,8 +850,8 @@ public function cron()
 				
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
-					$this->email->from('noreply@yougotrated.com');
-					$this->email->to($alertemailid,'alankenn@grossmaninteractive.com');	
+					$this->email->from($site_mail,$site_name);
+					$this->email->to($alertemailid);	
 					$this->email->subject('Your EliteMembership Subscription has been Expired.Please Renew');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
@@ -1007,8 +1007,8 @@ public function adminreport()
 				
 				   $this->email->initialize($config);     
                     $todaysdate=date('Y-m-d');
-					$this->email->from('noreply@yougotrated.com');
-					$this->email->to($site_email,'alankenn@grossmaninteractive.com');	
+					$this->email->from($site_mail,$site_name);
+					$this->email->to($site_email);	
 					$this->email->subject('Todays Report On Success and Failed Payments On Date  '.$todaysdate.'');
 					$this->email->message('<table cellpadding="0" cellspacing="10" width="100%" border="0">
 															<tr>
@@ -1248,7 +1248,7 @@ public function renew_update($id)
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
 					$this->email->from($cronemail['payer_id'],$cronemail['company']);
-					$this->email->to($site_mail,'alankenn@grossmaninteractive.com');	
+					$this->email->to($site_mail);	
 					$this->email->subject('Payment Received for Elitemembership Renewal.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
@@ -1283,7 +1283,7 @@ public function renew_update($id)
 									
 					//For sending mail to user
 					$this->email->from($site_mail,$site_name);
-					$this->email->to($email,'alankenn@grossmaninteractive.com');	
+					$this->email->to($email);	
 					$this->email->subject('Elitemembership has been Renewed successfully.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 											  <tr>
