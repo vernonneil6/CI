@@ -274,16 +274,16 @@ class Elite extends CI_Controller {
 			   $transactionkey="38UzuaL2c6y5BQ88";
 			   $host = "apitest.authorize.net"; */
 			
-			/*sandbox test mode*/
+			/*sandbox test mode
 			   $loginname="9um8JTf3W";
 			   $transactionkey="9q24FTz678hQ9mAD";
-			   $host = "apitest.authorize.net";
+			   $host = "apitest.authorize.net";*/
 			
 			
-			/*live
+			/*live*/
 			$loginname="5h7G7Sbr";
 			$transactionkey="94KU7Sznk72Kj3HK";
-			$host = "api.authorize.net";*/
+			$host = "api.authorize.net";
 			
 			$firstName=	$this->input->post('fname');				
 			$lastName=	$this->input->post('lname');				
@@ -294,7 +294,7 @@ class Elite extends CI_Controller {
 			$cid=	$this->input->post('country');
 			$c_code=$this->settings->get_country_by_countryid($cid);
 			$country=$c_code['name'];	
-			$Billingaddress=$this->settings->update_billingaddress($address,$city,$state,$country,$zip,$id); 
+			 
 						
 			$path = "/xml/v1/request.api";
 			
@@ -302,7 +302,7 @@ class Elite extends CI_Controller {
 			
 			include('authorize/authnetfunction.php'); 
 			  
-			$subscriptionprice = $this->common->get_setting_value(19);
+			$subscriptionprice = $this->settings->get_setting_value(19);
 				
 			//define variables to send
 				
@@ -417,7 +417,7 @@ class Elite extends CI_Controller {
 					$paymentmethod = 'authorize';
 					$emailflag='1';
 				
-					
+				   	$Billingaddress=$this->settings->update_billingaddress($address,$city,$state,$country,$zip,$id);
 					$update_subscription=$this->settings->update_subscription($subscriptionId,$companyid,$amt,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag);
 					//echo '<pre>';print_r($update_subscription);	
 					if($update_subscription)
@@ -451,7 +451,7 @@ class Elite extends CI_Controller {
 							//$this->email->initialize($this->cnfemail);
 							$this->email->initialize($config);
 							$this->email->from($site_mail,$site_name);
-							$this->email->to($site_mail,'alankenn@grossmaninteractive.com');	
+							$this->email->to($site_mail);	
 							$this->email->subject('Elitemembership Subscription For User '.ucfirst($cronemail['company']).' Updated With  New credit card Details.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 																	<tr>
@@ -490,7 +490,7 @@ class Elite extends CI_Controller {
 											
 							//For sending mail to user
 							$this->email->from($site_mail,$site_name);
-							$this->email->to($email,'alankenn@grossmaninteractive.com');	
+							$this->email->to($email);	
 							$this->email->subject('Elitemembership Subscription Details has been Updated successfully With New credit card.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 													  <tr>
@@ -551,7 +551,7 @@ class Elite extends CI_Controller {
 				else
 				{
 				
-					$this->session->set_flashdata('success_msg', "There was error during payment. Please try later!");
+					$this->session->set_flashdata('success_msg',$text);
 					redirect('elite/update', 'refresh');
 					
 				}
