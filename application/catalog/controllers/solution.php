@@ -217,6 +217,7 @@ class Solution extends CI_Controller {
 			$country1 = $this->input->post('country1');
 			$zip1 = $this->input->post('zip1');
 			
+			//echo '<pre>';print_r($_POST);die('update_check');
 			//get country name
 			//$country_name =  $this->common->get_country_name($country);
 			//$country = $country_name[0]['name'];
