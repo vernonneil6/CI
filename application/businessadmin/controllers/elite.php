@@ -284,7 +284,7 @@ class Elite extends CI_Controller {
 			$loginname="5h7G7Sbr";
 			$transactionkey="94KU7Sznk72Kj3HK";
 			$host = "api.authorize.net";*/
-			
+			//echo '<pre>';print_r($_POST);die('checks');
 			$firstName=	$this->input->post('fname');				
 			$lastName=	$this->input->post('lname');				
 			$address=	$this->input->post('streetaddress');				
@@ -294,7 +294,7 @@ class Elite extends CI_Controller {
 			$cid=	$this->input->post('country');
 			$c_code=$this->settings->get_country_by_countryid($cid);
 			$country=$c_code['name'];	
-			$Billingaddress=$this->settings->update_billingaddress($address,$city,$state,$country,$zip,$id); 
+			 
 						
 			$path = "/xml/v1/request.api";
 			
@@ -302,7 +302,7 @@ class Elite extends CI_Controller {
 			
 			include('authorize/authnetfunction.php'); 
 			  
-			$subscriptionprice = $this->common->get_setting_value(19);
+			$subscriptionprice = $this->settings->get_setting_value(19);
 				
 			//define variables to send
 				
@@ -417,7 +417,13 @@ class Elite extends CI_Controller {
 					$paymentmethod = 'authorize';
 					$emailflag='1';
 				
-					
+				    echo $address;
+				    echo  $city;
+				    echo $state;
+				    echo $country;
+				    echo $zip;
+				    echo $id;
+					$Billingaddress=$this->settings->update_billingaddress($address,$city,$state,$country,$zip,$id);
 					$update_subscription=$this->settings->update_subscription($subscriptionId,$companyid,$amt,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag);
 					//echo '<pre>';print_r($update_subscription);	
 					if($update_subscription)
@@ -551,7 +557,7 @@ class Elite extends CI_Controller {
 				else
 				{
 				
-					$this->session->set_flashdata('success_msg', "There was error during payment. Please try later!");
+					$this->session->set_flashdata('success_msg',$text);
 					redirect('elite/update', 'refresh');
 					
 				}
