@@ -1,0 +1,14 @@
+.mailbutton{
+background: url("../images/type_btn.png") repeat-x scroll 0 0 transparent;
+    border: 1px solid #CCCCCC;
+    color: #373737;
+    float: left;
+    font-family: aller;
+    font-size: 18px;
+    height: auto;
+    list-style: none outside none;
+    text-shadow: 0 1px 1px #FFFFFF;
+    width: auto;
+	padding:7px 25px;cursor: pointer;
+	text-decoration:none;
+}
