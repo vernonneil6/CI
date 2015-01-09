@@ -43,7 +43,8 @@
             <p><a href="solution/claimbusiness" title="CLICK HERE TO BECOME VERIFIED">CLICK HERE TO BECOME VERIFIED</a></p>
           </div>
         </div>-->
-	<div class="compny_name">
+       
+		<div class="compny_name">
           <h1><?php echo strtoupper($company[0]['company']);?></h1>
           <div class="vry_rating vryrating">
             <?php for($r=0;$r<$avgstar;$r++){?>
@@ -54,10 +55,12 @@
             <?php } ?>
           </div>
         </div>
+        <div>
+			<label class = "become_verfied">Become a <span class = "font_color_1">Verified Merchant</span></label>
+		</div>
         <?php }else { ?>
       
 	<div class="compny_name">
-		  <h3>Become a Verified Merchant</h3>
           <h1><?php echo strtoupper($company[0]['company']);?></h1>
 	  	<div class="vrytitle">YouGotRated VERIFIED MERCHANT</div>
           <div class="vry_rating vryrating">
@@ -83,7 +86,7 @@
         <div class="contct_dtl">
           <ul>
             <li><a><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></a></li>
-            <li><a><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['country'].',     '.$company[0]['zip'])); ?></a></li>
+            <li><a><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',     '.$company[0]['country'])); ?></a></li>
             <li><a class="colors" href="tel:<?php echo $company[0]['phone'];?>" title="<?php echo $company[0]['phone'];?>"><?php echo $company[0]['phone']; ?></a></li>
             <?php if(strlen($company[0]['fax']>8)){?>
             <li><a><?php echo $company[0]['fax'];?></a></li>
@@ -182,7 +185,7 @@
             <!--<label id="directions">GET DIRECTIONS</label>
             <i class="line"></i>--> 
             <?php 
-			  $mapaddress = stripslashes($company[0]['streetaddress'].','.$company[0]['city'].','.$company[0]['state'].','.$company[0]['zip'].','.$company[0]['country']);
+			  $mapaddress = stripslashes($company[0]['streetaddress'].','.$company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip']);
 			  $string = str_replace(' ', '-', $mapaddress);
 			  $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
 			?>
@@ -408,7 +411,7 @@ $('#mapshow').removeClass('mapshow');
               <div class="review_rgt reviewstab">
 
  <div class="user_name">
-                  <?php if($reviews[$i]['type']=='csv') { ?>
+                  <?php if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') { ?>
                   <a><?php echo $reviews[$i]['reviewby'];?><span>   -  Orlando, FL</span></a>
 			<div class="datereview"><?php echo date("d.m.Y",strtotime($reviews[$i]['reviewdate']));?></div>
                   <?php } else {?>
