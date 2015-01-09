@@ -9,14 +9,14 @@
       
 <div class="menu">
   <ul>
-    <li>
+     <?php /*<li>
       <?php if($this->uri->segment(1)=='' || $this->uri->segment(1)=='welcome'){ ?>
       <a href="<?php echo site_url('');?>" title="<?php echo ucfirst($menu1);?>" style="color:#000000;"><?php echo ucfirst($menu1);?></a>
       <?php } else { ?>
       <a href="<?php echo site_url('');?>" title="<?php echo ucfirst($menu1);?>"><?php echo ucfirst($menu1);?></a>
       <?php } ?>
     </li>
-    <li>
+   <li>
       <?php if($this->uri->segment(1)=='complaint'){ ?>
       <a href="<?php echo site_url('complaint');?>" style="color:#000000;" title="<?php echo ucfirst($menu2);?>"><?php echo ucfirst($menu2);?></a>
       <?php } else{ ?>
@@ -36,15 +36,15 @@
       <?php } else{ ?>
       <a href="<?php echo site_url('businessdirectory');?>" title="<?php echo ucfirst($menu4);?>"><?php echo ucfirst($menu4);?></a>
       <?php } ?>
-    </li>
+    </li>*/ ?>
     <li>
       <?php if($this->uri->segment(1)=='pressrelease'){ ?>
-      <a href="<?php echo site_url('pressrelease');?>" style="color:#000000;" title="<?php echo ucfirst($menu5);?>"><?php echo ucfirst($menu5);?></a>
+      <a href="<?php echo site_url('pressrelease');?>"  title="<?php echo ucfirst($menu5);?>"><?php echo ucfirst($menu5);?></a>
       <?php } else{ ?>
       <a href="<?php echo site_url('pressrelease');?>" title="<?php echo ucfirst($menu5);?>"><?php echo ucfirst($menu5);?></a>
       <?php } ?>
     </li>
-    <li>
+     <?php /*<li>
       <?php if($this->uri->segment(1)=='solution'){ ?>
       <a href="<?php echo site_url('solution');?>" style="color:#000000;" title="<?php echo ucfirst($menu6);?>"><?php echo ucfirst($menu6);?></a>
       <?php } else{ ?>
@@ -57,6 +57,6 @@
       <?php } else{ ?>
       <a href="<?php echo site_url('coupon');?>" title="<?php echo ucfirst($menu7);?>"><?php echo ucfirst($menu7);?></a>
       <?php } ?>
-    </li>
+    </li>*/ ?>
   </ul>
 </div>

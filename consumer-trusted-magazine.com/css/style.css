@@ -797,3 +797,29 @@ border:#BE7E15 5px solid;
     /*padding-top: 1px;*/
     text-align: center;
 }
+.footer_social1
+{
+	padding : 0 0 0 15px;
+}
+.footer_social2
+{
+	padding: 0 0 0 37px;
+}
+.main_footer_block
+{
+	float : none!important;
+}
+.footer_block
+{
+	float : right!important;
+}
+.footer_text
+{
+	color: white;
+    float: left;
+    padding: 15px;
+}
+.addthis_div
+{
+	width : auto!important;
+}

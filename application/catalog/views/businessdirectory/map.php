@@ -28,6 +28,8 @@
 		?>
 	      function init() {
 				
+				var myLatlng = new google.maps.LatLng(<?php echo $lat?>,<?php echo $long;?>);
+				
                 // Basic options for a simple Google Map
                 // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
                 var mapOptions = {
@@ -48,6 +50,11 @@
 
                 // Create the Google Map using out element and options defined above
                 var map = new google.maps.Map(mapElement, mapOptions);
+                
+                var marker = new google.maps.Marker({
+					  position: myLatlng,
+					  map: map
+				});
             }
         </script>
 <div id="map" style="width:800px;height:650px;"></div>
