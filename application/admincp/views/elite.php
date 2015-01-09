@@ -327,7 +327,7 @@ function submitfrm()
         <th>Payment Amount</th>
         <th>Status</th>
         <th width="17%">Payment date</th>
-        <th>Discount Code</th>
+        <!--<th>Discount Code</th>-->
         <th>Payment details</th>
         <th>Business admin</th>
       </tr>
@@ -341,7 +341,7 @@ function submitfrm()
         <td><?php echo stripslashes($elitemembers[$i]['payment_currency']).' '.$elitemembers[$i]['payment_amount'];?></td>
         <td><?php echo stripslashes($elitemembers[$i]['status']);?></td>
         <td><?php echo date('M d Y',strtotime($elitemembers[$i]['payment_date']));?></td>
-        <td><?php echo stripslashes($elitemembers[$i]['discountcode']);?></td>
+        <!--<td><php echo stripslashes($elitemembers[$i]['discountcode']);?></td>-->
        <td width="100px"><a href="<?php echo site_url('elite/payview/'.$elitemembers[$i]['company_id']); ?>" title="View Detail of <?php echo stripslashes($elitemembers[$i]['company_id']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
         <td>
         <form action="<?php echo $site_url;?>businessadmin/adminlogin/index/" method="post" id="formBox<?php echo $i;?>" class="formBox" target="_blank" style="padding-bottom:0px;">
