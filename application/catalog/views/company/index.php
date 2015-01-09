@@ -57,6 +57,7 @@
         <?php }else { ?>
       
 	<div class="compny_name">
+		  <h3>Become a Verified Merchant</h3>
           <h1><?php echo strtoupper($company[0]['company']);?></h1>
 	  	<div class="vrytitle">YouGotRated VERIFIED MERCHANT</div>
           <div class="vry_rating vryrating">
@@ -141,27 +142,27 @@
 			  {?>
 	     <?php if($companysems[$cs]['type']=='t'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
-            <li class="twitter"><a href="<?php echo $companysems[$cs]['url'];?>" title="twitter"></a></li>
+            <li class="twitter"><a href="<?php echo $companysems[$cs]['url'];?>" title="twitter" target = "_blank"></a></li>
             <?php }} ?>
              <?php if($companysems[$cs]['type']=='f'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
-            <li class="facebook"><a href="<?php echo $companysems[$cs]['url'];?>" title="facebook"></a></li>
+            <li class="facebook"><a href="<?php echo $companysems[$cs]['url'];?>" title="facebook" target = "_blank"></a></li>
             <?php }} ?>
             <?php if($companysems[$cs]['type']=='g'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
-            <li class="google"><a href="<?php echo $companysems[$cs]['url'];?>" title="google"></a></li>
+            <li class="google"><a href="<?php echo $companysems[$cs]['url'];?>" title="google" target = "_blank"></a></li>
             <?php }} ?>
    	     <?php if($companysems[$cs]['type']=='p'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
-            <li class="pintrest"><a href="<?php echo $companysems[$cs]['url'];?>" title="pintrest"></a></li>
+            <li class="pintrest"><a href="<?php echo $companysems[$cs]['url'];?>" title="pintrest" target = "_blank"></a></li>
             <?php }} ?>
             <?php if($companysems[$cs]['type']=='a'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
-            <li class="amazon"><a href="<?php echo $companysems[$cs]['url'];?>" title="amazon"></a></li>
+            <li class="amazon"><a href="<?php echo $companysems[$cs]['url'];?>" title="amazon" target = "_blank"></a></li>
             <?php }} ?>
             <?php if($companysems[$cs]['type']=='e'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
-            <li class="ebay"><a href="<?php echo $companysems[$cs]['url'];?>" title="ebay"></a></li>
+            <li class="ebay"><a href="<?php echo $companysems[$cs]['url'];?>" title="ebay" target = "_blank"></a></li>
             <?php }} ?>
          <!-- <?php if($companysems[$cs]['type']=='l'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
@@ -181,7 +182,7 @@
             <!--<label id="directions">GET DIRECTIONS</label>
             <i class="line"></i>--> 
             <?php 
-			  $mapaddress = stripslashes($company[0]['streetaddress'].','.$company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip']);
+			  $mapaddress = stripslashes($company[0]['streetaddress'].','.$company[0]['city'].','.$company[0]['state'].','.$company[0]['zip'].','.$company[0]['country']);
 			  $string = str_replace(' ', '-', $mapaddress);
 			  $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
 			?>
@@ -193,13 +194,13 @@
 			  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 			 }
 			</script>
-			<label class = "view_direction_map" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">GET DIRECTIONS</label>       		         
+			<label class = "view_direction_map" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">Get Directions</label>       		         
 		</div>
 	   </div>
 
 	<div class="get_dirct">
 	<div class="getdir_title">
-            <label class = "view_direction_map">MENU</label>
+            <label class = "view_direction_map">Menu/Catalog</label>
 	</div></div>
 
         <div class="review_wrp">
@@ -212,7 +213,7 @@
               <li><span>PRICE RANGE </span><my  class="fontcolors";> <?php echo $company[0]['price_range'];?></my></li>
               <li><span>ACCEPTS CREDIT CARDS </span><my  class="fontcolors";> <?php echo $company[0]['accept_credit_cards'];?></my></li>
               <li><span>ACCEPTS PAYPAL </span><my  class="fontcolors";> <?php echo $company[0]['accept_paypal'];?></my></li>
-		<li><span>CATEGORY</span><a>
+			  <li><span>CATEGORY</span><a>
         
           <?php $ex = explode(',',$company[0]['categoryid']); ?>
           <?php for($a=0;$a<count($ex);$a++)
@@ -239,7 +240,7 @@
         </div>
 
 
-       <!-- <php if(count($elitemem_status)!=0){?>
+       <?php if(count($elitemem_status)!=0){?>
         <div class="hour_operatn">
           <div class="hr_title">
             <h2>Hours</h2>
@@ -258,19 +259,19 @@
             </thead>
             <tbody>
               <tr>
-                <php for($t=0;$t<count($company_timings); $t++) { ?>
-                <td><php echo date("h:i A",strtotime($company_timings[$t]['start']));?></td>
-                <php } ?>
+                <?php for($t=0;$t<count($company_timings); $t++) { ?>
+                <td><?php echo date("h:i A",strtotime($company_timings[$t]['start']));?></td>
+                <?php } ?>
               </tr>
               <tr>
-                <php for($t=0; $t<count($company_timings); $t++) { ?>
-                <td><php echo date("h:i A",strtotime($company_timings[$t]['end']));?></td>
-                <php } ?>
+                <?php for($t=0; $t<count($company_timings); $t++) { ?>
+                <td><?php echo date("h:i A",strtotime($company_timings[$t]['end']));?></td>
+                <?php } ?>
               </tr>
             </tbody>
           </table>
         </div>
-        <php } ?>-->
+        <?php } ?>
         
         </ul>
 
