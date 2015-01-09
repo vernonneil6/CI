@@ -103,7 +103,7 @@
             <?php if(strlen($company[0]['fax']>8)){?>
             <li><a><?php echo $company[0]['fax'];?></a></li>
             <?php } ?>
-	<li><a href="mailto:<?php echo strtoupper($company[0]['email']);?>" title="Email us" class="colors"><?php echo strtoupper($company[0]['email']);?></a></li>
+			<li><a href="mailto:<?php echo strtoupper($company[0]['email']);?>" title="Email us" class="colors"><?php echo strtoupper($company[0]['email']);?></a></li>
             <li>
               <?php if (strpos($company[0]['siteurl'],'http://') !== false)
 				 {
@@ -119,35 +119,7 @@
               <?php
 				 }?>
             </li>
-            
-            
-            
-          <?php if( count($elitemem_status)>0 )  {	?>
-         
-          <?php if( count($companypdfs) > 0 ) { ?>
-          <li> <span>Company Menu</span>
-		  <?php for($x=0; $x<count($companypdfs); $x++) { ?>
-          <div> 
-            <script>
-			function PopupCenter(pageURL, title,w,h)
-			 {
-			  var left = (screen.width/2)-(w/2);
-		  	  var top = (screen.height/2)-(h/2);
-			  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-}		</script>
-            <?php $file = $this->common->get_setting_value(2).$this->config->item('pdf_main_upload_path').$companypdfs[$x]['pdf'];?>
-            <?php $title = ucfirst(stripslashes($companypdfs[$x]['title'])); ?>
-            <a style="cursor: pointer;" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" target="_blank" title="View document">
-            <div><?php echo $companypdfs[$x]['title'];?>&nbsp; <img src="<?php echo base_url();?>/images/pdf.png" title="pdf" alt="pdf" /> </div>
-            </a> </div>
-          <?php } ?></li>
-          <?php } 
-		  ?>
-          
-          <?php
-		  };?>
-        
-         
+
           </ul>
         </div>
         <div class="social_blck">
@@ -212,12 +184,38 @@
 			<label class = "view_direction_map" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">Get Directions</label>       		         
 		</div>
 	   </div>
-
+		
+		
+		<?php if( count($elitemem_status)>0 )  {	?>
+        <?php if( count($companypdfs) > 0 ) { ?>
+		<?php for($x=0; $x<count($companypdfs); $x++) { ?>
+		<script>
+		function PopupCenter(pageURL, title,w,h)
+		 {
+		  var left = (screen.width/2)-(w/2);
+		  var top = (screen.height/2)-(h/2);
+		  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+		 }		
+		 $('#companypdf').toggle(function(){
+			$('#pdfname').show();
+		 },function(){
+			$('#pdfname').hide();
+		 });
+		</script>
+		
 		<div class="get_dirct">
 			<div class="getdir_title">
-				<label class = "view_direction_map">Menu/Catalog</label>
+				<label class = "view_direction_map" id = "companypdf">Menu/Catalog</label>
 			</div>
 		</div>
+		<?php $file = $this->common->get_setting_value(2).$this->config->item('pdf_main_upload_path').$companypdfs[$x]['pdf'];?>
+		<?php $title = ucfirst(stripslashes($companypdfs[$x]['title'])); ?>
+		<div>
+		<a style="cursor: pointer; display : none" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" target="_blank" title="View document" id = "pdfname">
+			<?php echo $companypdfs[$x]['title'];?>&nbsp; <img src="<?php echo base_url();?>/images/pdf.png" title="pdf" alt="pdf" />
+		</a>
+		</div>		
+	  <?php } } } ?>
 
         <div class="review_wrp">
           <div class="contct_dtl">
