@@ -364,7 +364,7 @@ class Review extends CI_Controller {
 									
 									
 									<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>What To Do Next</li>									
-									<li>To view the posted review <a href='".base_url('company/'.$companies[0]['companyseokeyword'].'/reviews/coupons/complaints')."'>CLICK HERE</a></li>
+									<li>To view the posted review <a href='".base_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints')."'>CLICK HERE</a></li>
 									<li>You also have the ability to remove a negative or any review if you so choose using our </li>
 									<li>Negative Review removal tool that you can initiate by clicking the link when logged into your account.</li>
 
