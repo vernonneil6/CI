@@ -243,7 +243,7 @@
         </div>
 
 
-       <?php if(count($elitemem_status)!=0){?>
+       <?php /*if(count($elitemem_status)!=0){?>
         <div class="hour_operatn">
           <div class="hr_title">
             <h2>Hours</h2>
@@ -274,7 +274,7 @@
             </tbody>
           </table>
         </div>
-        <?php } ?>
+        <?php } */?>
         
         </ul>
 
