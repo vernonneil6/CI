@@ -86,7 +86,17 @@
         <div class="contct_dtl">
           <ul>
             <li><a><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></a></li>
-            <li><a><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',     '.$company[0]['country'])); ?></a></li>
+            <li><a><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',		'.$company[0]['country'])); ?></a></li>
+            <li>
+				<?php 
+				if(count($elitemem_status)!=0)
+				{
+				?>
+					<label class = "font_size_bold">Open Today </label> : <?php echo date("h:i A",strtotime($company_timings['start']));?> - <?php echo date("h:i A",strtotime($company_timings['end']));
+				
+				} 
+				?>
+			</li>
             <li><a class="colors" href="tel:<?php echo $company[0]['phone'];?>" title="<?php echo $company[0]['phone'];?>"><?php echo $company[0]['phone']; ?></a></li>
             <?php if(strlen($company[0]['fax']>8)){?>
             <li><a><?php echo $company[0]['fax'];?></a></li>
@@ -241,26 +251,6 @@
             </ul>
           </div>
         </div>
-
-
-       <?php if(count($elitemem_status)!=0){?>
-        <div class="hour_operatn">
-          
-          <table class="hrly_tb">
-            
-            <tbody>
-              <tr>
-               
-					<td><?php echo date("h:i A",strtotime($company_timings['start']));?></td>
-					<td><?php echo date("h:i A",strtotime($company_timings['end']));?></td>
-               
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <?php } ?>
-        
-
 
         </ul>
 
