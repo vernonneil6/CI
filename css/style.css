@@ -1686,6 +1686,6 @@ padding-left: 18px;
 .singletimings
 {
 	font-family: myriadpro-regular;
-    font-size: 13px;
-    margin-top: 15px;
+    font-size: 13px!important;
+	margin: 15px 0 3px;
 }
