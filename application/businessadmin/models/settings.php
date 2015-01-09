@@ -184,6 +184,22 @@ Class Settings extends CI_Model
 			return false;
 		}
  	}
+ 	function get_elitecancel_email_byid($companyid)
+ 	{
+		$query = $this->db->select('id, company, email')
+						  ->from('company')
+						  ->where('id',$companyid)
+    					  ->get();
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 	function get_all_unclickedreviewstatus()
  	{
@@ -303,10 +319,10 @@ Class Settings extends CI_Model
 	
 	function cancel_elitemembership_bycompnayid1($companyid)
  	{
-		$data = array('status' =>'Disable' );
+		$data = array('status' =>'Disable');
 		
 		$this->db->where('company_id', $companyid);
-		if ($this->db->update('elite',$data))
+		if($this->db->update('elite',$data))
 		{
 			return true;
 		}

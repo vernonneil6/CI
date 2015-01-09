@@ -35,7 +35,6 @@
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
         <th>Payment Date</th>
-        <th>Payment Date</th>
         <th>Membership Status</th>
       </tr>
       <?php for($i=0;$i<count($elite);$i++) { ?>
