@@ -250,16 +250,10 @@
             
             <tbody>
               <tr>
-                <?php
-					$days=cal_to_jd(CAL_GREGORIAN,date("m"),date("d"),date("Y"));
-					if(strtolower(jddayofweek($days,1)) == $company_timings['daytype'])
-					{
-				?> 
+               
 					<td><?php echo date("h:i A",strtotime($company_timings['start']));?></td>
 					<td><?php echo date("h:i A",strtotime($company_timings['end']));?></td>
-               <?php
-					}
-			   ?>
+               
               </tr>
             </tbody>
           </table>
