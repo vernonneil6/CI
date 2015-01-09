@@ -327,9 +327,9 @@ class Review extends CI_Controller {
 									
 									<li style='margin: 8px 0; padding : 0 0 0 15px;'>One of your customers has posted a review about your business.</li>
 									
-									<li style='margin: 8px 0; padding : 0 0 0 15px;'>If you received a positive review, congratulations for a job well done.</li>
+									<li style='margin: 8px 0; padding : 0 0 0 15px;'>• If you received a positive review, congratulations for a job well done.</li>
 									
-									<li style='margin: 8px 0; padding : 0 0 0 15px;'>If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.</li>
+									<li style='margin: 8px 0; padding : 0 0 0 15px;'>• If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.</li>
 									
 									<li style='margin: 11px 0; padding : 0 0 0 15px;'>• By being pro-active and working with your customer you can avoid having a bad reputation online which can affect your business</li>
 									
@@ -346,8 +346,8 @@ class Review extends CI_Controller {
 								</ul>
 								<ul style='font-size : 13px; list-style : none; margin : 0; background-color : #E7E5D3; width: 198px; padding : 6px 0; border-radius : 0 0 7px 7px; '>
 									<li style = 'font-size : 18px; color : #B32317; margin : 5px 0 10px; padding : 0  0 0 15px;'>Expert Tips</li>								
-									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Address your current dispute</li>								
-									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Help avoid future transaction issues</li>
+									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Respond to negative reviews.</li>								
+									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Encourage customers to post reviews.</li>
 								</ul>	
 							</td>
 						</tr>
