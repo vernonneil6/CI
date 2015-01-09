@@ -243,39 +243,31 @@
         </div>
 
 
-       <?php /*if(count($elitemem_status)!=0){?>
+       <?php if(count($elitemem_status)!=0){?>
         <div class="hour_operatn">
-          <div class="hr_title">
-            <h2>Hours</h2>
-            <i class="line"></i> <span>of operation</span> </div>
+          
           <table class="hrly_tb">
-            <thead>
-              <tr>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
-                <th>Sunday</th>
-              </tr>
-            </thead>
+            
             <tbody>
               <tr>
-                <?php for($t=0;$t<count($company_timings); $t++) { ?>
-                <td><?php echo date("h:i A",strtotime($company_timings[$t]['start']));?></td>
-                <?php } ?>
-              </tr>
-              <tr>
-                <?php for($t=0; $t<count($company_timings); $t++) { ?>
-                <td><?php echo date("h:i A",strtotime($company_timings[$t]['end']));?></td>
-                <?php } ?>
+                <?php
+					$days=cal_to_jd(CAL_GREGORIAN,date("m"),date("d"),date("Y"));
+					if(strtolower(jddayofweek($days,1)) == $company_timings['daytype'])
+					{
+				?> 
+					<td><?php echo date("h:i A",strtotime($company_timings['start']));?></td>
+					<td><?php echo date("h:i A",strtotime($company_timings['end']));?></td>
+               <?php
+					}
+			   ?>
               </tr>
             </tbody>
           </table>
         </div>
-        <?php } */?>
+        <?php } ?>
         
+
+
         </ul>
 
 <!--<script>

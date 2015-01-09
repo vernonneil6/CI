@@ -1408,6 +1408,28 @@ class Complaints extends CI_Model
 	
 	}
 	
+	function get_company_onetimings($cid)
+	{
+		//Executing Query
+		$this->db->select('*');
+		$this->db->from('timings');
+		$this->db->where('companyid',$cid);
+		$this->db->order_by('id','ASC');
+		
+		$query = $this->db->get();
+		//echo $this->db->last_query();
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	
+	
+	}
+	
 	//get totals
 	
 	function get_to_reviews_cid($cid)
