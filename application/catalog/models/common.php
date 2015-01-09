@@ -148,7 +148,8 @@ Class Common extends CI_Model
 		$siteid = $this->session->userdata('siteid');
 		$sites = array(1,$siteid);
 		//Executing Query
-$query=$this->db->query("SELECT sum(`damagesinamt`) as total FROM `youg_complaints` where (websiteid='$siteid' OR websiteid='1')AND status='disable'");
+		
+		$query=$this->db->query("SELECT sum(`damagesinamt`) as total FROM `youg_complaints` where (websiteid='$siteid' OR websiteid='1')AND status='disable'");
 	
 		if ($query->num_rows() > 0)
 		{

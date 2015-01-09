@@ -606,39 +606,26 @@ public function eliteSubscribe($formpost) {
 				{
 					$password = uniqid();
 					
-					$video = $this->complaints->get_videos_bycompanyid($companyid);
 					$sem = $this->complaints->get_companysem_bycompanyid($companyid);
 					$seo = $this->complaints->get_companyseo_bycompanyid($companyid);
 							
 					$this->complaints->set_password($companyid,$password);
-					if(count($video)==0 && count($sem)==0 && count($seo)==0 ) {
-						for($i=1;$i<17;$i++) {
-							$this->complaints->set_sem($companyid,"Facebook","http://www.facebook.com","ade2c15ab85aef450fb2f6e53e8cb825.png","ade2c15ab85aef450fb2f6e53e8cb825.png",$i,'f');
-							$this->complaints->set_sem($companyid,"twitter","http://www.twitter.com","51e28dd5af6d2bb51b518b47ae717f1a.png","51e28dd5af6d2bb51b518b47ae717f1a.png",$i,'t');
-							$this->complaints->set_sem($companyid,"Linkedin","http://www.linkedin.com","ab5b4de4c8fa16f822635c942aafdfb5.jpg","ab5b4de4c8fa16f822635c942aafdfb5.jpg",$i,'l');
-							$this->complaints->set_sem($companyid,"Google","http://www.google.com","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg",$i,'g');
-							$this->complaints->set_sem($companyid,"pintrest","http://www.pintrest.com","1519f4062fa76260346bfc61665e579d.jpeg","1519f4062fa76260346bfc61665e579d.jpeg",$i,'p');
-													
-							$this->complaints->set_seo($companyid,"Google Analytic","Google Analytic",$i);
-							$this->complaints->set_seo($companyid,"Google Webmaster","Google Webmaster",$i);
-							$this->complaints->set_seo($companyid,"General Meta Tag Keywords","General Meta Tag Keywords",$i);
-							$this->complaints->set_seo($companyid,"General Meta Tag Description","General Meta Tag Description",$i);
-
-						}
-					}
-					
-					$timings = $this->complaints->get_company_timings($company[0]['id']);
-					if(count($timings)==0) 
+					if(count($sem)==0 && count($seo)==0 ) 
 					{
-					$this->complaints->set_timing(1,$companyid,"monday","No","09:00:00","21:00:00");
-					$this->complaints->set_timing(1,$companyid,"tuesday","No","09:00:00","21:00:00");
-					$this->complaints->set_timing(1,$companyid,"wednesday","No","09:00:00","21:00:00");
-					$this->complaints->set_timing(1,$companyid,"thursday","No","09:00:00","21:00:00");
-					$this->complaints->set_timing(1,$companyid,"friday","No","09:00:00","21:00:00");
-					$this->complaints->set_timing(1,$companyid,"saturday","No","09:00:00","21:00:00");
-					$this->complaints->set_timing(1,$companyid,"sunday","No","09:00:00","21:00:00");
+						
+						$this->complaints->set_sem($companyid,"Facebook","http://www.facebook.com","ade2c15ab85aef450fb2f6e53e8cb825.png","ade2c15ab85aef450fb2f6e53e8cb825.png","1","f");
+						$this->complaints->set_sem($companyid,"twitter","http://www.twitter.com","51e28dd5af6d2bb51b518b47ae717f1a.png","51e28dd5af6d2bb51b518b47ae717f1a.png","1","t");
+						$this->complaints->set_sem($companyid,"Linkedin","http://www.linkedin.com","ab5b4de4c8fa16f822635c942aafdfb5.jpg","ab5b4de4c8fa16f822635c942aafdfb5.jpg","1","l");
+						$this->complaints->set_sem($companyid,"Google","http://www.google.com","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","1","g");
+						$this->complaints->set_sem($companyid,"pintrest","http://www.pintrest.com","1519f4062fa76260346bfc61665e579d.jpeg","1519f4062fa76260346bfc61665e579d.jpeg","1","p");
+												
+						$this->complaints->set_seo($companyid,"Google Analytic","Google Analytic","1");
+						$this->complaints->set_seo($companyid,"Google Webmaster","Google Webmaster","1");
+						$this->complaints->set_seo($companyid,"General Meta Tag Keywords","General Meta Tag Keywords","1");
+						$this->complaints->set_seo($companyid,"General Meta Tag Description","General Meta Tag Description","1");
+	
 					}
-									
+							
 					//Inserting Elite Membership Transaction Details for Company
 					$transaction = $this->complaints->add_transaction($companyid,$amount,'USD',$transactionkey,date('Y-m-d H:i:s'));
 					$websites = $this->complaints->get_all_websites();
@@ -670,6 +657,7 @@ public function eliteSubscribe($formpost) {
 					'mailtype'  => 'html', 
 					'charset'   => 'iso-8859-1'
 				);	
+					
 					$this->load->library('email');
 					$this->email->set_newline("\r\n");				
 					//Loading E-mail config file
