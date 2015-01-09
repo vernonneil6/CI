@@ -410,7 +410,7 @@ $('#mapshow').removeClass('mapshow');
               </div>
               <div class="review_rgt reviewstab">
 
- <div class="user_name">
+			<div class="user_name">
                   <?php if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') { ?>
                   <a><?php echo $reviews[$i]['reviewby'];?><span>   -  Orlando, FL</span></a>
 			<div class="datereview"><?php echo date("d.m.Y",strtotime($reviews[$i]['reviewdate']));?></div>

@@ -16,7 +16,7 @@ class Reviews extends CI_Model
 		$this->db->from('reviews as r');
 		$this->db->join('company as cm','r.companyid=cm.id','left');
 		$this->db->join('user as u','r.reviewby=u.id','left');
-		$this->db->where('r.status','Enable');
+		//$this->db->where('r.status','Enable');
 		//$this->db->where('r.websiteid',$siteid);
 		$this->db->order_by('reviewdate', 'DESC');
 		
