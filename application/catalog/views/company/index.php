@@ -87,7 +87,7 @@
           <ul>
             <li><a><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></a></li>
             <li><a><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',		'.$company[0]['country'])); ?></a></li>
-            <li>
+            <li class = "singletimings">
 				<?php 
 				if(count($elitemem_status)!=0)
 				{
@@ -211,10 +211,11 @@
 		</div>
 	   </div>
 
-	<div class="get_dirct">
-	<div class="getdir_title">
-            <label class = "view_direction_map">Menu/Catalog</label>
-	</div></div>
+		<div class="get_dirct">
+			<div class="getdir_title">
+				<label class = "view_direction_map">Menu/Catalog</label>
+			</div>
+		</div>
 
         <div class="review_wrp">
           <div class="contct_dtl">
@@ -222,8 +223,9 @@
               <li><span>TOTAL REVIEWS </span><my class="fontcolors";><?php echo $to_reviews;?></my></li>
               <li><span>TOTAL COMPLAINTS </span><my  class="fontcolors";> <?php echo $to_complaints;?></my></li>
               <li><span>TOTAL DAMAGES </span><my  class="fontcolors";> $  <?php if($to_damages!=''){ echo round($to_damages);}else{echo "0";}?>  </my></li>
-            
-              <li><span>PRICE RANGE </span><my  class="fontcolors";> <?php echo $company[0]['price_range'];?></my></li>
+			  <?php if($company[0]['price_range']!='') { ?>
+				<li><span>PRICE RANGE </span><my  class="fontcolors";> <?php echo $company[0]['price_range'];?></my></li>
+              <?php } ?>
               <li><span>ACCEPTS CREDIT CARDS </span><my  class="fontcolors";> <?php echo $company[0]['accept_credit_cards'];?></my></li>
               <li><span>ACCEPTS PAYPAL </span><my  class="fontcolors";> <?php echo $company[0]['accept_paypal'];?></my></li>
 			  <li><span>CATEGORY</span><a>

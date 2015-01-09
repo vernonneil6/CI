@@ -1679,7 +1679,13 @@ padding-left: 18px;
 {
 	color : #286A9A
 }
-.font_size_bold
+.singletimings label
 {
-	font-size : bold;
+	font-family: "MyriadPro-BlackSemiCn";
+}
+.singletimings
+{
+	font-family: myriadpro-regular;
+    font-size: 13px;
+    margin-top: 15px;
 }
