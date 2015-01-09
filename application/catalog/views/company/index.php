@@ -91,9 +91,11 @@
 				<?php 
 				if(count($elitemem_status)!=0)
 				{
+					if(count($company_timings) > 0)
+					{
 				?>
-					<label class = "font_size_bold">Open Today </label> : <?php echo date("h:i A",strtotime($company_timings['start']));?> - <?php echo date("h:i A",strtotime($company_timings['end']));
-				
+						<label class = "font_size_bold">Open Today </label> : <?php echo date("h:i A",strtotime($company_timings['start']));?> - <?php echo date("h:i A",strtotime($company_timings['end']));
+					}
 				} 
 				?>
 			</li>
