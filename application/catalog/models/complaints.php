@@ -1408,6 +1408,32 @@ class Complaints extends CI_Model
 	
 	}
 	
+	function get_company_onetimings($cid)
+	{
+		$days=cal_to_jd(CAL_GREGORIAN,date("m"),date("d"),date("Y"));
+		$singledate = strtolower(jddayofweek($days,1));
+		
+		//Executing Query
+		$this->db->select('*');
+		$this->db->from('timings');
+		$this->db->where('companyid',$cid);
+		$this->db->where('daytype',$singledate);
+		$this->db->order_by('id','ASC');
+		
+		$query = $this->db->get();
+		//echo $this->db->last_query();
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	
+	
+	}
+	
 	//get totals
 	
 	function get_to_reviews_cid($cid)

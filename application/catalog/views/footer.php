@@ -79,7 +79,7 @@
                 <?php /*?><li><a href="#" title="Total Protection">total protection</a></li>
                 <li><a href="#" title="Verified merchant Seal">verified merchant seal</a></li>
                 <li><a href="#" title="Questions & Answers">questions & answers</a></li><?php */?>
-                <li><a href="<?php echo site_url('solution/claimbusiness');?>" title="Merchant Signup">merchant sign up</a></li>
+                <li><a href="<?php echo 'https'.(empty($_SERVER['HTTP'])?'':'s').'://'.$_SERVER['SERVER_NAME'].''.$_SERVER['REQUEST_URI'].'/claimbusiness';?>" title="Merchant Signup">merchant sign up</a></li>
               </ul>
             </div>
           
