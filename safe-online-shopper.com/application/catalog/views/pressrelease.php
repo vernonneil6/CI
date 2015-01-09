@@ -10,7 +10,7 @@
         <?php if( count($pressrelease) > 0) { ?>
         <div class="main_dir">
           <div class="dir_maincontent" style="width:95%;">
-            <div class="dir-image" style="max-height:100px !important;"> <a href="<?php echo site_url('company/'.$pressrelease[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes(ucfirst($pressrelease[0]['company'])); ?>'s detail"><img src="<?php if( $pressrelease[0]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_main_upload_path');?><?php echo stripslashes($pressrelease[0]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo stripslashes(ucfirst($pressrelease[0]['company'])); ?>" width="100px" height="100px"/></a> </div>
+            <div class="dir-image" style="max-height:100px !important;"> <a href="#<?php /* echo site_url('company/'.$pressrelease[0]['companyseokeyword'].'/reviews/coupons/complaints'); */?>" title="view <?php echo stripslashes(ucfirst($pressrelease[0]['company'])); ?>'s detail"><img src="<?php if( $pressrelease[0]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_main_upload_path');?><?php echo stripslashes($pressrelease[0]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo stripslashes(ucfirst($pressrelease[0]['company'])); ?>" width="100px" height="100px"/></a> </div>
             <div class="dir_content_title" style="width:auto;"> <?php echo stripslashes(ucfirst($pressrelease[0]['title'])); ?><br/>
               <?php echo stripslashes(ucfirst($pressrelease[0]['subtitle'])); ?> </div>
             <div style="margin-top:20px;"> <?php echo nl2br(stripslashes($pressrelease[0]['sortdesc']));?></a> </div>
@@ -21,12 +21,12 @@
         <div> <span class="company_content_title"><?php echo $companyname;?></span><br/>
           <?php echo $aboutus;?><br/>
           <?php echo $address;?><br/>
-          <a href="tel:<?php echo $phone;?>"><?php echo $phone;?></a> <br/>
-          <a href="<?php echo $url;?>" title="<?php echo $url;?>" target="_blank"><?php echo $url;?></a>
+          <a href="#<?php /*tel: $phone; */?>"><?php echo $phone;?></a> <br/>
+          <a href="#<?php /*echo $url; */?>" title="<?php echo $url;?>"><?php echo $url;?></a>
           <div style="margin-top:5px;float:none;">
             <?php if( count($sems)>0 ) {?>
             <?php for($j=0;$j<count($sems);$j++){?>
-            <a href="<?php echo $sems[$j]['url'];?>" title="<?php echo $sems[$j]['title']; ?>" target="_blank"> <img src="<?php echo base_url(); ?>uploads/companysem/thumb/<?php echo $sems[$j]['thumbimg']; ?>" title="<?php echo $sems[$j]['title']; ?>" width="30px;" height="30px;"/> </a>
+            <a href="#<?php /* echo $sems[$j]['url']; */?>" title="<?php echo $sems[$j]['title']; ?>" > <img src="<?php echo base_url(); ?>uploads/companysem/thumb/<?php echo $sems[$j]['thumbimg']; ?>" title="<?php echo $sems[$j]['title']; ?>" width="30px;" height="30px;"/> </a>
             <?php
 		
 		} }?>
@@ -42,8 +42,8 @@
         <?php for($i=0; $i<count($pressreleases); $i++) { ?>
         <div class="main_dir">
           <div class="dir_maincontent" style="width:95%;">
-            <div class="dir-image" style="max-height:100px !important;"> <a href="<?php echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>'s detail"><img src="<?php if( $pressreleases[$i]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_main_upload_path');?><?php echo stripslashes($pressreleases[$i]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_main_upload_path')."/no_image.png"; } ?>" alt="<?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>" width="100px" height="100px"/></a> </div>
-            <div class="dir_content_title" style="width:auto;"> <a href="<?php echo site_url('pressrelease/browse/'.$pressreleases[$i]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?>'s detail"><?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?></a> By <a href="<?php echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>'s detail"><?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?></a><br/>
+            <div class="dir-image" style="max-height:100px !important;"> <a href="#<?php /* echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints'); */?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>'s detail"><img src="<?php if( $pressreleases[$i]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_main_upload_path');?><?php echo stripslashes($pressreleases[$i]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_main_upload_path')."/no_image.png"; } ?>" alt="<?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>" width="100px" height="100px"/></a> </div>
+            <div class="dir_content_title" style="width:auto;"> <a href="<?php echo site_url('pressrelease/browse/'.$pressreleases[$i]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?>'s detail"><?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?></a> By <a href="#<?php /*echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');*/?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>'s detail"><?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?></a><br/>
               <a href="<?php echo site_url('pressrelease/browse/'.$pressreleases[$i]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?>'s detail"><?php echo substr(stripslashes(($pressreleases[$i]['subtitle'])),0,50).'...'; ?></a> </div>
             <div style="margin-top:20px;" class="user_view"> <a href="<?php echo site_url('pressrelease/browse/'.$pressreleases[$i]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?>'s detail"><?php echo substr(nl2br(stripslashes($pressreleases[$i]['sortdesc'])),0,300)."...Read More";?></a> </div>
           </div>
