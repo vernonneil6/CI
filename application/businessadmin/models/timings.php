@@ -39,6 +39,51 @@ class Timings extends CI_Model
 			return false;
 		}
  	}
+ 	
+ 	//get_company_timings
+	function get_company_timings($cid)
+	{
+		//Executing Query
+		$this->db->select('*');
+		$this->db->from('timings');
+		$this->db->where('companyid',$cid);
+		$this->db->order_by('id','ASC');
+		
+		$query = $this->db->get();
+		//echo $this->db->last_query();
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	
+	
+	}
+	
+	function set_timing($websiteid,$companyid,$daytype,$off,$start,$end)
+	{
+		$data = array(		'websiteid' => $websiteid,
+							'companyid' => $companyid,
+							'daytype'	=> $daytype,
+							'off' 		=> $off,
+							'start'		=> $start,
+					    	'end'		=> $end,
+							
+						);
+		
+		if( $this->db->insert('timings', $data) )
+		{
+			
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 }
 ?>
