@@ -19,7 +19,8 @@ if(trim($transaction_status) =='This transaction has been approved.'){
 				$tn_status=0;
 			}
 //$con = mysql_connect('localhost','root','testenv');
-$con = mysql_connect('localhost','mxiind_hitesh','vS^T+ymX)~)P');
+//$con = mysql_connect('localhost','mxiind_hitesh','vS^T+ymX)~)P');
+$con = mysql_connect('localhost','root','ygrmysql');
 if (!$con)
   {
   die('Could not connect: ' . mysql_error());
