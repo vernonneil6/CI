@@ -43,10 +43,12 @@
 				  } ?>
 		<?php if(count($elitemem_status)==0){?>
         <div>
+			<a href="<?php echo site_url('company/upgrade_elite/'.$company[0]['id']);?>" title="Upgrade to Elite">
 			<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
-			<div class="business_link"> 
-			  <a href="solution/claimbusiness" title="CLICK HERE TO BECOME VERIFIED">IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED</a>    
+			<div class="business_link"> 			
+				IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
 			</div>
+			</a>    
         </div>
        
 		<div class="compny_name">
