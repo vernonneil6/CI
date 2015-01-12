@@ -717,8 +717,8 @@ public function eliteSubscribe($formpost,$companyid) {
 											  </tr>
 											  <tr>
 												<td style="padding-left:20px;"> ----------------------------------------------------<br />
-												  Username = '.$company[0]['email'].'<br />
-												  password = '.$password.'<br />
+												  Username : '.$company[0]['email'].'<br />
+												  password : '.$password.'<br />
 												  ----------------------------------------------------<br />
 												  Please click this link to login your account.<br />
 												  <a href="'.$site_url.'businessadmin">Elite Member Login</a></td>

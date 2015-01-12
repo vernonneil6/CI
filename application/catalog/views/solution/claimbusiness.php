@@ -29,8 +29,9 @@
           </div>
           <div class="reg-row" style="margin-top:10px;">
             <div class="reg_fld">WHAT IS YOUR COMPANY WEBSITE?</div>
-            <input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150">
+            <input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150" onchange="chkwebsite(this.value);">            
             <div id="websiteerror" class="error">Website is required.</div>
+            <div id="websitevaliderror" class="error">Enter valid Website.</div> 
           </div>
           <div class="reg-row" style="margin-top:10px;">
             <div class="reg_fld">CATEGORY</div>
@@ -41,7 +42,7 @@
                 &nbsp; <span style="color:#666666;"> <?php echo stripslashes($categories[$i]['category'])."<br/>";?> </span>
                 <?php } ?>
               </div>
-            <div id="websiteerror" class="error">Website is required.</div>
+                       
           </div>
           <div class="reg-row">
             <label>BUSINESS EMAIL ADDRESS</label>
@@ -49,6 +50,7 @@
             <input type="email" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" onchange="chkmail(this.value);">
             <div id="emailerror" class="error">Enter valid Emailid.</div>
             <div id="emailtknerror" class="error">This Emailid already taken.</div>
+            <div class="reg_fld">Please note: This email address will be visible publicly.</div>
           </div>
           <div class="reg-row">
             <label>BUSINESS ADDRESS INFORMATION</label>
@@ -206,4 +208,18 @@
     </div>
   </section>
 </section>
+<script>
+function chkwebsite(website){
+	var filter  = /^(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if( trim(website) != '' && filter.test(trim(website)) )
+	{
+		return true;
+	}else{
+		$("#websiteerror").hide();
+		$("#websitevaliderror").show();
+		$("#website").focus();
+		return false;
+	}
+}
+</script>
 <?php echo $footer;?>
