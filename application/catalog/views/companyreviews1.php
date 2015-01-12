@@ -146,7 +146,7 @@
 													$diff = $newdate.' minutes ago'; }
 													}
 					  ?>
-                <?php echo ($reviewdate==$today)?$diff:date('d.m.Y',strtotime($reviews[$i]['reviewdate'])); ?> </div>
+                <?php echo ($reviewdate==$today)?$diff:date('m/d/Y',strtotime($reviews[$i]['reviewdate'])); ?> </div>
             </div>
             <div class="revw_desc">
             <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="see details">

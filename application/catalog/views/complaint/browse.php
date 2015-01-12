@@ -45,7 +45,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
       <div class="titl_pr_rel">
         <div class="pre_rls_rating"> </div>
         <h1>"COMPLAINT AGAINST <?php echo strtoupper(stripslashes($complaints[0]['company'])); ?>"</h1>
-        <p>- <?php echo date('d.m.Y',strtotime($complaints[0]['complaindate']));;?> -</p>
+        <p>- <?php echo date('m/d/Y',strtotime($complaints[0]['complaindate']));;?> -</p>
       </div>
       <div class="pr_countwrp"> </div>
       <div class="pr_testmnl_wrp">
