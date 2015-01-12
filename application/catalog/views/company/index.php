@@ -198,35 +198,27 @@
 		  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 		 }		
 		 $(document).ready(function(){
-			$("#companypdf").click(function(){		 
-			 $.fancybox({
-				maxWidth	: 800,
-				maxHeight	: 600,
-				fitToView	: false,
-				width		: '70%',
-				height		: '70%',
-				autoSize	: false,
-				closeClick	: false,
-				openEffect	: 'none',
-				closeEffect	: 'none',
-				content		: $('#pdfname').show();
-			});
-		  });
+			 $('#companypdf').toggle(function(){
+				$('#pdfname').show();
+			 },function(){
+				$('#pdfname').hide();
+			 });
 		 });
 		</script>
 		
 		<div class="get_dirct">
 			<div class="getdir_title">
 				<label class = "view_direction_map" id = "companypdf">Menu/Catalog</label>
+				<?php $file = $this->common->get_setting_value(2).$this->config->item('pdf_main_upload_path')."uploads/pdf/".$companypdfs[$x]['pdf'];?>
+				<?php $title = ucfirst(stripslashes($companypdfs[$x]['title'])); ?>
+				<div>
+				<a style="cursor: pointer; display : none" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" target="_blank" title="View document" id = "pdfname">
+					<?php echo $companypdfs[$x]['title'];?>&nbsp; <img src="<?php echo base_url();?>/images/pdf.png" title="pdf" alt="pdf" />
+				</a>
+				</div>		
 			</div>
 		</div>
-		<?php $file = $this->common->get_setting_value(2).$this->config->item('pdf_main_upload_path')."uploads/pdf/".$companypdfs[$x]['pdf'];?>
-		<?php $title = ucfirst(stripslashes($companypdfs[$x]['title'])); ?>
-		<div>
-		<a style="cursor: pointer; display : none" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" target="_blank" title="View document" id = "pdfname">
-			<?php echo $companypdfs[$x]['title'];?>&nbsp; <img src="<?php echo base_url();?>/images/pdf.png" title="pdf" alt="pdf" />
-		</a>
-		</div>		
+		
 	  <?php } } } ?>
 
         <div class="review_wrp">
