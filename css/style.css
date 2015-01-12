@@ -1,28 +1,11 @@
 @charset "utf-8";
 /* CSS Document */
-@font-face {
-	font-family: 'MyriadProBoldCondensed';
-	/*src:url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.eot'),
-		url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.eot?#iefix') format('embedded-opentype'),
-		url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.woff') format('woff'),
-		url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.ttf') format('truetype');*/
-	
-	src: url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.eot'); 
-	src: url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.eot?#iefix') format('embedded-opentype'), 
-		 url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.woff') format('woff'),
-		 url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.ttf')  format('truetype'), 
-		 url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.otf')  format('opentype'),
-		 url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.svg#MyriadProBoldCondensed') format('svg');
-	
-}
+
 @font-face {
 	font-family: 'MyriadPro-BlackSemiCn';
-	
-	/*src:url('../font/MyriadPro-BlackSemiCn.ttf') format('truetype'),
-		url('../font/MyriadPro-BlackSemiCn.otf') format('opentype');*/
-	
-	  src: url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot'); 
-	  src: url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot?#iefix') format('embedded-opentype'), 
+    
+    src: url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot'); 
+	src: url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot?#iefix') format('embedded-opentype'), 
 		   url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.woff') format('woff'),
 		   url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.ttf')  format('truetype'), 
 		   url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.otf')  format('opentype'),
@@ -31,11 +14,6 @@
 }
 @font-face {
 	font-family: 'MyriadPro-Regular';
-	
-	/*src:url('../font/myriad/MyriadPro-Regular.eot'),
-		url('../font/myraid/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
-		url('../font/myriad/MyriadPro-Regular.otf') format('opentype'),
-		url('../font/myriad/MyriadPro-Regular.ttf') format('truetype');*/
 	
 	src: url('../font/MyriadPro-Regular/MyriadPro-Regular.eot'); 
 	src: url('../font/MyriadPro-Regular/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'), 
@@ -47,10 +25,6 @@
 }
 @font-face {
 	font-family: 'MyriadPro-BoldCond';
-	
-	/*src:url('../font/myriad/MyriadPro-BoldCond.eot'),
-		url('../font/myraid/MyriadPro-BoldCond.eot?#iefix') format('embedded-opentype'),
-		url('../font/myriad/MyriadPro-BoldCond.otf') format('opentype');*/
 		
 	src: url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.eot'); 
 	src: url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.eot?#iefix') format('embedded-opentype'), 
@@ -62,9 +36,6 @@
 }
 @font-face {
 	font-family: 'MyriadPro-SemiboldCondIt';
-	
-	/*src:url('../font/myriad/MyriadPro-SemiboldCondIt.otf') format('opentype'),
-		url('../font/myriad/MyriadPro-SemiboldCondIt.ttf') format('truetype');*/
 		
 	src: url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.eot'); 
 	src: url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.eot?#iefix') format('embedded-opentype'), 
@@ -160,7 +131,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .head_right_lnk .headerlogout a{padding: 4px 0 0 12px;}
 .headerdashboard{background: url("../images/loginbg.png") repeat scroll 0 0 rgba(0, 0, 0, 0); float: left;  height: 22px;  margin-right: 14px; width: 88px;}
 .headerlogout{background:url('../images/loginbg.png') no-repeat; height: 22px;  width: 62px;  float: left;}
-.headerusername{float:left;margin-right: 10px;padding-top: 5px;font-family: MyriadProBoldCondensed;font-size: 16px; letter-spacing: 1px;color: black;}
+.headerusername{float:left;margin-right: 10px;padding-top: 5px;font-family: MyriadPro-BoldCond;font-size: 16px; letter-spacing: 1px;color: black;}
 .tablecompliant{float:left;margin-left: 137px;margin-top: 22px;width: 72%;}
 .tablecomment{margin-left: 137px;width: 72%;}
 .login_box{width:967px;}
@@ -654,7 +625,7 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 .footerblock ul li a:hover{width:auto; height:auto;list-style:none; color:#fff; font-size:14px;}
 
 
-.footerblock ul li.ftitle{width:auto; height:auto;list-style:none; padding-left: 17px;margin-bottom: 10px; color: #A09507; font-family:aller; font-size:18px; font-family:"MyriadProBoldCondensed";  text-transform:uppercase; float:none !important;}
+.footerblock ul li.ftitle{width:auto; height:auto;list-style:none; padding-left: 17px;margin-bottom: 10px; color: #A09507; font-family:aller; font-size:18px; font-family:"MyriadPro-BoldCond";  text-transform:uppercase; float:none !important;}
 
 
 /*============ Login_form ===========================*/
@@ -1091,7 +1062,7 @@ margin: 20px 0 0 110px;
 }
 .title_review
 {
-	font-family: MyriadProBoldCondensed;
+	font-family: MyriadPro-BoldCond;
     font-size: 50px;
 }
 .couponlogoarea
@@ -1182,7 +1153,7 @@ margin:7px 0!important;
 {
 	color: #2c6a99;
     display: inline-block;
-    font-family: myriadproboldcondensed;
+    font-family: MyriadPro-BoldCond;
     font-size: 26px;
     margin-bottom: 2px;
     cursor: pointer;
