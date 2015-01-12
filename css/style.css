@@ -1689,3 +1689,18 @@ padding-left: 18px;
     font-size: 13px!important;
 	margin: 15px 0 3px;
 }
+.pdf_text
+{
+	color: #333;
+    font-family: "MyriadPro-BlackSemiCn";
+    font-size: 13px;
+}
+.business_link
+{
+	color: #666;
+    font-family: "myriadpro-regular";
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+}
