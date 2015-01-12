@@ -1705,3 +1705,13 @@ padding-left: 18px;
     text-decoration: none;
     margin-bottom: 15px;
 }
+
+.profile_change_password, .profile_change_password:hover
+{
+	color: black;
+    font-size: 12px;
+    outline: medium none;
+    text-decoration: none;
+    margin: 0 0 0 5px;
+}
+

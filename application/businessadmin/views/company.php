@@ -372,8 +372,10 @@
                 <label for="country">Country <span class="errorsign">*</span></label>
               </div>
               <div class="con">
-                <?php if($this->uri->segment(2) == 'edit') { ?>
-                <?php echo form_input( array( 'name'=>'country','id'=>'country','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['country']) ) ); ?>
+                <?php 
+					if($this->uri->segment(2) == 'edit') { 
+				?>				
+                <?php echo form_input( array( 'name'=>'country','id'=>'country','class'=>'input','type'=>'text','value'=>stripslashes($countryname['name']) ) ); ?>
                 <?php } ?>
               </div>
             </div>
@@ -468,36 +470,6 @@
           </div>
           <div id="abouterror" class="error">Company Detail is required.</div>
         </div>
-       <?php /* <div class="form-cols"><!-- two form cols -->
-          <div class="col1">
-            <div class="clearfix">
-              <div class="lab">
-                <label for="creditcard1">Creditcard 1 </label>
-              </div>
-              <div class="con">
-                <?php if($this->uri->segment(2) == 'edit') { ?>
-                <?php echo form_input( array( 'name'=>'creditcard1','id'=>'creditcard1','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['creditcard1']) ) ); ?>
-                <?php } ?>
-              </div>
-            </div>
-          </div>
-          <div id="creditcard1error" class="error">Enter valid number.</div>
-        </div>
-        <div class="form-cols"><!-- two form cols -->
-          <div class="col1">
-            <div class="clearfix">
-              <div class="lab">
-                <label for="creditcard2">Creditcard 2 </label>
-              </div>
-              <div class="con">
-                <?php if($this->uri->segment(2) == 'edit') { ?>
-                <?php echo form_input( array( 'name'=>'creditcard2','id'=>'creditcard2','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['creditcard2']) ) ); ?>
-                <?php } ?>
-              </div>
-            </div>
-          </div>
-          <div id="creditcard2error" class="error">Enter valid number.</div>
-        </div>*/?>
         <div class="form-cols">
           <style>
 		.check{ float: right; position: relative;}
@@ -533,17 +505,16 @@
           <div class="col1">
             <div class="clearfix">
               <div class="lab">
-                <label for="price_range">Price range <span class="errorsign">*</span></label>
+                <label for="price_range">Price range</label>
               </div>
               <div class="con" id="divemail">
               
                 <?php if($this->uri->segment(2) == 'edit') { ?>
-                <?php echo form_input( array( 'name'=>'price_range','id'=>'price_range','class'=>'input','type'=>'text','value'=>($company[0]['price_range'])) ); ?>
+                <?php echo form_input( array( 'name'=>'price_range','class'=>'input','type'=>'text','value'=>($company[0]['price_range'])) ); ?>
                 <?php } ?>
               </div>
             </div>
           </div>
-          <div id="price_rangeerror" class="error">Enter digits only.</div>
         </div>
  	    <div class="form-cols">
           <div class="col1">
@@ -583,6 +554,20 @@
           </div>
           
         </div>
+        
+        <div class="form-cols">
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+              </div>          
+              <div>
+				<a class = "profile_change_password" href = "/company/changepassword">Click here to change password</a>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
         <div class="btn-submit"> 
           <!-- Submit form -->
           <?php if($this->uri->segment(2) == 'edit') { ?>
