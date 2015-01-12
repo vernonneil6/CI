@@ -44,9 +44,9 @@
 		<?php if(count($elitemem_status)==0){?>
         <div>
 			<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
-          <div class="bsvry_tag"> <span>IS THIS YOUR BUSINESS?</span>
-            <p><a href="solution/claimbusiness" title="CLICK HERE TO BECOME VERIFIED">CLICK HERE TO BECOME VERIFIED</a></p>
-          </div>
+			<div class="business_link"> 
+			  <a href="solution/claimbusiness" title="CLICK HERE TO BECOME VERIFIED">IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED</a>    
+			</div>
         </div>
        
 		<div class="compny_name">
