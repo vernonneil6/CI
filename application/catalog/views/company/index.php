@@ -480,7 +480,6 @@ $('#mapshow').removeClass('mapshow');
                    </div>
                 </div>
                 <p> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['detail']),0,212)."..."); ?></a> </p>
-                <div class="cmnt_wrp wrps"> <a href="<?php echo site_url('remove/complaint/'.$complaints[$i]['id'].'/'.$complaints[$i]['companyid']); ?>" title="Remove this complaint"> <i class="rmv_rw"></i>REMOVE</a> </div>
 		<div class="cmnt_wrp wrps "><a class="valigns" href="<?php echo site_url('company/complaints/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a></div>
               </div>
               <?php } }else{?>
