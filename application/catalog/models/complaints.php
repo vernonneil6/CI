@@ -585,7 +585,7 @@ class Complaints extends CI_Model
 		}
 	}
 	
-	function insert_business($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,$paypalid,$logo,$category,$aboutus)
+	function insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,$paypalid,$logo,$category,$aboutus)
 	{
 		
 		$date = date_default_timezone_set('Asia/Kolkata');
@@ -599,6 +599,11 @@ class Complaints extends CI_Model
 					   'state'			=> $state,
 					   'country'		=> $country,
 					   'zip'			=> $zip,
+					   'companystreet'	=> $streetaddress1,
+					   'companycity'	=> $city1,
+					   'companystate'	=> $state1,
+					   'companycountry'	=> $country1,
+					   'companyzip'		=> $zip1,
 					   'phone'			=> $phone,
 					   'email'			=> $email,
 					   'siteurl'		=> $website,
@@ -1394,6 +1399,32 @@ class Complaints extends CI_Model
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	
+	
+	}
+	
+	function get_company_onetimings($cid)
+	{
+		$days=cal_to_jd(CAL_GREGORIAN,date("m"),date("d"),date("Y"));
+		$singledate = strtolower(jddayofweek($days,1));
+		
+		//Executing Query
+		$this->db->select('*');
+		$this->db->from('timings');
+		$this->db->where('companyid',$cid);
+		$this->db->where('daytype',$singledate);
+		$this->db->order_by('id','ASC');
+		
+		$query = $this->db->get();
+		//echo $this->db->last_query();
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
 		}
 		else
 		{

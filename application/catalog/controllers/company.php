@@ -33,7 +33,7 @@ class Company extends CI_Controller {
 		    $site = $regs['domain'];
 		 }
 		 
-		 $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
+		 $website = $this->common->get_site_by_domain_name($site);
 		 
 		 if(count($website)>0)
 		 {
@@ -199,7 +199,8 @@ class Company extends CI_Controller {
 						$this->data['to_complaints'] = $this->complaints->get_to_complaints_cid($this->data['company'][0]['id']);
 						$this->data['to_damages'] = $this->complaints->get_to_damages_cid($this->data['company'][0]['id']);
 						
-						$this->data['company_timings'] = $this->complaints->get_company_timings($this->data['company'][0]['id']);
+						//$this->data['company_timings'] = $this->complaints->get_company_timings($this->data['company'][0]['id']);
+						$this->data['company_timings'] = $this->complaints->get_company_onetimings($this->data['company'][0]['id']);
 						
 						$this->load->view('company/index',$this->data);
 					}
@@ -413,15 +414,15 @@ class Company extends CI_Controller {
 				   $host = "apitest.authorize.net"; */
 				
 				/*sandbox test mode*/
-				  $loginname="9um8JTf3W";
+				  /*$loginname="9um8JTf3W";
 				  $transactionkey="9q24FTz678hQ9mAD";
-				  $host = "apitest.authorize.net";
+				  $host = "apitest.authorize.net";*/
 				
 				
 				/*live*/
-				 /*$loginname="5h7G7Sbr";
+				 $loginname="5h7G7Sbr";
 				$transactionkey="94KU7Sznk72Kj3HK";
-				$host = "api.authorize.net";*/
+				$host = "api.authorize.net";
 				
 				
 				$path = "/xml/v1/request.api";
@@ -569,33 +570,26 @@ class Company extends CI_Controller {
 							{
 								$password = uniqid();
 								
-								$video = $this->common->get_videos_bycompanyid($companyid);
 								$sem = $this->common->get_companysem_bycompanyid($companyid);
 								$seo = $this->common->get_companyseo_bycompanyid($companyid);
 										
 								$this->common->set_password($companyid,$password);
-								if(count($video)==0 && count($sem)==0 && count($seo)==0 ) {
-									for($i=1;$i<17;$i++) {
-										$this->common->set_sem($companyid,"Facebook","http://www.facebook.com","ade2c15ab85aef450fb2f6e53e8cb825.png","ade2c15ab85aef450fb2f6e53e8cb825.png",$i,'f');
-										$this->common->set_sem($companyid,"twitter","http://www.twitter.com","51e28dd5af6d2bb51b518b47ae717f1a.png","51e28dd5af6d2bb51b518b47ae717f1a.png",$i,'t');
-										$this->common->set_sem($companyid,"Linkedin","http://www.linkedin.com","ab5b4de4c8fa16f822635c942aafdfb5.jpg","ab5b4de4c8fa16f822635c942aafdfb5.jpg",$i,'l');
-										$this->common->set_sem($companyid,"Google","http://www.google.com","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg",$i,'g');
-										$this->common->set_sem($companyid,"pintrest","http://www.pintrest.com","1519f4062fa76260346bfc61665e579d.jpeg","1519f4062fa76260346bfc61665e579d.jpeg",$i,'p');
-																
+								if(count($video)==0 && count($sem)==0 && count($seo)==0 ) 
+								{
+									
+									$this->complaints->set_sem($companyid,"Facebook","http://www.facebook.com","ade2c15ab85aef450fb2f6e53e8cb825.png","ade2c15ab85aef450fb2f6e53e8cb825.png","1","f");
+									$this->complaints->set_sem($companyid,"twitter","http://www.twitter.com","51e28dd5af6d2bb51b518b47ae717f1a.png","51e28dd5af6d2bb51b518b47ae717f1a.png","1","t");
+									$this->complaints->set_sem($companyid,"Linkedin","http://www.linkedin.com","ab5b4de4c8fa16f822635c942aafdfb5.jpg","ab5b4de4c8fa16f822635c942aafdfb5.jpg","1","l");
+									$this->complaints->set_sem($companyid,"Google","http://www.google.com","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","1","g");
+									$this->complaints->set_sem($companyid,"pintrest","http://www.pintrest.com","1519f4062fa76260346bfc61665e579d.jpeg","1519f4062fa76260346bfc61665e579d.jpeg","1","p");
+															
+									$this->complaints->set_seo($companyid,"Google Analytic","Google Analytic","1");
+									$this->complaints->set_seo($companyid,"Google Webmaster","Google Webmaster","1");
+									$this->complaints->set_seo($companyid,"General Meta Tag Keywords","General Meta Tag Keywords","1");
+									$this->complaints->set_seo($companyid,"General Meta Tag Description","General Meta Tag Description","1");
 
-
-										$this->common->set_seo($companyid,"Google Analytic","Google Analytic",$i);
-										$this->common->set_seo($companyid,"Google Webmaster","Google Webmaster",$i);
-										$this->common->set_seo($companyid,"General Meta Tag Keywords","General Meta Tag Keywords",$i);
-										$this->common->set_seo($companyid,"General Meta Tag Description","General Meta Tag Description",$i);
-
-
-										$this->common->set_video($companyid,"video1","http://www.youtube.com/watch?v=wPNZz1oeKaI",$i,'video1');
-										$this->common->set_video($companyid,"video2","http://www.youtube.com/watch?v=wPNZz1oeKaI",$i,'video2');
-
-									}
 								}
-												
+																				
 								//Inserting Elite Membership Transaction Details for Company
 								$transaction = $this->common->add_transaction($companyid,$amount,'USD',$transactionkey,date('Y-m-d H:i:s'));
 								$websites = $this->common->get_all_websites();

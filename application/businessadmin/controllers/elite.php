@@ -105,7 +105,6 @@ class Elite extends CI_Controller {
 	
 	public function cancel_subscribtion()
 	{
-		
 		$this->load->model('settings');
 	  if( $this->session->userdata['youg_admin'] )
 	  	{
@@ -116,106 +115,232 @@ class Elite extends CI_Controller {
 			$this->load->view('elite',$this->data);
 	  	}
 	}
-		
+	
 		//Function For Change Status to "Disable"
 	public function cancel($subscribtionid='',$companyid='')
 	{
-	 
+		$elite_email=$this->settings->get_elitecancel_email_byid($companyid);
+		                       
+	   $site_name = $this->settings->get_setting_value(1);
+	   $site_url = $this->settings->get_setting_value(2);
+	   $site_email = $this->settings->get_setting_value(5);
+				
+		 
 	  if($this->session->userdata['youg_admin'])
 	  {
 			if($subscribtionid!='' && $companyid!='')
 			{
-				include('authorize/data.php');
-				include('authorize/authnetfunction.php');
+				
+			   /*sandbox test mode
+			   $loginname="9um8JTf3W";
+			   $transactionkey="9q24FTz678hQ9mAD";
+			   $host = "apitest.authorize.net";*/
+			   
+			   /*live*/
+				$loginname="5h7G7Sbr";
+				$transactionkey="94KU7Sznk72Kj3HK";
+				$host = "api.authorize.net";
+				   
+			   $path = "/xml/v1/request.api";
+			   include('authorize/authnetfunction.php');
 		
 				$subscriptionId = $subscribtionid;
 				//build xml to post
-			$content =
-					"<?xml version=\"1.0\" encoding=\"utf-8\"?>".
-					"<ARBCancelSubscriptionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">".
-					"<merchantAuthentication>".
-					"<name>" . $loginname . "</name>".
-					"<transactionKey>" . $transactionkey . "</transactionKey>".
-					"</merchantAuthentication>" .
-					"<subscriptionId>" . $subscriptionId . "</subscriptionId>".
-					"</ARBCancelSubscriptionRequest>";
+					$content =
+							"<?xml version=\"1.0\" encoding=\"utf-8\"?>".
+							"<ARBCancelSubscriptionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">".
+							"<merchantAuthentication>".
+							"<name>" . $loginname . "</name>".
+							"<transactionKey>" . $transactionkey . "</transactionKey>".
+							"</merchantAuthentication>" .
+							"<subscriptionId>" . $subscriptionId . "</subscriptionId>".
+							"</ARBCancelSubscriptionRequest>";
 
-			//send the xml via curl
-			$response = send_request_via_curl($host,$path,$content);
-
-			//if the connection and send worked $response holds the return from Authorize.net
-			if ($response)
-			{
-				list ($resultCode, $code, $text, $subscriptionId) =parse_return($response);
-			
-			 " Response Code: $resultCode <br>";
-			 " Response Reason Code: $code<br>";
-			 " Response Text: $text<br>";
-			 " Subscription Id: $subscriptionId <br><br>";
-			
-		}
-		else
-		{
-			$this->session->set_flashdata('success', $subscriptionId);
-			redirect('elite/cancel_subscribtion', 'refresh');
-		}
-		if($text!='I00001')
-		{
-			$this->session->set_flashdata('success', $subscriptionId);
-			redirect('elite/cancel_subscribtion', 'refresh');
-		}else{
-		if( $this->settings->cancel_elitemembership_bycompnayid1($companyid) )
+					//send the xml via curl
+					$response = send_request_via_curl($host,$path,$content);
+					//if the connection and send worked $response holds the return from Authorize.net
+					if ($response)
+					{ 
+						list ($resultCode, $code, $text, $subscriptionId) =parse_return($response);
+					
+					 " Response Code: $resultCode <br>";
+					 " Response Reason Code: $code<br>";
+					 " Response Text: $text<br>";
+					 " Subscription Id: $subscriptionId <br><br>";
+					
+					}
+					else
+					{ 
+						$this->session->set_flashdata('success', $subscriptionId);
+						redirect('elite/cancel_subscribtion', 'refresh');
+					}
+						
+						if($text!='I00001')
+						{  
+							$this->session->set_flashdata('success', $subscriptionId);
+							redirect('elite/cancel_subscribtion', 'refresh');
+						}
+						else
+						{
+							
+					        $cancelled=$this->settings->cancel_elitemembership_bycompnayid1($companyid);
+					       	if($cancelled)
 							{
+								//Loading E-mail library
+									$config = Array(
+									'protocol' => 'smtp',
+									'smtp_host' => 'smtp.mandrillapp.com',
+									'smtp_port' => 587,
+									'smtp_user' => 'alankenn@grossmaninteractive.com',
+									'smtp_pass' => 'vPVq6nWolBWIKNp1LaWNFw',
+									'mailtype'  => 'html', 
+									'charset'   => 'iso-8859-1'
+								);	
+									$this->load->library('email');
+									$this->email->set_newline("\r\n");				
+									//Loading E-mail config file
+									$this->config->load('email',TRUE);
+									$this->cnfemail = $this->config->item('email');
+														
+									//$this->email->initialize($this->cnfemail);
+									$this->email->initialize($config);
+									$this->email->from($site_email,$site_name);
+									$this->email->to($elite_email['email']);	
+									$this->email->subject('YGR Account Cancellation');
+												$this->email->message('<table cellpadding="0" cellspacing="0" width="100%" border="0">
+																				<tr>
+																					<td>Hello '.$elite_email['company'].',</td>
+																				</tr>
+																				<tr><td><br/></td></tr>
+																				<tr>
+																					<td style="padding-left:20px;">
+																						Your Elite Member account has been cancelled with YouGotRated. Please visit us at <a href="'.$site_url.'solution'.'" title="'.$site_name.'">'.$site_url.'solution'.'</a> to review our services, and contact us if you would like to re-establish your account!
+																					</td>
+																				</tr>
+																		 </table>
+																				<tr>
+																					<td><br/>
+																					  <br/></td>
+																				</tr>
+																				  <tr>
+																					<td> Regards,<br/>
+																					  The '.$site_name.' Team.<br/>
+																					</td>
+																				  </tr>
+																					</td>
+																				</tr>
+																				</table>');
+									//Sending mail to admin
+									$this->email->send();
+															    
 								$this->session->set_flashdata('success', 'Membership status disabled successfully.');
 								redirect('dashboard/logout', 'refresh');
 							}
 							else
 							{
+								
 								$this->session->set_flashdata('error', 'There is error in updating Membership status. Try later!');
 								redirect('elite', 'refresh');
 							}
-		}
-					}
-				else
-					{
-						redirect('elite', 'refresh');
-					}
-				}
+						}
 			}
+		else
+			{  
+				redirect('elite', 'refresh');
+			}
+		}
+	}
 			
 			
 		public function update()
 		{
 			if( $this->session->userdata['youg_admin'] )
 			{
-				$this->load->model('settings');
-				$id = $this->session->userdata['youg_admin']['id'];
-			    $this->data['elite'] = $this->settings->get_company_byid($id);
-				$this->load->view('eliteupdate',$this->data);
+				
+				$siteid = $this->session->userdata('siteid');
+				$countrylist = $this->settings->get_all_countrys();
+				
+				if(count($countrylist) > 0 )
+					{
+						$this->data['selcon'][''] = '--Select Country--';
+						
+						for($c=0;$c<count($countrylist);$c++)
+						{
+							$this->data['selcon'][($countrylist[$c]['country_id'])] = ucfirst($countrylist[$c]['name']);
+						}
+					}
+					else
+					{
+						$this->data['selcon'][''] = '--Select Country--';
+					}
+						$this->load->model('settings');
+						$id = $this->session->userdata['youg_admin']['id'];
+						$this->data['elite'] = $this->settings->get_company_byid($id);
+						$this->load->view('eliteupdate',$this->data);
 			}
 			
 		}
+		public function getallstates()
+	    {
+			if( $this->input->is_ajax_request() && ( $this->input->post('cid') ) )
+			{
+				$selcatid = (($this->input->post('cid')));
+				$state = (($this->input->post('state')));
+				$state = ($state!='') ? $state : 'state' ;
+				if( $selcatid!='' || $selcatid!='0' )
+				{
+					$subcats = $this->settings->get_all_states_by_cid($selcatid);
+					//echo "<pre>";
+					//print_r($subcats);
+					if( count($subcats) > 0 )
+						{
+							$this->data['selstates'][''] = '--Select--';
+							
+							for($c=0;$c<count($subcats);$c++)
+							{
+							
+								$this->data['selstates'][($subcats[$c]['name'])] = ucfirst($subcats[$c]['name']);
+							
+							}
+						}
+						else
+						{
+							$this->data['selstates'][''] = '--Select--';
+						}
+						
+						//echo "<pre>";
+						//print_r($this->data['selstates']);
+						//die();
+						$js="id='".$state."' class='seldrop'";
+						$data='';
+						$data="";
+						echo form_dropdown($state,$this->data['selstates'],'',$js);
+						$data="";
+						echo $data;   
+						return $data;
+				}
+			}
+			else
+			{ 
+				redirect('eliteupdate', 'refresh');
+			}
+	}
 	public function renew($id)
 	{
 		 if( $this->session->userdata['youg_admin'] )
 	  	{
-			
-				//echo $id;
-			
 			//data.php start
-			//$loginname = $this->common->get_setting_value(22);
-			//$transactionkey = $this->common->get_setting_value(23);
 			
 			
-			/*test mode*/
-			  /* $loginname="2sRT3yAsr3tA";
-			   $transactionkey="38UzuaL2c6y5BQ88";
-			   $host = "apitest.authorize.net"; */
-			
-			/*sandbox test mode*/
-			   /* $loginname="9um8JTf3W";
-			   $transactionkey="9q24FTz678hQ9mAD";
-			   $host = "apitest.authorize.net"; */
+		/*test mode
+		  $loginname="2sRT3yAsr3tA";
+		  $transactionkey="38UzuaL2c6y5BQ88";
+		  $host = "apitest.authorize.net";*/ 
+		
+		/*sandbox test mode
+		   $loginname="9um8JTf3W";
+		   $transactionkey="9q24FTz678hQ9mAD";
+		   $host = "apitest.authorize.net";*/
 			
 			
 			/*live*/
@@ -223,12 +348,25 @@ class Elite extends CI_Controller {
 			$transactionkey="94KU7Sznk72Kj3HK";
 			$host = "api.authorize.net";
 			
-			
+			$firstName=$this->input->post('fname');				
+			$lastName=$this->input->post('lname');
+			$cvv=$this->input->post('cvv');				
+			$address=$this->input->post('streetaddress');				
+			$city=$this->input->post('city');				
+			$state=$this->input->post('state');				
+			$zip=$this->input->post('zip');				
+			$cid=$this->input->post('country');
+			$c_code=$this->settings->get_country_by_countryid($cid);
+			$country=$c_code['name'];	
+			 
+						
 			$path = "/xml/v1/request.api";
+			
 			//data.php end
 			
-			include('authorize/authnetfunction.php');   
-			$subscriptionprice = $this->common->get_setting_value(19);
+			include('authorize/authnetfunction.php'); 
+			  
+			$subscriptionprice = $this->settings->get_setting_value(19);
 				
 			//define variables to send
 				
@@ -238,7 +376,6 @@ class Elite extends CI_Controller {
 			$length = 10;
 			$unit = "months";
 			$startDate = date("Y-m-d");
-			//$totalOccurrences = 999;
 			$totalOccurrences = 12;
 			$trialOccurrences = 0;
 			$trialAmount = 0;
@@ -253,9 +390,9 @@ class Elite extends CI_Controller {
 				 $expirationDate = $_POST["expirationdatey"].'-'.$_POST["expirationdatem"];
 			}
 					
-			$email = $this->input->post('email');					
+			$email = $this->input->post('email');
 			$sid=$id;
-			$sub_id=$this->settings->get_subscriptionid($sid);
+		    $sub_id=$this->settings->get_subscriptionid($sid);
 		    $subscriptionId=$sub_id['subscr_id'];
 				"Results <br><br>";
 
@@ -273,8 +410,18 @@ class Elite extends CI_Controller {
 				"<creditCard>".
 				"<cardNumber>" . $cardNumber ."</cardNumber>".
 				"<expirationDate>" . $expirationDate . "</expirationDate>".
+				"<cardCode>". $cvv . "</cardCode>".
 				"</creditCard>".
 				"</payment>".
+				"<billTo>".
+				"<firstName>". $firstName . "</firstName>".
+				"<lastName>" . $lastName . "</lastName>".
+				"<address>" . $address . "</address>".
+				"<city>" . $city . "</city>".
+				"<state>" . $state . "</state>".
+				"<zip>" . $zip . "</zip>".
+				"<country>" . $country . "</country>".
+				"</billTo>".
 				"</subscription>".
 				"</ARBUpdateSubscriptionRequest>";
 
@@ -282,7 +429,6 @@ class Elite extends CI_Controller {
 			$response = send_request_via_curl($host,$path,$content);
 			//if the connection and send worked $response holds the return from Authorize.net
 			
-			//print_r($response);die;
 			if ($response)
 			{
 				list ($refId, $resultCode, $code, $text, $subscriptionId) =parse_return($response);
@@ -334,14 +480,13 @@ class Elite extends CI_Controller {
 					$paymentmethod = 'authorize';
 					$emailflag='1';
 				
-					
+				   	$Billingaddress=$this->settings->update_billingaddress($address,$city,$state,$country,$zip,$id);
 					$update_subscription=$this->settings->update_subscription($subscriptionId,$companyid,$amt,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag);
-					//echo '<pre>';print_r($update_subscription);	
+					
 					if($update_subscription)
 					{
 					  $update_elite= $this->settings->update_elite($companyid,$amount,'USD',$transactionkey,date('Y-m-d H:i:s'));
-							//echo '<pre>';print_r($update_elite);
-							
+												
 									   
 						$site_name = $this->settings->get_setting_value(1);
 						$site_url = $this->settings->get_setting_value(2);
@@ -349,7 +494,7 @@ class Elite extends CI_Controller {
 						$emailcompany=$id;
 						$cronemail=$this->settings->get_elitesubscription_detailsbycompanyid($emailcompany);	
 						
-						//CHANGE THE RECEPTIENT AND URL LINK AFTER CHECKING
+					
 						   $config = Array(
 							'protocol' => 'smtp',
 							'smtp_host' => 'smtp.mandrillapp.com',
@@ -365,10 +510,10 @@ class Elite extends CI_Controller {
 							$this->config->load('email',TRUE);
 							$this->cnfemail = $this->config->item('email');
 												
-							//$this->email->initialize($this->cnfemail);
+							
 							$this->email->initialize($config);
 							$this->email->from($site_mail,$site_name);
-							$this->email->to($site_mail,'alankenn@grossmaninteractive.com');	
+							$this->email->to($site_mail);	
 							$this->email->subject('Elitemembership Subscription For User '.ucfirst($cronemail['company']).' Updated With  New credit card Details.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 																	<tr>
@@ -407,7 +552,7 @@ class Elite extends CI_Controller {
 											
 							//For sending mail to user
 							$this->email->from($site_mail,$site_name);
-							$this->email->to($email,'alankenn@grossmaninteractive.com');	
+							$this->email->to($email);	
 							$this->email->subject('Elitemembership Subscription Details has been Updated successfully With New credit card.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 													  <tr>
@@ -468,7 +613,7 @@ class Elite extends CI_Controller {
 				else
 				{
 				
-					$this->session->set_flashdata('success_msg', $text);
+					$this->session->set_flashdata('success_msg',$text);
 					redirect('elite/update', 'refresh');
 					
 				}

@@ -34,7 +34,7 @@
             <a href="<?php echo site_url('solution/claimbusiness');?>" title="Claim Your Business">
             <input type="image" class="sub_paypal" name="submit" border="0" src="../uploads/btn_cards.gif" alt="PayPal - The safer, easier way to pay online">
             <img alt="paypal" border="0" width="1" height="1" src="https://www.paypal.com/en_US/i/scr/pixel.gif" >
-            <input type="submit" value="REGISTER" name="submit" title="PayPal - The safer, easier way to pay online!" class="headersub_btn">  </a>
+            <input type="submit" value="REGISTER" name="submit" title="Authorize.net - Accept Payments. Anywhere!" class="headersub_btn">  </a>
            
               
              </div>

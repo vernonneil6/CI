@@ -33,7 +33,7 @@ class Review extends CI_Controller {
 		    $site = $regs['domain'];
 		 }
 		 
-		 $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
+		 $website = $this->common->get_site_by_domain_name($site);
 		 
 		 if(count($website)>0)
 		 {
@@ -318,23 +318,18 @@ class Review extends CI_Controller {
 					
 					$this->email->message("
 					<table>
-						
-						<label style='color: #B32317; font-size: 23px; padding: 15px 0;'> 
-								 One of your customers has posted a </br>
-								 Review / Complaint about you 
-						</label>
-						
+												
 						<tr>
 							<td>
 								<ul style='font-size: 13px; list-style: none; padding : 0;'>
 								
 									<li style='margin: 20px 0;  padding : 0;'>Hello ".$company[0]['company'].",</li>
 									
-									<li style='margin: 8px 0; padding : 0 0 0 15px;'>One of your customers has recently posted a review on YouGot Rated.</li>
+									<li style='margin: 8px 0; padding : 0 0 0 15px;'>One of your customers has posted a review about your business.</li>
 									
-									<li style='margin: 8px 0; padding : 0 0 0 15px;'>If you received a positive review, congratulations for a job well done.</li>
+									<li style='margin: 8px 0; padding : 0 0 0 15px;'>• If you received a positive review, congratulations for a job well done.</li>
 									
-									<li style='margin: 8px 0; padding : 0 0 0 15px;'>If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.</li>
+									<li style='margin: 8px 0; padding : 0 0 0 15px;'>• If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.</li>
 									
 									<li style='margin: 11px 0; padding : 0 0 0 15px;'>• By being pro-active and working with your customer you can avoid having a bad reputation online which can affect your business</li>
 									
@@ -351,8 +346,8 @@ class Review extends CI_Controller {
 								</ul>
 								<ul style='font-size : 13px; list-style : none; margin : 0; background-color : #E7E5D3; width: 198px; padding : 6px 0; border-radius : 0 0 7px 7px; '>
 									<li style = 'font-size : 18px; color : #B32317; margin : 5px 0 10px; padding : 0  0 0 15px;'>Expert Tips</li>								
-									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Address your current dispute</li>								
-									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Help avoid future transaction issues</li>
+									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Respond to negative reviews.</li>								
+									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Encourage customers to post reviews.</li>
 								</ul>	
 							</td>
 						</tr>
@@ -368,36 +363,14 @@ class Review extends CI_Controller {
 
 									
 									
-									<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>What To Do Next</li>
-									
-									<li>Most of the time, customers disputes can be resolved quickly and amicably </li>
-									<li>by communicating with the buyer through YouGotRated. </li>
-									
-									<li style='font-size : 13px; margin : 15px 0 0 15px;'>We encourage you to respond to the buyer as soon as possible. A buyer who feels that you are working</li> 
-									<li style='font-size : 13px'>with them to resolve a problem is more likely to agree to a settlement.</li> 
-									
-									
-									
-									<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>Your Benefit</li>
-									
-									<li>If you choose to have the review removed from your profile, YouGotRated will </li>
-									<li>temporarily disable and hide the review from public view until you reach a resolution </li>
-									<li>with your customer. We believe that as a merchant you deserve the opportunity to keep </li> 
-									<li>a good online reputation.</li>
-									
-									<li style='font-size : 13px; margin : 15px 0 0 15px;'>Please remember that even though you may select the review to be removed from the site, you must </li>
-									<li style='font-size : 13px'>comply with the YouGotRated User Agreement and provide your customer with a solution to their </li>
-									<li style='font-size : 13px'>complaint. Failure to do so, will result in having the review permanently posted online.</li>
-									<li style='font-size : 13px'>To review the YouGotRated User Agreement, visit the YouGotRated and click the</li>
-									<li style='font-size : 13px'>Legal Agreements link on the bottom of any page.</li>
-									
-									<li style='font-size : 13px; margin : 20px 0 5px 15px;'>Sincerely,</li>
+									<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>What To Do Next</li>									
+									<li>To view the posted review <a href='".base_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints')."'>CLICK HERE</a></li>
+									<li>You also have the ability to remove a negative or any review if you so choose using our </li>
+									<li>Negative Review removal tool that you can initiate by clicking the link when logged into your account.</li>
 
+									<li style='font-size : 13px; margin : 20px 0 5px 15px;'>Sincerely,</li>
 									<li style='font-size : 13px; margin : 0 0 20px 15px;'>YouGotRated</li>
 
-									<li style='font-size : 13px; color : #347C91; margin : 15px 0 15px 15px;'>Please follow this link to view your Review.</li>
-									
-									<li><a href='".base_url('businessadmin/review/reviews')."'><img src='".$site_url."images/go.gif'></a></li>
 									
   								</ul>
 							</td>

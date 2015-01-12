@@ -21,6 +21,70 @@ Class Settings extends CI_Model
 			return false;
 		}
  	}
+ 	function get_country_by_countryid($cid)
+	{
+		$query = $this->db->get_where('youg_country',array('country_id'=>$cid));
+		return $query->row_array();
+		
+	}
+ 	function get_all_countrys()
+	{
+		//Executing Query
+		$this->db->select('country_id,name');
+		$this->db->from('country');
+						
+		$query = $this->db->get();
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+	}
+	function update_billingaddress($address,$city,$state,$country,$zip,$id)
+	{
+		
+		$data = array(
+					'streetaddress' => $address,
+					'city'		    => $city,
+					'state'	        => $state,
+					'country'	    => $country,
+					'zip'		    => $zip
+					
+		);
+		$query=$this->db->update('youg_company', $data, array('id' => $id));
+	  
+		if ($query)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}	
+			
+	}
+	function get_all_states_by_cid($country_id)
+	{
+		//Executing Query
+		$this->db->select('country_id,name');
+		$this->db->from('state');
+		$this->db->where('country_id',$country_id);
+						
+		$query = $this->db->get();
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+	}
 	
 	//Getting Email value
 	function get_email_byid($id)
@@ -118,6 +182,22 @@ Class Settings extends CI_Model
 		else
 		{
 			return false;
+		}
+ 	}
+ 	function get_elitecancel_email_byid($companyid)
+ 	{
+		$query = $this->db->select('id, company, email')
+						  ->from('company')
+						  ->where('id',$companyid)
+    					  ->get();
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
 		}
  	}
 	
@@ -239,10 +319,10 @@ Class Settings extends CI_Model
 	
 	function cancel_elitemembership_bycompnayid1($companyid)
  	{
-		$data = array('status' =>'Disable' );
+		$data = array('status' =>'Disable');
 		
 		$this->db->where('company_id', $companyid);
-		if ($this->db->update('elite',$data))
+		if($this->db->update('elite',$data))
 		{
 			return true;
 		}

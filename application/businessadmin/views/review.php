@@ -44,6 +44,9 @@
 	$path = $url[0];
 	?>
     <div class="clearfix file uploadbox" style="width:auto">
+      <div class = "review_download">Elite member review upload tool</div>
+	  <div class = "review_download">Use the template below to format your reviews in Excel with the same columns and formatting. When ready, upload your file to populate your elite business profile page with your preferred business reviews!</div>
+	  
       <div id="divlink"><a title="Upload CSV" id="uploadcsv" style="cursor:pointer; display:block">Upload CSV</a> or <a title="Download Sample CSV" href="<?php echo site_url('review/download');?>" id="downloadcsv" style="cursor:pointer">( Download Sample CSV )</a></div>
       <div class="con" id="divupload"> <?php echo form_input( array( 'name'=>'csvfile','id'=>'csvfile','class'=>'input file upload-file','type'=>'file') ); ?> </div>
       <div class="btn-submit" id="submitupload"> <?php echo form_input(array('name'=>'btnupload','id'=>'btnupload','class'=>'button','type'=>'submit','value'=>'Submit')); ?> or <a href="<?php echo site_url('review');?>" class="Cancel">Cancel</a> </div>

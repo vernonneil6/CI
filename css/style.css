@@ -2,40 +2,76 @@
 /* CSS Document */
 @font-face {
 	font-family: 'MyriadProBoldCondensed';
-	src:url('../font/myraidpro/MyriadProBoldCondensed.eot'),
-		url('../font/myraidpro/MyriadProBoldCondensed.eot?#iefix') format('embedded-opentype'),
-		url('../font/myraidpro/MyriadProBoldCondensed.woff') format('woff'),
-		url('../font/myraidpro/MyriadProBoldCondensed.ttf') format('truetype');
+	/*src:url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.eot'),
+		url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.eot?#iefix') format('embedded-opentype'),
+		url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.woff') format('woff'),
+		url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.ttf') format('truetype');*/
+	
+	src: url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.eot'); 
+	src: url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.eot?#iefix') format('embedded-opentype'), 
+		 url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.woff') format('woff'),
+		 url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.ttf')  format('truetype'), 
+		 url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.otf')  format('opentype'),
+		 url('../font/MyriadProBoldCondensed/MyriadProBoldCondensed.svg#MyriadProBoldCondensed') format('svg');
 	
 }
 @font-face {
 	font-family: 'MyriadPro-BlackSemiCn';
 	
-	src:url('../font/MyriadPro-BlackSemiCn.ttf') format('truetype');
+	/*src:url('../font/MyriadPro-BlackSemiCn.ttf') format('truetype'),
+		url('../font/MyriadPro-BlackSemiCn.otf') format('opentype');*/
 	
+	  src: url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot'); 
+	  src: url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot?#iefix') format('embedded-opentype'), 
+		   url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.woff') format('woff'),
+		   url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.ttf')  format('truetype'), 
+		   url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.otf')  format('opentype'),
+		   url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.svg#MyriadPro-BlackSemiCn') format('svg'); 
+		   	
 }
 @font-face {
 	font-family: 'MyriadPro-Regular';
 	
-	src:url('../font/myriad/MyriadPro-Regular.eot'),
+	/*src:url('../font/myriad/MyriadPro-Regular.eot'),
 		url('../font/myraid/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
 		url('../font/myriad/MyriadPro-Regular.otf') format('opentype'),
-		url('../font/myriad/MyriadPro-Regular.ttf') format('truetype');
+		url('../font/myriad/MyriadPro-Regular.ttf') format('truetype');*/
+	
+	src: url('../font/MyriadPro-Regular/MyriadPro-Regular.eot'); 
+	src: url('../font/MyriadPro-Regular/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'), 
+		 url('../font/MyriadPro-Regular/MyriadPro-Regular.woff') format('woff'),
+		 url('../font/MyriadPro-Regular/MyriadPro-Regular.ttf')  format('truetype'), 
+		 url('../font/MyriadPro-Regular/MyriadPro-Regular.otf')  format('opentype'),
+		 url('../font/MyriadPro-Regular/MyriadPro-Regular.svg#MyriadPro-Regular') format('svg'); 
 	
 }
 @font-face {
 	font-family: 'MyriadPro-BoldCond';
 	
-	src:url('../font/myriad/MyriadPro-BoldCond.eot'),
+	/*src:url('../font/myriad/MyriadPro-BoldCond.eot'),
 		url('../font/myraid/MyriadPro-BoldCond.eot?#iefix') format('embedded-opentype'),
-		url('../font/myriad/MyriadPro-BoldCond.otf') format('opentype');
+		url('../font/myriad/MyriadPro-BoldCond.otf') format('opentype');*/
+		
+	src: url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.eot'); 
+	src: url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.eot?#iefix') format('embedded-opentype'), 
+		 url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.woff') format('woff'),
+		 url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.ttf')  format('truetype'), 
+		 url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.otf')  format('opentype'),
+		 url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.svg#MyriadPro-BoldCond') format('svg');
 	
 }
 @font-face {
 	font-family: 'MyriadPro-SemiboldCondIt';
 	
-	src:url('../font/myriad/MyriadPro-SemiboldCondIt.otf') format('opentype'),
-		url('../font/myriad/MyriadPro-SemiboldCondIt.ttf') format('truetype');
+	/*src:url('../font/myriad/MyriadPro-SemiboldCondIt.otf') format('opentype'),
+		url('../font/myriad/MyriadPro-SemiboldCondIt.ttf') format('truetype');*/
+		
+	src: url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.eot'); 
+	src: url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.eot?#iefix') format('embedded-opentype'), 
+		 url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.woff') format('woff'),
+		 url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.ttf')  format('truetype'), 
+		 url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.otf')  format('opentype'),
+		 url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.svg#MyriadPro-SemiboldCondIt') format('svg');
 	
 }
 
@@ -1632,4 +1668,24 @@ padding-left: 18px;
 .negative_review_user
 {
 	margin : 0 0 25px;
+}
+
+.become_verfied
+{
+	font-family: MyriadPro-BoldCond;
+    font-size: 17px;
+}
+.font_color_1
+{
+	color : #286A9A
+}
+.singletimings label
+{
+	font-family: "MyriadPro-BlackSemiCn";
+}
+.singletimings
+{
+	font-family: myriadpro-regular;
+    font-size: 13px!important;
+	margin: 15px 0 3px;
 }

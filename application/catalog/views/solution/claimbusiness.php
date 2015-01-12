@@ -14,7 +14,7 @@
       <div class="reg_step_edit_claim"></div>
       <div class="reg_frm_wrap">
 		 
-        <form class="reg_frm" action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
+        <form class="reg_frm" action="index.php/solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
           <div class="reg-row">
             <label>INTRODUCE YOUR BUSINESS</label>
             
@@ -126,12 +126,6 @@
             <input type="text" class="reg_txt_box" placeholder="LAST NAME" id="lname" name="lname" maxlength="30" /><div id="lnameerror" class="error">Last Name is required.</div>
               
           </div>
-          <div class="reg-row" style="margin-top:10px !important;">
-				<div class="reg_fld">CREDIT CARD NUMBER</div>
-				<input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)" onblur="return checkcard()"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
-				<div id="carderror" class="carderror"></div>
-				<div id="cardsuccess" class="cardsuccess"></div>
-          </div>
           <div class="reg-row" style="margin-top:-1px;">
             <div class="reg_fld">WHAT IS YOUR BILLING ADDRESS?</div>
             <input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50" />
@@ -167,6 +161,13 @@
             <div id="streeterror" class="error">Street Address is required.</div>
             <div id="zipcodeerror" class="error">Enter digits only.</div>
           </div>
+          <div class="reg-row" style="margin-top:10px !important;">
+				<div class="reg_fld">CREDIT CARD NUMBER</div>
+				<input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)" onblur="return checkcard()"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+				<div id="carderror" class="carderror"></div>
+				<div id="cardsuccess" class="cardsuccess"></div>
+          </div>
+          
          
           <div class="reg-row" style="margin-top:10px !important;">
             <div class="reg_fld">EXPIRATION DATE</div>

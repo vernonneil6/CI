@@ -20,7 +20,11 @@
 			return false;
 		});
 	 }); 
+	 
 </script>
+<script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
+
 
 <section class="container">
   <section class="main_contentarea">
@@ -38,12 +42,13 @@
         <?php
 				  } ?>
 		<?php if(count($elitemem_status)==0){?>
-         <!--<div class="bsntvry_title">
+        <div class="bsntvry_title">
           <div class="bsvry_tag"> <span>IS THIS YOUR BUSINESS?</span>
             <p><a href="solution/claimbusiness" title="CLICK HERE TO BECOME VERIFIED">CLICK HERE TO BECOME VERIFIED</a></p>
           </div>
-        </div>-->
-	<div class="compny_name">
+        </div>
+       
+		<div class="compny_name">
           <h1><?php echo strtoupper($company[0]['company']);?></h1>
           <div class="vry_rating vryrating">
             <?php for($r=0;$r<$avgstar;$r++){?>
@@ -82,12 +87,24 @@
         <div class="contct_dtl">
           <ul>
             <li><a><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></a></li>
-            <li><a><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['country'].',     '.$company[0]['zip'])); ?></a></li>
+            <li><a><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',		'.$company[0]['country'])); ?></a></li>
+            <li class = "singletimings">
+				<?php 
+				if(count($elitemem_status)!=0)
+				{
+					if(count($company_timings) > 0)
+					{
+				?>
+						<label class = "font_size_bold">Open Today </label> : <?php echo date("h:i A",strtotime($company_timings['start']));?> - <?php echo date("h:i A",strtotime($company_timings['end']));
+					}
+				} 
+				?>
+			</li>
             <li><a class="colors" href="tel:<?php echo $company[0]['phone'];?>" title="<?php echo $company[0]['phone'];?>"><?php echo $company[0]['phone']; ?></a></li>
             <?php if(strlen($company[0]['fax']>8)){?>
             <li><a><?php echo $company[0]['fax'];?></a></li>
             <?php } ?>
-	<li><a href="mailto:<?php echo strtoupper($company[0]['email']);?>" title="Email us" class="colors"><?php echo strtoupper($company[0]['email']);?></a></li>
+			<li><a href="mailto:<?php echo strtoupper($company[0]['email']);?>" title="Email us" class="colors"><?php echo strtoupper($company[0]['email']);?></a></li>
             <li>
               <?php if (strpos($company[0]['siteurl'],'http://') !== false)
 				 {
@@ -103,35 +120,7 @@
               <?php
 				 }?>
             </li>
-            
-            
-            
-          <?php if( count($elitemem_status)>0 )  {	?>
-         
-          <?php if( count($companypdfs) > 0 ) { ?>
-          <li> <span>Company Menu</span>
-		  <?php for($x=0; $x<count($companypdfs); $x++) { ?>
-          <div> 
-            <script>
-			function PopupCenter(pageURL, title,w,h)
-			 {
-			  var left = (screen.width/2)-(w/2);
-		  	  var top = (screen.height/2)-(h/2);
-			  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-}		</script>
-            <?php $file = $this->common->get_setting_value(2).$this->config->item('pdf_main_upload_path').$companypdfs[$x]['pdf'];?>
-            <?php $title = ucfirst(stripslashes($companypdfs[$x]['title'])); ?>
-            <a style="cursor: pointer;" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" target="_blank" title="View document">
-            <div><?php echo $companypdfs[$x]['title'];?>&nbsp; <img src="<?php echo base_url();?>/images/pdf.png" title="pdf" alt="pdf" /> </div>
-            </a> </div>
-          <?php } ?></li>
-          <?php } 
-		  ?>
-          
-          <?php
-		  };?>
-        
-         
+
           </ul>
         </div>
         <div class="social_blck">
@@ -141,27 +130,27 @@
 			  {?>
 	     <?php if($companysems[$cs]['type']=='t'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
-            <li class="twitter"><a href="<?php echo $companysems[$cs]['url'];?>" title="twitter"></a></li>
+            <li class="twitter"><a href="<?php echo $companysems[$cs]['url'];?>" title="twitter" target = "_blank"></a></li>
             <?php }} ?>
              <?php if($companysems[$cs]['type']=='f'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
-            <li class="facebook"><a href="<?php echo $companysems[$cs]['url'];?>" title="facebook"></a></li>
+            <li class="facebook"><a href="<?php echo $companysems[$cs]['url'];?>" title="facebook" target = "_blank"></a></li>
             <?php }} ?>
             <?php if($companysems[$cs]['type']=='g'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
-            <li class="google"><a href="<?php echo $companysems[$cs]['url'];?>" title="google"></a></li>
+            <li class="google"><a href="<?php echo $companysems[$cs]['url'];?>" title="google" target = "_blank"></a></li>
             <?php }} ?>
    	     <?php if($companysems[$cs]['type']=='p'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
-            <li class="pintrest"><a href="<?php echo $companysems[$cs]['url'];?>" title="pintrest"></a></li>
+            <li class="pintrest"><a href="<?php echo $companysems[$cs]['url'];?>" title="pintrest" target = "_blank"></a></li>
             <?php }} ?>
             <?php if($companysems[$cs]['type']=='a'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
-            <li class="amazon"><a href="<?php echo $companysems[$cs]['url'];?>" title="amazon"></a></li>
+            <li class="amazon"><a href="<?php echo $companysems[$cs]['url'];?>" title="amazon" target = "_blank"></a></li>
             <?php }} ?>
             <?php if($companysems[$cs]['type']=='e'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
-            <li class="ebay"><a href="<?php echo $companysems[$cs]['url'];?>" title="ebay"></a></li>
+            <li class="ebay"><a href="<?php echo $companysems[$cs]['url'];?>" title="ebay" target = "_blank"></a></li>
             <?php }} ?>
          <!-- <?php if($companysems[$cs]['type']=='l'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
@@ -193,14 +182,52 @@
 			  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 			 }
 			</script>
-			<label class = "view_direction_map" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">GET DIRECTIONS</label>       		         
+			<label class = "view_direction_map" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">Get Directions</label>       		         
 		</div>
 	   </div>
-
-	<div class="get_dirct">
-	<div class="getdir_title">
-            <label class = "view_direction_map">MENU</label>
-	</div></div>
+		
+		
+		<?php if( count($elitemem_status)>0 )  {	?>
+        <?php if( count($companypdfs) > 0 ) { ?>
+		<?php for($x=0; $x<count($companypdfs); $x++) { ?>
+		<script>
+		function PopupCenter(pageURL, title,w,h)
+		 {
+		  var left = (screen.width/2)-(w/2);
+		  var top = (screen.height/2)-(h/2);
+		  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+		 }		
+		 $(document).ready(function(){
+			$("#companypdf").click(function(){		 
+			 $.fancybox({
+				maxWidth	: 800,
+				maxHeight	: 600,
+				fitToView	: false,
+				width		: '70%',
+				height		: '70%',
+				autoSize	: false,
+				closeClick	: false,
+				openEffect	: 'none',
+				closeEffect	: 'none',
+				content		: $('#pdfname').show();
+			});
+		  });
+		 });
+		</script>
+		
+		<div class="get_dirct">
+			<div class="getdir_title">
+				<label class = "view_direction_map" id = "companypdf">Menu/Catalog</label>
+			</div>
+		</div>
+		<?php $file = $this->common->get_setting_value(2).$this->config->item('pdf_main_upload_path')."uploads/pdf/".$companypdfs[$x]['pdf'];?>
+		<?php $title = ucfirst(stripslashes($companypdfs[$x]['title'])); ?>
+		<div>
+		<a style="cursor: pointer; display : none" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" target="_blank" title="View document" id = "pdfname">
+			<?php echo $companypdfs[$x]['title'];?>&nbsp; <img src="<?php echo base_url();?>/images/pdf.png" title="pdf" alt="pdf" />
+		</a>
+		</div>		
+	  <?php } } } ?>
 
         <div class="review_wrp">
           <div class="contct_dtl">
@@ -208,11 +235,12 @@
               <li><span>TOTAL REVIEWS </span><my class="fontcolors";><?php echo $to_reviews;?></my></li>
               <li><span>TOTAL COMPLAINTS </span><my  class="fontcolors";> <?php echo $to_complaints;?></my></li>
               <li><span>TOTAL DAMAGES </span><my  class="fontcolors";> $  <?php if($to_damages!=''){ echo round($to_damages);}else{echo "0";}?>  </my></li>
-            
-              <li><span>PRICE RANGE </span><my  class="fontcolors";> <?php echo $company[0]['price_range'];?></my></li>
+			  <?php if($company[0]['price_range']!='') { ?>
+				<li><span>PRICE RANGE </span><my  class="fontcolors";> <?php echo $company[0]['price_range'];?></my></li>
+              <?php } ?>
               <li><span>ACCEPTS CREDIT CARDS </span><my  class="fontcolors";> <?php echo $company[0]['accept_credit_cards'];?></my></li>
               <li><span>ACCEPTS PAYPAL </span><my  class="fontcolors";> <?php echo $company[0]['accept_paypal'];?></my></li>
-		<li><span>CATEGORY</span><a>
+			  <li><span>CATEGORY</span><a>
         
           <?php $ex = explode(',',$company[0]['categoryid']); ?>
           <?php for($a=0;$a<count($ex);$a++)
@@ -238,40 +266,6 @@
           </div>
         </div>
 
-
-       <!-- <php if(count($elitemem_status)!=0){?>
-        <div class="hour_operatn">
-          <div class="hr_title">
-            <h2>Hours</h2>
-            <i class="line"></i> <span>of operation</span> </div>
-          <table class="hrly_tb">
-            <thead>
-              <tr>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
-                <th>Sunday</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <php for($t=0;$t<count($company_timings); $t++) { ?>
-                <td><php echo date("h:i A",strtotime($company_timings[$t]['start']));?></td>
-                <php } ?>
-              </tr>
-              <tr>
-                <php for($t=0; $t<count($company_timings); $t++) { ?>
-                <td><php echo date("h:i A",strtotime($company_timings[$t]['end']));?></td>
-                <php } ?>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <php } ?>-->
-        
         </ul>
 
 <!--<script>
@@ -406,8 +400,8 @@ $('#mapshow').removeClass('mapshow');
               </div>
               <div class="review_rgt reviewstab">
 
- <div class="user_name">
-                  <?php if($reviews[$i]['type']=='csv') { ?>
+			<div class="user_name">
+                  <?php if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') { ?>
                   <a><?php echo $reviews[$i]['reviewby'];?><span>   -  Orlando, FL</span></a>
 			<div class="datereview"><?php echo date("d.m.Y",strtotime($reviews[$i]['reviewdate']));?></div>
                   <?php } else {?>

@@ -69,10 +69,24 @@ class Timing extends CI_Controller {
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			$id=$this->session->userdata['youg_admin']['id'];
-			//Addingg Setting Result to variable
+			
+			$timings = $this->timings->get_company_timings($id);
+			if(count($timings)==0) 
+			{
+			$this->timings->set_timing(1,$id,"monday","No","09:00:00","21:00:00");
+			$this->timings->set_timing(1,$id,"tuesday","No","09:00:00","21:00:00");
+			$this->timings->set_timing(1,$id,"wednesday","No","09:00:00","21:00:00");
+			$this->timings->set_timing(1,$id,"thursday","No","09:00:00","21:00:00");
+			$this->timings->set_timing(1,$id,"friday","No","09:00:00","21:00:00");
+			$this->timings->set_timing(1,$id,"saturday","No","09:00:00","21:00:00");
+			$this->timings->set_timing(1,$id,"sunday","No","09:00:00","21:00:00");
+			
+			redirect ('timing', 'refresh');
+						
+			}
+	
 			$siteid = $this->session->userdata('siteid');
 			$this->data['timings'] = $this->timings->get_all_timings($id,$siteid);
-			//Loading View File
 			$this->load->view('timing',$this->data);
 	  	}
 	}
