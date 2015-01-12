@@ -398,12 +398,12 @@ $('#mapshow').removeClass('mapshow');
 			<div class="user_name">
                   <?php if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') { ?>
                   <a><?php echo $reviews[$i]['reviewby'];?><span>   -  Orlando, FL</span></a>
-			<div class="datereview"><?php echo date("d.m.Y",strtotime($reviews[$i]['reviewdate']));?></div>
+			<div class="datereview"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
                   <?php } else {?>
                   <?php $user=$this->users->get_user_byid($reviews[$i]['reviewby']);?>
                   <?php if(count($user)>0) { ?>
                   <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><?php echo $user[0]['username'];?><span>Orlando, FL</span></a>
-			<div class="datereview"><?php echo date("d.m.Y",strtotime($reviews[$i]['reviewdate']));?></div>
+			<div class="datereview"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
                   <?php } ?>
                   <?php } ?>
                   </a></div>
@@ -470,7 +470,7 @@ $('#mapshow').removeClass('mapshow');
                   <?php } else { ?>
                   <a><?php echo "Anonymous";?></a>
                   <?php	}?>
-		 <span class="datereview"><?php echo date('d.m.Y',strtotime($complaints[$i]['complaindate']));?></span>
+		 <span class="datereview"><?php echo date('m/d/Y',strtotime($complaints[$i]['complaindate']));?></span>
                 </div>
 
 
@@ -501,7 +501,7 @@ $('#mapshow').removeClass('mapshow');
                 <div class="review_ratng_wrp">
                   <div class="rat_title reptitle">
                     <h2 class="flats"><a href="<?php echo site_url('pressrelease/browse/'.$companypressreleases[$pr]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($companypressreleases[$pr]['title'])); ?>'s detail"><?php echo $companypressreleases[$pr]['title'];?></a></h2>
-                    <span class="datereview pads"><?php echo date('d.m.Y',strtotime($companypressreleases[$pr]['insertdate']));?></span></div>
+                    <span class="datereview pads"><?php echo date('m/d/Y',strtotime($companypressreleases[$pr]['insertdate']));?></span></div>
                 </div>
                 <p> <a href="<?php echo site_url('pressrelease/browse/'.$companypressreleases[$pr]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($companypressreleases[$pr]['title'])); ?>'s detail"> <?php echo $companypressreleases[$pr]['sortdesc'];?> </a> </p>
               </div>
@@ -538,7 +538,7 @@ $('#mapshow').removeClass('mapshow');
                    		<span><a href="<?php echo $coupons[$i]['url'];?>" title="<?php echo $coupons[$i]['url'];?>" target="_blank" rel="nofollow">Promocode: <span><?php echo $coupons[$i]['promocode'];?></span> </a></span></div>
 		     </h2>
                 </div>
-                <p><?php echo date("d.m.Y",strtotime($coupons[$i]['enddate']));?></p>
+                <p><?php echo date("m/d/Y",strtotime($coupons[$i]['enddate']));?></p>
               </div>
             </div>
             <?php } ?>
