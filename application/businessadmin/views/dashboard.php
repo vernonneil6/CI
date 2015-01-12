@@ -24,7 +24,7 @@ height:70px !important;
     </div>
     <div class="box-content" style="height:auto;">
       <ul class="icon_list">
-        <li> <a href="<?php echo site_url('company');?>" title="Profile"> <img src="images/company.jpeg" alt="Profile" title="Profile">
+        <li> <a href="<?php echo site_url('company/edit');?>" title="Profile"> <img src="images/company.jpeg" alt="Profile" title="Profile">
           <p>Profile</p>
           </a> </li>
         <li> <a href="<?php echo site_url('gallery');?>" title="Galleries"> <img src="images/gallery.jpeg" alt="gallery" title="Galleries">
