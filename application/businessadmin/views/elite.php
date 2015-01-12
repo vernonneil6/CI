@@ -88,7 +88,6 @@
         <th>Status</th>
         <th>Expire date</th>
         <th>Subscription price</th>
-        <th>Total payments</th>
     </tr>
       <?php for($i=0;$i<count($elite);$i++) { ?>
       <tr>
@@ -98,7 +97,6 @@
           <?php } ?>
           <td><?php echo date('M d Y',strtotime($elitepayment['expires'])); ?></td>
           <td><?php echo "$ ".$elitepayment['sub_amt']; ?></td>
-          <td><?php if($elitepayment['totalpayment']!=0) {echo $elitepayment['totalpayment'].'/'.'12';} else { echo '0/12';} ?></td>
           </td>
         
       </tr>
