@@ -717,8 +717,8 @@ public function eliteSubscribe($formpost,$companyid) {
 											  </tr>
 											  <tr>
 												<td style="padding-left:20px;"> ----------------------------------------------------<br />
-												  Username = '.$company[0]['email'].'<br />
-												  password = '.$password.'<br />
+												  Username : '.$company[0]['email'].'<br />
+												  password : '.$password.'<br />
 												  ----------------------------------------------------<br />
 												  Please click this link to login your account.<br />
 												  <a href="'.$site_url.'businessadmin">Elite Member Login</a></td>
@@ -755,7 +755,7 @@ public function eliteSubscribe($formpost,$companyid) {
 												<td style="padding-left:20px;"> Verified YouGotRated Seal </td>
 											  </tr>
 											  <tr>
-												<td style="padding-left:20px;padding-top:10px"> To download and use your official YouGotRated seal – simply embed this code into your email or website.  This will allow your customers to see your current ratings status and reviews with YouGotRated as a live feed. </td>
+												<td style="padding-left:20px;padding-top:10px"> To download and use your official YouGotRated seal &#8211; simply embed this code into your email or website.  This will allow your customers to see your current ratings status and reviews with YouGotRated as a live feed. </td>
 											  </tr>
 											  <tr>
 												<td style="padding-left:20px;padding-top: 12px;">
