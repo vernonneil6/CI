@@ -103,6 +103,7 @@ class Company extends CI_Controller {
 			$varcatid = explode(",",$cat);
 			$newcat = array_flip($varcatid);
 			$this->data['buscategories'] = $newcat;
+			$this->data['countryname'] = $this->companys->country_name($this->data['company'][0]['country']);
 
 			if( count($this->data['company'])>0 )
 			{			
