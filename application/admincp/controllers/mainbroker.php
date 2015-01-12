@@ -84,20 +84,23 @@ class Mainbroker extends CI_Controller
 		
 		if($this->input->post('submitbroker'))
 		{
-		$request=$this->input;
-		
-		$data=array(
-		'type'=> 'subbroker',
-		'name'=>$request->post('username'),
-		'password'=>$request->post('password'),
-		'marketer'=>$request->post('marketer'),
-		'agent'=>$request->post('agent'),
-		'signup'=>date("Y-m-d H:i:s")
-		);
-		
-		$this->mainbrokers->allbroker($data);
+			$request=$this->input;			
+			$data=array(
+			'type'=> 'subbroker',
+			'name'=>$request->post('username'),
+			'password'=>$request->post('password'),
+			'marketer'=>$request->post('marketer'),
+			'agent'=>$request->post('agent'),
+			'signup'=>date("Y-m-d H:i:s")
+			);			
+			if($this->mainbrokers->allbroker($data)){
+				$this->session->set_flashdata('success', 'Record Added Successfully');
+			}else{
+				$this->session->set_flashdata('error', 'Record Not Added');
+			}
 		}
 		$this->load->view('mainbroker');
+		
 	}
 	
 	function elitemember()
