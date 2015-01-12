@@ -1,4 +1,16 @@
 <?php echo $header; ?>
+<!-- Correct form message -->
+<?php if( $this->session->flashdata('success') ) { ?>
+<div class="form-message correct">
+  <p><?php echo $this->session->flashdata('success'); ?></p>
+</div>
+<?php } ?>
+<!-- Error form message -->
+<?php if( $this->session->flashdata('error') ) { ?>
+<div class="form-message error1">
+  <p><?php echo $this->session->flashdata('error'); ?></p>
+</div>
+<?php } ?>
 
 <div id="content">
   <div class="breadcrumbs">
@@ -18,7 +30,7 @@
 	 <fieldset>
         <div class="clearfix">
           <div class="lab">
-            <label for="name">Subbroker Name</label><?php echo $data;?>
+            <label for="name">Subbroker Name<div style="font-size:10px;">(Also the username)</div></label><?php echo $data;?>
           </div>
           <div class="con">
          <input type="text" class="input" name="username" value="" required>

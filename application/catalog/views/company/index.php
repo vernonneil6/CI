@@ -43,10 +43,12 @@
 				  } ?>
 		<?php if(count($elitemem_status)==0){?>
         <div>
+			<a href="<?php echo site_url('company/upgrade_elite/'.$company[0]['id']);?>" title="Upgrade to Elite">
 			<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
-			<div class="business_link"> 
-			  <a href="solution/claimbusiness" title="CLICK HERE TO BECOME VERIFIED">IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED</a>    
+			<div class="business_link"> 			
+				IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
 			</div>
+			</a>    
         </div>
        
 		<div class="compny_name">
@@ -77,7 +79,7 @@
         <?php } ?>
         
         <?php if(count($elitemem_status)==0){?>
-        <div class="vry_btn vry_width"><a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint">FILE COMPLAINT</a><a href="<?php echo site_url('company/upgrade_elite/'.$company[0]['id']);?>" title="Upgrade to Elite">UPGRADE</a></div>
+        <div class="vry_btn vry_width"><a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint">FILE COMPLAINT</a></div>
         
         <?php } else { ?>
 		<div class="vry_btn vry_width"><a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint">FILE COMPLAINT</a><a href="complaint/dispute/<?php echo $company[0]['id'];?>" title="File A Dispute">FILE A DISPUTE</a></div>	
@@ -209,12 +211,12 @@
 		
 		<div class="get_dirct">
 			<div class="getdir_title">
-				<label class = "view_direction_map pdf_text" id = "companypdf">Menu/Catalog</label>
+				<label class = "view_direction_map " id = "companypdf">Menu/Catalog</label>
 				<?php $file = $this->common->get_setting_value(2).$this->config->item('pdf_main_upload_path')."uploads/pdf/".$companypdfs[$x]['pdf'];?>
 				<?php $title = ucfirst(stripslashes($companypdfs[$x]['title'])); ?>
 				<div>
-				<a style="cursor: pointer; display : none" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" target="_blank" title="View document" id = "pdfname">
-					<?php echo $companypdfs[$x]['title'];?>&nbsp; <img src="<?php echo base_url();?>/images/pdf.png" title="pdf" />
+				<a style="cursor: pointer; display : none" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" class = "pdf_text" target="_blank" title="View document" id = "pdfname">
+					<?php echo $companypdfs[$x]['title'];?>
 				</a>
 				</div>		
 			</div>
