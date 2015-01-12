@@ -203,10 +203,10 @@ else { ?>
           <img src="<?php echo $path;?>/uploads/companysem/thumb/<?php echo stripslashes($sems[$i]['thumbimg']); ?>" title="<?php echo stripslashes($sems[$i]['title']); ?>" alt="<?php echo stripslashes($sems[$i]['title']); ?>" style="height:40px;width:40px;border:none;" />
           <?php } else { echo "No Image"; } ?></td>
         <td><?php if( stripslashes($sems[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('sem/disable/'.$sems[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this SEM?');"><span>Enable</span></a>
+          <a href="<?php echo site_url('sem/disable/'.$sems[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this SEM?');"><span>Enabled</span></a>
           <?php } ?>
           <?php if( stripslashes($sems[$i]['status']) == 'Disable' ) { ?>
-          <a href="<?php echo site_url('sem/enable/'.$sems[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this SEM?');"><span>Disable</span></a>
+          <a href="<?php echo site_url('sem/enable/'.$sems[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this SEM?');"><span>Disabled</span></a>
           <?php } ?></td>
         <td><a href="<?php echo site_url('sem/edit/'.$sems[$i]['id']); ?>" title="Edit" class="ico ico-edit" style="margin:3px 15px 0;">Edit</a></td>
       </tr>

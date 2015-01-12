@@ -55,7 +55,7 @@
 	<?php $siteid = $this->session->userdata['siteid'];?>
 	<?php if($siteid!='all'){ ?>
     <li><a href="<?php echo site_url('widget');?>" class="link" title="Review Feed Widget">Review Feed Widget</a></li>
-	<?php $companyid=$this->session->userdata['youg_admin']['id'];?>
+	<?php/* $companyid=$this->session->userdata['youg_admin']['id'];?>
     <?php $autho = $this->settings->get_subscribtion_bycompanyid($companyid);
     
 		if(count($autho)>0)
@@ -63,7 +63,7 @@
 		if($autho[0]['paymentmethod']!='paypal'){
     ?>
     <li><a href="<?php echo site_url('elite/cancel_subscribtion'); ?>" title="Cancel Subscription" class="link">Cancel Subscription</a> </li>
-    <?php }}}?>
+    <?php }}}*/?>
     <li><a href="<?php echo site_url('timing');?>" class="link" title="Hours Of Operation">Hours Of Operation</a></li>
     <li><a href="<?php echo site_url('dashboard/logout');?>" class="link" title="Logout">Logout</a></li>
     
