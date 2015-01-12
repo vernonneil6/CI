@@ -138,7 +138,7 @@
                 <div class="rating"> </div>
                 <div class="rat_title">
                   <h2><a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']);?>" title="view Complaint Detail"><?php echo ucfirst(stripslashes($company[0]['company'])); ?></a></h2>
-                  <span><?php echo date('m.d.Y',strtotime($complaints[$i]['complaindate']));?></span></div>
+                  <span><?php echo date('m/d/Y',strtotime($complaints[$i]['complaindate']));?></span></div>
               </div>
               <p><a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint Detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['detail']),0,212)."..."); ?></a></p>
             </div>
