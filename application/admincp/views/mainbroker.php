@@ -18,7 +18,7 @@
 	 <fieldset>
         <div class="clearfix">
           <div class="lab">
-            <label for="name">Subbroker Name</label><?php echo $data;?>
+            <label for="name">Subbroker Name<div style="font-size:10px;">(Also the username)</div></label><?php echo $data;?>
           </div>
           <div class="con">
          <input type="text" class="input" name="username" value="" required>
