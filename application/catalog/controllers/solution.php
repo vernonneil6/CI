@@ -270,16 +270,15 @@ class Solution extends CI_Controller {
 						{
 							
 							$companyid = $this->db->insert_id();							
-							$formpost=$_POST;
-							$this->eliteSubscribe($formpost,$companyid); // for authorise
-							
+													
 							$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
 							if($this->complaints->insert_companyseo($companyid,$name))
 							{
 								$site_name = $this->common->get_setting_value(1);
 								$site_url = $this->common->get_setting_value(2);
 								$site_email = $this->common->get_setting_value(5);
-					
+					            $formpost=$_POST;
+							    $this->eliteSubscribe($formpost,$companyid); // for authorise
 								// user Mail
 								$to = $cemail;
 								$mail = $this->common->get_email_byid(11);
@@ -435,7 +434,7 @@ class Solution extends CI_Controller {
 		}
 	}
 
-public function eliteSubscribe($formpost) {
+public function eliteSubscribe($formpost,$companyid) {
 	
 	
 	//data.php start
@@ -448,16 +447,16 @@ public function eliteSubscribe($formpost) {
 	   $transactionkey="38UzuaL2c6y5BQ88";
 	   $host = "apitest.authorize.net"; */
 	
-	/*sandbox test mode
+	/*sandbox test mode*/
 	  $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
-	   $host = "apitest.authorize.net";*/
+	   $host = "apitest.authorize.net";
 	
 	
-	/*live*/
+	/*live
 	    $loginname="5h7G7Sbr";
 		$transactionkey="94KU7Sznk72Kj3HK";
-		$host = "api.authorize.net";
+		$host = "api.authorize.net";*/
 	
 	
 	$path = "/xml/v1/request.api";
@@ -695,8 +694,8 @@ public function eliteSubscribe($formpost) {
 															</tr>
 															</table>');
 					//Sending mail to admin
-					$this->email->send();
-									
+					//$this->email->send();
+					
 					//For sending mail to user
 					$this->email->from($site_mail,$site_name);
 					$this->email->to($email);	
@@ -716,7 +715,7 @@ public function eliteSubscribe($formpost) {
 											  </tr>
 											  <tr>
 												<td style="padding-left:20px;"> ----------------------------------------------------<br />
-												  Username = Your email address<br />
+												  Username = '.$company[0]['email'].'<br />
 												  password = '.$password.'<br />
 												  ----------------------------------------------------<br />
 												  Please click this link to login your account.<br />
@@ -729,25 +728,49 @@ public function eliteSubscribe($formpost) {
 												<td style="padding-left:20px;"> Your Transaction Details are as follows. </td>
 											  </tr>
 											  <tr>
-												<td><table cellpadding="0" cellspacing="0" width="100%" border="0">
-													<tr>
-													  <td colspan="3"><h3>Payment Transaction Details:</h3></td>
-													</tr>
-													<tr>
-													  <td>Payment Amount</td>
-													  <td>:</td>
-													  <td>USD '.$amount.'</td>
-													</tr>
-													<tr>
-													  <td>Transacion ID</td>
-													  <td>:</td>
-													  <td><b>'.$transactionkey.'</b></td>
-													</tr>
-													<tr>
-													  <td colspan="3">&nbsp;</td>
-													</tr>
-												</table>
+												<td>
+													<table cellpadding="0" cellspacing="0" width="100%" border="0">
+														<tr>
+														  <td colspan="3"><h3>Payment Transaction Details:</h3></td>
+														</tr>
+														<tr>
+														  <td>Payment Amount</td>
+														  <td>:</td>
+														  <td>USD '.$amount.'</td>
+														</tr>
+														<tr>
+														  <td>Transacion ID</td>
+														  <td>:</td>
+														  <td><b>'.$transactionkey.'</b></td>
+														</tr>
+														<tr>
+														  <td colspan="3">&nbsp;</td>
+														</tr>
+												    </table>
 												</td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;"> Verified YouGotRated Seal </td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;padding-top:10px"> To download and use your official YouGotRated seal – simply embed this code into your email or website.  This will allow your customers to see your current ratings status and reviews with YouGotRated as a live feed. </td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;padding-top: 12px;">
+												&lt;iframe src=&quot;'.site_url("widget/business/".$company[0]['id']).'&quot; style=&quot;border:none;height:375px;&quot;&gt;&lt;/iframe&gt; 
+												 </td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;padding-top:12px"> <b>Business Reviews</b> </td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;padding-top:10px">You can share this link with your customers to allow them to add a review for your business: <a href="'.$site_url.'review/add/'.$company[0]['id'].'">'.$site_url.'review/add/'.$company[0]['id'].'</a></td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;padding-top:20px">Using this link, your customers can view your existing reviews:</td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;padding-top:10px"><a href="'.$site_url.'company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints">'.$site_url.'company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints</a> </td>
 											  </tr>
 											  <tr>
 												<td><br/>
@@ -758,8 +781,7 @@ public function eliteSubscribe($formpost) {
 												  The '.$site_name.' Team.<br/>
 												  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
 											  </tr>
-											</table>
-											');
+											</table>');
 									
 					//Sending mail user
 					$this->email->send();
