@@ -1,4 +1,16 @@
 <?php echo $header; ?>
+<!-- Correct form message -->
+<?php if( $this->session->flashdata('success') ) { ?>
+<div class="form-message correct">
+  <p><?php echo $this->session->flashdata('success'); ?></p>
+</div>
+<?php } ?>
+<!-- Error form message -->
+<?php if( $this->session->flashdata('error') ) { ?>
+<div class="form-message error1">
+  <p><?php echo $this->session->flashdata('error'); ?></p>
+</div>
+<?php } ?>
 
 <div id="content">
   <div class="breadcrumbs">
