@@ -112,7 +112,7 @@ class Company extends CI_Controller {
 			else
 			{
 				$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
-				redirect('company', 'refresh');
+				redirect('company/edit', 'refresh');
 			}
 	  }
 	}
@@ -141,6 +141,7 @@ class Company extends CI_Controller {
 					$phone = addslashes($this->input->post('phone'));
 					$about = addslashes($this->input->post('about'));
 					$cat = $this->input->post('cat');
+					
 					if($cat!='')
 					{
 						$category=implode(',',$cat);
@@ -248,20 +249,20 @@ class Company extends CI_Controller {
 									if( $this->companys->update($id,$company,$streetaddress,$city,$state,$country,$zip,$email,$siteurl,$paypalid,$imgdata['file_name'],$phone,$about,$category,$creditcard1,$creditcard2,$price_range,$accept_credit_cards,$accept_paypal) )
 									{
 										$this->session->set_flashdata('success', 'company updated successfully.');
-										redirect('company', 'refresh');
+										redirect('company/edit', 'refresh');
 									}
 									else
 									{
 					
 										$this->session->set_flashdata('error', 'There is error in updating company. Try later!');
-										redirect('company', 'refresh');
+										redirect('company/edit', 'refresh');
 									}
 								}
 								else
 								{
 									//Error in upload
 									$this->session->set_flashdata('error', "Error while uploading Image.<br/>&nbsp;&nbsp;&nbsp;<b>'Valid File Type ( gif, jpg, jpeg, png, bmp )'&nbsp;&nbsp;&nbsp;'Max Size : ".$config['max_size']." KB'&nbsp;&nbsp;&nbsp;'Max Width : ".$config['max_width']."'&nbsp;&nbsp;&nbsp;'Max Height : ".$config['max_height']."'</b>");
-									redirect('company','refresh');
+									redirect('company/edit','refresh');
 								}
 							}
 							else
@@ -270,12 +271,12 @@ class Company extends CI_Controller {
 								if( $this->companys->update_noimage($id,$company,$streetaddress,$city,$state,$country,$zip,$email,$siteurl,$phone,$about,$category,$creditcard1,$creditcard2,$price_range,$accept_credit_cards,$accept_paypal) )
 								{
 									$this->session->set_flashdata('success', 'company updated successfully.');
-									redirect('company', 'refresh');
+									redirect('company/edit', 'refresh');
 								}
 								else
 								{
 									$this->session->set_flashdata('error', 'There is error in updating company. Try later!');
-									redirect('company', 'refresh');
+									redirect('company/edit', 'refresh');
 								}
 							}
 						}
@@ -288,9 +289,7 @@ class Company extends CI_Controller {
 					$id = $this->session->userdata['youg_admin']['id'];
 			
 					//Getting value
-					$oldpassword = $this->input->post('oldpassword');			
 					
-					$newpassword = $this->input->post('newpassword');
 					
 			
 					
@@ -308,36 +307,36 @@ class Company extends CI_Controller {
 					{					
 						//Loading View File
 						$this->session->set_flashdata('success', 'Password has been Updated Successfully.');
-						redirect('company', 'refresh');
+						redirect('company/edit', 'refresh');
 					}
 					else
 					{
 						//Loading View File
 						$this->session->set_flashdata('error', 'Password not updated. Try later.');
-						redirect('company', 'refresh');
+						redirect('company/edit', 'refresh');
 					}
 				}
 				else
 				{
 					//Loading View File
 					$this->session->set_flashdata('error', 'Old password you gave is incorrect.');
-					redirect('company', 'refresh');
+					redirect('company/edit', 'refresh');
 				}
 			}
 			else
 			{
 				$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
-				redirect('company', 'refresh');
+				redirect('company/edit', 'refresh');
 			}
 		}
 				else
 				{
-				redirect('company', 'refresh');
+				redirect('company/edit', 'refresh');
 				}
 			}
 			else
 				{
-				redirect('company', 'refresh');
+				redirect('company/edit', 'refresh');
 				}
 		}
 	
@@ -380,7 +379,7 @@ class Company extends CI_Controller {
 		}
 		else
 		{
-			redirect('company', 'refresh');
+			redirect('company/edit', 'refresh');
 		}
 	}
 	
@@ -412,7 +411,7 @@ class Company extends CI_Controller {
 			else
 			{
 				$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
-				redirect('company', 'refresh');
+				redirect('company/edit', 'refresh');
 			}
 		}
 	}
