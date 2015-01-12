@@ -3,13 +3,7 @@
   <!-- mainmenu -->
   <ul id="floatMenu" class="mainmenu">
     <li class="first"><a href="<?php echo site_url('dashboard'); ?>" class="link" title="Dashboard">Dashboard</a></li>
-    <li><a href="<?php echo site_url('company'); ?>" title="Profile">Profile</a>
-      <ul class="submenu">
-        <li><a href="<?php echo site_url('company/edit'); ?>" title="Edit Profile">Edit Profile</a></li>
-        <li><a href="<?php echo site_url('company'); ?>" title="View Profile">View Profile</a></li>
-        <li><a href="<?php echo site_url('company/changepassword'); ?>" title="Change Password">Change Password</a></li>
-      </ul>
-    </li>
+    <li><a href="<?php echo site_url('company/edit'); ?>" class="link" title="Edit Profile">Edit Profile</a></li>
     <li><a href="<?php echo site_url('gallery'); ?>" title="Galleries">Galleries</a>
       <ul class="submenu">
         <li><a href="<?php echo site_url('gallery/add'); ?>" title="Add Galleries">Add Galleries</a></li>
