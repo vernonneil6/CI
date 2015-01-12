@@ -95,10 +95,12 @@ class Mainbroker extends CI_Controller
 			);			
 			if($this->mainbrokers->allbroker($data)){
 				$this->session->set_flashdata('success', 'Record Added Successfully');
+				redirect('mainbroker', 'refresh');
 			}else{
 				$this->session->set_flashdata('error', 'Record Not Added');
+				redirect('mainbroker', 'refresh');
 			}
-			redirect('mainbroker', 'refresh');
+			
 		}
 		$this->load->view('mainbroker');
 		

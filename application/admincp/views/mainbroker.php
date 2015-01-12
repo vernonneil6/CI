@@ -7,8 +7,6 @@
     </ul>
   </div>
 
-<?php if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'add' ) { ?>
-
 <!-- Correct form message -->
 <?php if( $this->session->flashdata('success') ) { ?>
 <div class="form-message correct">
@@ -21,6 +19,9 @@
   <p><?php echo $this->session->flashdata('error'); ?></p>
 </div>
 <?php } ?>
+
+<?php if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'add' ) { ?>
+
 	
 <div class="box">
     <div class="headlines">
