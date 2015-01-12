@@ -1,4 +1,14 @@
 <?php echo $header; ?>
+<div id="content">
+  <div class="breadcrumbs">
+    <ul>
+      <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
+      <li><a href="<?php echo site_url('mainbroker');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
+    </ul>
+  </div>
+
+<?php if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'add' ) { ?>
+
 <!-- Correct form message -->
 <?php if( $this->session->flashdata('success') ) { ?>
 <div class="form-message correct">
@@ -11,16 +21,7 @@
   <p><?php echo $this->session->flashdata('error'); ?></p>
 </div>
 <?php } ?>
-
-<div id="content">
-  <div class="breadcrumbs">
-    <ul>
-      <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
-      <li><a href="<?php echo site_url('mainbroker');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
-    </ul>
-  </div>
-
-<?php if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'add' ) { ?>
+	
 <div class="box">
     <div class="headlines">
       <h2><span><?php echo "Add Broker" ?></span></h2>
