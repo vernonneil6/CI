@@ -29,7 +29,7 @@
           </div>
           <div class="reg-row" style="margin-top:10px;">
             <div class="reg_fld">WHAT IS YOUR COMPANY WEBSITE?</div>
-            <input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150">            
+            <input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150" onchange="chkwebsite(this.value);">            
             <div id="websiteerror" class="error">Website is required.</div>
             <div id="websitevaliderror" class="error">Enter valid Website.</div> 
           </div>
