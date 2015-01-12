@@ -28,7 +28,7 @@
 <script>
 $(document).ready(function(){
     $('#rating').raty({
-    path: 'http://www.yougotrated.writerbin.com/images/',
+    path: 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/',
     scoreName:  'entity.score',
     half: true,
     number:     5,
@@ -71,7 +71,7 @@ $(document).ready(function(){
 <script>
 $(document).ready(function(){
 $('.rating_system').raty({
-  path: 'http://www.yougotrated.writerbin.com/images/',
+  path: 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/',
   half: true,
   readOnly: true,
   score: function() {
