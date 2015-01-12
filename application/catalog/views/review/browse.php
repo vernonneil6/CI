@@ -141,7 +141,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
             </ul>
           </div>
           <h1>"<?php echo stripslashes($review[0]['reviewtitle']); ?>"</h1>
-          <p>- <?php echo $reviewdate = date('d.m.Y',strtotime($review[0]['reviewdate']));;?> -</p>
+          <p>- <?php echo $reviewdate = date('m/d/Y',strtotime($review[0]['reviewdate']));;?> -</p>
         </div>
        
        
