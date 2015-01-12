@@ -210,6 +210,7 @@
 </section>
 <script>
 function chkwebsite(website){
+	$("#websitevaliderror").hide();
 	var filter  = /^(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	if( trim(website) != '' && filter.test(trim(website)) )
 	{
