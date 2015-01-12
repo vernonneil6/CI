@@ -20,7 +20,11 @@
 			return false;
 		});
 	 }); 
+	 
 </script>
+<script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
+
 
 <section class="container">
   <section class="main_contentarea">
@@ -194,11 +198,20 @@
 		  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 		 }		
 		 $(document).ready(function(){
-			 $('#companypdf').toggle(function(){
-				$('#pdfname').show();
-			 },function(){
-				$('#pdfname').hide();
-			 });
+			$("#companypdf").click(function(){		 
+			 $.fancybox({
+				maxWidth	: 800,
+				maxHeight	: 600,
+				fitToView	: false,
+				width		: '70%',
+				height		: '70%',
+				autoSize	: false,
+				closeClick	: false,
+				openEffect	: 'none',
+				closeEffect	: 'none',
+				content		: $('#pdfname').show();
+			});
+		  });
 		 });
 		</script>
 		
@@ -207,7 +220,7 @@
 				<label class = "view_direction_map" id = "companypdf">Menu/Catalog</label>
 			</div>
 		</div>
-		<?php $file = $this->common->get_setting_value(2).$this->config->item('pdf_main_upload_path').$companypdfs[$x]['pdf'];?>
+		<?php $file = $this->common->get_setting_value(2).$this->config->item('pdf_main_upload_path')."uploads/pdf/".$companypdfs[$x]['pdf'];?>
 		<?php $title = ucfirst(stripslashes($companypdfs[$x]['title'])); ?>
 		<div>
 		<a style="cursor: pointer; display : none" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" target="_blank" title="View document" id = "pdfname">
