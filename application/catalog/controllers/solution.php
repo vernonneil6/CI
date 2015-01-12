@@ -447,16 +447,16 @@ public function eliteSubscribe($formpost,$companyid) {
 	   $transactionkey="38UzuaL2c6y5BQ88";
 	   $host = "apitest.authorize.net"; */
 	
-	/*sandbox test mode
+	/*sandbox test mode*/
 	  $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
-	   $host = "apitest.authorize.net";*/
+	   $host = "apitest.authorize.net";
 	
 	
-	/*live*/
+	/*live
 	    $loginname="5h7G7Sbr";
 		$transactionkey="94KU7Sznk72Kj3HK";
-		$host = "api.authorize.net";
+		$host = "api.authorize.net";*/
 	
 	
 	$path = "/xml/v1/request.api";
@@ -699,7 +699,7 @@ public function eliteSubscribe($formpost,$companyid) {
 					//For sending mail to user
 					$this->email->from($site_mail,$site_name);
 					$this->email->to($email);	
-					$this->email->subject('YouGotRated: Your business has been claimed successfully.');
+					$this->email->subject('YouGotRated: Elite Membership Signup Confirmation.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 											  <tr>
 												<td>Hello '.$company[0]['company'].',</td>
@@ -708,7 +708,7 @@ public function eliteSubscribe($formpost,$companyid) {
 												<td><br/></td>
 											  </tr>
 											  <tr>
-												<td style="padding-left:20px;"> You have successfully claimed the Business <b>'.ucwords($company[0]['company']).'</b>. </td>
+												<td style="padding-left:20px;"> You have successfully claimed the Business <b>'.ucwords($company[0]['company']).'</b> as part of your Elite Membership package. </td>
 											  </tr>
 											  <tr>
 												<td style="padding-left:20px;"> You can login with the following credentials to your elite member admin account by clicking link below or paste it in the address bar. </td>
@@ -725,21 +725,21 @@ public function eliteSubscribe($formpost,$companyid) {
 												<td style="padding-left:20px;"></td>
 											  </tr>
 											  <tr>
-												<td style="padding-left:20px;"> Your Transaction Details are as follows. </td>
+												<td style="padding-left:20px;padding-top: 15px;"> Your Transaction Details are as follows. </td>
 											  </tr>
 											  <tr>
 												<td>
-													<table cellpadding="0" cellspacing="0" width="100%" border="0">
+													<table cellpadding="0" cellspacing="0" width="70%" border="0">
 														<tr>
-														  <td colspan="3"><h3>Payment Transaction Details:</h3></td>
+														  <td colspan="3" style="padding-left: 20px;padding-top: 5px;">Payment Details:</td>
 														</tr>
 														<tr>
-														  <td>Payment Amount</td>
+														  <td style="padding-left:20px;padding-top:5px">Payment Amount</td>
 														  <td>:</td>
 														  <td>USD '.$amount.'</td>
 														</tr>
 														<tr>
-														  <td>Transacion ID</td>
+														  <td style="padding-left:20px;padding-top:5px">Transacion ID</td>
 														  <td>:</td>
 														  <td><b>'.$transactionkey.'</b></td>
 														</tr>
@@ -764,7 +764,7 @@ public function eliteSubscribe($formpost,$companyid) {
 												<td style="padding-left:20px;padding-top:12px"> <b>Business Reviews</b> </td>
 											  </tr>
 											  <tr>
-												<td style="padding-left:20px;padding-top:10px">You can share this link with your customers to allow them to add a review for your business: <a href="'.$site_url.'review/add/'.$company[0]['id'].'">'.$site_url.'review/add/'.$company[0]['id'].'</a></td>
+												<td style="padding-left:20px;padding-top:10px">You can share this link with your customers to allow them to add a review for your business:<br> <a href="'.$site_url.'review/add/'.$company[0]['id'].'">'.$site_url.'review/add/'.$company[0]['id'].'</a></td>
 											  </tr>
 											  <tr>
 												<td style="padding-left:20px;padding-top:20px">Using this link, your customers can view your existing reviews:</td>
