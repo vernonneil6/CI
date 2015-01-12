@@ -389,9 +389,9 @@ $config['company_thumb_height'] = '40';
 
 //Path to upload company logo
 $config['gallery_main_upload_path'] = '../uploads/gallery/main/';
-$config['gallery_main_max_size'] = '1000'; //in KB
-$config['gallery_main_max_width'] = '1025';
-$config['gallery_main_max_height'] = '769';
+$config['gallery_main_max_size'] = '1000000'; //in KB
+$config['gallery_main_max_width'] = '1025000';
+$config['gallery_main_max_height'] = '769000';
 
 $config['gallery_thumb_upload_path'] = '../uploads/gallery/thumb/';
 $config['gallery_thumb_width'] = '100';
@@ -399,7 +399,7 @@ $config['gallery_thumb_height'] = '40';
 
 //Path to upload pdf
 $config['pdf_main_upload_path'] = '../uploads/pdf/';
-$config['pdf_main_max_size'] = '10000'; //in KB
+$config['pdf_main_max_size'] = '10000000'; //in KB
 
 //Path to upload coupon logo
 $config['coupon_main_upload_path'] = '../uploads/coupon/main/';
