@@ -22,7 +22,7 @@ Class Mainbrokers extends CI_Model
 	
 	function allbroker($data)
  	{
-   	   	$this->db->insert('youg_broker',$data);
+   	   	return $this->db->insert('youg_broker',$data);
  	}
  	function subbroker()
  	{

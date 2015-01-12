@@ -374,7 +374,6 @@
               <div class="con">
                 <?php 
 					if($this->uri->segment(2) == 'edit') { 
-					$countryname = $this->companys->country_name($company[0]['country']);
 				?>				
                 <?php echo form_input( array( 'name'=>'country','id'=>'country','class'=>'input','type'=>'text','value'=>stripslashes($countryname['name']) ) ); ?>
                 <?php } ?>

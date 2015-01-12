@@ -416,7 +416,7 @@ Class Companys extends CI_Model
  	function country_name($countryid)
  	{
 		
-		$query = $this->db->get_where('youg_country', array('country_id'=>$countryid))
+		$query = $this->db->get_where('youg_country', array('country_id'=>$countryid));
 		
 		if ($query->num_rows() > 0)
 		{
