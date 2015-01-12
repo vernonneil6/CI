@@ -64,9 +64,6 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
           </div>
         </div>
         <?php } ?>
-        <div class="addcmnt_wrp">
-          <div class="cmnt_wrp"> <a href="<?php echo site_url('remove/complaint/'.$complaints[0]['id'].'/'.$complaints[0]['companyid']); ?>" title="Remove This Complaint"> <i class="rmv_rw"></i> remove complaint </a> </div>
-        </div>
       </div>
     </div>
     <?php if(count($othercomplaints)>0){?>

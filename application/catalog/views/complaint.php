@@ -461,11 +461,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
                         if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
                         ?>
                         <div class="timing"> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail">Date occurred: <span><?php echo date('m/d/Y',strtotime($dbdate));?></span> </a> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail">Reported Damage: <span>$<?php echo $complaints[$i]['damagesinamt'];?></span> </a>
-                          <?php if(count($company)>0) { ?>
-                          <a href="<?php echo site_url('remove/complaint/'.$complaints[$i]['id'].'/'.$complaints[$i]['companyid']); ?>" title="Remove this complaint" style="background-color:#FFFFFF;">
-                          <input type="submit" name="submit" value="Remove" class="remove_btn" title="Remove this complaint" style="margin-top:-2px;"/>
-                          </a>
-                          <?php } ?>
                         </div>
                         <div class="post_username">
                           <?php $user=$this->users->get_user_byid($complaints[$i]['userid']);?>
@@ -510,12 +505,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                         $newdate =round(($d1-$d2)/60);
                         if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
                         ?>
-                        <div class="timing"> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail">Date occurred: <span><?php echo date('m/d/Y',strtotime($dbdate));?></span> </a> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail">Reported Damage: <span>$<?php echo $complaints[$i]['damagesinamt'];?></span> </a>
-                          <?php if(count($company)>0) { ?>
-                          <a href="<?php echo site_url('remove/complaint/'.$complaints[$i]['id'].'/'.$complaints[$i]['companyid']); ?>" title="Remove this complaint" style="background-color:#FFFFFF;">
-                          <input type="submit" name="submit" value="Remove" class="remove_btn" title="Remove this complaint" style="margin-top:-2px;"/>
-                          </a>
-                          <?php } ?>
+                        <div class="timing"> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail">Date occurred: <span><?php echo date('m/d/Y',strtotime($dbdate));?></span> </a> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail">Reported Damage: <span>$<?php echo $complaints[$i]['damagesinamt'];?></span> </a>                          
                         </div>
                         <div class="post_username">
                           <?php $user=$this->users->get_user_byid($complaints[$i]['userid']);?>
@@ -963,7 +953,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 									  if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
 								?>
                   <span><?php echo ($postdate==$today)?'Posted: '.$diff:'Posted: '.date('m/d/Y',strtotime($complaints[$i]['complaindate'])); ?></span> </div>
-                <div style="margin-top:5px;margin-bottom:5px;" align="right" class="my"> <a href="<?php echo site_url('remove/complaint/'.$complaints[$i]['id'].'/'.$complaints[$i]['companyid']); ?>" title="Remove This Complaint" style="background-color:#FFFFFF;"><?php echo form_input(array('name'=>'submit','id'=>'btnphone','class'=>'complaint_btn','type'=>'submit','value'=>'Remove This Complaint','style'=>'padding:7px 25px;cursor: pointer;float:none;margin-top:-13px;padding:7px 5px')); ?></a> </div></td>
+                <div style="margin-top:5px;margin-bottom:5px;" align="right" class="my">  </div></td>
               <td></td>
             </tr>
           </table>
@@ -1858,11 +1848,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
                         if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
                         ?>
             <div class="timing"> <a href="<?php echo site_url('complaint/browse/'.$lastweekcomplaints[$i]['comseokeyword']); ?>" title="view complaint detail">Date occurred: <span><?php echo date('m/d/Y',strtotime($dbdate));?></span> </a> <a href="<?php echo site_url('complaint/browse/'.$lastweekcomplaints[$i]['comseokeyword']); ?>" title="view complaint detail">Reported Damage: <span>$<?php echo $lastweekcomplaints[$i]['damagesinamt'];?></span> </a>
-              <?php if(count($company)>0) {?>
-              <a href="<?php echo site_url('remove/complaint/'.$lastweekcomplaints[$i]['id'].'/'.$lastweekcomplaints[$i]['companyid']); ?>" title="Remove this complaint" style="background-color:#FFFFFF;">
-              <input type="submit" name="submit" value="Remove" class="remove_btn" title="Remove this complaint" style="margin-top:-2px;"/>
-              </a>
-              <?php }  ?>
             </div>
             <div class="post_username">
               <?php if($lastweekcomplaints[$i]['userid']!=0){ ?>
@@ -1990,12 +1975,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
                         if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
                         ?>
             <div class="timing"> <a href="<?php echo site_url('complaint/browse/'.$filtercomplaints[$i]['comseokeyword']); ?>" title="view complaint detail">Date occurred: <span><?php echo date('m/d/Y',strtotime($dbdate));?></span> </a> <a href="<?php echo site_url('complaint/browse/'.$filtercomplaints[$i]['comseokeyword']); ?>" title="view complaint detail">Reported Damage: <span>$<?php echo $filtercomplaints[$i]['damagesinamt'];?></span> </a>
-              <?php if(count($company)>0) { ?>
-              <a href="<?php echo site_url('remove/complaint/'.$filtercomplaints[$i]['id'].'/'.$filtercomplaints[$i]['companyid']); ?>" title="Remove this complaint" style="background-color:#FFFFFF;">
-              <input type="submit" name="submit" value="Remove" class="remove_btn" title="Remove this complaint" style="margin-top:-2px;"/>
-              </a>
-              <?php
-														 }?>
             </div>
             <div class="post_username">
               <?php if($filtercomplaints[$i]['userid']!=0){ ?>
@@ -2124,9 +2103,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                         $newdate =round(($d1-$d2)/60);
                         if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
                         ?>
-            <div class="timing"> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail">Date occurred: <span><?php echo date('m/d/Y',strtotime($dbdate));?></span> </a> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail">Reported Damage: <span>$<?php echo $complaints[$i]['damagesinamt'];?></span> </a> <a href="<?php echo site_url('remove/complaint/'.$complaints[$i]['id'].'/'.$complaints[$i]['companyid']); ?>" title="Remove this complaint" style="background-color:#FFFFFF;">
-              <input type="submit" name="submit" value="Remove" class="remove_btn" title="Remove this complaint" style="margin-top:-2px;"/>
-              </a> </div>
+            <div class="timing"> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail">Date occurred: <span><?php echo date('m/d/Y',strtotime($dbdate));?></span> </a> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail">Reported Damage: <span>$<?php echo $complaints[$i]['damagesinamt'];?></span> </a>  </div>
             <div class="post_username">
               <?php if($complaints[$i]['userid']!=0){ ?>
               <?php if(count($user)>0) {?>
