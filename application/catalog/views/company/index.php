@@ -38,11 +38,11 @@
         <?php
 				  } ?>
 		<?php if(count($elitemem_status)==0){?>
-         <!--<div class="bsntvry_title">
+        <div class="bsntvry_title">
           <div class="bsvry_tag"> <span>IS THIS YOUR BUSINESS?</span>
             <p><a href="solution/claimbusiness" title="CLICK HERE TO BECOME VERIFIED">CLICK HERE TO BECOME VERIFIED</a></p>
           </div>
-        </div>-->
+        </div>
        
 		<div class="compny_name">
           <h1><?php echo strtoupper($company[0]['company']);?></h1>
@@ -55,9 +55,6 @@
             <?php } ?>
           </div>
         </div>
-        <div>
-			<label class = "become_verfied">Become a <span class = "font_color_1">Verified Merchant</span></label>
-		</div>
         <?php }else { ?>
       
 	<div class="compny_name">
@@ -196,10 +193,12 @@
 		  var top = (screen.height/2)-(h/2);
 		  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 		 }		
-		 $('#companypdf').toggle(function(){
-			$('#pdfname').show();
-		 },function(){
-			$('#pdfname').hide();
+		 $(document).ready(function(){
+			 $('#companypdf').toggle(function(){
+				$('#pdfname').show();
+			 },function(){
+				$('#pdfname').hide();
+			 });
 		 });
 		</script>
 		
