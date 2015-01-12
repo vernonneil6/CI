@@ -55,6 +55,7 @@
       <div class="dir_rew_wrap">
         <?php for($i=0; $i<count($reviews); $i++) {?>
         <?php $company=$this->reviews->get_company_byid($reviews[$i]['companyid']);
+        $companyseokeyword = ($company) ? $company[0]['companyseokeyword'] : '';
 		$elitemem_status = $this->common->get_eliteship_bycompanyid($reviews[$i]['companyid']);
 		?>
         <script>
@@ -90,72 +91,50 @@
 					});
 				</script>
         <div class="revw_blck">
-          <div class="revw_blck_img"> <?php /*?><a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile">
-            <?php if( $reviews[$i]['type']=='csv' )
-               {?>
-            <div class=""> </div>
-            <?php
-               
-			   }
-              else
-			  {
-			  ?>
-            <div class="task-photo"> <img width="100px" height="100" src="<?php if( strlen($reviews[$i]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($reviews[$i]['avatarbig']); } else { if($reviews[$i]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/male.png"; } 
-		  	if($reviews[$i]['gender']=='Female') { echo $this->common->get_setting_value('2')."images/female.png"; } 
-		  } 
-		   ?>" alt="<?php echo stripslashes($reviews[0]['username']); ?>"/> </div>
-            <?php }
-			  
-			  ?>
-            </a><?php */?> 
-            
-            
-            
-            <?php if(count($elitemem_status)==0){?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img  class="reviewnotverifiedlogo" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($reviews[$i]['company'])); ?>" /></a> </div>
-        <?php }else{
-				  ?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class="reviewverifiedlogo" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($reviews[$i]['company'])); ?>" /></a> </div>
-        <?php
-				  } ?>
-     <?php /*?>   <?php if(count($elitemem_status)==0){?>
-        <div class="bsntvry_title">
-          <div class="bsvry_tag"> <span>IS THIS YOUR BUSINESS?</span>
-            <p><a href="solution/claimbusiness" title="CLICK HERE TO BECOME VERIFIED">CLICK HERE TO BECOME VERIFIED</a></p>
-          </div>
-        </div>
-        <?php }else { ?>
-        <div class="vry_title"></div>
-        <?php } ?><?php */?>
-            
+			<div class="revw_blck_img">            <?php 
+				if(count($elitemem_status)==0){?>
+					<div class="vry_logo"> 
+						<a href="<?php echo site_url('company/'.$companyseokeyword.'/reviews/coupons/complaints');?>" title="view company Detail">
+							<img  class="reviewnotverifiedlogo" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($reviews[$i]['company'])); ?>" />
+						</a> 
+					</div>  <?php 
+					}else{  ?>
+					<div class="vry_logo"> 
+						<a href="<?php echo site_url('company/'.$companyseokeyword.'/reviews/coupons/complaints');?>" title="view company Detail">
+							<img class="reviewverifiedlogo" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($reviews[$i]['company'])); ?>" />
+						</a> 
+					</div>      <?php
+				} ?>            
             </div>
           <div class="revw_blck_cnt">
-            <h2><a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes($reviews[$i]['company']);?>'s detail" class="reviewcolor"><?php echo ucfirst(stripslashes($reviews[$i]['company']));?></a>
-              <div class="rating">
-            <?php for($r=0;$r<($reviews[$i]['rate']);$r++){?>
-            <i class="vry_rat_icn"></i>
-            <?php } ?>
-            <?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
-            <!--<img title="no_star" alt="no_star" src="images/no_star.png">
-            --> 
-            <i class="dull_starrat"></i>
-           <?php } ?>
-            
-          </div>
-            </h2>
-            
-            <div class="revw_occupt"> <span>
-            <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="see details" style="color:#FFFFFF;">
-            "<?php echo $reviews[$i]['reviewtitle'];?>"
-            </a>
-            </span>-
-              <p>
-                <?php if($reviews[$i]['type']=='csv') { ?>
-                <a title="<?php echo stripslashes($reviews[$i]['reviewby']); ?>"><?php echo stripslashes($reviews[$i]['reviewby']); ?></a>
-                <?php } else {?>
-                <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile" class="reviewcolor"> <?php echo stripslashes($reviews[$i]['username']); ?></a>
-                <?php } ?>
-              </p>
+            <h2>
+				<a href="<?php echo site_url('company/'.$companyseokeyword.'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes($reviews[$i]['company']);?>'s detail" class="reviewcolor">
+					<?php echo ucfirst(stripslashes($reviews[$i]['company']));?>
+				</a>
+				<div class="rating">
+					<?php for($r=0;$r<($reviews[$i]['rate']);$r++){?>
+						<i class="vry_rat_icn"></i>
+						<?php } ?>
+						<?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
+						<!--<img title="no_star" alt="no_star" src="images/no_star.png">
+						--> 
+						<i class="dull_starrat"></i>
+				   <?php } ?>            
+				</div>
+            </h2>            
+            <div class="revw_occupt"> 
+				<span>
+					<a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="see details" style="color:#FFFFFF;">
+						"<?php echo $reviews[$i]['reviewtitle'];?>"
+					</a>
+				</span>-
+				<p>
+					<?php if($reviews[$i]['type']=='csv') { ?>
+					<a title="<?php echo stripslashes($reviews[$i]['reviewby']); ?>"><?php echo stripslashes($reviews[$i]['reviewby']); ?></a>
+					<?php } else {?>
+					<a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile" class="reviewcolor"> <?php echo stripslashes($reviews[$i]['username']); ?></a>
+					<?php } ?>
+				</p>
               <div class="revw_date">
                 <?php
 					    $reviewdate = date('m/d/Y',strtotime($reviews[$i]['reviewdate']));
@@ -172,55 +151,57 @@
                 <?php echo ($reviewdate==$today)?$diff:date('m/d/Y',strtotime($reviews[$i]['reviewdate'])); ?> </div>
             </div>
             <div class="revw_desc">
-            <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="see details">
-             "<?php echo (stripslashes($reviews[$i]['comment'])); ?>"
-             </a>
-              </div>
-            <div class="revw_ratpoint"> <span>
-              <h5>RATE THIS REVIEW:</h5>
-              <?php $ip = $_SERVER['REMOTE_ADDR'];?>
-              <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'helpful') == 'true'){ ?>
-              <a class="vote-disable" id="helpful_<?php echo $reviews[$i]['id'];?>" reviewid="<?php echo $reviews[$i]['id'];?>" title="Helpful" style="cursor:pointer !important;"><b id="helpful<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'helpful');?></b> Helpful</a>
-              <?php }else{ ?>
-              <a class="vote" id="helpful_<?php echo $reviews[$i]['id'];?>" reviewid="<?php echo $reviews[$i]['id'];?>" title="Helpful" style="cursor:pointer !important;">Helpful</a>
-              <?php } ?>
-              <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'funny') == 'true'){?>
-              <a id="funny_<?php echo $reviews[$i]['id'];?>" class="vote-disable" title="funny" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;"><b id="funny<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'funny');?></b> Funny</a>
-              <?php }else{ ?>
-              <a id="funny_<?php echo $reviews[$i]['id'];?>" class="vote" title="funny" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;">Funny</a>
-              <?php } ?>
-              <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'agree') == 'true'){?>
-              <a id="agree_<?php echo $reviews[$i]['id'];?>" class="vote-disable" reviewid="<?php echo $reviews[$i]['id'];?>" title="Agree" style="cursor:pointer !important;"><b id="agree<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'agree');?></b> Agree</a>
-              <?php }else{ ?>
-              <a id="agree_<?php echo $reviews[$i]['id'];?>" class="vote" reviewid="<?php echo $reviews[$i]['id'];?>" title="Agree" style="cursor:pointer !important;">Agree</a>
-              <?php } ?>
-              <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'disagree') == 'true'){?>
-              <a id="disagree_<?php echo $reviews[$i]['id'];?>" class="vote-disable" title="disagree" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;"><b id="disagree<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'disagree');?></b> Disagree</a>
-              <?php }else{ ?>
-              <a id="disagree_<?php echo $reviews[$i]['id'];?>" class="vote" title="disagree" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;">Disagree</a>
-              <?php } ?>
-              <?php if($this->session->userdata('youg_user')){$userid = $this->session->userdata['youg_user']['userid']; ?>
-              <?php if($reviews[$i]['reviewby'] == $userid) {?>
-              <a href="<?php echo site_url('review/edit').'/'.$reviews[$i]['id'];?>" title="Edit Review" class="" style="cursor:pointer !important;">Edit</a> <a href="<?php echo site_url('review/delete').'/'.$reviews[$i]['id'];?>" title="Delete Review" class="" onclick="return confirm('Are you sure to remove this review?');" style="cursor:pointer !important;">Delete</a>
-              <?php } else {?>
-              <a href="<?php echo site_url('review/add').'/'.$reviews[$i]['companyid'];?>" title="Review This Company" class="dir-searchbtn" style="cursor:pointer !important;">Review It</a>
-              <?php } ?>
-              <?php } else {?>
-              <a href="<?php echo site_url('review/add').'/'.$reviews[$i]['companyid'];?>" title="Review This Company" class="dir-searchbtn" style="cursor:pointer !important;">Review It</a>
-              <?php } ?>
-              
-              </span><div class="cmnt_wrp">
-                          <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add Comment" style="cursor:pointer !important;">
+				<a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="see details">
+				 "<?php echo (stripslashes($reviews[$i]['comment'])); ?>"
+				 </a>
+            </div>
+            <div class="revw_ratpoint"> 
+				<span>
+					  <h5>RATE THIS REVIEW:</h5>
+					  <?php $ip = $_SERVER['REMOTE_ADDR'];?>
+					  <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'helpful') == 'true'){ ?>
+					  <a class="vote-disable" id="helpful_<?php echo $reviews[$i]['id'];?>" reviewid="<?php echo $reviews[$i]['id'];?>" title="Helpful" style="cursor:pointer !important;"><b id="helpful<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'helpful');?></b> Helpful</a>
+					  <?php }else{ ?>
+					  <a class="vote" id="helpful_<?php echo $reviews[$i]['id'];?>" reviewid="<?php echo $reviews[$i]['id'];?>" title="Helpful" style="cursor:pointer !important;">Helpful</a>
+					  <?php } ?>
+					  <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'funny') == 'true'){?>
+					  <a id="funny_<?php echo $reviews[$i]['id'];?>" class="vote-disable" title="funny" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;"><b id="funny<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'funny');?></b> Funny</a>
+					  <?php }else{ ?>
+					  <a id="funny_<?php echo $reviews[$i]['id'];?>" class="vote" title="funny" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;">Funny</a>
+					  <?php } ?>
+					  <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'agree') == 'true'){?>
+					  <a id="agree_<?php echo $reviews[$i]['id'];?>" class="vote-disable" reviewid="<?php echo $reviews[$i]['id'];?>" title="Agree" style="cursor:pointer !important;"><b id="agree<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'agree');?></b> Agree</a>
+					  <?php }else{ ?>
+					  <a id="agree_<?php echo $reviews[$i]['id'];?>" class="vote" reviewid="<?php echo $reviews[$i]['id'];?>" title="Agree" style="cursor:pointer !important;">Agree</a>
+					  <?php } ?>
+					  <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'disagree') == 'true'){?>
+					  <a id="disagree_<?php echo $reviews[$i]['id'];?>" class="vote-disable" title="disagree" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;"><b id="disagree<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'disagree');?></b> Disagree</a>
+					  <?php }else{ ?>
+					  <a id="disagree_<?php echo $reviews[$i]['id'];?>" class="vote" title="disagree" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;">Disagree</a>
+					  <?php } ?>
+					  <?php if($this->session->userdata('youg_user')){$userid = $this->session->userdata['youg_user']['userid']; ?>
+					  <?php if($reviews[$i]['reviewby'] == $userid) {?>
+					  <a href="<?php echo site_url('review/edit').'/'.$reviews[$i]['id'];?>" title="Edit Review" class="" style="cursor:pointer !important;">Edit</a> <a href="<?php echo site_url('review/delete').'/'.$reviews[$i]['id'];?>" title="Delete Review" class="" onclick="return confirm('Are you sure to remove this review?');" style="cursor:pointer !important;">Delete</a>
+					  <?php } else {?>
+					  <a href="<?php echo site_url('review/add').'/'.$reviews[$i]['companyid'];?>" title="Review This Company" class="dir-searchbtn" style="cursor:pointer !important;">Review It</a>
+					  <?php } ?>
+					  <?php } else {?>
+					  <a href="<?php echo site_url('review/add').'/'.$reviews[$i]['companyid'];?>" title="Review This Company" class="dir-searchbtn" style="cursor:pointer !important;">Review It</a>
+					  <?php } ?>              
+				</span>
+				<div class="cmnt_wrp">
+                    <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add Comment" style="cursor:pointer !important;">
                             <!--<i class="add_cmnt"></i>-->
                             +  Add comment
-                          </a>
-	                     </div>
-			 <div class="cmnt_wrp">
-                          <a href="<?php echo site_url('company/reviews/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All" style="cursor:pointer !important;margin-right: 10px;">
+                    </a>
+	            </div>
+				<div class="cmnt_wrp">
+                    <a href="<?php echo site_url('company/reviews/'.$companyseokeyword.'/reviews/coupons/complaints');?>" title="View All" style="cursor:pointer !important;margin-right: 10px;">
                             <!--<i class="add_cmnt"></i>-->
-                             +   View All
-                          </a>
-	                     </div> </div>
+                            +   View All
+                    </a>
+	            </div> 
+	        </div>
           </div>
         </div>
         <?php } ?>
