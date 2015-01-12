@@ -96,8 +96,10 @@ class Mainbroker extends CI_Controller
 		);
 		
 		$this->mainbrokers->allbroker($data);
+		$this->session->set_flashdata('error', 'Record Added Successfully');
 		}
 		$this->load->view('mainbroker');
+		
 	}
 	
 	function elitemember()
