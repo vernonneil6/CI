@@ -412,5 +412,20 @@ Class Companys extends CI_Model
 	  $query = $this->db->count_all('company');
 	  return $query;
  	}
+ 	
+ 	function country_name($countryid)
+ 	{
+		
+		$query = $this->db->get_where('youg_country', array('country_id'=>$countryid));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 ?>
