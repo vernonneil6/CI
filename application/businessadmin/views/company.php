@@ -561,7 +561,7 @@
               <div class="lab">
               </div>          
               <div>
-				<a class = "profile_change_password" href = "/company/changepassword">Click here to change password</a>
+				<a class = "profile_change_password" href = "/businessadmin/company/changepassword">Click here to change password</a>
               </div>
             </div>
           </div>

@@ -70,7 +70,7 @@ class Badge extends CI_Controller {
 	{  
                 $datas=$this->badges->badgeid($id);
                 $this->data['id']=$datas['id'];
-		$this->data['badgedetail']=$this->badges->badgedetail($id);
+				$this->data['badgedetail']=$this->badges->badgedetail($id);
 
                 if($this->input->post('submit'))
                {
@@ -81,13 +81,13 @@ class Badge extends CI_Controller {
                    if($this->session->userdata('youg_user'))
                    {
                    $data=$this->session->userdata('youg_user');
-		   $fromid=$data['userid'];
-		   $name=$data['name'];
+				   $fromid=$data['userid'];
+				   $name=$data['name'];
                    }
                    else
                    {
                    $fromid='';
-		   $name='';
+				   $name='';
                    }
                    $this->badges->badgeadd($name,$rating,$titles,$review,$fromid,$toid);
                }
