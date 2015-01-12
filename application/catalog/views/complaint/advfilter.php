@@ -141,7 +141,6 @@
                   <span><?php echo date('m.d.Y',strtotime($complaints[$i]['complaindate']));?></span></div>
               </div>
               <p><a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint Detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['detail']),0,212)."..."); ?></a></p>
-              <div class="cmnt_wrp"> <a href="<?php echo site_url('remove/complaint/'.$complaints[$i]['id'].'/'.$complaints[$i]['companyid']); ?>" title="Remove this complaint"><i class="rmv_rw"></i> remove</a> </div>
             </div>
           </div>
           <?php } ?>

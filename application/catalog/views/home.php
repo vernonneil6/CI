@@ -35,7 +35,7 @@
         <div class="hm_live_menu">
 			<ul>
 				<li><a href="<?php echo base_url();?>" title="RECENT ACTIVITY" style="color:black;">RECENT ACTIVITY</a></li>
-				<li><a href="<?php echo site_url('complaint/weektrending');?>" title="Trending Complaints">TRENDING COMPLAINTS<span>:<span></a></li>
+				<li><a href="<?php echo site_url('complaint');?>" title="Trending Complaints">TRENDING COMPLAINTS<span>:<span></a></li>
 				<li><a href="<?php echo site_url('complaint/advfilter');?>" title="Advance Filter">ADVANCED FILTER<span>:<span></a></li>
 			</ul>
         </div>
