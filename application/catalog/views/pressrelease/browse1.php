@@ -50,7 +50,7 @@
     <div class="pr_detlwrp">
       <div class="titl_pr_rel">
         <h1>"<?php echo stripslashes(ucfirst($pressrelease[0]['title'])); ?>"</h1>
-        <p> - <?php echo date("d.m.y",strtotime($pressrelease[0]['insertdate']));?> -</p>
+        <p> - <?php echo date("m/d/Y",strtotime($pressrelease[0]['insertdate']));?> -</p>
       </div>
       <div class="pr_testmnl_wrp">
         <p><?php echo stripslashes(ucfirst($pressrelease[0]['subtitle'])); ?></p>

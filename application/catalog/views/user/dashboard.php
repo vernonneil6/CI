@@ -144,7 +144,7 @@ $(window).load(function(){
 					  {
 				  ?>
                   <div class="<?php if($i%2==0) echo 'btable_body1'; else echo 'btable_body2';?>">
-                    <div class="tab_date"><?php echo date('d.m.y',strtotime($orders[$i]['createddate']));?></div>
+                    <div class="tab_date"><?php echo date('m/d/Y',strtotime($orders[$i]['createddate']));?></div>
                     <div class="tab_balance"><?php echo $mainbal=0;?></div>
                     <div class="tab_orders"><?php echo $mainbal=0;?></div>
                     <div class="tab_bonus sell"><?php echo $orders[$i]['ordertype'];?></div>
@@ -200,7 +200,7 @@ $(window).load(function(){
 					  {
 				  ?>
                   <div class="<?php if($i%2==0) echo 'btable_body1'; else echo 'btable_body2';?>">
-                    <div class="tab_date"><?php echo date('d.m.y',strtotime($orders[$i]['createddate']));?></div>
+                    <div class="tab_date"><?php echo date('m/d/Y',strtotime($orders[$i]['createddate']));?></div>
                     <div class="tab_balance"><?php echo $orders[$i]['orderamount'];?></div>
                  <?php /*?>   <div class="tab_orders"><?php echo $mainbal=0;?></div><?php */?>
                     <div class="tab_bonus <?php if($orders[$i]['ordertype']=='Buy'){?>sell<?php } else {?>buy1<?php }?>"><?php echo $orders[$i]['ordertype'];?></div>
@@ -228,7 +228,7 @@ $(window).load(function(){
 					  {
 				  ?>
                   <div class="<?php if($i%2==0) echo 'btable_body1'; else echo 'btable_body2';?>">
-                    <div class="tab_date"><?php echo date('d.m.y',strtotime($ordersbuy[$i]['createddate']));?></div>
+                    <div class="tab_date"><?php echo date('m/d/Y',strtotime($ordersbuy[$i]['createddate']));?></div>
                       <div class="tab_balance"><?php echo $ordersbuy[$i]['orderamount'];?></div>
                  <?php /*?>   <div class="tab_orders"><?php echo $mainbal=0;?></div><?php */?>
                     <div class="tab_bonus sell"><?php echo $ordersbuy[$i]['ordertype'];?></div>
@@ -253,7 +253,7 @@ $(window).load(function(){
 					  {
 				  ?>
                   <div class="<?php if($i%2==0) echo 'btable_body1'; else echo 'btable_body2';?>">
-                    <div class="tab_date"><?php echo date('d.m.y',strtotime($orderssell[$i]['createddate']));?></div>
+                    <div class="tab_date"><?php echo date('m/d/Y',strtotime($orderssell[$i]['createddate']));?></div>
                      <div class="tab_balance"><?php echo $orderssell[$i]['orderamount'];?></div>
                  <?php /*?>   <div class="tab_orders"><?php echo $mainbal=0;?></div><?php */?>
                     <div class="tab_bonus buy1"><?php echo $orderssell[$i]['ordertype'];?></div>
@@ -280,7 +280,7 @@ $(window).load(function(){
 					  {
 				  ?>
                   <div class="<?php if($i%2==0) echo 'btable_body1'; else echo 'btable_body2';?>">
-                    <div class="tab_date"><?php echo date('d.m.y',strtotime($ordersactive[$i]['createddate']));?></div>
+                    <div class="tab_date"><?php echo date('m/d/Y',strtotime($ordersactive[$i]['createddate']));?></div>
                       <div class="tab_balance"><?php echo $ordersactive[$i]['orderamount'];?></div>
                  <?php /*?>   <div class="tab_orders"><?php echo $mainbal=0;?></div><?php */?>
                     <div class="tab_bonus  <?php if($ordersactive[$i]['ordertype']=='Buy'){?>sell<?php } else {?>buy1<?php }?>"><?php echo $ordersactive[$i]['ordertype'];?></div>
@@ -305,7 +305,7 @@ $(window).load(function(){
 					  {
 				  ?>
                   <div class="<?php if($i%2==0) echo 'btable_body1'; else echo 'btable_body2';?>">
-                    <div class="tab_date"><?php echo date('d.m.y',strtotime($ordersdeposit[$i]['dcreateddate']));?></div>
+                    <div class="tab_date"><?php echo date('m/d/Y',strtotime($ordersdeposit[$i]['dcreateddate']));?></div>
                     <div class="tab_balance"><?php echo $ordersdeposit[$i]['amount'];?></div>
                     <div class="tab_orders"><?php echo $ordersdeposit[$i]['total_balance'];?></div>
                     <div class="tab_total"><?php echo $ordersdeposit[$i]['currencycode'];?></div>
@@ -329,7 +329,7 @@ $(window).load(function(){
 					  {
 				  ?>
                   <div class="<?php if($i%2==0) echo 'btable_body1'; else echo 'btable_body2';?>">
-                    <div class="tab_date"><?php echo date('d.m.y',strtotime($orderswithdrawal[$i]['createddate']));?></div>
+                    <div class="tab_date"><?php echo date('m/d/Y',strtotime($orderswithdrawal[$i]['createddate']));?></div>
                     <div class="tab_balance"><?php echo $orderswithdrawal[$i]['withdrawalamount'];?></div>
                     <div class="tab_orders"><?php echo $orderswithdrawal[$i]['total_balance'];?></div>
                  

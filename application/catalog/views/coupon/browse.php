@@ -60,7 +60,7 @@
         <h1>"COUPON OF <?php echo strtoupper(stripslashes($coupons[0]['company'])); ?>"</h1>
         <p>-
           <?php 
-			$dbdate = date('d.m.Y',strtotime($coupons[0]['enddate']));
+			$dbdate = date('m/d/Y',strtotime($coupons[0]['enddate']));
 			echo $dbdate;?>
           -</p>
       </div>
@@ -95,7 +95,7 @@ echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].$_SE
           <p><a href="<?php echo $othercoupons[$j]['url'];?>" target="_blank" title="Promocode" rel="nofollow"> <?php echo "Promocode: ";?><span><?php echo $othercoupons[$j]['promocode'];?></span> </a></p>
           <p><?php echo "Expires: ";?>
             <?php 
-			$dbdate = date('d.m.Y',strtotime($othercoupons[$j]['enddate']));
+			$dbdate = date('m/d/Y',strtotime($othercoupons[$j]['enddate']));
 			echo $dbdate;?>
           </p>
         </div>
