@@ -7,8 +7,7 @@
     </ul>
   </div>
 
-<?php if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'add' ) { ?>
-
+<?php if( $this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'edit' ) { ?>
 <!-- Correct form message -->
 <?php if( $this->session->flashdata('success') ) { ?>
 <div class="form-message correct">
@@ -34,8 +33,8 @@
             <label for="name">Subbroker Name<div style="font-size:10px;">(Also the username)</div></label><?php echo $data;?>
           </div>
           <div class="con">
-         <input type="text" class="input" name="username" value="<?php echo $Brokers[0]['name'] ?>" required>
-         <input type="text" class="input" name="id" value="<?php echo $Brokers[0]['id'] ?>" required>
+         <input type="text" class="input" name="username" value="<?php echo $Brokers['name'] ?>" required>
+         <input type="hidden" class="input" name="table_id" value="<?php echo $Brokers['id'] ?>" required>
           </div>
         </div>
      <div class="clearfix">
@@ -43,7 +42,7 @@
             <label for="name">Password</label><?php echo $data;?>
           </div>
           <div class="con">
-         <input type="password" class="input" name="password" value="<?php echo $Brokers[0]['password'] ?>" required>
+         <input type="password" class="input" name="password" value="<?php echo $Brokers['password'] ?>" required>
           </div>
         </div>
 	<div class="clearfix">
@@ -51,7 +50,7 @@
             <label for="broker">Number of Allowed Marketers</label>
           </div>
 	<div class="con">
-	 <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'marketer','required'=>'required','value'=>$Brokers[0]['marketer'])); ?>
+	 <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'marketer','required'=>'required','value'=>$Brokers['marketer'])); ?>
 	</div>
         </div>
 	<div class="clearfix">
@@ -59,7 +58,7 @@
             <label for="broker">Number of Allowed Agents</label>
           </div>
 		<div class="con">
-		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'agent','required'=>'required','value'=>$Brokers[0]['agent'])); ?>
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'agent','required'=>'required','value'=>$Brokers['agent'])); ?>
 		</div>
     </div>
     <div class="clearfix">
@@ -102,14 +101,16 @@
 		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'address')); ?>
 		</div>
     </div>
+    
     <div class="clearfix">
           <div class="lab">
             <label>ID #</label>
           </div>
 		<div class="con">
-		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'id')); ?>
+		  <?php // echo form_input(array('type'=>'text','class'=>'input','name'=>'id')); ?>
 		</div>
     </div>
+    
         <?php echo form_input(array('name'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Update'));  ?> or <a href="<?php echo site_url('mainbroker');?>" class="Cancel">Cancel</a>
       </fieldset>
        <?php echo form_close(); ?>
