@@ -42,25 +42,42 @@
         <div class="hm_rvw_wrp">
           <?php if(count($complaints)>0) {?>
           <?php for($i=0; $i<count($complaints); $i++) {     ?>           
-          <?php $user=$this->users->get_user_byid($complaints[$i]['userid']) ;?>
+          <?php $user=$this->users->get_user_byid($complaints[$i]['reviewby']) ;?>
           <div class="review_block <?php if($i%2==1)   {echo "fadeout";   }?>">
             <div class="review_lft">
               <div class="user_img"><img title="User image" alt="User image" src="images/default_user.png"></div>            
             </div>
+            <style>
             
-            <div class="review_rgt  ">
+            </style>
+        <div class="review_rgt  ">
               <div class="review_ratng_wrp">              
-                <div class="rat_title">              
-				  <?php if($complaints[$i]['userid']!=0 && count($user)>0){ ?>
-					<label><a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" class="homename" title="view profile"><?php echo $user[0]['username'];?></a></label>
-				  <?php } else{?>
+                <div class="rat_title">  
+			  <?php if($complaints[$i]['reviewby']!=0 && count($user)>0){ ?>
+				  	<label><a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby']); ?>" class="homename" title="view profile"><?php echo $user[0]['username'];?></a></label>
+				  <?php } else{ ?>
 					<label><a href="Anonymous">Anonymous</a></label>
 				  <?php } ?>
-                   <span class="datehome"><?php echo date('m/d/Y',strtotime($complaints[$i]['complaindate']));?></span>
-                  <h2><a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']);?>" title="view Complaint Detail"><?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?></a></h2>
+				    
+                   <span class="datehome"><?php echo date('M d Y',strtotime($complaints[$i]['reviewdate']));?></span>
+                  <h2><a href="<?php echo site_url('review/browse/'.$complaints[$i]['seokeyword']);?>" class="reviewname" title="view Review Detail"><?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?></a>
+                   
+                   <?php //get avg star by cmpyid
+						$avgstar = $this->common->get_avg_ratings_bycmid($complaints[$i]['companyid']);
+						$avgstar = round($avgstar);
+					?>
+					  <div class="vry_rating reviewrate">
+						<?php for($r=0;$r<($avgstar);$r++){?>
+						<i class="vry_rat_icn"></i>
+						<?php } ?>
+						<?php for($p=0;$p<(5-($avgstar));$p++){?>
+						<img src="images/no_star.png" alt="no_star" title="no_star" />
+						<?php } ?>
+					  </div>
+					  </h2>
                  </div>
               </div>
-              <p><a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint Detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['detail']),0,212)."..."); ?></a></p>
+              <p class="reviewspace"><a href="<?php echo site_url('review/browse/'.$complaints[$i]['seokeyword']); ?>" title="view Review Detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['comment']),0,212)."..."); ?></a></p>
             </div>
           </div>
           

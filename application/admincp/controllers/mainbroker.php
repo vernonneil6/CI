@@ -215,6 +215,35 @@ class Mainbroker extends CI_Controller
 		
 		
 	}
+	function edit($id){
+		if(is_numeric($id)){
+			$this->data['Brokers'] = $this->mainbrokers->brokerids($id);
+			$this->load->view('viewbroker',$this->data);
+		}
+	}
+	function update(){
+		if( $this->input->post('id') ){
+			$request=$this->input;		
+			$id = $request->post('id');
+			$data=array(
+			'type'=> 'subbroker',
+			'name'=>$request->post('username'),
+			'password'=>$request->post('password'),
+			'marketer'=>$request->post('marketer'),
+			'agent'=>$request->post('agent')			
+			);			
+			if($this->mainbrokers->updatebroker($id,$data)){
+				$this->session->set_flashdata('success', 'Record Updated Successfully');
+			}else{
+				$this->session->set_flashdata('error', 'Record Not Updated');
+			}
+			redirect('mainbroker', 'refresh');
+		}
+	}
+	function delete($id){
+		$this->mainbrokers->deletebroker($id);
+		redirect('homeslider', 'refresh');
+	}
 	
 }
 ?>
