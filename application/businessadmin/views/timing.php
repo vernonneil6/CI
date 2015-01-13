@@ -8,7 +8,7 @@
   <script src="<?php echo base_url();?>js/jquery-ui.min.js"></script> 
   <script src="<?php echo base_url();?>js/datetimepicker/jquery-ui-timepicker-addon.js"></script> 
   <!--  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">-->
-  <link href="<?php echo base_url();?>js/datetimepicker/jquery-ui.css" rel="stylesheet" type="text/css" media="screen" />
+  <link href="/js/datetimepicker/jquery-ui.css" rel="stylesheet" type="text/css" media="screen" />
   <script type="text/javascript" language="javascript">
 	function trim(stringToTrim) {
 		return stringToTrim.replace(/^\s+|\s+$/g,"");
