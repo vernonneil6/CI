@@ -218,19 +218,20 @@ class Mainbroker extends CI_Controller
 	function edit($id){
 		if(is_numeric($id)){
 			$this->data['Brokers'] = $this->mainbrokers->brokerids($id);
+			//print_r($this->data['Brokers']);
 			$this->load->view('viewbroker',$this->data);
 		}
 	}
 	function update(){
-		if( $this->input->post('id') ){
-			$request=$this->input;		
-			$id = $request->post('id');
+		
+		if( $this->input->post('table_id') ){				
+			$id = $this->input->post('table_id');
 			$data=array(
 			'type'=> 'subbroker',
-			'name'=>$request->post('username'),
-			'password'=>$request->post('password'),
-			'marketer'=>$request->post('marketer'),
-			'agent'=>$request->post('agent')			
+			'name'=>$this->input->post('username'),
+			'password'=>$this->input->post('password'),
+			'marketer'=>$this->input->post('marketer'),
+			'agent'=>$this->input->post('agent')			
 			);			
 			if($this->mainbrokers->updatebroker($id,$data)){
 				$this->session->set_flashdata('success', 'Record Updated Successfully');
@@ -242,7 +243,7 @@ class Mainbroker extends CI_Controller
 	}
 	function delete($id){
 		$this->mainbrokers->deletebroker($id);
-		redirect('homeslider', 'refresh');
+		redirect('mainbroker', 'refresh');
 	}
 	
 }

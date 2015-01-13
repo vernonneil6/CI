@@ -143,7 +143,12 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == '' )
         <td width="20%"><?php echo ucfirst($subbrokerview['type']); ?></td>
 		<td width="20%"><?php echo $subbrokerview['marketer']; ?></td>
         <td width="20%"><?php echo $subbrokerview['agent']; ?></td>
-        <td width="100px"><a href="<?php echo site_url('mainbroker/view/'.$subbrokerview['id']); ?>" title="View Detail of <?php echo stripslashes($subbrokerview['name']); ?>" ><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>
+        <td width="100px"><a href="<?php echo site_url('mainbroker/view/'.$subbrokerview['id']); ?>" title="View Detail of <?php echo stripslashes($subbrokerview['name']); ?>" ><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> 
+        
+        <a class="ico ico-delete" onclick="return confirm('Are you sure to Delete this Main Broker?');" title="Delete" href="<?php echo site_url('mainbroker/delete/'.$subbrokerview['id']); ?>">Delete</a>
+		<a class="ico ico-edit" title="Edit" href="<?php echo site_url('mainbroker/edit/'.$subbrokerview['id']); ?>">Edit</a>
+        </td>
+        
 	</tr>
 	<?php
 	}
