@@ -460,7 +460,8 @@ a:hover.ico   { background-position: 0 0; }
 .general_keywords
 {
 	font-weight: bold;
-    margin: 15px 0;
+    margin: 15px 0 0;
+    display: inline-block;
 }
 
 .btn_area
