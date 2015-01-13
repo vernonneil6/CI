@@ -56,7 +56,7 @@
 <script>
 $(document).ready(function(){
 $('.rating').raty({
-  path: 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/',
+  path: '/images/',
   half: true,
   readOnly: true,
   score: function() {
