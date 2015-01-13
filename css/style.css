@@ -157,8 +157,8 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 
 }
 .menu a span{
-	margin-left: 24.3px;
-	-webkit-margin-start: 24px;
+	margin-left: 18.3px;
+	-webkit-margin-start: 18.3px;
 }
 .menu a:hover {
 	color:#2C6A99;
@@ -1139,7 +1139,7 @@ ul.tabbs li {
 	margin-right: 11px;
 }
 ul.tabbs li:hover {
-    background: #AAA000;   
+    background: #D58438;   
 }
 ul.tabbs li:hover a{
 	color:white;
