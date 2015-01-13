@@ -59,7 +59,7 @@
 																$d2 = strtotime($sm->date);
 																$newdate =round(($d1-$d2)/60);
 																if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
-																echo ($date==$today)?$diff:date('d M,Y',strtotime($sm->date)); 
+																echo ($date==$today)?$diff:date('m/d/Y',strtotime($sm->date)); 
 															?>
 													
 												  </span>
@@ -93,7 +93,7 @@
 													$d2 = strtotime($sm->date);
 													$newdate =round(($d1-$d2)/60);
 													if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
-													echo ($date==$today)?$diff:date('d M,Y',strtotime($sm->date)); 
+													echo ($date==$today)?$diff:date('m/d/Y',strtotime($sm->date)); 
 												?> 
 									  </span></u>
 									<br>

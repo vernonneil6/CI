@@ -3,12 +3,17 @@
 
 <div id="content">
   <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'edit' ) ) { ?>
-  <link rel="stylesheet" href="<?php echo base_url();?>js/datetimepicker/style.css" type="text/css" media="all" />
-  <!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>--> 
+  
+  <link rel="stylesheet" href="<?php echo base_url();?>css/jquery.ui.timepicker.css" type="text/css" media="all" />
+  <script src="<?php echo base_url();?>js/jquery.ui.timepicker.js"></script> 
+  
+  <?php /*<link rel="stylesheet" href="<?php echo base_url();?>js/datetimepicker/style.css" type="text/css" media="all" />
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>--> 
   <script src="<?php echo base_url();?>js/jquery-ui.min.js"></script> 
   <script src="<?php echo base_url();?>js/datetimepicker/jquery-ui-timepicker-addon.js"></script> 
   <!--  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">-->
-  <link href="/js/datetimepicker/jquery-ui.css" rel="stylesheet" type="text/css" media="screen" />
+  <link href="/js/datetimepicker/jquery-ui.css" rel="stylesheet" type="text/css" media="screen" />*/ ?>
+  
   <script type="text/javascript" language="javascript">
 	function trim(stringToTrim) {
 		return stringToTrim.replace(/^\s+|\s+$/g,"");
