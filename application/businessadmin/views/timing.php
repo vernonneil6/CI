@@ -13,19 +13,16 @@
   <script type="text/javascript" src="<?php echo base_url();?>js/include/jquery.ui.tabs.min.js"></script>
   <script type="text/javascript" src="<?php echo base_url();?>js/include/jquery.ui.position.min.js"></script>
   
-  <?php /*<link rel="stylesheet" href="<?php echo base_url();?>js/datetimepicker/style.css" type="text/css" media="all" />
-  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>--> 
-  <script src="<?php echo base_url();?>js/jquery-ui.min.js"></script> 
-  <script src="<?php echo base_url();?>js/datetimepicker/jquery-ui-timepicker-addon.js"></script> 
-  <!--  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">-->
-  <link href="/js/datetimepicker/jquery-ui.css" rel="stylesheet" type="text/css" media="screen" />*/ ?>
-  
   <script type="text/javascript" language="javascript">
 	function trim(stringToTrim) {
 		return stringToTrim.replace(/^\s+|\s+$/g,"");
 	}
-	$(document).ready(function() {		
-		$('.time').timepicker({});
+	$(document).ready(function() {		 
+		for(var i = 0; i<7; i++)
+		{
+			$('#start'+i).timepicker({ showPeriod: true, showLeadingZero: false });
+			$('#end'+i).timepicker({ showPeriod: true, showLeadingZero: false });
+		}
 		$("#btnupdate").click(function () {
 			if( $("#frmtiming").submit() )
 			{
@@ -66,7 +63,7 @@
               <div class="lab">
                 <label for="title"><?php echo ucfirst($timings[$i]['daytype']);?> <span class="errorsign">*</span></label>
               </div>
-              <div class="con"> <?php echo form_input( array( 'name'=>'start'.$i,'id'=>'start','class'=>'input time','type'=>'text','value'=>stripslashes($timings[$i]['start']) )); ?></div>
+              <div class="con"> <?php echo form_input( array( 'name'=>'start'.$i,'id'=>'start'.$i,'class'=>'input time','type'=>'text','value'=>stripslashes($timings[$i]['start']) )); ?></div>
              <input name="day<?php echo $i;?>" value="<?php echo ($timings[$i]['daytype']);?>" type="hidden" />
              <input name="id<?php echo $i;?>" value="<?php echo ($timings[$i]['id']);?>" type="hidden" />
             </div>
@@ -76,7 +73,7 @@
               <div class="lab">
                 
               </div>
-              <div class="con"> <?php echo form_input( array( 'name'=>'end'.$i,'id'=>'end','class'=>'input time','type'=>'text','readonly'=>'readonly','value'=>stripslashes($timings[$i]['end']) )); ?> </div>
+              <div class="con"> <?php echo form_input( array( 'name'=>'end'.$i,'id'=>'end'.$i,'class'=>'input time','type'=>'text','readonly'=>'readonly','value'=>stripslashes($timings[$i]['end']) )); ?> </div>
               
             </div>
           </div>
