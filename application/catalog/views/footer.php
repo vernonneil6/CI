@@ -83,7 +83,7 @@ function userlogin()
 				<li class="ftitle">JOIN THE CONVERSATION</li>
 				<li class="twitter"><a href="<?php echo $tw;?>" title="Twitter"><img src="../images/img/socialicon/twitter.jpg" /></a></li>
 				<li class="facebook"><a href="<?php echo $fb;?>" title="Facebook"><img src="../images/img/socialicon/facebook.jpg" /></a></li>
-				<li class="google"><a href="<?php echo $go;?>" title="Google"></a><img src="../images/img/socialicon/googleplus.jpg" /></li>
+				<li class="google"><a href="<?php echo $go;?>" title="Google"></a><img src="../images/img/socialicon/googleplus.jpg" /></a></li>
 				<li class="pinterest"><a href="<?php echo $pi;?>" title="Pinterest"><img src="../images/img/socialicon/pinterest.jpg" /></a></li>
 			  </ul>
 			</div>
