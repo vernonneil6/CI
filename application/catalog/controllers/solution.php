@@ -10,11 +10,17 @@ class Solution extends CI_Controller {
 		$url = 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
   		$pieces = parse_url($url);
 		$domain = isset($pieces['host']) ? $pieces['host'] : '';
-		if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs))
-		 {
-		    $site = $regs['domain'];
-		 }
-		 
+		
+		if(false !== strpos($domain,'www'))
+		{
+			$site = preg_replace('/^www\./', '', $domain);	
+					
+		}else{
+			if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs))
+			{
+				$site = $regs['domain'];
+			}
+		}
 		 $website = $this->common->get_site_by_domain_name($site);
 		 
 		 if(count($website)>0)
