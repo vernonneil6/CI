@@ -399,7 +399,7 @@ $config['gallery_thumb_height'] = '40';
 
 //Path to upload pdf
 $config['pdf_main_upload_path'] = '../uploads/pdf/';
-$config['pdf_main_max_size'] = '10000'; //in KB
+$config['pdf_main_max_size'] = '1280000'; //in KB
 
 //Path to upload coupon logo
 $config['coupon_main_upload_path'] = '../uploads/coupon/main/';
