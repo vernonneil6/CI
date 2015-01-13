@@ -126,10 +126,10 @@ class Review extends CI_Controller {
 		$givenreview=$this->reviews->get_reviews1_byciduid($companyid,$userid);
 		
 		if(count($givenreview)>0)
-			{
-					$this->session->set_flashdata('error', 'You have already reviewed this  company.!');
-					redirect('review', 'refresh');
-			}
+		{
+				$this->session->set_flashdata('error', 'You have already reviewed this  company.!');
+				redirect('review', 'refresh');
+		}
 		
 		if($companyid!='' || $companyid!=0)
 		{
