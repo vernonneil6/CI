@@ -57,7 +57,7 @@
       <fieldset>
         <div class="clearfix" style="width: 100% !important;">
         <?php echo form_hidden( array( 'my' => $seo[0]['fieldname']) ); ?>
-          <div class="lab" style="width: auto; padding-bottom:5px">
+          <div class="lab float_none" style="width: auto; padding-bottom:5px">
             <label for="txtvalue"><?php echo $seo[0]['fieldname']; ?><span class="errorsign"> *</span></label>
           </div>
           <div class="con" style="width: 99% !important; text-align:justify; float:left;">
