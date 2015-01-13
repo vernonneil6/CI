@@ -218,7 +218,7 @@
     <div class="container">
       <div class="reg_step_edit_add"></div>
       <div class="reg_frm_wrap">
-        <form class="reg_frm" action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
+        <form class="reg_frm" action="solution/businessadd" id="frmaddcompany" method="post" enctype="multipart/form-data">
           <div class="reg-row">
             <label>BUSINESS' NAME</label>           
             <input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30">
