@@ -55,17 +55,20 @@ height:70px !important;
           <p>Coupons</p>
           </a> </li>
     
-    <?php $siteid = $this->session->userdata['siteid'];?>
-	<?php if($siteid!='all'){ ?>
-    <li>
-    <a href="<?php echo site_url('widget');?>" title="Embed Widget"><img src="images/widget.png" alt="Widgets" title="Embed Widget">
-          <p>Embed Widget</p>
-          </a>
-    </li>
-    <?php } ?>
+		<?php $siteid = $this->session->userdata['siteid'];?>
+		<?php if($siteid!='all'){ ?>
+		<li>
+		<a href="<?php echo site_url('widget');?>" title="Embed Widget"><img src="images/widget.png" alt="Widgets" title="Embed Widget">
+			  <p>Embed Widget</p>
+			  </a>
+		</li>
+		<?php } ?>
 	
- <li> <a href="<?php echo site_url('timing');?>" title="Hours Of Operation"> <img src="images/timing.png" alt="Hours Of Operation" title="Hours Of Operation">
+		<li> <a href="<?php echo site_url('timing');?>" title="Hours Of Operation"> <img src="images/timing.png" alt="Hours Of Operation" title="Hours Of Operation">
           <p>Hours Of Operation</p>
+          </a> </li>
+          <li> <a href="<?php echo site_url('badge');?>" title="Embed YGR Seal"> <img src="/images/badge.png" alt="Embed YGR Seal" title="Embed YGR Seal">
+			<p>Embed YGR Seal</p>
           </a> </li>
       </ul>
     </div>
