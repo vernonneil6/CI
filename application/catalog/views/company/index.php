@@ -262,97 +262,9 @@
         </div>
 
         </ul>
+     </div>
 
-<!--<script>
-$(document).ready(function(){
-$('#directions').click(function(){
-$('#mapshow').addClass('mapshow');
-});
-$('#maps').click(function(){
-$('#mapshow').removeClass('mapshow');
-});
-});
-</script>
-
-<div id="mapshow" class="map">
-<div id="maps"></div>       
-          <div class="map_wrap">
-            <div class="Flexible-container">
-              <php 
-			  $mapaddress = stripslashes($company[0]['streetaddress'].','.$company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip']);
-			  $string = str_replace(' ', '-', $mapaddress); // Replaces all spaces with hyphens.
-	      ?>
-    
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
-<script type="text/javascript">
-           
-	 // When the window has finished loading create our google map below
-            google.maps.event.addDomListener(window, 'load', init);
-        
-<php 
-    $json = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=$mapaddress&sensor=false");
-    $json = json_decode($json);
-    $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
-    $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
-?>
-	      function init() 
-	      {
-				
-                // Basic options for a simple Google Map
-                // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-                var mapOptions = {
-                
-		// How zoomed in you want the map to start at (always required)
-                    zoom: 10,
-
-                 // The latitude and longitude to center the map (always required)
-                    center: new google.maps.LatLng(<php echo $lat?>,<php echo $long;?>), // New York
-
-                // How you would like to style the map. 
-                // This is where you would paste any style found on Snazzy Maps.
-                    styles: [	{		featureType:'water',		stylers:[{color:'#0080FF'},{visibility:'on'}]	},{		featureType:'landscape',		stylers:[{color:'#f2f2f2'}]	},{		featureType:'road',		stylers:[{saturation:-100},{lightness:45}]	},{		featureType:'road.highway',		stylers:[{visibility:'simplified'}]	},{		featureType:'road.arterial',		elementType:'labels.icon',		stylers:[{visibility:'off'}]	},{		featureType:'administrative',		elementType:'labels.text.fill',		stylers:[{color:'#444444'}]	},{		featureType:'transit',		stylers:[{visibility:'off'}]	},{		featureType:'poi',		stylers:[{visibility:'off'}]	}]};
-
-                // Get the HTML DOM element that will contain your map 
-                // We are using a div with id="map" seen below in the <body>
-                var mapElement = document.getElementById('map');
-
-                // Create the Google Map using out element and options defined above
-                var map = new google.maps.Map(mapElement, mapOptions);
-             }
-</script>
-<div id="map" style="width:500px;height:400px;"></div>
-
-    
-            </div>
-          </div>
-</div>
--->
-
-        </div>
-
-
-
-
-
-
-
-
-        <!--<div class="abt_dtwrap">
-          <div class="abt_title">
-            <h2><php echo strtoupper($company[0]['company']);?></h2>
-            <i class="line"></i> <span>ABOUT US</span> 
-	</div>
-          <p> <php echo ucfirst($company[0]['aboutus']);?> </p>
-        </div> -->
-   
-
-
-
-
-
-
-
-      <div class="right_panel rightpanelwidth">
+    <div class="right_panel rightpanelwidth">
 
 	<div>
         <ul class="tabbs">

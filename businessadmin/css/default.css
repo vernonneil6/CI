@@ -460,10 +460,15 @@ a:hover.ico   { background-position: 0 0; }
 .general_keywords
 {
 	font-weight: bold;
-    margin: 0 0 15px;
+    margin: 15px 0;
 }
 
 .btn_area
 {
-	padding : 15px 0 0;
+	padding : 15px 0 0!important;
+}
+
+.float_none
+{
+	float : none!important;
 }
