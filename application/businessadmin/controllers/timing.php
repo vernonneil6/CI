@@ -120,22 +120,19 @@ class Timing extends CI_Controller {
 	  	{
 			
 			$companyid=$this->session->userdata['youg_admin']['id'];
-			//If Old Record Update
-			//print_r($_REQUEST);
+
 			if( $this->input->post('start0') )
 	  		{
-				for($i=0;$i<7;$i++) {
-				//Getting value
-				$day = ($this->input->post('day'.$i));
-				$end = ($this->input->post('end'.$i));
-				$start = ($this->input->post('start'.$i));
-				$off = ($this->input->post('off'.$i));
-				$id = ($this->input->post('id'.$i));
-						
-				//Updating Record 
-				$this->timings->update($id,$day,$off,$start,$end);
-				
-			}
+				for($i=0;$i<7;$i++) 
+				{
+					$day = ($this->input->post('day'.$i));
+					$end = ($this->input->post('end'.$i));
+					$start = ($this->input->post('start'.$i));
+					$off = ($this->input->post('off'.$i));
+					$id = ($this->input->post('id'.$i));
+							
+					$this->timings->update($id,$day,$off,$start,$end);
+				}
 				$this->session->set_flashdata('success', 'timing updated successfully.');
 				redirect('timing', 'refresh');
 				
@@ -143,10 +140,8 @@ class Timing extends CI_Controller {
 		}
 		else
 		{
-							redirect('adminlogin', 'refresh');
+			redirect('adminlogin', 'refresh');
 		}
 	}
 	
 }
-/* End of file dashboard.php */
-/* Location: ./application/controllers/dashboard.php */

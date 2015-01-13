@@ -5,7 +5,13 @@
   <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'edit' ) ) { ?>
   
   <link rel="stylesheet" href="<?php echo base_url();?>css/jquery.ui.timepicker.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="<?php echo base_url();?>js/include/ui-lightness/jquery-ui-1.10.0.custom.min.css" type="text/css" />
+   
   <script src="<?php echo base_url();?>js/jquery.ui.timepicker.js"></script> 
+  <script type="text/javascript" src="<?php echo base_url();?>js/include/jquery.ui.core.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>js/include/jquery.ui.widget.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>js/include/jquery.ui.tabs.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url();?>js/include/jquery.ui.position.min.js"></script>
   
   <?php /*<link rel="stylesheet" href="<?php echo base_url();?>js/datetimepicker/style.css" type="text/css" media="all" />
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>--> 
