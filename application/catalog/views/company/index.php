@@ -397,12 +397,12 @@ $('#mapshow').removeClass('mapshow');
 
 			<div class="user_name">
                   <?php if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') { ?>
-                  <a><?php echo $reviews[$i]['reviewby'];?><span>   -  Orlando, FL</span></a>
+                  <a><?php echo $reviews[$i]['reviewby'];?></a>
 			<div class="datereview"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
                   <?php } else {?>
                   <?php $user=$this->users->get_user_byid($reviews[$i]['reviewby']);?>
                   <?php if(count($user)>0) { ?>
-                  <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><?php echo $user[0]['username'];?><span>Orlando, FL</span></a>
+                  <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><?php echo $user[0]['username'];?></a>
 			<div class="datereview"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
                   <?php } ?>
                   <?php } ?>
@@ -466,7 +466,7 @@ $('#mapshow').removeClass('mapshow');
 		<div class="user_name">
                   <?php $user=$this->users->get_user_byid($complaints[$i]['userid']);?>
                   <?php if(count($user)>0) { ?>
-                  <a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" title="view profile"><?php echo $user[0]['username'];?><!--<span>ORLANDO, FL</span>--></a>
+                  <a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" title="view profile"><?php echo $user[0]['username'];?></a>
                   <?php } else { ?>
                   <a><?php echo "Anonymous";?></a>
                   <?php	}?>
