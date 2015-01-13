@@ -1573,6 +1573,30 @@ class Complaints extends CI_Model
 		return $query->row_array();
 		
 	}
+	function update_company($address,$city,$state,$country,$zip,$companyid)
+	{
+	 	$data = array(
+					'streetaddress'=>$address,
+					'city'=>$city,
+					'state'=>$state,
+					'country'=>$country,
+					'zip'=>$zip
+		);
+		$query=$this->db->where('id',$companyid)
+		                ->update('company',$data);
+		
+		
+		if($query)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}	
+		
+		
+	}
 	function update_subscription($subscriptionId,$companyid,$amt,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag)
 	{
 	    $date = date("Y-m-d H:i:s");

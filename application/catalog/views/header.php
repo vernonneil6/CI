@@ -131,9 +131,9 @@
       <ul>
         <li><a href="<?php echo base_url();?>" title="Home">Home<span>:<span></a> </li>
         <li><a href="<?php echo site_url('businessdirectory');?>" title="Business Directory">Business Directory<span>:<span></a></li>
-        <li><a href="<?php echo site_url('review');?>" title="Business Review">Business Review<span>:<span></a></li>
+        <li><a href="<?php echo site_url('review');?>" title="Business Review">Business Reviews<span>:<span></a></li>
         <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">Press Releases<span>:<span></a></li>
-        <li><a href="<?php echo site_url('complaint');?>" title="Complaints">Complaints<span>:<span></a></li>
+        <li><a href="<?php echo site_url('complaint');?>" title="Complaints">Business Complaints<span>:<span></a></li>
         <li><a href="<?php echo site_url('coupon');?>" title="Coupons deals & Steals">Coupons deals & Steals<span>:<span></a></li>
         <li><a href="<?php echo site_url('solution');?>" title="Elite Membership">Elite Membership</a></li>
       </ul>

@@ -59,7 +59,7 @@
 					<label><a href="Anonymous">Anonymous</a></label>
 				  <?php } ?>
 				    
-                   <span class="datehome"><?php echo date('M d Y',strtotime($complaints[$i]['reviewdate']));?></span>
+                   <span class="datehome"><?php echo date('m/d/Y',strtotime($complaints[$i]['reviewdate']));?></span>
                   <h2><a href="<?php echo site_url('review/browse/'.$complaints[$i]['seokeyword']);?>" class="reviewname" title="view Review Detail"><?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?></a>
                    
                    <?php //get avg star by cmpyid
