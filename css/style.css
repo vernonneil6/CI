@@ -1686,8 +1686,7 @@ padding-left: 18px;
     margin: 0 0 0 5px;
 }
 
-.reviewrate{padding-left: 20px;}
+.reviewrate{padding-left: 20px;margin-top: 0;}
 .reviewname{float:left;}
-.starchange{margin-top: -10px;}
 .reviewspace{padding-top: 10px;}
-.nostar{margin-top:-11px}
+
