@@ -68,10 +68,10 @@
 					?>
 					  <div class="vry_rating reviewrate">
 						<?php for($r=0;$r<($avgstar);$r++){?>
-						<i class="vry_rat_icn starchange"></i>
+						<i class="vry_rat_icn"></i>
 						<?php } ?>
 						<?php for($p=0;$p<(5-($avgstar));$p++){?>
-						<img class="nostar" src="images/no_star.png" alt="no_star" title="no_star" />
+						<img src="images/no_star.png" alt="no_star" title="no_star" />
 						<?php } ?>
 					  </div>
 					  </h2>
