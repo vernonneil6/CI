@@ -41,8 +41,8 @@
     </li>
     <li><a href="<?php echo site_url('pdf'); ?>" title="Profile Docs">Menu/Catalogs Upload</a>
       <ul class="submenu">
-        <li><a href="<?php echo site_url('pdf/add'); ?>" title="Add Profile Docs">Add Profile Docs</a></li>
-        <li><a href="<?php echo site_url('pdf'); ?>" title="List All Profile Docs">List All Profile Docs</a></li>
+        <li><a href="<?php echo site_url('pdf/add'); ?>" title="Add Profile Docs">Add Menu/Catalogs Docs</a></li>
+        <li><a href="<?php echo site_url('pdf'); ?>" title="List All Profile Docs">List All Menu/Catalogs Docs</a></li>
       </ul>
     </li>
     <li><a href="<?php echo site_url('coupon'); ?>" title="Coupons">Coupons</a>
