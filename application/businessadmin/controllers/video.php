@@ -115,7 +115,11 @@ class Video extends CI_Controller {
 				
 						//Getting value
 						$title = addslashes($this->input->post('title'));
+
+						$videourl = preg_replace('~^https?://y2u\.be/([a-z\d]+)$~i', 'http://www.youtube.com/watch?v=$1', $this->input->post('videourl'));
+						$videourl = preg_replace('~^https?://youtu\.be/([a-z\d]+)$~i', 'http://www.youtube.com/watch?v=$1', $this->input->post('videourl'));
 					  	$videourl = preg_replace("/^https:/i", "http:", $this->input->post('videourl'));
+					  	
 						$videono = addslashes($this->input->post('videono'));
 						
 						//Updating Record With Image
