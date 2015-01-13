@@ -739,7 +739,7 @@
 							$newdate =round(($d1-$d2)/60);
 							if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
 							?>
-                      <div class="search_content_date" style="margin-bottom:15px;"> <?php echo ($complaindate==$today)?"Posted ".$diff:"Posted ".date('d M,Y',strtotime($complaints[$i]['complaindate'])); ?> </div>
+                      <div class="search_content_date" style="margin-bottom:15px;"> <?php echo ($complaindate==$today)?"Posted ".$diff:"Posted ".date('m/d/Y',strtotime($complaints[$i]['complaindate'])); ?> </div>
                       <div class="post_content_dscr user_view"> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"> <?php echo substr(stripslashes($complaints[$i]['detail']),0,212)."..."; ?></a> </div>
                     </div>
                   </div>
@@ -808,7 +808,7 @@
 							$newdate =round(($d1-$d2)/60);
 							if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
 							?>
-                      <div class="search_content_date user_view" style="margin-bottom:15px;"> <?php echo ($commentdate==$today)?$diff:date('d M,Y',strtotime($comments[$i]['commentdate'])); ?>&nbsp;&nbsp;<a href="<?php echo site_url('review/deletecomment/'.$comments[$i]['id']);?>" style="float:right;text-decoration:underline;" onclick="return confirm('Are you sure to delete this comment?');" title="delete comment">delete</a> <span style="float:right">&nbsp;or&nbsp;</span> <a href="<?php echo site_url('review/editcomment/'.$comments[$i]['id']);?>" style="float:right;text-decoration:underline;" title="edit comment">edit</a> </div>
+                      <div class="search_content_date user_view" style="margin-bottom:15px;"> <?php echo ($commentdate==$today)?$diff:date('m/d/Y',strtotime($comments[$i]['commentdate'])); ?>&nbsp;&nbsp;<a href="<?php echo site_url('review/deletecomment/'.$comments[$i]['id']);?>" style="float:right;text-decoration:underline;" onclick="return confirm('Are you sure to delete this comment?');" title="delete comment">delete</a> <span style="float:right">&nbsp;or&nbsp;</span> <a href="<?php echo site_url('review/editcomment/'.$comments[$i]['id']);?>" style="float:right;text-decoration:underline;" title="edit comment">edit</a> </div>
                       <div class="post_content_dscr user_view"> <?php echo nl2br(stripslashes($comments[$i]['comment'])); ?> </div>
                     </div>
                   </div>
@@ -883,7 +883,7 @@
 						  <div class="post_content_dscr user_view"><?php echo nl2br(stripslashes($disputes[$i]['dispute'])); ?> </div><br>
 						  <div class="post_content_dscr user_view">
 						  <a href='/dispute/message/<?php echo $disputes[$i]['msglink'];?>' style="color:#0080FF">Send & Check the Messages here</a><br>
-						  <?php echo ($date==$today)?$diff:date('d M,Y',strtotime($disputes[$i]['ondate'])); ?>&nbsp;&nbsp;
+						  <?php echo ($date==$today)?$diff:date('m/d/Y',strtotime($disputes[$i]['ondate'])); ?>&nbsp;&nbsp;
 						  </div>
 						  <div  class="treding_title"></div>
 						  
@@ -1182,7 +1182,7 @@
 							$newdate =round(($d1-$d2)/60);
 							if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
 							?>
-                      <div class="search_content_date" style="margin-bottom:15px;"> <?php echo ($complaindate==$today)?"Posted ".$diff:"Posted ".date('d M,Y',strtotime($complaints[$i]['complaindate'])); ?> </div>
+                      <div class="search_content_date" style="margin-bottom:15px;"> <?php echo ($complaindate==$today)?"Posted ".$diff:"Posted ".date('m/d/Y',strtotime($complaints[$i]['complaindate'])); ?> </div>
                       <div class="post_content_dscr user_view"> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"> <?php echo substr(stripslashes($complaints[$i]['detail']),0,212)."..."; ?></a> </div>
                     </div>
                   </div>
@@ -1218,7 +1218,7 @@
 							$newdate =round(($d1-$d2)/60);  
 							if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
 							?>
-                      <div class="search_content_date user_view" style="margin-bottom:15px;"> <?php echo ($commentdate==$today)?$diff:date('d M,Y',strtotime($comments[$i]['commentdate'])); ?>&nbsp;&nbsp;<a href="<?php echo site_url('review/deletecomment/'.$comments[$i]['id']);?>" style="float:right;text-decoration:underline;" onclick="return confirm('Are you sure to delete this comment?');" title="delete comment">delete</a> <span style="float:right">&nbsp;or&nbsp;</span> <a href="<?php echo site_url('review/editcomment/'.$comments[$i]['id']);?>" style="float:right;text-decoration:underline;" title="edit comment">edit</a> </div>
+                      <div class="search_content_date user_view" style="margin-bottom:15px;"> <?php echo ($commentdate==$today)?$diff:date('m/d/Y',strtotime($comments[$i]['commentdate'])); ?>&nbsp;&nbsp;<a href="<?php echo site_url('review/deletecomment/'.$comments[$i]['id']);?>" style="float:right;text-decoration:underline;" onclick="return confirm('Are you sure to delete this comment?');" title="delete comment">delete</a> <span style="float:right">&nbsp;or&nbsp;</span> <a href="<?php echo site_url('review/editcomment/'.$comments[$i]['id']);?>" style="float:right;text-decoration:underline;" title="edit comment">edit</a> </div>
                       <div class="post_content_dscr user_view"> <?php echo nl2br(stripslashes($comments[$i]['comment'])); ?> </div>
                     </div>
                   </div>
