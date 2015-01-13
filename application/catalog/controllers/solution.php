@@ -1088,6 +1088,24 @@ public function adminreport()
 public function renew($id)
 {
 	//echo $id;
+	$siteid = $this->session->userdata('siteid');
+	  	$this->data['categories'] = $this->common->get_all_categorys($siteid);
+		$countrylist = $this->common->get_all_countrys();
+		
+		if( count($countrylist) > 0 )
+			{
+				$this->data['selcon'][''] = '--Select Country--';
+				
+				for($c=0;$c<count($countrylist);$c++)
+				{
+					$this->data['selcon'][($countrylist[$c]['country_id'])] = ucfirst($countrylist[$c]['name']);
+				}
+			}
+			else
+			{
+				$this->data['selcon'][''] = '--Select Country--';
+			}
+		
 	$this->data['renewelite']=$this->complaints->get_company_byid($id);
 	$this->load->view('solution/renew',$this->data);
 	
@@ -1095,6 +1113,8 @@ public function renew($id)
 public function renew_update($id)
 {
 	//echo $id;
+	
+	
 	//data.php start
 	//$loginname = $this->common->get_setting_value(22);
 	//$transactionkey = $this->common->get_setting_value(23);
@@ -1105,10 +1125,10 @@ public function renew_update($id)
 	   $transactionkey="38UzuaL2c6y5BQ88";
 	   $host = "apitest.authorize.net"; */
 	
-	/*sandbox test mode*/
-	  /* $loginname="9um8JTf3W";
+	/*sandbox test mode
+	  $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
-	   $host = "apitest.authorize.net"; */
+	   $host = "apitest.authorize.net";*/ 
 	
 	
 	/*live*/
@@ -1119,6 +1139,18 @@ public function renew_update($id)
 	
 	$path = "/xml/v1/request.api";
 	//data.php end
+	
+	
+	$firstName = $_POST["fname"];
+	$lastName = $_POST["lname"];	
+	$email = $this->input->post('email');					
+	$address=$_POST["streetaddress"];
+	$city=$_POST["city"];	
+	$state=$_POST["state"];
+	$zip=$_POST["zip"];
+	$cid=$_POST["country"];
+	$c_code=$this->complaints->get_country_by_countryid($cid);
+	$country=$c_code['name'];
 	
 	include('authorize/authnetfunction.php');
 	$subscriptionprice = $this->common->get_setting_value(19);
@@ -1167,6 +1199,15 @@ public function renew_update($id)
         "<expirationDate>" . $expirationDate . "</expirationDate>".
         "</creditCard>".
         "</payment>".
+        "<billTo>".
+			"<firstName>". $firstName . "</firstName>".
+			"<lastName>" . $lastName . "</lastName>".
+			"<address>" . $address . "</address>".
+			"<city>" . $city . "</city>".
+			"<state>" . $state . "</state>".
+			"<zip>" . $zip . "</zip>".
+			"<country>" . $country . "</country>".
+			"</billTo>".
         "</subscription>".
         "</ARBUpdateSubscriptionRequest>";
 
@@ -1174,7 +1215,7 @@ public function renew_update($id)
 	$response = send_request_via_curl($host,$path,$content);
 	//if the connection and send worked $response holds the return from Authorize.net
 	
-	//print_r($response);die;
+	//print_r($response);
 	if ($response)
 	{
 		list ($refId, $resultCode, $code, $text, $subscriptionId) =parse_return($response);
@@ -1231,6 +1272,7 @@ public function renew_update($id)
 			//echo '<pre>';print_r($update_subscription);	  
 			if($update_subscription)
 			{
+			  $update_companytable=$this->complaints->update_company($address,$city,$state,$country,$zip,$companyid);	
 			  $update_elite= $this->complaints->update_elite($companyid,$amount,'USD',$transactionkey,date('Y-m-d H:i:s'));
 				    //echo '<pre>';print_r($update_elite);
 				    
