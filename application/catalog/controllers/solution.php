@@ -243,7 +243,7 @@ class Solution extends CI_Controller {
 			
 			if(count($company)>0)
 			{ 
-				$id = $company[0]['id'];
+				/*$id = $company[0]['id'];
 						
 				if($discountcode!='')
 				{
@@ -255,7 +255,10 @@ class Solution extends CI_Controller {
 					
 					redirect('solution/claim/'.$id, 'refresh');
 					
-				}
+				}*/
+
+				$this->session->set_flashdata('error','This company email address is already exists. Try later!');
+				redirect('solution/claimbusiness', 'refresh');
 				
 			}
 			else

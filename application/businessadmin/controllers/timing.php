@@ -121,6 +121,7 @@ class Timing extends CI_Controller {
 			
 			$companyid=$this->session->userdata['youg_admin']['id'];
 			//If Old Record Update
+			//print_r($_REQUEST);
 			if( $this->input->post('start0') )
 	  		{
 				for($i=0;$i<7;$i++) {
@@ -129,9 +130,10 @@ class Timing extends CI_Controller {
 				$end = ($this->input->post('end'.$i));
 				$start = ($this->input->post('start'.$i));
 				$off = ($this->input->post('off'.$i));
+				$id = ($this->input->post('id'.$i));
 						
 				//Updating Record 
-				$this->timings->update($companyid,$day,$off,$start,$end);
+				$this->timings->update($id,$day,$off,$start,$end);
 				
 			}
 				$this->session->set_flashdata('success', 'timing updated successfully.');
