@@ -33,6 +33,7 @@
       </ul>
     </li>
     <li><a href="<?php echo site_url('badge');?>" class="link" title="Embed YGR Seal">Embed YGR Seal</a></li>
+    <li><a href="<?php echo site_url('widget');?>" class="link" title="Business Widget">Business Widget</a></li>
     <li><a href="<?php echo site_url('businessdispute');?>" title="Business Disputes">Business Disputes</a>
        <ul class="submenu">
 		   <li><a href="<?php echo site_url('businessdispute');?>" class="link" title="List All Business Disputes">List All Disputes</a></li>	   

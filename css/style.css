@@ -1690,3 +1690,30 @@ padding-left: 18px;
 .reviewname{float:left;}
 .reviewspace{padding-top: 10px;}
 
+.badgeviews
+{
+    margin-top: 50px;
+    width: 100%;
+}
+.badgesystem
+{
+	background:black;
+	color: white;
+    font-family: MyriadPro-BlackSemiCn;
+    font-size: 30px;
+    height: 33px;
+    padding: 5px;
+}
+.outline_badgesystem
+{
+	margin-bottom: 25px;
+}
+.name_badgesystem
+{
+    font-family: MyriadPro-BoldCond;
+    font-size: 22px;
+}
+.rating_badgesystem
+{
+	float: right;
+}
