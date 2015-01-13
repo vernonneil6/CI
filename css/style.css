@@ -256,7 +256,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .demage_count span{width:auto; float:none; height:auto; font-size:26px;font-family: "myriadpro-regular"; }
 .demage_count i{font-family:"myriadpro-regular-extended"; font-size:14px; color:#666666; text-transform:uppercase; position:relative; top:-4px; font-style:normal !important;}
 .verified_wrp{height:120px; display:block; float:left;}
-.verified_wrp a{height:120px; display:block;}
+.verified_wrp a{ /*height:120px;*/ height:auto;display:block;}
 .verified_wrp a img{margin-top:17px;}
 .catgry_wrp{width:1050px; background:url(../images/ptrn_bg.png) no-repeat; height:29px; float: left; margin-bottom:10px;border:1px solid #999;}
 .catgry_wrp h4{border-left: 2px solid #0080FF;  color: #333333;  float: left;  font-family: "myriadpro-regular";  font-size: 22px; font-weight: bold; line-height: 21px;
