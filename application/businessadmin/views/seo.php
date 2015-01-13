@@ -57,7 +57,7 @@
       <fieldset>
         <div class="clearfix" style="width: 100% !important;">
         <?php echo form_hidden( array( 'my' => $seo[0]['fieldname']) ); ?>
-          <div class="lab" style="width: auto; padding-bottom:5px">
+          <div class="lab float_none" style="width: auto; padding-bottom:5px">
             <label for="txtvalue"><?php echo $seo[0]['fieldname']; ?><span class="errorsign"> *</span></label>
           </div>
           <div class="con" style="width: 99% !important; text-align:justify; float:left;">
@@ -66,13 +66,14 @@
             <?php } ?>
           </div>
           <div id="txtvalueerror" class="error" style="width:auto"><?php echo $seo[0]['fieldname']; ?> field is required.</div>
+          <div class = "general_keywords">Seperate keywords with a comma (ex : pet foot, bird seed, parakeets)</div>
         </div>
-        <div class="btn-submit"> 
+        <div class="btn-submit btn_area"> 
           <!-- Submit form --> 
           <?php echo form_input(array('name'=>'btnupdate','id'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Update')); ?> or <a href="<?php echo site_url('seo');?>" class="Cancel">Cancel</a> </div>
       </fieldset>
       <?php echo form_hidden( array( 'txtintid' => $this->encrypt->encode($seo[0]['id']) ) ); ?> <?php echo form_close(); ?>
-       <?php echo form_close(); ?>
+      <?php echo form_close(); ?>
        </div>
   </div>
   <!-- /box-content -->

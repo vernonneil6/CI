@@ -456,3 +456,19 @@ a:hover.ico   { background-position: 0 0; }
 {
 	padding : 0 0 15px;
 }
+
+.general_keywords
+{
+	font-weight: bold;
+    margin: 15px 0;
+}
+
+.btn_area
+{
+	padding : 15px 0 0!important;
+}
+
+.float_none
+{
+	float : none!important;
+}

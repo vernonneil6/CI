@@ -627,6 +627,21 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 
 .footerblock ul li.ftitle{width:auto; height:auto;list-style:none; padding-left: 17px;margin-bottom: 10px; color: #A09507; font-family:aller; font-size:18px; font-family:"MyriadPro-BoldCond";  text-transform:uppercase; float:none !important;}
 
+.user_login button {
+ background: url("../images/img/textbg.jpg") no-repeat scroll -2px -6px rgba(0, 0, 0, 0);
+    border: medium none;
+    color: white;
+    cursor: pointer;
+    font-family: nimbus-sans;
+    font-size: 14px;
+    font-style: normal;
+    height: 20px;
+   margin: 10px 0 20px;
+    padding: 0 6px;
+    text-align: left;
+    text-transform: uppercase;
+    width: 204px;
+}
 
 /*============ Login_form ===========================*/
 .login_head{text-align:center; margin-top:40px;}
