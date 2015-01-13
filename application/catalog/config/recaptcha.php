@@ -5,9 +5,19 @@
  * File     : recaptcha.php
 
  */
-
+if($_SERVER['SERVER_NAME']=="www.yougotrated.writerbin.com"){
+	
 $config['public_key']   = '6LeaYwATAAAAAIIt3d5CbgQKWgu6JDQNH1IsAkWL';
 $config['private_key']  = '6LeaYwATAAAAAN1U22SbAfY3b_73FHuA4WsYFMui';
+
+}
+else
+{
+ 
+$config['public_key']   = '6LeOXQATAAAAAIqhP1H-UvRPuPid0DrI0jSJ86L_';
+$config['private_key']  = '6LeOXQATAAAAAFTNVXOPFraRhMyH90JUhI-vkzyX'; 
+ 
+ }
 
 
 // Set Recaptcha options
