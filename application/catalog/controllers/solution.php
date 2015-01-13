@@ -195,10 +195,19 @@ class Solution extends CI_Controller {
 		
 		$this->load->view('solution/claimbusiness',$this->data);
 	}
+	
 	public function update()
-	{   		
+	{   
+		
+		//Load REcaptcha again.
+		$this->load->library('recaptcha');		
+		//echo "<pre>";
+		 //print_r($_POST);
 		if($this->input->post('email'))
 		{
+			
+			 //Call to recaptcha to get the data validation set within the class. 
+             $this->recaptcha->recaptcha_check_answer();
 			
 			$name = $this->input->post('name');
 			
@@ -239,130 +248,144 @@ class Solution extends CI_Controller {
 			$cphone = $this->input->post('cphone');
 			$cemail = $this->input->post('cemail');
 			$discountcode = $this->input->post('discountcode');
-			$company = $this->complaints->get_company_by_emailid($email);
 			
-			if(count($company)>0)
-			{ 
-				/*$id = $company[0]['id'];
+			
+			
+            
+            
+           //var_dump($this->recaptcha->getIsValid());
+			
+			
+			if($this->recaptcha->getIsValid() == true){
+				$company = $this->complaints->get_company_by_emailid($email);
+				if(count($company)>0)
+				{ 
+					/*$id = $company[0]['id'];
+							
+					if($discountcode!='')
+					{
+						redirect('solution/claimdisc/'.$id.'/'.$discountcode, 'refresh');
 						
-				if($discountcode!='')
-				{
-					redirect('solution/claimdisc/'.$id.'/'.$discountcode, 'refresh');
+					}
+					else
+					{
+						
+						redirect('solution/claim/'.$id, 'refresh');
+						
+					}*/
+
+					$this->session->set_flashdata('error','This company email address is already exists. Try later!');
+					redirect('solution/claimbusiness', 'refresh');
 					
 				}
 				else
-				{
+				{ 
+					 $email1 = $this->complaints->chkfield1(0,'email',$email);
+					 $name1 = $this->complaints->chkfield1(0,'company',$name);
 					
-					redirect('solution/claim/'.$id, 'refresh');
-					
-				}*/
-
-				$this->session->set_flashdata('error','This company email address is already exists. Try later!');
-				redirect('solution/claimbusiness', 'refresh');
-				
-			}
-			else
-			{ 
-				 $email1 = $this->complaints->chkfield1(0,'email',$email);
-				 $name1 = $this->complaints->chkfield1(0,'company',$name);
-				
-				if($email1=='new' && $name1=='new')
-				{
-						//Inserting Record
-						if( $this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'' ))
-						{
-							
-							$companyid = $this->db->insert_id();							
-													
-							$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
-							if($this->complaints->insert_companyseo($companyid,$name))
+					if($email1=='new' && $name1=='new')
+					{
+							//Inserting Record
+							if( $this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'' ))
 							{
-								$site_name = $this->common->get_setting_value(1);
-								$site_url = $this->common->get_setting_value(2);
-								$site_email = $this->common->get_setting_value(5);
-					            $formpost=$_POST;
-							    $this->eliteSubscribe($formpost,$companyid); // for authorise
-								// user Mail
-								$to = $cemail;
-								$mail = $this->common->get_email_byid(11);
-			
-								$subject = $mail[0]['subject'];
-								$mailformat = $mail[0]['mailformat'];
 								
-								$this->load->library('email');
-								$this->email->from($site_email,$site_name);
-								$this->email->to($to);
-								$this->email->subject($subject);
-								
-								$com = $this->complaints->get_company_byid($companyid);
-								if(count($com)>0)
+								$companyid = $this->db->insert_id();							
+														
+								$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
+								if($this->complaints->insert_companyseo($companyid,$name))
 								{
-									$link = "<a href='".site_url('complaint/viewcompany/'.$com[0]['companyseokeyword'])."' title='visit business page' target='_blank'>".site_url('complaint/viewcompany/'.$com[0]['companyseokeyword'])."</a>";
+									$site_name = $this->common->get_setting_value(1);
+									$site_url = $this->common->get_setting_value(2);
+									$site_email = $this->common->get_setting_value(5);
+									$formpost=$_POST;
+									//$this->eliteSubscribe($formpost,$companyid); // for authorise
+									// user Mail
+									$to = $cemail;
+									$mail = $this->common->get_email_byid(11);
+				
+									$subject = $mail[0]['subject'];
+									$mailformat = $mail[0]['mailformat'];
+									
+									$this->load->library('email');
+									$this->email->from($site_email,$site_name);
+									$this->email->to($to);
+									$this->email->subject($subject);
+									
+									$com = $this->complaints->get_company_byid($companyid);
+									if(count($com)>0)
+									{
+										$link = "<a href='".site_url('complaint/viewcompany/'.$com[0]['companyseokeyword'])."' title='visit business page' target='_blank'>".site_url('complaint/viewcompany/'.$com[0]['companyseokeyword'])."</a>";
+									}
+									else
+									{
+										$link = "";
+									}
+									$mail_body = str_replace("%link%",ucfirst($link),str_replace("%companyname%",ucfirst($name),str_replace("%email%",$email,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat)))))));
+
+									$this->email->message($mail_body);
+									$this->email->send();
+									
+									$site_name = $this->common->get_setting_value(1);
+									$site_url = $this->common->get_setting_value(2);
+									$site_email = $this->common->get_setting_value(5);
+						
+									// Admin Mail
+									$to = $site_email;
+									$mail = $this->common->get_email_byid(10);
+				
+									$subject = $mail[0]['subject'];
+									$mailformat = $mail[0]['mailformat'];
+									
+									$this->load->library('email');
+									$this->email->from($site_email,$site_name);
+									$this->email->to($to);
+									$this->email->subject($subject);
+								
+									$mail_body = str_replace("%name%",ucfirst($name),str_replace("%email%",$email,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat))))));
+									
+									$this->email->message($mail_body);
+									$this->email->send();
+									
+									$this->session->set_flashdata('success', 'Your business has successfully been registered for Elite membership!');
+									///redirect('solution/claim/'.$companyid, 'refresh');
+									redirect('solution', 'refresh');
+									
 								}
 								else
 								{
-									$link = "";
+									$this->session->set_flashdata('error', 'There is error in adding Business. Try later!');
+									redirect('solution/claimbusiness', 'refresh');
 								}
-								$mail_body = str_replace("%link%",ucfirst($link),str_replace("%companyname%",ucfirst($name),str_replace("%email%",$email,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat)))))));
-
-								$this->email->message($mail_body);
-								$this->email->send();
-								
-								$site_name = $this->common->get_setting_value(1);
-								$site_url = $this->common->get_setting_value(2);
-								$site_email = $this->common->get_setting_value(5);
-					
-								// Admin Mail
-								$to = $site_email;
-								$mail = $this->common->get_email_byid(10);
-			
-								$subject = $mail[0]['subject'];
-								$mailformat = $mail[0]['mailformat'];
-								
-								$this->load->library('email');
-								$this->email->from($site_email,$site_name);
-								$this->email->to($to);
-								$this->email->subject($subject);
-							
-								$mail_body = str_replace("%name%",ucfirst($name),str_replace("%email%",$email,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat))))));
-								
-								$this->email->message($mail_body);
-								$this->email->send();
-								
-								$this->session->set_flashdata('success', 'Your business has successfully been registered for Elite membership!');
-								///redirect('solution/claim/'.$companyid, 'refresh');
-								redirect('solution', 'refresh');
-								
 							}
 							else
 							{
-								$this->session->set_flashdata('error', 'There is error in adding Business. Try later!');
-								redirect('solution/claimbusiness', 'refresh');
+									$this->session->set_flashdata('error', 'There is error in adding Business. Try later!');
+									redirect('solution/claimbusiness', 'refresh');
 							}
-						}
-						else
-						{
-								$this->session->set_flashdata('error', 'There is error in adding Business. Try later!');
-								redirect('solution/claimbusiness', 'refresh');
-						}
-					
-					
-					
-					redirect('solution/claimbusiness', 'refresh');
-				}
-				else
-				{
-					if($email1=='old')
-					{
-						$this->session->set_flashdata('error', 'This company email address is already exists. Try later!');
-						redirect('solution/claimbusiness', 'refresh');	
-					}
-					if($name1=='old')
-					{
-						$this->session->set_flashdata('error', 'This company name is already exists. Try later!');
+						
+						
+						
 						redirect('solution/claimbusiness', 'refresh');
 					}
+					else
+					{
+						if($email1=='old')
+						{
+							$this->session->set_flashdata('error', 'This company email address is already exists. Try later!');
+							redirect('solution/claimbusiness', 'refresh');	
+						}
+						if($name1=='old')
+						{
+							$this->session->set_flashdata('error', 'This company name is already exists. Try later!');
+							redirect('solution/claimbusiness', 'refresh');
+						}
+					}
 				}
+			}else{
+				
+                $this->session->set_flashdata('error','incorrect captcha');
+                 redirect('businessdirectory/add', 'refresh');
+                
 			}
 		}
 	}
