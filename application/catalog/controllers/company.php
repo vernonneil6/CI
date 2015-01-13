@@ -394,6 +394,23 @@ class Company extends CI_Controller {
 		public function upgrade_elite($id='')
 		{
 			//echo $id;
+			$siteid = $this->session->userdata('siteid');
+	  	$this->data['categories'] = $this->common->get_all_categorys($siteid);
+		$countrylist = $this->common->get_all_countrys();
+		
+		if( count($countrylist) > 0 )
+			{
+				$this->data['selcon'][''] = '--Select Country--';
+				
+				for($c=0;$c<count($countrylist);$c++)
+				{
+					$this->data['selcon'][($countrylist[$c]['country_id'])] = ucfirst($countrylist[$c]['name']);
+				}
+			}
+			else
+			{
+				$this->data['selcon'][''] = '--Select Country--';
+			}
 			$this->data['makeelite']=$this->common->get_company_byid($id);
 			$this->load->view('company/upgrade',$this->data);
 			
@@ -402,6 +419,8 @@ class Company extends CI_Controller {
 		public function makeelite()
 		{ 
 			//data.php start
+			
+			
 				//$loginname = $this->common->get_setting_value(22);
 				//$transactionkey = $this->common->get_setting_value(23);
 				
@@ -411,8 +430,8 @@ class Company extends CI_Controller {
 				   $transactionkey="38UzuaL2c6y5BQ88";
 				   $host = "apitest.authorize.net"; */
 				
-				/*sandbox test mode*/
-				  /*$loginname="9um8JTf3W";
+				/*sandbox test mode
+				  $loginname="9um8JTf3W";
 				  $transactionkey="9q24FTz678hQ9mAD";
 				  $host = "apitest.authorize.net";*/
 				
@@ -516,7 +535,7 @@ class Company extends CI_Controller {
 				//send the xml via curl
 				$response = send_request_via_curl($host,$path,$content);
 				//if the connection and send worked $response holds the return from Authorize.net
-				//print_r($response);die;
+				//print_r($response);
 				if($response)
 				{
 					list ($refId, $resultCode, $code, $text, $subscriptionId) =parse_return($response);
@@ -562,9 +581,10 @@ class Company extends CI_Controller {
 						$paymentmethod = 'authorize';
 						if($this->common->insert_subscription($companyid,$amt,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
 						{
+							$update_companytable=$this->common->update_company($address,$city,$state,$country,$zip,$companyid);	
 							$company = $this->common->get_company_byid($companyid);
 							$redirectto=$company[0]['companyseokeyword'];
-							if( count($company)>0 )
+							if(count($company)>0)
 							{
 								$password = uniqid();
 								
@@ -591,7 +611,7 @@ class Company extends CI_Controller {
 								//Inserting Elite Membership Transaction Details for Company
 								$transaction = $this->common->add_transaction($companyid,$amount,'USD',$transactionkey,date('Y-m-d H:i:s'));
 								$websites = $this->common->get_all_websites();
-								$this->common->insert_discountcode($companyid,'ACE-Call-Center');
+								
 												
 								$siteid = $this->session->userdata('siteid');
 								$page = $this->common->get_pages_by_id(12,$siteid);
@@ -628,8 +648,7 @@ class Company extends CI_Controller {
 								//$this->email->initialize($this->cnfemail);
 								$this->email->initialize($config);
 								$this->email->from($email,$company[0]['company']);
-								//$this->email->to($site_mail,'alankenn@grossmaninteractive.com');	
-								$this->email->to('alankenn@grossmaninteractive.com');	
+								$this->email->to($site_mail);	
 								$this->email->subject('Payment Received for Business Claim.');
 								$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 																		<tr>
@@ -664,69 +683,90 @@ class Company extends CI_Controller {
 												
 								//For sending mail to user
 								$this->email->from($site_mail,$site_name);
-								//$this->email->to($email,'alankenn@grossmaninteractive.com');	
-								$this->email->to('alankenn@grossmaninteractive.com');	
-								$this->email->subject('YouGotRated: Your business has been claimed successfully.');
-								$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
-														  <tr>
-															<td>Hello '.$company[0]['company'].',</td>
-														  </tr>
-														  <tr>
-															<td><br/></td>
-														  </tr>
-														  <tr>
-															<td style="padding-left:20px;"> You have successfully claimed the Business <b>'.ucwords($company[0]['company']).'</b>. </td>
-														  </tr>
-														  <tr>
-															<td style="padding-left:20px;"> You can login with the following credentials to your elite member admin account by clicking link below or paste it in the address bar. </td>
-														  </tr>
-														  <tr>
-															<td style="padding-left:20px;"> ----------------------------------------------------<br />
-															  Username = Your email address<br />
-															  password = '.$password.'<br />
-															  ----------------------------------------------------<br />
-															  Please click this link to login your account.<br />
-															  <a href="'.$site_url.'businessadmin">Elite Member Login</a></td>
-														  </tr>
-														  <tr>
-															<td style="padding-left:20px;"></td>
-														  </tr>
-														  <tr>
-															<td style="padding-left:20px;"> Your Transaction Details are as follows. </td>
-														  </tr>
-														  <tr>
-															<td><table cellpadding="0" cellspacing="0" width="100%" border="0">
-																<tr>
-																  <td colspan="3"><h3>Payment Transaction Details:</h3></td>
-																</tr>
-																<tr>
-																  <td>Payment Amount</td>
-																  <td>:</td>
-																  <td>USD '.$amount.'</td>
-																</tr>
-																<tr>
-																  <td>Transacion ID</td>
-																  <td>:</td>
-																  <td><b>'.$transactionkey.'</b></td>
-																</tr>
-																<tr>
-																  <td colspan="3">&nbsp;</td>
-																</tr>
-															</table>
-															</td>
-														  </tr>
-														  <tr>
-															<td><br/>
-															  <br/></td>
-														  </tr>
-														  <tr>
-															<td> Regards,<br/>
-															  The '.$site_name.' Team.<br/>
-															  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
-														  </tr>
-														</table>
-														');
-												
+								$this->email->to($email);	
+								$this->email->subject('YouGotRated: Elite Membership Signup Confirmation.');
+					            $this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
+											  <tr>
+												<td>Hello '.$company[0]['company'].',</td>
+											  </tr>
+											  <tr>
+												<td><br/></td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;"> You have successfully claimed the Business <b>'.ucwords($company[0]['company']).'</b> as part of your Elite Membership package. </td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;"> You can login with the following credentials to your elite member admin account by clicking link below or paste it in the address bar. </td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;"> ----------------------------------------------------<br />
+												  Username : '.$company[0]['email'].'<br />
+												  password : '.$password.'<br />
+												  ----------------------------------------------------<br />
+												  Please click this link to login your account.<br />
+												  <a href="'.$site_url.'businessadmin">Elite Member Login</a></td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;"></td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;padding-top: 15px;"> Your Transaction Details are as follows. </td>
+											  </tr>
+											  <tr>
+												<td>
+													<table cellpadding="0" cellspacing="0" width="70%" border="0">
+														<tr>
+														  <td colspan="3" style="padding-left: 20px;padding-top: 5px;">Payment Details:</td>
+														</tr>
+														<tr>
+														  <td style="padding-left:20px;padding-top:5px">Payment Amount</td>
+														  <td>:</td>
+														  <td>USD '.$amount.'</td>
+														</tr>
+														<tr>
+														  <td style="padding-left:20px;padding-top:5px">Transacion ID</td>
+														  <td>:</td>
+														  <td><b>'.$transactionkey.'</b></td>
+														</tr>
+														<tr>
+														  <td colspan="3">&nbsp;</td>
+														</tr>
+												    </table>
+												</td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;"> Verified YouGotRated Seal </td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;padding-top:10px"> To download and use your official YouGotRated seal &#8211; simply embed this code into your email or website.  This will allow your customers to see your current ratings status and reviews with YouGotRated as a live feed. </td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;padding-top: 12px;">
+												&lt;iframe src=&quot;'.site_url("widget/business/".$company[0]['id']).'&quot; style=&quot;border:none;height:375px;&quot;&gt;&lt;/iframe&gt; 
+												 </td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;padding-top:12px"> <b>Business Reviews</b> </td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;padding-top:10px">You can share this link with your customers to allow them to add a review for your business:<br> <a href="'.$site_url.'review/add/'.$company[0]['id'].'">'.$site_url.'review/add/'.$company[0]['id'].'</a></td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;padding-top:20px">Using this link, your customers can view your existing reviews:</td>
+											  </tr>
+											  <tr>
+												<td style="padding-left:20px;padding-top:10px"><a href="'.$site_url.'company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints">'.$site_url.'company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints</a> </td>
+											  </tr>
+											  <tr>
+												<td><br/>
+												  <br/></td>
+											  </tr>
+											  <tr>
+												<td> Regards,<br/>
+												  The '.$site_name.' Team.<br/>
+												  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
+											  </tr>
+											</table>');				
 								//Sending mail user
 								$this->email->send();
 								$this->session->set_flashdata('success','Payment is made and your business is claimed successfully.');

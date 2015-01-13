@@ -969,7 +969,31 @@ Class Common extends CI_Model
 		{
 			return false;
 		}
- 	}	
+ 	}
+ 	function update_company($address,$city,$state,$country,$zip,$companyid)
+	{
+	 	$data = array(
+					'streetaddress'=>$address,
+					'city'=>$city,
+					'state'=>$state,
+					'country'=>$country,
+					'zip'=>$zip
+		);
+		$query=$this->db->where('id',$companyid)
+		                ->update('company',$data);
+		
+		
+		if($query)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}	
+		
+		
+	}	
 		
 }
 ?>
