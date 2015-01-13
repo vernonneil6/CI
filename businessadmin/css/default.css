@@ -456,3 +456,14 @@ a:hover.ico   { background-position: 0 0; }
 {
 	padding : 0 0 15px;
 }
+
+.general_keywords
+{
+	font-weight: bold;
+    margin: 0 0 15px;
+}
+
+.btn_area
+{
+	padding : 15px 0 0;
+}
