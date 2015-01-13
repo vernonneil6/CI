@@ -139,8 +139,7 @@
       <?php for($i=0;$i<count($timings);$i++) { ?>
       <tr>
         <td><?php echo ucfirst(stripslashes($timings[$i]['daytype'])); ?></td>
-        <td><?php echo date("h:i A,",strtotime(stripslashes($timings[$i]['start']))); ?>
-         <?php echo date("h:i A,",strtotime(stripslashes($timings[$i]['end']))); ?></td>
+        <td><?php echo stripslashes($timings[$i]['start']); ?> - <?php echo stripslashes($timings[$i]['end']); ?></td>
         <td><?php echo stripslashes($timings[$i]['off']); ?></td>
         <td style="padding: 8px 4px;"><a href="<?php echo site_url('timing/edit/'); ?>" title="Edit" class="ico ico-edit">Edit</a></td>
       </tr>
