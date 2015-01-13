@@ -1,5 +1,5 @@
 <?php echo $header;?>
-<script type="text/javascript" src="js/eliteform.js"></script>
+<script type="text/javascript" src="js/formsubmit.js"></script>
 
 <section class="container">
   <section class="main_contentarea">
@@ -8,20 +8,15 @@
       <div class="reg_step_edit_claim" style="display:none;"></div>
       <div class="reg_frm_wrap">
 	      
-        <form class="reg_frm" action="solution/renew_update/<?php echo $renewelite[0]['id'];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
+        <form class="reg_frm" action="index.php/solution/renew_update/<?php echo $renewelite[0]['id'];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
           <div class="reg-row">
             <label>RENEW YOUR SUBSCRIPTION HERE</label>
             <div class="reg_fld">PLEASE RENEW YOUR ELITEMEMBERSHIP SUBSCRIPTION HERE FOR ACTIVATING IT.</div>
             <?php //print_r($renewelite[0]);?>
             <input type="hidden" class="reg_txt_box" placeholder="companyid" id="companyid" name="companyid"  maxlength="30" value="<?php echo $renewelite[0]['id'];?>" />
-            <input type="hidden" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30" value="<?php echo $renewelite[0]['company'];?>" />
+            <input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30" value="<?php echo $renewelite[0]['company'];?>" />
             <input type="hidden" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150" value="<?php echo $renewelite[0]['siteurl'];?>" />
             <input type="hidden" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" value="<?php echo $renewelite[0]['email'];?>" />
-            <input type="hidden" class="reg_txt_box" placeholder="Country" id="country" name="country"  maxlength="250" value="<?php echo $renewelite[0]['country'];?>" />
-            <input type="hidden" class="reg_txt_box" placeholder="State" id="state" name="state"  maxlength="250" value="<?php echo $renewelite[0]['state'];?>" />
-            <input type="hidden" class="reg_txt_box" placeholder="City" id="city" name="city"  maxlength="250" value="<?php echo $renewelite[0]['city'];?>" />
-            <input type="hidden" class="reg_txt_box" placeholder="Zip" id="zip" name="zip"  maxlength="250" value="<?php echo $renewelite[0]['zip'];?>" />
-            <input type="hidden" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50" value="<?php echo $renewelite[0]['streetaddress'];?>" />
             <input type="hidden" class="reg_txt_box-lg" placeholder="cname" name="cname" id="cname" maxlength="50" value="<?php echo $renewelite[0]['contactname'];?>" />
             <input type="hidden" class="reg_txt_box-lg" placeholder="cphone" name="cphone" id="cphone" maxlength="50" value="<?php echo $renewelite[0]['contactphonenumber'];?>" />
             <input type="hidden" class="reg_txt_box-lg" placeholder="cemail" name="cemail" id="cemail" maxlength="50" value="<?php echo $renewelite[0]['contactemail'];?>" />
@@ -38,6 +33,41 @@
             <div class="reg_fld">LAST NAME</div>
             <input type="text" class="reg_txt_box" placeholder="LAST NAME" id="lname" name="lname" maxlength="30" /><div id="lnameerror" class="error">Last Name is required.</div>
               
+          </div>
+          <div class="reg-row" style="margin-top:-1px;">
+            <div class="reg_fld">WHAT IS YOUR BILLING ADDRESS?</div>
+            <input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50" />
+            <br/>
+            <style>
+			.seldrop
+			{   background: none repeat scroll 0 0 #FFFFFF;
+				border: 1px solid #000000;
+				margin-top: 8px;
+				width: 249px;
+			}
+			</style>
+          <div style="float:left;">
+           <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
+           </div>
+           <?php 
+		  $selstate=array(''=>'--Select State--');
+		  ?>
+		  <div id="selstatediv" style="float:right;margin-right:127px;">
+		  <?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?></div>
+          <br/>
+            <input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
+            <input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
+            <div id="streetaddresserror" class="error">Street Address is required.</div>
+            <div id="cityerror" class="error">City is required.</div>
+            <div id="stateerror" class="error">State is required.</div>
+            <div id="countryerror" class="error">Country is required.</div>
+            <div id="ziperror" class="error">Zip Code is required.</div>
+            <div id="zipverror" class="error">Enter digits only valid format 123456</div>
+            <div id="streeterror" class="error">Street Address is required.</div>
+            <div id="cityerror" class="error">City is required.</div>
+            <div id="stateerror" class="error">State is required.</div>
+            <div id="streeterror" class="error">Street Address is required.</div>
+            <div id="zipcodeerror" class="error">Enter digits only.</div>
           </div>
           <div class="reg-row" style="margin-top:10px !important;">
             <div class="reg_fld">CREDIT CARD NUMBER</div>
@@ -68,8 +98,8 @@
           <!-- payment details -->
         <div class="reg-row" style="margin-top:27px;">
             <label>RENEW YOUR ACCOUNT</label>
-            <div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
-            <button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CONTINUE TO CHECKOUT</button>
+            <div class="reg_fld"></div>
+            <button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">RENEW ELITEMEMBERSHIP</button>
           </div>
         </form>
         <div class="lgn_btnlogo" > <a href="<?php echo base_url();?>" title="<?php echo $site_name;?>" ><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
