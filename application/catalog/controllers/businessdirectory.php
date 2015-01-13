@@ -99,6 +99,10 @@ class Businessdirectory extends CI_Controller {
 	public function add()
 	{
 		  $siteid = $this->session->userdata('siteid');
+		  $this->load->library('recaptcha');
+
+        	  //Store the captcha HTML for correct MVC pattern use.
+	          $this->data['recaptcha_html'] = $this->recaptcha->recaptcha_get_html();
 		  $this->data['categories'] = $this->common->get_all_categorys($siteid);
 		  //Loading View File
 		  $this->load->view('businessdirectory/add',$this->data);
@@ -109,7 +113,7 @@ class Businessdirectory extends CI_Controller {
 	{
 			if(!$this->uri->segment(3))
 			{
-				$searchcomp=($this->input->post('searchcomp'));
+				$searchcomp=trim($this->input->post('searchcomp'));
 			}
 			else
 			{
