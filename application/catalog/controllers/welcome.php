@@ -103,7 +103,7 @@ sure they respond back. Submit your review and rate your experience
 		$this->data['homesliding']=$this->sliders->homepageslider();
 		
 		$limit=5;
-		$this->data['complaints'] = $this->complaints->get_all_complaints($limit);
+		$this->data['complaints'] = $this->reviews->get_all_reviews($limit);
 		
 		
 		$this->data['home_categorys'] = $this->common->get_home_category();
