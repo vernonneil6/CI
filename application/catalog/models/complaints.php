@@ -1449,6 +1449,7 @@ class Complaints extends CI_Model
 	{
 		$this->db->select('id');
 		$this->db->where('companyid',$cid);
+		$this->db->where('status','Enable');
 		$query1 = $this->db->get('complaints');		
 		$a = count($query1->result_array());		
 		return $a;
