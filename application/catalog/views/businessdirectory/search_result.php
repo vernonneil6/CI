@@ -6,6 +6,11 @@
 		<span class="bannertextregular">YOUR SEARCH </span>RESULTS</h1>
     </h1>
     <div class="srch_rslt_wrp">
+		<div style='text-align:center'>
+      If the business you are looking for isnt here, add it!
+
+	<a href="<?php echo site_url('businessdirectory/add');?>">ADD BUSINESS</a>
+  </div>
       <form class="busdt_wrap" method="post" id="frmcompany" action="businessdirectory/search">
       <div class="main_bd_srchwrp">
           <div class="bdsrch_wrp">
@@ -36,13 +41,6 @@
               <div class="vry_logo"> <a href="<?php echo site_url('company/'.urlencode($companies[$i]['companyseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
                   <?php
 				  } ?>
-              <!--<php if(count($elitemem_status)==0){?>
-              <div class="notvry_title"></div>
-              <php }else{
-				  ?>
-              <div class="vry_title"></div>
-              <php
-				  } ?>-->
 			<div>
               <div class="compny_name cpyynme">
                 <h2>
@@ -69,7 +67,7 @@
                 <li><span>ADDRESS</span> <a> <?php echo ucfirst($companies[$i]['streetaddress']);?>&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['city']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['state']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['country']);?>,&nbsp;&nbsp;&nbsp;<?php echo ($companies[$i]['zip']);?> </a></li>
                 <li><span>PHONE</span> <a href="tel:<?php echo ($companies[$i]['phone']);?>" title="call us"><?php echo ($companies[$i]['phone']);?></a></li>
                 <!--<li><span>FAX</span> <a href="" title="Fax"><php echo ($companies[$i]['fax']);?></a></li>-->
-                <li><span>WEBSITE</span> <a href="<?php echo ($companies[$i]['siteurl']);?>" title="company website"><?php echo ($companies[$i]['siteurl']);?></a></li>
+                <li><span>WEBSITE</span> <a href="//<?php echo ($companies[$i]['siteurl']);?>" title="company website"><?php echo ($companies[$i]['siteurl']);?></a></li>
                 <li><span>E-MAIL</span> <a href="mailto:<?php echo ($companies[$i]['email']);?>" title="mail us"><?php echo ($companies[$i]['email']);?></a></li>
               </ul>
             </div>
@@ -87,12 +85,12 @@
                 <?php /*?><iframe width="424" height="214" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBkUSG003UBp7IiqoZXZUJjtC_-N4BOZ_c&q=<?php echo $mapaddress; ?>"></iframe><?php */?>
                 <script>
 			function PopupCenter(pageURL, title,w,h)
-			 {
-			  var left = (screen.width/2)-(w/2);
-		  	  var top = (screen.height/2)-(h/2);
+			{
+				var left = (screen.width/2)-(w/2);
+				var top = (screen.height/2)-(h/2);
 			  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
   
-}
+			}
 			</script><a style="cursor: pointer;" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">View Map</a>
               </div>
             </div>
@@ -108,7 +106,6 @@
       <?php } 
 	  } ?>
     </div>
-    <!--<div class="lgn_btnlogo"> <a href="<?php echo base_url();?>" title="<?php echo $site_name;?>"><img src="images/YouGotRated_Essential_YGR-Logo-Small.png" alt="Yougotrated" title="Yougotrated"></a> </div>-->
     <div class="lgn_btnlogo"> <a><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
     <!--pagination--> 
   </section>
