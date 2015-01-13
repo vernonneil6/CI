@@ -22,7 +22,7 @@
         <td>Badge Url</td>
         <td>
         <textarea cols='90' rows='10'><a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/badge/rating/'.md5($this->session->userdata['youg_admin']['id']);?>" target="_blank" title="Get Widget">
-        <img src="../../images/badge.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"  width='10%' height='100px'></a></textarea></td></tr>
+        <img src="../../images/badge.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"  width='10%' ></a></textarea></td></tr>
         <tr class="odd">
         <td>Sample Image</td>
         <td>
@@ -56,7 +56,7 @@
 <script>
 $(document).ready(function(){
 $('.rating').raty({
-  path: 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/',
+  path: '/images/',
   half: true,
   readOnly: true,
   score: function() {

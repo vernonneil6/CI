@@ -12,11 +12,11 @@
         </div>
         <div class="bdsrch_wrp badge">
       	<h2 class="badgetitles">Title</h2>
-           <div class="bd_srchwrp badgetitletext" id="rating"><input type='text' value='' name='titles' class="bdsrch_txtbx"></div>
+           <div class="bd_srchwrp badgetitletext" id="rating"><input type='text' value='' name='titles' class="bdsrch_txtbx" required="required"></div>
         </div>
         <div class="bdsrch_wrp badge">
       	<h2 class="badgereview">Review</h2>
-            <textarea cols='54' class='badgetextarea' rows='10' name='review'></textarea>
+            <textarea cols='54' class='badgetextarea' rows='10' name='review' required="required"></textarea>
         </div>
 	<input type='submit' value='Submit' class='badgesubmit ' name='submit'>
 	<input type='hidden' value=<?php echo $id;?> name='toid'?>
@@ -28,7 +28,7 @@
 <script>
 $(document).ready(function(){
     $('#rating').raty({
-    path: 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/',
+    path: '/images/',
     scoreName:  'entity.score',
     half: true,
     number:     5,
@@ -71,7 +71,7 @@ $(document).ready(function(){
 <script>
 $(document).ready(function(){
 $('.rating_system').raty({
-  path: 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/',
+  path: '/images/',
   half: true,
   readOnly: true,
   score: function() {
@@ -90,38 +90,3 @@ $('.rating_system').raty({
   </section>
 </section>
 <?php echo $footer;?>
-<style>
-.badgeviews
-{
-    margin-top: 50px;
-    width: 100%;
-}
-.badgesystem
-{
-	background:black;
-	color: white;
-    font-family: MyriadPro-BlackSemiCn;
-    font-size: 30px;
-    height: 33px;
-    padding: 5px;
-}
-.outline_badgesystem
-{
-	margin-bottom: 25px;
-}
-.name_badgesystem
-{
-    font-family: MyriadPro-BoldCond;
-    font-size: 22px;
-}
-.rating_badgesystem
-{
-	float: right;
-}
-.title_badgesystem
-{
-}
-.review_badgesystem
-{
-}
-</style>

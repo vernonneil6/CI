@@ -198,8 +198,6 @@ class Company extends CI_Controller {
 						$this->data['to_reviews'] = $this->complaints->get_to_reviews_cid($this->data['company'][0]['id']);
 						$this->data['to_complaints'] = $this->complaints->get_to_complaints_cid($this->data['company'][0]['id']);
 						$this->data['to_damages'] = $this->complaints->get_to_damages_cid($this->data['company'][0]['id']);
-						
-						//$this->data['company_timings'] = $this->complaints->get_company_timings($this->data['company'][0]['id']);
 						$this->data['company_timings'] = $this->complaints->get_company_onetimings($this->data['company'][0]['id']);
 						
 						$this->load->view('company/index',$this->data);
