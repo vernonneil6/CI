@@ -73,13 +73,13 @@ class Timing extends CI_Controller {
 			$timings = $this->timings->get_company_timings($id);
 			if(count($timings)==0) 
 			{
-			$this->timings->set_timing(1,$id,"monday","No","09:00:00","21:00:00");
-			$this->timings->set_timing(1,$id,"tuesday","No","09:00:00","21:00:00");
-			$this->timings->set_timing(1,$id,"wednesday","No","09:00:00","21:00:00");
-			$this->timings->set_timing(1,$id,"thursday","No","09:00:00","21:00:00");
-			$this->timings->set_timing(1,$id,"friday","No","09:00:00","21:00:00");
-			$this->timings->set_timing(1,$id,"saturday","No","09:00:00","21:00:00");
-			$this->timings->set_timing(1,$id,"sunday","No","09:00:00","21:00:00");
+			$this->timings->set_timing(1,$id,"monday","No","5:00 AM","5:00 PM");
+			$this->timings->set_timing(1,$id,"tuesday","No","5:00 AM","5:00 PM");
+			$this->timings->set_timing(1,$id,"wednesday","No","5:00 AM","5:00 PM");
+			$this->timings->set_timing(1,$id,"thursday","No","5:00 AM","5:00 PM");
+			$this->timings->set_timing(1,$id,"friday","No","5:00 AM","5:00 PM");
+			$this->timings->set_timing(1,$id,"saturday","No","5:00 AM","5:00 PM");
+			$this->timings->set_timing(1,$id,"sunday","No","5:00 AM","5:00 PM");
 			
 			redirect ('timing', 'refresh');
 						
