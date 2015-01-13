@@ -20,7 +20,7 @@ class Timings extends CI_Model
 	}
 		
 	//Updating Record
-	function update($companyid,$daytype,$off,$start,$end)
+	function update($id,$daytype,$off,$start,$end)
  	{
 		$data = array(	'off'		=> $off,
 						'start' 	=> $start,
@@ -28,7 +28,7 @@ class Timings extends CI_Model
 								);
 		
 		$this->db->where('daytype', $daytype);
-		$this->db->where('companyid', $companyid);
+		$this->db->where('id', $id);
 		
 		if( $this->db->update('timings', $data) )
 		{
