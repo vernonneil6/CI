@@ -298,7 +298,7 @@ class Solution extends CI_Controller {
 									$site_url = $this->common->get_setting_value(2);
 									$site_email = $this->common->get_setting_value(5);
 									$formpost=$_POST;
-									//$this->eliteSubscribe($formpost,$companyid); // for authorise
+									$this->eliteSubscribe($formpost,$companyid); // for authorise
 									// user Mail
 									$to = $cemail;
 									$mail = $this->common->get_email_byid(11);
