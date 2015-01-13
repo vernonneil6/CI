@@ -48,8 +48,8 @@ height:70px !important;
           <li> <a href="<?php echo site_url('pressrelease');?>" title="Press Releases"> <img src="images/press.png" alt="Pressrelease" title="Press Releases">
           <p>Press Releases</p>
           </a> </li>
-          <li> <a href="<?php echo site_url('pdf');?>" title="Upload Profile Docs"> <img src="images/pdf.png" alt="Upload pdf" title="Upload Profile Docs">
-          <p>Upload Profile Docs</p>
+          <li> <a href="<?php echo site_url('pdf');?>" title="Menu/Catalogs Upload"> <img src="images/pdf.png" alt="Menu/Catalogs Upload" title="Menu/Catalogs Upload">
+          <p>Menu/Catalogs Upload</p>
           </a> </li>
           <li> <a href="<?php echo site_url('coupon');?>" title="Coupons"> <img src="images/coupon.png" alt="Coupons" title="Coupons">
           <p>Coupons</p>
