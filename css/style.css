@@ -479,7 +479,7 @@ i.rat_icn{width:20px; height:17px; float:left; background:url(../images/icons.pn
 .rat_title h2{float:none;   color:#333; text-transform:uppercase; line-height:25px; margin:0;}
 .rat_title span{float:right; font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#666; text-transform:uppercase;}
 .cmnt_wrp{float:right;margin-right: 3px;}
-.cmnt_wrp a{display:inline;font-weight: 800;    letter-spacing: 1px; font-size:13px; font-family: myriadpro-boldcond; color:#a09507; text-transform:uppercase;}
+.cmnt_wrp a{display:inline;font-weight: 800;    letter-spacing: 1px; font-size:13px; font-family: myriadpro-boldcond; color:#D58438; text-transform:uppercase;}
 i.add_cmnt{width:12px; height:15px; display:inline-block; background:url(../images/icons.png) -257px -45px no-repeat;}
 i.rmv_rw{width:12px; height:15px; display:inline-block; /*background:url(../images/icons.png) -270px -45px no-repeat;*/ }
 .load_rvw{float:left; width:100%; text-align:center;margin-top: 5%;}
@@ -751,8 +751,8 @@ input[type="text"].bdsrch_txtbx{width:430px; box-shadow:none; height:25px; font-
 .bsntvry_btn{width:80%; float:left;}
 .bsntvry_btn a{float:left; height:20px; margin-right:5px; padding:0 5px; font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; text-transform:uppercase; color:#fff; background:#0080ff;}
 .bsntvry_rating{float:left; margin-top:10px; margin-left:5px;}
-i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/staron.jpg) no-repeat; margin-right:4px;}
-.raticn i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/star_on.jpg)  no-repeat; margin-right:4px;}
+i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/YGR_Star_on.png) no-repeat; margin-right:4px;}
+.raticn i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/YGR_Star_on.png)  no-repeat; margin-right:4px;}
 .bsvry_tag{position:absolute; right: -35px; line-height:9px;}
 .bsvry_tag span{font-family:"myriadpro-regular"; font-weight:bold; text-transform:uppercase; font-size:10px; color:#666;}
 .bsvry_tag p{font-family:"myriadpro-regular"; font-weight:bold; text-transform:uppercase; font-size:10px; color:#0080ff; margin:0;}
@@ -1130,7 +1130,7 @@ ul.tabbs li:hover a{
 	color:white;
 }
 ul.tabbs li a {
-   color: #a09507;
+    color: #D58438;
     display: block;
     font-family: myriadpro-regular;
     font-size: 12px;
@@ -1141,7 +1141,7 @@ ul.tabbs li a {
 
 .vrytitle
 {
-	color: #a09507;
+	color: #D58438;
 	font-family: myriadpro-boldcond;
     font-size: 19px;
 }
