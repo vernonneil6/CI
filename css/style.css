@@ -751,8 +751,8 @@ input[type="text"].bdsrch_txtbx{width:430px; box-shadow:none; height:25px; font-
 .bsntvry_btn{width:80%; float:left;}
 .bsntvry_btn a{float:left; height:20px; margin-right:5px; padding:0 5px; font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; text-transform:uppercase; color:#fff; background:#0080ff;}
 .bsntvry_rating{float:left; margin-top:10px; margin-left:5px;}
-i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/YGR_Star_on.png) no-repeat; margin-right:4px;}
-.raticn i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/YGR_Star_on.png)  no-repeat; margin-right:4px;}
+i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/Star_on.png) no-repeat; margin-right:4px;}
+.raticn i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/Star_on.png)  no-repeat; margin-right:4px;}
 .bsvry_tag{position:absolute; right: -35px; line-height:9px;}
 .bsvry_tag span{font-family:"myriadpro-regular"; font-weight:bold; text-transform:uppercase; font-size:10px; color:#666;}
 .bsvry_tag p{font-family:"myriadpro-regular"; font-weight:bold; text-transform:uppercase; font-size:10px; color:#0080ff; margin:0;}
