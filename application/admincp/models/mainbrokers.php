@@ -125,5 +125,21 @@ Class Mainbrokers extends CI_Model
 
 		return $query;	
 	}	
+	function deletebroker($id)
+	{
+		if($this->db->delete('youg_broker',array('id'=>$id))){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	function updatebroker($id,$value){
+		$this->db->where('id', $id);
+		if( $this->db->update('youg_broker', $value) ){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
 ?>

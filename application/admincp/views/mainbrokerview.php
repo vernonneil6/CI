@@ -38,6 +38,7 @@ if( $this->uri->segment(2) == 'view')
         <td width="20%">Company</td>
 		<td width="20%">Individual Sale</td>
         <td width="20%">Total Team-sales</td>
+        <th class="action">Action</th>
       </tr>
      <?php 	foreach($views as $subbroker) {  //echo '<pre>';print_r($subbroker); ?>
 	<tr>
@@ -46,6 +47,11 @@ if( $this->uri->segment(2) == 'view')
 		  <td><?php echo ucfirst($subbroker['yccompany']); ?></td>
 		  <td style="padding-left: 8%;"><?php echo $subbroker['count']; ?></td>						  
 		  <td style="padding-left: 8%;"><?php echo $subbroker['totalelites']; ?></td>
+		  <td style="padding-left: 8%;"><?php echo $subbroker['totalelites']; ?></td>
+		  <td class="action">		  
+			<a href="<?php echo site_url('mainbroker/delete/'.$sliders->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this Sub Broker?');">Delete</a>
+			<a href="<?php echo site_url('mainbroker/edit/'.$sliders->id); ?>" title="Edit" class="ico ico-edit">Edit</a>
+		</td>
 	</tr>
 	<?php } ?> 
    </table>
