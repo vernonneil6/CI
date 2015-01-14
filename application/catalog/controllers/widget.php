@@ -42,6 +42,7 @@ class Widget extends CI_Controller {
 		$this->data['sites'] = $this->widgets->get_all_websites();
 		$company = $this->widgets->get_company_byid($companyid);
 		$rating = $this->widgets->get_average_review($companyid);
+		$reviewlist = $this->widgets->get_review_list_by_companyid($companyid);
 		
 		$elite = $this->complaints->get_eliteship_bycompanyid($companyid);
 		
@@ -52,6 +53,7 @@ class Widget extends CI_Controller {
 			$this->data['companyseo'] = stripslashes($company[0]['companyseokeyword']);
 			$this->data['url'] = site_url('complaint/viewcompany/'.$company[0]['companyseokeyword']);
 			$this->data['rating'] = ceil($rating);
+			$this->data['reviewlist'] = $reviewlist;
 			$this->data['total'] = $this->widgets->get_total_review($companyid);
 			$this->data['verifiedlogo'] = $this->common->get_setting_value(17);
 		}
@@ -60,6 +62,7 @@ class Widget extends CI_Controller {
 			$this->data['name'] = '';
 			$this->data['url'] = site_url();
 			$this->data['rating'] = 0;
+			$this->data['reviewlist'] = 0;
 			$this->data['total'] = 0;
 		}
 		//Loading View File
