@@ -58,9 +58,9 @@ font-family: MyriadPro-Regular;
 	border: 1px solid rgba(0, 0, 0, 0.2);
  *border-right-width: 2px;
  *border-bottom-width: 2px;
-	-webkit-border-radius: 6px;
+	/*-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
-	border-radius: 6px;
+	border-radius: 6px;*/
 	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -74,12 +74,12 @@ font-family: MyriadPro-Regular;
 	text-align:center;
 	background:url("../../../images/wdg_title.png") #047AD3 repeat-x;
 	padding:5px;
-	border-top-left-radius:6px;
+	/*border-top-left-radius:6px;
 	border-top-right-radius:6px;
 	-moz-border-radius-topleft:6px;
 	-moz-border-radius-topright:6px;
 	-webkit-border-top-right-radius:6px;
-	-webkit-border-top-left-radius:6px;
+	-webkit-border-top-left-radius:6px;*/
 	margin-bottom:5px;
 }
 a,a:hover,a:active {
