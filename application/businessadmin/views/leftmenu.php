@@ -18,10 +18,10 @@
 	</li>
     <li><a href="<?php echo site_url('sem'); ?>" class="link" title="Social Media">Social Media</a></li>
     <li><a href="<?php echo site_url('seo'); ?>" class="link" title="SEO Tools">SEO Tools</a></li>
-    <li><a href="<?php echo site_url('review'); ?>" title="Reviews">Reviews</a>
+    <li><a href="<?php echo site_url('review'); ?>" title="Reviews Management Tool">Reviews Management Tool</a>
       <ul class="submenu">
-        <li><a href="<?php echo site_url('review'); ?>" title="Reviews">Reviews</a></li>
-        <li><a href="<?php echo site_url('review/reviews'); ?>" title="Remove Reviews">Remove Reviews</a></li>
+        <li><a href="<?php echo site_url('review'); ?>" title="Import Reviews">Import Reviews</a></li>
+        <li><a href="<?php echo site_url('review/reviews'); ?>" title="Review Removal Tool">Review Removal Tool</a></li>
       </ul>
     </li>
    <li><a href="<?php echo site_url('elite'); ?>" title="Elite Membership Status" class="link">Elite Membership Status</a> </li>

@@ -118,7 +118,6 @@ class Sem extends CI_Controller {
 		//If New Record Insert
 		if( $this->session->userdata['youg_admin'] && $this->input->post('btnsubmit') )
 	  	{
-				
 			//Getting value
 			$vartitle = addslashes($this->input->post('txttitle'));
 			$varurl = addslashes($this->input->post('txturl'));
@@ -210,8 +209,9 @@ class Sem extends CI_Controller {
 		}
 		
 		//If Old Record Update
-		else if( $this->session->userdata['youg_admin'] && $this->input->post('btnupdate') )
-	  	{
+		else if( $this->session->userdata['youg_admin'] && $this->input->post('editaction') )
+	  	{			
+		//print_r($_REQUEST); die;
 			//Getting intid
 			$intid = $this->encrypt->decode($this->input->post('txtintid'));
 			
@@ -404,6 +404,15 @@ class Sem extends CI_Controller {
 				redirect('sem', 'refresh');
 			}
 	  }
+	}
+	
+	public function add()
+	{
+		if( $this->session->userdata['youg_admin'] )
+	  	{			
+			//Loading View File
+			$this->load->view('sem',$this->data);
+	  	}
 	}
 	
 	public function searchsem()
