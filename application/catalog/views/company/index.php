@@ -212,9 +212,9 @@
 		<div class="get_dirct">
 			<div class="getdir_title">
 				<label class = "view_direction_map " id = "companypdf">Menu/Catalog</label>
+			<div>
 				<?php $file = $this->common->get_setting_value(2).$this->config->item('pdf_main_upload_path')."uploads/pdf/".$companypdfs[$x]['pdf'];?>
 				<?php $title = ucfirst(stripslashes($companypdfs[$x]['title'])); ?>
-				<div>
 				<a style="cursor: pointer; display : none" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" class = "pdf_text" target="_blank" title="View document" id = "pdfname">
 					<?php echo $companypdfs[$x]['title'];?>
 				</a>
