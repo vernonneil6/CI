@@ -1576,7 +1576,7 @@ class Complaints extends CI_Model
 		$checkdate=date('Y-m-d');
 		$query=$this->db->select('*')
 						->from('youg_subscription')
-						->where(array('transactionstatus'=>'0','paymentmethod'=>'authorize','subscr_id !='=>''))
+						->where(array('transactionstatus'=>'0','paymentmethod'=>'authorize','subscr_id !='=>'','emailflag'=>'0'))
 						->like('expires',$checkdate)
 						->get()
 			            ->result_array();

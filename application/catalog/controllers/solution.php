@@ -1180,12 +1180,8 @@ public function adminreport()
 					else
 					{
 						
-						$fail='<table style="padding-left: 16px;margin-top: -20px;">
+						$fail='<table>
 								 <tr>
-								 <th>Subscription ID</th>
-								 <th>Payment Date</th>
-								 <th>Payment Expired Date</th>
-								 <th>Transaction Status</th>
 								 </tr>';
 							
 							$fail .='<tr>
@@ -1229,13 +1225,9 @@ public function adminreport()
                     }
 					 else
 					 {
-						$success='<table style="padding-left: 16px;margin-top: -20px;">
+						$success='<table>
 									 <tr>
-									 <th>Subscription ID</th>
-									 <th>Payment Date</th>
-									 <th>Payment Expired Date</th>
-									 <th>Transaction Status</th>
-									 </tr>';
+								     </tr>';
 						$success .='<tr>
 									 <td> No successful Transactions</td>
 									</tr>';
