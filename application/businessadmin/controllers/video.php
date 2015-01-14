@@ -115,9 +115,18 @@ class Video extends CI_Controller {
 				
 						//Getting value
 						$title = addslashes($this->input->post('title'));
-					  	$videourl = preg_replace("/^https:/i", "http:", $this->input->post('videourl'));
-					  	$videourl = preg_replace('~^https?://youtu\.be/([a-z\d]+)$~i', 'http://www.youtube.com/watch?v=$1', $this->input->post('addvideourl'));
-						$videourl = preg_replace('~^https?://y2u\.be/([a-z\d]+)$~i', 'http://www.youtube.com/watch?v=$1', $this->input->post('addvideourl'));
+					  	if(preg_match("/youtu.be\/[a-z1-9.-_]+/", $this->input->post('addvideourl'))) 
+						{
+							$videourl = preg_replace('~^https?://youtu\.be/([a-z\d]+)$~i', 'http://www.youtube.com/watch?v=$1', $this->input->post('addvideourl'));
+						}
+						else if(preg_match("/y2u.be\/[a-z1-9.-_]+/", $this->input->post('addvideourl'))) 
+						{
+							$videourl = preg_replace('~^https?://y2u\.be/([a-z\d]+)$~i', 'http://www.youtube.com/watch?v=$1', $this->input->post('addvideourl'));
+						}
+						else
+						{
+							$videourl = preg_replace("/^https:/i", "http:", $this->input->post('addvideourl'));
+						}
 
 						$videono = addslashes($this->input->post('videono'));
 						
@@ -210,9 +219,20 @@ class Video extends CI_Controller {
 		$siteid = $this->session->userdata('siteid');
 		
 		$title=$this->input->post('addtitle');
-		$videourl = preg_replace("/^https:/i", "http:", $this->input->post('addvideourl'));
-		$videourl = preg_replace('~^https?://youtu\.be/([a-z\d]+)$~i', 'http://www.youtube.com/watch?v=$1', $this->input->post('addvideourl'));
-		$videourl = preg_replace('~^https?://y2u\.be/([a-z\d]+)$~i', 'http://www.youtube.com/watch?v=$1', $this->input->post('addvideourl'));
+		
+		if(preg_match("/youtu.be\/[a-z1-9.-_]+/", $this->input->post('addvideourl'))) 
+		{
+			$videourl = preg_replace('~^https?://youtu\.be/([a-z\d]+)$~i', 'http://www.youtube.com/watch?v=$1', $this->input->post('addvideourl'));
+		}
+		else if(preg_match("/y2u.be\/[a-z1-9.-_]+/", $this->input->post('addvideourl'))) 
+		{
+			$videourl = preg_replace('~^https?://y2u\.be/([a-z\d]+)$~i', 'http://www.youtube.com/watch?v=$1', $this->input->post('addvideourl'));
+		}
+		else
+		{
+			$videourl = preg_replace("/^https:/i", "http:", $this->input->post('addvideourl'));
+		}
+		
 
 		$this->videos->addurl($title,$videourl,$id,$siteid);
 		}
