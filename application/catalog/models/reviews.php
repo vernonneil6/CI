@@ -173,16 +173,17 @@ class Reviews extends CI_Model
 	//Getting value for editing
 	function get_review_byid($id)
  	{
-	//	$siteid = $this->session->userdata('siteid');
+		//$siteid = $this->session->userdata('siteid');
 		$this->db->select('r.*, cm.company,cm.logo,cm.aboutus,cm.companyseokeyword,,u.firstname,u.username,u.lastname,u.avatarbig,u.gender,u.state');
-		$this->db->from('reviews as r');
-		$this->db->join('company as cm','r.companyid=cm.id','left');
-		$this->db->join('user as u','r.reviewby=u.id','left');
+		$this->db->from('youg_reviews as r');
+		$this->db->join('youg_company as cm','r.companyid=cm.id','left');
+		$this->db->join('youg_user as u','r.reviewby=u.id','left');
 		$this->db->where('r.id',$id);
-		$this->db->where('r.status','Enable');
-	//	$this->db->where('r.websiteid',$siteid);
+		//$this->db->where('r.status','Enable');
+		//$this->db->where('r.websiteid',$siteid);
 		
 		$query = $this->db->get();
+		//print_r($query);die;
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
@@ -198,13 +199,13 @@ class Reviews extends CI_Model
  	{
 		$siteid = $this->session->userdata('siteid');
 		$this->db->select('r.*, cm.company,cm.logo,cm.aboutus,u.firstname,u.lastname,u.avatarbig,u.gender');
-		$this->db->from('reviews as r');
-		$this->db->join('company as cm','r.companyid=cm.id');
-		$this->db->join('user as u','r.reviewby=u.id','left');
+		$this->db->from('youg_reviews as r');
+		$this->db->join('youg_company as cm','r.companyid=cm.id');
+		$this->db->join('youg_user as u','r.reviewby=u.id','left');
 		$this->db->where('r.id',$id);
-		$this->db->where('r.websiteid',$siteid);
+		//$this->db->where('r.websiteid',$siteid);
 	
-		$query = $this->db->get();
+		$query = $this->db->get();		
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
@@ -604,7 +605,7 @@ class Reviews extends CI_Model
 		{	$this->db->limit($limit, $offset);	}
 		
 		
-		$query = $this->db->get_where('comments',array('reviewid'=>$reviewid,'status'=>'Enable','websiteid'=>$siteid));
+		$query = $this->db->get_where('youg_comments',array('reviewid'=>$reviewid,'status'=>'Enable','websiteid'=>$siteid));
 		
 		if ($query->num_rows() > 0)
 		{	
@@ -650,7 +651,7 @@ class Reviews extends CI_Model
 
 		}
 
-		if( $this->db->insert('comments', $data) )
+		if( $this->db->insert('youg_comments', $data) )
 		{
 			return 'added';
 		}
@@ -730,7 +731,7 @@ class Reviews extends CI_Model
 
 	function elitemship($id)
  	{
-		$query = $this->db->get_where('elite', array('company_id' => $id));
+		$query = $this->db->get_where('youg_elite', array('company_id' => $id));
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
@@ -835,7 +836,7 @@ class Reviews extends CI_Model
 	//get disable review of elite
 	function get_disreview_byid($id)
  	{
-		$query = $this->db->get_where('reviews',array('id'=>$id,'status'=>'Disable'));
+		$query = $this->db->get_where('youg_reviews',array('id'=>$id,'status'=>'Disable'));
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
@@ -847,16 +848,19 @@ class Reviews extends CI_Model
  	}
 	function get_review_byseokeyword($word)
 	{
+		
 		$siteid = $this->session->userdata('siteid');
+		//echo $siteid;die;
 		$this->db->select('r.*, cm.company,cm.logo,cm.aboutus,u.firstname,u.username,u.lastname,u.avatarbig,u.gender,cm.companyseokeyword');
-		$this->db->from('reviews as r');
-		$this->db->join('company as cm','r.companyid=cm.id','left');
-		$this->db->join('user as u','r.reviewby=u.id','left');
-		$this->db->where('r.seokeyword',$word);
-		$this->db->where('r.status','Enable');
-		$this->db->where('r.websiteid',$siteid);
+		$this->db->from('youg_reviews as r');
+		$this->db->join('youg_company as cm','r.companyid=cm.id','left');
+		$this->db->join('youg_user as u','r.reviewby=u.id','left');
+		$this->db->like('r.seokeyword', $word); 		
+		//$this->db->where('r.status','Enable');
+		//$this->db->where('r.websiteid',$siteid);
 		
 		$query = $this->db->get();
+		//print_r($query);die;
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();

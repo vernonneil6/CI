@@ -6,7 +6,7 @@ Class Common extends CI_Model
  	{
 		$siteid = $this->session->userdata('siteid');
 		
-		$query = $this->db->get_where('setting', array('id' => $id,'websiteid' => $siteid));
+		$query = $this->db->get_where('youg_setting', array('id' => $id,'websiteid' => $siteid));
 		if ($query->num_rows() > 0)
 		{
 			$result = $query->result_array();
@@ -89,7 +89,7 @@ Class Common extends CI_Model
 	//Getting Email value
 	function get_email_byid($id)
  	{
-		$query = $this->db->get_where('emails', array('id' => $id));
+		$query = $this->db->get_where('youg_emails', array('id' => $id));
 		
 		if ($query->num_rows() > 0)
 		{
@@ -115,7 +115,7 @@ Class Common extends CI_Model
 		$this->db->order_by($sortby,$orderby);
 		
 		//Executing Query
-		$query = $this->db->get_where('faq',array('status'=>'Enable','websiteid' => $siteid));
+		$query = $this->db->get_where('youg_faq',array('status'=>'Enable','websiteid' => $siteid));
 		
 		if ($query->num_rows() > 0)
 		{
@@ -266,7 +266,7 @@ Class Common extends CI_Model
  	}
 	function get_relation_byciduid($companyid,$userid)
 	{
-		$query = $this->db->get_where('relation',array('companyid'=> $companyid,'userid' => $userid));
+		$query = $this->db->get_where('youg_relation',array('companyid'=> $companyid,'userid' => $userid));
 		
 		if ($query->num_rows() > 0)
 		{
@@ -995,5 +995,13 @@ Class Common extends CI_Model
 		
 	}	
 		
+	function get_company_list($compnay_name){
+		$query = $this->db->select('id,company')->from('company')->order_by('company','asc')->like('company ',$compnay_name)->where('status','Enable')->limit(15)->get();
+		if ($query->num_rows() > 0){			
+			return $query->result_array();
+		}else{
+			return array();
+		}
+	}
 }
 ?>
