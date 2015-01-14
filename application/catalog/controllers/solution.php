@@ -1036,14 +1036,10 @@ public function cron()
 	  
 	  	$subscription_id=$con['subscr_id'];
 		$subscription_amount=$con['amount'];
-		$alertemailid=$con['payer_id'];
 		$paymentfailed_date=$con['expires'];
 		$company_id=$con['company_id'];
 		$last_transaction=$con['txn_id'];
-		$nameextract =explode('@',$con['payer_id']);
-        $names=$nameextract[0];
-        $emailname = preg_replace('/[0-9]+/', '', $names);
-        $emailcompany=$company_id;
+		$emailcompany=$company_id;
 		$cronemail=$this->complaints->get_elitesubscription_detailsbycompanyid($emailcompany);	
 	   
         
@@ -1075,8 +1071,7 @@ public function cron()
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
 					$this->email->from($site_mail,$site_name);
-					//$this->email->to($alertemailid);	
-					$this->email->to('alankenn@grossmaninteractive.com');	
+					$this->email->to($cronemail['email']);	
 					$this->email->subject('Your EliteMembership Subscription has been Expired.Please Renew');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
