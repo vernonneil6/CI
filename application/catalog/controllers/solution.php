@@ -1253,8 +1253,7 @@ public function adminreport()
 				   $this->email->initialize($config);     
                     $todaysdate=date('Y-m-d');
 					$this->email->from($site_mail,$site_name);
-					//$this->email->to($site_email);	
-					$this->email->to('alankenn@grossmaninteractive.com');	
+					$this->email->to($site_mail);	
 					$this->email->subject('Todays Report On Success and Failed Payments On Date  '.$todaysdate.'');
 					$this->email->message('<table cellpadding="0" cellspacing="10" width="100%" border="0">
 															<tr>
