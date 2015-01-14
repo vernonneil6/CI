@@ -1052,7 +1052,7 @@ public function cron()
 	 	$site_renewurl=$site_name.'solution/renew/'.$company_id;
 	 	$site_base_url=base_url().'solution/renew/'.$company_id;
 	 	$site_url = $this->common->get_setting_value(2);
-		$site_email = $this->common->get_setting_value(5);      
+		$site_mail = $this->common->get_setting_value(5);      
         //Loading E-mail library
 					$config = Array(
 					'protocol' => 'smtp',
