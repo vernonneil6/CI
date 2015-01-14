@@ -207,9 +207,9 @@
 		 }		
 		 $(document).ready(function(){
 			 $('#companypdf').toggle(function(){
-				$('#pdfname').show();
+				$('.pdf_text').show();
 			 },function(){
-				$('#pdfname').hide();
+				$('.pdf_text').hide();
 			 });
 		 });
 		</script>
