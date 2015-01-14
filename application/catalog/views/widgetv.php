@@ -55,16 +55,47 @@ $(function(){
     </a> </div>
   <?php } ?>
 </div>
+
+
+<!---Reviews list--->
+
 <div class="box" align="center">
   <div class="overlay">
-    <?php for($j=0;$j<count($sites);$j++)
-	{
+    <?php for($j=0;$j<count($reviewlist);$j++)
+	{ 
 	?>
-    <?php /*?><a href="javascript:;" title="<?php echo strtolower($sites[$j]['title']);?>" onClick="window.open('<?php echo $sites[$j]['siteurl'];?>company/<?php echo $companyseo;?>/reviews/coupons/complaints')"><?php echo ucfirst(strtolower($sites[$j]['title']));?></a><?php */?>
-    <?php /*?><a title="<?php echo strtolower($sites[$j]['title']);?>" href="<?php echo $sites[$j]['siteurl'];?>company/<?php echo $companyseo;?>/reviews/coupons/complaints" target="_blank"><?php echo ucfirst(strtolower($sites[$j]['title']));?></a> <br/><?php */?>
-    <?php 
-	}
-	?>
+			
+		<?php  if($j==0) {
+			$style = "background:none;";
+			}else{
+			$style = "background:#000000;padding: 1px;";
+			}
+			?>
+		  <div class="title" style="<?php echo $style;?>"><a href="<?php echo $site_url; ?>" title="<?php echo $site_name; ?>" target="_blank"></div>
+		
+		  
+		  
+		  <?php if( !empty($name) ) { ?>
+		  <div class="business" style="padding-top:10px"> 
+			 <a href="javascript:void" title="<?php echo $reviewlist[$j]['reviewby'];?>" target="_blank" id="colorcode"><?php echo ucfirst($reviewlist[$j]['reviewby']);?></a><div class="dater" style="float: left;font-size: 14px;margin-left: 73%;margin-top: -15px;"><?php echo date('m/d/Y',strtotime($reviewlist[$j]['reviewdate']));?></div>&nbsp;
+			 <!--<?php echo img(array('src'=>'images/stars/'.$reviewlist[$j]['rate'].'.png', 'alt'=>$reviewlist[$j]['rate'].' stars', 'title'=>$reviewlist[$j]['rate'].' stars')); ?>--><br>
+				
+			<label> Rating:&nbsp;<?php if($reviewlist[$j]['rate']=='0'){ echo "Not Yet Rated"; } else { ?><label class='rating'  data-rating=<?php echo $reviewlist[$j]['rate']; ?>>&nbsp;/&nbsp;5 </label><?php } ?></label><br>
+			 <br>
+			 
+    		<div class="reviewtab">
+		        <div><b><?php echo $reviewlist[$j]['reviewtitle'];?></b></div>
+				<div><a style="font-size:16px;color:#000000;font-weight: 300;" href="<?php echo base_url().$reviewlist[$j]['link'];?>"><?php echo $reviewlist[$j]['comment'];?></a></div>
+				 			  
+				  </a> </div>
+				</a> </div>
+		  <?php } ?>
+			
+			<?php /*?><a href="javascript:;" title="<?php echo strtolower($sites[$j]['title']);?>" onClick="window.open('<?php echo $sites[$j]['siteurl'];?>company/<?php echo $companyseo;?>/reviews/coupons/complaints')"><?php echo ucfirst(strtolower($sites[$j]['title']));?></a><?php */?>
+			<?php /*?><a title="<?php echo strtolower($sites[$j]['title']);?>" href="<?php echo $sites[$j]['siteurl'];?>company/<?php echo $companyseo;?>/reviews/coupons/complaints" target="_blank"><?php echo ucfirst(strtolower($sites[$j]['title']));?></a> <br/><?php */?>
+			<?php 
+			}
+			?>
   </div>
 </div>
 </div>
