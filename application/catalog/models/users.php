@@ -86,20 +86,6 @@
 			return array();
 		}
  	}
- 	
- 	function get_user_bysingleid($id)
- 	{
-		$query = $this->db->get_where('user', array('id' => $id));
-		
-		if ($query->num_rows() > 0)
-		{
-			return $query->row_array();
-		}
-		else
-		{
-			return false;
-		}
- 	}
 	
 	//Updating Record
 	function update($id,$firstname,$lastname,$email,$password,$gender,$street,$city,$state,$zipcode,$phoneno,$avatarthum,$avatarbig,$username)
