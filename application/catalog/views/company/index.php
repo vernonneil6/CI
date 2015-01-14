@@ -311,16 +311,18 @@
 				
 				
              <?php 
-				  if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') 
-				  { 
-				  $user=$this->users->get_user_bysingleid($reviews[$i]['reviewby']); 
-				  if(count($users)>0) 
-				  { 
+			    if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') 
+			    { 
+			    $users = $this->users->get_user_bysingleid($reviews[$i]['reviewby']); 
+			    if(count($users)>0) 
+			    { 
 			?>
                   <a><?php echo $users['username'];?></a>
-             
+			<?php
+				}
+			?>
             <div class="datereview"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
-                  <?php } } else {?>       
+                  <?php  } else {?>       
 				  <?php $user=$this->users->get_user_byid($reviews[$i]['reviewby']);?>
                   <?php if(count($user)>0) { ?>
                   <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><?php echo $user[0]['username'];?></a>
