@@ -312,9 +312,9 @@
                   <a><?php echo $reviews[$i]['reviewby'];?></a>
 			<div class="datereview"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
                   <?php } else {?>
-                  <?php $user=$this->users->get_user_byid($reviews[$i]['reviewby']);?>
+                  <?php $user=$this->users->get_user_bysingleid($reviews[$i]['reviewby']);?>
                   <?php if(count($user)>0) { ?>
-                  <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><?php echo $user[0]['username'];?></a>
+                  <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><?php echo $user['username'];?></a>
 			<div class="datereview"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
                   <?php } ?>
                   <?php } ?>
