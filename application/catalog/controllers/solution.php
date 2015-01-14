@@ -1152,30 +1152,37 @@ public function adminreport()
 					$subscr_id = '';
 					$Expire='';
 					$status='';
-					$fail='<table>
-                         <tr>
-                         <th>Subscription ID</th>
-                         <th>Payment Date</th>
-                         <th>Payment Expired Date</th>
-                         <th>Transaction Status</th>
-                         </tr>';
-					foreach($reportfailed as $key => $val){
-												
-						$subscr_id = $val['subscr_id']; 
-						$paymentdate =$val['payment_date']; 
-						$Expire = $val['expires']; 
-						$status ='Payment Failed'; 
-						$fail .='<tr>
-                         <td>'.$subscr_id.'</td>
-                         <td>'.$paymentdate.'</td>
-                         <td>'.$Expire.'</td>
-                         <td>'.$status.'</td>
-                         </tr>';
-                         
+					if(count($reportfailed) > 0){
+						$fail='<table>
+							 <tr>
+							 <th>Subscription ID</th>
+							 <th>Payment Date</th>
+							 <th>Payment Expired Date</th>
+							 <th>Transaction Status</th>
+							 </tr>';
+						foreach($reportfailed as $key => $val){
+													
+							$subscr_id = $val['subscr_id']; 
+							$paymentdate =$val['payment_date']; 
+							$Expire = $val['expires']; 
+							$status ='Payment Failed'; 
+							$fail .='<tr>
+							 <td>'.$subscr_id.'</td>
+							 <td>'.$paymentdate.'</td>
+							 <td>'.$Expire.'</td>
+							 <td>'.$status.'</td>
+							 </tr>';
+							 
+						}
+					    $fail .='</table>';      
+							 
 					}
-                $fail .='</table>';      
-                         
-                         
+					else
+					{
+						
+					$fail='No Transactions.';	
+						
+					}         
                     //success retreive   
                     
                     //echo '<pre>';print_r($reportsuccess); 
@@ -1184,29 +1191,37 @@ public function adminreport()
 					$subscr_id = '';
 					$Expire='';
 					$status='';
-					$success='<table>
-                         <tr>
-                         <th>Subscription ID</th>
-                         <th>Payment Date</th>
-                         <th>Payment Expired Date</th>
-                         <th>Transaction Status</th>
-                         </tr>';
-					foreach($reportsuccess as $key => $val){
-												
-						$subscr_id = $val['subscr_id']; 
-						$paymentdate =$val['payment_date']; 
-						$Expire = $val['expires']; 
-						$status ='Payment Success'; 
-						$success .='<tr>
-                         <td>'.$subscr_id.'</td>
-                         <td>'.$paymentdate.'</td>
-                         <td>'.$Expire.'</td>
-                         <td>'.$status.'</td>
-                         </tr>';
-                         
-					}
-                $success .='</table>';    
-                     
+					
+					if(count($reportsuccess) > 0){
+							$success='<table>
+								 <tr>
+								 <th>Subscription ID</th>
+								 <th>Payment Date</th>
+								 <th>Payment Expired Date</th>
+								 <th>Transaction Status</th>
+								 </tr>';
+							foreach($reportsuccess as $key => $val){
+														
+								$subscr_id = $val['subscr_id']; 
+								$paymentdate =$val['payment_date']; 
+								$Expire = $val['expires']; 
+								$status ='Payment Success'; 
+								$success .='<tr>
+								 <td>'.$subscr_id.'</td>
+								 <td>'.$paymentdate.'</td>
+								 <td>'.$Expire.'</td>
+								 <td>'.$status.'</td>
+								 </tr>';
+								 
+							}
+						$success .='</table>';    
+                    }
+					 else
+					 {
+						
+					  $success='No Transactions.';	
+						
+					 }    
                      
                      
                      $site_name = $this->common->get_setting_value(1);
