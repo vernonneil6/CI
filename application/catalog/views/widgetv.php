@@ -61,7 +61,7 @@ $(function(){
 	{
 	?>
     <?php /*?><a href="javascript:;" title="<?php echo strtolower($sites[$j]['title']);?>" onClick="window.open('<?php echo $sites[$j]['siteurl'];?>company/<?php echo $companyseo;?>/reviews/coupons/complaints')"><?php echo ucfirst(strtolower($sites[$j]['title']));?></a><?php */?>
-    <a title="<?php echo strtolower($sites[$j]['title']);?>" href="<?php echo $sites[$j]['siteurl'];?>company/<?php echo $companyseo;?>/reviews/coupons/complaints" target="_blank"><?php echo ucfirst(strtolower($sites[$j]['title']));?></a> <br/>
+    <?php /*?><a title="<?php echo strtolower($sites[$j]['title']);?>" href="<?php echo $sites[$j]['siteurl'];?>company/<?php echo $companyseo;?>/reviews/coupons/complaints" target="_blank"><?php echo ucfirst(strtolower($sites[$j]['title']));?></a> <br/><?php */?>
     <?php 
 	}
 	?>
