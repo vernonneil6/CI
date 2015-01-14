@@ -190,11 +190,6 @@
 	   </div>
 		
 		
-		<div class="get_dirct">
-			<div class="getdir_title">
-				
-				<label class = "view_direction_map " id = "companypdf">Menu/Catalog</label>
-		
 		<?php if( count($elitemem_status)>0 )  {	?>
         <?php if( count($companypdfs) > 0 ) { ?>
 		<?php for($x=0; $x<count($companypdfs); $x++) { ?>
@@ -205,27 +200,22 @@
 		  var top = (screen.height/2)-(h/2);
 		  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 		 }		
-		 $(document).ready(function(){
-			 $('#companypdf').toggle(function(){
-				$('.pdf_text').show();
-			 },function(){
-				$('.pdf_text').hide();
-			 });
-		 });
 		</script>
+		
+		<div class="get_dirct">
+			<div class="getdir_title">
 				<?php $file = $this->common->get_setting_value(2).$this->config->item('pdf_main_upload_path')."uploads/pdf/".$companypdfs[$x]['pdf'];?>
 				<?php $title = ucfirst(stripslashes($companypdfs[$x]['title'])); ?>
 				<div>
-					<a style="cursor: pointer; display : none" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" class = "pdf_text" target="_blank" title="View document" id = "pdfname">
-						<?php echo $companypdfs[$x]['title'];?>
-					</a>
+				<label style="cursor: pointer;" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" class = "view_direction_map" target="_blank" title="View document">
+					<?php echo $companypdfs[$x]['title'];?>
+				</label>
 				</div>		
-			
-	  <?php } } } ?>
+			</div>
 		</div>
-	  </div>
-	  
-	  
+		
+	  <?php } } } ?>
+
         <div class="review_wrp">
           <div class="contct_dtl">
             <ul>
