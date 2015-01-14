@@ -30,7 +30,7 @@ class Reviews extends CI_Model
 			return array();
 		}
 		
-	}
+			}
 	
 	function get_all_mainreviews($companyid,$siteid,$limit ='',$offset='',$sortby = 'id',$orderby = 'DESC')
  	{
@@ -334,24 +334,6 @@ class Reviews extends CI_Model
 		else
 		{
 		$this->db->where('companyid', $companyid);
-		}
-		$query = $this->db->count_all('reviews');
-		return $query;
-	}
-	
-	public function get_all_csv_reviews_count($companyid,$siteid)
-	{
-		
-		if($siteid!='all')
-		{
-		$this->db->where('websiteid', $siteid);
-		$this->db->where('companyid', $companyid);
-		$this->db->where('type', 'csv');
-		}
-		else
-		{
-		$this->db->where('companyid', $companyid);	
-		$this->db->where('type', 'csv');
 		}
 		$query = $this->db->count_all('reviews');
 		return $query;
