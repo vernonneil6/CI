@@ -155,33 +155,35 @@ class Review extends CI_Controller {
 								 {
 									for($i=1;$i<(sizeof($fcontents)+1); $i++)
 									{
-												$line = trim($fcontents[$i]);
-												$arr = explode(",",$line);
-
-														$title = $arr[0];
-														$username = $arr[1];
-														$rating = $arr[2];
-														$review = $arr[3];
-														$date = $arr[4];
-														
-							$siteid = $this->session->userdata('siteid');	
-							if($title!='' && $username!='' && $rating!='' && $review!='' && $date!=''){
-							if( $this->reviews->insert($companyid,$username,$rating,$review,$date,$siteid,$title) )
+										$line = trim($fcontents[$i]);
+										$arr = explode(",",$line);
+										$title = $arr[0];
+										$username = $arr[1];
+										$rating = $arr[2];
+										$review = $arr[3];
+										$date = $arr[4];														
+										$siteid = $this->session->userdata('siteid');	
+										if($title!='' && $username!='' && $rating!='' && $review!='' && $date!=''){
+											if( $this->reviews->insert($companyid,$username,$rating,$review,$date,$siteid,$title) ){ 
+												$csvsuccess = 1;
+												if(file_exists($file))
 												{
-													if(file_exists($file))
-													{
-														unlink($file);
-													}
-													$this->session->set_flashdata('success', 'reviews inserted successfully.');
-												 }
-												else
-												{
-													$this->session->set_flashdata('error', 'There is error in inserting reviews. Try later!');
-												 }
+													unlink($file);
+												}
+												$this->session->set_flashdata('success', 'reviews inserted successfully.');
 											}
+											else
+											{
+												$this->session->set_flashdata('error', 'There is error in inserting reviews. Try later!');
+											}
+										}
 									}
-									$this->session->set_flashdata('success', 'reviews inserted successfully.');
-									redirect('review','refresh');
+									if($csvsuccess == 1){ 										
+										$this->session->set_flashdata('success', 'reviews inserted successfully.');
+									} else {
+										$this->session->set_flashdata('error', ' No records found, please confirm you are uploading a CSV file that has not been changed or resaved in another format. ');
+										redirect('review','refresh');
+									}
 											
 
 											
