@@ -1075,7 +1075,8 @@ public function cron()
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
 					$this->email->from($site_mail,$site_name);
-					$this->email->to($alertemailid);	
+					//$this->email->to($alertemailid);	
+					$this->email->to('alankenn@grossmaninteractive.com');	
 					$this->email->subject('Your EliteMembership Subscription has been Expired.Please Renew');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
@@ -1232,7 +1233,8 @@ public function adminreport()
 				   $this->email->initialize($config);     
                     $todaysdate=date('Y-m-d');
 					$this->email->from($site_mail,$site_name);
-					$this->email->to($site_email);	
+					//$this->email->to($site_email);	
+					$this->email->to('alankenn@grossmaninteractive.com');	
 					$this->email->subject('Todays Report On Success and Failed Payments On Date  '.$todaysdate.'');
 					$this->email->message('<table cellpadding="0" cellspacing="10" width="100%" border="0">
 															<tr>
