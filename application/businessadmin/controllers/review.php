@@ -95,7 +95,7 @@ class Review extends CI_Controller {
 			
 			$this->paging['base_url'] = site_url("review/index/");
 			$this->paging['uri_segment'] = 3;
-			$this->paging['total_rows'] = count($this->reviews->get_all_reviews($companyid,$siteid,$limit,$offset));
+			$this->paging['total_rows'] = count($this->reviews->get_all_reviews($companyid,$siteid));
 			$this->pagination->initialize($this->paging);
 			//echo "<pre>";
 			//print_r($this->paging);

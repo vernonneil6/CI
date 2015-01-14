@@ -30,7 +30,7 @@ class Reviews extends CI_Model
 			return array();
 		}
 		
-			}
+	}
 	
 	function get_all_mainreviews($companyid,$siteid,$limit ='',$offset='',$sortby = 'id',$orderby = 'DESC')
  	{
