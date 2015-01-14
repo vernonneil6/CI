@@ -258,7 +258,7 @@
           <div id="phoneerror" class="error">Enter valid phone number digits only.</div>
         </div>
       </div>-->
-
+<small>This company is not a YouGotRated Elite Member, and their customers are not eligable for the Buyer's Protection Program.   You may submit a review posative or negative by clicking HERE. </small>
 	 <div class="reg-row">
 	        <label>YOUR INFORMATION</label>
 		<div class="reg_fld"></div>
