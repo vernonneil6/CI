@@ -1127,7 +1127,7 @@ public function cron()
 											  </tr>
 											  <tr>
 												<td> Regards,<br/>
-												  The YouGotRated Team.<br/>
+												  The '.$site_name.' Team.<br/>
 												  <a href="'.$site_base_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
 											   </tr>
 											</table>');
@@ -1153,7 +1153,7 @@ public function adminreport()
 					$Expire='';
 					$status='';
 					if(count($reportfailed) > 0){
-						$fail='<table>
+						$fail='<table style="padding-left: 16px;margin-top: -20px;">
 							 <tr>
 							 <th>Subscription ID</th>
 							 <th>Payment Date</th>
@@ -1180,7 +1180,18 @@ public function adminreport()
 					else
 					{
 						
-					$fail='No Transactions.';	
+						$fail='<table style="padding-left: 16px;margin-top: -20px;">
+								 <tr>
+								 <th>Subscription ID</th>
+								 <th>Payment Date</th>
+								 <th>Payment Expired Date</th>
+								 <th>Transaction Status</th>
+								 </tr>';
+							
+							$fail .='<tr>
+									 <td>No Failed Transactions</td>
+									</tr>';
+							$fail .='</table>';
 						
 					}         
                     //success retreive   
@@ -1193,7 +1204,7 @@ public function adminreport()
 					$status='';
 					
 					if(count($reportsuccess) > 0){
-							$success='<table>
+							$success='<table style="padding-left: 16px;margin-top: -20px;">
 								 <tr>
 								 <th>Subscription ID</th>
 								 <th>Payment Date</th>
@@ -1218,8 +1229,17 @@ public function adminreport()
                     }
 					 else
 					 {
-						
-					  $success='No Transactions.';	
+						$success='<table style="padding-left: 16px;margin-top: -20px;">
+									 <tr>
+									 <th>Subscription ID</th>
+									 <th>Payment Date</th>
+									 <th>Payment Expired Date</th>
+									 <th>Transaction Status</th>
+									 </tr>';
+						$success .='<tr>
+									 <td> No successful Transactions</td>
+									</tr>';
+						$success .='</table>'; 	
 						
 					 }    
                      
@@ -1255,7 +1275,7 @@ public function adminreport()
 															<tr>
 																<td>Hello Administration,</td>
 															</tr>
-															<tr><td><br/></td></tr>
+															<tr></tr>
 															<tr>
 																<td style="padding-left:20px;">
 																Todays Report on Success and Failed payments On following Date '.$todaysdate.' . Details are as follows.
@@ -1264,11 +1284,11 @@ public function adminreport()
 															<tr>
 																<td>
 																	<table cellpadding="10" cellspacing="10" width="100%" border="0">
-																	<tr><td colspan="3"><h3>Payment Details</h3></td></tr>
+																	<tr><td colspan="3"><h4 style="text-transform: uppercase;">Payment Details</h4></td></tr>
 																	<tr>
-																		<td><b>Failed Transaction Payments Today</b></td><br>
+																		<td><b><u>Failed Transaction Payments Today</u></b></td><br>
 																	</tr>
-																	<tr>
+																	<tr style="padding-top:20px;">
 																	   '.$fail.'
 																	</tr>
 																	<tr>
@@ -1283,9 +1303,9 @@ public function adminreport()
 																<td>
 																	<table cellpadding="10" cellspacing="10" width="100%" border="0">
 																	<tr>
-																		<td><b>Successful Transaction Payments Today</b></td><br>
+																		<td><b><u>Successful Transaction Payments Today</u></b></td><br>
 																	</tr>
-																	<tr>
+																	<tr style="padding-top:20px;">
 																	    '.$success.'
 																	</tr>
 																	<tr>
@@ -1303,7 +1323,7 @@ public function adminreport()
 											  </tr>
 											  <tr>
 												<td> Regards,<br/>
-												  The YouGotRated Team.<br/>
+												  The '.$site_name.' Team.<br/>
 												  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
 											   </tr>
 											</table>');
