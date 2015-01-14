@@ -37,7 +37,7 @@ Class Widgets extends CI_Model
 		$this->db->where('r.status','Enable');
 		
 		$query = $this->db->get();
-		return $query;
+		return $query->result_array();
  	}
 	
 	//Getting average review by comapany id
