@@ -1185,7 +1185,7 @@ public function adminreport()
 								 </tr>';
 							
 							$fail .='<tr>
-									 <td>No Failed Transactions</td>
+									 <td style="padding-left: 20px;">No Failed Transactions</td>
 									</tr>';
 							$fail .='</table>';
 						
@@ -1229,7 +1229,7 @@ public function adminreport()
 									 <tr>
 								     </tr>';
 						$success .='<tr>
-									 <td> No successful Transactions</td>
+									 <td style="padding-left: 20px;">No successful Transactions</td>
 									</tr>';
 						$success .='</table>'; 	
 						
