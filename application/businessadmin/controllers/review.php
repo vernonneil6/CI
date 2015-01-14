@@ -163,6 +163,7 @@ class Review extends CI_Controller {
 										$review = $arr[3];
 										$date = $arr[4];														
 										$siteid = $this->session->userdata('siteid');	
+										$csvsuccess = 0;
 										if($title!='' && $username!='' && $rating!='' && $review!='' && $date!=''){
 											if( $this->reviews->insert($companyid,$username,$rating,$review,$date,$siteid,$title) ){ 
 												$csvsuccess = 1;
@@ -181,9 +182,9 @@ class Review extends CI_Controller {
 									if($csvsuccess == 1){ 										
 										$this->session->set_flashdata('success', 'reviews inserted successfully.');
 									} else {
-										$this->session->set_flashdata('error', ' No records found, please confirm you are uploading a CSV file that has not been changed or resaved in another format. ');
-										redirect('review','refresh');
+										$this->session->set_flashdata('error', ' No records found, please confirm you are uploading a CSV file that has not been changed or resaved in another format. ');										
 									}
+									redirect('review','refresh');
 											
 
 											
