@@ -1211,7 +1211,7 @@ public function adminreport()
                      
                      $site_name = $this->common->get_setting_value(1);
 					 $site_url = $this->common->get_setting_value(2);
-					 $site_email = $this->common->get_setting_value(5);      
+					 $site_mail = $this->common->get_setting_value(5);      
         //Loading E-mail library
 					$config = Array(
 					'protocol' => 'smtp',
