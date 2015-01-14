@@ -93,7 +93,7 @@
 							<label for="name">Date Filed</label>
 						  </div>
 						  <div class="con">
-							  <input type="text" class="input" id="date" value="<?php $dates=substr($date,0,11); echo $change=date("M d Y",strtotime($dates));?>">
+							  <input type="text" class="input" id="date" value="<?php $dates=substr($date,0,11); echo $change=date("m/d/Y",strtotime($dates));?>">
 						  </div>
 					</div>
 					<div class="clearfix">
@@ -105,7 +105,7 @@
 							  <input type="text" class="input" id="closedate" value="Not yet Closed">
 							  <?php } else { ?>
 								  
-							  <input type="text" class="input" id="closedate" value="<?php $closed=substr($closedate,0,11); echo $changes=date("M d Y",strtotime($closed));?>">
+							  <input type="text" class="input" id="closedate" value="<?php $closed=substr($closedate,0,11); echo $changes=date("m/d/Y",strtotime($closed));?>">
 							  <?php } ?>
 						  </div>
 					</div>

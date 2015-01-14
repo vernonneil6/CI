@@ -27,6 +27,18 @@ Class Widgets extends CI_Model
 		$query = $this->db->get();
 		return $query->num_rows();
  	}
+ 	
+	//Getting total review by comapany id
+	function get_review_list_by_companyid($comapany_id=0)
+ 	{
+		$this->db->select('reviewtitle,rate,comment,reviewby,reviewdate,link');
+		$this->db->from('reviews as r');
+		$this->db->where('r.companyid',$comapany_id);
+		$this->db->where('r.status','Enable');
+		
+		$query = $this->db->get();
+		return $query->result_array();
+ 	}
 	
 	//Getting average review by comapany id
 	function get_average_review($comapany_id=0)

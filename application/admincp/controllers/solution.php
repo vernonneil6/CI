@@ -244,7 +244,7 @@ class Solution extends CI_Controller {
 								$myconfig['maintain_ratio'] = TRUE;
 								$myconfig['thumb_marker'] = '';
 								$myconfig['width'] = $this->config->item('solution_thumb_width');
-								$myconfig['height'] = $this->config->item('_thumb_height');
+								$myconfig['height'] = $this->config->item('solution_thumb_height');
 								
 								$this->load->library('image_lib', $myconfig);
 										

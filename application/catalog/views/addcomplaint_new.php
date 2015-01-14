@@ -258,7 +258,7 @@
           <div id="phoneerror" class="error">Enter valid phone number digits only.</div>
         </div>
       </div>-->
-
+<small>This company is not a YouGotRated Elite Member, and their customers are not eligable for the Buyer's Protection Program.   You may submit a review posative or negative by clicking HERE. </small>
 	 <div class="reg-row">
 	        <label>YOUR INFORMATION</label>
 		<div class="reg_fld"></div>
@@ -283,7 +283,19 @@
 
 <div class="reg-row">
         <label>COMPLAINT DETAILS</label>
-	
+<?php if(empty($cmpyid)){ ?>
+	<div class="reg_fld">Company Name</div>
+	<div>		
+		<div class="input_container">
+		<!--<input type="text" class="reg_txt_box-lg" name="companyname" id="companyname" readonly="readonly">-->
+		<input type="text" id="company_name" class="reg_txt_box-lg" name="company_name"  onkeyup="autocomplet()">
+		<input type="hidden" id="company_id" class="reg_txt_box-lg" name="company_id">
+                    <ul id="country_list_id"></ul>
+		</div>		
+	</div>
+<?php } ?>
+
+
 	<div class="reg_fld">DATE OF COMPLAINT</div>
 	<div>
 		<input type="text" class="reg_txt_box-lg" name="complaintdate" id="datecompany" readonly="readonly">
@@ -383,4 +395,61 @@
 </div>
 </section>
 </section>
+<script>
+// autocomplet : this function will be executed every time we change the text
+var currentRequest = null;
+function autocomplet() {
+	$('#country_list_id').html('Loading ...');
+	var min_length = 0; // min caracters to display the autocomplete
+	var keyword = $('#company_name').val();
+	if (keyword.length >= min_length) {
+	currentRequest = $.ajax({
+			url: '/complaint/get_company_names/',
+			type: 'POST',
+			beforeSend : function()
+				{           
+					if(currentRequest != null)
+					{
+		
+						currentRequest.abort();
+						
+					}
+				},
+			data: {keyword:keyword},
+			success:function(data){
+				$('#country_list_id').show();
+				$('#country_list_id').html(data);
+			}
+		});
+	} else {
+		$('#country_list_id').hide();
+	}
+}
+
+// set_item : this function will be executed when we select an item
+function set_item(item,id) {
+	// change input value
+	$('#company_name').val(item);
+	$('#company_id').val(id);
+	// hide proposition list
+	$('#country_list_id').hide();
+}
+</script>
+<style>
+.input_container ul {
+	width: 488px;
+	padding-left:10px;	
+	border: 1px solid #eaeaea;
+	position: absolute;
+	z-index: 9;
+	background: #f3f3f3;
+	list-style: none;
+}
+.input_container ul li {
+	padding: 2px;
+}
+.input_container ul li:hover {
+	background: #eaeaea;
+}
+</style>
 <?php echo $footer;?>

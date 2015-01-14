@@ -625,6 +625,41 @@ class Complaints extends CI_Model
 			return false;
 		}
 	}
+	function insert_businesses($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,$paypalid,$logo,$category,$aboutus)
+	{
+		
+		$date = date_default_timezone_set('Asia/Kolkata');
+		$date = date('Y-m-d H:i:s');
+		
+		$varipaddress = $_SERVER['REMOTE_ADDR'];
+		
+		$data = array( 'company' 		=> $name ,
+					   'companystreet'	=> $streetaddress,
+					   'companycity'	=> $city,
+					   'companystate'	=> $state,
+					   'companycountry'	=> $country,
+					   'companyzip'		=> $zip,
+					   'phone'			=> $phone,
+					   'email'			=> $email,
+					   'siteurl'		=> $website,
+					   'paypalid'		=> $paypalid,
+					   'logo'			=> $logo,
+					   'categoryid'		=> $category,
+					   'status'			=> 'Enable',
+					   'registerip' 	=> $varipaddress,
+					   'registerdate'	=> $date,
+					   'aboutus'		=> $aboutus
+ 					   ); 
+ 		
+		if ($this->db->insert('company',$data))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	function insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,$paypalid,$logo,$category,$aboutus,$brokerid,$brokertype,$marketerid,$subbrokerid,$actype,$notes)
 	{
 		
@@ -1541,11 +1576,11 @@ class Complaints extends CI_Model
 		$checkdate=date('Y-m-d');
 		$query=$this->db->select('*')
 						->from('youg_subscription')
-						->where(array('transactionstatus'=>'0','paymentmethod'=>'authorize','subscr_id !='=>''))
+						->where(array('transactionstatus'=>'0','paymentmethod'=>'authorize','subscr_id !='=>'','emailflag'=>'0'))
 						->like('expires',$checkdate)
 						->get()
 			            ->result_array();
-		echo $this->db->last_query();	
+		//echo $this->db->last_query();	
 		//print_r($query);
 		return $query;
 		
