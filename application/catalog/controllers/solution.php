@@ -1085,7 +1085,7 @@ public function cron()
 															</tr>
 															<tr>
 																<td>
-																	<table cellpadding="0" cellspacing="0" width="10px" border="0">
+																	<table cellpadding="0" cellspacing="0" width="50%" border="0">
 																	<tr><td colspan="3"><h3>Payment Transaction Detail</h3></td></tr>
 																	<tr>
 																		<td>Subscription ID</td>
