@@ -995,5 +995,13 @@ Class Common extends CI_Model
 		
 	}	
 		
+	function get_company_list($compnay_name){
+		$query = $this->db->select('id,company')->from('company')->order_by('company','asc')->like('company ',$compnay_name)->where('status','Enable')->limit(15)->get();
+		if ($query->num_rows() > 0){			
+			return $query->result_array();
+		}else{
+			return array();
+		}
+	}
 }
 ?>

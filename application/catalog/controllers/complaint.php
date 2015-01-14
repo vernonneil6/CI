@@ -1055,8 +1055,19 @@ $this->complaints->set_video($companyid,"video2","http://www.youtube.com/watch?v
 		
 	}
 
-	public function add($id)
+	public function get_company_names(){		
+		if($_POST['keyword']){
+			$company_names = $this->common->get_company_list($_POST['keyword']);	
+			foreach ($company_names as $company_name) {				
+			   $comp_name =  str_replace('"','',$company_name['company']);
+			    $comp_name =  str_replace("'",'',$comp_name);
+			    echo '<li onclick="set_item(\''.str_replace("'", "\'", $comp_name).'\',\''.$company_name['id'].'\')")">'.$comp_name.'</li>';
+			}
+		}
+	}
+	public function add($id = '')
 	{
+		
 		if( !array_key_exists('youg_user',$this->session->userdata) )
 		{
 			$this->session->set_flashdata('error', 'Please login to continue!');
