@@ -1037,7 +1037,7 @@ public function cron()
 	  	$subscription_id=$con['subscr_id'];
 		$subscription_amount=$con['amount'];
 		$alertemailid=$con['payer_id'];
-		$paymentfailed_date=$con['payment_date'];
+		$paymentfailed_date=$con['expires'];
 		$company_id=$con['company_id'];
 		$last_transaction=$con['txn_id'];
 		$nameextract =explode('@',$con['payer_id']);
@@ -1108,7 +1108,7 @@ public function cron()
 																		<td><b>'.$last_transaction.'</b></td>
 																	</tr>
 																	<tr>
-																		<td>Payment Ended Date</td>
+																		<td>Payment Failed Date</td>
 																		<td>:</td>
 																		<td><b>'.$paymentfailed_date.'</b></td>
 																	</tr>
