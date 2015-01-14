@@ -11,8 +11,10 @@
   <div class="box">
     <div class="headlines">
       <h2><span> Reviews</span></h2>
-    </div>
-    
+    </div>          
+     <?php $id = $this->session->userdata('siteid');?>
+      <?php $url1 = $this->reviews->get_url_byid($id);?>
+	  <?php $pageurl = $url1[0]['siteurl'].'review/browse/';?>
     <?php if( $this->uri->segment(1) == 'review' && ( $this->uri->segment(2) == 'index' || $this->uri->segment(2) == '' ) )
 	{
     if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == '' )
@@ -62,7 +64,9 @@
         <th width="8%">User</th>
         <th width="8%">Rating</th>
         <th width="20%">Review Date</th>
+        <th width="15%">Share On</th>
       </tr>
+
       <?php for($i=0;$i<count($reviews);$i++) { ?>
       <tr>
         <td><?php echo (stripslashes($reviews[$i]['reviewtitle'])); ?></td>
@@ -70,6 +74,17 @@
         <td><?php echo ucwords(stripslashes($reviews[$i]['reviewby'])); ?></td>
         <td><img src="images/stars/<?php echo stripslashes($reviews[$i]['rate']); ?>.png" title="<?php echo stripslashes($reviews[$i]['rate']); ?> Stars" /></td>
         <td><?php echo date("M d Y",strtotime($reviews[$i]['reviewdate'])); ?></td>
+        <td>  <?php $title=urlencode('My post');
+                $url=urlencode($pageurl.$reviews[$i]['seokeyword']);
+                $image=urlencode('http://livemarketnews.com/dressfinity/skin/frontend/default/default/images/logo.jpg');
+                ?>
+                <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $title;?>&amp;p[url]=<?php echo $url; ?>&amp;&p[images][0]=<?php echo $image;?>', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)" title="Facebook">
+                    <img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
+                </a>
+                <a href="https://plus.google.com/share?url=<?php echo urlencode($pageurl.$reviews[$i]['seokeyword']);?>" title="Google+"><img width="16" height="17" border="0" src="images/go.jpg" alt="googleshare"></a>
+          		<a href="https://twitter.com/share" class="twitter-share-button" data-url="google.com" data-text="<?php echo $pageurl.$reviews[$i]['id'];?>" data-count="none">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>        
+		</td>
       </tr>
       <?php } ?>
     </table>
@@ -112,9 +127,6 @@
         <th>Resolution</th>
         <th width="15%">Share On</th>
       </tr>
-      <?php $id = $this->session->userdata('siteid');?>
-      <?php $url1 = $this->reviews->get_url_byid($id);?>
-	  <?php $pageurl = $url1[0]['siteurl'].'review/browse/';?>
       <?php for($i=0;$i<count($reviews);$i++) { ?>
       <?php $user = $this->settings->get_user_byid($reviews[$i]['reviewby']);?>
       <?php $reviewstatus =$this->reviews->get_reviewstatus_by_reviewid($reviews[$i]['id']); ?>
