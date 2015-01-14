@@ -1580,7 +1580,7 @@ class Complaints extends CI_Model
 						->like('expires',$checkdate)
 						->get()
 			            ->result_array();
-		echo $this->db->last_query();	
+		//echo $this->db->last_query();	
 		//print_r($query);
 		return $query;
 		
