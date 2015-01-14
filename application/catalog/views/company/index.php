@@ -190,6 +190,11 @@
 	   </div>
 		
 		
+		<div class="get_dirct">
+			<div class="getdir_title">
+				
+				<label class = "view_direction_map " id = "companypdf">Menu/Catalog</label>
+		
 		<?php if( count($elitemem_status)>0 )  {	?>
         <?php if( count($companypdfs) > 0 ) { ?>
 		<?php for($x=0; $x<count($companypdfs); $x++) { ?>
@@ -208,22 +213,19 @@
 			 });
 		 });
 		</script>
-		
-		<div class="get_dirct">
-			<div class="getdir_title">
-				<label class = "view_direction_map " id = "companypdf">Menu/Catalog</label>
-			<div>
 				<?php $file = $this->common->get_setting_value(2).$this->config->item('pdf_main_upload_path')."uploads/pdf/".$companypdfs[$x]['pdf'];?>
 				<?php $title = ucfirst(stripslashes($companypdfs[$x]['title'])); ?>
-				<a style="cursor: pointer; display : none" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" class = "pdf_text" target="_blank" title="View document" id = "pdfname">
-					<?php echo $companypdfs[$x]['title'];?>
-				</a>
+				<div>
+					<a style="cursor: pointer; display : none" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" class = "pdf_text" target="_blank" title="View document" id = "pdfname">
+						<?php echo $companypdfs[$x]['title'];?>
+					</a>
 				</div>		
-			</div>
-		</div>
-		
+			
 	  <?php } } } ?>
-
+		</div>
+	  </div>
+	  
+	  
         <div class="review_wrp">
           <div class="contct_dtl">
             <ul>
