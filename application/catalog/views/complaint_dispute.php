@@ -118,6 +118,7 @@ if( $this->session->userdata('youg_user') )
 					   </select>			 
 					     <br><br>
 			<div class="reg-row transaction"><label class="names">Transaction Details</label></div><br>
+			<small class="reg_fld">This is the ID provided by the business, that helps us ensure you have actually purchased from this business.</small>
 			<?php echo form_input(array('name'=>'transactionid','type'=>'text','class'=>'reg_txt_box','value'=>'','placeholder'=>'Please enter Transaction ID'))."<br>"; ?>
 			<?php echo form_input(array('name'=>'transactionamt','type'=>'text','class'=>'reg_txt_box','value'=>'','placeholder'=>'Please enter Transaction Amount'))."<br>"; ?>
 			<?php echo form_input(array('name'=>'transactiondate','type'=>'text','class'=>'reg_txt_box','value'=>'','placeholder'=>'Please enter Transaction Date'))."<br>"; ?>

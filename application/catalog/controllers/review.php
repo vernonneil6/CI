@@ -1047,7 +1047,9 @@ class Review extends CI_Controller {
 					if($this->reviews->delete_comment($id))
 		  	  {			
 						$this->session->set_flashdata('success', 'Comment deleted successfully.');
-						$review = $this->reviews->get_review1_byid($reviewid[0]['reviewid']);
+						
+						$review = $this->reviews->get_review1_byid($reviewid[0]['reviewid']);					
+						
 						redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
 					}
 					else
@@ -1072,193 +1074,204 @@ class Review extends CI_Controller {
 	
 	 //Updating the Record
 	public function upcomment()
-	 {
+	{
    		
 		if($this->input->post('id')!='') 
+		{
+			//If Old Record Update
+			if( $this->input->post('btncommentsubmit') || $this->input->post('comment')!='')
+			{
+
+				//Getting id
+				$id = $this->encrypt->decode($this->input->post('id'));
+				//Getting value
+				echo $reviewid = $this->encrypt->decode($this->input->post('reviewid'));
+				$userid = $this->session->userdata['youg_user']['userid'];
+				$comment = (strip_tags($this->input->post('comment')));
+												
+				//Updating Record With Image
+				$updated = $this->reviews->update_comment($id,$reviewid,$userid,$comment);
+				if( $updated == 'updated')
 				{
-						//If Old Record Update
-						if( $this->input->post('btncommentsubmit') || $this->input->post('comment')!='')
-					{
-					//Getting id
-					$id = $this->encrypt->decode($this->input->post('id'));
-					//Getting value
-					echo $reviewid = $this->encrypt->decode($this->input->post('reviewid'));
-					$userid = $this->session->userdata['youg_user']['userid'];
-					$comment = (strip_tags($this->input->post('comment')));
-														
-					//Updating Record With Image
-					$updated = $this->reviews->update_comment($id,$reviewid,$userid,$comment);
-					if( $updated == 'updated')
-					{
-						$this->session->set_flashdata('success', 'comment updated successfully.');
-						$review = $this->reviews->get_review1_byid($reviewid);
-						redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
-					}
-					else
-					{
-						$this->session->set_flashdata('error', 'There is error in updating comment. Try later!');
-						redirect('review', 'refresh');
-					}
+					$this->session->set_flashdata('success', 'comment updated successfully.');
+					$review = $this->reviews->get_review1_byid($reviewid);
+					redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
+				}
+				else
+				{
+					$this->session->set_flashdata('error', 'There is error in updating comment. Try later!');
+					redirect('review', 'refresh');
 				}
 			}
-			else
+		}
+		else
+		{
+		//If New Record Insert
+			if( $this->input->post('btncommentsubmit') || $this->input->post('comment')!='')
 			{
-					//If New Record Insert
-						if( $this->input->post('btncommentsubmit') || $this->input->post('comment')!='')
-						{
-							//Getting value
-							$reviewid = $this->encrypt->decode($this->input->post('reviewid'));
-							
-							$userid = $this->session->userdata['youg_user']['userid'];
-							$comment = addslashes(strip_tags($this->input->post('comment')));
-							
-							$review = $this->reviews->get_review1_byid($reviewid);
-							if(count($review)>0)
-							{
-								$companyid = $review[0]['companyid'];
-							}
-							
-							$elite=$this->reviews->elitemship($companyid);
+				//Getting value
 				
-							if(count($elite)>0)
+				$reviewid = $this->encrypt->decode($this->input->post('reviewid'));
+
+				$userid = $this->session->userdata['youg_user']['userid'];
+				$comment = addslashes(strip_tags($this->input->post('comment')));
+
+				$review = $this->reviews->get_review1_byid($reviewid);
+				if(count($review)>0)
+				{
+					$companyid = $review[0]['companyid'];			
+
+					$elite=$this->reviews->elitemship($companyid);
+			
+					if(count($elite)>0)
+					{
+						
+						$relation = $this->common->get_relation_byciduid($companyid,$userid);
+						if(count($relation)>0)
+						{
+	
+							if($relation[0]['status']=='Decline')
 							{
-								$relation = $this->common->get_relation_byciduid($companyid,$userid);
-								if(count($relation)>0)
-								{
+								
+								$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'yes');
+								if( $updated = 'added')
+								{	
 									
-									if($relation[0]['status']=='Decline')
-									{
-										$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'yes');
-										if( $updated = 'added')
-										{	
-											$this->session->set_flashdata('success', 'comment posted successfully.');
-											$review = $this->reviews->get_review1_byid($reviewid);
-											redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
-										}
-										else
-										{
-											$this->session->set_flashdata('error', 'There is error in posting comment. Try later!');	
-											redirect('review', 'refresh');
-										}	
-									}
-									else
-									{
-										$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'no');
-										if( $updated = 'added')
-										{	
-											$this->session->set_flashdata('success', 'comment posted successfully.');
-											$review = $this->reviews->get_review1_byid($reviewid);
-											redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
-										}
-										else
-										{
-											$this->session->set_flashdata('error', 'There is error in posting comment. Try later!');	
-											redirect('review', 'refresh');
-										}
-									}
+									$this->session->set_flashdata('success', 'comment posted successfully.');
+									$review = $this->reviews->get_review1_byid($reviewid);
+									redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
 								}
 								else
 								{
-									$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'yes');
-									
-									if( $updated = 'added')
-									{
-										if(count($review)>0)
-										{
-											$company = $this->complaints->get_company_byid($review[0]['companyid']);
-											$user    = $this->common->get_user_byid($userid);
-											if(count($company)>0)
-											{
-												$companyemailaddress = $company[0]['email'];
-											}
-										}
-					
-									
-					$site_name = $this->common->get_setting_value(1);
-					$site_url = $this->common->get_setting_value(2);
-					$site_email = $this->common->get_setting_value(5);
-					
-					// Company Mail
-					$to = $companyemailaddress;
-					$mail = $this->common->get_email_byid(8);
-					
-					$subject = $mail[0]['subject'];
-					$mailformat = $mail[0]['mailformat'];
-					
-					$this->load->library('email');
-					$this->email->from($site_email,$site_name);
-					$this->email->to($to);
-					$this->email->subject($subject);
-					
-					
-					$link1 = "<a href='".base_url('welcome/confirm/'.base64_encode($companyid).'/'.base64_encode($userid))."' title='Confirm Customer' class='mailbutton' style='background-image:url(".$site_url."images/type_btn.png);border: 1px solid #CCCCCC;
-    color: #373737;
-    float: left;
-    font-family: aller;
-    font-size: 16px;
-    height: auto;
-    list-style: none outside none;
-    text-shadow: 0 1px 1px #FFFFFF;
-    width: auto;
-	padding:7px 20px;cursor: pointer;
-	text-decoration:none;'>Confirm Customer</a>";
-					$link2 = "<a href='".base_url('welcome/decline/'.base64_encode($companyid).'/'.base64_encode($userid))."' title='Decline Customer' class='mailbutton' style='background-image:url(".$site_url."images/type_btn.png);border: 1px solid #CCCCCC;
-    color: #373737;
-    float: left;
-    font-family: aller;
-    font-size: 16px;
-    height: auto;
-    list-style: none outside none;
-    text-shadow: 0 1px 1px #FFFFFF;
-    width: auto;
-	padding:7px 20px;cursor: pointer;
-	text-decoration:none;
-	margin-left:15px;
-	'>Decline Customer</a>";
-            	
-					$mail_body = str_replace("%username%",ucfirst($user[0]['firstname'].' '.$user[0]['lastname']),str_replace("%company%",ucfirst($company[0]['company']),str_replace("%useremail%",$user[0]['email'],str_replace("%link1%",$link1,str_replace("%link2%",$link2,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat)))))))));
-					
-					$this->email->message($mail_body);
-
-					if($this->email->send())
-							{
-								$this->session->set_flashdata('success', 'comment submitted successfully.');
-								redirect(site_url('review'), 'refresh');
+										
+									$this->session->set_flashdata('error', 'There is error in posting comment. Try later!');	
+									redirect('review', 'refresh');
+								}	
 							}
 							else
 							{
-								redirect(site_url('review'), 'refresh');
-							}
 								
-					}
-						else
-									{
-											$this->session->set_flashdata('error', 'There is error in posting comment. Try later!');	
-											redirect('review', 'refresh');
-									}
-					}
-							}
-							else
-							{
 								$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'no');
 								if( $updated = 'added')
 								{	
-										$this->session->set_flashdata('success', 'comment posted successfully.');
-										$review = $this->reviews->get_review1_byid($reviewid);
-										redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
+									
+									$this->session->set_flashdata('success', 'comment posted successfully.');
+									$review = $this->reviews->get_review1_byid($reviewid);
+									redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
 								}
 								else
 								{
-										$this->session->set_flashdata('error', 'There is error in posting comment. Try later!');	
-										redirect('review', 'refresh');
+										
+									$this->session->set_flashdata('error', 'There is error in posting comment. Try later!');	
+									redirect('review', 'refresh');
 								}
-								
-							
-							
 							}
 						}
+						else
+						{
+							$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'no');
+
+							if( $updated = 'added')
+							{
+								if(count($review)>0)
+								{
+									
+									$company = $this->complaints->get_company_byid($review[0]['companyid']);
+									$user    = $this->common->get_user_byid($userid);
+									if(count($company)>0)
+									{
+										$companyemailaddress = $company[0]['email'];
+									}
+								}
+
+
+								$site_name = $this->common->get_setting_value(1);
+								$site_url = $this->common->get_setting_value(2);
+								$site_email = $this->common->get_setting_value(5);
+
+								// Company Mail
+								$to = $companyemailaddress;
+								$mail = $this->common->get_email_byid(8);
+
+								$subject = $mail[0]['subject'];
+								$mailformat = $mail[0]['mailformat'];
+
+								$this->load->library('email');
+								$this->email->from($site_email,$site_name);
+								$this->email->to($to);
+								$this->email->subject($subject);
+
+
+								$link1 = "<a href='".base_url('welcome/confirm/'.base64_encode($companyid).'/'.base64_encode($userid))."' title='Confirm Customer' class='mailbutton' style='background-image:url(".$site_url."images/type_btn.png);border: 1px solid #CCCCCC;
+								color: #373737;
+								float: left;
+								font-family: aller;
+								font-size: 16px;
+								height: auto;
+								list-style: none outside none;
+								text-shadow: 0 1px 1px #FFFFFF;
+								width: auto;
+								padding:7px 20px;cursor: pointer;
+								text-decoration:none;'>Confirm Customer</a>";
+								$link2 = "<a href='".base_url('welcome/decline/'.base64_encode($companyid).'/'.base64_encode($userid))."' title='Decline Customer' class='mailbutton' style='background-image:url(".$site_url."images/type_btn.png);border: 1px solid #CCCCCC;
+								color: #373737;
+								float: left;
+								font-family: aller;
+								font-size: 16px;
+								height: auto;
+								list-style: none outside none;
+								text-shadow: 0 1px 1px #FFFFFF;
+								width: auto;
+								padding:7px 20px;cursor: pointer;
+								text-decoration:none;
+								margin-left:15px;
+								'>Decline Customer</a>";
+
+								$mail_body = str_replace("%username%",ucfirst($user[0]['firstname'].' '.$user[0]['lastname']),str_replace("%company%",ucfirst($company[0]['company']),str_replace("%useremail%",$user[0]['email'],str_replace("%link1%",$link1,str_replace("%link2%",$link2,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat)))))))));
+
+								$this->email->message($mail_body);
+
+								if($this->email->send())
+								{
+										
+									$this->session->set_flashdata('success', 'comment submitted successfully.');
+									redirect(site_url('review'), 'refresh');
+								}
+								else
+								{
+									redirect(site_url('review'), 'refresh');
+								}
+
+							}
+							else
+							{
+								$this->session->set_flashdata('error', 'There is error in posting comment. Try later!');	
+								redirect('review', 'refresh');
+							}
+						}
+					}
+					else
+					{
+						$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'no');
+						if( $updated = 'added')
+						{	
+							$this->session->set_flashdata('success', 'comment posted successfully.');							
+							redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
+						}
+						else
+						{	
+							$this->session->set_flashdata('error', 'There is error in posting comment. Try later!');	
+							redirect('review', 'refresh');
+						}
+					}
+				}
+				else
+				{						
+						redirect('review', 'refresh');
+				}
 			}
-	 }
+		}
+	}
 	 //Function For Change Status to "Enable" for elite review
 	public function accept($id='')
 	 {
