@@ -114,6 +114,7 @@
                 <?php } ?>
                 <?php if($this->uri->segment(2) == 'edit') { ?>
                 <?php echo form_input( array( 'name'=>'txttitle','id'=>'txttitle','class'=>'input','type'=>'text','value'=>stripslashes($sem[0]['title']) ) ); ?>
+                <?php echo form_input( array( 'name'=>'editaction','id'=>'editaction','class'=>'input','type'=>'hidden','value'=>'1' ) ); ?>
                 <?php } ?>
               </div>
             </div>

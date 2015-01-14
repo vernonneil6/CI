@@ -64,7 +64,7 @@ function userlogin()
             <div class="footer_block">
               <ul>
                 <li class="ftitle">COMPLAINT REPORTS</li>
-                <li><a href="<?php echo site_url('complaint/add');?>" title="Report a Complaint">REPORT A COMPLAINT</a></li>
+                <li><a href="<?php echo site_url('complaint/add');?>" title="Report a Complaint">File Complaint</a></li> 
                 <li><a href="<?php echo site_url('complaint');?>" title="Browse Complaints">BROWSE COMPLAINTS</a></li>
                 <li><a href="<?php echo site_url('businessdirectory');?>" title="Browse Companies">BROWSE COMPANIES</a></li>
               </ul>

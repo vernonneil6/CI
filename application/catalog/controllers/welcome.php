@@ -119,7 +119,9 @@ public function updates($id)
 	{
 		//Loading Model File
 		$this->load->model('complaints');
-
+		if(empty($id) && $this->input->post('company_id')){ 
+			$id = $this->input->post('company_id');
+		}
 		$datas=$this->complaints->companygetid($id);
 		
 		if($datas)

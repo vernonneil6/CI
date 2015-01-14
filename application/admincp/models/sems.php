@@ -39,6 +39,28 @@ Class Sems extends CI_Model
 			return false;
 		}
  	}
+ 		
+ 	// inserting record
+ 	function insert($title,$url,$image)
+	{
+		$data = array(	
+						'title'		=> $title,
+						'url' 		=> $url,
+						'mainimg' 	=> $image,		
+						'thumbimg' 	=> $image,		
+						'websiteid' 	=> 1,		
+					     );
+
+		if( $this->db->insert('sem', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
 	
 	//Updating Record
 	function update_noimage($id,$title,$url)
