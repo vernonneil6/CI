@@ -10,26 +10,44 @@
 }
 @font-face {
 	font-family: 'MyriadPro-BlackSemiCn';
-	
-	src:url('../font/MyriadPro-BlackSemiCn.ttf') format('truetype');
+	src:url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot');
+	src:url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot?#iefix') format('embedded-opentype'),
+		url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.woff') format('woff'),
+		url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.otf') format('opentype'),
+		url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.ttf') format('truetype');
+	/* src:url('../font/MyriadPro-BlackSemiCn.ttf') format('truetype'); */
 	
 }
 @font-face {
 	font-family: 'MyriadPro-Regular';
-	
-	src:url('../font/myriad/MyriadPro-Regular.otf') format('opentype');
+	src:url('../font/MyriadPro-Regular/MyriadPro-Regular.eot');
+	src:url('../font/MyriadPro-Regular/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
+		url('../font/MyriadPro-Regular/MyriadPro-Regular.woff') format('woff'),
+		url('../font/MyriadPro-Regular/MyriadPro-Regular.otf') format('opentype'),
+		url('../font/MyriadPro-Regular/MyriadPro-Regular.ttf') format('truetype');
+	/* src:url('../font/myriad/MyriadPro-Regular.otf') format('opentype'); */
 	
 }
 @font-face {
 	font-family: 'MyriadPro-BoldCond';
+	src:url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.eot');
+	src:url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.eot?#iefix') format('embedded-opentype'),
+		url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.woff') format('woff'),
+		url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.otf') format('opentype'),
+		url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.ttf') format('truetype');
 	
-	src:url('../font/myriad/MyriadPro-BoldCond.otf') format('opentype');
+	/* src:url('../font/myriad/MyriadPro-BoldCond.otf') format('opentype'); */
 	
 }
 @font-face {
 	font-family: 'MyriadPro-SemiboldCondIt';
+	src:url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.eot');
+	src:url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.eot?#iefix') format('embedded-opentype'),
+		url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.woff') format('woff'),
+		url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.otf') format('opentype'),
+		url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.ttf') format('truetype');
 	
-	src:url('../font/myriad/MyriadPro-SemiboldCondIt.otf') format('opentype');
+	/* src:url('../font/myriad/MyriadPro-SemiboldCondIt.otf') format('opentype'); */
 	
 }
 
@@ -113,9 +131,11 @@ color : #0573BF;
 }
 #widdiv
 {
-height:355px;
+height:400px;
 overflow-y:auto;
+width: 275px;
 }
 .business label{
 font-family: MyriadPro-Regular;
 }
+html{font-family: MyriadPro-Regular;}

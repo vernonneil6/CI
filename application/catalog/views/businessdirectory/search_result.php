@@ -59,8 +59,14 @@
                   <?php } ?>
                 </div>
               </div>
-              <div class="vry_btn"><a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a></div>
-			 </div>
+<?php if(count($elitemem_status)==0){?>
+              <div class="vry_btn"><a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
+</div>
+<?php }else{  ?>
+<div class="vry_btn"><a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/dispute/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
+</div>
+<?php }  ?>
+            </div>
             </div>
             <div class="contct_dtl cntdll">
               <ul>
