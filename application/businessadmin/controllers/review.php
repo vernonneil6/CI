@@ -1,28 +1,8 @@
 <?php ob_start();?>
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Review extends CI_Controller {
-
-	/**
-	 * You wrote a review about '.ucfirst($company[0]['company']).' on <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a>,<br/>
-								'.ucfirst($company[0]['company']).' sent a request for Removing review ID ' .$reviewid.' Below are Details.
-								* 
-								* <a href="'.site_url('review/feedback/'.$rid.'/'.$userid.'/'.'agree').'"
-	* Index Page for this controller.
-	*
-	* Maps to the following URL
-	* 		http://example.com/index.php/dashboard
-	*	- or -  
-	* 		http://example.com/index.php/dashboard/index
-	*	- or -
-	* Since this controller is set as the default controller in 
-	* config/routes.php, it's displayed at http://example.com/
-	*
-	* So any other public methods not prefixed with an underscore will
-	* map to /index.php/dashboard/<method_name>
-	* @see http://codeigniter.com/user_guide/general/urls.html
-	*/
-	
+class Review extends CI_Controller 
+{
 	public $paging;
 	public $data;
 	
@@ -223,43 +203,32 @@ class Review extends CI_Controller {
 	
 	public function reviews()
 	{
-		// Your own constructor code
 		if( !$this->session->userdata('youg_admin'))
-	  	{
-		   	redirect('adminlogin', 'refresh');
+		{
+			redirect('adminlogin', 'refresh');
 		}
 		
 		if( $this->session->userdata['youg_admin'] )
-	  	{
+		{
 			$limit = $this->paging['per_page'];
 			$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-			
 			$companyid = $this->session->userdata['youg_admin']['id'];
 			$siteid = $this->session->userdata('siteid');	
-			//Addingg Setting Result to variable
+
 			$this->data['reviews'] = $this->reviews->get_all_mainreviews($companyid,$siteid,$limit,$offset);
-			//echo "<pre>";
-			//print_r($this->data['reviews']);
-			//die();
-			
 			$this->paging['base_url'] = site_url("review/reviews/index");
 			$this->paging['uri_segment'] = 4;
-			$this->paging['total_rows'] = count($this->reviews->get_all_mainreviews($companyid,$siteid));
+			$this->paging['total_rows'] = count($this->reviews->get_all_mainreviews($companyid,$siteid));		
 			$this->pagination->initialize($this->paging);
-			//echo "<pre>";
-			//print_r($this->paging);
-			//die();
-			
-			//Loading View File
 			$this->load->view('review',$this->data);
-	  	}
+		}
 	}
 	
 	public function removalrequest()
 	{
 		if( !$this->session->userdata('youg_admin'))
-	  	{
-		   	redirect('adminlogin', 'refresh');
+		{
+			redirect('adminlogin', 'refresh');
 		}
 		
 		$companyid = $this->session->userdata['youg_admin']['id'];
@@ -278,8 +247,12 @@ class Review extends CI_Controller {
 		}
 		
 		$companyid = $this->session->userdata['youg_admin']['id'];
-
+		
 		$this->data['review'] = $this->reviews->review_mail($reviewid, $companyid);
+		$this->data['review_status'] = $this->reviews->reviews_status($reviewid, $companyid);
+		$review_id = $this->reviews->get_review_bysingleid($reviewid);
+		$this->data['review_date'] = $this->reviews->select_review_date($companyid, $review_id['reviewby']);
+		
 		$this->load->view('review', $this->data);
 	}
 	
@@ -324,7 +297,10 @@ class Review extends CI_Controller {
 			$companyid = $this->input->post('companyid');
 			$reviewid = $this->input->post('reviewid');
 			
+			
+			
 			$this->reviews->reviewmail_update($data, $id);
+			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'Merchant submitted information');
 			
 			$this->load->library('email');	
 			
@@ -384,6 +360,7 @@ class Review extends CI_Controller {
 			$reviewid = $this->input->post('reviewid');
 			
 			$this->reviews->reviewmail_update($data, $id);
+			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'Merchant submitted information');
 			
 			$this->load->library('email');	
 			
@@ -432,6 +409,7 @@ class Review extends CI_Controller {
 			$reviewid = $this->input->post('reviewid');
 			
 			$this->reviews->reviewmail_update($data, $id);
+			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'Merchant submitted information');
 			$reviewmail = $this->reviews->get_reviewmail_byreviewid($reviewid);
 			$option = $reviewmail['resolution'];
 			$this->load->library('email');	
@@ -443,7 +421,7 @@ class Review extends CI_Controller {
 			$site_email = $this->settings->get_setting_value(5);
 			$site_url   = $this->settings->get_setting_value(2);
 		
-			if($option == 'Ship the Item and/or Provide Proof of Shipping')
+			if($option == '1')
 			{
 			$mail_msg = $this->settings->get_email_byid(23);
 			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));
@@ -458,7 +436,7 @@ class Review extends CI_Controller {
 				$this->reviews->delete_reviewmail($reviewid);
 			}
 			}
-			if($option == 'Would like the missing items to be shipped immediately')
+			if($option == '4')
 			{
 			$mail_msg = $this->settings->get_email_byid(37);
 			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject']));
@@ -495,7 +473,7 @@ class Review extends CI_Controller {
 			$reviewid = $this->input->post('reviewid');
 			
 			$this->reviews->reviewmail_update($data, $id);
-			
+			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'Merchant submitted information');
 			$this->load->library('email');	
 			
 			$user 		= $this->settings->get_user_byid($userid);
@@ -518,151 +496,116 @@ class Review extends CI_Controller {
 		}
 	}
 	
-	public function request($reviewid='',$userid='')
+public function request($reviewid='',$userid='')
+{
+	if( !$this->session->userdata('youg_admin'))
 	{
-		// Your own constructor code
-		if( !$this->session->userdata('youg_admin'))
-	  	{
-		   	//If no session, redirect to login page
-			//echo site_url();die();
-	  	  	redirect('adminlogin', 'refresh');
-		}
-		
-		if($reviewid!='' && $reviewid!=0 && $userid!='' && $userid!=0)
-		 {
-			if( $this->session->userdata['youg_admin'] )
-	  		 {
-					$rid = base64_encode($reviewid);
-									
-					$companyid = $this->session->userdata['youg_admin']['id'];
-				
-					$company=$this->companys->get_company_byid($companyid);
-					$user=$this->settings->get_user_byid($userid);
-					$review=$this->reviews->get_mainreview_byid($reviewid);
-					
-					$site_name = $this->settings->get_setting_value(1);
-					$site_url  = $this->settings->get_setting_value(2);
-					$site_mail = $this->settings->get_setting_value(5);
-					
-					
-					//Loading E-mail library
-					$this->load->library('email');
-					
-					//Loading E-mail config file
-					$this->config->load('email',TRUE);
-					
-					//Payment mail for Admin
-					$from = $company[0]['email'];
-					$subject = 'Request for Information About Your Review:  Case #YGR-'.$reviewid;
-					$to = $user[0]['email'];
-				
-					$this->email->from($site_mail,$site_name);
-					$this->email->to($to);
-					$this->email->subject($subject);
-				
-					$mailbody = 
-					"<table>
-						
-						<label style='color: #B32317; font-size: 23px; padding: 15px 0;'> 
-								You filed a Negative Review and the Merchant would like to have it removed. 
-						</label>
-						
-						<tr>
-							<td>
-								<ul style='font-size : 16px; list-style : none; padding : 10px 0; margin : 0;'>
-								
-									<li style='font-size : 13px; margin: 20px 0;  padding : 0;'>Hello ".ucwords($user[0]['firstname'].' '.$user[0]['lastname']).",</li>
-									
-									<li style='margin: 8px 0 4px; padding : 0 0 0 15px;'> Your merchant has received your Negative </li>								
-									<li style='margin: 4px 0; padding : 0 0 0 15px;'> Review and would like to work out a </li>
-									<li style='margin: 4px 0; padding : 0 0 0 15px;'> solution with you. </li>
-									
-									<li style='margin: 30px 0 4px; padding : 0 0 0 15px;'> By communicating directly with the </li>
-									<li style='margin: 4px 0; padding : 0 0 0 15px;'> merchant through YouGotRated you can </li>
-									<li style='margin: 4px 0; padding : 0 0 0 15px;'> reach a satisfactory resolution to your </li>
-									<li style='margin: 4px 0; padding : 0 0 0 15px;'> complaint that can be mutually beneficial. </li>
-									
-									<li style='margin: 30px 0 4px; padding : 0 0 0 15px;'> Please note that the reason you are </li>
-									<li style='margin: 4px 0; padding : 0 0 0 15px;'> receiving this email is because the </li>
-									<li style='margin: 4px 0; padding : 0 0 0 15px;'> Merchant is already aware of your </li>
-									<li style='margin: 4px 0; padding : 0 0 0 15px;'> complaint and has pledged his willingness </li>
-									<li style='margin: 4px 0; padding : 0 0 0 15px;'> to assist you.  </li>
-									
-									
-									<li style='font-size : 13px; margin: 30px 0 4px; padding : 0 0 0 15px;'>In the next page you will have several options that you </li>
-									<li style='font-size : 13px; margin: 4px 0; padding : 0 0 0 15px;'>can choose from that will be emailed to the Merchant on </li>
-									<li style='font-size : 13px; margin: 4px 0; padding : 0 0 0 15px;'>your behalf in order to resolve your complaint. </li>
-									
-									
-									<li style='font-size : 13px; margin: 30px 0 4px; color : #347C91; padding : 0 0 0 15px; font-weight : bold;'> Please Reply to this email here with your selection. </li>
-																		
-  									<li style='margin: 4px 0; padding : 0 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/buyerreview/'.$user[0]['id'].'/'.$company[0]['id'])."'><img src='".$site_url."images/go.gif'></a></li>
+		redirect('adminlogin', 'refresh');
+	}
 
-									<li style='font-size : 13px; margin: 25px 0 8px; padding : 0 0 0 15px;'> Sincerely, </li>
+	if($reviewid!='' && $reviewid!=0 && $userid!='' && $userid!=0)
+	{
+		if( $this->session->userdata['youg_admin'] )
+		{
+			$rid = base64_encode($reviewid);
+			$companyid = $this->session->userdata['youg_admin']['id'];
+			$company=$this->companys->get_company_byid($companyid);
+			$user=$this->settings->get_user_byid($userid);
+			
+			
+			
+			$site_name = $this->settings->get_setting_value(1);
+			$site_url  = $this->settings->get_setting_value(2);
+			$site_mail = $this->settings->get_setting_value(5);
 
-									<li style='font-size : 13px; margin: 8px 0; padding : 0 0 0 15px;'>YouGotRated </li>
+			$this->load->library('email');
+			$this->config->load('email',TRUE);
+			$from = $company[0]['email'];
+			$subject = 'Request for Information About Your Review:  Case #YGR-'.$reviewid;
+			$to = $user[0]['email'];
 
-									<li style='font-size : 13px; margin: 8px 0; padding : 0 0 0 15px;'> BC:  YGR-".$reviewid." </li>
-									
-								</ul>
-							</td>
-							<td style = 'display : block;'>
-								<ul style = 'list-style : none;'>
-									<li><img src='".$site_url."images/email.jpg'></li>
-								</ul>
-							</td>
-						</tr>
-					</table>
-					";
-				
-					$this->email->message($mailbody);
-					
-					//Sending mail to Admin
-					if($this->email->send())
-			 		{
-						$this->session->set_flashdata('success', 'Request for review removal has been sent successfully to user.');
-						/*if($this->reviews->insert_review_status($companyid,$reviewid))
-						{
-							$id = $this->db->insert_id();
-							if($this->reviews->update_checkdate($id,$companyid,$reviewid))
-							{
-								redirect('review/removalrequest', 'refresh');
-							}
-							else
-							{
-								//$this->session->set_flashdata('error', 'There is error in sending request. Try later!');
-								redirect('review/reviews', 'refresh');				
-							}
-						}*/
-						if($this->reviews->update_review_status($companyid,$reviewid))
-						{
-							redirect('review/removalrequest', 'refresh');
-						}
-						else
-						{
-								//$this->session->set_flashdata('error', 'There is error in sending request. Try later!');
-								redirect('review/reviews', 'refresh');
-						}
-					}
-					else
-					{
-								$this->session->set_flashdata('error', 'There is error in sending request. Try later!');
-								redirect('review/reviews', 'refresh');
-					}
-					
-					//Loading View File
-				$this->load->view('review',$this->data);
-	     	 }
+			$this->email->from($site_mail,$site_name);
+			$this->email->to($to);
+			$this->email->subject($subject);
+
+			$mailbody = 
+			"<table>
+
+			<label style='color: #B32317; font-size: 23px; padding: 15px 0;'> 
+				You filed a Negative Review and the Merchant would like to have it removed. 
+			</label>
+
+			<tr>
+				<td>
+					<ul style='font-size : 16px; list-style : none; padding : 10px 0; margin : 0;'>
+						<li style='font-size : 13px; margin: 20px 0;  padding : 0;'>Hello ".ucwords($user[0]['firstname'].' '.$user[0]['lastname']).",</li>
+						<li style='margin: 8px 0 4px; padding : 0 0 0 15px;'> Your merchant has received your Negative </li>								
+						<li style='margin: 4px 0; padding : 0 0 0 15px;'> Review and would like to work out a </li>
+						<li style='margin: 4px 0; padding : 0 0 0 15px;'> solution with you. </li>
+						<li style='margin: 30px 0 4px; padding : 0 0 0 15px;'> By communicating directly with the </li>
+						<li style='margin: 4px 0; padding : 0 0 0 15px;'> merchant through YouGotRated you can </li>
+						<li style='margin: 4px 0; padding : 0 0 0 15px;'> reach a satisfactory resolution to your </li>
+						<li style='margin: 4px 0; padding : 0 0 0 15px;'> complaint that can be mutually beneficial. </li>
+						<li style='margin: 30px 0 4px; padding : 0 0 0 15px;'> Please note that the reason you are </li>
+						<li style='margin: 4px 0; padding : 0 0 0 15px;'> receiving this email is because the </li>
+						<li style='margin: 4px 0; padding : 0 0 0 15px;'> Merchant is already aware of your </li>
+						<li style='margin: 4px 0; padding : 0 0 0 15px;'> complaint and has pledged his willingness </li>
+						<li style='margin: 4px 0; padding : 0 0 0 15px;'> to assist you.  </li>
+						<li style='font-size : 13px; margin: 30px 0 4px; padding : 0 0 0 15px;'>In the next page you will have several options that you </li>
+						<li style='font-size : 13px; margin: 4px 0; padding : 0 0 0 15px;'>can choose from that will be emailed to the Merchant on </li>
+						<li style='font-size : 13px; margin: 4px 0; padding : 0 0 0 15px;'>your behalf in order to resolve your complaint. </li>
+						<li style='font-size : 13px; margin: 30px 0 4px; color : #347C91; padding : 0 0 0 15px; font-weight : bold;'> Please Reply to this email here with your selection. </li>
+						<li style='margin: 4px 0; padding : 0 0 0 15px;'><a href='".'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].('/review/resolution_options/'.$reviewid)."'><img src='".$site_url."images/go.gif'></a></li>
+						<li style='font-size : 13px; margin: 25px 0 8px; padding : 0 0 0 15px;'> Sincerely, </li>
+						<li style='font-size : 13px; margin: 8px 0; padding : 0 0 0 15px;'>YouGotRated </li>
+						<li style='font-size : 13px; margin: 8px 0; padding : 0 0 0 15px;'> BC:  YGR-".$reviewid." </li>
+					</ul>
+				</td>
+				<td style = 'display : block;'>
+					<ul style = 'list-style : none;'>
+						<li><img src='".$site_url."images/email.jpg'></li>
+					</ul>
+				</td>
+			</tr>
+			</table>
+			";
+
+			$this->email->message($mailbody);
+			
+			if($this->email->send())
+			{
+				$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'Started review removal process');
+			
+				$this->session->set_flashdata('success', 'Request for review removal has been sent successfully to user.');
+				if($this->reviews->update_review_status($companyid,$reviewid))
+				{
+					redirect('review/removalrequest', 'refresh');
+				}
+				else
+				{
+					redirect('review/reviews', 'refresh');
+				}
+			}
 			else
 			{
-				redirect('adminlogin','refresh');
+				$this->session->set_flashdata('error', 'There is error in sending request. Try later!');
+				redirect('review/reviews', 'refresh');
 			}
-	     }
-		 else
-		 {
-				redirect('review/reviews','refresh');
-		 }
+
+			$this->load->view('review',$this->data);
+		}
+		else
+		{
+			redirect('adminlogin','refresh');
+		}
 	}
+	else
+	{
+		redirect('review/reviews','refresh');
+	}
+}
+		
+		
 		
 		public function feedback($reviewid='',$userid='',$status='')
 		{

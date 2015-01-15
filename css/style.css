@@ -1732,3 +1732,14 @@ padding-left: 18px;
 {
 	float: right;
 }
+
+.thumb
+{
+	margin : 0 0 0 10px;
+	cursor : pointer;
+}
+
+.thumb:hover
+{
+	color: #2c6a99!important;
+}

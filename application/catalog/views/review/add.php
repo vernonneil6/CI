@@ -1,5 +1,17 @@
 <?php echo $header;?>
 <script type="text/javascript" src="js/rating/jquery.raty.js"></script>
+<link rel="stylesheet" href="<?php echo base_url(); ?>css/font-awesome.css" type="text/css">
+<style>
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.eot');
+  src: url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+    url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.woff') format('woff'),
+    url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+</style>
 <script>
 	$(document).ready(function() {
 <!-------- Rating---------->
@@ -56,11 +68,42 @@
                   {
                       $("#reviewerror").hide();
                   }
-									
-											$("#form4").submit();
+					
+					if($('#autopost').val() == "")
+					{
+					  $("#posterror").show();
+                      $("#thumb-up").focus();
+                      return false;
+					}
+					else
+					{
+					  $("#posterror").hide();
+					}
+					
+				  $("#form4").submit();
                    
               });
   
+			$('#thumb-up').toggle(function(){
+				$('#thumb-down').hide();
+				$('#thumb-up').css({"color" : "#2c6a99"});
+				$('#autopost').val("1");
+			},function(){
+				$('#thumb-down').show();
+				$('#thumb-up').css({"color" : "black"});
+				$('#autopost').val("");
+			});
+			
+			$('#thumb-down').toggle(function(){
+				$('#thumb-up').hide();
+				$('#thumb-down').css({"color" : "#2c6a99"});
+				$('#autopost').val("0");
+			},function(){
+				$('#thumb-up').show();
+				$('#thumb-down').css({"color" : "black"});
+				$('#autopost').val("");
+			});
+			
            });
       </script> 
       <?php echo form_open('review/update',array('class'=>'','id'=>'form4'));?>
@@ -68,8 +111,11 @@
         <div id="reviewtitleerror" class="error">Review title is required.</div>
         <div id="reviewerror" class="error">Review is required.</div>
         <div id="rateerror" class="error">Please choose a star rating.</div>
+        <div id="posterror" class="error">Please choose review about your company.</div>
         <h3>HOW WOULD YOU RATE THIS COMPANY? <i class="rating_review"></i></h3>
+        <h3>HOW WOULD YOU REVIEW THIS COMPANY? <i class="fa fa-thumbs-up thumb" id = "thumb-up"></i><i class="fa fa-thumbs-down thumb" id = "thumb-down"></i></h3>
         <h3>WHAT DO YOU HAVE TO SAY ABOUT THIS COMPANY?</h3>
+		<input type = "hidden" value = "" name = "autopost" id = "autopost">
         <input class="txt_box" id="reviewtitle" name="reviewtitle" maxlength="80" placeholder="review title"/>
         <textarea class="txrareawrp" id="review" name="review" maxlength="500"></textarea>
       </div>

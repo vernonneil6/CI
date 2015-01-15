@@ -1,23 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 ob_start();
-class Review extends CI_Controller {
-
-	/**
-	* Index Page for this controller.
-	*
-	* Maps to the following URL
-	* 		http://example.com/index.php/dashboard
-	*	- or -  
-	* 		http://example.com/index.php/dashboard/index
-	*	- or -
-	* Since this controller is set as the default controller in 
-	* config/routes.php, it's displayed at http://example.com/
-	*
-	* So any other public methods not prefixed with an underscore will
-	* map to /index.php/dashboard/<method_name>
-	* @see http://codeigniter.com/review_guide/general/urls.html
-	*/
-	
+class Review extends CI_Controller 
+{
 	public $paging;
 	public $data;
 	
@@ -33,7 +17,7 @@ class Review extends CI_Controller {
 		    $site = $regs['domain'];
 		 }
 		 
-		 $website = $this->common->get_site_by_domain_name($site);
+		 $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
 		 
 		 if(count($website)>0)
 		 {
@@ -186,27 +170,25 @@ class Review extends CI_Controller {
 			redirect('review', 'refresh');
 		}
 	}
-	
-	//Updating the Record
+
+		
 	public function update()
 	{
-			if($this->input->post('id')!='')
+		$id = $this->encrypt->decode($this->input->post('id'));
+		$companyid = $this->encrypt->decode($this->input->post('companyid'));
+		$userid = $this->session->userdata['youg_user']['userid'];
+		$rating = $this->input->post('score');
+		$review = strip_tags($this->input->post('review'));
+		$reviewtitle = $this->input->post('reviewtitle');
+		$autopost = $this->input->post('autopost');		
+
+		if($this->input->post('id')!='')
+		{
+			if( $this->input->post('btnupdate') || $review!='')
 			{
-				//If Old Record Update
-				if( $this->input->post('btnupdate') || $this->input->post('review')!='')
+				if($rating!='' || $rating!=0)
 				{
-			//Getting id
-			$id = $this->encrypt->decode($this->input->post('id'));
-			//Getting value
-			$companyid = $this->encrypt->decode($this->input->post('companyid'));
-			$userid = $this->session->userdata['youg_user']['userid'];
-			$rating = ($this->input->post('score'));
-			$review = (strip_tags($this->input->post('review')));
-			$reviewtitle = ($this->input->post('reviewtitle'));	
-			if($rating!='' || $rating!=0)
-			{
-					//Updating Record With Image
-					$updated = $this->reviews->update($id,$companyid,$userid,$rating,$review,$reviewtitle);
+					$updated = $this->reviews->update($id,$companyid,$userid,$rating,$review,$reviewtitle,$autopost);
 					if( $updated == 'updated')
 					{
 						$this->session->set_flashdata('success', 'review updated successfully.');
@@ -217,327 +199,321 @@ class Review extends CI_Controller {
 						$this->session->set_flashdata('error', 'There is error in updating review. Try later!');
 						redirect('review', 'refresh');
 					}
-			}
-			else
-			{
-				$this->session->set_flashdata('error', 'Rating must not be empty. Try later!');
-				redirect('review/edit/'.$id, 'refresh');
+				}
+				else
+				{
+					$this->session->set_flashdata('error', 'Rating must not be empty. Try later!');
+					redirect('review/edit/'.$id, 'refresh');
+				}
 			}
 		}
-			}
-			else
+		else
+		{
+
+			if( $this->input->post('btnsubmit') || $review!='')
 			{
-				//If New Record Insert
-			if( $this->input->post('btnsubmit') || $this->input->post('review')!='')
-			{
-			//Getting value
-			$companyid = $this->encrypt->decode($this->input->post('companyid'));
-			$userid = $this->session->userdata['youg_user']['userid'];
-			$rating = ($this->input->post('score'));
-			$review = (strip_tags($this->input->post('review')));
-			$reviewtitle = ($this->input->post('reviewtitle'));
-			$company=$this->reviews->get_company_byid($companyid);
-			$user=$this->users->get_user_byid($userid);
-			
+
+				$company=$this->reviews->get_company_byid($companyid);
+				$user=$this->users->get_user_byid($userid);
+
 				if($rating!='' && $rating!=0)
-				 {
+				{
 					$elite=$this->reviews->elitemship($companyid);
-				
+
 					if(count($elite)>0)
 					{
-							$relation = $this->common->get_relation_byciduid($companyid,$userid);
-							if(count($relation)>0)
+						$relation = $this->common->get_relation_byciduid($companyid,$userid);
+
+						$site_name = $this->common->get_setting_value(1);
+						$site_url = $this->common->get_setting_value(2);
+						$site_mail = $this->common->get_setting_value(5);
+
+						if(count($relation)>0)
+						{
+							if( $lastid = $this->reviews->insert_elite_review($companyid,$userid,$rating,$review,$reviewtitle,$autopost))
 							{
-								if( $lastid = $this->reviews->insert_elite_review($companyid,$userid,$rating,$review,$reviewtitle))
-								{
-								
-								//Loading E-mail library
 								$this->load->library('email');
-								
-								//Loading E-mail config file
 								$this->config->load('email',TRUE);
+
 								$mail = $this->common->get_email_byid(7);
 								$subject = $mail[0]['subject'];
 								$mailformat = $mail[0]['mailformat'];
-								
-								$site_url = $this->common->get_setting_value(2);
-								$site_mail = $this->common->get_setting_value(5);
-								$site_name = $this->common->get_setting_value(1);
-								//Payment mail for Company
-								//$from = $site_mail;
 								$to = $company[0]['email'];
-								
-								$this->load->library('email');
+
 								$this->email->from($site_mail,$site_name);
 								$this->email->to($to);
 								$this->email->subject($subject);
 								$review123 = $this->reviews->get_review1_byid($lastid);
 								$seo = $review123[0]['seokeyword'];
-								$link = "<a href='".site_url('review/browse/'.$seo)."' title='see review' target='_blank'>".site_url('review/browse/'.$seo)."</a>";
-							
+
+								$link = "<a href='".site_url('review/browse/'.$seo)."' title='see review' target='_blank'>".site_url('review/browse/'.$seo)."</a>";							
 								$mail_body = str_replace("%company%",ucfirst($company[0]['company']),str_replace("%emailid%",$to,str_replace("%link%",$link,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_mail,stripslashes($mailformat)))))));
-							
+
 								$this->email->message($mail_body);
-								
-								//Sending mail to admin
 								$this->email->send();
-								
+
 								$this->session->set_flashdata('success', 'Review submitted successfully!');
 								redirect('review', 'refresh');
-						}
-								else
-								{
+							}
+							else
+							{
 								$this->session->set_flashdata('error', 'There is error in inserting review. Try later!');
 								redirect('review', 'refresh');
 							}
-							}
-							else
+						}
+						else
+						{
+							if($this->reviews->insert1($companyid,$userid,$rating,$review,$reviewtitle,$autopost))
 							{
-								if($this->reviews->insert1($companyid,$userid,$rating,$review,$reviewtitle))
+								if(count($company)>0)
 								{
-									if(count($company)>0)
-									{
 									$companyemailaddress = $company[0]['email'];
 								}
-					
-					$site_name = $this->common->get_setting_value(1);
-					$site_url = $this->common->get_setting_value(2);
-					$site_email = $this->common->get_setting_value(5);
-					
-					// Company Mail
-					$to = $companyemailaddress;
-					//$mail = $this->common->get_email_byid(9);
-					
-					//$subject = $mail[0]['subject'];
-					//$mailformat = $mail[0]['mailformat'];
-					
-					$this->load->library('email');
-					$this->email->from($site_email,$site_name);
-					$this->email->to($to);
-					$this->email->subject('A Review about you company has been posted on YouGotRated.');
-					
-					$this->email->message("
-					<table>
-												
-						<tr>
-							<td>
-								<ul style='font-size: 13px; list-style: none; padding : 0;'>
-								
-									<li style='margin: 20px 0;  padding : 0;'>Hello ".$company[0]['company'].",</li>
-									
-									<li style='margin: 8px 0; padding : 0 0 0 15px;'>One of your customers has posted a review about your business.</li>
-									
-									<li style='margin: 8px 0; padding : 0 0 0 15px;'>• If you received a positive review, congratulations for a job well done.</li>
-									
-									<li style='margin: 8px 0; padding : 0 0 0 15px;'>• If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.</li>
-									
-									<li style='margin: 11px 0; padding : 0 0 0 15px;'>• By being pro-active and working with your customer you can avoid having a bad reputation online which can affect your business</li>
-									
-									<li style='margin: 8px 0; padding : 0 0 0 15px;'>• Customers are more likely to arrive at a mutually beneficial solution when contacted immediately</li>
-									
-									<li style='margin: 8px 0; padding : 0 0 0 15px;'>• You will save time, money and most importantly, you will continue to enjoy a good online reputation</li>
-									
-								</ul>
-							</td>
-							<td>
-								<ul style='font-size : 13px; list-style : none; padding : 0; margin : 0;'>
-								
-									<li style = 'margin : 0;'><img src='".$site_url."images/email.jpg'></li>
-								</ul>
-								<ul style='font-size : 13px; list-style : none; margin : 0; background-color : #E7E5D3; width: 198px; padding : 6px 0; border-radius : 0 0 7px 7px; '>
-									<li style = 'font-size : 18px; color : #B32317; margin : 5px 0 10px; padding : 0  0 0 15px;'>Expert Tips</li>								
-									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Respond to negative reviews.</li>								
-									<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Encourage customers to post reviews.</li>
-								</ul>	
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<ul style='font-size : 15px; list-style : none; padding : 10px 0; margin : 0;'>
-								
-									<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>Here are the Transaction Details</li>
-									<li style='font-size : 13px'>Buyer's name: ".ucfirst($user[0]['firstname']." ".$user[0]['lastname'])."</li>
-									<li style='font-size : 13px'>Buyer's email: ".$user[0]['email']."</li>					
-									<li style='font-size : 13px'>Buyer's Phone Number: ".$user[0]['phoneno']."</li>
 
-									
-									
-									<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>What To Do Next</li>									
-									<li>To view the posted review <a href='".base_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints')."'>CLICK HERE</a></li>
-									<li>You also have the ability to remove a negative or any review if you so choose using our </li>
-									<li>Negative Review removal tool that you can initiate by clicking the link when logged into your account.</li>
+								$to = $companyemailaddress;
 
-									<li style='font-size : 13px; margin : 20px 0 5px 15px;'>Sincerely,</li>
-									<li style='font-size : 13px; margin : 0 0 20px 15px;'>YouGotRated</li>
+								$this->load->library('email');
+								$this->email->from($site_mail,$site_name);
+								$this->email->to($to);
+								
+								if($autopost == 1)
+								{
+									$this->email->subject('A Positive Review about you company has been posted on YouGotRated.');
 
-									
-  								</ul>
-							</td>
-						</tr>
-						
-					</table>
-					
-					
-					");
-					
-					
+									$this->email->message("
+									<table>
+										<tr>
+											<td>
+												<ul style='font-size: 13px; list-style: none; padding : 0;'>
+													<li style='margin: 20px 0;  padding : 0;'>Hello ".$company[0]['company'].",</li>
+													<li style='margin: 8px 0; padding : 0 0 0 15px;'>One of your customers has posted a review about your business.</li>
+													<li style='margin: 8px 0; padding : 0 0 0 15px;'>• If you received a positive review, congratulations for a job well done.</li>
+													<li style='margin: 8px 0; padding : 0 0 0 15px;'>• If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.</li>
+													<li style='margin: 11px 0; padding : 0 0 0 15px;'>• By being pro-active and working with your customer you can avoid having a bad reputation online which can affect your business</li>
+													<li style='margin: 8px 0; padding : 0 0 0 15px;'>• Customers are more likely to arrive at a mutually beneficial solution when contacted immediately</li>
+													<li style='margin: 8px 0; padding : 0 0 0 15px;'>• You will save time, money and most importantly, you will continue to enjoy a good online reputation</li>
+												</ul>
+											</td>
 										
-					if($this->email->send())
-							{
-								$this->session->set_flashdata('success', 'Review submitted successfully!');
-								redirect(site_url('review'), 'refresh');
-							}
-							else
-							{
-								redirect(site_url('review'), 'refresh');
-							}
+											<td>
+												<ul style='font-size : 13px; list-style : none; padding : 0; margin : 0;'>
+													<li style = 'margin : 0;'><img src='".$site_url."images/email.jpg'></li>
+												</ul>
+												<ul style='font-size : 13px; list-style : none; margin : 0; background-color : #E7E5D3; width: 198px; padding : 6px 0; border-radius : 0 0 7px 7px; '>
+													<li style = 'font-size : 18px; color : #B32317; margin : 5px 0 10px; padding : 0  0 0 15px;'>Expert Tips</li>								
+													<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Respond to negative reviews.</li>								
+													<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Encourage customers to post reviews.</li>
+												</ul>	
+											</td>
+										</tr>
+
+										<tr>
+											<td>
+												<ul style='font-size : 15px; list-style : none; padding : 10px 0; margin : 0;'>
+													<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>Here are the Transaction Details</li>
+													<li style='font-size : 13px'>Buyer's name: ".ucfirst($user[0]['firstname']." ".$user[0]['lastname'])."</li>
+													<li style='font-size : 13px'>Buyer's email: ".$user[0]['email']."</li>					
+													<li style='font-size : 13px'>Buyer's Phone Number: ".$user[0]['phoneno']."</li>
+													<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>What To Do Next</li>									
+													<li>To view the posted review <a href='".base_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints')."'>CLICK HERE</a></li>
+													<li>You also have the ability to remove a negative or any review if you so choose using our </li>
+													<li>Negative Review removal tool that you can initiate by clicking the link when logged into your account.</li>
+													<li style='font-size : 13px; margin : 20px 0 5px 15px;'>Sincerely,</li>
+													<li style='font-size : 13px; margin : 0 0 20px 15px;'>YouGotRated</li>
+											  	</ul>
+											</td>
+										</tr>
+									</table>
+									");
 								}
 								else
 								{
-									$this->session->set_flashdata('error', 'There is error in inserting review. Try later!');	
-									redirect('review', 'refresh');
+									$this->email->subject('A Negative Review about you company has been posted on YouGotRated.');
+
+									$this->email->message("
+									<table>
+										<tr>
+											<td>
+												<ul style='font-size: 13px; list-style: none; padding : 0;'>
+													<li style='margin: 20px 0;  padding : 0;'>Hello ".$company[0]['company'].",</li>
+													<li style='margin: 8px 0; padding : 0 0 0 15px;'>One of your customers has posted a review about your business.</li>
+													<li style='margin: 8px 0; padding : 0 0 0 15px;'>• If you received a positive review, congratulations for a job well done.</li>
+													<li style='margin: 8px 0; padding : 0 0 0 15px;'>• If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.</li>
+													<li style='margin: 11px 0; padding : 0 0 0 15px;'>• By being pro-active and working with your customer you can avoid having a bad reputation online which can affect your business</li>
+													<li style='margin: 8px 0; padding : 0 0 0 15px;'>• Customers are more likely to arrive at a mutually beneficial solution when contacted immediately</li>
+													<li style='margin: 8px 0; padding : 0 0 0 15px;'>• You will save time, money and most importantly, you will continue to enjoy a good online reputation</li>
+												</ul>
+											</td>
+										
+											<td>
+												<ul style='font-size : 13px; list-style : none; padding : 0; margin : 0;'>
+													<li style = 'margin : 0;'><img src='".$site_url."images/email.jpg'></li>
+												</ul>
+												<ul style='font-size : 13px; list-style : none; margin : 0; background-color : #E7E5D3; width: 198px; padding : 6px 0; border-radius : 0 0 7px 7px; '>
+													<li style = 'font-size : 18px; color : #B32317; margin : 5px 0 10px; padding : 0  0 0 15px;'>Expert Tips</li>								
+													<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Respond to negative reviews.</li>								
+													<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Encourage customers to post reviews.</li>
+												</ul>	
+											</td>
+										</tr>
+
+										<tr>
+											<td>
+												<ul style='font-size : 15px; list-style : none; padding : 10px 0; margin : 0;'>
+													<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>Here are the Transaction Details</li>
+													<li style='font-size : 13px'>Buyer's name: ".ucfirst($user[0]['firstname']." ".$user[0]['lastname'])."</li>
+													<li style='font-size : 13px'>Buyer's email: ".$user[0]['email']."</li>					
+													<li style='font-size : 13px'>Buyer's Phone Number: ".$user[0]['phoneno']."</li>
+													<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>What To Do Next</li>									
+													<li>To view the posted review <a href='".base_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints')."'>CLICK HERE</a></li>
+													<li>You also have the ability to remove a negative or any review if you so choose using our </li>
+													<li>Negative Review removal tool that you can initiate by clicking the link when logged into your account.</li>
+													<li style='font-size : 13px; margin : 20px 0 5px 15px;'>Sincerely,</li>
+													<li style='font-size : 13px; margin : 0 0 20px 15px;'>YouGotRated</li>
+											  	</ul>
+											</td>
+										</tr>
+									</table>
+									");
+								}
+
+								if($this->email->send())
+								{
+									$this->session->set_flashdata('success', 'Review submitted successfully!');
+									redirect(site_url('review'), 'refresh');
+								}
+								else
+								{
+									redirect(site_url('review'), 'refresh');
 								}
 							}
+							else
+							{
+								$this->session->set_flashdata('error', 'There is error in inserting review. Try later!');	
+								redirect('review', 'refresh');
+							}
+						}
 					}
-				else
-				{	
-					$updated = $this->reviews->insert($companyid,$userid,$rating,$review,$reviewtitle);
-					if( $updated = 'added')
-					{	
-						$id = $this->db->insert_id();
-						$this->session->set_flashdata('success', 'Review submitted successfully!');
-						redirect('review', 'refresh');
-			}
 					else
-					{
-				$this->session->set_flashdata('error', 'There is error in inserting review. Try later!');
-				redirect('review', 'refresh');
-			}	
+					{	
+						$updated = $this->reviews->insert($companyid,$userid,$rating,$review,$reviewtitle,$autopost);
+						if( $updated = 'added')
+						{	
+							$id = $this->db->insert_id();
+							$this->session->set_flashdata('success', 'Review submitted successfully!');
+							redirect('review', 'refresh');
+						}
+						else
+						{
+							$this->session->set_flashdata('error', 'There is error in inserting review. Try later!');
+							redirect('review', 'refresh');
+						}	
+					}
 				}
-			}
 				else
 				{
-				$this->session->set_flashdata('error', 'Rating must not be empty. Try later!');
-				redirect('review/add/'.$companyid, 'refresh');
+					$this->session->set_flashdata('error', 'Rating must not be empty. Try later!');
+					redirect('review/add/'.$companyid, 'refresh');
 				}
-		}
-		else
-		{
+			}
+			else
+			{
 				redirect('review', 'refresh');
+			}
 		}
-	 }
 	}
 	
-	public function buyerreview($userid, $companyid)
+	public function resolution_options($reviewid)
 	{
 		if( !array_key_exists('youg_user',$this->session->userdata) )
 		{
 			$this->session->set_flashdata('error', 'Please login to continue!');
-			$this->session->set_userdata('last_url','review/buyerreview/'.$userid.'/'.$companyid);
+			$this->session->set_userdata('last_url','review/resolution_options/'.$reviewid);
 			redirect('login','refresh');
 		}
-		$user = $this->users->get_user_byid($userid);
-		$this->data['userid'] = $userid;
-		$this->data['companyid'] = $companyid;
-		$this->data['name'] = ucfirst($user[0]['firstname']." ".$user[0]['lastname']);
 		
-		$this->load->view('review_buyer',$this->data);
+		$review  = $this->reviews->get_review_bysingleid($reviewid);
+		$user    = $this->users->get_user_bysingleid($review['reviewby']);
+		
+		$this->data['reviewid'] = $reviewid;
+		$this->data['name'] = ucfirst($user['firstname']." ".$user['lastname']);
+		
+		$this->load->view('review/option',$this->data);
 	}
-	
-	public function cronjob()
+		
+	public function review_mail($reviewid, $emailid, $url, $to)
 	{
-		$result = $this->reviews->get_all_reviewmail();
-		foreach ( $result as $record )
-		{
-			$this->merchantbuyermail($record['user_id'], $record['company_id'], $record['id']);
-		}
-		die;
+		$review 	= $this->reviews->get_review_bysingleid($reviewid);	
+		$user 		= $this->users->get_user_bysingleid($review['reviewby']);
+		$company 	= $this->users->get_company_bysingleid($review['companyid']);
+		$reviewmail = $this->reviews->get_reviewmail_bysinglereviewid($review['id']);
+		
+		$site_name  = $this->common->get_setting_value(1);
+		$site_email = $this->common->get_setting_value(5);
+		$site_url   = $this->reviews->get_setting_value(2);
+		
+		$this->load->library('email');
+		$message  = $this->common->get_email_byid($emailid);
+		$subject  = str_replace("%reviewid%", $reviewid, stripslashes($message[0]['subject']));			
+		$mail     = str_replace("%url%", site_url($url), str_replace("%address%", $company['streetaddress'], str_replace("%merchantname%", $company['company'], str_replace("%city%", $company['city'], str_replace("%state%", $company['state'], str_replace("%zip%", $company['zip'], str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company['company']), str_replace("%name%", ucfirst($user['firstname']." ".$user['lastname']),str_replace("%carrier%", $reviewmail['carrier'], str_replace("%trackingno%", $reviewmail['trackingno'], str_replace("%dateshipped%", $reviewmail['dateshipped'], stripslashes($message[0]['mailformat']))))))))))))));			
+		
+		$this->email->from($site_email,$site_name);
+		$this->email->to($to);
+		$this->email->subject($subject);	
+		$this->email->message($mail);		
 	}
-	
-	function mail($site_name,$site_email,$site_url,$to,$subject,$mail)
-	{
-			$this->email->from($site_email,$site_name);
-			$this->email->to($to);
-			$this->email->subject($subject);	
-			$this->email->message($mail);		
-	}
-	
-	function review_mail($userid, $companyid, $reviewid, $emailid, $url, $to)
-	{
-			$user 		= $this->users->get_user_byid($userid);
-			$company 	= $this->reviews->get_company_byid($companyid);
-			
-			$site_name  = $this->common->get_setting_value(1);
-			$site_email = $this->common->get_setting_value(5);
-			$site_url   = $this->reviews->get_setting_value(2);
-			
-			$this->load->library('email');
-			$message  = $this->common->get_email_byid($emailid);
-			$subject  = str_replace("%reviewid%", $reviewid, stripslashes($message[0]['subject']));			
-			$mail     = str_replace("%url%", site_url($url), str_replace("%address%", $company[0]['streetaddress'], str_replace("%merchantname%", $company[0]['company'], str_replace("%city%", $company[0]['city'], str_replace("%state%", $company[0]['state'], str_replace("%zip%", $company[0]['zip'], str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($message[0]['mailformat'])))))))))));			
-			
-			$this->email->from($site_email,$site_name);
-			$this->email->to($to);
-			$this->email->subject($subject);	
-			$this->email->message($mail);		
-	}
-	
-	function review_data($id)
-	{
-		$review = $this->reviews->get_reviewmail_byid($id);
-		$data 	= array(
-			'userid'   	=> $review['user_id'],
-			'companyid'	=> $review['company_id'],
-			'reviewid' 	=> $review['review_id'],
-			'option'   	=> $review['resolution']
-		);
-		return $data;
-	}
-	
-	public function reviewmail_insert($userid, $companyid)
+		
+	public function reviewmail_insert($reviewid)
 	{
 		if( !array_key_exists('youg_user',$this->session->userdata) )
 		{
 			redirect('login','refresh');
 		}
 		
-		$user 		= $this->users->get_user_byid($userid);
-		$company 	= $this->reviews->get_company_byid($companyid);
-		$review  	= $this->reviews->get_status_review($userid, $companyid);
-		
+		$review  		= $this->reviews->get_review_bysingleid($reviewid);		
+		$user 			= $this->users->get_user_bysingleid($review['reviewby']);
+		$company 		= $this->users->get_company_bysingleid($review['companyid']);
 		$buyeroption 	= $this->input->post('buyeroption');
 		$textarea   	= $this->input->post('buyer_textarea');
 		
-		$this->reviews->insert_reviewmail($companyid, $userid, $review['id'], $buyeroption, $textarea, '0');
-		$id = $this->db->insert_id();
-		$this->reviews->update_reviewmail($companyid, $userid, $review['id']);
-		
-		$data = $this->review_data($id);
-		
-		if ($data['option'] == 'Would like a Full Refund')
+		if(count($this->reviews->insert_reviewmail_check($review['companyid'], $review['reviewby'])) > 0)
 		{
-			$url = 'review/resolution/'.$data['reviewid'];
-			$this->review_mail($data['userid'], $data['companyid'], $data['reviewid'], '28', $url, $user[0]['email']);			
-			$this->email->send();
-		}
-		else if ($data['option'] == 'Would like a Replacement item')
-		{
-			$url = 'review/resolution/'.$data['reviewid'];
-			$this->review_mail($data['userid'], $data['companyid'], $data['reviewid'], '32', $url, $user[0]['email']);			
-			$this->email->send();
-		}
-		else if ($data['option'] == 'Would like the missing items to be shipped immediately')
-		{
-			$url = 'review/resolution/'.$data['reviewid'];
-			$this->review_mail($data['userid'], $data['companyid'], $data['reviewid'], '36', $url, $user[0]['email']);			
-			$this->email->send();
+			$this->session->set_flashdata('error', 'You have already contact this company.');
+			redirect('review','refresh');
 		}
 		
+		$this->reviews->insert_reviewmail($review['companyid'], $review['reviewby'], $review['id'], $buyeroption, $textarea, '0');
+		$this->reviews->review_date($review['companyid'],$review['reviewby'],$reviewid,date('Y-m-d'),'Email sent to customer requesting they agree to remove review');
 		
-		$this->session->set_flashdata('success', 'You have successfully send mail to merchant.');
-		redirect('review','refresh');
+
+		$this->reviews->update_reviewsflag($review['id']);
+		
+		$data = $this->reviews->get_reviewmail_bysinglereviewid($reviewid);
+		$url = 'review/resolution/'.$data['review_id'];
+				
+		if ($data['resolution'] == '2')
+		{
+			$this->review_mail($data['review_id'], '28', $url, $user['email']);		
+			$this->email->send();
+		}
+		if ($data['resolution'] == '3')
+		{
+			$this->review_mail($data['review_id'], '32', $url, $user['email']);	
+			$this->email->send();
+		}
+		if ($data['resolution'] == '4')
+		{		
+			$this->review_mail($data['review_id'], '36', $url, $user['email']);	
+			$this->email->send();
+		}
+		
+		
+		$this->session->set_flashdata('success', 'You have successfully send mail to Merchant.');
+		redirect('review','refresh');	
+		
 	}
+	
+	
 	public function resolution($reviewid)
 	{
 		if( !array_key_exists('youg_user',$this->session->userdata) )
@@ -557,45 +533,31 @@ class Review extends CI_Controller {
 				'status'		=> '1'
 			);
 				$this->reviews->reviewmail_update($data, $reviewid);
-			
-				$reviewmail	= $this->reviews->get_reviewmail_byreviewid($reviewid);
-				$userid   	= $reviewmail['user_id'];
-				$companyid  = $reviewmail['company_id'];
-				$option   	= $reviewmail['resolution'];
-				$reviewids 	= $reviewid;
-			
-				$user 		= $this->users->get_user_byid($userid);
-				$company 	= $this->reviews->get_company_byid($companyid);
-				$site_name  = $this->common->get_setting_value(1);
-				$site_email = $this->common->get_setting_value(5);
-				$site_url   = $this->reviews->get_setting_value(2);
 				
-				$this->load->library('email');
-				if($option == 'Would like a Full Refund')
+				
+				$review  	= $this->reviews->get_review_bysingleid($reviewid);
+				$data 		= $this->reviews->get_reviewmail_bysinglereviewid($reviewid);
+				$company 	= $this->users->get_company_bysingleid($review['companyid']);
+				$url 		= 'businessadmin/review/resolution/'.$data['review_id'];
+				
+				$this->reviews->review_date($review['companyid'],$review['reviewby'],$reviewid,date('Y-m-d'),'Customer submitted information about how to resolve');
+				
+				if($data['resolution'] == '2')
+				{					
+					$this->review_mail($data['review_id'], '29', $url, $company['email']);								
+				}
+				
+				if($data['resolution'] == '3')
 				{
-					$mail_msg = $this->common->get_email_byid(29);
-					$subject  = str_replace("%reviewid%", $reviewids, stripslashes($mail_msg[0]['subject']));			
-					$mail     = str_replace("%url%", site_url('businessadmin/review/resolution/'.$reviewids), str_replace("%carrier%", $reviewmail['carrier'], str_replace("%trackingno%", $reviewmail['trackingno'], str_replace("%dateshipped%", $reviewmail['dateshipped'], str_replace("%reviewid%", $reviewids, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))));			
-					$to       = $company[0]['email'];
-										
-					$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
-					$this->email->send();
+					$this->review_mail($data['review_id'], '33', $url, $company['email']);			
+				}
+				
+				if($this->email->send())
+				{
 					$this->session->set_flashdata('success', 'You have successfully send mail to merchant.');
 					redirect('review','refresh');
 				}
-				if($option == 'Would like a Replacement item')
-				{
-					$mail_msg = $this->common->get_email_byid(33);
-					$subject  = str_replace("%reviewid%", $reviewids, stripslashes($mail_msg[0]['subject']));			
-					$mail     = str_replace("%url%", site_url('businessadmin/review/resolution/'.$reviewids), str_replace("%carrier%", $reviewmail['carrier'], str_replace("%trackingno%", $reviewmail['trackingno'], str_replace("%dateshipped%", $reviewmail['dateshipped'], str_replace("%reviewid%", $reviewids, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company[0]['company']), str_replace("%name%", ucfirst($user[0]['firstname']." ".$user[0]['lastname']), stripslashes($mail_msg[0]['mailformat'])))))))));			
-					$to       = $company[0]['email'];
-										
-					$this->mail($site_name, $site_email, $site_url, $to, $subject, $mail);			
-					$this->email->send();
-					$this->session->set_flashdata('success', 'You have successfully send mail to merchant.');
-					redirect('review','refresh');
-				}
-			
+					
 		}
 		$this->data['reviewid'] = $reviewid;
 		$this->load->view('review/resolution', $this->data);
@@ -609,7 +571,7 @@ class Review extends CI_Controller {
 			$this->session->set_userdata('last_url','review/proof/'.$reviewid);
 			redirect('login','refresh');
 		}
-		$this->data['reviewmail'] = $this->reviews->get_reviewmail_byreviewid($reviewid);
+		$this->data['reviewmail'] = $this->reviews->get_reviewmail_bysinglereviewid($reviewid);
 		$this->load->view('review/resolution', $this->data);
 	}
 	
@@ -621,7 +583,7 @@ class Review extends CI_Controller {
 			$this->session->set_userdata('last_url','review/replacement/'.$reviewid);
 			redirect('login','refresh');
 		}
-		$this->data['reviewmail'] = $this->reviews->get_reviewmail_byreviewid($reviewid);
+		$this->data['reviewmail'] = $this->reviews->get_reviewmail_bysinglereviewid($reviewid);
 		$this->load->view('review/resolution', $this->data);
 	}	
 	
@@ -634,41 +596,33 @@ class Review extends CI_Controller {
 		$this->reviews->delete_review_byid($reviewid);
 		$this->reviews->delete_comment($reviewid);
 		$this->reviews->delete_reviewmail($reviewid);
-		
+				
 		$this->session->set_flashdata('success', 'You have successfully closed the case.');
 		redirect('review','refresh');
 	}
 	
-	public function review_email($emailid, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname)
+	public function cronjob()
 	{
-		$mail_msg = $this->common->get_email_byid($emailid);		
-		$data = array(
-		'subject'  => str_replace("%reviewid%", $reviewid, stripslashes($mail_msg[0]['subject'])),
-		'mail'     =>  str_replace("%url%", site_url('businessadmin/review/resolution/'.$reviewids), str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($cpyname), str_replace("%name%", ucfirst($fname." ".$lname), stripslashes($mail_msg[0]['mailformat']))))))
-		);
-		return $data;
+		$result = $this->reviews->get_all_reviewmail();
+		foreach ( $result as $record )
+		{
+			$this->merchantbuyermail($record['id']);
+		}
+		die;
 	}
-		
-	public function merchantbuyermail($userid, $companyid, $id)
+	
+	public function merchantbuyermail($reviewid)
 	{
-		$user 		= $this->users->get_user_byid($userid);
-		$company 	= $this->reviews->get_company_byid($companyid);
-		$review  	= $this->reviews->get_status_review($userid, $companyid);
-		$cpyemail	= $company[0]['email'];
-		$usremail 	= $user[0]['email'];
-		$reviewid  	= $review['id'];
-		
-		$cpyname	= $company[0]['company'];
-		$fname		= $user[0]['firstname'];
-		$lname		= $user[0]['lastname'];
-		
-		$reviewmail = $this->reviews->get_reviewmail_byid($id);
-		$reviewids 	= $reviewmail['review_id'];
-		$option   	= $reviewmail['resolution'];
-		$status   	= $reviewmail['status'];
-		$date1  	= $reviewmail['date'];
+		$reviewmail = $this->reviews->get_reviewmail_bysinglereviewid($review['id']);
+		$user 		= $this->users->get_user_bysingleid($review['reviewby']);
+		$company 	= $this->users->get_company_bysingleid($review['companyid']);	
+		$resolution = $reviewmail['resolution'];
+		$status 	= $reviewmail['status'];
+		$url 		= 'businessadmin/review/resolution/'.$reviewid;
 		
 		$date2 		= date("Y-m-d");
+		
+		$date1  	= $reviewmail['date'];
 		$diff   	= abs(strtotime($date2) - strtotime($date1));
 		$years  	= floor($diff / (365*60*60*24));
 		$months 	= floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
@@ -680,150 +634,133 @@ class Review extends CI_Controller {
 		$months1 	= floor(($diff1 - $years1 * 365*60*60*24) / (30*60*60*24));
 		$checkdays 	= floor(($diff1 - $years1 * 365*60*60*24 - $months1*30*60*60*24)/ (60*60*24));
 		
-		$site_name  = $this->common->get_setting_value(1);
-		$site_email = $this->common->get_setting_value(5);
-		$site_url   = $this->reviews->get_setting_value(2);
-		
-		$this->load->library('email');
-			
-		if ($option == 'Ship the Item and/or Provide Proof of Shipping')
+		if ($resolution == '1')
 		{
 			if ($days == 5 and $status == 0)
 			{
-				$mailinfo = $this->review_email(24, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
-				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
+				$this->review_mail($data['review_id'], '24', $url, $company['email']);	
 				$this->email->send();
 			}
 			
 			else if ($days == 7 and $status == 0)
 			{
-				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
-				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
+				$this->review_mail($data['review_id'], '26', $url, $user['email']);	
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
+					$this->reviews->get_update_review_status($reviewid);
 				}
 			}
 		}
 		
-		if($option == 'Would like a Full Refund')
+		if($option == '2')
 		{
 			if ($days == 7 and $status == 0 || $checkdays == 15 and $status == 2)
 			{
-				$this->reviews->delete_review_byid($reviewids);
-				$this->reviews->delete_comment($reviewids);
-				$this->reviews->delete_reviewmail($reviewids);
+				$this->reviews->delete_review_byid($reviewid);
+				$this->reviews->delete_comment($reviewid);
+				$this->reviews->delete_reviewmail($reviewid);
 			}
 			
 			else if ($checkdays == 10 and $status == 1)
 			{
 				
-				$mailinfo = $this->review_email(31, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
-				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
+				$this->review_mail($data['review_id'], '31', $url, $company['email']);				
 				$this->email->send();
 			}
 			
 			else if ($checkdays == 13 and $status == 1)
 			{
-				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
-				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
+				$this->review_mail($data['review_id'], '26', $url, $user['email']);	
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
+					$this->reviews->get_update_review_status($reviewid);
 				}
 			}			
 		}
 		
-		if($option == 'Would like a Replacement item')
+		if($option == '3')
 		{
 			if ($days == 7 and $status == 0)
 			{
-				$this->reviews->delete_review_byid($reviewids);
-				$this->reviews->delete_comment($reviewids);
-				$this->reviews->delete_reviewmail($reviewids);
+				$this->reviews->delete_review_byid($reviewid);
+				$this->reviews->delete_comment($reviewid);
+				$this->reviews->delete_reviewmail($reviewid);
 			}
 			
 			else if ($checkdays == 10 and $status == 1)
 			{
-				$mailinfo = $this->review_email(35, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
-				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
+				$this->review_mail($data['review_id'], '35', $url, $company['email']);				
 				$this->email->send();
 			}
 			
 			else if ($checkdays == 12 and $status == 1)
 			{
-				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
-				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
+				$this->review_mail($data['review_id'], '26', $url, $user['email']);	
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
+					$this->reviews->get_update_review_status($reviewid);
 				}
 			}
 			
 			else if ($checkdays == 30 and $status == 2)
 			{
-				$this->reviews->delete_review_byid($reviewids);
-				$this->reviews->delete_comment($reviewids);
-				$this->reviews->delete_reviewmail($reviewids);
+				$this->reviews->delete_review_byid($reviewid);
+				$this->reviews->delete_comment($reviewid);
+				$this->reviews->delete_reviewmail($reviewid);
 			}
 		}
 		
-		if($option == 'Would like the missing items to be shipped immediately')
+		if($option == '4')
 		{
 			if ($days == 15 and $status == 0)
 			{
-				$mailinfo = $this->review_email(38, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
-				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
+				$this->review_mail($data['review_id'], '38', $url, $company['email']);				
 				$this->email->send();
 			}
 		
 			else if ($days == 17 and $status == 0)
 			{
-				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
-				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
+				$this->review_mail($data['review_id'], '26', $url, $user['email']);	
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
+					$this->reviews->get_update_review_status($reviewid);
 				}
 			}
 			
 			else if ($checkdays == 30 and $status == 2)
 			{
-				$this->reviews->delete_review_byid($reviewids);
-				$this->reviews->delete_comment($reviewids);
-				$this->reviews->delete_reviewmail($reviewids);
+				$this->reviews->delete_review_byid($reviewid);
+				$this->reviews->delete_comment($reviewid);
+				$this->reviews->delete_reviewmail($reviewid);
 			}
 		}
 		
-		if($option == 'Would like a Partial Refund and/or Gift Card in compensation for the service received')
+		if($option == '5')
 		{
 			if ($days == 15 and $status == 0)
 			{
-				$mailinfo = $this->review_email(40, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
-				$this->mail($site_name, $site_email, $site_url, $cpyemail, $mailinfo['subject'], $mailinfo['mail']);			
+				$this->review_mail($data['review_id'], '40', $url, $company['email']);				
 				$this->email->send();
 			}
 			
 			else if ($days == 17 and $status == 0)
 			{
-				$mailinfo = $this->review_email(26, $reviewid, $reviewids, $site_url, $cpyname, $fname, $lname);
-				$this->mail($site_name, $site_email, $site_url, $usremail, $mailinfo['subject'], $mailinfo['mail']);
+				$this->review_mail($data['review_id'], '26', $url, $user['email']);	
 				if($this->email->send())
 				{
-					$this->reviews->get_status_reviewupdate($userid, $companyid, $reviewid);
+					$this->reviews->get_update_review_status($reviewid);
 				}
 			}
 			
 			else if ($checkdays == 15 and $status == 2)
 			{
-				$this->reviews->delete_review_byid($reviewids);
-				$this->reviews->delete_comment($reviewids);
-				$this->reviews->delete_reviewmail($reviewids);
+				$this->reviews->delete_review_byid($reviewid);
+				$this->reviews->delete_comment($reviewid);
+				$this->reviews->delete_reviewmail($reviewid);
 			}
 		}
-		return true;
-	}
-	
+	}	
+		
 	public function checkvote()
 	{
 		$ip = $this->input->post('ip');

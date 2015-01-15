@@ -65,6 +65,7 @@
         <th width="8%">Rating</th>
         <th width="20%">Review Date</th>
         <th width="15%">Share On</th>
+        
       </tr>
 
       <?php for($i=0;$i<count($reviews);$i++) { ?>
@@ -85,6 +86,7 @@
           		<a href="https://twitter.com/share" class="twitter-share-button" data-url="google.com" data-text="<?php echo $pageurl.$reviews[$i]['id'];?>" data-count="none">Tweet</a>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>        
 		</td>
+		
       </tr>
       <?php } ?>
     </table>
@@ -126,6 +128,7 @@
         <th>Removal Request</th>
         <th>Resolution</th>
         <th width="15%">Share On</th>
+		<th width="20%">Status</th>
       </tr>
       <?php for($i=0;$i<count($reviews);$i++) { ?>
       <?php $user = $this->settings->get_user_byid($reviews[$i]['reviewby']);?>
@@ -156,7 +159,12 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         
         </td>
-
+		<td>
+		<?php 
+			$status = $this->reviews->get_reviewmail_bysinglereviewid($reviews[$i]['id']); 
+			if($status['status'] == ''){ echo "Removal Requested"; } else if($status['status'] == '0' or $status['status'] == '2'){echo "Pending Client Feedback";} else if($status['status'] == '1'){echo "Pending Elite Feedback";}
+		?>
+		</td>
       </tr>
       <?php } ?>
     </table>
@@ -179,7 +187,24 @@
 	?>
 	<div class="box-content">
     <fieldset>
-	<?php if($review['resolution'] == 'Ship the Item and/or Provide Proof of Shipping' || $review['resolution'] == 'Would like the missing items to be shipped immediately') { ?>
+	<?php if( count($review_date) > 0) { ?>
+	<table class="tab tab-drag">
+      <tr class="top nodrop nodrag">
+        <th width="50%">Date</th>
+        <th width="50%">Status</th>
+      </tr>
+
+      <?php for($i=0;$i<count($review_date);$i++) { ?>
+      <tr>
+        <td><?php echo $review_date[$i]['date']; ?></td>
+        <td>
+			<?php echo $review_date[$i]['status']; ?>
+		</td>
+      </tr>
+      <?php } ?>
+    </table>
+	<?php } ?>
+	<?php if($review['resolution'] == '1'  || $review['resolution'] == '4' && $review['status'] == '0') { ?>
 	<form action="review/review_updates" method="post" class ="formBox broker">
 		<div class="clearfix">
 			<div class="lab">
@@ -236,7 +261,20 @@
 	</form>
 	<?php } ?>
 	
-	<?php if($review['resolution'] == 'Would like a Full Refund') { ?>
+	<?php 
+	if($review['resolution'] == '4' && $review['status'] == '2') 
+	{ 
+	?>
+		
+	<?php 
+	}
+	?>
+	
+	<?php if($review['resolution'] == '2') { ?>
+	<?php if($review['status'] == 0) { ?>
+		<div>Customer to upload his shipping information of the product</div>
+	<?php } ?>
+	<?php if($review['status'] == 1) { ?>
 	<form action="review/review_refund" method="post" class ="formBox broker" enctype = "multipart/form-data">
 		<div class="clearfix">
 			<div class="lab">
@@ -257,8 +295,13 @@
 		
 	</form>
 	<?php } ?>
+	<?php if($review['status'] == 2) { ?>
+		
+	<?php } ?>
+	<?php } ?>
 	
-	<?php if($review['resolution'] == 'Would like a Partial Refund and/or Gift Card in compensation for the service received') { ?>
+	<?php if($review['resolution'] == '5') { ?>
+	<?php if($review['status'] == '0') { ?>
 	<form action="review/review_gift" method="post" class ="formBox broker" enctype = "multipart/form-data">
 		<div class="clearfix">
 			<div class="lab">
@@ -279,8 +322,16 @@
 		
 	</form>
 	<?php } ?>
+	<?php if($review['status'] == '2') { ?>
 	
-	<?php if($review['resolution'] == 'Would like a Replacement item') { ?>
+	<?php } ?>
+	<?php } ?>
+	
+	<?php if($review['resolution'] == '3') { ?>	
+	<?php if($review['status'] == 0) { ?>
+		
+	<?php } ?>
+	<?php if($review['status'] == 1) { ?>
 	<form action="review/review_replacement" method="post" class ="formBox broker">
 		<div class="clearfix">
 			<div class="lab">
@@ -336,9 +387,14 @@
 		
 	</form>
 	<?php } ?>
+	<?php if($review['status'] == 2) { ?>
+		
+	<?php } ?>
+	<?php } ?>
 	
-
-
+	
+	<?php if($review_status['flag'] == '0') { echo "Review has not been requested to be removed."; }?>
+	
 	</fieldset>
     </div>
 	<?php

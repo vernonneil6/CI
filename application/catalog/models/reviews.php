@@ -57,7 +57,7 @@ class Reviews extends CI_Model
  	}
 	
 	//Inserting Record
-	function insert($companyid,$userid,$rating,$review,$reviewtitle)
+	function insert($companyid,$userid,$rating,$review,$reviewtitle,$autopost)
 	{
 		$siteid = $this->session->userdata('siteid');
 		$date = date_default_timezone_set('Asia/Kolkata');
@@ -73,6 +73,7 @@ class Reviews extends CI_Model
 							'reviewdate'	=> $date,
 							'status' 		=> 'Enable',
 							'websiteid'		=> $siteid,
+							'autopost'		=> $autopost,
 							'type'			=> 'ygr'
 						);
 
@@ -114,7 +115,7 @@ class Reviews extends CI_Model
 		
 	}
 	
-	function insert1($companyid,$userid,$rating,$review,$reviewtitle)
+	function insert1($companyid,$userid,$rating,$review,$reviewtitle,$autopost)
 	{
 		$siteid = $this->session->userdata('siteid');
 		$date = date_default_timezone_set('Asia/Kolkata');
@@ -130,6 +131,7 @@ class Reviews extends CI_Model
 							'reviewdate'	=> $date,
 							'status' 		=> 'Disable',
 							'websiteid'		=> $siteid,
+							'autopost'		=> $autopost,
 							'type'			=> 'ygr'
 						);
 
@@ -297,7 +299,7 @@ class Reviews extends CI_Model
 	
 	
 	//Updating Record
-	function update($id,$companyid,$userid,$rating,$review,$reviewtitle)
+	function update($id,$companyid,$userid,$rating,$review,$reviewtitle,$autopost)
  	{
 		$date = date('Y-m-d H:i:s');
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
@@ -306,6 +308,7 @@ class Reviews extends CI_Model
 							'companyid' 	=> $companyid,
 							'rate' 			=> $rating,
 					    	'comment'		=> $review,
+					    	'autopost'		=> $autopost,
 							'reviewby' 		=> $userid
 						);
 
@@ -381,42 +384,38 @@ class Reviews extends CI_Model
 		}
  	}
  	
- 	function get_all_reviewmail()
+	
+	function get_all_reviewmail()
  	{
 		return $this->db->get('youg_reviewmail')->result_array();
 	}
 	
- 	function get_status_review($userid, $companyid)
+	function get_review_bysingleid($reviewid)
  	{
-		return $this->db->get_where('reviews',array('reviewby' => $userid, 'companyid' => $companyid))->row_array();
+		return $this->db->get_where('youg_reviews',array('id' => $reviewid))->row_array();
 	}
 	
-	function get_reviewid($reviewid)
- 	{
-		return $this->db->get_where('youg_reviewmail',array('review_id' => $reviewid))->row_array();
-	}
-	
-	function get_reviewmail_byid($id)
+	function get_reviewmail_bysingleid($id)
  	{
 		return $this->db->get_where('youg_reviewmail', array('id' => $id))->row_array();
 	}
 	
-	function get_reviewmail_byreviewid($id)
+	function get_reviewmail_bysinglereviewid($reviewid)
  	{
-		return $this->db->get_where('youg_reviewmail', array('review_id' => $id))->row_array();
+		return $this->db->get_where('youg_reviewmail', array('review_id' => $reviewid))->row_array();
 	}
 	
 	function reviewmail_update($data, $id)
 	{
 		$this->db->where('review_id', $id)->update('youg_reviewmail', $data);
 	}
-		
-	function get_status_reviewupdate($userid, $companyid, $reviewid)
+	
+	function get_update_review_status($reviewid)
 	{
 		$data = array(
 			'status' => 'Enable'
 		);
-		$this->db->where(array('reviewby' => $userid, 'companyid' => $companyid, 'id' => $reviewid ))->update('youg_reviews',$data);
+		$this->db->where(array('id' => $reviewid ))->update('youg_reviews',$data);
 	}
 	
 	function insert_reviewmail($companyid, $userid, $review, $option, $textarea, $status)
@@ -431,6 +430,11 @@ class Reviews extends CI_Model
 			'date'		 => date('Y:m:d H:i:s')
 		);
 		$this->db->insert('youg_reviewmail', $data);
+	}
+	
+	function insert_reviewmail_check($companyid, $userid)
+	{
+		return $this->db->get_where('youg_reviewmail', array('company_id' => $companyid, 'user_id' => $userid))->result_array();
 	}
 	
 	//Getting value for searching
@@ -743,7 +747,7 @@ class Reviews extends CI_Model
  	}
 	
 	//Inserting Record which have etile membership
-	function insert_elite_review($companyid,$userid,$rating,$review,$reviewtitle)
+	function insert_elite_review($companyid,$userid,$rating,$review,$reviewtitle,$autopost)
 	{
 		$siteid = $this->session->userdata('siteid');
 		$date = date_default_timezone_set('Asia/Kolkata');
@@ -759,6 +763,7 @@ class Reviews extends CI_Model
 							'reviewdate'	=> $date,
 							'status' 		=> 'Disable',
 							'websiteid'		=> $siteid,
+							'autopost'		=> $autopost,
 							'type'			=> 'ygr'
 						);
 		if( $this->db->insert('reviews', $data) )
@@ -886,10 +891,10 @@ class Reviews extends CI_Model
 		}
  	}
  	
- 	function update_reviewmail($companyid, $userid, $reviewid)
+ 	function update_reviewsflag($reviewid)
  	{
 		$data = array ('flag' => '2');
-		$query = $this->db->where(array('id' => $reviewid, 'companyid'=>$companyid, 'reviewby'=>$userid))->update('youg_reviews', $data);
+		$query = $this->db->where(array('id' => $reviewid))->update('youg_reviews', $data);
 		
 		if ($query)
 		{
@@ -900,6 +905,26 @@ class Reviews extends CI_Model
 			return false;
 		}
  	}
+	
+	function review_date($companyid,$userid,$reviewid,$date,$status)
+	{
+		$data = array(
+					'company_id' 	=> $companyid,
+					'user_id'		=> $userid,
+					'review_id' 	=> $reviewid,
+					'date'			=> $date,
+					'status'		=> $status
+				);
+
+		if( $this->db->insert('youg_review_date', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}	
+	}
 	
 }
 ?>

@@ -199,6 +199,10 @@ class Reviews extends CI_Model
 	{
 		return $this->db->get_where('youg_reviewmail',array('company_id' => $companyid, 'review_id' => $reviewid))->row_array();
 	}
+	function reviews_status($reviewid, $companyid)
+	{
+		return $this->db->get_where('youg_reviews',array('companyid' => $companyid, 'id' => $reviewid))->row_array();
+	}
 	
 	function reviewmail_update($data, $id)
 	{
@@ -338,7 +342,48 @@ class Reviews extends CI_Model
 		$query = $this->db->count_all('reviews');
 		return $query;
 	}
+	
+	function review_date($companyid,$userid,$reviewid,$date,$status)
+	{
+		$data = array(
+					'company_id' 	=> $companyid,
+					'user_id'		=> $userid,
+					'review_id' 	=> $reviewid,
+					'date'			=> $date,
+					'status'		=> $status
+				);
 
+		if( $this->db->insert('youg_review_date', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}	
+	}
+	
+	function select_review_date($companyid, $userid)
+	{
+		$query = $this->db->get_where('youg_review_date',array('company_id'=>$companyid,'user_id'=>$userid));
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	function get_review_bysingleid($reviewid)
+ 	{
+		return $this->db->get_where('youg_reviews',array('id' => $reviewid))->row_array();
+	}
+	function get_reviewmail_bysinglereviewid($reviewid)
+	{
+		return $this->db->get_where('youg_reviewmail',array('review_id' => $reviewid))->row_array();
+	}
 }
 
 ?>

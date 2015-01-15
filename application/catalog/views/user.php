@@ -963,7 +963,7 @@
 						
 						<?php if($myratings[$i]['flag'] == '1') { ?>
 							<tr><td>Status</td><td>:</td><td><b>Merchant request to remove negative review.Click below link to remove review.</b></td></tr>
-							<tr><td></td><td></td><td><b><a href = "/review/buyerreview/<?php echo $user[0]['id']; ?>/<?php echo $myratings[$i]['companyid']; ?>" target = "_blank" class = "font_size_1">Click here</a></b></td></tr>
+							<tr><td></td><td></td><td><b><a href = "/review/resolution_options/<?php echo $myratings[$i]['id']; ?>" target = "_blank" class = "font_size_1">Click here</a></b></td></tr>
 						<?php } 
 						
 						if(count($review)>0) { ?>
@@ -971,7 +971,7 @@
 							<tr><td>Resolution</td><td>:</td><td><b><?php echo $review['resolution']; ?> </b></td></tr>
 							<tr><td>Comment</td><td>:</td><td><b><?php echo $review['comment']; ?> </b></td></tr>
 							<?php 
-								if($review['resolution'] == 'Ship the Item and/or Provide Proof of Shipping') 
+								if($review['resolution'] == '1') 
 								{
 									if($review['status'] == '0')
 									{
@@ -990,7 +990,7 @@
 								}
 								
 								
-								if($review['resolution'] == 'Would like a Full Refund') 
+								if($review['resolution'] == '2') 
 								{
 									if($review['status'] == '0')
 									{
@@ -1022,7 +1022,7 @@
 								}
 								
 								
-								if($review['resolution'] == 'Would like a Replacement item') 
+								if($review['resolution'] == '3') 
 								{
 									if($review['status'] == '0')
 									{
@@ -1054,7 +1054,7 @@
 								}
 								
 								
-								if($review['resolution'] == 'Would like the missing items to be shipped immediately') 
+								if($review['resolution'] == '4') 
 								{
 									if($review['status'] == '0')
 									{
@@ -1079,7 +1079,7 @@
 								}
 								
 								
-								if($review['resolution'] == 'Would like a Partial Refund and/or Gift Card in compensation for the service received') 
+								if($review['resolution'] == '5') 
 								{
 									if($review['status'] == '0')
 									{
