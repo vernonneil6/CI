@@ -3,13 +3,13 @@
 <section class="container">
   <section class="main_contentarea">
     
-    <?php /** if( count($solution) > 0 ) { ?>
+    <?php if( count($solution) > 0 ) { ?>
 			<?php if( strlen($solution[0]['image']) > 5 ) { ?>
-			<div class="bs_banner" style="display:none">
+			<div class="bs_banner">
 				<img src="<?php echo base_url().$this->config->item('solution_main_upload_path').$solution[0]['image'];?>" alt="Business Solution" title="Business Solution" width="1050" height="540">
 			</div>
 			<?php } ?>
-    <?php } **/?>
+    <?php } ?>
     
     
     <div>
@@ -54,7 +54,7 @@
 						  <td class="login_box_title" style="font-size:20px;"><?php echo ucwords(stripslashes($solution[$i]['title']));?></td>
 						</tr>
 						<tr>
-						  <td style="line-height:17px;"><?php echo stripslashes($solution[$i]['detail']);?></td>
+						  <td style="line-height:17px;"><img src="<?php echo base_url().$this->config->item('solution_main_upload_path').$solution[0]['image'];?>" alt="Business Solution" title="Business Solution" width="1050" height="540"><?php echo stripslashes($solution[$i]['detail']);?></td>
 						</tr>
 					  </table>
 					</tr>
