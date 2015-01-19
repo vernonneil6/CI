@@ -162,7 +162,11 @@
 		<td>
 		<?php 
 			$status = $this->reviews->get_reviewmail_bysinglereviewid($reviews[$i]['id']); 
-			if($status['status'] == ''){ echo "Removal Requested"; } else if($status['status'] == '0' or $status['status'] == '2'){echo "Pending Client Feedback";} else if($status['status'] == '1'){echo "Pending Elite Feedback";}
+			$initial_status = $this->reviews->get_review_bysingleid($reviews[$i]['id']); 
+			if($initial_status['flag'] == '0'){ echo "No Removal Request"; } 
+			else if($initial_status['flag'] == '1') { echo "Removal Requested"; } 
+			else if($status['status'] == '0' or $status['status'] == '2'){echo "Pending Client Feedback";} 
+			else if($status['status'] == '1'){echo "Pending Elite Feedback";}
 		?>
 		</td>
       </tr>
@@ -187,18 +191,25 @@
 	?>
 	<div class="box-content">
     <fieldset>
-	<?php if( count($review_date) > 0) { ?>
+	<?php if( $review_date != '') { ?>
 	<table class="tab tab-drag">
       <tr class="top nodrop nodrag">
         <th width="50%">Date</th>
         <th width="50%">Status</th>
       </tr>
 
-      <?php for($i=0;$i<count($review_date);$i++) { ?>
+      <?php foreach($review_date as $date) { ?>
       <tr>
-        <td><?php echo $review_date[$i]['date']; ?></td>
+        <td><?php echo date('m-d-Y', strtotime($date['date'])); ?></td>
         <td>
-			<?php echo $review_date[$i]['status']; ?>
+			<?php if($date['status'] == '0') { echo "Started review removal process";}?>
+			<?php if($date['status'] == '1') { echo "Email sent to customer requesting they agree to remove review";}?>
+			<?php if($date['status'] == '2') { echo "Customer submitted information about how to resolve";}?>
+			<?php if($date['status'] == '3') { echo "Email sent to customer with shipping information of merchant";}?>
+			<?php if($date['status'] == '4') { echo "Customer submitted shipping information of the product";}?>
+			<?php if($date['status'] == '5') { echo "Email sent to customer with proof of refund";}?>
+			<?php if($date['status'] == '6') { echo "Email sent to customer with shipping information";}?>
+			<?php if($date['status'] == '7') { echo "Email sent to customer with new shipping information";}?>
 		</td>
       </tr>
       <?php } ?>
@@ -272,7 +283,7 @@
 	
 	<?php if($review['resolution'] == '2') { ?>
 	<?php if($review['status'] == 0) { ?>
-		<div>Customer to upload his shipping information of the product</div>
+		
 	<?php } ?>
 	<?php if($review['status'] == 1) { ?>
 	<form action="review/review_refund" method="post" class ="formBox broker" enctype = "multipart/form-data">

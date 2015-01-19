@@ -17,7 +17,7 @@ class Review extends CI_Controller
 		    $site = $regs['domain'];
 		 }
 		 
-		 $website = $this->common->get_site_by_domain_name($site);
+		 $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
 		 
 		 if(count($website)>0)
 		 {
@@ -483,7 +483,7 @@ class Review extends CI_Controller
 		}
 		
 		$this->reviews->insert_reviewmail($review['companyid'], $review['reviewby'], $review['id'], $buyeroption, $textarea, '0');
-		$this->reviews->review_date($review['companyid'],$review['reviewby'],$reviewid,date('Y-m-d'),'Email sent to customer requesting they agree to remove review');
+		$this->reviews->review_date($review['companyid'],$review['reviewby'],$reviewid,date('Y-m-d'),'2');
 		
 
 		$this->reviews->update_reviewsflag($review['id']);
@@ -493,16 +493,19 @@ class Review extends CI_Controller
 				
 		if ($data['resolution'] == '2')
 		{
+			$this->reviews->review_date($review['companyid'],$review['reviewby'],$reviewid,date('Y-m-d'),'3');
 			$this->review_mail($data['review_id'], '28', $url, $user['email']);		
 			$this->email->send();
 		}
 		if ($data['resolution'] == '3')
 		{
+			$this->reviews->review_date($review['companyid'],$review['reviewby'],$reviewid,date('Y-m-d'),'3');
 			$this->review_mail($data['review_id'], '32', $url, $user['email']);	
 			$this->email->send();
 		}
 		if ($data['resolution'] == '4')
 		{		
+			$this->reviews->review_date($review['companyid'],$review['reviewby'],$reviewid,date('Y-m-d'),'3');
 			$this->review_mail($data['review_id'], '36', $url, $user['email']);	
 			$this->email->send();
 		}
@@ -540,7 +543,7 @@ class Review extends CI_Controller
 				$company 	= $this->users->get_company_bysingleid($review['companyid']);
 				$url 		= 'businessadmin/review/resolution/'.$data['review_id'];
 				
-				$this->reviews->review_date($review['companyid'],$review['reviewby'],$reviewid,date('Y-m-d'),'Customer submitted information about how to resolve');
+				
 				
 				if($data['resolution'] == '2')
 				{					
@@ -554,6 +557,7 @@ class Review extends CI_Controller
 				
 				if($this->email->send())
 				{
+					$this->reviews->review_date($review['companyid'],$review['reviewby'],$reviewid,date('Y-m-d'),'4');
 					$this->session->set_flashdata('success', 'You have successfully send mail to merchant.');
 					redirect('review','refresh');
 				}
@@ -613,22 +617,22 @@ class Review extends CI_Controller
 	
 	public function merchantbuyermail($reviewid)
 	{
-		$reviewmail = $this->reviews->get_reviewmail_bysinglereviewid($review['id']);
-		$user 		= $this->users->get_user_bysingleid($review['reviewby']);
-		$company 	= $this->users->get_company_bysingleid($review['companyid']);	
-		$resolution = $reviewmail['resolution'];
-		$status 	= $reviewmail['status'];
+		$data = $this->reviews->get_reviewmail_bysinglereviewid($reviewid);
+		$user 		= $this->users->get_user_bysingleid($data['user_id']);
+		$company 	= $this->users->get_company_bysingleid($data['company_id']);	
+		$resolution = $data['resolution'];
+		$status 	= $data['status'];
 		$url 		= 'businessadmin/review/resolution/'.$reviewid;
 		
 		$date2 		= date("Y-m-d");
 		
-		$date1  	= $reviewmail['date'];
+		$date1  	= $data['date'];
 		$diff   	= abs(strtotime($date2) - strtotime($date1));
 		$years  	= floor($diff / (365*60*60*24));
 		$months 	= floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
 		$days 		= floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
 		
-		$checkdate1 = $reviewmail['checkdate'];
+		$checkdate1 = $data['checkdate'];
 		$diff1   	= abs(strtotime($date2) - strtotime($checkdate1));
 		$years1  	= floor($diff1 / (365*60*60*24));
 		$months1 	= floor(($diff1 - $years1 * 365*60*60*24) / (30*60*60*24));
@@ -652,7 +656,7 @@ class Review extends CI_Controller
 			}
 		}
 		
-		if($option == '2')
+		if($resolution == '2')
 		{
 			if ($days == 7 and $status == 0 || $checkdays == 15 and $status == 2)
 			{
@@ -678,7 +682,7 @@ class Review extends CI_Controller
 			}			
 		}
 		
-		if($option == '3')
+		if($resolution == '3')
 		{
 			if ($days == 7 and $status == 0)
 			{
@@ -710,7 +714,7 @@ class Review extends CI_Controller
 			}
 		}
 		
-		if($option == '4')
+		if($resolution == '4')
 		{
 			if ($days == 15 and $status == 0)
 			{
@@ -735,7 +739,7 @@ class Review extends CI_Controller
 			}
 		}
 		
-		if($option == '5')
+		if($resolution == '5')
 		{
 			if ($days == 15 and $status == 0)
 			{

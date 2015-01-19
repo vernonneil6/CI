@@ -252,7 +252,6 @@ class Review extends CI_Controller
 		$this->data['review_status'] = $this->reviews->reviews_status($reviewid, $companyid);
 		$review_id = $this->reviews->get_review_bysingleid($reviewid);
 		$this->data['review_date'] = $this->reviews->select_review_date($companyid, $review_id['reviewby']);
-		
 		$this->load->view('review', $this->data);
 	}
 	
@@ -300,7 +299,7 @@ class Review extends CI_Controller
 			
 			
 			$this->reviews->reviewmail_update($data, $id);
-			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'Merchant submitted information');
+			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'5');
 			
 			$this->load->library('email');	
 			
@@ -360,7 +359,7 @@ class Review extends CI_Controller
 			$reviewid = $this->input->post('reviewid');
 			
 			$this->reviews->reviewmail_update($data, $id);
-			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'Merchant submitted information');
+			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'5');
 			
 			$this->load->library('email');	
 			
@@ -409,7 +408,7 @@ class Review extends CI_Controller
 			$reviewid = $this->input->post('reviewid');
 			
 			$this->reviews->reviewmail_update($data, $id);
-			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'Merchant submitted information');
+			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'6');
 			$reviewmail = $this->reviews->get_reviewmail_byreviewid($reviewid);
 			$option = $reviewmail['resolution'];
 			$this->load->library('email');	
@@ -473,7 +472,7 @@ class Review extends CI_Controller
 			$reviewid = $this->input->post('reviewid');
 			
 			$this->reviews->reviewmail_update($data, $id);
-			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'Merchant submitted information');
+			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'7');
 			$this->load->library('email');	
 			
 			$user 		= $this->settings->get_user_byid($userid);
@@ -574,7 +573,8 @@ public function request($reviewid='',$userid='')
 			
 			if($this->email->send())
 			{
-				$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'Started review removal process');
+				$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'0');
+				$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'1');
 			
 				$this->session->set_flashdata('success', 'Request for review removal has been sent successfully to user.');
 				if($this->reviews->update_review_status($companyid,$reviewid))
