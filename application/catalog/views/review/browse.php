@@ -98,18 +98,8 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
         <div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
         <?php
 				  } ?>
-        
-        <!--<php if(count($elitemem_status)>0){?>
-        <div class="vry_title"></div>
-        <php }else { ?>
-        <div class="bsntvry_title">
-          <div class="bsvry_tag"> <span>IS THIS YOUR BUSINESS?</span>
-            <p><a href="solution/claimbusiness" title="CLICK HERE TO BECOME VERIFIED">CLICK HERE TO BECOME VERIFIED</a></p>
-          </div>
-        </div>
-        <php } ?>-->
         <div class="compny_name">
-          <h1><?php echo $review[0]['company'];?></h1>
+          <h1><a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><?php  echo $review[0]['company'];?></a></h1>
           <?php 
 		//get avg star by cmpyid
 		$avgstar = $this->common->get_avg_ratings_bycmid($review[0]['companyid']);
