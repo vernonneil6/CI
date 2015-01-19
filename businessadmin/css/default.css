@@ -473,3 +473,13 @@ a:hover.ico   { background-position: 0 0; }
 {
 	float : none!important;
 }
+
+.badge_font
+{
+	float: left;
+	font-size: 6px;
+	text-align: center;
+	line-height: 9px;
+	margin-left: -15px;
+
+}
