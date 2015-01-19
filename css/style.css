@@ -801,7 +801,7 @@ h1 a{display:inline-block;}
 .revw_ratpoint span a b{font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#000; text-transform:uppercase;}
 .revw_ratpoint span a:last-child{border-right:0 none;}
 .revw_ratpoint .cmnt_wrp{line-height:20px;}
-.bs_banner{width:1050px; float:left; height:540px; display:inline-block; margin-top:10px;}
+.bs_banner{width:1050px; float:left; /*height:540px;*/ height:auto; display:inline-block; margin-top:10px;}
 
 .bs_sol_menu{float:left; display:block;width:1050px; box-sizing:border-box;/*border:1px solid #999999;background: url(../images/ptrn_bg.png) no-repeat;*/ background:none; height:29px;}
 .bs_sol_menu ul{margin:0; padding:0;}

@@ -6,7 +6,7 @@
     <?php if( count($solution) > 0 ) { ?>
 			<?php if( strlen($solution[0]['image']) > 5 ) { ?>
 			<div class="bs_banner">
-				<img src="<?php echo base_url().$this->config->item('solution_main_upload_path').$solution[0]['image'];?>" alt="Business Solution" title="Business Solution" width="1050" height="540">
+				<img src="<?php echo base_url().$this->config->item('solution_main_upload_path').$solution[0]['image'];?>" alt="Business Solution" title="Business Solution" width="1050">
 			</div>
 			<?php } ?>
     <?php } ?>
