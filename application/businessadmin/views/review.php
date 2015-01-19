@@ -200,7 +200,7 @@
 
       <?php foreach($review_date as $date) { ?>
       <tr>
-        <td><?php echo date('m-d-Y', strtotime($date['date'])); ?></td>
+        <td><?php echo date('n/d/y', strtotime($date['date'])); ?></td>
         <td>
 			<?php if($date['status'] == '0') { echo "Started review removal process";}?>
 			<?php if($date['status'] == '1') { echo "Email sent to customer requesting they agree to remove review";}?>
