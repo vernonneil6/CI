@@ -303,7 +303,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
     font-family: "MyriadPro-BlackSemiCn";
     font-size: 13px;}
 .vry_logo{float:left; height:auto; width:105px;}
-.vry_title{float:left; height:16px; width:223px; background:url(../images/verfied_march_title.png) no-repeat; margin-top:17px;}
+.vry_title{float:left; height:16px; width:223px; margin-top:17px;}
 .vry_btn{width:80%; float:left;margin: 5px 0;}
 .vry_btn a{
  background: none repeat scroll 0 0 #949494;
@@ -762,13 +762,13 @@ input[type="text"].bdsrch_txtbx{width:430px; box-shadow:none; height:25px; font-
 /*============ Profile ===========================*/
 
 .bsntvry_logo{float:left; height:auto; width:105px;}
-.bsntvry_title{float:left; height:17px; width:375px; background: url(../images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg) no-repeat; margin-top:17px; position:relative; }
+.bsntvry_title{float:left; height:17px; width:479px; background: url(../images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg) no-repeat; margin-top:17px; position:relative; }
 .bsntvry_btn{width:80%; float:left;}
 .bsntvry_btn a{float:left; height:20px; margin-right:5px; padding:0 5px; font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; text-transform:uppercase; color:#fff; background:#0080ff;}
 .bsntvry_rating{float:left; margin-top:10px; margin-left:5px;}
 i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/YGR_Star_on.png) no-repeat; margin-right:4px;}
 .raticn i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/YGR_Star_on.png)  no-repeat; margin-right:4px;}
-.bsvry_tag{position:absolute; right: -35px; line-height:9px;}
+.bsvry_tag{position:absolute; left: 265px; line-height:9px;}
 .bsvry_tag span{font-family:"myriadpro-regular"; font-weight:bold; text-transform:uppercase; font-size:10px; color:#666;}
 .bsvry_tag p{font-family:"myriadpro-regular"; font-weight:bold; text-transform:uppercase; font-size:10px; color:#0080ff; margin:0;}
 .vry_acnt_logo{text-align:center; display:inline-block; margin-top:45px; width:100%;}
