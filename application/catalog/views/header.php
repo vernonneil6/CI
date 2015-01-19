@@ -138,14 +138,23 @@
         <li><a href="<?php echo site_url('solution');?>" title="Elite Membership">Elite Membership</a></li>
       </ul>
     </div>
+   <?php if($this->uri->segment(1)=='solution') {?>
     <div class='headersearch'>
+	  	<input type='text'  class='headersearchbar hiddensearch' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
+		<input type="submit" class="headersearchbtn hiddensearch" value="SEARCH" name="btnsearch">
+	</div>
+ 
+ <?php } else { ?>
+	 
+	 <div class='headersearch'>
 	  <?php echo form_open('businessdirectory/search',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
           <?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
 		<input type='text'  class='headersearchbar' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
 		<input type="submit" class="headersearchbtn" value="SEARCH" name="btnsearch">
 	 <?php echo form_close();?> 
     </div>
-
+	
+ <?php } ?>	 
     <div style="margin-left:5px;margin-top:10px !important;">
       <?php if($this->uri->segment(1)=='coupon' && $this->uri->segment(2)==''){?>
       <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a title="Coupons deals & Steals">Coupons deals & Steals</a>
