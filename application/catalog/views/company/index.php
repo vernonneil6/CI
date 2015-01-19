@@ -82,7 +82,9 @@
         <div class="vry_btn vry_width"><a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint">FILE COMPLAINT</a></div>
         
         <?php } else { ?>
-		<div class="vry_btn vry_width"><a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint">FILE COMPLAINT</a><a href="complaint/dispute/<?php echo $company[0]['id'];?>" title="File A Dispute">FILE A DISPUTE</a></div>	
+		<div class="vry_btn vry_width"><a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> 
+		<?php /*<a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint">FILE COMPLAINT</a>*/?>
+		<a href="complaint/dispute/<?php echo $company[0]['id'];?>" title="File A COMPLAINT">FILE A COMPLAINT</a></div>	
        <?php } ?>
       </div>
 
@@ -234,7 +236,7 @@
 			  {
 			  		
 					$cat = $this->complaints->get_category_byid($ex[$a]);
-					if(count($cat)>0)
+					if(count($cat)>0) 
 					{
 						?>
                         <a class="fontcolors";>
@@ -249,6 +251,9 @@
 			  }
 			  ?>
             </a></li>
+	<?php if($company[0]['aboutus']){ ?>
+	<li><span>About Us</span><a><span class="fontcolors" style="text-align:justify;"><?php echo $company[0]['aboutus']; ?></a></span></li>  
+	<?php } ?>
             </ul>
           </div>
         </div>
