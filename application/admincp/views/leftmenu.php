@@ -51,7 +51,15 @@
 		<a href="<?php echo site_url('email');?>" class="link" title="Email Formats">Email Formats</a>
     </li>
     <li class="<?=($this->uri->segment(1)==='page')?'active':''?>">
-		<a href="<?php echo site_url('page');?>" class="link" title="Pages">Pages</a>
+		<a href="<?php echo site_url('page'); ?>"  class="link" title="Page">Page</a>
+		<ul class="submenu">
+			<li>
+				<a href="<?php echo site_url('page/add'); ?>" title="Add Page">Add Page</a>
+			</li>
+			<li>
+				<a href="<?php echo site_url('page'); ?>" title="List All Pages">List All Pages</a>
+			</li>
+		</ul>
 	</li>
     <li class="<?=($this->uri->segment(1)==='faq')?'active':''?>">
 		<a href="<?php echo site_url('faq'); ?>" title="FAQs">FAQs</a>

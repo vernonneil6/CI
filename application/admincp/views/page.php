@@ -234,6 +234,114 @@ else { ?>
   <!-- /box-content -->
   
   <?php } 
+  
+  
+  
+  
+ if($this->uri->segment(2) && ( $this->uri->segment(2) == 'add') ) { ?>
+  
+  <!-- box -->
+  <div class="box">
+    <div class="headlines">
+      <h2><span>Edit Page</span></h2>
+    </div>
+    <div class="box-content"> <?php echo form_open('page/add',array('class'=>'formBox')); ?>
+      <fieldset>
+        <div class="form-cols"><!-- two form cols -->
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 20% !important;">
+                <label for="title">Title <span class="errorsign">*</span></label>
+              </div>
+              <div class="con" style="width: 77% !important; float:left">
+                <?php 
+				echo form_input( array( 'name'=>'title','id'=>'title','class'=>'input','type'=>'text' ) ); 
+				?>
+              </div>
+            </div>
+          </div>
+          <div id="titleerror" class="error" style="width:auto;">Page Title is required.</div>
+        </div>
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 20% !important;">
+                <label for="heading">Heading <span class="errorsign">*</span></label>
+              </div>
+              <div class="con" style="width: 77% !important; float:left">
+                <?php 
+				echo form_input( array( 'name'=>'heading','id'=>'heading','class'=>'input','type'=>'text' ) );
+				?>
+              </div>
+            </div>
+          </div>
+          <div id="headingerror" class="error" style="width:auto;">Page heading is required.</div>
+        </div>
+        <div class="form-cols"><!-- two form cols -->
+          <div class="col1" style="width: 100% !important;">
+            <div class="clearfix">
+              <div class="lab" style="width: 20% !important; padding-bottom:5px">
+                <label for="metakeywords">Meta Keywords <span class="errorsign">*</span></label>
+              </div>
+              <div class="con" style="width: 77% !important; text-align:justify; float:left;">
+                <?php 
+					echo form_textarea( array( 'name'=>'metakeywords','id'=>'metakeywords','class'=>'textarea','rows'=>'4','cols'=>'15' ) ); 
+				?>
+              </div>
+            </div>
+          </div>
+          <div id="metakeyerror" class="error" style="width:auto;">Meta Keywords are required.</div>
+        </div>
+        <div class="form-cols">
+          <div class="col1" style="width: 100% !important;">
+            <div class="clearfix">
+              <div class="lab" style="width: 20% !important; padding-bottom:5px;">
+                <label for="metadescription">Meta Description <span class="errorsign">*</span></label>
+              </div>
+              <div class="con" style="width: 77% !important; text-align:justify; float:left;">
+                <?php 
+				echo form_textarea( array( 'name'=>'metadescription','id'=>'metadescription','class'=>'textarea','rows'=>'4','cols'=>'15' ) );
+				?>
+              </div>
+            </div>
+          </div>
+          <div id="metadeserror" class="error" style="width:auto;">Meta Description is required.</div>
+        </div>
+        <div class="clearfix">
+          <div class="lab" style="padding-bottom:5px; width:20%">
+            <label for="pagecontent">Page Content</label>
+          </div>
+          <div class="con" style="float:left; width:77%">
+            <?php 
+			if($this->uri->segment(3) < 177 || $this->uri->segment(3)>192)
+			 { 
+				echo form_textarea( array( 'name'=>'pagecontent','id'=>'pagecontent','class'=> 'cleditor','style'=>'width:900px' ) );
+				echo display_ckeditor($ckeditor);
+			}
+			else
+			{
+				echo form_textarea( array( 'name'=>'pagecontent','id'=>'pagecontent','class'=> 'textarea','style'=>'width:200px','rows'=>'4','cols'=>'15' ) );
+			}
+		?>
+          </div>
+          <div id="pageconterror" class="error" style="width:auto;">Page Content is required.</div>
+        </div>
+        <div class="btn-submit" style="padding: 15px 0 0 22%;"> 
+          <!-- Submit form --> 
+          <?php echo form_input(array('name'=>'btnupdate','id'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Add')); ?> or <a href="<?php echo site_url('page');?>" class="Cancel">Cancel</a> </div>
+      </fieldset>
+      <?php echo form_hidden( array( 'txtintid' => $this->encrypt->encode($page[0]['intid']) ) ); ?> <?php echo form_close(); ?> </div>
+  </div>
+  <!-- /box-content -->
+  
+  <?php } 
+  
+  
+  
+  
+  
+  
+  
 else { ?>
   <script type="text/javascript" language="javascript">
 	function trim(stringToTrim) {
