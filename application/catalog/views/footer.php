@@ -54,11 +54,14 @@ function userlogin()
                 <li class="ftitle">YOU GOT RATED GUIDE</li>
                 <?php 
 				$footerpart1 = $this->common->get_footerlink_byid(1); 
+				if($footerpart1 != '')
+				{
 				foreach($footerpart1 as $part1) 
 				{ 
 				?>
-					<li><a href="<?php echo 'footerpage/index/'.$part1['intid'];?>" title="<?php echo $part1['title'];?>"><?php echo $part1['title'];?></a></li>
+					<li><a  target="_blank" href="<?php echo 'footerpage/index/'.$part1['intid'];?>" title="<?php echo $part1['title'];?>"><?php echo $part1['title'];?></a></li>
 				<?php 
+				}
 				}
 				?>
               </ul>
@@ -77,7 +80,7 @@ function userlogin()
 				foreach($footerpart2 as $part2) 
 				{ 
 				?>
-					<li><a href="<?php echo 'footerpage/index/'.$part2['intid'];?>" title="<?php echo $part2['title'];?>"><?php echo $part2['title'];?></a></li>
+					<li><a target="_blank" href="<?php echo 'footerpage/index/'.$part2['intid'];?>" title="<?php echo $part2['title'];?>"><?php echo $part2['title'];?></a></li>
 				<?php 
 				}
 				}
@@ -97,7 +100,7 @@ function userlogin()
 				foreach($footerpart3 as $part3) 
 				{ 
 				?>
-					<li><a href="<?php echo 'footerpage/index/'.$part3['intid'];?>" title="<?php echo $part3['title'];?>"><?php echo $part3['title'];?></a></li>
+					<li><a target="_blank" href="<?php echo 'footerpage/index/'.$part3['intid'];?>" title="<?php echo $part3['title'];?>"><?php echo $part3['title'];?></a></li>
 				<?php 
 				}
 				}
@@ -149,12 +152,16 @@ function userlogin()
 			<span>All Right Reserved.</span>
 			<span>
 				<?php 
+				
 				$footerpart4 = $this->common->get_footerlink_byid(4); 
+				if($footerpart4 != '')
+				{
 				foreach($footerpart4 as $part4) 
 				{ 
 				?>
-					<a href="<?php echo 'footerpage/index/'.$part4['intid'];?>" title="<?php echo $part4['title'];?>"><?php echo $part4['title'];?></a>
+					<a target="_blank" href="<?php echo 'footerpage/index/'.$part4['intid'];?>" title="<?php echo $part4['title'];?>"><?php echo $part4['title'];?></a>
 				<?php 
+				}
 				}
 				?>
 		    </span>
