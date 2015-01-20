@@ -44,20 +44,15 @@ class Footerpage extends CI_Controller {
 		
 		if( count($page) > 0 )
 		{
-			$this->data['title'] = stripslashes($page[0]['title']);
-			$this->data['varheading'] = stripslashes($page[0]['heading']);
+			$this->data['title'] = stripslashes($page['title']);
+			$this->data['varheading'] = stripslashes($page['heading']);
 			
 			//Meta Keywords and Description
-			$this->data['keywords'] = stripslashes($page[0]['metakeywords']);
-			$this->data['description'] = stripslashes($page[0]['metadescription']);
-			$total= $this->common->get_all_complaints_totaldamage($siteid);
-		
-			if(count($total)>0) {
-			$this->data['total'] = round($total[0]['total']);
-			}
+			$this->data['keywords'] = stripslashes($page['metakeywords']);
+			$this->data['description'] = stripslashes($page['metadescription']);
 				
 			//Page Content
-			$this->data['content'] = nl2br(($page[0]['pagecontent']));
+			$this->data['content'] = nl2br(($page['pagecontent']));
 		
 			//Load header and save in variable
 			$this->data['header'] = $this->load->view('header',$this->data,true);
