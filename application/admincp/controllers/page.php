@@ -290,6 +290,7 @@ class Page extends CI_Controller {
 		if($request->post('btnupdate'))
 		{
 			$data = array(	
+			'id' => '1',
 			'websiteid' => '1',
 			'title' => $request->post('title'),
 			'heading' => $request->post('heading'),
