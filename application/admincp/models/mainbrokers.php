@@ -141,5 +141,10 @@ Class Mainbrokers extends CI_Model
 			return false;
 		}
 	}
+	
+	function subbroker_name_check($name)
+	{
+		return $this->db->get_where('youg_broker', array('name' => $name))->row_array();
+	}
 }
 ?>

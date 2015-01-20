@@ -75,7 +75,7 @@
             <label>Company Contact Name</label>
           </div>
 		<div class="con">
-		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'companycontactno')); ?>
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'companycontactname')); ?>
 		</div>
     </div>
     <div class="clearfix">

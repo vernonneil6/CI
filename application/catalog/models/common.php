@@ -1003,5 +1003,31 @@ Class Common extends CI_Model
 			return array();
 		}
 	}
+	
+	function get_footerlink_byid($id)
+	{
+		$query = $this->db->get_where('youg_pages', array('id' => $id));
+		if ($query->num_rows() > 0)
+		{			
+			return $query->result_array();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	function get_footerlink_byintid($intid)
+	{
+		$query = $this->db->get_where('youg_pages', array('intid' => $intid));
+		if ($query->num_rows() > 0)
+		{			
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 ?>

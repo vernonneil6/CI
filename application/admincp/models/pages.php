@@ -123,6 +123,18 @@ Class Pages extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	function pageadd($data)
+ 	{
+		if($this->db->insert('youg_pages', $data))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 
 ?>

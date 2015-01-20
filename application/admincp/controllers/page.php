@@ -270,6 +270,45 @@ class Page extends CI_Controller {
 		$this->data['pages'] = $this->pages->search_page($keyword,$siteid);
 		$this->load->view('page',$this->data);
 	}
+	
+	public function add()
+	{
+		
+		$request = $this->input;
+		
+		$this->load->helper('ckeditor');
+		$this->data['ckeditor'] = array(
+            	'id'	=>	'pagecontent',
+            	'path'  =>  '../../ckeditor',
+				'config' => array(
+									'toolbar'	=>	"Full",     
+									'width'   =>  "auto",   
+									'height'  =>  "300px",
+				),
+		);
+		
+		if($request->post('btnupdate'))
+		{
+			$data = array(	
+			'id' => '1',
+			'websiteid' => '1',
+			'title' => $request->post('title'),
+			'heading' => $request->post('heading'),
+			'metakeywords' => $request->post('metakeywords'),
+			'metadescription' => $request->post('metadescription'),
+			'pagecontent' => $request->post('pagecontent'),
+			'deviceip' => $_SERVER['REMOTE_ADDR'],
+			'editdate' => date('Y-m-d H:i:s'),
+			'status' => 'Enable'		
+			);
+			$this->pages->pageadd($data);
+			redirect('page', 'refresh');
+		}
+		$this->load->view('page', $this->data);
+	}
+	
+	
+	
 }
 /* End of file page.php */
 /* Location: ./application/controllers/page.php */

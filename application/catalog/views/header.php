@@ -18,9 +18,6 @@
 
 <script src="js/jquery.flexslider-min.js"></script>
 
-<!--<link rel="stylesheet" href="css/message.css" type="text/css">-->
-
-<!--<script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
 <script>
  $(document).ready(function() {
  $('.data_table').delay(6000).fadeOut(600);
@@ -51,16 +48,6 @@
 }
 </style>
 
-<!--[if lt IE 7]>
-    <div style=' clear: both; text-align:center; position: relative;'>
-        <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-        	<img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-        </a>
-    </div>
-	<![endif]-->
-<!--[if IE]>
-   		<script type="text/javascript" src="js/html5.js"></script>
-	<![endif]-->
 </head><body>
 <header>
   <div class="container">
@@ -95,38 +82,9 @@
 			$('.flexslider').flexslider();
 		});
 	</script>
-        <!--<div class="social_icn">
-          <ul>
-          
-            <li>
-                <div class="addthis_toolbox addthis_default_style "><a class="addthis_counter addthis_pill_style share" style="cursor:pointer;"></a><a><div style="margin:-6px 0 0 0;cursor:pointer;">Share</div></a> </div>
-                <?php /*?><script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script><?php */?> 
-                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5139b09b14707fbc"></script> 
-              </li>
-			<?php /*?><li> <a onclick="PopupCenter('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo "";?>&amp;p[url]=<?php echo $actual_link; ?>&amp;&p[images][0]=', 'sharer','test','800','500');" title="Share" class="share" style="cursor:pointer;"><span>share</span></a> </li><?php */?>
-            <li> <a onclick="PopupCenter('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo "";?>&amp;p[url]=<?php echo $actual_link; ?>&amp;&p[images][0]=', 'sharer','test','800','500');" title="Post" class="post" style="cursor:pointer;"><span>post</span></a> </li>
-            </li>
-            <li> <a data-pin-do="buttonPin" data-pin-config="above" onclick="PopupCenter('http://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=<? echo urlencode($actual_link) ;?>&description=<?php echo $title;?>','test','800','500');" class="pin" title="pin" style="cursor:pointer;"><span>pin</span></a> </li>
-            <li><a onclick="PopupCenter('http://twitter.com/share?text=&lang=pt&url=<? echo urlencode($actual_link) ;?>','test','800','500');" class="tweet" style="cursor:pointer;"><span>tweet</span></a></li>
-          </ul>
-        </div>-->
       </div>
     </div>
-      <!--<div class="innr_wrap">
-      <div class="main_demage">
-        <div class="demage_count"><span>$<?php echo $total;?></span> <i>In Reported Damages Resolved.</i></div>
-        <?php /*?><div class="main_searchbox"> <?php echo form_open('complaint/searchresult',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
-          <?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
-          <input type="text" class="search_txtbox" placeholder="search for a business..." name="search" id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
-          <input type="submit" class="srch_btn" title="Search" value="" name="btnsearch">
-          <?php echo form_close();?> </div><?php */?>
-          <div class="main_searchbox"> <?php echo form_open('businessdirectory/search',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
-          <?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
-          <input type="text" class="search_txtbox" placeholder="search for a business..." name="searchcomp" id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
-          <input type="submit" class="srch_btn" title="Search" value="" name="btnsearch">
-          <?php echo form_close();?> </div>
-      </div>
-    </div>-->
+   
     <div class="menu">
       <ul>
         <li><a href="<?php echo base_url();?>" title="Home">Home<span>:<span></a> </li>
@@ -138,24 +96,16 @@
         <li><a href="<?php echo site_url('solution');?>" title="Elite Membership">Elite Membership</a></li>
       </ul>
     </div>
-   <?php if($this->uri->segment(1)=='solution') {?>
-    <div class='headersearch'>
-	  	<input type='text'  class='headersearchbar hiddensearch' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
-		<input type="submit" class="headersearchbtn hiddensearch" value="SEARCH" name="btnsearch">
-	</div>
- 
- <?php } else { ?>
-	 
-	 <div class='headersearch'>
+   <?php if($this->uri->segment(1)!='businessdirectory' && $this->uri->segment(1)!='solution') { ?> 
+	<div class='headersearch'>
 	  <?php echo form_open('businessdirectory/search',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
-          <?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
+        <?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
 		<input type='text'  class='headersearchbar' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
 		<input type="submit" class="headersearchbtn" value="SEARCH" name="btnsearch">
 	 <?php echo form_close();?> 
     </div>
-	
- <?php } ?>	 
-    <div style="margin-left:5px;margin-top:10px !important;">
+   <?php }  ?>	 
+    <div class = "<?php if($this->uri->segment(1)=='businessdirectory'){ echo "businessdirectory_breadcrumb" ;} else { echo "ygr_breadcrumb" ;} ?>">
       <?php if($this->uri->segment(1)=='coupon' && $this->uri->segment(2)==''){?>
       <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a title="Coupons deals & Steals">Coupons deals & Steals</a>
       <?php } ?>

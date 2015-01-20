@@ -66,7 +66,7 @@
             <label>Company Name</label>
           </div>
 		<div class="con">
-		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'companyname')); ?>
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'companyname','value'=>$Brokers['companyname'])); ?>
 		</div>
     </div>
     <div class="clearfix">
@@ -74,7 +74,7 @@
             <label>Company Contact Name</label>
           </div>
 		<div class="con">
-		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'companycontactno')); ?>
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'companycontactname','value'=>$Brokers['companycontactname'])); ?>
 		</div>
     </div>
     <div class="clearfix">
@@ -82,7 +82,7 @@
             <label>Email Address</label>
           </div>
 		<div class="con">
-		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'emailaddress')); ?>
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'emailaddress','value'=>$Brokers['emailaddress'])); ?>
 		</div>
     </div>
     <div class="clearfix">
@@ -90,7 +90,7 @@
             <label>Phone</label>
           </div>
 		<div class="con">
-		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'phone')); ?>
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'phone','value'=>$Brokers['phone'])); ?>
 		</div>
     </div>
     <div class="clearfix">
@@ -98,7 +98,7 @@
             <label>Address </label>
           </div>
 		<div class="con">
-		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'address')); ?>
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'address','value'=>$Brokers['address'])); ?>
 		</div>
     </div>
     
@@ -107,7 +107,7 @@
             <label>ID #</label>
           </div>
 		<div class="con">
-		  <?php // echo form_input(array('type'=>'text','class'=>'input','name'=>'id')); ?>
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'id','value'=>$Brokers['id#'])); ?>
 		</div>
     </div>
     
