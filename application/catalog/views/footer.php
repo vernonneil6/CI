@@ -52,6 +52,15 @@ function userlogin()
             <div class="footer_block" id="first">
               <ul>
                 <li class="ftitle">YOU GOT RATED GUIDE</li>
+                <?php 
+				$footerpart1 = $this->common->get_footerlink_byid(1); 
+				foreach($footerpart4 as $part4) 
+				{ 
+				?>
+					<li><a href="<?php echo 'footerpage/index/'.$part4['intid'];?>" title="<?php echo $part4['title'];?>"><?php echo $part4['title'];?></a></li>
+				<?php 
+				}
+				?>
                 <li><a href="<?php echo site_url('faq');?>" title="Faq">FAQ</a></li>
                 <li><a href="<?php echo site_url('complaint/add');?>" title="Writting a Complaint">WRITING A COMPLAINT</a></li>
                 <li><a href="<?php echo site_url('overview');?>" title="Overview">OVERVIEW</a></li>
@@ -117,7 +126,21 @@ function userlogin()
           
           </div>
         </div>
-		<div class="footerbottomlink"><span>© Copyright <?php echo date("Y");?>  <?php echo $site_name;?></span><span>All Right Reserved.</span><span><a href="aboutus" title="about-us">about <?php echo $site_name;?></a> </span> <a href="terms" title="Term and Conditons">terms and conditions</a></div>
+		<div class="footerbottomlink">
+			<span>© Copyright <?php echo date("Y");?>  <?php echo $site_name;?></span>
+			<span>All Right Reserved.</span>
+			<span>
+				<?php 
+				$footerpart4 = $this->common->get_footerlink_byid(4); 
+				foreach($footerpart4 as $part4) 
+				{ 
+				?>
+					<a href="<?php echo 'footerpage/index/'.$part4['intid'];?>" title="<?php echo $part4['title'];?>"><?php echo $part4['title'];?></a>
+				<?php 
+				}
+				?>
+		    </span>
+		</div>
 	</div>   
   </div>
 </div>

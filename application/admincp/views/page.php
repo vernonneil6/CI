@@ -324,7 +324,7 @@ else { ?>
           <div class="col1" style="width:100%">
             <div class="clearfix">
               <div class="lab" style="width: 20% !important;">
-                <label for="heading">Heading <span class="errorsign">*</span></label>
+                <label for="heading">Category</label>
               </div>
               <div class="con" style="width: 77% !important; float:left">
                 <?php 
