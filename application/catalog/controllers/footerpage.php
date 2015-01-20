@@ -48,9 +48,9 @@ class Footerpage extends CI_Controller {
 		
 	}
 	
-	public function index()
+	public function index($intid)
 	{
-		$this->data['footerlink'] = $this->common->get_siteurl_byid($siteid);
+		$this->data['footerlink'] = $this->common->get_footerlink_byintid($intid);
 		$this->load->view('footerpage',$this->data);
 	}
 	
