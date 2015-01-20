@@ -92,7 +92,7 @@ function userlogin()
                 <li><a href="<?php echo site_url('solution/claimbusiness');?>" title="Merchant Signup">merchant sign up</a></li>
                 <?php 
 				$footerpart3 = $this->common->get_footerlink_byid(3); 
-				if($footerpart2 != '')
+				if($footerpart3 != '')
 				{
 				foreach($footerpart3 as $part3) 
 				{ 
