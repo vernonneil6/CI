@@ -39,7 +39,11 @@ class Footerpage extends CI_Controller {
 		$this->data['bottomads']= $this->common->get_all_ads('bottom','others',$siteid);
 		$this->data['leftads']= $this->common->get_all_ads('left','others',$siteid);
 		$this->data['rightads']= $this->common->get_all_ads('right','others',$siteid);
-		
+
+	}
+	
+	public function index($intid)
+	{
 		$page = $this->common->get_footerlink_byintid($intid);
 		
 		if( count($page) > 0 )
@@ -65,10 +69,6 @@ class Footerpage extends CI_Controller {
 			redirect('','refresh');	
 		}
 		
-	}
-	
-	public function index()
-	{
 		$this->load->view('footerpage',$this->data);
 	}
 	
