@@ -126,7 +126,7 @@ function userlogin()
 				foreach($footerpart4 as $part4) 
 				{ 
 				?>
-					<a href="aboutus" title="about-us"><?php echo $part4['title'];?></a>
+					<a href="<?php echo 'footerpage/'.$part4['intid'];?>" title="<?php echo $part4['title'];?>"><?php echo $part4['title'];?></a>
 				<?php 
 				}
 				?>

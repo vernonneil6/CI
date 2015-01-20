@@ -1016,5 +1016,18 @@ Class Common extends CI_Model
 			return false;
 		}
 	}
+	
+	function get_footerlink_byintid($intid)
+	{
+		$query = $this->db->get_where('youg_pages', array('intid' => $intid));
+		if ($query->num_rows() > 0)
+		{			
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 ?>
