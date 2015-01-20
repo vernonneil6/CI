@@ -52,12 +52,18 @@ function userlogin()
             <div class="footer_block" id="first">
               <ul>
                 <li class="ftitle">YOU GOT RATED GUIDE</li>
-                <li><a href="<?php echo site_url('faq');?>" title="Faq">FAQ</a></li>
-                <li><a href="<?php echo site_url('complaint/add');?>" title="Writting a Complaint">WRITING A COMPLAINT</a></li>
-                <li><a href="<?php echo site_url('overview');?>" title="Overview">OVERVIEW</a></li>
-                <li><a href="<?php echo site_url('additions');?>" title="Additions">ADDITIONS</a></li>
-                <li><a href="<?php echo site_url('policy');?>" title="Privacy Policy">PRIVACY POLICY</a></li>
-                <li><a href="<?php echo site_url('sitemap');?>" title="Site Map">SITE MAP</a></li>
+                <?php 
+				$footerpart1 = $this->common->get_footerlink_byid(1); 
+				if($footerpart1 != '')
+				{
+				foreach($footerpart1 as $part1) 
+				{ 
+				?>
+					<li><a  target="_blank" href="<?php echo 'footerpage/index/'.$part1['intid'];?>" title="<?php echo $part1['title'];?>"><?php echo $part1['title'];?></a></li>
+				<?php 
+				}
+				}
+				?>
               </ul>
             </div>
             
@@ -67,6 +73,18 @@ function userlogin()
                 <li><a href="<?php echo site_url('complaint/add');?>" title="Report a Complaint">File Complaint</a></li> 
                 <li><a href="<?php echo site_url('complaint');?>" title="Browse Complaints">BROWSE COMPLAINTS</a></li>
                 <li><a href="<?php echo site_url('businessdirectory');?>" title="Browse Companies">BROWSE COMPANIES</a></li>
+                <?php 
+				$footerpart2 = $this->common->get_footerlink_byid(2); 
+				if($footerpart2 != '')
+				{
+				foreach($footerpart2 as $part2) 
+				{ 
+				?>
+					<li><a target="_blank" href="<?php echo 'footerpage/index/'.$part2['intid'];?>" title="<?php echo $part2['title'];?>"><?php echo $part2['title'];?></a></li>
+				<?php 
+				}
+				}
+				?>
               </ul>
 
 			  <ul class='blockdown'>
@@ -75,6 +93,18 @@ function userlogin()
                 <li><a href="<?php echo site_url('review');?>" title="Reviews">reviews</a></li>
                 <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">press releases</a></li>
                 <li><a href="<?php echo site_url('solution/claimbusiness');?>" title="Merchant Signup">merchant sign up</a></li>
+                <?php 
+				$footerpart3 = $this->common->get_footerlink_byid(3); 
+				if($footerpart3 != '')
+				{
+				foreach($footerpart3 as $part3) 
+				{ 
+				?>
+					<li><a target="_blank" href="<?php echo 'footerpage/index/'.$part3['intid'];?>" title="<?php echo $part3['title'];?>"><?php echo $part3['title'];?></a></li>
+				<?php 
+				}
+				}
+				?>
               </ul>
             </div>
           
@@ -122,15 +152,19 @@ function userlogin()
 			<span>All Right Reserved.</span>
 			<span>
 				<?php 
+				
 				$footerpart4 = $this->common->get_footerlink_byid(4); 
+				if($footerpart4 != '')
+				{
 				foreach($footerpart4 as $part4) 
 				{ 
 				?>
-					<a href="<?php echo 'footerpage/index/'.$part4['intid'];?>" title="<?php echo $part4['title'];?>"><?php echo $part4['title'];?></a>
+					<a target="_blank" href="<?php echo 'footerpage/index/'.$part4['intid'];?>" title="<?php echo $part4['title'];?>"><?php echo $part4['title'];?></a>
 				<?php 
 				}
+				}
 				?>
-				</span>
+		    </span>
 		</div>
 	</div>   
   </div>
