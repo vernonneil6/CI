@@ -4,7 +4,7 @@
   <section class="main_contentarea">
     <div class="innr_wrap">
       <?php //echo $menu; ?>
-      <h1 class="bannertext"><?php echo $varheading; ?></h1>
+      <h1 class="bannertext font_size_banner"><?php echo $varheading; ?></h1>
       <?php if( $this->uri->segment(1) && $this->uri->segment(1)=='contactus')
 			{ ?>
     

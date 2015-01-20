@@ -117,7 +117,21 @@ function userlogin()
           
           </div>
         </div>
-		<div class="footerbottomlink"><span>© Copyright <?php echo date("Y");?>  <?php echo $site_name;?></span><span>All Right Reserved.</span><span><a href="aboutus" title="about-us">about <?php echo $site_name;?></a> </span> <a href="terms" title="Term and Conditons">terms and conditions</a></div>
+		<div class="footerbottomlink">
+			<span>© Copyright <?php echo date("Y");?>  <?php echo $site_name;?></span>
+			<span>All Right Reserved.</span>
+			<span>
+				<?php 
+				$footerpart4 = $this->common->get_footerlink_byid(4); 
+				foreach($footerpart4 as $part4) 
+				{ 
+				?>
+					<a href="aboutus" title="about-us"><?php echo $part4['title'];?></a>
+				<?php 
+				}
+				?>
+				</span>
+		</div>
 	</div>   
   </div>
 </div>
