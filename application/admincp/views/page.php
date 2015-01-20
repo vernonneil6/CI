@@ -238,7 +238,7 @@ else { ?>
   
   
   
- if($this->uri->segment(2) && ( $this->uri->segment(2) == 'add') ) { ?>
+ else if($this->uri->segment(2) && ( $this->uri->segment(2) == 'add') ) { ?>
   
   <!-- box -->
   <div class="box">
