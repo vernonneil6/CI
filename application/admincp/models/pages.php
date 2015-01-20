@@ -35,7 +35,7 @@ Class Pages extends CI_Model
  	}
 	
 	//Updating Record
-	function update($id,$title,$heading,$varmetakey,$varmetades,$varpagecont)
+	function update($id,$title,$heading,$varmetakey,$varmetades,$varpagecont,$footercategory)
  	{
 		$editdate = date('Y-m-d');
 		$vareditip = $_SERVER['REMOTE_ADDR'];
@@ -47,6 +47,7 @@ Class Pages extends CI_Model
 							'pagecontent' 	 	=> $varpagecont,
 							'editdate' 			=> $editdate,
 							'deviceip' 			=> $vareditip,
+							'id' 				=> $footercategory
 						);
 			//echo "<pre>";
 			//print_r($data);

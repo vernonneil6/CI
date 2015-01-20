@@ -76,6 +76,15 @@ function userlogin()
                 <li><a href="<?php echo site_url('complaint/add');?>" title="Report a Complaint">File Complaint</a></li> 
                 <li><a href="<?php echo site_url('complaint');?>" title="Browse Complaints">BROWSE COMPLAINTS</a></li>
                 <li><a href="<?php echo site_url('businessdirectory');?>" title="Browse Companies">BROWSE COMPANIES</a></li>
+                <?php 
+				$footerpart2 = $this->common->get_footerlink_byid(2); 
+				foreach($footerpart2 as $part2) 
+				{ 
+				?>
+					<li><a href="<?php echo 'footerpage/index/'.$part2['intid'];?>" title="<?php echo $part2['title'];?>"><?php echo $part2['title'];?></a></li>
+				<?php 
+				}
+				?>
               </ul>
 
 			  <ul class='blockdown'>
@@ -84,6 +93,15 @@ function userlogin()
                 <li><a href="<?php echo site_url('review');?>" title="Reviews">reviews</a></li>
                 <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">press releases</a></li>
                 <li><a href="<?php echo site_url('solution/claimbusiness');?>" title="Merchant Signup">merchant sign up</a></li>
+                <?php 
+				$footerpart3 = $this->common->get_footerlink_byid(3); 
+				foreach($footerpart3 as $part3) 
+				{ 
+				?>
+					<li><a href="<?php echo 'footerpage/index/'.$part3['intid'];?>" title="<?php echo $part3['title'];?>"><?php echo $part3['title'];?></a></li>
+				<?php 
+				}
+				?>
               </ul>
             </div>
           

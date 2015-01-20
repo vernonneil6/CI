@@ -176,11 +176,12 @@ class Page extends CI_Controller {
 				$varmetakey = addslashes($this->input->post('metakeywords'));
 				$varmetades = addslashes($this->input->post('metadescription'));
 				$varpagecont = addslashes($this->input->post('pagecontent'));
+				$footercategory = addslashes($this->input->post('footercategory'));
 				
 				if( $varpagecont!='' )
 				{				
 					//Updating Record
-					if( $this->pages->update($intid,$vartitle,$varheading,$varmetakey,$varmetades,$varpagecont) )
+					if( $this->pages->update($intid,$vartitle,$varheading,$varmetakey,$varmetades,$varpagecont,$footercategory) )
 					{
 						$this->session->set_flashdata('success', 'Page details updated successfully.');
 						redirect('page', 'refresh');

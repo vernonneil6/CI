@@ -225,6 +225,30 @@ else { ?>
           </div>
           <div id="pageconterror" class="error" style="width:auto;">Page Content is required.</div>
         </div>
+        
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 20% !important;">
+                <label for="heading">Category</label>
+              </div>
+              <div class="con" style="width: 77% !important; float:left">
+                <?php 
+                $option = array(
+                '1' => 'YOU GOT RATED GUIDE',
+                '2' => 'COMPLAINT REPORTS',
+                '3' => 'MERCHANT INFORMATION',
+                '4' => 'COPYRIGHTS',
+                );
+                
+                $class = 'class = "input"';
+				echo form_dropdown( 'footercategory', $option, '1', $page[0]['id'] ) ;
+				?>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <div class="btn-submit" style="padding: 15px 0 0 22%;"> 
           <!-- Submit form --> 
           <?php echo form_input(array('name'=>'btnupdate','id'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Update')); ?> or <a href="<?php echo site_url('page');?>" class="Cancel">Cancel</a> </div>
