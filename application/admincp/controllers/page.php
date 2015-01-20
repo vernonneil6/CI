@@ -275,6 +275,18 @@ class Page extends CI_Controller {
 	{
 		
 		$request = $this->input;
+		
+		$this->load->helper('ckeditor');
+		$this->data['ckeditor'] = array(
+            	'id'	=>	'pagecontent',
+            	'path'  =>  '../../ckeditor',
+				'config' => array(
+									'toolbar'	=>	"Full",     
+									'width'   =>  "auto",   
+									'height'  =>  "300px",
+				),
+		);
+		
 		if($request->post('btnupdate'))
 		{
 			$data = array(	
@@ -289,9 +301,9 @@ class Page extends CI_Controller {
 			'status' => 'Enable'		
 			);
 			$this->pages->pageadd($data);
-			redirect('page', 'refresh')
+			redirect('page', 'refresh');
 		}
-		$this->load->view('page');
+		$this->load->view('page', $this->data);
 	}
 	
 	

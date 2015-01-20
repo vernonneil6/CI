@@ -312,17 +312,10 @@ else { ?>
             <label for="pagecontent">Page Content</label>
           </div>
           <div class="con" style="float:left; width:77%">
-            <?php 
-			if($this->uri->segment(3) < 177 || $this->uri->segment(3)>192)
-			 { 
+          <?php 		
 				echo form_textarea( array( 'name'=>'pagecontent','id'=>'pagecontent','class'=> 'cleditor','style'=>'width:900px' ) );
 				echo display_ckeditor($ckeditor);
-			}
-			else
-			{
-				echo form_textarea( array( 'name'=>'pagecontent','id'=>'pagecontent','class'=> 'textarea','style'=>'width:200px','rows'=>'4','cols'=>'15' ) );
-			}
-		?>
+		  ?>
           </div>
           <div id="pageconterror" class="error" style="width:auto;">Page Content is required.</div>
         </div>
@@ -330,7 +323,7 @@ else { ?>
           <!-- Submit form --> 
           <?php echo form_input(array('name'=>'btnupdate','id'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Add')); ?> or <a href="<?php echo site_url('page');?>" class="Cancel">Cancel</a> </div>
       </fieldset>
-      <?php echo form_hidden( array( 'txtintid' => $this->encrypt->encode($page[0]['intid']) ) ); ?> <?php echo form_close(); ?> </div>
+      <?php echo form_close(); ?> </div>
   </div>
   <!-- /box-content -->
   
