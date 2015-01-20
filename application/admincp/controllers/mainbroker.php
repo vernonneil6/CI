@@ -57,25 +57,8 @@ class Mainbroker extends CI_Controller
 	public function index()
 	{
 	  if($this->session->userdata['youg_admin'])
-	  {
-			/*$siteid = $this->session->userdata('siteid');
-			$this->data['mainbrokers'] = $this->mainbrokers->get_all_brokersetting($siteid);
-			$this->data['brokerview'] = $this->mainbrokers->brokerview();
-			$i=0;
-			
-			foreach($this->data['brokerview'] as $subbroker)
-			{
-				$this->data['marketerview'][$i] = $this->mainbrokers->marketerview($subbroker->id);
-				$i++;
-			}
-			foreach($this->data['brokerview'] as $marketerid)
-			{
-				$this->data['agentview'][$i] = $this->mainbrokers->agentview($marketerid->id);
-				$i++;
-			}	*/
-			
+	  {			
 			$this->data['subbroker'] = $this->mainbrokers->subbroker();
-				
 			$this->load->view('mainbroker',$this->data);
 	  }
 	}	
@@ -91,8 +74,21 @@ class Mainbroker extends CI_Controller
 			'password'=>$request->post('password'),
 			'marketer'=>$request->post('marketer'),
 			'agent'=>$request->post('agent'),
+			'companyname'=>$request->post('companyname'),
+			'companycontactname'=>$request->post('companycontactname'),
+			'emailaddress'=>$request->post('emailaddress'),
+			'phone'=>$request->post('phone'),
+			'address'=>$request->post('address'),
+			'id#'=>$request->post('id'),
 			'signup'=>date("Y-m-d H:i:s")
-			);			
+			);	
+			
+			if($this->mainbrokers->subbroker_name_check($request->post('username')))
+			{
+				$this->session->set_flashdata('error', 'Username already exists');
+				redirect('mainbroker/add', 'refresh');
+			}
+					
 			if($this->mainbrokers->allbroker($data)){
 				$this->session->set_flashdata('success', 'Record Added Successfully');
 				redirect('mainbroker', 'refresh');
@@ -218,7 +214,6 @@ class Mainbroker extends CI_Controller
 	function edit($id){
 		if(is_numeric($id)){
 			$this->data['Brokers'] = $this->mainbrokers->brokerids($id);
-			//print_r($this->data['Brokers']);
 			$this->load->view('viewbroker',$this->data);
 		}
 	}
@@ -231,7 +226,13 @@ class Mainbroker extends CI_Controller
 			'name'=>$this->input->post('username'),
 			'password'=>$this->input->post('password'),
 			'marketer'=>$this->input->post('marketer'),
-			'agent'=>$this->input->post('agent')			
+			'agent'=>$this->input->post('agent'),			
+			'companyname'=>$this->input->post('companyname'),			
+			'companycontactname'=>$this->input->post('companycontactname'),			
+			'emailaddress'=>$this->input->post('emailaddress'),			
+			'phone'=>$this->input->post('phone'),			
+			'address'=>$this->input->post('address'),			
+			'id#'=>$this->input->post('id')			
 			);			
 			if($this->mainbrokers->updatebroker($id,$data)){
 				$this->session->set_flashdata('success', 'Record Updated Successfully');
