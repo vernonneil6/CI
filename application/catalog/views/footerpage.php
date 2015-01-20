@@ -114,7 +114,7 @@
         
       
       <?php } else { ?>
-      <div style="min-height:150px;"><?php echo $content; ?></div>
+            <div style="min-height:150px;"><?php echo preg_replace('/<br[^>]*>/i', '', stripslashes($content)); ?></div>
       
       <?php if( $this->uri->segment(1)=='remove' && $this->uri->segment(2)=='complaint') { ?>
       <?php $removeamount=$this->common->get_setting_value(10); ?>
