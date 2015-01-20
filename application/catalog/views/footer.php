@@ -54,10 +54,10 @@ function userlogin()
                 <li class="ftitle">YOU GOT RATED GUIDE</li>
                 <?php 
 				$footerpart1 = $this->common->get_footerlink_byid(1); 
-				foreach($footerpart4 as $part4) 
+				foreach($footerpart1 as $part1) 
 				{ 
 				?>
-					<li><a href="<?php echo 'footerpage/index/'.$part4['intid'];?>" title="<?php echo $part4['title'];?>"><?php echo $part4['title'];?></a></li>
+					<li><a href="<?php echo 'footerpage/index/'.$part1['intid'];?>" title="<?php echo $part1['title'];?>"><?php echo $part1['title'];?></a></li>
 				<?php 
 				}
 				?>
