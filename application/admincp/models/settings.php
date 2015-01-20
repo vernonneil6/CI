@@ -510,5 +510,41 @@ Class Settings extends CI_Model
 	{
 		return  $this->db->get_where('youg_broker',array('subbrokerid'=>$ids))->result();
 	}
+		//Changing Status to "Disable"
+	function disable_tutorial_byid($id)
+	{
+		$data = array(
+						'status'		=> 'Disable',
+		
+		
+					);
+		$this->db->where('id', $id);
+		if($this->db->update('tutorial', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	//Changing Status to "Enable"
+	function enable_tutorial_byid($id)
+	{
+		$data = array(
+							'status'	=> 'Enable',
+					);
+		$this->db->where('id', $id);
+		if( $this->db->update('tutorial', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
 }
 ?>

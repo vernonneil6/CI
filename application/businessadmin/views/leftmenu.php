@@ -41,8 +41,9 @@
 		   
        </ul>
     </li>
+     <li><a href="<?php echo site_url('tutorial'); ?>"  class="link" title="Tutorials">Tutorials</a>
     <li><a href="<?php echo site_url('pdf'); ?>" title="Profile Docs">Menu/Catalogs Upload</a>
-      <ul class="submenu">
+       <ul class="submenu">
         <li><a href="<?php echo site_url('pdf/add'); ?>" title="Add Profile Docs">Add Menu/Catalogs Docs</a></li>
         <li><a href="<?php echo site_url('pdf'); ?>" title="List All Profile Docs">List All Menu/Catalogs Docs</a></li>
       </ul>
