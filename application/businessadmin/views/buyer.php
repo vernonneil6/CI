@@ -16,11 +16,12 @@
       <h2><span><?php echo $section_title; ?></span></h2>
     </div>
     
+    <!--Embed into Emails-->
     <table class="tab tab-drag">
      <tbody><tr class="top nodrop nodrag"> </tr>       
       
       <tr class="odd">
-        <td>Embeddable Buyer Protection Code:</td>
+        <td>Embeddable Buyer Protection Code:Embed into Emails</td>
         
         <td>
         <p>To embed this code into your email or website, simply copy this code into your website's or outgoing email's code.</p>
@@ -41,6 +42,40 @@
             Transaction ID: <?php echo $this->session->userdata['youg_admin']['id'];?> <br> 
             To file a complaint -<a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/complaint/dispute/'.$this->session->userdata['youg_admin']['id'];?>" target="_blank" title="File Complaint">Click Here</a>
         </span>
+        </td>
+      </tr>
+    
+    </tbody>
+    </table>
+    
+    
+    <!--Embed into Websites-->	
+    <table class="tab tab-drag">
+     <tbody><tr class="top nodrop nodrag"> </tr>       
+        <?php $a = $this->session->userdata['youg_admin']['id'];
+              $com = $this->settings->get_company_byid($a);
+             if(count($com) >0 )
+             {
+				 $companyname=$com[0]['company'];
+			 } 
+             
+        ?>
+      <tr class="odd">
+        <td>Embeddable Buyer Protection Code:Embed into Websites</td>
+        
+        <td>
+			<textarea cols='90' rows='10'><a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/solution';?>" target="_blank" title="Get Widget">
+			<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/BuyersProtection_Badge.png'; ?>" class="logo_btm" alt="Yougotrated" title="&#34;<?php echo $companyname;?>&#34; is a verified merchant with YouGotrated and all their transactions are backed by the YouGotrated Buyers Protection Program.Once you have completed your purchase with &#34;<?php echo $companyname;?>&#34; you will be emailed your Buyers Protection ID Number should you need to file a Claim with YouGotRated."  width='10%' ></a></textarea>
+        </td>
+     </tr>
+
+
+     <tr class="odd">
+        <td>Sample Image</td>
+        <td>
+			<a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/solution';?>" target="_blank" title="Get Widget">
+			<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/BuyersProtection_Badge.png'; ?>" class="logo_btm" alt="Yougotrated" title="&#34;<?php echo $companyname?>&#34; is a verified merchant with YouGotrated and all their transactions are backed by the YouGotrated Buyers Protection Program.Once you have completed your purchase with &#34;<?php echo $companyname;?>&#34; you will be emailed your Buyers Protection ID Number should you need to file a Claim with YouGotRated."  width='10%' ></a>
+        <br>
         </td>
       </tr>
     
