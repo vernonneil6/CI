@@ -242,7 +242,7 @@ else { ?>
                 );
                 
                 $class = 'class = "input"';
-				echo form_dropdown( 'footercategory', $option, '1', $page[0]['id'] ) ;
+				echo form_dropdown( 'footercategory', $option, $page[0]['id'], $class ) ;
 				?>
               </div>
             </div>
