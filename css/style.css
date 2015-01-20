@@ -746,7 +746,7 @@ input[type="file"].filupload:before {
 }
 
 /*============ Business_Directory ===========================*/
-.bus_dir_head{text-align:center; margin:40px auto 0 auto; width:940px; height:64px; padding-bottom:32px; /*border-bottom:1px solid #999;*/}
+.bus_dir_head{text-align:center; margin:40px auto 0 auto; width:940px; padding-bottom:32px; }
 .bus_dir_head a{display:inline-block;}
 .busdt_wrap{width:100%; display:inline-block; margin-top:99px;}
 .bdsrch_wrp{width:587px; display:inline-block; height:25px;}
@@ -1743,4 +1743,16 @@ padding-left: 18px;
 {
 	color: #2c6a99!important;
 }
-.hiddensearch{display:none;}
+.hiddensearch
+{
+	display:none;
+}
+.businessdirectory_breadcrumb
+{
+	display: inline-block;
+    margin: 25px 0 0 2px; 
+}
+.ygr_breadcrumb
+{
+	margin : 10px 0 0 5px;
+}

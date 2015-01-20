@@ -18,9 +18,6 @@
 
 <script src="js/jquery.flexslider-min.js"></script>
 
-<!--<link rel="stylesheet" href="css/message.css" type="text/css">-->
-
-<!--<script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
 <script>
  $(document).ready(function() {
  $('.data_table').delay(6000).fadeOut(600);
@@ -51,16 +48,6 @@
 }
 </style>
 
-<!--[if lt IE 7]>
-    <div style=' clear: both; text-align:center; position: relative;'>
-        <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-        	<img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-        </a>
-    </div>
-	<![endif]-->
-<!--[if IE]>
-   		<script type="text/javascript" src="js/html5.js"></script>
-	<![endif]-->
 </head><body>
 <header>
   <div class="container">
@@ -126,7 +113,7 @@
     </div>
 	
  <?php } } ?>	 
-    <div style="margin-left:5px;margin-top:10px !important;">
+    <div class = "<?php if($this->uri->segment(1)=='businessdirectory'){ echo "businessdirectory_breadcrumb" ;} else { echo "ygr_breadcrumb" ;} ?>">
       <?php if($this->uri->segment(1)=='coupon' && $this->uri->segment(2)==''){?>
       <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a title="Coupons deals & Steals">Coupons deals & Steals</a>
       <?php } ?>
