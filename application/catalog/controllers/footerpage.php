@@ -40,17 +40,40 @@ class Footerpage extends CI_Controller {
 		$this->data['leftads']= $this->common->get_all_ads('left','others',$siteid);
 		$this->data['rightads']= $this->common->get_all_ads('right','others',$siteid);
 		
-		$page = $this->common->get_pages_by_id(1,$siteid);
+		$page = $this->common->get_footerlink_byintid($intid);
+		
+		if( count($page) > 0 )
+		{
+			$this->data['title'] = stripslashes($page[0]['title']);
+			$this->data['varheading'] = stripslashes($page[0]['heading']);
+			
+			//Meta Keywords and Description
+			$this->data['keywords'] = stripslashes($page[0]['metakeywords']);
+			$this->data['description'] = stripslashes($page[0]['metadescription']);
+			$total= $this->common->get_all_complaints_totaldamage($siteid);
+		
+			if(count($total)>0) {
+			$this->data['total'] = round($total[0]['total']);
+			}
 				
-		$this->data['header'] = $this->load->view('header',$this->data,true);
-		$this->data['menu'] = $this->load->view('menu',$this->data,true);
-		$this->data['footer'] = $this->load->view('footer',$this->data,true);
+			//Page Content
+			$this->data['content'] = nl2br(($page[0]['pagecontent']));
+		
+			//Load header and save in variable
+			$this->data['header'] = $this->load->view('header',$this->data,true);
+			$this->data['menu'] = $this->load->view('menu',$this->data,true);
+			$this->data['footer'] = $this->load->view('footer',$this->data,true);
+		}
+		else
+		{
+			//Redirecting if Page not found
+			redirect('','refresh');	
+		}
 		
 	}
 	
 	public function index($intid)
 	{
-		$this->data['footerlink'] = $this->common->get_footerlink_byintid($intid);
 		$this->load->view('footerpage',$this->data);
 	}
 	
