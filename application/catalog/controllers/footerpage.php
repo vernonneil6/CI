@@ -72,7 +72,7 @@ class Footerpage extends CI_Controller {
 		
 	}
 	
-	public function index($intid)
+	public function index()
 	{
 		$this->load->view('footerpage',$this->data);
 	}
