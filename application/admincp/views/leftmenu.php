@@ -230,6 +230,17 @@
 			</li>
 		</ul>
     </li>
+    <li class="<?=($this->uri->segment(1)==='tutorial')?'active':''?>">
+		<a href="<?php echo site_url('tutorial'); ?>" title="Tutorials Management Tool">Tutorials Management Tool</a>
+		<ul class="submenu">
+			<li>
+				<a href="<?php echo site_url('tutorial/add'); ?>" title="Add Elite Admin Tutorial">Add Elite Admin Tutorial</a>
+			</li>
+			<li>
+				<a href="<?php echo site_url('tutorial'); ?>" title="List All Elite Admin Tutorial">List All Elite Admin Tutorial</a>
+			</li>
+		</ul>
+    </li>
 	<li class="<?=($this->uri->segment(1)==='report')?'active':''?>">
 		<a href="<?php echo site_url('report');?>" class="link" title="Reports">Reports</a>
 	</li>

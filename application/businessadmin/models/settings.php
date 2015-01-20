@@ -394,6 +394,14 @@ Class Settings extends CI_Model
 		$this->db->update('elite', $data); 
 		
 	}
+	function list_all_tutorials()
+	{
+		
+	  $query = $this->db->get_where('youg_tutorial',array('status'=>'Enable'));
+	  return $query->result_array();
+		
+		
+	}
 	
 	
 
