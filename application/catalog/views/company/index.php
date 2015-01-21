@@ -539,7 +539,7 @@
 
 <a class = "company_review_tab fancybox" href="#review_popup">
 Reviews
-</div>
+</a>
 
 <div id="review_popup" style="width:400px;display: none;">test</div>
 
