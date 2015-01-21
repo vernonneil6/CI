@@ -1838,9 +1838,9 @@ padding-left: 18px;
 }
 .review_border_bottom
 {
-	border-bottom : 1px solid;
+	border-top : 1px solid;
 }
-padding_top_1
+.padding_top_1
 {
 	padding : 15px 0;
 }
