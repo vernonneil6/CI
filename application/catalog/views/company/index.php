@@ -547,7 +547,7 @@ Reviews
 	THESE ARE REAL REVIEWS FROM YOUGOTRATED
 </div>
 <div class = "review_tab_bottom">
-	<div class ="review_border_bottom">
+	
             <?php if( count($reviews) > 0 ) { ?>
             <?php if(count($reviews)>5)
 			  {
@@ -565,12 +565,16 @@ Reviews
 			    if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') 
 			    { 
 			    $users = $this->users->get_user_bysingleid($reviews[$i]['reviewby']); 
+			    $cmpy  = $this->users->get_company_bysingleid($reviews[$i]['companyid']); 
 			    if(count($users)>0) 
 			    { 
 				?>
+				<div class ="review_border_bottom">
 				 <div class = "review_firstletter"><label><?php $firstword = $users['username']; echo $firstword[0];?></label></div>
                  <div class = "review_username_row">
-					 <div class = "review_name_tab"><?php echo $users['username'];?></div>
+					 <div class = "review_name_tab tooltip" title = "This review has been authenticated by <?php echo $cmpy['company']; ?> and has been posted on YouGotRated by a real shopper">
+						 <?php echo $users['username'];?>
+					 </div>
 					 <div class = "review_date_tab"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
 					 <div class="review_rating_tab">
 						<?php for($r=0;$r<($reviews[$i]['rate']);$r++){?>
@@ -585,6 +589,7 @@ Reviews
 					   </div>
 					   <p><?php echo $reviews[$i]['comment'];?></p>		  
 				 </div>
+				 </div> 
 				<?php
 				}
 				?>
@@ -614,14 +619,21 @@ Reviews
             </div>
             <?php } ?>
     </div>
-</div>          
+         
 
 </div>
 
 <?php echo $footer;?>
 
 <link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>businessadmin/css/tooltipster.css" />
 <script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>businessadmin/js/jquery.tooltipster.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.tooltip').tooltipster();
+	});
+</script>
 <script>
 $(document).ready(function()
 {

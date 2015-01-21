@@ -1769,8 +1769,13 @@ padding-left: 18px;
     position: fixed;
     top: 53%;
     cursor : pointer;
+    color: white;
     transform: rotate(270deg);
     transform-origin: left top;
+}
+#review_popup
+{
+	font-family: myriadpro-regular;
 }
 .review_firstletter
 {
@@ -1804,6 +1809,7 @@ padding-left: 18px;
 .review_date_tab
 {
 	float : right;
+	font-weight: normal;
 }
 .review_rating_tab
 {
@@ -1812,7 +1818,7 @@ padding-left: 18px;
 }
 .font_size_tab
 {
-	font-size: 13px;
+	font-size: 13px!important;
 }
 .fancybox-skin
 {
