@@ -566,11 +566,21 @@ Reviews
 			    { 
 			    $users = $this->users->get_user_bysingleid($reviews[$i]['reviewby']); 
 			    $cmpy  = $this->users->get_company_bysingleid($reviews[$i]['companyid']); 
+			    $elitemem_status = $this->common->get_eliteship_bycompanyid($reviews[$i]['companyid']); 
 			    if(count($users)>0) 
 			    { 
 				?>
 				<div class ="<?php if($i!='0'){ echo "review_border_bottom";} ?> padding_top_1">
-				 <div class = "review_firstletter"><label><?php $firstword = $users['username']; echo $firstword[0];?></label></div>
+				 <div class = "review_firstletter">
+					<label><?php $firstword = $users['username']; echo $firstword[0];?></label>
+					<span>					
+					<?php if(count($elitemem_status)==0) { ?>
+						Verified Buyer
+					<?php }else{  ?>
+						Not Verified Buyer   
+					<?php } ?>           
+					</span>
+				</div>
                  <div class = "review_username_row">
 					 <div class = "review_name_tab tooltip" title = "This review has been authenticated by <?php echo $cmpy['company']; ?> and has been posted on YouGotRated by a real shopper">
 						 <?php echo $users['username'];?>
