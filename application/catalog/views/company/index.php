@@ -572,17 +572,17 @@ Reviews
 				?>
 				<div class ="<?php if($i!='0'){ echo "review_border_bottom";} ?> padding_top_1">
 				 <div class = "review_firstletter">
-					<label><?php $firstword = $users['username']; echo $firstword[0];?></label>
+					<label><?php if($users['username']!=''){ $firstword = $users['username']; echo $firstword[0]; }?></label>
 				</div>
                  <div class = "review_username_row">
 					 <div class = "review_name_tab tooltip" title = "This review has been authenticated by <?php echo $cmpy['company']; ?> and has been posted on YouGotRated by a real shopper">
 						 <?php echo $users['username'];?>
 						 <span>					
-							<?php if(count($elitemem_status)==0) { ?>
+							<?php /*if(count($elitemem_status)==0) { ?>
 								Not Verified Buyer  
 							<?php }else{  ?>
 								Verified Buyer
-							<?php } ?>           
+							<?php } */?>           
 						</span>
 					 </div>
 					 <div class = "review_date_tab"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
