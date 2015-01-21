@@ -1772,3 +1772,19 @@ padding-left: 18px;
     transform: rotate(270deg);
     transform-origin: left top;
 }
+.review_firstletter
+{
+	background: #83b6dd;
+    border-radius: 50px;
+    height: 45px;
+    width: 45px;
+    text-align : center;
+    float: left;
+}
+.review_firstletter label
+{
+	color: white;
+    display: inline-block;
+    font-size: 16px;
+    margin: 11px;
+}

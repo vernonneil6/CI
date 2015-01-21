@@ -541,7 +541,7 @@
 Reviews
 </div>
 
-<div id="review_popup" style="width:400px;display: none;">
+<div id="review_popup" style="display: none;">
 
 
             <?php if( count($reviews) > 0 ) { ?>
@@ -555,7 +555,7 @@ Reviews
 			  }?>
             <?php for($i=0; $i<$newreviews; $i++) { ?>
        
-				
+				<div class = "review_firstletter"><label></label></div>
 				
              <?php 
 			    if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') 
@@ -596,14 +596,10 @@ Reviews
                     </div>
                 </div>
                 <p><?php echo $reviews[$i]['comment'];?></p>
-                <div class="cmnt_wrp wrps"> <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add comment">  +  Add comment </a> </div>
+               
               </div>
             </div>
             <?php } 
-			?>
-            <p align="right" class="cmnt_wrp wrps"><a href="<?php echo site_url('company/reviews/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a>
-            </p>
-            <?php
 			}?>
             <?php  if( count($reviews)==0 ) 
 			  { ?>
