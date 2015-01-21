@@ -1785,8 +1785,8 @@ padding-left: 18px;
 {
 	color: white;
     display: inline-block;
-    font-size: 16px;
-    margin: 11px;
+    font-size: 20px;
+    margin: 10px;
 }
 .review_username_row
 {
@@ -1809,4 +1809,20 @@ padding-left: 18px;
 {
 	clear : both;
 	padding : 5px 0 0;
+}
+.font_size_tab
+{
+	font-size: 13px;
+}
+.fancybox-skin
+{
+	padding : 0!important;
+}
+.review_tab_bottom
+{
+	padding : 15px;
+}
+.review_tab_top
+{
+	background : #3085C7;
 }

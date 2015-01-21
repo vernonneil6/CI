@@ -541,9 +541,12 @@
 Reviews
 </div>
 
-<div id="review_popup" style="display: none;">
+<div id="review_popup" style="width:450px; display: none; padding : 15px;">
 
-
+<div class = "review_tab_top">
+	
+</div>
+<div class = "review_tab_bottom">
             <?php if( count($reviews) > 0 ) { ?>
             <?php if(count($reviews)>5)
 			  {
@@ -577,7 +580,7 @@ Reviews
 						<?php } ?>
 					  </div>
 					   <div class="rat_title reptitle">
-							<h2><?php echo $reviews[$i]['reviewtitle'];?></h2>
+							<h2 class = "font_size_tab"><?php echo $reviews[$i]['reviewtitle'];?></h2>
 					   </div>
 					   <p><?php echo $reviews[$i]['comment'];?></p>		  
 				 </div>
@@ -609,7 +612,7 @@ Reviews
               <p>No Reviews.</p>
             </div>
             <?php } ?>
-          
+</div>          
 
 </div>
 
