@@ -93,7 +93,7 @@
         <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">Press Releases<span>:<span></a></li>
         <li><a href="<?php echo site_url('complaint');?>" title="Complaints">Business Complaints<span>:<span></a></li>
         <li><a href="<?php echo site_url('coupon');?>" title="Coupons deals & Steals">Coupons deals & Steals<span>:<span></a></li>
-        <li><a href="<?php echo site_url('solution');?>" title="Elite Membership">Elite Membership</a></li>
+        <li><a href="business.yougotrated.com" title="Elite Membership">Elite Membership</a></li>
       </ul>
     </div>
    <?php if($this->uri->segment(1)!='businessdirectory' && $this->uri->segment(1)!='solution') { ?> 
