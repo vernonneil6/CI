@@ -590,9 +590,9 @@ Reviews
 					   <p><?php echo $reviews[$i]['comment'];?></p>		  
 				 </div>
 				 <div class = "review_rates">
-					 <div>
+					 <div class = "review_ratethis">
 					<span>
-					  <h5>RATE THIS REVIEW:</h5>
+					  <label>RATE THIS REVIEW:</label>
 					  <?php $ip = $_SERVER['REMOTE_ADDR'];?>
 					  <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'helpful') == 'true'){ ?>
 					  <a class="vote-disable" id="helpful_<?php echo $reviews[$i]['id'];?>" reviewid="<?php echo $reviews[$i]['id'];?>" title="Helpful" style="cursor:pointer !important;"><b id="helpful<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'helpful');?></b> Helpful</a>
@@ -660,28 +660,9 @@ Reviews
 				 </div>
 				 </div> 
 				<?php
-				}
-				?>
-				
-                  <?php  } 
+				} } } }
                   
-                  else {?>       
-				  <?php $user=$this->users->get_user_byid($reviews[$i]['reviewby']);?>
-                  <?php if(count($user)>0) { ?>
-                  <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><?php echo $user[0]['username'];?></a>
-				  <?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?>
-                  <?php } ?>
-                  <?php } ?>
-                 
-            
-
-
-                
-               
-
-            <?php } 
-			}?>
-            <?php  if( count($reviews)==0 ) 
+				if( count($reviews)==0 ) 
 			  { ?>
             <div class="form-message warning">
               <p>No Reviews.</p>
@@ -698,15 +679,57 @@ Reviews
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>businessadmin/css/tooltipster.css" />
 <script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>businessadmin/js/jquery.tooltipster.min.js"></script>
-<script>
-	$(document).ready(function() {
+<script type="text/javascript" language="javascript">	
+	
+	$(document).ready(function() 
+	{
 		$('.tooltip').tooltipster();
+		$('.fancybox').fancybox();
 	});
-</script>
-<script>
-$(document).ready(function()
-{
-	$('.fancybox').fancybox();
-});
-</script>
+		  
+	function countme(rid,vote)
+	{
+	  $.ajax({
+		  type 				: "POST",
+		  url 				: "<?php echo site_url('review/countme');?>",
+		  dataType 			: "json",
+		  data				: {reviewid:rid,vote : vote},
+		  cache				: false,
+		  success			: function(data)
+							  {	
+								$('#'+vote+'_'+rid).html("<b>"+data.total+"</b>&nbsp;"+vote);
+							
+							  }
+	   });
+	}
+	
+	function check(ip,rid,vote)
+	{
+	  
+	  $.ajax({
+		  type 				: "POST",
+		  url 				: "<?php echo site_url('review/checkvote');?>",
+		  dataType 			: "json",
+		  data				: { ip:ip,reviewid:rid,vote : vote},
+		  cache				: false,
+		  success			: function(data)
+							  {	
+								if(data.message == 'deleted')
+								{
+								   $('#'+vote+'_'+rid).removeClass('vote-disable');
+								   $('#'+vote+'_'+rid).addClass('vote');
+								}
+								if(data.message == 'added')
+								{
+								   $('#'+vote+'_'+rid).removeClass('vote');
+								   $('#'+vote+'_'+rid).addClass('vote-disable');										   										  
+								}
+								countme(rid,vote);
+							  }
+		  
 
+	   });
+	  
+	}
+
+</script>
