@@ -555,7 +555,7 @@ Reviews
 			  }?>
             <?php for($i=0; $i<$newreviews; $i++) { ?>
        
-				<div class = "review_firstletter"><label></label></div>
+				
 				
              <?php 
 			    if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') 
@@ -563,12 +563,28 @@ Reviews
 			    $users = $this->users->get_user_bysingleid($reviews[$i]['reviewby']); 
 			    if(count($users)>0) 
 			    { 
-			?>
-                 <?php echo $users['username'];?>
-			<?php
+				?>
+				 <div class = "review_firstletter"><label><?php $firstword = $users['username']; echo $firstword[0];?></label></div>
+                 <div class = "review_username_row">
+					 <div class = "review_name_tab"><?php echo $users['username'];?></div>
+					 <div class = "review_date_tab"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
+					 <div class="review_rating_tab">
+						<?php for($r=0;$r<($reviews[$i]['rate']);$r++){?>
+						<i class="vry_rat_icn"></i>
+						<?php } ?>
+						<?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
+						<img src="images/no_star.png" alt="no_star" title="no_star" />
+						<?php } ?>
+					  </div>
+					   <div class="rat_title reptitle">
+							<h2><?php echo $reviews[$i]['reviewtitle'];?></h2>
+					   </div>
+					   <p><?php echo $reviews[$i]['comment'];?></p>		  
+				 </div>
+				<?php
 				}
-			?>
-            <?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?>
+				?>
+				
                   <?php  } 
                   
                   else {?>       
@@ -582,23 +598,9 @@ Reviews
             
 
 
-                <div class="review_ratng_wrp">
-                  <div class="rating <?php if($i%2==0){echo "raticn";}?>">
-                    <?php for($r=0;$r<($reviews[$i]['rate']);$r++){?>
-                    <i class="vry_rat_icn"></i>
-                    <?php } ?>
-                    <?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
-                    <img src="images/no_star.png" alt="no_star" title="no_star" />
-                    <?php } ?>
-                  </div>
-                  <div class="rat_title reptitle">
-                    <h2><?php echo $reviews[$i]['reviewtitle'];?></h2>
-                    </div>
-                </div>
-                <p><?php echo $reviews[$i]['comment'];?></p>
+                
                
-              </div>
-            </div>
+
             <?php } 
 			}?>
             <?php  if( count($reviews)==0 ) 
