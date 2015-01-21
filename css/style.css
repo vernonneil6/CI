@@ -1791,7 +1791,7 @@ padding-left: 18px;
 	color: white;
     display: inline-block;
     font-size: 20px;
-    margin: 10px;
+    margin: 12px;
 }
 .review_username_row
 {
@@ -1816,6 +1816,10 @@ padding-left: 18px;
 	clear : both;
 	padding : 5px 0 0;
 }
+.review_username_row p
+{
+	color : #a2a2a2;
+}
 .font_size_tab
 {
 	font-size: 13px!important;
@@ -1838,9 +1842,18 @@ padding-left: 18px;
 }
 .review_border_bottom
 {
-	border-top : 1px solid;
+	border-top : 1px solid #e3e3e3;
 }
 .padding_top_1
 {
-	padding : 15px 0;
+	padding : 15px 0 0;
+}
+.fancybox-overlay
+{
+	background: black;
+	opacity: .70;
+}
+.review_rates
+{
+	
 }
