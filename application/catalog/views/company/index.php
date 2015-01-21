@@ -572,7 +572,7 @@ Reviews
 				?>
 				<div class ="<?php if($i!='0'){ echo "review_border_bottom";} ?> padding_top_1">
 				 <div class = "review_firstletter">
-					<label><?php if($users['username']!=''){ $firstword = $users['username']; echo $firstword[0]; }?></label>
+					<label><?php if($users['username']!=''){ $firstword = $users['username']; echo ucfirst($firstword[0]); }?></label>
 				</div>
                  <div class = "review_username_row">
 					 <div class = "review_name_tab tooltip" title = "This review has been authenticated by <?php echo $cmpy['company']; ?> and has been posted on YouGotRated by a real shopper">
