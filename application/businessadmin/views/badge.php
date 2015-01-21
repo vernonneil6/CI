@@ -26,7 +26,7 @@
 			<tr class="odd">
 			<td>Sample Image</td>
 			<td>
-			<a href="#">
+			<a href="javascript:void(0)">
 			<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" class="logo_btm tooltip" alt="Yougotrated" title="The company is a verified merchant."  width='10%' ></a>
 			</td>
 		  </tr>
