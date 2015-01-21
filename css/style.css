@@ -1768,6 +1768,7 @@ padding-left: 18px;
     padding: 15px;
     position: fixed;
     top: 53%;
+    cursor : pointer;
     transform: rotate(270deg);
     transform-origin: left top;
 }
