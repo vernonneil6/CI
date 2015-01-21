@@ -735,7 +735,22 @@ class Company extends CI_Controller {
 										$line = trim($fcontents[$i]);
 										$arr = explode(",",$line);
 										
+										//echo '<pre>';print_r($arr);die;
+										/*Code added for tesing */
 										$company = $arr[0];
+										$email = $arr[1];
+										$streetaddress = $arr[2];
+										$city = $arr[3];
+										$state = $arr[4];
+										$zip = $arr[5];
+										$country = $arr[6];
+										$phone = $arr[7];
+										$siteurl = $arr[8];
+										$aboutus = $arr[9];
+									
+										/*
+										 * Code added by old team 
+										 * $company = $arr[0];
 										$email = $arr[1];
 										$contactname = $arr[5];
 										$streetaddress = $arr[9];
@@ -746,7 +761,7 @@ class Company extends CI_Controller {
 										$phone = $arr[15];
 										$fax = $arr[16];
 										$siteurl = $arr[17];
-										$aboutus = $arr[21];
+										$aboutus = $arr[21];*/
 										$id = 0;
 										$check = 'company';
 										$fieldvalue = $arr[0];
@@ -764,7 +779,13 @@ class Company extends CI_Controller {
 											else
 											{ 
 												//Inserting Record
-												if( $this->companys->insert2($company,$email,$contactname,$streetaddress,$city,$state,$zip,$country,$phone,$fax,$siteurl,$aboutus,strtolower($company).$i) )
+												/*code added by oldteam
+												 * $this->companys->insert2($company,$email,$contactname,$streetaddress,$city,$state,$zip,$country,$phone,$fax,$siteurl,$aboutus,strtolower($company).$i) 
+												 * 
+												 * 
+												 * 
+												 * */
+												if($this->companys->insert2($company,$email,$streetaddress,$city,$state,$zip,$country,$phone,$siteurl,$aboutus,strtolower($company).$i))
 												{
 													$this->session->set_flashdata('success', 'company inserted successfully.');
 												 }
@@ -806,8 +827,12 @@ class Company extends CI_Controller {
 		$url = explode("/admincp",$site);
 		$path = $url[0];
 		
-		$file = file_get_contents($path.'/companyinfo.csv');
-		$name = 'example.csv';
+		/*
+		 * code added by old team
+		 * $file = file_get_contents($path.'/companyinfo.csv');
+		$name = 'example.csv';*/
+		$file = file_get_contents($path.'/New_sample_companyinfo.csv');
+		$name = 'sample.csv';
 
 		force_download($name, $file); 
 	}

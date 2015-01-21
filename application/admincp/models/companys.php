@@ -359,7 +359,8 @@ Class Companys extends CI_Model
 		}
 	}
 	
-	public function insert2($company,$email,$contactname,$streetaddress,$city,$state,$zip,$country,$phone,$fax,$siteurl,$aboutus,$companyseokeyword)
+	/*code added by oldteam $company,$email,$contactname,$streetaddress,$city,$state,$zip,$country,$phone,$fax,$siteurl,$aboutus,$companyseokeyword */
+	public function insert2($company,$email,$streetaddress,$city,$state,$zip,$country,$phone,$siteurl,$aboutus,$companyseokeyword)
 	
 	{
 		$word = str_replace(' ','',$companyseokeyword);
@@ -368,14 +369,12 @@ Class Companys extends CI_Model
 		$data = array(
 							'company' 		=> $company,
 							'email' 		=> $email,
-							'contactname' 	=> $contactname,
-							'streetaddress' => $streetaddress,
-							'city'			=> $city,
-							'state' 		=> $state,
-							'zip'			=> $zip,
-							'country' 		=> 'country',
+							'companystreet' => $streetaddress,
+							'companycity'	=> $city,
+							'companystate' 	=> $state,
+							'companyzip'	=> $zip,
+							'companycountry'=> 'country',
 							'phone' 		=> $phone,
-							'fax'			=> $fax,
 							'registerdate'	=> $date,
 							'siteurl'		=> $siteurl,
 							'aboutus'		=> $aboutus,
