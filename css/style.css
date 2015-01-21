@@ -1857,8 +1857,7 @@ padding-left: 18px;
 }
 .fancybox-overlay
 {
-	/*background: black!important;
-	opacity: .70;*/
+	background: rgba(0,0,0,.7)!important;
 }
 .review_rates
 {
@@ -1874,4 +1873,8 @@ padding-left: 18px;
 {
 	font-size: 11px;
     padding: 0 15px 0 0;
+}
+.fancybox-inner
+{
+	height: 550px!important;
 }
