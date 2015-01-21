@@ -1760,3 +1760,14 @@ padding-left: 18px;
 {
 	font-size : 70px;
 }
+
+
+.company_review_tab
+{
+	background: none repeat scroll 0 0 #39bced;
+    padding: 15px;
+    position: fixed;
+    top: 53%;
+    transform: rotate(270deg);
+    transform-origin: left top;
+}
