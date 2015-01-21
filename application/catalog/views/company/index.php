@@ -22,9 +22,6 @@
 	 }); 
 	 
 </script>
-<script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
-<link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
-
 
 <section class="container">
   <section class="main_contentarea">
@@ -540,4 +537,19 @@
   </section>
 </section>
 
+<a class = "company_review_tab fancybox" href="#review_popup">
+Reviews
+</a>
+
+<div id="review_popup" style="width:400px;display: none;">test</div>
+
 <?php echo $footer;?>
+
+<link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
+<script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
+<script>
+$(document).ready(function()
+{
+	$('.fancybox').fancybox();
+});
+</script>
