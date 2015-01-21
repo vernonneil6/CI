@@ -542,7 +542,7 @@ Reviews
 </div>
 
 <div id="review_popup" style="width:450px; height : 550px; display: none;">
-
+<div class = "review_poweredby">Powered by YouGotRated</div>
 <div class = "review_tab_top">
 	THESE ARE REAL REVIEWS FROM YOUGOTRATED
 </div>
