@@ -21,13 +21,52 @@
 		 <tr class="odd">
 			<td>Badge Url</td>
 			<td>
-			<textarea cols='90' rows='10'><a href="#">
-			<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" class="logo_btm tooltip" alt="Yougotrated" title="The company is a verified merchant."   width='7%' ></a></textarea></td></tr>
+			<textarea cols='90' rows='10'>
+				<a href="<?php echo site_url('company/'.$companyid['companyseokeyword'].'/reviews/coupons/complaints');?>"  class="tooltip disablerightclick" title="The <?php $companyid['company']; ?> is a verified merchant.">
+					<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>"  >
+					<div style = "display : none">
+						<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/tooltipster.css" />
+						<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
+						<script>
+							$(document).ready(function() {
+								$('.tooltip').tooltipster();
+								
+								$('.disablerightclick').on("contextmenu",function(e)
+								{
+									alert('right click disabled');
+									return false;
+								});
+
+							});
+						</script>
+					</div>
+				</a>
+			</textarea>
+			</td>
+		</tr>
+			
 			<tr class="odd">
 			<td>Sample Image</td>
 			<td>
-			<a href="javascript:void(0)">
-			<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" class="logo_btm tooltip" alt="Yougotrated" title="The company is a verified merchant."  width='10%' ></a>
+			<a href="<?php echo site_url('company/'.$companyid['companyseokeyword'].'/reviews/coupons/complaints');?>" class="tooltip disablerightclick" title="The <?php $companyid['company']; ?> is a verified merchant.">
+				<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" >
+				<div style = "display : none">
+					<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/tooltipster.css" />
+					<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
+					<script>
+						$(document).ready(function() {
+							$('.tooltip').tooltipster();
+							
+							$('.disablerightclick').on("contextmenu",function(e)
+							{
+								alert('right click disabled');
+								return false;
+							});
+
+						});
+					</script>
+				</div>
+			</a>
 			</td>
 		  </tr>
 		</tbody>
@@ -43,11 +82,5 @@
 <?php include('leftmenu.php'); ?>
 <?php echo $footer; ?>
 
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/tooltipster.css" />
-<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
-<script>
-	$(document).ready(function() {
-		$('.tooltip').tooltipster();
-	});
-</script>
+
 
