@@ -57,7 +57,7 @@ class Welcome extends CI_Controller {
 		$this->load->model('reviews');
 		$this->load->model('complaints');
 		$this->load->model('sliders');
-		//$this->load->model('sphinxs');
+		$this->load->model('users');
 		
 		//Loadin Pagination Custome Config File
 		$this->config->load('paging',TRUE);
@@ -95,10 +95,7 @@ sure they respond back. Submit your review and rate your experience
 	
 	public function index()
 	{
-		$this->load->model('complaints');
-		$this->load->model('users');
-		$this->load->model('sliders');
-
+		
 		$this->data['homesliding']=$this->sliders->homepageslider();
 		
 		$limit=5;
@@ -106,18 +103,16 @@ sure they respond back. Submit your review and rate your experience
 		
 		
 		$this->data['home_categorys'] = $this->common->get_home_category();
-		
-		//$this->load->view('welcome',$this->data);
+
 		$this->load->view('home',$this->data);
 	}
-	//updates
+
 
 
 
 public function updates($id)
 	{
-		//Loading Model File
-		$this->load->model('complaints');
+
 		if(empty($id) && $this->input->post('company_id')){ 
 			$id = $this->input->post('company_id');
 		}
