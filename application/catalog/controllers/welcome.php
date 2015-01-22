@@ -32,10 +32,12 @@ class Welcome extends CI_Controller {
 		if (preg_match("/\writerbin\b/i", $domain, $regs)) 
 		{
 			$site = 'yougotrated.writerbin.com';
+			$this->data['title'] = 'Have a Complaint? Report It and Get It Resolved! - '.$site;
 		}
 		else if(preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs))
 		{
 			$site = $regs['domain'];
+			$this->data['title'] = 'Have a Complaint? Report It and Get It Resolved! - '.$site;
 		}
 		 
 		$website = $this->common->get_site_by_domain_name($site);
