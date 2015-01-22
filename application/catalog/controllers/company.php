@@ -178,8 +178,12 @@ class Company extends CI_Controller {
 				$this->data['company'] = $this->complaints->get_company_byseokeyword(urldecode($word)); 
 				if(count($this->data['company'])>0) {
 				
+				$this->load->library('pagination');
+				$limit = $this->paging['per_page'];
+				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+				
 		  		$this->data['complaints'] = $this->complaints->get_complaint_bycompanyid($this->data['company'][0]['id']);
-				$this->data['reviews'] = $this->reviews->get_reviews_bycompanyid($this->data['company'][0]['id']);
+				$this->data['reviews'] = $this->reviews->get_reviews_bycompanyid($this->data['company'][0]['id'],$limit,$offset);
 				$this->data['coupons'] = $this->complaints->get_coupon_bycompanyid($this->data['company'][0]['id']);
 				$this->data['gallerys'] = $this->complaints->get_gallery_bycompanyid($this->data['company'][0]['id']);
 				$this->data['videos'] = $this->complaints->get_videos_bycompanyid($this->data['company'][0]['id']);
@@ -187,10 +191,17 @@ class Company extends CI_Controller {
 				$this->data['companyreviews'] = $this->complaints->get_companyreviews_bycompanyid($this->data['company'][0]['id']);
 				$this->data['companypdfs'] = $this->complaints->get_companypdfs_bycompanyid($this->data['company'][0]['id']);
 				$this->data['companypressreleases'] = $this->complaints->get_companypressreleases_bycompanyid($this->data['company'][0]['id']);
-				
+							
+			    $this->paging['base_url'] = site_url("company/index");
+			    $this->paging['uri_segment'] = 3;
+			    $this->paging['total_rows'] = count($this->reviews->get_reviews_bycompanyid($this->data['company'][0]['id']));
+			    $this->pagination->initialize($this->paging);
+			   
 				//Loading View File
 		 		 if(count($this->data['company'])>0)
 					{
+						
+	  
 						//get total REVIEWS
 						//get total COMPLAINTS
 						//get total DAMAGES
@@ -199,6 +210,8 @@ class Company extends CI_Controller {
 						$this->data['to_complaints'] = $this->complaints->get_to_complaints_cid($this->data['company'][0]['id']);
 						$this->data['to_damages'] = $this->complaints->get_to_damages_cid($this->data['company'][0]['id']);
 						$this->data['company_timings'] = $this->complaints->get_company_onetimings($this->data['company'][0]['id']);
+								
+					  
 						
 						$this->load->view('company/index',$this->data);
 					}
