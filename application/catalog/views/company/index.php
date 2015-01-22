@@ -40,8 +40,6 @@
 				  } ?>
 		<?php if(count($elitemem_status)==0){?>
         <div>
-			<a href="http://yougotrated.writerbin.com/company/minions-here-9040894/reviews/coupons/complaints" target="_blank" title="Minion Brothers is a verified merchant with YouGotrated and all their transactions are backed by the YouGotrated Buyers Protection Program.Once you have completed your purchase with Minion Brothers you will be emailed your Buyers Protection ID Number should you need to file a Claim with YouGotRated.">
-			<img src="http://yougotrated.writerbin.com/images/BuyersProtection_Badge.png" class="logo_btm" alt="Yougotrated" width='10%' ></a>
 			<a href="<?php echo site_url('company/upgrade_elite/'.$company[0]['id']);?>" title="Upgrade to Elite">
 			<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
 			<div class="business_link"> 			
