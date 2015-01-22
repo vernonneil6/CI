@@ -22,7 +22,7 @@
 			<td>Badge Url</td>
 			<td>
 			<textarea cols='90' rows='10'>
-				<a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'company/'.urlencode($company['companyseokeyword']).'/reviews/coupons/complaints';?>"  class="disablerightclick" >
+				<a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/company/'.urlencode($company['companyseokeyword']).'/reviews/coupons/complaints';?>"  class="disablerightclick" >
 					<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" class="tooltip"  title="The <?php echo $company['company']; ?> is a verified merchant.">
 				</a>
 			</textarea>
@@ -32,7 +32,7 @@
 			<tr class="odd">
 			<td>Sample Image</td>
 			<td>
-			<a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'company/'.urlencode($company['companyseokeyword']).'/reviews/coupons/complaints';?>" class="disablerightclick" >
+			<a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/company/'.urlencode($company['companyseokeyword']).'/reviews/coupons/complaints';?>" class="disablerightclick" >
 				<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>"  class="tooltip" title="The <?php echo $company['company']; ?> is a verified merchant.">
 			</a>
 			</td>
@@ -58,7 +58,7 @@
 		
 		$('.disablerightclick').on("contextmenu",function(e)
 		{
-			alert('right click disabled');
+			alert('This is an copyright seal');
 			return false;
 		});
 
