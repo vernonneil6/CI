@@ -22,9 +22,14 @@
 			<td>Badge Url</td>
 			<td>
 			<textarea cols='90' rows='10'>
-				<a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/company/'.urlencode($company['companyseokeyword']).'/reviews/coupons/complaints';?>"  class="disablerightclick" >
+				<a target = "_blank" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/company/'.urlencode($company['companyseokeyword']).'/reviews/coupons/complaints';?>"  class="disablerightclick" >
 					<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" class="tooltip"  title="The <?php echo $company['company']; ?> is a verified merchant.">
 				</a>
+				<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/tooltipster.css" />
+				<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-1.11.1.min.js"></script>
+				<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
+				<script type="text/javascript" src="<?php echo base_url(); ?>js/badge.js"></script>
+				
 			</textarea>
 			</td>
 		</tr>
@@ -32,7 +37,7 @@
 			<tr class="odd">
 			<td>Sample Image</td>
 			<td>
-			<a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/company/'.urlencode($company['companyseokeyword']).'/reviews/coupons/complaints';?>" class="disablerightclick" >
+			<a target = "_blank" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/company/'.urlencode($company['companyseokeyword']).'/reviews/coupons/complaints';?>" class="disablerightclick" >
 				<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>"  class="tooltip" title="The <?php echo $company['company']; ?> is a verified merchant.">
 			</a>
 			</td>
@@ -52,16 +57,5 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/tooltipster.css" />
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
-<script>
-	$(document).ready(function() {
-		$('.tooltip').tooltipster();
-		
-		$('.disablerightclick').on("contextmenu",function(e)
-		{
-			alert('This is an copyright seal');
-			return false;
-		});
-
-	});
-</script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/badge.js"></script>
 
