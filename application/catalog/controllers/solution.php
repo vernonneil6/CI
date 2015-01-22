@@ -1050,7 +1050,12 @@ public function cron()
         $site_name = $this->common->get_setting_value(1);
 	 	$site_renewurl=$site_name.'solution/renew/'.$company_id;
 	 	$site_base_url=base_url().'solution/renew/'.$company_id;
+	 	$site_urls = $this->common->get_setting_value(2).'solution/renew/'.$company_id;
 	 	$site_url = $this->common->get_setting_value(2);
+		
+		$secureurl=str_replace('http://', 'https://',$site_urls);
+		
+		
 		$site_mail = $this->common->get_setting_value(5);      
         //Loading E-mail library
 					$config = Array(
@@ -1111,7 +1116,7 @@ public function cron()
 																	</tr>
 																	<tr>
 																		<td style="padding-top:20px;">
-																		 Please Renew Your Elitemembership Subscription at Following link. <a href="'.$site_base_url.'" title="'.$site_name.'">'.$site_base_url.'</a>. <br>
+																		 Please Renew Your Elitemembership Subscription at Following link. <a href="'.$secureurl.'" title="'.$site_name.'">'.$secureurl.'</a>. <br>
 																		 Till then Your Elite account will be in deactive.
 																		</td>
 																	</tr>	
@@ -1124,7 +1129,7 @@ public function cron()
 											  <tr>
 												<td> Regards,<br/>
 												  The '.$site_name.' Team.<br/>
-												  <a href="'.$site_base_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
+												  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
 											   </tr>
 											</table>');
 											
