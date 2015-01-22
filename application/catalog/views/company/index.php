@@ -154,14 +154,14 @@
             <?php if(strlen($companysems[$cs]['url'])>7){?>
             <li class="ebay"><a href="<?php echo $companysems[$cs]['url'];?>" title="ebay" target = "_blank"></a></li>
             <?php }} ?>
-         <!-- <?php if($companysems[$cs]['type']=='l'){?>
+         <?php if($companysems[$cs]['type']=='l'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
             <li class="linkedin"><a href="<?php echo $companysems[$cs]['url'];?>" title="linkedin"></a></li>
             <?php }} ?>
             <?php if($companysems[$cs]['type']=='y'){?>
             <?php if(strlen($companysems[$cs]['url'])>7){?>
-            <li class="youtube"><a href="<?php echo $companysems[$cs]['url'];?>" title="youtube"></a></li>
-            <?php }} ?>-->
+           <!--  <li class="youtube"><a href="<?php echo $companysems[$cs]['url'];?>" title="youtube"></a></li>-->
+            <?php }} ?>
             <?php } ?>
           </ul>
           <?php } ?>
