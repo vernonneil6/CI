@@ -116,8 +116,6 @@
 						<i class="vry_rat_icn"></i>
 						<?php } ?>
 						<?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
-						<!--<img title="no_star" alt="no_star" src="images/no_star.png">
-						--> 
 						<i class="dull_starrat"></i>
 				   <?php } ?>            
 				</div>
@@ -197,7 +195,6 @@
 	            </div>
 				<div class="cmnt_wrp">
                     <a href="<?php echo site_url('company/reviews/'.$companyseokeyword.'/reviews/coupons/complaints');?>" title="View All" style="cursor:pointer !important;margin-right: 10px;">
-                            <!--<i class="add_cmnt"></i>-->
                             +   View All
                     </a>
 	            </div> 
