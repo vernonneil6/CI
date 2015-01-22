@@ -26,19 +26,10 @@
 					<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" class="tooltip"  title="The <?php echo $company['company']; ?> is a verified merchant.">
 				</a>
 				<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/tooltipster.css" />
+				<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-1.11.1.min.js"></script>
 				<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
-				<script>
-					$(document).ready(function() {
-						$('.tooltip').tooltipster();
-						
-						$('.disablerightclick').on("contextmenu",function(e)
-						{
-							alert('This is an copyright seal');
-							return false;
-						});
-
-					});
-				</script>
+				<script type="text/javascript" src="<?php echo base_url(); ?>js/badge.js"></script>
+				
 			</textarea>
 			</td>
 		</tr>
@@ -66,16 +57,5 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/tooltipster.css" />
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
-<script>
-	$(document).ready(function() {
-		$('.tooltip').tooltipster();
-		
-		$('.disablerightclick').on("contextmenu",function(e)
-		{
-			alert('This is an copyright seal');
-			return false;
-		});
-
-	});
-</script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/badge.js"></script>
 
