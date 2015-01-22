@@ -1758,7 +1758,7 @@ padding-left: 18px;
 }
 .font_size_banner
 {
-	font-size : 70px;
+	font-size : 62px;
 }
 
 
@@ -1776,6 +1776,7 @@ padding-left: 18px;
 #review_popup
 {
 	font-family: myriadpro-regular;
+	display: none;
 }
 .review_firstletter
 {
@@ -1832,13 +1833,11 @@ padding-left: 18px;
 {
 	font-size: 13px!important;
 }
-.fancybox-skin
-{
-	padding : 0!important;
-}
 .review_tab_bottom
 {
 	padding : 15px;
+	overflow : auto;
+	height : 420px;
 }
 .review_tab_top
 {
@@ -1856,10 +1855,6 @@ padding-left: 18px;
 {
 	padding : 15px 0 0;
 }
-.fancybox-overlay
-{
-	background: rgba(0,0,0,.7)!important;
-}
 .review_rates
 {
 	margin : 5px 0;
@@ -1876,13 +1871,26 @@ padding-left: 18px;
 	font-size: 11px;
     padding: 0 15px 0 0;
 }
-.fancybox-inner
-{
-	height: 550px!important;
-}
 .review_poweredby
 {
 	background: rgba(0,0,0,.7)!important;
 	color : white;
 	font-size: 13px;
+}
+.fancybox-overlay
+{
+	background: rgba(0,0,0,.7)!important;
+}
+.fancybox-inner, fancybox-wrap
+{
+	overflow: unset!important;    
+}
+.fancybox-skin
+{
+	padding : 0!important;
+}
+.fancybox-desktop, .fancybox-inner, .popupwidth 
+{
+	width: 450px!important;
+	height: 550px!important;
 }
