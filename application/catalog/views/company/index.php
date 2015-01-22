@@ -541,7 +541,7 @@
   </section>
 </section>
 
-<div class = "company_review_tab fancybox" href="#review_popup">
+<div class = "company_review_tab fancybox" href="#review_popup" style = "display:none">
 Reviews
 </div>
 
