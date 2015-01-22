@@ -22,24 +22,8 @@
 			<td>Badge Url</td>
 			<td>
 			<textarea cols='90' rows='10'>
-				<a href="<?php echo site_url('company/'.$companyid['companyseokeyword'].'/reviews/coupons/complaints');?>"  class="tooltip disablerightclick" title="The <?php $companyid['company']; ?> is a verified merchant.">
-					<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>"  >
-					<div style = "display : none">
-						<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/tooltipster.css" />
-						<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
-						<script>
-							$(document).ready(function() {
-								$('.tooltip').tooltipster();
-								
-								$('.disablerightclick').on("contextmenu",function(e)
-								{
-									alert('right click disabled');
-									return false;
-								});
-
-							});
-						</script>
-					</div>
+				<a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'company/'.urlencode($companyid['companyseokeyword']).'/reviews/coupons/complaints';?>"  class="disablerightclick" >
+					<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" class="tooltip"  title="The <?php echo $companyid['company']; ?> is a verified merchant.">
 				</a>
 			</textarea>
 			</td>
@@ -48,24 +32,8 @@
 			<tr class="odd">
 			<td>Sample Image</td>
 			<td>
-			<a href="<?php echo site_url('company/'.$companyid['companyseokeyword'].'/reviews/coupons/complaints');?>" class="tooltip disablerightclick" title="The <?php $companyid['company']; ?> is a verified merchant.">
-				<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" >
-				<div style = "display : none">
-					<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/tooltipster.css" />
-					<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
-					<script>
-						$(document).ready(function() {
-							$('.tooltip').tooltipster();
-							
-							$('.disablerightclick').on("contextmenu",function(e)
-							{
-								alert('right click disabled');
-								return false;
-							});
-
-						});
-					</script>
-				</div>
+			<a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'company/'.urlencode($companyid['companyseokeyword']).'/reviews/coupons/complaints';?>" class="disablerightclick" >
+				<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>"  class="tooltip" title="The <?php echo $companyid['company']; ?> is a verified merchant.">
 			</a>
 			</td>
 		  </tr>
@@ -82,5 +50,18 @@
 <?php include('leftmenu.php'); ?>
 <?php echo $footer; ?>
 
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/tooltipster.css" />
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.tooltip').tooltipster();
+		
+		$('.disablerightclick').on("contextmenu",function(e)
+		{
+			alert('right click disabled');
+			return false;
+		});
 
+	});
+</script>
 
