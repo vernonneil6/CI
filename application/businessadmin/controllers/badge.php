@@ -53,9 +53,7 @@ class badge extends CI_Controller {
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
-			$companyid = $this->session->userdata['youg_admin']['id'];
-			$siteid = $this->session->userdata('siteid');
-                        $this->data['badges']=$this->badges->badgedetail();
+			$this->data['companyid'] = $this->session->userdata['youg_admin']['id'];
 			$this->load->view('badge',$this->data);
 	  	}
                 
