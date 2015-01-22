@@ -60,7 +60,8 @@
 				  <?php } ?>
 				    
                    <span class="datehome"><?php echo date('m/d/Y',strtotime($complaints[$i]['reviewdate']));?></span>
-                  <h2><a href="<?php echo site_url('company/'.$complaints[$i]['seokeyword'].'/reviews/coupons/complaints');?>" class="reviewname" title="view Review Detail"><?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?></a>
+                   <?php $companyname = $this->users->get_company_bysingleid($complaints[$i]['companyid']); ?>
+                  <h2><a href="<?php echo site_url('company/'.$companyname['companyseokeyword'].'/reviews/coupons/complaints');?>" class="reviewname" title="view Review Detail"><?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?></a>
                    
                    <?php //get avg star by cmpyid
 						$avgstar = $this->common->get_avg_ratings_bycmid($complaints[$i]['companyid']);
