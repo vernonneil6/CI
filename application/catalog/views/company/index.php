@@ -40,7 +40,11 @@
 				  } ?>
 		<?php if(count($elitemem_status)==0){?>
         <div>
-			<a href="<?php echo site_url('company/upgrade_elite/'.$company[0]['id']);?>" title="Upgrade to Elite">
+			<?php 
+				$url = str_replace( 'http://', 'https://',site_url('company/upgrade_elite/'.$company[0]['id']));
+				?>
+			
+			<a href="<?php echo $url;?>" title="Upgrade to Elite">
 			<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
 			<div class="business_link"> 			
 				IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
