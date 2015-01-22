@@ -95,7 +95,7 @@ function userlogin()
                 <?php 
 				$url = str_replace( 'http://', 'https://',site_url('solution/claimbusiness'));
 				?>
-                <li><a href="<?php echo $url; ?>" title="Merchant Signup">merchant sign ups</a></li>
+                <li><a href="<?php echo $url; ?>" title="Merchant Signup">merchant sign up</a></li>
                 <?php 
 				$footerpart3 = $this->common->get_footerlink_byid(3); 
 				if($footerpart3 != '')
