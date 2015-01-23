@@ -549,8 +549,7 @@ class Solution extends CI_Controller {
 									$site_name = $this->common->get_setting_value(1);
 									$site_url = $this->common->get_setting_value(2);
 									$site_email = $this->common->get_setting_value(5);
-									$formpost=$_POST;
-									$this->eliteSubscribe($formpost,$companyid); // for authorise
+									
 									// user Mail
 									$to = $cemail;
 									$mail = $this->common->get_email_byid(11);
@@ -598,7 +597,7 @@ class Solution extends CI_Controller {
 									$this->email->message($mail_body);
 									$this->email->send();
 									
-									$this->session->set_flashdata('success', 'Your business has successfully been registered for Elite membership!');
+									$this->session->set_flashdata('success', 'Your business has successfully been registered.');
 									///redirect('solution/claim/'.$companyid, 'refresh');
 									redirect('solution', 'refresh');
 									
