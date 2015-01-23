@@ -519,7 +519,7 @@ public function request($reviewid='',$userid='')
 
 			$this->load->library('email');
 			$this->config->load('email',TRUE);
-			$from = $company[0]['email'];
+			$from = $company[0]['contactemail'];
 			$subject = 'Request for Information About Your Review:  Case #YGR-'.$reviewid;
 			$to = $user[0]['email'];
 

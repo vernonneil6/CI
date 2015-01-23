@@ -242,7 +242,7 @@ class Review extends CI_Controller
 								$mail = $this->common->get_email_byid(7);
 								$subject = $mail[0]['subject'];
 								$mailformat = $mail[0]['mailformat'];
-								$to = $company[0]['email'];
+								$to = $company[0]['contactemail'];
 
 								$this->email->from($site_mail,$site_name);
 								$this->email->to($to);
@@ -271,7 +271,7 @@ class Review extends CI_Controller
 							{
 								if(count($company)>0)
 								{
-									$companyemailaddress = $company[0]['email'];
+									$companyemailaddress = $company[0]['contactemail'];
 								}
 
 								$to = $companyemailaddress;
@@ -551,12 +551,12 @@ class Review extends CI_Controller
 				
 				if($data['resolution'] == '2')
 				{					
-					$this->review_mail($data['review_id'], '29', $url, $company['email']);								
+					$this->review_mail($data['review_id'], '29', $url, $company['contactemail']);								
 				}
 				
 				if($data['resolution'] == '3')
 				{
-					$this->review_mail($data['review_id'], '33', $url, $company['email']);			
+					$this->review_mail($data['review_id'], '33', $url, $company['contactemail']);			
 				}
 				
 				if($this->email->send())
@@ -646,7 +646,7 @@ class Review extends CI_Controller
 		{
 			if ($days == 5 and $status == 0)
 			{
-				$this->review_mail($data['review_id'], '24', $url, $company['email']);	
+				$this->review_mail($data['review_id'], '24', $url, $company['contactemail']);	
 				$this->email->send();
 			}
 			
@@ -672,7 +672,7 @@ class Review extends CI_Controller
 			else if ($checkdays == 10 and $status == 1)
 			{
 				
-				$this->review_mail($data['review_id'], '31', $url, $company['email']);				
+				$this->review_mail($data['review_id'], '31', $url, $company['contactemail']);				
 				$this->email->send();
 			}
 			
@@ -697,7 +697,7 @@ class Review extends CI_Controller
 			
 			else if ($checkdays == 10 and $status == 1)
 			{
-				$this->review_mail($data['review_id'], '35', $url, $company['email']);				
+				$this->review_mail($data['review_id'], '35', $url, $company['contactemail']);				
 				$this->email->send();
 			}
 			
@@ -722,7 +722,7 @@ class Review extends CI_Controller
 		{
 			if ($days == 15 and $status == 0)
 			{
-				$this->review_mail($data['review_id'], '38', $url, $company['email']);				
+				$this->review_mail($data['review_id'], '38', $url, $company['contactemail']);				
 				$this->email->send();
 			}
 		
@@ -747,7 +747,7 @@ class Review extends CI_Controller
 		{
 			if ($days == 15 and $status == 0)
 			{
-				$this->review_mail($data['review_id'], '40', $url, $company['email']);				
+				$this->review_mail($data['review_id'], '40', $url, $company['contactemail']);				
 				$this->email->send();
 			}
 			
@@ -1125,7 +1125,7 @@ class Review extends CI_Controller
 									$user    = $this->common->get_user_byid($userid);
 									if(count($company)>0)
 									{
-										$companyemailaddress = $company[0]['email'];
+										$companyemailaddress = $company[0]['contactemail'];
 									}
 								}
 

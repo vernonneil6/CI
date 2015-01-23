@@ -240,7 +240,7 @@ public function updates($id)
 					
 					if(count($com)>0)
 					{
-						$companyemailaddress = $com[0]['email'];
+						$companyemailaddress = $com[0]['contactemail'];
 					}
 					
 					$site_name = $this->common->get_setting_value(1);
@@ -292,7 +292,7 @@ public function updates($id)
 					$this->complaints->disable_complaint_byid($updated);
 					if(count($com)>0)
 					{
-						$companyemailaddress = $com[0]['email'];
+						$companyemailaddress = $com[0]['contactemail'];
 						$companyname = $com[0]['company'];
 					}
 					
@@ -381,7 +381,7 @@ public function updates($id)
 					
 					if(count($com)>0)
 					{
-						$companyemailaddress = $com[0]['email'];
+						$companyemailaddress = $com[0]['contactemail'];
 					}
 					
 					$site_name = $this->common->get_setting_value(1);

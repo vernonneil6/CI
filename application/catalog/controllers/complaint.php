@@ -1099,7 +1099,7 @@ $this->complaints->set_video($companyid,"video2","http://www.youtube.com/watch?v
 	   
         $datas= $this->complaints->retrieve_company($cmid);
         $this->data['companys']=$datas['company'];
-        $this->data['emails']=$datas['email'];
+        $this->data['emails']=$datas['contactemail'];
         
 	   
 	$this->load->view('complaint_dispute',$this->data); 
