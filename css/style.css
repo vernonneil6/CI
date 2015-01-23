@@ -1762,7 +1762,7 @@ padding-left: 18px;
 	font-size : 62px;
 }
 
-
+/*
 .company_review_tab
 {
 	background: none repeat scroll 0 0 #39bced;
@@ -1894,6 +1894,9 @@ padding-left: 18px;
 	width: 450px!important;
 	height: 550px!important;
 }
+*/
+
+
 .ygr_receipt
 {
 	font-family : myriadpro-regular;
@@ -1942,4 +1945,18 @@ padding-left: 18px;
     border : none;
     text-align: center;
     padding: 5px 30px;
+}
+.profile_about_us
+{
+	display: inline-block;
+    font-family: myriadpro-regular;
+     padding: 5px 0 5px 17px;
+}
+.profile_about_company
+{
+	color: #d58438;
+}
+.profile_about_data
+{
+
 }
