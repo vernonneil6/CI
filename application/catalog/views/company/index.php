@@ -282,10 +282,10 @@
 			<div class = "profile_about_company"><h3>About <?php echo $company[0]['company']; ?></h3></div>
 			<div class = "profile_about_data">
 				<?php echo substr($company[0]['aboutus'], 0, 500); 
-				if(strlen($company[0]['aboutus']) < 500)
+				if(strlen($company[0]['aboutus']) > 500)
 				{ 
 				?>
-					<a href = "#readmore">Read More</a>
+					<a href = "#readmore" class = "readmore">Read More</a>
 				<?php
 				}
 				?>
@@ -711,6 +711,7 @@ Reviews
 	{
 		$('.tooltip').tooltipster();
 		$('.fancybox').fancybox();
+		$('.readmore').fancybox();
 	});
 		  
 	function countme(rid,vote)
