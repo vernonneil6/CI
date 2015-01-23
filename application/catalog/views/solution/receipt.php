@@ -9,10 +9,10 @@ if(isset($company_avail)){
 ?>
 		
 <?php  if(isset($_GET['elitemem']) && $_GET['elitemem'] !="") {?>
-	<form class="reg_frm" action="index.php/solution/upgrades/<?php echo $showdata['id'];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
+	<form action="index.php/solution/upgrades/<?php echo $showdata['id'];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
 	
 <?php } else { ?>
-	<form class="reg_frm" action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
+	<form action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
 <?php } ?>
 	
 <section class="container">
@@ -95,6 +95,7 @@ if(isset($company_avail)){
 			<table>
 				<tr><td>Card Number</td><td class = "receipt_data"><?php echo $register_data['ccnumber']; ?></td></tr>
 				<tr><td>Expiration Date</td><td class = "receipt_data"><?php echo $register_data['expirationdatem'].'/'.$register_data['expirationdatey']; ?></td></tr>
+				<tr><td>Amount Per Month</td><td class = "receipt_data">$299</td></tr>
 				<tr><td></td><td class = "receipt_data"><input class = "receipt_button" type = "submit" value = "Pay"></td></tr>
 			</table>
 		</div>
