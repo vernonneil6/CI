@@ -217,12 +217,19 @@ class Solution extends CI_Controller {
 	
 	public function register_data()
 	{
-		
+		if($this->input->post('cat')!='')
+		{
+			$category=implode(',',$cat);
+		}
+		else
+		{
+			$category='1';
+		}
 		
 		$data = array(
 					'name' => $this->input->post('name'),
 					'website' => $this->input->post('website'),
-					'$cat' => $this->input->post('cat'),
+					'cat' => $category,
 					'email' => $this->input->post('email'),
 					'streetaddress1' => $this->input->post('streetaddress1'),
 					'country1' => $this->input->post('country1'),
