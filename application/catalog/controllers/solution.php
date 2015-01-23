@@ -214,6 +214,46 @@ class Solution extends CI_Controller {
 		
 		$this->load->view('solution/claimbusiness',$this->data);
 	}
+	
+	public function register_data()
+	{
+		
+		
+		$data = array(
+					'name' => $this->input->post('name'),
+					'website' => $this->input->post('website'),
+					'$cat' => $this->input->post('cat'),
+					'email' => $this->input->post('email'),
+					'streetaddress1' => $this->input->post('streetaddress1'),
+					'country1' => $this->input->post('country1'),
+					'state1' => $this->input->post('state1'),
+					'city1' => $this->input->post('city1'),
+					'zip1' => $this->input->post('zip1'),
+					'phone' => $this->input->post('phone'),
+					'cname' => $this->input->post('cname'),
+					'cphone' => $this->input->post('cphone'),
+					'cemail' => $this->input->post('cemail'),
+					'fname' => $this->input->post('fname'),
+					'lname' => $this->input->post('lname'),
+					'streetaddress' => $this->input->post('streetaddress'),
+					'country' => $this->input->post('country'),
+					'state' => $this->input->post('state'),
+					'city' => $this->input->post('city'),
+					'zip' => $this->input->post('zip'),
+					'ccnumber' => $this->input->post('ccnumber'),
+					'expirationdatem' => $this->input->post('expirationdatem'),
+					'expirationdatey' => $this->input->post('expirationdatey'),
+					'discountcode' => $this->input->post('discountcode')
+		);
+		return $data;
+		
+	}
+	
+	public function receipt()
+	{
+		$this->data['register_data'] = $this->register_data();
+		$this->load->view('solution/receipt', $this->data);
+	}
 		
 	public function update()
 	{   
