@@ -1893,3 +1893,24 @@ padding-left: 18px;
 	width: 450px!important;
 	height: 550px!important;
 }
+.ygr_receipt
+{
+	font-family : myriadpro-regular;
+}
+.receipt_tab_1 table, .receipt_tab_2 div table
+{
+	padding: 15px;
+	border: 2px solid;
+}
+.receipt_tab_1 table tr td, .receipt_tab_2 div table tr td
+{
+	padding : 15px 0;
+}
+.receipt_tab_1 table tr .receipt_data, .receipt_tab_2 div table tr .receipt_data
+{
+	padding: 15px 15px 15px 100px;
+}
+.receipt_tab_1, .receipt_tab_2
+{
+	float : left;
+}
