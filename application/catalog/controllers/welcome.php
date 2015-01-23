@@ -641,7 +641,16 @@ public function fblogin()
 		$name = $user_profile['name'];
 		$first_name = $user_profile['first_name'];
 		$last_name = $user_profile['last_name'];
-		$username = $user_profile['username'];
+		if(!empty($user_profile['username'])){
+			
+			$fbusername=$user_profile['username'];
+			
+		} else {
+			
+			$fbusername=$user_profile['first_name'];
+		} 
+		
+		$username = $fbusername;
 		$email = $user_profile['email'];
 		$gender = $user_profile['gender'];
 		$fbdate=$user_profile['updated_time'];
