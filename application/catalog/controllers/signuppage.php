@@ -655,7 +655,7 @@ class Signuppage extends CI_Controller {
 					$site_mail = $this->common->get_setting_value(5);
 									
 					//Company Email Address
-					$email = $company[0]['email'];
+					$email = $company[0]['contactemail'];
 									
 					//Loading E-mail library
 					$config = Array(
