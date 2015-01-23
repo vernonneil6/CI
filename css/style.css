@@ -797,8 +797,8 @@ h1 a{display:inline-block;}
 .revw_ratpoint{height:15px; display:inline-block; float:left; margin-top:10px; width:100%;}
 .revw_ratpoint span{display:inline-block; float:left; line-height:11px;}
 .revw_ratpoint span h5{font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#000; text-transform:uppercase; margin:0;line-height:13px; display:inline-block;}
-.revw_ratpoint span a{font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#2c6a99;  text-transform:uppercase; padding:0 8px; border-right:1px solid #ccc;}
-.revw_ratpoint span a b{font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#000; text-transform:uppercase;}
+.revw_ratpoint span a{font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#286a9a;  text-transform:uppercase; padding:0 8px; border-right:1px solid #ccc;}
+.revw_ratpoint span a b{font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#286A9A; text-transform:uppercase;}
 .revw_ratpoint span a:last-child{border-right:0 none;}
 .revw_ratpoint .cmnt_wrp{line-height:20px;}
 .bs_banner{width:1050px; float:left; /*height:540px;*/ height:auto; display:inline-block; margin-top:10px;}

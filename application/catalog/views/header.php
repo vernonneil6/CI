@@ -105,44 +105,6 @@
 	 <?php echo form_close();?> 
     </div>
    <?php }  ?>	 
-    <div class = "<?php if($this->uri->segment(1)=='businessdirectory'){ echo "businessdirectory_breadcrumb" ;} else { echo "ygr_breadcrumb" ;} ?>">
-      <?php if($this->uri->segment(1)=='coupon' && $this->uri->segment(2)==''){?>
-      <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a title="Coupons deals & Steals">Coupons deals & Steals</a>
-      <?php } ?>
-      <?php if($this->uri->segment(1)=='coupon' && $this->uri->segment(2)=='browse'){?>
-      <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a href="<?php echo site_url('coupon');?>" title="Coupons deals & Steals">Coupons deals & Steals</a>&nbsp;&raquo; <a title="<?php echo $this->uri->segment(3);?>"><?php echo ucfirst($this->uri->segment(3));?></a>
-      <?php } ?>
-      <?php if($this->uri->segment(1)=='complaint' && $this->uri->segment(2)==''){?>
-      <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a title="Complaints">Complaints</a>
-      <?php } ?>
-      <?php if($this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='browse'){?>
-      <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a href="<?php echo site_url('complaint');?>" title="Complaints">Complaints</a>&nbsp;&raquo; <a title="<?php echo $this->uri->segment(3);?>"><?php echo ucfirst($this->uri->segment(3));?></a>
-      <?php } ?>
-      <?php if($this->uri->segment(1)=='pressrelease' && $this->uri->segment(2)==''){?>
-      <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a title="Pressreleases">Pressreleases</a>
-      <?php } ?>
-      <?php if($this->uri->segment(1)=='pressrelease' && $this->uri->segment(2)=='browse'){?>
-      <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a href="<?php echo site_url('pressrelease');?>" title="Pressreleasess">Pressreleasess</a>&nbsp;&raquo; <a title="<?php echo $this->uri->segment(3);?>"><?php echo ucfirst($this->uri->segment(3));?></a>
-      <?php } ?>
-      <?php if($this->uri->segment(1)=='review' && $this->uri->segment(2)==''){?>
-      <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a title="Reviews">Reviews</a>
-      <?php } ?>
-      <?php if($this->uri->segment(1)=='review' && $this->uri->segment(2)=='browse'){?>
-      <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a href="<?php echo site_url('review');?>" title="Reviews">Reviews</a>&nbsp;&raquo; <a title="<?php echo $this->uri->segment(3);?>"><?php echo ucfirst($this->uri->segment(3));?></a>
-      <?php } ?>
-      <?php if($this->uri->segment(1)=='businessdirectory' && $this->uri->segment(2)==''){?>
-      <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a title="Business Directory">Business Directory</a>
-      <?php } ?>
-      <?php if($this->uri->segment(1)=='login' && $this->uri->segment(2)==''){?>
-      <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a title="Login">Login</a>
-      <?php } ?>
-      <?php if($this->uri->segment(1)=='login' && $this->uri->segment(2)=='forgot'){?>
-      <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a title="Forgot Password">Forgot Password</a>
-      <?php } ?>
-      <?php if($this->uri->segment(1)=='go' && $this->uri->segment(2)=='register'){?>
-      <a href="<?php echo base_url();?>" title="Home">Home</a>&nbsp;&raquo; <a title="Register">Register</a>
-      <?php } ?>
-    </div>
   </div>
 </header>
 <div class="data_table" align="center" style="width:60.7%;margin:0 auto;"> 
