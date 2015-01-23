@@ -1902,12 +1902,13 @@ padding-left: 18px;
 {
 	padding: 15px;
 	border: 1px solid;
-	width: 420px;
+	width: 387px;
 	border-radius: 4px;
 }
 .ygr_receipt div div table th
 {
 	font-family: myriadpro-blacksemicn;
+	padding: 0 0 15px;
 }
 .ygr_receipt div div table tr td
 {
