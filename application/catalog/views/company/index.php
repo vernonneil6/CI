@@ -280,8 +280,25 @@
 	<div class = "profile_about_us">
 		<?php if($company[0]['aboutus']){ ?>
 			<div class = "profile_about_company"><h3>About <?php echo $company[0]['company']; ?></h3></div>
-			<div class = "profile_about_data"><?php echo $company[0]['aboutus']; ?></div>
+			<div class = "profile_about_data">
+				<?php echo substr($company[0]['aboutus'], 0, 500); 
+				if(strlen($company[0]['aboutus']) < 500)
+				{ 
+				?>
+					<a href = "#readmore">Read More</a>
+				<?php
+				}
+				?>
+			</div>
 		<?php } ?>
+	</div>
+	<div id = "readmore" style = "display : none">
+		<div class = "profile_about_company">
+			<h3>About <?php echo $company[0]['company']; ?></h3>
+		</div>
+		<div class = "profile_about_data">
+			<?php echo $company[0]['aboutus']; ?>
+		</div>
 	</div>
         <div class="tab_container">
           <div class="tab_content" id="tab1">
