@@ -1905,6 +1905,10 @@ padding-left: 18px;
 	width: 420px;
 	border-radius: 4px;
 }
+.ygr_receipt div div table th
+{
+	font-family: myriadpro-blacksemicn;
+}
 .ygr_receipt div div table tr td
 {
 	padding : 15px 15px 0 30px;
@@ -1913,6 +1917,7 @@ padding-left: 18px;
 .ygr_receipt div div table tr .receipt_data
 {
 	padding: 15px 15px 15px 100px;
+	font-family : myriadpro-regular;
 }
 .receipt_tab_1
 {

@@ -49,6 +49,7 @@ if(isset($company_avail)){
 		
 		<div class = "receipt_tab_1_1">
 			<table>
+				<th colspan="2">Basic Information</th>
 				<tr><td>Company Name</td><td class = "receipt_data"><?php echo $register_data['name']; ?></td></tr>
 				<tr><td>Website</td><td class = "receipt_data"><?php echo $register_data['website']; ?></td></tr>
 				<tr><td>Category</td><td class = "receipt_data"><?php echo $register_data['category']; ?></td></tr>
@@ -68,6 +69,7 @@ if(isset($company_avail)){
 		
 		<div class = "receipt_tab_1_2">
 			<table>
+				<th colspan="2">Contact Information</th>
 				<tr><td>Contact Name</td><td class = "receipt_data"><?php echo $register_data['cname']; ?></td></tr>
 				<tr><td>Contact Phone</td><td class = "receipt_data"><?php echo $register_data['cphone']; ?></td></tr>
 				<tr><td>Contact Email</td><td class = "receipt_data"><?php echo $register_data['cemail']; ?></td></tr>
@@ -81,6 +83,7 @@ if(isset($company_avail)){
 		
 		<div class = "receipt_tab_2_1">
 			<table>
+				<th colspan="2">Billing Information</th>
 				<tr><td>Company Name</td><td class = "receipt_data"><?php echo $register_data['fname']; ?></td></tr>
 				<tr><td>Website</td><td class = "receipt_data"><?php echo $register_data['lname']; ?></td></tr>
 				<tr><td>Category</td><td class = "receipt_data"><?php echo $register_data['streetaddress']; ?></td></tr>
@@ -93,6 +96,7 @@ if(isset($company_avail)){
 
 		<div class = "receipt_tab_2_2">
 			<table>
+				<th colspan="2">Credit Card Information</th>
 				<tr><td>Card Number</td><td class = "receipt_data"><?php echo $register_data['ccnumber']; ?></td></tr>
 				<tr><td>Expiration Date</td><td class = "receipt_data"><?php echo $register_data['expirationdatem'].'/'.$register_data['expirationdatey']; ?></td></tr>
 				<tr><td>Amount Per Month</td><td class = "receipt_data">$299</td></tr>
