@@ -283,9 +283,6 @@
 
         <div class="tab_container">
           <div class="tab_content" id="tab1">
-            <div class="review_title">
-              <h2>Customer Reviews</h2>
-               </div>
             <?php if( count($reviews) > 0 ) { ?>
             <?php if(count($reviews)>5)
 			  {
@@ -360,9 +357,6 @@
             <?php } ?>
           </div>
           <div class="tab_content" id="tab2">
-            <div class="review_title">
-              <h2>RECENT COMPLAINTS</h2>
-               </div>
             <?php if( count($complaints) > 0 ) { ?>
             <?php if(count($complaints)>5)
 			  {
@@ -410,9 +404,6 @@
             </div>
          
           <div class="tab_content" id="tab3">
-            <div class="review_title">
-              <h2>RECENT PRESSRELEASES</h2>
-               </div>
             <?php if(count($companypressreleases)>0)
 		  {?>
             <?php for($pr=0;$pr<count($companypressreleases);$pr++){?>
@@ -436,9 +427,6 @@
             <?php } ?>
           </div>
           <div class="tab_content" id="tab4">
-            <div class="review_title">
-              <h2>RECENT COUPONS</h2>
-               </div>
             <?php if( count($coupons) > 0 ) { ?>
             <?php if(count($coupons)>5)
 			  {
@@ -473,9 +461,6 @@
             <?php } ?>
           </div>
           <div class="tab_content" id="tab5">
-            <div class="review_title">
-              <h2>RECENT PHOTOS</h2>
-            </div>
             <div class="review_block noblock">
               <link rel="stylesheet" href="<?php echo base_url();?>js/orbit/orbit-1.2.3.css" type="text/css">
               <script type="text/javascript" src="<?php echo base_url();?>js/orbit/jquery.orbit-1.2.3.min.js"></script>
@@ -513,9 +498,6 @@
             </div>
           </div>
           <div class="tab_content" id="tab6">
-            <div class="review_title">
-              <h2>RECENT VIDEOS</h2>
-            </div>
             <?php if( count($videos) > 0 ) { ?>
             <?php for($i=0; $i<count($videos); $i++) { ?>
             <div class="noblock review_block <?php if($i%2==0){echo "fadeout";}?>">
