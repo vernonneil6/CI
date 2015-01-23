@@ -219,7 +219,7 @@ class Solution extends CI_Controller {
 	{
 		if($this->input->post('cat')!='')
 		{
-			$category=implode(',',$cat);
+			$category=implode(',',$this->input->post('cat'));
 		}
 		else
 		{
@@ -229,7 +229,7 @@ class Solution extends CI_Controller {
 		$data = array(
 					'name' => $this->input->post('name'),
 					'website' => $this->input->post('website'),
-					'cat' => $category,
+					'category' => $category,
 					'email' => $this->input->post('email'),
 					'streetaddress1' => $this->input->post('streetaddress1'),
 					'country1' => $this->input->post('country1'),

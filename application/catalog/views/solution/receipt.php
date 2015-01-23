@@ -9,7 +9,7 @@
 		<table>
 			<tr><td>Company Name</td><td><?php echo $register_data['name']; ?></td></tr>
 			<tr><td>Website</td><td><?php echo $register_data['website']; ?></td></tr>
-			<tr><td>Category</td><td><?php echo $register_data['cat']; ?></td></tr>
+			<tr><td>Category</td><td><?php echo $register_data['category']; ?></td></tr>
 			<tr><td>E-Mail</td><td><?php echo $register_data['email']; ?></td></tr>
 			<tr><td>Address</td><td><?php echo $register_data['streetaddress1']; ?></td></tr>
 			<tr><td>Country</td><td><?php echo $register_data['country1']; ?></td></tr>
