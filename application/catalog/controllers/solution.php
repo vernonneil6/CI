@@ -551,7 +551,7 @@ class Solution extends CI_Controller {
 									$site_email = $this->common->get_setting_value(5);
 									
 									// user Mail
-									$to = $cemail;
+									$to = $email;
 									$mail = $this->common->get_email_byid(11);
 				
 									$subject = $mail[0]['subject'];
