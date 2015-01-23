@@ -304,15 +304,7 @@ class Solution extends CI_Controller {
 			$cemail = $this->input->post('cemail');
 			$discountcode = $this->input->post('discountcode');
 			
-			
-			
-            
-            
-          
-			
-			
-			
-				$company = $this->complaints->get_company_by_emailid($email);
+			$company = $this->complaints->get_company_by_emailid($email);
 				if(count($company)>0)
 				{ 
 					/*$id = $company[0]['id'];
@@ -911,7 +903,7 @@ public function eliteSubscribe($formpost,$companyid) {
 					$site_mail = $this->common->get_setting_value(5);
 									
 					//Company Email Address
-					$email = $company[0]['email'];
+					$email = $company[0]['contactemail'];
 									
 					//Loading E-mail library
 					$config = Array(
@@ -964,7 +956,7 @@ public function eliteSubscribe($formpost,$companyid) {
 															</tr>
 															</table>');
 					//Sending mail to admin
-					//$this->email->send();
+					$this->email->send();
 					
 					//For sending mail to user
 					$this->email->from($site_mail,$site_name);
@@ -1132,7 +1124,7 @@ public function cron()
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
 					$this->email->from($site_mail,$site_name);
-					$this->email->to($cronemail['email']);	
+					$this->email->to($cronemail['contactemail']);	
 					$this->email->subject('Your EliteMembership Subscription has been Expired.Please Renew');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
@@ -1595,7 +1587,7 @@ public function renew_update($id)
 										
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
-					$this->email->from($cronemail['payer_id'],$cronemail['company']);
+					$this->email->from($cronemail['contactemail'],$cronemail['company']);
 					$this->email->to($site_mail);	
 					$this->email->subject('Payment Received for Elitemembership Renewal.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
@@ -1630,8 +1622,9 @@ public function renew_update($id)
 					$this->email->send();
 									
 					//For sending mail to user
+					$emailto=$cronemail['contactemail'];
 					$this->email->from($site_mail,$site_name);
-					$this->email->to($email);	
+					$this->email->to($emailto);	
 					$this->email->subject('Elitemembership has been Renewed successfully.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 											  <tr>
@@ -1921,7 +1914,7 @@ public function upgrades($id)
 					$site_mail = $this->common->get_setting_value(5);
 									
 					//Company Email Address
-					$email = $company[0]['email'];
+					$email = $company[0]['contactemail'];
 									
 					//Loading E-mail library
 					$config = Array(
@@ -1974,7 +1967,7 @@ public function upgrades($id)
 															</tr>
 															</table>');
 					//Sending mail to admin
-					//$this->email->send();
+					$this->email->send();
 					
 					//For sending mail to user
 					$this->email->from($site_mail,$site_name);
