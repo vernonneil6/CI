@@ -1897,20 +1897,33 @@ padding-left: 18px;
 {
 	font-family : myriadpro-regular;
 }
-.receipt_tab_1 table, .receipt_tab_2 div table
+.ygr_receipt div div table
 {
 	padding: 15px;
-	border: 2px solid;
+	border: 1px solid;
+	width: 420px;
+	border-radius: 4px;
 }
-.receipt_tab_1 table tr td, .receipt_tab_2 div table tr td
+.ygr_receipt div div table tr td
 {
-	padding : 15px 0;
+	padding : 15px 15px 0 30px;
+	font-family: myriadpro-boldcond;
 }
-.receipt_tab_1 table tr .receipt_data, .receipt_tab_2 div table tr .receipt_data
+.ygr_receipt div div table tr .receipt_data
 {
 	padding: 15px 15px 15px 100px;
 }
-.receipt_tab_1, .receipt_tab_2
+.receipt_tab_1
 {
 	float : left;
 }
+.receipt_tab_2
+{	
+	float : left;
+	margin : 0 0 0 80px;
+}
+.receipt_tab_1_2,.receipt_tab_2_2
+{
+	margin : 20px 0 0 0;
+}
+
