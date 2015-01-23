@@ -282,11 +282,11 @@
 		<?php if($company[0]['aboutus']){ ?>
 			<div class = "profile_about_company"><h3>About <?php echo $company[0]['company']; ?></h3></div>
 			<div class = "profile_about_data">
-				<?php echo substr($company[0]['aboutus'], 0, 500); 
-				if(strlen($company[0]['aboutus']) > 500)
+				<?php echo substr($company[0]['aboutus'], 0, 480); 
+				if(strlen($company[0]['aboutus']) > 480)
 				{ 
 				?>
-					<a href = "#readmore" class = "readmore">Read More</a>
+					<a href = "#readmore" class = "readmore">...Read More</a>
 				<?php
 				}
 				?>
