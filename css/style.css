@@ -518,6 +518,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover, html ul.tabs li.active a
 	clear: both;
 	float: left; 
 	margin-left: 16px;
+	margin-top: 15px;
 }
 .tab_content {
 }
