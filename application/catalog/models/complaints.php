@@ -1708,5 +1708,24 @@ class Complaints extends CI_Model
 		
 		
 	}
+	function company_available_by_id($id)
+	{
+		$query=$this->db->select('id,company,siteurl,categoryid,email,streetaddress,city,state,country,zip,phone,contactname,contactphonenumber,contactemail')
+		                 ->from('company')
+		                 ->where('id',$id)
+		                 ->get();
+		if($query)
+		{
+			return $query->row_array();
+			
+		}
+		else
+		{
+			return false;
+			
+		}
+		                 
+		
+	}
 }
 ?>

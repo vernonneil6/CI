@@ -13,9 +13,23 @@
     <div class="container">
       <div class="reg_step_edit_claim"></div>
       <div class="reg_frm_wrap">
+		<?php 
 		 
-        <form class="reg_frm" action="index.php/solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
-          <div class="reg-row">
+		    if(isset($company_avail)){
+				$showdata=$company_avail;
+			} else { 
+			     $showdata=null;
+			} 
+		?>
+        
+		<?php  if(isset($_GET['elitemem']) && $_GET['elitemem'] !="") {?>
+			<form class="reg_frm" action="index.php/solution/upgrades/<?php echo $showdata['id'];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
+			
+		<?php } else { ?>
+			<form class="reg_frm" action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
+		<?php } ?>
+		
+		  <div class="reg-row">
             <label>INTRODUCE YOUR BUSINESS</label>
             
             <div class="reg_fld">THIS INFORMATION WILL BE PUBLISHED ON YOUGOTRATED'S BUSINESS DATABASE</div>
@@ -23,13 +37,13 @@
             <div class="reg_fld">WHAT IS YOUR COMPANY NAME?</div>
             
             
-            <input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30">
+            <input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30" value="<?php echo $showdata['company']; ?>">
             <div id="nameerror" class="error">Name is required.</div>
             <div id="nametknerror" class="error">This compnay name is already exists.</div>
           </div>
           <div class="reg-row" style="margin-top:10px;">
             <div class="reg_fld">WHAT IS YOUR COMPANY WEBSITE?</div>
-            <input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150" onchange="chkwebsite(this.value);">            
+            <input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150" value="<?php echo $showdata['siteurl']; ?>" onchange="chkwebsite(this.value);">            
             <div id="websiteerror" class="error">Website is required.</div>
             <div id="websitevaliderror" class="error">Enter valid Website.</div> 
           </div>
@@ -47,7 +61,7 @@
           <div class="reg-row">
             <label>BUSINESS EMAIL ADDRESS</label>
             <div class="reg_fld">WHERE DO YOU RECEIVE YOUR E-MAIL?</div>
-            <input type="email" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" onchange="chkmail(this.value);">
+            <input type="email" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" value="<?php echo $showdata['email']; ?>" onchange="chkmail(this.value);">
             <div id="emailerror" class="error">Enter valid Emailid.</div>
             <div id="emailtknerror" class="error">This Emailid already taken.</div>
             <div class="reg_fld">Please note: This email address will be visible publicly.</div>
@@ -87,7 +101,7 @@
             <div id="zipverror" class="error">Enter digits only valid format 123456</div>
             <div style="margin-top:36px;" class="reg_fld">WHAT IS YOUR PHONE NUMBER?</div>
             <div>
-              <input type="text" class="reg_txt_box-md" placeholder="XXX-XXX-XXXX" name="phone" maxlength="12" id="phone">
+              <input type="text" class="reg_txt_box-md" placeholder="XXX-XXX-XXXX" name="phone" maxlength="12" id="phone" value="<?php echo $showdata['phone']; ?>">
               <div id="phoneerror" class="error">Phone is required.</div>
               <div id="phoneverror" class="error">Enter valid format - i.e. XXX-XXX-XXXX</div>
             </div>
@@ -103,16 +117,16 @@
             <div class="reg_fld"><?php echo strtoupper('The following information will not be published YouGotRated and is used for administration purposes only.This information is where you will receive emails,and receipts from YouGotRated.com');?></div>
             <div class="reg_fld">CONTACT NAME</div>
             
-            <input type="text" class="reg_txt_box" placeholder="CONTACT NAME" id="cname" name="cname" maxlength="30" /><div id="cnameerror" class="error">contact name is required.</div>
+            <input type="text" class="reg_txt_box" placeholder="CONTACT NAME" id="cname" name="cname" maxlength="30" value="<?php echo $showdata['contactname']; ?>" /><div id="cnameerror" class="error">contact name is required.</div>
           </div>
           <div class="reg-row" style="margin-top:10px !important;">
             <div class="reg_fld">CONTACT NUMBER</div>
-            <input type="text" class="reg_txt_box" placeholder="XXX-XXX-XXXX" id="cphone" name="cphone" maxlength="12" /><div id="cphoneerror" class="error">Contactphone is required.</div>
+            <input type="text" class="reg_txt_box" placeholder="XXX-XXX-XXXX" id="cphone" name="cphone" maxlength="12" value="<?php echo $showdata['contactphonenumber']; ?>" /><div id="cphoneerror" class="error">Contactphone is required.</div>
               <div id="cphoneverror" class="error">Enter valid format - i.e. XXX-XXX-XXXX</div>
           </div>
           <div class="reg-row" style="margin-top:10px !important;">
             <div class="reg_fld">CONTACT EMAIL</div>
-            <input type="text" class="reg_txt_box" placeholder="CONTACT EMAIL" id="cemail" name="cemail" maxlength="200" /><div id="cemailerror" class="error">Enter valid Emailid.</div>
+            <input type="text" class="reg_txt_box" placeholder="CONTACT EMAIL" id="cemail" name="cemail" maxlength="200" value="<?php echo $showdata['contactemail']; ?>" /><div id="cemailerror" class="error">Enter valid Emailid.</div>
               
           </div>
           <!-- payment details -->
