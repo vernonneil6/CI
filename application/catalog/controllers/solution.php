@@ -258,6 +258,17 @@ class Solution extends CI_Controller {
 	
 	public function receipt()
 	{
+		if(isset($_GET['elitemem'])){
+		    $eid=$_GET['elitemem'];
+		}else{
+		    $eid="";
+		}
+		
+		if($eid)
+		{
+			$this->data['company_avail']=$this->complaints->company_available_by_id($eid);
+		}
+		
 		$this->data['register_data'] = $this->register_data();
 		$this->load->view('solution/receipt', $this->data);
 	}

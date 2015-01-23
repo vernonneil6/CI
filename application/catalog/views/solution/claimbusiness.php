@@ -22,13 +22,9 @@
 			} 
 		?>
         
-		<?php  if(isset($_GET['elitemem']) && $_GET['elitemem'] !="") {?>
-			<form class="reg_frm" action="index.php/solution/upgrades/<?php echo $showdata['id'];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
-			
-		<?php } else { ?>
-			<form class="reg_frm" action="solution/receipt" id="frmaddcompany" method="post" enctype="multipart/form-data">
-		<?php } ?>
-		
+	
+		<form class="reg_frm" action="solution/receipt" id="frmaddcompany" method="post" enctype="multipart/form-data">
+
 		  <div class="reg-row">
             <label>INTRODUCE YOUR BUSINESS</label>
             

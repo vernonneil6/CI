@@ -1896,6 +1896,7 @@ padding-left: 18px;
 .ygr_receipt
 {
 	font-family : myriadpro-regular;
+	margin: 25px 0 0;
 }
 .ygr_receipt div div table
 {
@@ -1926,4 +1927,11 @@ padding-left: 18px;
 {
 	margin : 20px 0 0 0;
 }
-
+.receipt_button
+{
+	background: #2b6998;
+    color: #fff;
+    font-size: 11px;
+    padding: 15px;
+    text-align: center;
+}
