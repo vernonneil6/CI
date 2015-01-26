@@ -1182,7 +1182,7 @@ public function cron()
 																	</tr>
 																	<tr>
 																		<td style="padding-top:20px;">
-																		 Please Renew Your Elitemembership Subscription at Following link. <a href="'.$secureurl.'" title="'.$site_name.'">'.$secureurl.'</a>. <br>
+																		 Please Renew Your Elitemembership Subscription at Following link. <a href="'.$site_urls.'" title="'.$site_name.'">'.$site_urls.'</a>. <br>
 																		 Till then Your Elite account will be in deactive.
 																		</td>
 																	</tr>	

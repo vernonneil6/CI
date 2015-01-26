@@ -32,10 +32,10 @@
         <div class="blnk_contarea">
           <div style="margin-top:10px;" align="center" id="claimdiv"> <span style="font-family:MyriadPro-Regular;" class="colorcode">To sign up for an Elite Membership - please click the link below:</span> <br/>
             <?php 
-				$url = str_replace( 'http://', 'https://',site_url('solution/claimbusiness'));
+				/*$url = str_replace( 'http://', 'https://',site_url('solution/claimbusiness'));*/
 			?>
             
-            <a href="<?php echo $url;?>" title="Claim Your Business">
+            <a href="<?php echo site_url('solution/claimbusiness');?>" title="Claim Your Business">
             <input type="image" class="sub_paypal" name="submit" border="0" src="../uploads/btn_cards.gif" alt="PayPal - The safer, easier way to pay online">
             <img alt="paypal" border="0" width="1" height="1" src="https://www.paypal.com/en_US/i/scr/pixel.gif" >
             <input type="submit" value="REGISTER" name="submit" title="Authorize.net - Accept Payments. Anywhere!" class="headersub_btn">  </a>
