@@ -170,7 +170,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
           <p class = "testmnl_p">"<?php echo stripslashes($review[0]['comment']); ?>"</p>
           <div class="testmnl_clntwrp testmnl_cln">
             <div class="clnt_intr"> - &nbsp;&nbsp;
-              <div class="clnt_pic"> <img src="images/user_icn.png" alt="Client Image" title="Client Image"> </div>
+              <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
               <div class="clnt_name">
                 <?php if($review[0]['type']=='csv') {?>
                 <h4><a title="<?php echo stripslashes($review[0]['reviewby']); ?>"> <?php echo stripslashes($review[0]['reviewby']); ?></a></h4>
@@ -257,7 +257,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
 					?>
               <i><?php echo $commenttime; ?>&nbsp;ago</i> </p>
           </div>
-          <div class="clnt_pic"> <img src="images/user_icn.png" alt="Client Image" title="Client Image"> </div>
+          <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
         </div>
         <div class="review_rgt cmnt_dscr">
           <p><?php echo stripslashes($comments[$i]['comment']); ?></p>
