@@ -13,7 +13,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= '/';
+$config['base_url'] = "http://".$_SERVER['SERVER_NAME'];
+$config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']); 
 
 /*
 |--------------------------------------------------------------------------
