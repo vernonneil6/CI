@@ -334,7 +334,7 @@ background:#AAA000;
 .social_blck li.amazon {width:36px; height:38px; background:url("../images/a.jpg") no-repeat scroll 0 5px rgba(0, 0, 0, 0); list-style:none; }
 .social_blck li.facebook {width:28px; height:35px; background:url(../images/fb.png)  no-repeat; list-style:none; }
 .social_blck li.google {width:28px; height:35px; background:url(../images/g+.png) no-repeat; list-style:none; }
-.social_blck li.linkedin {width:28px; height:35px; background:url(../images/iconss.png) no-repeat; list-style:none; }
+.social_blck li.linkedin {width:28px; height:35px; /*background:url(../images/iconss.png) no-repeat*/background:url(../images/linkedin.png) no-repeat;background-position: 2px 3px; list-style:none; }
 .social_blck li.pintrest {width:26px; height:35px; background:url(../images/pinterestt.png) no-repeat; list-style:none; }
 .social_blck li.twitter {width:28px; margin-left: 0;height:35px; background:url(../images/twitter.png)  no-repeat; list-style:none; }
 .social_blck li.youtube {width:28px; height:35px; background:url(../images/iconss.png)  no-repeat; list-style:none; }
