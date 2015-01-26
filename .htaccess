@@ -12,19 +12,7 @@
 
 	RewriteBase /
 
-	RewriteCond %{SERVER_PORT} 80
-	RewriteCond $1 ^(solution/claimbusiness)
-	RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI}/$1 [R,L]
 	
-
-	RewriteCond %{SERVER_PORT} 443
-	RewriteCond $1 !^(solution/claimbusiness)
-	RewriteRule ^(.*)$ http://%{SERVER_NAME}%{REQUEST_URI}/$1 [R,L]
-
-	RewriteCond $1 !^(index\.php|css|images|scripts|robots\.txt|favicon\.ico)
-	RewriteRule ^(.*)$ /index.php/$1 [L] 
-
-
 
 	# GZIP compression
 

@@ -9,15 +9,12 @@
 |	http://codeigniter.com/user_guide/general/hooks.html
 |
 */
-/* Force HTTPS for account area */
-$hook['post_controller_constructor'] = array(
-                                'class'    => 'SecureAccount',
-                                'function' => 'index',
-                                'filename' => 'ssl.php',
-                                'filepath' => 'hooks',
-                                'params'   => array()
-                                );
-
-
+// switch from or to https if necessary
+$hook['post_controller_constructor'][] = array(
+	'class' => '',
+	'function' => 'trigger_https',
+	'filename' => 'ssl.php',
+	'filepath' => 'hooks'
+	);
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */

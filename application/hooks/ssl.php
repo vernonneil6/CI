@@ -1,35 +1,33 @@
 <?php
 
-class SecureAccount
+
+function trigger_https()
 {
-    var $obj;
-
-    //--------------------------------------------------
-    //SecureAccount constructor
-    function SecureAccount()
-    {
-        $this->obj =& get_instance();
-    }
-
-    //--------------------------------------------------
-    //Redirect to https if in the account area without it
-    function index()
-    {
-        if(empty($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] !== 'on')
-        {
-            $this->obj =& get_instance();
-            $this->obj->load->helper(array('url', 'http'));
-
-            $current = current_url();
-            $current = parse_url($current);
-
-            if((stripos($current['path'], "/solution/claimbusiness/") !== false))
-            {
-                $current['scheme'] = 'https';
-
-                redirect(http_build_url('', $current), 'refresh');
-            }
-        }
-    }
+	// do nothing for these urls
+	$exclude_url_list = array();
+	//$exclude_url_list[] = '/(.*)js$/';
+	foreach ($exclude_url_list as $exclude_url) {
+		if(preg_match($exclude_url, uri_string()))
+		{
+			return;
+		}
+	}
+ 
+	// switch to HTTPS for these urls
+	$ssl_url_list = array();
+	$ssl_url_list[] = '/(.*)solution(.*)$/';
+ 
+	foreach ($ssl_url_list as $ssl_url) {
+		if(preg_match($ssl_url, uri_string()))
+		{
+			force_ssl();
+			return;
+		}
+	}
+ 
+	// still here? switch to HTTP (if necessary)
+	remove_ssl();
 }
-?>
+ 
+/* End of file https.php */
+/* Location: ./system/application/hooks/https.php */
