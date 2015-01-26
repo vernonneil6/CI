@@ -120,12 +120,8 @@
             "<?php echo $reviews[$i]['reviewtitle'];?>"
             </a>
             </span>-
-              <p>
-                <?php if($reviews[$i]['type']=='csv') { ?>
-                <a title="<?php echo stripslashes($reviews[$i]['reviewby']); ?>"><?php echo stripslashes($reviews[$i]['reviewby']); ?></a>
-                <?php } else {?>
+              <p>     
                 <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile" class="font_color_2"> <?php echo stripslashes($reviews[$i]['username']); ?></a>
-                <?php } ?>
               </p>
               <div class="revw_date">
                 <?php
