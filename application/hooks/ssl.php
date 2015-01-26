@@ -15,7 +15,7 @@ function trigger_https()
  
 	// switch to HTTPS for these urls
 	$ssl_url_list = array();
-	$ssl_url_list[] = '/(.*)solution(.*)$/';
+	$ssl_url_list[] = '/(.*)solution/claimbusiness(.*)$/';
  
 	foreach ($ssl_url_list as $ssl_url) {
 		if(preg_match($ssl_url, uri_string()))
