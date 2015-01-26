@@ -139,15 +139,16 @@
 	RewriteRule ^(.*)$ /index.php?/$1 [L]
 	
     RewriteCond %{HTTPS} off
-	RewriteCond %{REQUEST_URI} (solution/claimbusiness|complaint)
+	RewriteCond %{REQUEST_URI} (xhr)
 	RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
 
 	RewriteCond %{HTTPS} on
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteCond %{REQUEST_URI} !(solution/claimbusiness|complaint)
+	RewriteCond %{REQUEST_URI} !(xhr)
 	RewriteRule ^(.*)$ http://%{SERVER_NAME}%{REQUEST_URI} [R=301,L] 
     
+	<?=site_url('xhr/solution/claimbusiness');?> 
 
 </IfModule>
 
