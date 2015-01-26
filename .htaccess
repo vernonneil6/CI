@@ -141,6 +141,24 @@
 	RewriteRule ^(.*)$ /index.php?/$1 [L]
 
 	
+	#Force SSL for controllers admin, account & application
+	RewriteCond %{SERVER_PORT} 80
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_URI} ^/(solution/claimbusiness)
+	RewriteRule ^(.*)$ https://%{SERVER_NAME}/$1 [L]
+
+	#Force non-SSL for folders not admin, account or application
+	RewriteCond %{SERVER_PORT} 443
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_URI} !^/(solution/claimbusiness)
+	RewriteRule ^(.*)$ http://%{SERVER_NAME}/$1 [L]
+
+	# If not in list, run URL through Codeigniter
+	RewriteCond $1 !^(index\.php|assets|robots\.txt)
+	RewriteRule ^(.*)$ /index.php/$1 [L]
+	
 
 </IfModule>
 
