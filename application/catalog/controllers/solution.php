@@ -23,6 +23,8 @@ class Solution extends CI_Controller {
 		}
 		 $website = $this->common->get_site_by_domain_name($site);
 		 
+		 $this->load->helper(array('ssl'));
+		 
 		 if(count($website)>0)
 		 {
 		 	$siteid = $website[0]['id'];
@@ -180,6 +182,7 @@ class Solution extends CI_Controller {
 	}
 	function claimbusiness()
 	{
+		$this->force_ssl();
 		
 		if(isset($_GET['elitemem'])){
 		    $eid=$_GET['elitemem'];

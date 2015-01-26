@@ -1,0 +1,8 @@
+# robots.txt generated at http://www.mcanerin.com
+User-agent: *
+Disallow: 
+Disallow: http://www.yougotrated.com/admincp
+Disallow: http://www.yougotrated.com/application/admincp
+Disallow: http://www.yougotrated.com/application/businessadmin
+Sitemap: http://www.yougotrated.com/sitemap.xml
+

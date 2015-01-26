@@ -91,7 +91,7 @@
         <li><a href="<?php echo site_url('businessdirectory');?>" title="Business Directory">Business Directory<span>:<span></a></li>
         <li><a href="<?php echo site_url('review');?>" title="Business Review">Business Reviews<span>:<span></a></li>
         <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">Press Releases<span>:<span></a></li>
-        <li><a href="https://yougotrated.com/complaint" title="Complaints">Business Complaints<span>:<span></a></li>
+        <li><a href="<?php echo site_url('complaint');?>" title="Complaints">Business Complaints<span>:<span></a></li>
         <li><a href="<?php echo site_url('coupon');?>" title="Coupons deals & Steals">Coupons deals & Steals<span>:<span></a></li>
         <li><a href="http://business.yougotrated.com" title="Business Solutions">Business Solutions</a></li>
       </ul>
