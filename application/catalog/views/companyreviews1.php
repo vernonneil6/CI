@@ -50,7 +50,6 @@
 <section class="container">
   <section class="main_contentarea">
     <div class="innr_wrap">
-      <!--<h1><a href="#"><img src="images/YouGotRated_HeaderGraphics_BusinessReviews.png" alt="Business Directory" title="Business Directory"></a></h1>-->
       <h1 class="bannertext"><span class="bannertextregular">RECENT </span>REVIEWS</h1>
       <?php if(count($reviews)>0)
 				 { ?>
@@ -91,25 +90,15 @@
 				</script>
         <div class="revw_blck">
           <div class="revw_blck_img"> <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile">
-            <?php if( $reviews[$i]['type']=='csv' )
-               {?>
-            <div class=""> </div>
-            <?php
-               
-			   }
-              else
-			  {
-			  ?>
-            <div class="task-photo"> <img width="100px" height="100" src="<?php if( strlen($reviews[$i]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($reviews[$i]['avatarbig']); } else { if($reviews[$i]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/male.png"; } 
+            <div class="task-photo"> 
+				<img width="100px" height="100" src="<?php if( strlen($reviews[$i]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($reviews[$i]['avatarbig']); } else { if($reviews[$i]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/male.png"; } 
 		  	if($reviews[$i]['gender']=='Female') { echo $this->common->get_setting_value('2')."images/female.png"; } 
 		  } 
 		   ?>" alt="<?php echo stripslashes($reviews[0]['username']); ?>"/> </div>
-            <?php }
-			  
-			  ?>
+          
             </a> </div>
           <div class="revw_blck_cnt">
-            <h2><a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes($reviews[$i]['company']);?>'s detail" style="color:#0080FF;"><?php echo ucfirst(stripslashes($reviews[$i]['company']));?></a>
+            <h2><a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes($reviews[$i]['company']);?>'s detail" class="font_color_2"><?php echo ucfirst(stripslashes($reviews[$i]['company']));?></a>
               <div class="rating">
             <?php for($r=0;$r<($reviews[$i]['rate']);$r++){?>
             <i class="vry_rat_icn"></i>
@@ -122,7 +111,7 @@
             </h2>
             
             <div class="revw_occupt"> <span>
-            <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="see details" style="color:#FFFFFF;">
+            <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="see details" class="font_color_2">
             "<?php echo $reviews[$i]['reviewtitle'];?>"
             </a>
             </span>-
@@ -187,10 +176,7 @@
               <?php } ?>
               
               </span><div class="cmnt_wrp">
-                          <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add Comment">
-                            <i class="add_cmnt"></i>
-                              Add comment
-                          </a>
+                          <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add Comment"> + Add comment </a>
 	                     </div> </div>
           </div>
         </div>
