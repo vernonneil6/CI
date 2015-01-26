@@ -921,13 +921,17 @@ class Complaints extends CI_Model
 		}
  	}
 	
-	function insert_subscription($companyid,$amt,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscr_id)
+	function insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscr_id)
  	{
 		$date = date("Y-m-d H:i:s");
 		$payment_ip = $_SERVER['REMOTE_ADDR'];
 		$data = array(
 					'company_id' 	=> $companyid,
 					'amount'  		=> $amt,
+					'ccnumber'  	=> $ccnumber,
+					'ccexpiredate'  => $cardexpire,
+					'firstname	'  	=> $fname,
+					'lastname	'  	=> $lname,
 					'txn_id'		=> $tx,
 					'payment_date'	=> $date,
 					'payment_ip'	=> $payment_ip,
