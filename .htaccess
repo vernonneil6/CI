@@ -141,6 +141,16 @@
 	RewriteRule ^(.*)$ /index.php?/$1 [L]
 
 	
+	RewriteCond %{HTTPS} off
+	RewriteCond %{REQUEST_URI} (solution/claimbusiness|complaint)
+	RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301]
+	
+	RewriteCond %{HTTPS} on
+	RewriteCond %{REQUEST_URI} !(solution/claimbusiness|complaint)
+    RewriteRule ^(.*)$ http://%{SERVER_NAME}%{REQUEST_URI} [R=301]
+	
+	 
+	 
 
 </IfModule>
 
