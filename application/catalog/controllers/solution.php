@@ -21,7 +21,7 @@ class Solution extends CI_Controller {
 				$site = $regs['domain'];
 			}
 		}
-		 $website = $this->common->get_site_by_domain_name($site);
+		 $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
 		 
 		 if(count($website)>0)
 		 {
@@ -409,7 +409,7 @@ class Solution extends CI_Controller {
 									$mail_body = str_replace("%name%",ucfirst($name),str_replace("%email%",$email,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat))))));
 									
 									$this->email->message($mail_body);
-									$this->email->send();
+									//$this->email->send();
 									
 									$this->session->set_flashdata('success', 'Your business has successfully been registered for Elite membership!');
 									///redirect('solution/claim/'.$companyid, 'refresh');
@@ -724,16 +724,16 @@ public function eliteSubscribe($formpost,$companyid) {
 	   $transactionkey="38UzuaL2c6y5BQ88";
 	   $host = "apitest.authorize.net"; */
 	
-	/*sandbox test mode
+	/*sandbox test mode*/
 	  $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
-	   $host = "apitest.authorize.net";*/
+	   $host = "apitest.authorize.net";
 	
 	
-	/*live*/
+	/*live
 	    $loginname="5h7G7Sbr";
 		$transactionkey="94KU7Sznk72Kj3HK";
-		$host = "api.authorize.net";
+		$host = "api.authorize.net";*/
 	
 	
 	$path = "/xml/v1/request.api";
@@ -746,11 +746,11 @@ public function eliteSubscribe($formpost,$companyid) {
 	$amount = $subscriptionprice;
 	$refId = uniqid();
 	$name = "elite membership";
-	$length = 10;
+	$length = 1;
 	$unit = "months";
 	$startDate = date("Y-m-d");
 	//$totalOccurrences = 999;
-	$totalOccurrences = 12;
+	$totalOccurrences = 9999;
 	$trialOccurrences = 0;
 	$trialAmount = 0;
 	$cardNumber = $_POST["ccnumber"];
@@ -767,6 +767,7 @@ public function eliteSubscribe($formpost,$companyid) {
 	$firstName = $_POST["fname"];
 	$lastName = $_POST["lname"];	
 	$email = $this->input->post('email');					
+	$cemail = $this->input->post('cemail');					
 	$address=$_POST["streetaddress"];
 	$city=$_POST["city"];	
 	$state=$_POST["state"];
@@ -828,7 +829,6 @@ public function eliteSubscribe($formpost,$companyid) {
 	//send the xml via curl
 	$response = send_request_via_curl($host,$path,$content);
 	//if the connection and send worked $response holds the return from Authorize.net
-	
 	if ($response)
 	{
 		list ($refId, $resultCode, $code, $text, $subscriptionId) =parse_return($response);
@@ -870,9 +870,13 @@ public function eliteSubscribe($formpost,$companyid) {
 			$sig = $refId;
 			$time = $this->common->get_setting_value(18);
 			$expires = date('Y-m-d H:i:s', strtotime("+$time Month"));
-			$payer_id=$email;
+			$payer_id=$cemail;
 			$paymentmethod = 'authorize';
-			if($this->complaints->insert_subscription($companyid,$amt,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
+			$ccnumber=$_POST['ccnumber'];
+			$cardexpire=$expirationDate;
+			$fname=$firstName;
+			$lname=$lastName;
+			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
 			{
 				$company = $this->complaints->get_company_byid($companyid);
 				if( count($company)>0 )
