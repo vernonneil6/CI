@@ -93,7 +93,7 @@ function userlogin()
                 <li><a href="<?php echo site_url('review');?>" title="Reviews">reviews</a></li>
                 <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">press releases</a></li>
                 <?php 
-				/*$url = str_replace( 'http://', 'https://',site_url('solution/claimbusiness'));*/
+				$url = str_replace( 'http://', 'https://',site_url('solution/claimbusiness'));
 				?>
                 <li><a href="<?php echo site_url('solution/claimbusiness'); ?>" title="Merchant Signup">merchant sign up</a></li>
                 <?php 

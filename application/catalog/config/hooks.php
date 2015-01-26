@@ -9,10 +9,13 @@
 |	http://codeigniter.com/user_guide/general/hooks.html
 |
 */
-$hook['post_controller_constructor'][] = array(
-                                'function' => 'redirect_ssl',
+/* Force HTTPS for account area */
+$hook['post_controller_constructor'] = array(
+                                'class'    => 'SecureAccount',
+                                'function' => 'index',
                                 'filename' => 'ssl.php',
-                                'filepath' => 'hooks'
+                                'filepath' => 'hooks',
+                                'params'   => array()
                                 );
 
 
