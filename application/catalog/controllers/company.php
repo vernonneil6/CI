@@ -337,15 +337,11 @@ class Company extends CI_Controller {
 				$limit = $this->paging['per_page'];
 				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
 		  
-		  		//Addingg Setting Result to variable
 		  		$this->data['keywords'] = $this->complaints->get_all_searchs($siteid);
 		  	
 				
 				$this->data['coupons'] = $this->complaints->get_coupon_bycompanyid($this->data['company'][0]['id']);
-				//echo "<pre>";
-				//print_r($this->data['coupons']);
-				//die();
-				//Loading View File
+
 		 		 if(count($this->data['company'])>0)
 					{
 						$this->load->view('companycoupons',$this->data);
