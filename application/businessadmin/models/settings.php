@@ -349,12 +349,18 @@ Class Settings extends CI_Model
 		return $query->row_array();
 		
 	}
-	function update_subscription($subscriptionId,$companyid,$amt,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag)
+	function update_subscription($subscriptionId,$companyid,$amt,$ccnumber,$cvv,$cardexpire,$fname,$lname,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag)
 	{
 	    $date = date("Y-m-d H:i:s");
 		$payment_ip = $_SERVER['REMOTE_ADDR'];
 		$data = array(
 					'amount'  		=> $amt,
+					'ccnumber'  	=> $ccnumber,
+					'cvv'  		    => $cvv,
+					'ccexpiredate'  => $cardexpire,
+					'firstname	'  	=> $fname,
+					'lastname	'  	=> $lname,
+					
 					'txn_id'		=> $tx,
 					'payment_date'	=> $date,
 					'payment_ip'	=> $payment_ip,
@@ -363,9 +369,9 @@ Class Settings extends CI_Model
 					'payer_id'		=> $payer_id,
 					'paymentmethod'	=> $paymentmethod,
 		);
-		$this->db->where(array('subscr_id'=>$subscriptionId,'company_id'=>$companyid));
-		$this->db->update('subscription',$data);
-		if ($this->db->update('subscription',$data))
+		$query=$this->db->where(array('subscr_id'=>$subscriptionId,'company_id'=>$companyid))
+		                ->update('subscription',$data);
+		if ($query)
 		{
 			return true;
 		}

@@ -4,7 +4,7 @@
   <div class="breadcrumbs">
     <ul>
       <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
-      <li><a href="<?php echo site_url('elite/update');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
+      <li><a href="<?php echo site_url('elite/update');?>" title="<?php echo "Elite Update card"; ?>"><?php echo "Elite Update card"; ?></a></li>
     </ul>
   </div>
 
@@ -58,10 +58,9 @@ submitHandler : function(form) {
 
   <div class="box">
     <div class="headlines">
-      <h2><span>Elite Update</span></h2>
+      <h2><span>Elite Update card</span></h2>
     </div>
-    <?php // print_r($elite[0]);?>
-        <div class="box-content"> 
+    <div class="box-content"> 
 			<?php echo form_open('elite/renew/'.$elite[0]['id'],array('class'=>'formBox','id'=>'frmelite')); ?>
 			<?php //echo form_open('elite/update',array('class'=>'formBox','id'=>'frmelite')); ?>
 			
@@ -73,7 +72,7 @@ submitHandler : function(form) {
             <input type="hidden" class="reg_txt_box-lg" placeholder="cname" name="cname" id="cname" maxlength="50" value="<?php echo $elite[0]['contactname'];?>" />
             <input type="hidden" class="reg_txt_box-lg" placeholder="cphone" name="cphone" id="cphone" maxlength="50" value="<?php echo $elite[0]['contactphonenumber'];?>" />
             <input type="hidden" class="reg_txt_box-lg" placeholder="cemail" name="cemail" id="cemail" maxlength="50" value="<?php echo $elite[0]['contactemail'];?>" />
-       
+     
         <div class="clearfix" style="width: 71%;padding-left: 10px;margin-top:15px">
 				<div class="lab">
 					 <p style="width: 272px;">Enter Your Billing Address Information</p>

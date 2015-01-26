@@ -26,9 +26,10 @@
     </li>
    <li><a href="<?php echo site_url('elite'); ?>" title="Elite Membership Status" class="link">Elite Membership Status</a> </li>
    <?php 
-		$url = str_replace('http://','https://',site_url('elite/update'));
+		/*$url = str_replace('http://','https://',site_url('elite/update'));
 	?>
-   <li><a href="<?php echo $url; ?>" title="Update Your Credit Card" class="link">Update Your Credit card</a> </li>
+   <li><a href="<?php echo $url; ?>" title="Update Your Credit Card" class="link">Update Your Credit card</a> </li>*/?>
+   <li><a href="<?php echo site_url('elite/update'); ?>" title="Update Your Credit Card" class="link">Update Your Credit card</a> </li>
    <li><a href="<?php echo site_url('pressrelease'); ?>" title="Press Releases">Press Releases</a>
       <ul class="submenu">
         <li><a href="<?php echo site_url('pressrelease/add'); ?>" title="Add Press Releases">Add Press Releases</a></li>

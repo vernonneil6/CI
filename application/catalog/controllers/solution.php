@@ -1110,7 +1110,7 @@ public function cron()
 		$last_transaction=$con['txn_id'];
 		$emailcompany=$company_id;
 		$cronemail=$this->complaints->get_elitesubscription_detailsbycompanyid($emailcompany);	
-	   
+	    $transactionresponse=$con['transactionresponse'];   
         
         $disable_elite=$this->complaints->disable_elitemembership($company_id);
         $site_name = $this->common->get_setting_value(1);
@@ -1154,7 +1154,7 @@ public function cron()
 															<tr><td><br/></td></tr>
 															<tr>
 																<td style="padding-left:20px;">
-																Your subscription to Elitemembership has been deactivated due to payment failure. Details are as follows.
+																Your subscription to Elitemembership has been deactivated due to '.$transactionresponse.' . Details are as follows.
 																</td>
 															</tr>
 															<tr>

@@ -69,7 +69,7 @@ class Elite extends CI_Controller {
 			$id = $this->session->userdata['youg_admin']['id'];
 			$this->data['elite'] = $this->settings->get_elitecompany_byid($id);
 			$this->data['elitepayment'] = $this->settings->get_elitepayment_byid($id);
-			
+						
 			//echo "<pre>";
 			//print_r($this->data['elite']);
 			//die();
@@ -119,6 +119,7 @@ class Elite extends CI_Controller {
 		//Function For Change Status to "Disable"
 	public function cancel($subscribtionid='',$companyid='')
 	{
+		
 		$elite_email=$this->settings->get_elitecancel_email_byid($companyid);
 		                       
 	   $site_name = $this->settings->get_setting_value(1);
@@ -130,6 +131,8 @@ class Elite extends CI_Controller {
 	  {
 			if($subscribtionid!='' && $companyid!='')
 			{
+				
+				
 				
 			   /*sandbox test mode
 			   $loginname="9um8JTf3W";
@@ -276,6 +279,7 @@ class Elite extends CI_Controller {
 						$this->load->model('settings');
 						$id = $this->session->userdata['youg_admin']['id'];
 						$this->data['elite'] = $this->settings->get_company_byid($id);
+						$this->data['subscription'] = $this->settings->get_subscribtion_bycompanyid($id);
 						$this->load->view('eliteupdate',$this->data);
 			}
 			
@@ -331,7 +335,7 @@ class Elite extends CI_Controller {
 	  	{
 			//data.php start
 			
-			
+			//echo '<pre>';print_r($_POST);die('2');
 		/*test mode
 		  $loginname="2sRT3yAsr3tA";
 		  $transactionkey="38UzuaL2c6y5BQ88";
@@ -343,10 +347,10 @@ class Elite extends CI_Controller {
 		   $host = "apitest.authorize.net";*/
 			
 			
-			/*live*/
+			/*live
 			$loginname="5h7G7Sbr";
 			$transactionkey="94KU7Sznk72Kj3HK";
-			$host = "api.authorize.net";
+			$host = "api.authorize.net";*/
 			
 			$firstName=$this->input->post('fname');				
 			$lastName=$this->input->post('lname');
@@ -373,10 +377,10 @@ class Elite extends CI_Controller {
 			$amount = $subscriptionprice;
 			$refId = uniqid();
 			$name = "Elite membership";
-			$length = 10;
+			$length = 1;
 			$unit = "months";
 			$startDate = date("Y-m-d");
-			$totalOccurrences = 12;
+			$totalOccurrences = 9999;
 			$trialOccurrences = 0;
 			$trialAmount = 0;
 			$cardNumber =$_POST["ccnumber"];
@@ -471,6 +475,13 @@ class Elite extends CI_Controller {
 					$sub_id=$this->settings->get_subscriptionid($sid);
 					$subscriptionId=$sub_id['subscr_id'];
 					$sig=$sub_id['sign'];
+					
+					$ccnumber=$_POST['ccnumber'];
+					$cvv=$_POST['cvv'];
+					$cardexpire=$expirationDate;
+					$fname=$firstName;
+					$lname=$lastName;
+					
 					$tx  = $transactionkey;
 					$amt = $amount;
 					$companyid  = $sid;
@@ -481,7 +492,7 @@ class Elite extends CI_Controller {
 					$emailflag='1';
 				
 				   	$Billingaddress=$this->settings->update_billingaddress($address,$city,$state,$country,$zip,$id);
-					$update_subscription=$this->settings->update_subscription($subscriptionId,$companyid,$amt,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag);
+					$update_subscription=$this->settings->update_subscription($subscriptionId,$companyid,$amt,$ccnumber,$cvv,$cardexpire,$fname,$lname,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag);
 					
 					if($update_subscription)
 					{
