@@ -91,10 +91,15 @@
         <div class="revw_blck">
           <div class="revw_blck_img"> <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile">
             <div class="task-photo"> 
-				<img width="100px" height="100" src="<?php if( strlen($reviews[$i]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($reviews[$i]['avatarbig']); } else { if($reviews[$i]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/male.png"; } 
-		  	if($reviews[$i]['gender']=='Female') { echo $this->common->get_setting_value('2')."images/female.png"; } 
-		  } 
-		   ?>" alt="<?php echo stripslashes($reviews[0]['username']); ?>"/> </div>
+				<img width="100px" height="100" src="
+				<?php 
+				if( strlen($reviews[$i]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($reviews[$i]['avatarbig']); } 
+				else 
+				{ 
+					if($reviews[$i]['gender']=='Male' or $reviews[$i]['avatarbig']=='') { echo $this->common->get_setting_value('2')."images/male.png"; } 
+					if($reviews[$i]['gender']=='Female') { echo $this->common->get_setting_value('2')."images/female.png"; } 
+				} 
+				?>" alt="<?php echo stripslashes($reviews[0]['username']); ?>"/> </div>
           
             </a> </div>
           <div class="revw_blck_cnt">
@@ -111,15 +116,15 @@
             </h2>
             
             <div class="revw_occupt"> <span>
-            <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="see details" class="font_color_2">
+            <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="see details" class="font_color_white">
             "<?php echo $reviews[$i]['reviewtitle'];?>"
             </a>
             </span>-
               <p>
-                <?php if($reviews[$i]['type']=='csv') { ?>
-                <a title="<?php echo stripslashes($reviews[$i]['reviewby']); ?>"><?php echo stripslashes($reviews[$i]['reviewby']); ?></a>
+                <?php if($reviews[$i]['username']=='') { ?>
+                <a class="font_color_2" title="<?php echo stripslashes($reviews[$i]['reviewby']); ?>"><?php echo stripslashes($reviews[$i]['reviewby']); ?></a>
                 <?php } else {?>
-                <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile" style="color:#0080FF;"> <?php echo stripslashes($reviews[$i]['username']); ?></a>
+                <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile" class="font_color_2"> <?php echo stripslashes($reviews[$i]['username']); ?></a>
                 <?php } ?>
               </p>
               <div class="revw_date">

@@ -3,7 +3,7 @@
   <section class="inner_main">
     <!-- #content -->
     
-    <div class="main_contentarea"> <?php echo $menu; ?>
+    <div class="main_contentarea">
       
       <div class="left_content_panel">
         <div class="treding_title">Trending  Searches <span>Last 7 Days</span></div>
