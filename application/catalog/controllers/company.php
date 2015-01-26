@@ -329,7 +329,8 @@ class Company extends CI_Controller {
 		  	if( $word!='')
 			{
 				$this->data['company'] = $this->complaints->get_company_byseokeyword($word); 
-				if(count($this->data['company'])>0) {
+				if(count($this->data['company'])>0) 
+				{
 					
 				$this->load->library('pagination');
 		  		$siteid = $this->session->userdata('siteid');
@@ -354,7 +355,7 @@ class Company extends CI_Controller {
 				else
 				{
 				redirect('', 'refresh');
-			}
+				}
 			}
 		else
 			{
