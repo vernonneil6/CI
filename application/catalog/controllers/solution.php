@@ -408,7 +408,7 @@ class Solution extends CI_Controller {
 									$this->email->message($mail_body);
 									//$this->email->send();
 									
-									$this->session->set_flashdata('success', 'Your business has successfully been registered for Elite membership!');
+									$this->session->set_flashdata('success', 'Your business has successfully been registered');
 									///redirect('solution/claim/'.$companyid, 'refresh');
 									redirect('solution', 'refresh');
 									
