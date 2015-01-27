@@ -1,4 +1,14 @@
 <?php echo $heading; ?>
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';?>css/fancybox.css" type="text/css">
+<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';?>js/fancybox.js"></script>
+<script type="text/javascript" language="javascript">	
+	
+	$(document).ready(function() 
+	{
+		$('.readmore').fancybox();
+	});
+
+</script>
 <!-- #content -->
 <div id="content">
   <div class="breadcrumbs">
@@ -134,7 +144,25 @@
       <?php $user = $this->settings->get_user_byid($reviews[$i]['reviewby']);?>
       <?php $reviewstatus =$this->reviews->get_reviewstatus_by_reviewid($reviews[$i]['id']); ?>
       <tr>
-        <td><?php echo nl2br(stripslashes($reviews[$i]['comment'])); ?></td>
+        <td>
+			<?php echo substr(stripslashes($reviews[$i]['comment']), 0, 70);
+			if(strlen($reviews[$i]['comment']) > 70)
+			{ 
+			?>
+				...<a href = "#readmore<?php echo $i; ?>" class = "readmore">Read More</a>
+			<?php
+			}
+			?>
+        </td>
+        
+<div id = "readmore<?php echo $i; ?>" style = "width : 500px; display : none">
+	<h3>Review</h3>
+	<div>
+		<?php echo $reviews[$i]['comment']; ?>
+	</div>
+</div>
+
+
         <td><?php if(count($user)>0) { echo ucwords(stripslashes($user[0]['firstname'] .' '.$user[0]['lastname'])); } else { echo "---"; } ?></td>
         <td><?php echo date("M d Y",strtotime($reviews[$i]['reviewdate'])); ?></td>
        <?php if(count($user)>0) { ?>
