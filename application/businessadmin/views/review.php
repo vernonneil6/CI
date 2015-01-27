@@ -1,4 +1,14 @@
 <?php echo $heading; ?>
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';?>css/fancybox.css" type="text/css">
+<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';?>js/fancybox.js"></script>
+<script type="text/javascript" language="javascript">	
+	
+	$(document).ready(function() 
+	{
+		$('.readmore').fancybox();
+	});
+
+</script>
 <!-- #content -->
 <div id="content">
   <div class="breadcrumbs">
@@ -135,32 +145,23 @@
       <?php $reviewstatus =$this->reviews->get_reviewstatus_by_reviewid($reviews[$i]['id']); ?>
       <tr>
         <td>
-			<?php echo substr(stripslashes($reviews[$i]['comment']), 0, 100);
-			if(strlen($reviews[$i]['comment']) > 100)
+			<?php echo substr(stripslashes($reviews[$i]['comment']), 0, 70);
+			if(strlen($reviews[$i]['comment']) > 70)
 			{ 
 			?>
-				...<a href = "#readmore" class = "readmore">Read More</a>
+				...<a href = "#readmore<?php echo $i; ?>" class = "readmore">Read More</a>
 			<?php
 			}
 			?>
         </td>
         
-<div id = "readmore" style = "width : 500px; display : none">
+<div id = "readmore<?php echo $i; ?>" style = "width : 500px; display : none">
 	<h3>Review</h3>
 	<div>
-		<?php echo stripslashes($reviews[$i]['comment']); ?>
+		<?php echo $reviews[$i]['comment']; ?>
 	</div>
 </div>
-<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';?>css/fancybox.css" type="text/css">
-<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';?>js/fancybox.js"></script>
-<script type="text/javascript" language="javascript">	
-	
-	$(document).ready(function() 
-	{
-		$('.readmore').fancybox();
-	});
 
-</script>
 
         <td><?php if(count($user)>0) { echo ucwords(stripslashes($user[0]['firstname'] .' '.$user[0]['lastname'])); } else { echo "---"; } ?></td>
         <td><?php echo date("M d Y",strtotime($reviews[$i]['reviewdate'])); ?></td>
