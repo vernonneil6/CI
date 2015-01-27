@@ -93,7 +93,7 @@
       <tr>
           <td><?php echo date("M d Y",strtotime($elite[$i]['payment_date'])); ?></td>
           <td><?php if( stripslashes($elite[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('elite/disable/'.$elite[$i]['id'].'/'.$elite[$i]['company_id']);?>" title="Click to Cancel Membership" class="btn btn-small btn-success" onClick="return confirm('Are you sure to cancel elite membership,after cancellation of membership you will not any access to your business admin account ?');"><span>Enable</span></a>
+          <a href="<?php echo site_url('elite/disable/'.$elite[$i]['id'].'/'.$elite[$i]['company_id']);?>" title="Click to Cancel Membership" class="btn btn-small btn-success" onClick="return confirm('Are you sure You want to cancel Your elite membership? After cancellation of Your membership - You will not have any access to your business admin account !');"><span>Enable</span></a>
           <?php } ?>
           <td><?php echo date('M d Y',strtotime($elitepayment['expires'])); ?></td>
           <td><?php echo "$ ".$elitepayment['sub_amt']; ?></td>
