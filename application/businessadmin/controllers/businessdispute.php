@@ -25,8 +25,8 @@ class Businessdispute extends CI_Controller {
 		$this->data['site_name'] = $this->settings->get_setting_value(1);
 		$this->data['site_url'] = $this->settings->get_setting_value(2);
 		
-		$this->data['title'] = $this->settings->get_setting_value(1).' : Business Disputes';
-		$this->data['section_title'] = 'Business Disputes';
+		$this->data['title'] = $this->settings->get_setting_value(1).' : Manage Complaints';
+		$this->data['section_title'] = 'Manage Complaints';
 		$websites = $this->settings->get_all_urls();
 		
 		if( count($websites) > 0 )

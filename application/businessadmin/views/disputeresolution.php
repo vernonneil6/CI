@@ -7,7 +7,7 @@
     <ul>
       <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
       <li><a href="<?php echo site_url('businessdispute');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
-      <li><?php if($this->uri->segment(2) == 'resolution'){echo 'Resolution Page';} ?></a></li>
+      <li><?php if($this->uri->segment(2) == 'resolution'){echo "Resolution Page";} ?></a></li>
     </ul>
   </div>
 
