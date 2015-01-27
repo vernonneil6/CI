@@ -75,7 +75,7 @@
         <td>Sample Image</td>
         <td>
 			<a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/company/'.$companyseo.'/reviews/coupons/complaints';?>" target="_blank" title="<?php echo $companyname;?> is a verified merchant with YouGotrated and all their transactions are backed by the YouGotrated Buyers Protection Program.  Once you have completed your purchase with <?php echo $companyname;?> you will be emailed your Buyers Protection ID Number should you need to file a Claim with YouGotRated.">
-			<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/BuyersProtection_Badge.png'; ?>" class="logo_btm" alt="Yougotrated" ></a>
+		<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/BuyersProtection_Badge.png'; ?>" class="logo_btm" alt="Yougotrated" ></a>
         <br>
         </td>
       </tr>
@@ -84,19 +84,6 @@
     </table>	
    
 </div>
-<script>
-$(document).ready(function(){
-$('.rating').raty({
-  path: '/images/',
-  half: true,
-  readOnly: true,
-  score: function() {
-    return $(this).attr('data-rating');
-  }
-});
-});
-
-</script>
 </div>
 
 
