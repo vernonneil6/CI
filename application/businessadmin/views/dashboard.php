@@ -70,7 +70,7 @@ height:70px !important;
 		<li> <a href="<?php echo site_url('buyer');?>" title="Buyer Protection Badge"> <img src="images/BuyersProtection_Badge.png" alt="Buyer Protection Badge" title="Buyer Protection Badge">
           <p>Buyer Protection Badge</p>
           </a> </li>
-		<li> <a href="<?php echo site_url('tutorial');?>" title="Tutorials"> <img src="images/tutorial" alt="Tutorials" title="Tutorials">
+		<li> <a href="<?php echo site_url('tutorial');?>" title="Tutorials"> <img src="images/tutorial.png" alt="Tutorials" title="Tutorials">
           <p>Tutorials</p>
           </a> </li>
 		<li> <a href="<?php echo site_url('timing');?>" title="Hours Of Operation"> <img src="images/timing.png" alt="Hours Of Operation" title="Hours Of Operation">
