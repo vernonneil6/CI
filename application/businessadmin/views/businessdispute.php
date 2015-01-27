@@ -52,7 +52,7 @@
 			  
 			 <?php if(count($companydispute) ==0) {?>
 			  <tr>
-			    <td>No records found</td>
+			    <td>No Complaints found</td>
 			    <td></td>
 			    <td></td>
 			    <td></td>
