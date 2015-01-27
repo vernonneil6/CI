@@ -1,71 +1,24 @@
 <?php
 Class Widgets extends CI_Model
 {
-	//Getting value for editing
-	function get_company_byid($id)
+	function get_reviews_bycompanyid($id,$limit='',$offset='')
  	{
-		$query = $this->db->get_where('company', array('id' => $id));
 		
-		if ($query->num_rows() > 0)
-		{
-			return $query->result_array();
-		}
-		else
-		{
-			return array();
-		}
- 	}
-	
-	//Getting total review by comapany id
-	function get_total_review($comapany_id=0)
- 	{
-		$this->db->select('rate');
+		//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+		
+		$siteid = $this->session->userdata('siteid');
+		$this->db->select('r.*, cm.company,cm.logo,cm.aboutus,u.firstname,u.lastname,u.username,u.avatarbig,u.gender');
 		$this->db->from('reviews as r');
-		$this->db->where('r.companyid',$comapany_id);
-		$this->db->where('r.status','Enable');
-		
-		$query = $this->db->get();
-		return $query->num_rows();
- 	}
- 	
-	//Getting total review by comapany id
-	function get_review_list_by_companyid($comapany_id=0)
- 	{
-		$this->db->select('reviewtitle,rate,comment,reviewby,reviewdate,link');
-		$this->db->from('reviews as r');
-		$this->db->where('r.companyid',$comapany_id);
-		$this->db->where('r.status','Enable');
-		
-		$query = $this->db->get();
-		return $query->result_array();
- 	}
-	
-	//Getting average review by comapany id
-	function get_average_review($comapany_id=0)
- 	{
-		$this->db->select('AVG(rate) AS total');
-		$this->db->from('reviews as r');
-		$this->db->where('r.companyid',$comapany_id);
-		$this->db->where('r.status','Enable');
-		
-		$query = $this->db->get();
-		//echo $this->db->last_query();die();
-		if ($query->num_rows() > 0)
-		{
-			$review = $query->result_array();
-			return round($review[0]['total'],2);
-		}
-		else
-		{
-			return 0;
-		}
- 	}
-	
-	function get_all_websites()
- 	{
-		$this->db->select('*');
-		$this->db->from('url');
-		//$this->db->where('status','Enable');
+		$this->db->join('company as cm','r.companyid=cm.id');
+		$this->db->join('user as u','r.reviewby=u.id','left');
+		$this->db->where('r.companyid',$id);
+		//$this->db->where('r.status','Enable');
+		//$this->db->where('r.websiteid',$siteid);
+		$this->db->order_by('r.reviewdate','DESC');
 		
 		$query = $this->db->get();
 		if ($query->num_rows() > 0)
