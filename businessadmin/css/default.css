@@ -483,3 +483,19 @@ a:hover.ico   { background-position: 0 0; }
 	margin-left: 5px;
     margin-top: -14px;
 }
+.cvvpop
+{
+position: absolute;
+right: -8em;
+width: 92px;	
+
+}
+#cvvhover
+{
+display: block;
+position: absolute;
+left: -13em;
+z-index: 1000;
+text-decoration:none;
+
+}
