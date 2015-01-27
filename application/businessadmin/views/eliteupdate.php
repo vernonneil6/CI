@@ -54,6 +54,18 @@ submitHandler : function(form) {
   
 });
 }
+
+$(document).ready(function() {
+ $('#cvvhover','#cvvhover').hide();
+
+//When the Image is hovered upon, show the hidden div using Mouseover
+ $('.cvvpop').mouseover(function() {
+   $('#cvvhover').show();
+});
+ $('.cvvpop').mouseout(function() {
+   $('#cvvhover').hide();
+});
+});
 </script>
 
   <div class="box">
@@ -75,7 +87,7 @@ submitHandler : function(form) {
      
         <div class="clearfix" style="width: 71%;padding-left: 10px;margin-top:15px">
 				<div class="lab">
-					 <p style="width: 272px;">Enter Your Billing Address Information</p>
+					 <p style="width: 272px;">Enter Billing Address for your Credit Card</p>
 					
 				</div>	    
 							
@@ -103,7 +115,7 @@ submitHandler : function(form) {
 			   	 	    
           
         </div>
-        <div class="clearfix" style="width: 71%;padding-left: 10px;">
+        <div class="clearfix" style="width: 71%;padding-left: 10px;overflow: visible;">
 				<div class="lab">
 					 <p style="width: 272px;">Enter Your New Credit Card Information</p>
 					<label for="title">Credit Card<span class="errorsign">*</span></label>
@@ -112,8 +124,11 @@ submitHandler : function(form) {
 					  <?php echo form_input(array( 'name'=>'ccnumber','id'=>'ccnumber','class'=>'input','type'=>'text','placeholder'=>'Enter Your credit card number','onkeypress'=>'return number(event)','onblur'=>'return checkcard();','required'=>'required')); ?>
 				  </div>
 				<div class="con" style='margin-top:10px'> 
-			        <?php echo form_input(array( 'name'=>'cvv','id'=>'cvv','class'=>'input','type'=>'text','placeholder'=>'Enter Your CVV number')); ?>
+			         <?php echo form_input(array( 'name'=>'cvv','id'=>'cvv','class'=>'input','type'=>'text','placeholder'=>'Enter Your CVV number')); ?>
+			       <a class="cvvpop" href="<?php echo base_url();?>">What is this? <img src="images/cvvpop1.jpg" id="cvvhover" style="display:none;"></a> 
+			       
 			   </div>
+			   
 			   <div class="con" style='margin-top:10px'>
 					   <?php echo form_input(array( 'name'=>'fname','id'=>'fname','class'=>'input','type'=>'text','placeholder'=>'Enter Your first name')); ?>
 					</div>
@@ -180,4 +195,6 @@ submitHandler : function(form) {
 <?php include('leftmenu.php'); ?>
 <!-- /#sidebar --> 
 <!-- #footer --> 
+
+
 <?php echo $footer; ?> 
