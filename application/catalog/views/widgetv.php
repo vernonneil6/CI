@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>businessadmin/css/tooltipster.css" />
 
-<script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.min.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>businessadmin/js/jquery.tooltipster.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.raty.min.js"></script>
@@ -150,12 +150,7 @@ Reviews
 				} 
 			}
 			
-			if($this->pagination->create_links()) 
-			{ 
-			?>
-				<div class="pagination"><?php echo $this->pagination->create_links(); ?></div>
-			<?php 
-			}      
+			 
 			if( count($reviews)==0 ) 
 			{ 
 			?>
@@ -174,50 +169,4 @@ Reviews
 		$('.tooltip').tooltipster();
 		$('.fancybox').fancybox();
 	});
-
-function countme(rid,vote)
-	{
-	  $.ajax({
-		  type 				: "POST",
-		  url 				: "<?php echo site_url('review/countme');?>",
-		  dataType 			: "json",
-		  data				: {reviewid:rid,vote : vote},
-		  cache				: false,
-		  success			: function(data)
-							  {	
-								$('#'+vote+'_'+rid).html("<b>"+data.total+"</b>&nbsp;"+vote);
-							
-							  }
-	   });
-	}
-	
-	function check(ip,rid,vote)
-	{
-	  
-	  $.ajax({
-		  type 				: "POST",
-		  url 				: "<?php echo site_url('review/checkvote');?>",
-		  dataType 			: "json",
-		  data				: { ip:ip,reviewid:rid,vote : vote},
-		  cache				: false,
-		  success			: function(data)
-							  {	
-								if(data.message == 'deleted')
-								{
-								   $('#'+vote+'_'+rid).removeClass('vote-disable');
-								   $('#'+vote+'_'+rid).addClass('vote');
-								}
-								if(data.message == 'added')
-								{
-								   $('#'+vote+'_'+rid).removeClass('vote');
-								   $('#'+vote+'_'+rid).addClass('vote-disable');										   										  
-								}
-								countme(rid,vote);
-							  }
-		  
-
-	   });
-	  
-	}
-
 </script>
