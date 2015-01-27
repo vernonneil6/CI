@@ -91,13 +91,12 @@
         <div class="revw_blck">
           <div class="revw_blck_img"> <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile">
             <div class="task-photo"> 
-				<img width="100px" height="100" src="
+				<img width="90px" height="90" src="
 				<?php 
 				if( strlen($reviews[$i]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($reviews[$i]['avatarbig']); } 
 				else 
 				{ 
-					if($reviews[$i]['gender']=='Male' or $reviews[$i]['avatarbig']=='') { echo $this->common->get_setting_value('2')."images/male.png"; } 
-					if($reviews[$i]['gender']=='Female') { echo $this->common->get_setting_value('2')."images/female.png"; } 
+					echo $this->common->get_setting_value('2')."images/default_user.png"; 
 				} 
 				?>" alt="<?php echo stripslashes($reviews[0]['username']); ?>"/> </div>
           

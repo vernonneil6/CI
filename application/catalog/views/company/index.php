@@ -286,14 +286,14 @@
 				if(strlen($company[0]['aboutus']) > 480)
 				{ 
 				?>
-					<a href = "#readmore" class = "readmore">...Read More</a>
+					...<a href = "#readmore" class = "readmore font_color_1">Read More</a>
 				<?php
 				}
 				?>
 			</div>
 		<?php } ?>
 	</div>
-	<div id = "readmore" style = "display : none">
+	<div id = "readmore" style = "width : 500px; display : none">
 		<div class = "profile_about_company">
 			<h3>About <?php echo $company[0]['company']; ?></h3>
 		</div>
