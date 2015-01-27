@@ -1,11 +1,16 @@
 <?php echo $header;?>
 
-<h3>Your Elite Membership purchase was successful!</h3>
+<section class="container">
+<div class = "success_receipt">	
+<h2>Your Elite Membership purchase was successful!</h2>
 
 <table>
 <tr>
 	<td>
 		<label>Transaction ID</label>
+	</td>
+	<td>
+	:
 	</td>
 	<td>
 		<?php echo $company['id']; ?>
@@ -16,12 +21,18 @@
 		<label>Your username to log in is</label>
 	</td>
 	<td>
+	:
+	</td>
+	<td>
 		<?php echo $company['email']; ?>
 	</td>
 </tr>
 <tr>
 	<td>
 		<label>Password</label>
+	</td>
+	<td>
+	:
 	</td>
 	<td>
 		<?php echo $company['password']; ?>
@@ -32,13 +43,18 @@
 		<label>Elite Member Login URL</label>
 	</td>
 	<td>
-		<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/businessadmin'; ?>
+	:
+	</td>
+	<td>
+		<a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/businessadmin'; ?>"><?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/businessadmin'; ?></a>
 	</td>
 </tr>
 </table>
 
-<h5>Note you will receive an email with this information for reference.</h5>
+<h4>Note you will receive an email with this information for reference.</h4>
 
-<h5>Thank you for working with YouGotRated!</h5>
+<h4>Thank you for working with YouGotRated!</h4>
+</div>
+</section>
 
 <?php echo $footer;?>

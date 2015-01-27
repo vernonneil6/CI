@@ -1835,3 +1835,16 @@ font_color_white
 {
 
 }
+.success_receipt
+{
+	margin : 50px 0;
+	font-family: myriadpro-regular;
+}
+.success_receipt h2,.success_receipt h4
+{
+	font-family: myriadpro-boldcond;
+}
+.success_receipt table tr td label
+{
+	font-weight: bold;
+}
