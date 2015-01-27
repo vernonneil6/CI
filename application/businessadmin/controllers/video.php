@@ -231,7 +231,7 @@ class Video extends CI_Controller {
 		}
 		else
 		{
-			$videourl = preg_replace("/^https:/i", "http:", $this->input->post('addvideourl'));
+			$videourl = preg_replace('#^https?://#', '', $this->input->post('addvideourl'));
 		}
 		
 
