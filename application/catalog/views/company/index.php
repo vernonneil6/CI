@@ -497,6 +497,7 @@
 				</script>
               <?php for($i=0; $i<count($gallerys); $i++) { ?>
               <?php $photos = $this->complaints->get_photos_bygalleryid($gallerys[$i]['id']);?>
+              <div class = "gallery_title"><?php echo $gallerys[$i]['title'];?></div>
               <?php if(count($photos)>0){ ?>
               <div class="container1">
                 <div id="featured" class = "gallery_featured">
