@@ -1,141 +1,131 @@
-@charset "utf-8";
-/* CSS Document */
-@font-face {
-	font-family: 'MyriadProBoldCondensed';
-	src:url('../font/myraidpro/MyriadProBoldCondensed.eot');
-	src:url('../font/myraidpro/MyriadProBoldCondensed.eot?#iefix') format('embedded-opentype'),
-		url('../font/myraidpro/MyriadProBoldCondensed.woff') format('woff'),
-		url('../font/myraidpro/MyriadProBoldCondensed.ttf') format('truetype');
-	
-}
-@font-face {
-	font-family: 'MyriadPro-BlackSemiCn';
-	src:url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot');
-	src:url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot?#iefix') format('embedded-opentype'),
-		url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.woff') format('woff'),
-		url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.otf') format('opentype'),
-		url('../font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.ttf') format('truetype');
-	/* src:url('../font/MyriadPro-BlackSemiCn.ttf') format('truetype'); */
-	
-}
-@font-face {
-	font-family: 'MyriadPro-Regular';
-	src:url('../font/MyriadPro-Regular/MyriadPro-Regular.eot');
-	src:url('../font/MyriadPro-Regular/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
-		url('../font/MyriadPro-Regular/MyriadPro-Regular.woff') format('woff'),
-		url('../font/MyriadPro-Regular/MyriadPro-Regular.otf') format('opentype'),
-		url('../font/MyriadPro-Regular/MyriadPro-Regular.ttf') format('truetype');
-	/* src:url('../font/myriad/MyriadPro-Regular.otf') format('opentype'); */
-	
-}
-@font-face {
-	font-family: 'MyriadPro-BoldCond';
-	src:url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.eot');
-	src:url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.eot?#iefix') format('embedded-opentype'),
-		url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.woff') format('woff'),
-		url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.otf') format('opentype'),
-		url('../font/MyriadPro-BoldCond/MyriadPro-BoldCond.ttf') format('truetype');
-	
-	/* src:url('../font/myriad/MyriadPro-BoldCond.otf') format('opentype'); */
-	
-}
-@font-face {
-	font-family: 'MyriadPro-SemiboldCondIt';
-	src:url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.eot');
-	src:url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.eot?#iefix') format('embedded-opentype'),
-		url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.woff') format('woff'),
-		url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.otf') format('opentype'),
-		url('../font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.ttf') format('truetype');
-	
-	/* src:url('../font/myriad/MyriadPro-SemiboldCondIt.otf') format('opentype'); */
-	
-}
-
-div.box
+.company_review_tab
 {
-cursor:pointer;
+	background: none repeat scroll 0 0 #39bced;
+    padding: 15px;
+    position: fixed;
+    top: 53%;
+    cursor : pointer;
+    color: white;
+    transform: rotate(270deg);
+    transform-origin: left top;
 }
-div.box div.overlay
+#review_popup
 {
-	padding: 10px 0 0;
-    display:none;
-	width:auto;
-	cursor:pointer;
+	font-family: myriadpro-regular;
+	display: none;
 }
-div.overlay a:hover
+.review_firstletter
 {
-color:#575656;
-width:auto;
-cursor:pointer;
-font-family: MyriadPro-Regular;
+	background: #83b6dd;
+    border-radius: 50px;
+    height: 45px;
+    width: 45px;
+    text-align : center;
+    float: left;
 }
-
-.box {
-	background-color: #ffffff;
-	border: 1px solid #ccc;
-	border: 1px solid rgba(0, 0, 0, 0.2);
- *border-right-width: 2px;
- *border-bottom-width: 2px;
-	/*-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	border-radius: 6px;*/
-	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-	-webkit-background-clip: padding-box;
-	-moz-background-clip: padding;
-	background-clip: padding-box;
-	width:255px;
-	max-width:255px;
-}
-.box .title {
-	text-align:center;
-	background:url("../../../images/wdg_title.png") #047AD3 repeat-x;
-	padding:5px;
-	/*border-top-left-radius:6px;
-	border-top-right-radius:6px;
-	-moz-border-radius-topleft:6px;
-	-moz-border-radius-topright:6px;
-	-webkit-border-top-right-radius:6px;
-	-webkit-border-top-left-radius:6px;*/
-	margin-bottom:5px;
-}
-a,a:hover,a:active {
-	text-decoration:none;
-	font-family: MyriadPro-Regular;
-}
-.box .title a {
-	text-decoration:none;
-	color:#FFF;
-	font-size:15px;
-	font-weight:bold;
-}
-img
+.review_firstletter label
 {
-	border:0px none;
-	vertical-align:middle;
+	color: white;
+    display: inline-block;
+    font-size: 20px;
+    margin: 12px;
 }
-.business {
-	text-align:left;
-	padding:5px;
-}
-.business a {
-	display:inline-block;
-	font-size:18px;
-	font-weight:bold;
-	
-}
-#colorcode
+.review_username_row span
 {
-color : #0573BF;
+	color : #a2a2a2;
+    display: inline-block;
+    font-size: 11px;
+    margin: 0 0 0 5px;
 }
-#widdiv
+.review_username_row
 {
-height:400px;
-overflow-y:auto;
-width: 275px;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 3px 0 0 15px;
+    width: 85%;
 }
-.business label{
-font-family: MyriadPro-Regular;
+.review_name_tab
+{
+	float : left;
+	color: #3085cc;
 }
-html{font-family: MyriadPro-Regular;}
+.review_date_tab
+{
+	float : right;
+	font-weight: normal;
+}
+.review_rating_tab
+{
+	clear : both;
+	padding : 5px 0 0;
+}
+.review_username_row p
+{
+	color : #a2a2a2;
+}
+.font_size_tab
+{
+	font-size: 13px!important;
+}
+.review_tab_bottom
+{
+	padding : 15px;
+	overflow : auto;
+	height : 420px;
+}
+.review_tab_top
+{
+	background : #3085C7;
+	padding: 30px 0;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+}
+.review_border_bottom
+{
+	border-top : 1px solid #e3e3e3;
+}
+.padding_top_1
+{
+	padding : 15px 0 0;
+}
+.review_rates
+{
+	margin : 5px 0;
+	display: inline-block;
+}
+.review_ratethis label
+{
+	font-size: 11px;
+    font-weight: bold;
+    padding: 0 15px 0 0;
+}
+.review_ratethis a
+{
+	font-size: 11px;
+    padding: 0 15px 0 0;
+}
+.review_poweredby
+{
+	background: rgba(0,0,0,.7)!important;
+	color : white;
+	font-size: 13px;
+}
+.fancybox-overlay
+{
+	background: rgba(0,0,0,.7)!important;
+}
+.fancybox-inner, fancybox-wrap
+{
+	overflow: unset!important;    
+}
+.fancybox-skin
+{
+	padding : 0!important;
+}
+.fancybox-desktop, .fancybox-inner, .popupwidth 
+{
+	width: 450px!important;
+	height: 550px!important;
+}

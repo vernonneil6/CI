@@ -1,117 +1,216 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<title><?php echo ( !empty($name) ) ? $name : $site_name; ?></title>
 <link rel="stylesheet" href="../../css/widget.css" type="text/css">
 <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.raty.min.js"></script>
-</head>
 
-<body>
-
-
-</style>
-<script>
-$(function(){
-    $("#widdiv").hover(function(){
-      $(this).find(".overlay").fadeIn();
-    }
-                    ,function(){
-                        $(this).find(".overlay").fadeOut();
-                    }
-                   );        
-});
-</script>
-<?php if( !empty($name) ) { ?>
-<div id="widdiv">
-<div class="box">
-	<div class="business"> Reviews by YouGotRated</div>
-  <div class="title"><a href="<?php echo $site_url; ?>" title="<?php echo $site_name; ?>" target="_blank">THESE ARE REAL REVIEWS <br>FROM REAL SHOPPERS</a></div>
-  <?php if( !empty($name) ) { ?>
-  <div class="business"> 
- <a href="<?php echo $url; ?>" title="<?php echo $name; ?>" target="_blank" id="colorcode"><?php echo ucfirst($name); ?></a>&nbsp;
- <!--<?php echo img(array('src'=>'images/stars/'.$rating.'.png', 'alt'=>$rating.' stars', 'title'=>$rating.' stars')); ?>--><br>
- 
-<label> Rating:&nbsp;<?php if($rating=='0'){ echo "Not Yet Rated"; } else { ?><label class='rating'  data-rating=<?php echo $rating; ?>>&nbsp;/&nbsp;5 </label><?php } ?></label><br>
-   <label> <?php echo $total; ?> User Reviews.</label> <br>
- 
-    <!--<a href="<?php //echo $site_url; ?>" target="_blank" title="<?php //echo $site_name; ?>">-->
-    <div align="center">
-      <?php /*?>   <img src="<?php if( $verifiedlogo ) { echo $this->common->get_setting_value('2').$this->config->item('verifiedlogo_thumb_upload_path');?><?php echo stripslashes($verifiedlogo); } else { echo $this->common->get_setting_value('2').$this->config->item('verifiedlogo_thumb_upload_path')."no_image.png"; } ?>" alt="Verified Logo" />
-<?php */?>
-      <a target="_blank" onClick="window.open('<?php echo $site_url; ?>verified','YougotratedVerification','width=500,height=400,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes'); return false;" style="cursor: pointer;" title="Yougotrated Verification"> 
-     <!-- <img src="<?php if( $verifiedlogo ) { echo base_url().$this->config->item('verifiedlogo_thumb_upload_path');?><?php echo stripslashes($verifiedlogo); } ?>" alt="Verified Logo" width="120" height="120"/>
-      <?php if( $verifiedlogo )
-      {
-	  ?>
-		 <img src="../../uploads/verifiedlogo/thumb/da67c5af964bcbfefbebae4f351f35f1.png" alt="Verified Logo" width="120" height="120">
-	  <?php
-	  } 
-	  ?>-->
-	   <img src="../../uploads/verifiedlogo/thumb/verifiedlogo.png" alt="Verified Logo" width="120" height="120">
-      </a> </div>
-    </a> </div>
-  <?php } ?>
+<div class = "company_review_tab fancybox" href="#review_popup" style = "display:none">
+Reviews
 </div>
 
-
-<!---Reviews list--->
-
-<div class="box" align="center">
-  <div class="overlay">
-    <?php for($j=0;$j<count($reviewlist);$j++)
-	{ 
-	?>
-			
-		<?php  if($j==0) {
-			$style = "background:none;";
-			}else{
-			$style = "background:#000000;padding: 1px;";
+<div id="review_popup" class = "popupwidth">
+<div class = "review_poweredby">Powered by YouGotRated</div>
+<div class = "review_tab_top">
+	THESE ARE REAL REVIEWS FROM YOUGOTRATED
+</div>
+<div class = "review_tab_bottom">
+	
+            <?php 
+            if( count($reviews) > 0 ) 
+            { 		
+				if(count($reviews)>5)
+				{
+					$newreviews = 5;
+				}
+				else
+				{
+					$newreviews = count($reviews);
+				}
+			  
+				for($i=0; $i<$newreviews; $i++) 
+				{ 
+					if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') 
+					{ 
+					$users = $this->users->get_user_bysingleid($reviews[$i]['reviewby']); 
+					$cmpy  = $this->users->get_company_bysingleid($reviews[$i]['companyid']); 
+					$elitemem_status = $this->common->get_eliteship_bycompanyid($reviews[$i]['companyid']); 
+						if(count($users)>0) 
+						{ 
+						?>
+						<div class ="<?php if($i!='0'){ echo "review_border_bottom";} ?> padding_top_1">
+							 <div class = "review_firstletter">
+								<label><?php if($users['username']!=''){ $firstword = $users['username']; echo ucfirst($firstword[0]); }?></label>
+							 </div>
+						
+							<div class = "review_username_row">
+								 <div class = "review_name_tab tooltip" title = "This review has been authenticated by <?php echo $cmpy['company']; ?> and has been posted on YouGotRated by a real shopper">
+									 <?php echo $users['username'];?>
+									 <span>					
+										<?php /*if(count($elitemem_status)==0) { ?>
+											Not Verified Buyer  
+										<?php }else{  ?>
+											Verified Buyer
+										<?php } */?>           
+									</span>
+								 </div>
+								 <div class = "review_date_tab"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
+								 <div class="review_rating_tab">
+									<?php for($r=0;$r<($reviews[$i]['rate']);$r++){?>
+									<i class="vry_rat_icn"></i>
+									<?php } ?>
+									<?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
+									<img src="images/no_star.png" alt="no_star" title="no_star" />
+									<?php } ?>
+								  </div>
+								   <div class="rat_title reptitle">
+										<h2 class = "font_size_tab"><?php echo $reviews[$i]['reviewtitle'];?></h2>
+								   </div>
+								   <p><?php echo $reviews[$i]['comment'];?></p>		  
+							 </div>
+							 
+							 <div class = "review_rates">
+								 <div class = "review_ratethis">
+									<span>
+									  <label>RATE THIS REVIEW:</label>
+									  <?php $ip = $_SERVER['REMOTE_ADDR'];?>
+									  <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'helpful') == 'true'){ ?>
+									  <a class="vote-disable" id="helpful_<?php echo $reviews[$i]['id'];?>" reviewid="<?php echo $reviews[$i]['id'];?>" title="Helpful" style="cursor:pointer !important;"><b id="helpful<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'helpful');?></b> Helpful</a>
+									  <?php }else{ ?>
+									  <a class="vote" id="helpful_<?php echo $reviews[$i]['id'];?>" reviewid="<?php echo $reviews[$i]['id'];?>" title="Helpful" style="cursor:pointer !important;">Helpful</a>
+									  <?php } ?>
+									  <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'funny') == 'true'){?>
+									  <a id="funny_<?php echo $reviews[$i]['id'];?>" class="vote-disable" title="funny" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;"><b id="funny<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'funny');?></b> Funny</a>
+									  <?php }else{ ?>
+									  <a id="funny_<?php echo $reviews[$i]['id'];?>" class="vote" title="funny" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;">Funny</a>
+									  <?php } ?>
+									  <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'agree') == 'true'){?>
+									  <a id="agree_<?php echo $reviews[$i]['id'];?>" class="vote-disable" reviewid="<?php echo $reviews[$i]['id'];?>" title="Agree" style="cursor:pointer !important;"><b id="agree<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'agree');?></b> Agree</a>
+									  <?php }else{ ?>
+									  <a id="agree_<?php echo $reviews[$i]['id'];?>" class="vote" reviewid="<?php echo $reviews[$i]['id'];?>" title="Agree" style="cursor:pointer !important;">Agree</a>
+									  <?php } ?>
+									  <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'disagree') == 'true'){?>
+									  <a id="disagree_<?php echo $reviews[$i]['id'];?>" class="vote-disable" title="disagree" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;"><b id="disagree<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'disagree');?></b> Disagree</a>
+									  <?php }else{ ?>
+									  <a id="disagree_<?php echo $reviews[$i]['id'];?>" class="vote" title="disagree" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;">Disagree</a>
+									  <?php } ?>
+									  <?php if($this->session->userdata('youg_user')){$userid = $this->session->userdata['youg_user']['userid']; ?>
+									  <?php if($reviews[$i]['reviewby'] == $userid) {?>
+									  <a href="<?php echo site_url('review/edit').'/'.$reviews[$i]['id'];?>" title="Edit Review" class="" style="cursor:pointer !important;">Edit</a> <a href="<?php echo site_url('review/delete').'/'.$reviews[$i]['id'];?>" title="Delete Review" class="" onclick="return confirm('Are you sure to remove this review?');" style="cursor:pointer !important;">Delete</a>
+									  <?php } else {?>
+									  <a href="<?php echo site_url('review/add').'/'.$reviews[$i]['companyid'];?>" title="Review This Company" class="dir-searchbtn" style="cursor:pointer !important;">Review It</a>
+									  <?php } ?>
+									  <?php } else {?>
+									  <a href="<?php echo site_url('review/add').'/'.$reviews[$i]['companyid'];?>" title="Review This Company" class="dir-searchbtn" style="cursor:pointer !important;">Review It</a>
+									  <?php } ?>   
+										  <script>
+											<?php $ip = $_SERVER['REMOTE_ADDR'];  ?>
+											
+											$(function(){ 
+											 $("#helpful_<?php echo $reviews[$i]['id'];?>").click(function() {
+												 var vote = 'helpful';
+												 var reviewid = $(this).attr('reviewid');
+												 check('<?php echo $ip;?>',reviewid,vote);
+											   });
+											   $("#funny_<?php echo $reviews[$i]['id'];?>").click(function() {
+												 var vote = 'funny';
+												 var reviewid = $(this).attr('reviewid');
+												 check('<?php echo $ip;?>',reviewid,vote);
+											   });
+											   $("#agree_<?php echo $reviews[$i]['id'];?>").click(function() {
+												 var vote = 'agree';
+												 var reviewid = $(this).attr('reviewid');
+												 check('<?php echo $ip;?>',reviewid,vote);
+												 countme(reviewid,'disagree');
+												 $('#disagree_'+reviewid).removeClass('vote-disable');
+												 $('#disagree_'+reviewid).addClass('vote'); 
+											   });
+											   $("#disagree_<?php echo $reviews[$i]['id'];?>").click(function() {
+												 var vote = 'disagree';
+												 var reviewid = $(this).attr('reviewid');
+												 check('<?php echo $ip;?>',reviewid,vote);
+												 countme(reviewid,'agree');
+												 $('#agree_'+reviewid).removeClass('vote-disable');
+												 $('#agree_'+reviewid).addClass('vote'); 
+											   });
+											});
+										</script>           
+									</span>
+								</div>
+							 </div>
+							 
+						 </div> 
+						<?php
+						} 
+					} 
+				} 
 			}
-			?>
-		  <div class="title" style="<?php echo $style;?>"><a href="<?php echo $site_url; ?>" title="<?php echo $site_name; ?>" target="_blank"></div>
-		
-		  
-		  
-		  <?php if( !empty($name) ) { ?>
-		  <div class="business" style="padding-top:10px"> 
-			 <a href="javascript:void" title="<?php echo $reviewlist[$j]['reviewby'];?>" target="_blank" id="colorcode"><?php echo ucfirst($reviewlist[$j]['reviewby']);?></a><div class="dater" style="float: left;font-size: 14px;margin-left: 73%;margin-top: -15px;"><?php echo date('m/d/Y',strtotime($reviewlist[$j]['reviewdate']));?></div>&nbsp;
-			 <!--<?php echo img(array('src'=>'images/stars/'.$reviewlist[$j]['rate'].'.png', 'alt'=>$reviewlist[$j]['rate'].' stars', 'title'=>$reviewlist[$j]['rate'].' stars')); ?>--><br>
-				
-			<label> Rating:&nbsp;<?php if($reviewlist[$j]['rate']=='0'){ echo "Not Yet Rated"; } else { ?><label class='rating'  data-rating=<?php echo $reviewlist[$j]['rate']; ?>>&nbsp;/&nbsp;5 </label><?php } ?></label><br>
-			 <br>
-			 
-    		<div class="reviewtab">
-		        <div><b><?php echo $reviewlist[$j]['reviewtitle'];?></b></div>
-				<div><a style="font-size:16px;color:#000000;font-weight: 300;" href="<?php echo base_url().$reviewlist[$j]['link'];?>"><?php echo $reviewlist[$j]['comment'];?></a></div>
-				 			  
-				  </a> </div>
-				</a> </div>
-		  <?php } ?>
 			
-			<?php /*?><a href="javascript:;" title="<?php echo strtolower($sites[$j]['title']);?>" onClick="window.open('<?php echo $sites[$j]['siteurl'];?>company/<?php echo $companyseo;?>/reviews/coupons/complaints')"><?php echo ucfirst(strtolower($sites[$j]['title']));?></a><?php */?>
-			<?php /*?><a title="<?php echo strtolower($sites[$j]['title']);?>" href="<?php echo $sites[$j]['siteurl'];?>company/<?php echo $companyseo;?>/reviews/coupons/complaints" target="_blank"><?php echo ucfirst(strtolower($sites[$j]['title']));?></a> <br/><?php */?>
+			if($this->pagination->create_links()) 
+			{ 
+			?>
+				<div class="pagination"><?php echo $this->pagination->create_links(); ?></div>
 			<?php 
-			}
+			}      
+			if( count($reviews)==0 ) 
+			{ 
 			?>
-  </div>
+            <div class="form-message warning">
+              <p>No Reviews.</p>
+            </div>
+            <?php 
+            }
+            ?>
+    </div>
 </div>
-</div>
-<?php } ?>
-</body>
-</html>
+
 <script>
-$(document).ready(function(){
-$('.rating').raty({
-  path: '<?php echo base_url();?>/images/',
-  half: true,
-  readOnly: true,
-  score: function() {
-    return $(this).attr('data-rating');
-  }
-});
-});
+	$(document).ready(function() 
+	{
+		$('.tooltip').tooltipster();
+		$('.fancybox').fancybox();
+	});
+
+function countme(rid,vote)
+	{
+	  $.ajax({
+		  type 				: "POST",
+		  url 				: "<?php echo site_url('review/countme');?>",
+		  dataType 			: "json",
+		  data				: {reviewid:rid,vote : vote},
+		  cache				: false,
+		  success			: function(data)
+							  {	
+								$('#'+vote+'_'+rid).html("<b>"+data.total+"</b>&nbsp;"+vote);
+							
+							  }
+	   });
+	}
+	
+	function check(ip,rid,vote)
+	{
+	  
+	  $.ajax({
+		  type 				: "POST",
+		  url 				: "<?php echo site_url('review/checkvote');?>",
+		  dataType 			: "json",
+		  data				: { ip:ip,reviewid:rid,vote : vote},
+		  cache				: false,
+		  success			: function(data)
+							  {	
+								if(data.message == 'deleted')
+								{
+								   $('#'+vote+'_'+rid).removeClass('vote-disable');
+								   $('#'+vote+'_'+rid).addClass('vote');
+								}
+								if(data.message == 'added')
+								{
+								   $('#'+vote+'_'+rid).removeClass('vote');
+								   $('#'+vote+'_'+rid).addClass('vote-disable');										   										  
+								}
+								countme(rid,vote);
+							  }
+		  
+
+	   });
+	  
+	}
 
 </script>
