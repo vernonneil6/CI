@@ -2,7 +2,7 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.raty.min.js"></script>
 
-<div class = "company_review_tab fancybox" href="#review_popup" style = "display:none">
+<div class = "company_review_tab fancybox" href="#review_popup">
 Reviews
 </div>
 
