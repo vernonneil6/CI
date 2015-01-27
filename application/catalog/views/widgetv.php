@@ -49,7 +49,7 @@ Reviews
 						
 							<div class = "review_username_row">
 								 <div class = "review_name_tab tooltip" title = "This review has been authenticated by <?php echo $cmpy['company']; ?> and has been posted on YouGotRated by a real shopper">
-									 <?php echo $users['username'];?>
+									 <?php if($users['username']!=null){ echo $users['username']; } else { echo "Anonymous";}?>
 									 <span>					
 										<?php /*if(count($elitemem_status)==0) { ?>
 											Not Verified Buyer  
