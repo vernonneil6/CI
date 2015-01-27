@@ -492,16 +492,16 @@
 			  		?>
               <script type="text/javascript">
 				$(window).load(function() {
-				$('#featured').orbit();
+				$('.gallery_featured').orbit();
 					});
 				</script>
               <?php for($i=0; $i<count($gallerys); $i++) { ?>
               <?php $photos = $this->complaints->get_photos_bygalleryid($gallerys[$i]['id']);?>
               <?php if(count($photos)>0){ ?>
               <div class="container1">
-                <div id="featured">
+                <div id="featured" class = "gallery_featured">
                   <?php for($f=0; $f<count($photos); $f++) { ?>
-                  <img src="<?php echo $site;?>uploads/gallery/main/<?php echo stripslashes($photos[$f]['photo']); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="520;" height="392"/>
+					<img src="<?php echo $site;?>uploads/gallery/main/<?php echo stripslashes($photos[$f]['photo']); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="520;" height="392"/>
                   <?php } ?>
                 </div>
               </div>
