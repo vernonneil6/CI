@@ -42,8 +42,8 @@ class Pdf extends CI_Controller {
 		$this->config->load('paging',TRUE);
 		$this->paging = $this->config->item('paging');
 		
-		$this->data['title'] = $this->settings->get_setting_value(1).' : Profile Docs';
-		$this->data['section_title'] = 'Profile Docs';
+		$this->data['title'] = $this->settings->get_setting_value(1).' : Menu/Catalog Docs';
+		$this->data['section_title'] = 'Menu/Catalog Docs';
 		$websites = $this->settings->get_all_urls();
 		
 		if( count($websites) > 0 )

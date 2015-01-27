@@ -143,7 +143,7 @@ echo $header; ?>
       <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
       <li><a href="<?php echo site_url('pdf');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
       <li>
-        <?php if($this->uri->segment(2) == 'add'){echo 'Add Profile Docs';} else if($this->uri->segment(2) == 'edit') {echo 'Edit Profile Docs'; }?>
+        <?php if($this->uri->segment(2) == 'add'){echo 'Add Menu/Catalog Docs';} else if($this->uri->segment(2) == 'edit') {echo 'Edit Menu/Catalog Docs'; }?>
       </li>
       
     </ul>
@@ -156,8 +156,8 @@ echo $header; ?>
   <div class="box">
     <div class="headlines">
       <h2><span>
-        <?php if($this->uri->segment(2) == 'add') { echo "Add Profile Docs"; } ?>
-        <?php if($this->uri->segment(2) == 'edit') { echo "Edit Profile Docs"; } ?>
+        <?php if($this->uri->segment(2) == 'add') { echo "Add Menu/Catalog Docs"; } ?>
+        <?php if($this->uri->segment(2) == 'edit') { echo "Edit Menu/Catalog Docs"; } ?>
         </span></h2>
     </div>
     <div class="box-content"> <?php echo form_open_multipart('pdf/update',array('class'=>'formBox','id'=>'frmpdf')); ?>
@@ -241,7 +241,7 @@ else { ?>
   <!-- box -->
   <div class="box">
     <div class="headlines">
-      <h2><span> Profile Docs </span></h2>
+      <h2><span> Menu/Catalog Docs </span></h2>
     </div>
     
     <!-- Correct form message -->
