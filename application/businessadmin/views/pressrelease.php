@@ -239,7 +239,7 @@ echo $header; ?>
           <div class="col1" style="width:100%">
             <div class="clearfix">
               <div class="lab" style="width: 14% !important;">
-                <label for="site">Site</label>
+                <label for="site">Choose where you want to Publish your Press Release from this Drop-Down Menu </label>
               </div>
               <div class="con" style="width: 59% !important; float:left">
 				<?php 
