@@ -67,8 +67,8 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
       </div>
     </div>
     <?php if(count($othercomplaints)>0){?>
-	<div class="cmnt_mainwrp">
-      <h2 class="textbanner">MORE COMPLAINTS AGAINST THIS BUSINESS</h2>
+	<div class="cmnts_mainwrp">
+      <h2>MORE COMPLAINTS AGAINST THIS BUSINESS</h2>
       <?php for($j=0;$j<count($othercomplaints);$j++){?>
       <div class="cmnt_blckwrp">
         <div class="clnt_intr cmt_lft lefter">
