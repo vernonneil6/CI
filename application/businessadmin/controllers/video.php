@@ -123,10 +123,10 @@ class Video extends CI_Controller {
 						{
 							$videourl = preg_replace('~^https?://y2u\.be/([a-z\d]+)$~i', 'www.youtube.com/watch?v=$1', $this->input->post('addvideourl'));
 						}
+						
 						else
 						{
-							$removehttp = preg_replace("/^https:/i", "http:", $this->input->post('addvideourl'));
-							$videourl = preg_replace( "#^[^:/.]*[:/]+#i", "", $removehttp );
+							$videourl = preg_replace('#^https?://#', '', $this->input->post('addvideourl'));
 						}
 
 						$videono = addslashes($this->input->post('videono'));
