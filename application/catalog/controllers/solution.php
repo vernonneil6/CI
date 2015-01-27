@@ -11,16 +11,15 @@ class Solution extends CI_Controller {
   		$pieces = parse_url($url);
 		$domain = isset($pieces['host']) ? $pieces['host'] : '';
 		
-		if(false !== strpos($domain,'www'))
+		if (preg_match("/\writerbin\b/i", $domain, $regs)) 
 		{
-			$site = preg_replace('/^www\./', '', $domain);	
-					
-		}else{
-			if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs))
-			{
-				$site = $regs['domain'];
-			}
+			$site = 'yougotrated.writerbin.com';
 		}
+		else if(preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs))
+		{
+		    $site = $regs['domain'];
+		}
+		
 		 $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
 		 
 		 if(count($website)>0)
@@ -727,10 +726,10 @@ public function eliteSubscribe($formpost,$companyid) {
 	   $host = "apitest.authorize.net";
 	
 	
-	/*live*/
+	/*live
 	    $loginname="5h7G7Sbr";
 		$transactionkey="94KU7Sznk72Kj3HK";
-		$host = "api.authorize.net";
+		$host = "api.authorize.net";*/
 	
 	
 	$path = "/xml/v1/request.api";
@@ -1064,9 +1063,12 @@ public function eliteSubscribe($formpost,$companyid) {
 											</table>');
 									
 					//Sending mail user
-					$this->email->send();
+					if($this->email->send())
+					{
 					$this->session->set_flashdata('success','Payment is made and your business is claimed successfully.');
-					
+					$this->data['company'] = $this->complaints->get_company_bysingleid($companyid);
+					$this->load->view('solution/success', $this->data);
+					}
 					
 					//redirect('complaint', 'refresh');
 				}

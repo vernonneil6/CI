@@ -1731,5 +1731,19 @@ class Complaints extends CI_Model
 		                 
 		
 	}
+	
+	function get_company_bysingleid($id)
+ 	{
+		$query = $this->db->get_where('company', array('id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 }
 ?>
