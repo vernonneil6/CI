@@ -64,7 +64,7 @@ Reviews
 									<i class="vry_rat_icn"></i>
 									<?php } ?>
 									<?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
-									<img src="images/no_star.png" alt="no_star" title="no_star" />
+									<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
 									<?php } ?>
 								  </div>
 								   <div class="rat_title reptitle">
