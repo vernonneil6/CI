@@ -29,7 +29,7 @@
       <td><?php echo date("M d Y",strtotime($coupon[0]['enddate'])) ?></td>
     </tr>
     <tr>
-    	<td width="120"><b>coupon image</b></td>
+    	<td width="120"><b>Coupon Image</b></td>
         <td><b>:</b></td>
         <td>
         <img style="margin-left:0px;" width="50" height="50" src="<?php if( $coupon[0]['image'] ){ echo $this->settings->get_setting_value('2').substr($this->config->item('coupon_thumb_upload_path'),3);?><?php echo stripslashes($coupon[0]['image']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('coupon_thumb_upload_path'),3)."/no-image.gif"; } ?>" /> 
@@ -296,7 +296,7 @@ else { ?>
     </div>
     <div class="clearfix file">
           <div class="lab" style="width:12.8%;">
-            <label for="image">Image </label>
+            <label for="image">Coupon Image </label>
           </div>
           <div class="con" style="width:50%; float:left"> <?php echo form_input( array( 'name'=>'image','id'=>'image','class'=>'input file upload-file','type'=>'file') ); ?> 
           
