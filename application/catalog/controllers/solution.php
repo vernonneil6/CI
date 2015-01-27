@@ -1063,7 +1063,7 @@ public function eliteSubscribe($formpost,$companyid) {
 											</table>');
 									
 					//Sending mail user
-					$this->email->send()
+					$this->email->send();
 					$this->session->set_flashdata('success','Payment is made and your business is claimed successfully.');
 					redirect('solution/success/'.$companyid,'refresh');
 					
