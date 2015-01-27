@@ -19,7 +19,7 @@
     <table class="tab tab-drag">
         <tr class="top nodrop nodrag">
 			<th>Username</th>
-			<th>Dispute</th>
+			<th>Complaints</th>
 			<th>Case-status</th>
 			<th>Resolution-page</th>
 			<th>Message</th>
@@ -52,7 +52,7 @@
 			  
 			 <?php if(count($companydispute) ==0) {?>
 			  <tr>
-			    <td>No records found</td>
+			    <td>No Complaints found</td>
 			    <td></td>
 			    <td></td>
 			    <td></td>
