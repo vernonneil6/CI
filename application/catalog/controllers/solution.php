@@ -21,7 +21,7 @@ class Solution extends CI_Controller {
 				$site = $regs['domain'];
 			}
 		}
-		 $website = $this->common->get_site_by_domain_name($site);
+		 $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
 		 
 		 if(count($website)>0)
 		 {
@@ -81,7 +81,6 @@ class Solution extends CI_Controller {
 	public function claim($id='')
 	{
 		$company = $this->common->get_company_byid($id);
-		
 		if(count($company)==0)
 		{
 			redirect('solution', 'refresh');
@@ -108,11 +107,11 @@ class Solution extends CI_Controller {
 	}
 	public function getdiscount()
 	{
+		
 			if($this->input->post('discountcode'))
 			{
 				$companyid = $this->input->post('company_id');
 				$discountcode = $this->input->post('discountcode');
-				
 				if($companyid!='' && $discountcode!='')
 				{
 					if($discountcode!='')
@@ -140,7 +139,6 @@ class Solution extends CI_Controller {
 	public function claimdisc($id='',$disc='')
 	{
 		$company = $this->common->get_company_byid($id);
-		
 		if(count($company)==0)
 		{
 			redirect('solution', 'refresh');
@@ -713,7 +711,6 @@ class Solution extends CI_Controller {
 
 public function eliteSubscribe($formpost,$companyid) {
 	
-	
 	//data.php start
 	//$loginname = $this->common->get_setting_value(22);
 	//$transactionkey = $this->common->get_setting_value(23);
@@ -724,10 +721,10 @@ public function eliteSubscribe($formpost,$companyid) {
 	   $transactionkey="38UzuaL2c6y5BQ88";
 	   $host = "apitest.authorize.net"; */
 	
-	/*sandbox test mode
+	/*sandbox test mode*/
 	  $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
-	   $host = "apitest.authorize.net";*/
+	   $host = "apitest.authorize.net";
 	
 	
 	/*live*/
@@ -1466,11 +1463,11 @@ public function renew_update($id)
 	$amount = $subscriptionprice;
 	$refId = uniqid();
 	$name = "elite membership";
-	$length = 10;
+	$length = 1;
 	$unit = "months";
 	$startDate = date("Y-m-d");
 	//$totalOccurrences = 999;
-	$totalOccurrences = 12;
+	$totalOccurrences = 9999;
 	$trialOccurrences = 0;
 	$trialAmount = 0;
 	$cardNumber =$_POST["ccnumber"];
@@ -1723,12 +1720,6 @@ public function renew_update($id)
 
 public function upgrades($id)
 {
-	
-	//echo $id;
-	//echo '<pre>';print_r($_POST);
-	
-	//die;
-	
 	//data.php start
 	//$loginname = $this->common->get_setting_value(22);
 	//$transactionkey = $this->common->get_setting_value(23);
@@ -1761,11 +1752,11 @@ public function upgrades($id)
 	$amount = $subscriptionprice;
 	$refId = uniqid();
 	$name = "elite membership";
-	$length = 10;
+	$length = 1;
 	$unit = "months";
 	$startDate = date("Y-m-d");
 	//$totalOccurrences = 999;
-	$totalOccurrences = 12;
+	$totalOccurrences = 9999;
 	$trialOccurrences = 0;
 	$trialAmount = 0;
 	$cardNumber = $_POST["ccnumber"];
@@ -1887,7 +1878,11 @@ public function upgrades($id)
 			$expires = date('Y-m-d H:i:s', strtotime("+$time Month"));
 			$payer_id=$email;
 			$paymentmethod = 'authorize';
-			if($this->complaints->insert_subscription($companyid,$amt,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
+			$ccnumber=$_POST['ccnumber'];
+			$cardexpire=$expirationDate;
+			$fname=$firstName;
+			$lname=$lastName;
+			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
 			{
 				$company = $this->complaints->get_company_byid($companyid);
 				if( count($company)>0 )
