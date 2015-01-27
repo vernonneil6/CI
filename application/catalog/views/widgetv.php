@@ -1,6 +1,13 @@
-<link rel="stylesheet" href="../../css/widget.css" type="text/css">
-<script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>css/style.css" type="text/css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/widget.css" type="text/css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>businessadmin/css/tooltipster.css" />
+
+<script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>businessadmin/js/jquery.tooltipster.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.raty.min.js"></script>
+
 
 <div class = "company_review_tab fancybox" href="#review_popup">
 Reviews
