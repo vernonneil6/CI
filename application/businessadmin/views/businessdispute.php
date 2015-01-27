@@ -19,7 +19,7 @@
     <table class="tab tab-drag">
         <tr class="top nodrop nodrag">
 			<th>Username</th>
-			<th>Dispute</th>
+			<th>Complaints</th>
 			<th>Case-status</th>
 			<th>Resolution-page</th>
 			<th>Message</th>
