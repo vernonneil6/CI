@@ -7,14 +7,14 @@
     <ul>
       <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
       <li><a href="<?php echo site_url('businessdispute');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
-      <li><?php if($this->uri->segment(2) == 'messages'){echo 'Business Dispute messages';} ?></a></li>
+      <li><?php if($this->uri->segment(2) == 'messages'){echo "Messages";} ?></a></li>
     </ul>
   </div>
 
 
 <div class="box">
     <div class="headlines">
-      <h2><span><?php echo "Business Dispute messages" ?></span></h2>
+      <h2><span><?php echo "Messages"; ?></span></h2>
     </div>
 		<table class="tab tab-drag">
 		     <center><h2>Message</h2></center>

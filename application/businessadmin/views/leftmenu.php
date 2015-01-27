@@ -39,9 +39,9 @@
     <li><a href="<?php echo site_url('badge');?>" class="link" title="Embed YGR Seal">Embed YGR Seal</a></li>
     <li><a href="<?php echo site_url('widget');?>" class="link" title="Embed Widget">Embed Widget</a></li>
     <li><a href="<?php echo site_url('buyer');?>" class="link" title="Buyer Protection Badge">Buyer Protection Badge</a></li>
-    <li><a href="<?php echo site_url('businessdispute');?>" title="Business Disputes">Business Disputes</a>
+    <li><a href="<?php echo site_url('businessdispute');?>" title="Manage Complaints">Manage Complaints</a>
        <ul class="submenu">
-		   <li><a href="<?php echo site_url('businessdispute');?>" class="link" title="List All Business Disputes">List All Disputes</a></li>	   
+		   <li><a href="<?php echo site_url('businessdispute');?>" class="link" title="List All Complaints">List All Complaints</a></li>	   
 		   
        </ul>
     </li>

@@ -13,7 +13,7 @@
 
 <div class="box">
     <div class="headlines">
-      <h2><span><?php echo "Business Disputes" ?></span></h2>
+      <h2><span><?php echo $section_title; ?></span></h2>
     </div>
     
     <table class="tab tab-drag">
@@ -21,7 +21,7 @@
 			<th>Username</th>
 			<th>Dispute</th>
 			<th>Case-status</th>
-			<th>Resolution-center</th>
+			<th>Resolution-page</th>
 			<th>Message</th>
 			<th>Review</th>
 			
