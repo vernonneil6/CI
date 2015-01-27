@@ -972,7 +972,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .ctgr_blck span{position:absolute; z-index:99; background: rgba(0,128,255, 0.85); width:100%; display:inline-block; font-family:"myriadpro-regular"; font-weight:bold; padding:10px 0px 10px 10px; box-sizing:border-box; color:#fff; text-transform:uppercase; font-size:24px;}
 .ctgr_blck img{width:338px; height:150px; }
 .browsecategories{background:url(../images/browse.png) no-repeat;height:42px;}
-.recent_view_all{font-family:myriadpro-boldcond;font-size: 13px;color:black;letter-spacing: 1px; text-transform: uppercase;}
+
 /*============ Coupon Deal ===========================*/
 .bannertextcoupon {
     color: #2c6a99;
@@ -984,7 +984,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 .coupon_wrap{ display: inline-block; margin-top: 90px;  width: 100%;}
 .coupon_wrap .revw_blck_cnt h2, .coupon_wrap .revw_blck_cnt h2 .recenttitle{font-family:"myriadpro-regular"; font-weight:bold; font-size:23px; padding: 3px 0 0 6px; color:#fff; text-transform:uppercase; margin:0; line-height:30px; height:30px; background:#2C6A99;}
-.coupon_wrap .revw_blck_cnt h2 span, .coupon_wrap .revw_blck_cnt h2 span .recentexpire{float:right; font-size:16px; color:#000; margin-right:10px;}
+.coupon_wrap .revw_blck_cnt h2 span, .coupon_wrap .revw_blck_cnt h2 .recentexpire{float:right; font-size:16px; color:#000; margin-right:10px;}
 .coupon_dscrwrp{width:100%; display:inline-block; padding-bottom:10px; border-bottom:1px solid #999;}
 .coupon_dscr{width:770px; float:left; }
 .coupon_dscr .revw_occupt{background:none; color:#333;}
@@ -994,7 +994,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
     padding-left: 3px;   text-indent: 10px; text-transform: uppercase;}
 .offer_wrp{width:140px; float:right; text-align:right; margin-top:12px;}
 .error{color:#F00;display:none;font-family: MyriadPro-Regular;}
-
+.recent_view_all{font-family:myriadpro-boldcond;font-size: 13px;color:black;letter-spacing: 1px; text-transform: uppercase;}
 .dull_starrat
 {
 background: url("../images/no_star.png") no-repeat;

@@ -28,7 +28,8 @@
 			</div>
             <div class="revw_blck_cnt">
 				<h2>
-					<a class = "recenttitle" href="<?php echo site_url('coupon/browse/'.$coupons[$i]['seokeyword']); ?>" title="view coupon detail"><?php echo ucfirst(stripslashes($coupons[$i]['company'])); ?> <span><a class = "recentexpire" href="<?php echo site_url('coupon/browse/'.$coupons[$i]['seokeyword']); ?>" title="view coupon detail">Expires : <?php echo date('m/d/Y',strtotime($dbdate));?></a></span></a>
+					<a class = "recenttitle" href="<?php echo site_url('coupon/browse/'.$coupons[$i]['seokeyword']); ?>" title="view coupon detail"><?php echo ucfirst(stripslashes($coupons[$i]['company'])); ?></a>
+					<a class = "recentexpire" href="<?php echo site_url('coupon/browse/'.$coupons[$i]['seokeyword']); ?>" title="view coupon detail">Expires : <?php echo date('m/d/Y',strtotime($dbdate));?></a>
 				</h2>
 				<div class="coupon_dscrwrp">
 					<div class="coupon_dscr">
