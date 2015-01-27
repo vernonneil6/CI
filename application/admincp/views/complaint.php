@@ -657,10 +657,10 @@ function submitfrm()
 		<input type="checkbox" class="case" name="foo[]" value="<?php echo $complaints[$i]['id'];?>" /></td><td>
 		<?php echo substr(stripslashes($complaints[$i]['detail']),0,45)."..."; ?></td>
         <td><?php if(count($company)>0) { ?>
-          <?php echo stripslashes($company[0]['company']); ?>
+          <?php echo ucfirst($company[0]['company']); ?>
           <?php } ?></td>
         <td><?php if(count($user)>0) { ?>		
-			<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']); ?>
+			<?php echo ucfirst($user[0]['firstname'].' '.$user[0]['lastname']); ?>
           <?php } else { ?>
           <span title="Anonymous">Anonymous</span>
           <?php } ?></td>

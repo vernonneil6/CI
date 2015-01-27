@@ -380,15 +380,12 @@ function submitfrm()
 		
 		<?php echo substr(stripslashes($reviews[$i]['comment']),0,150).'...'; ?></td>
         <td>
-          <img width="40" height="40" src="<?php if( $reviews[$i]['logo'] ){ echo $site_url.substr($this->config->item('company_thumb_upload_path'),3);?><?php echo stripslashes($reviews[$i]['logo']); } else{echo $site_url.substr($this->config->item('company_thumb_upload_path'),3)."/no_image.png"; } ?>" alt="<?php echo stripslashes($reviews[$i]['company']);?>" title="<?php echo stripslashes($reviews[$i]['company']);?>"/>
-          </td>
+			<?php echo ucfirst($reviews[$i]['company']);?>
+        </td>
         <td>
-			
         <?php if(strlen($reviews[$i]['avatarbig'])>5){?>
-			<a class='fancybox' href="<?php if( $reviews[$i]['avatarbig'] ){ echo $site_url.substr($this->config->item('user_thumb_upload_path'),3); echo stripslashes($reviews[$i]['avatarbig']); } else{echo $site_url.substr($this->config->item('user_thumb_upload_path'),3)."/no_image.png"; } ?>" alt="<?php echo stripslashes($reviews[$i]['firstname'].' '.$reviews[$i]['firstname']['lastname']);?>">
-				<img width="40" height="40" src="<?php if( $reviews[$i]['avatarbig'] ){ echo $site_url.substr($this->config->item('user_thumb_upload_path'),3);?><?php echo stripslashes($reviews[$i]['avatarbig']); } else{echo $site_url.substr($this->config->item('user_thumb_upload_path'),3)."/no_image.png"; } ?>" alt="<?php echo stripslashes($reviews[$i]['firstname'].' '.$reviews[$i]['firstname']['lastname']);?>" title="<?php echo stripslashes($reviews[$i]['firstname'].' '.$reviews[$i]['lastname']);?>"/>
-			</a>
-          <?php } else { echo $reviews[$i]['reviewby'];} ?>
+			<?php echo ucfirst($reviews[$i]['firstname'].' '.$reviews[$i]['lastname']);?>
+		<?php } else { echo $reviews[$i]['reviewby'];} ?>
           </td>
         <td><?php echo $reviews[$i]['reviewip']; ?></td>
         <td><?php if( stripslashes($reviews[$i]['status']) == 'Enable' ) { ?>
