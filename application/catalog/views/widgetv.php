@@ -2,9 +2,10 @@
 <link rel="stylesheet" href="<?php echo base_url();?>css/widget.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>businessadmin/css/tooltipster.css" />
-<script type="text/javascript" src="<?php echo base_url(); ?>businessadmin/js/jquery.tooltipster.min.js"></script>
+
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.min.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>businessadmin/js/jquery.tooltipster.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.raty.min.js"></script>
 
 
@@ -48,7 +49,7 @@ Reviews
 						
 							<div class = "review_username_row">
 								 <div class = "review_name_tab tooltip" title = "This review has been authenticated by <?php echo $cmpy['company']; ?> and has been posted on YouGotRated by a real shopper">
-									 <?php if($users['username']!=''){echo $users['username'];}else { echo 'Anonymous';}?>
+									 <?php echo $users['username'];?>
 									 <span>					
 										<?php /*if(count($elitemem_status)==0) { ?>
 											Not Verified Buyer  
@@ -70,7 +71,9 @@ Reviews
 										<h2 class = "font_size_tab"><?php echo $reviews[$i]['reviewtitle'];?></h2>
 								   </div>
 								   <p><?php echo $reviews[$i]['comment'];?></p>		  
-							 </div> 
+							 </div>
+							 
+							 
 						 </div> 
 						<?php
 						} 
