@@ -46,7 +46,7 @@
 	:
 	</td>
 	<td>
-		<a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/businessadmin'; ?>"><?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/businessadmin'; ?></a>
+		<a target = "_blank" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/businessadmin'; ?>"><?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/businessadmin'; ?></a>
 	</td>
 </tr>
 </table>
