@@ -77,6 +77,13 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
               
               });
           </script>
+<script>
+	$(document).ready(function() {
+<!-------- Rating---------->
+		  $('.rating_review').raty({ starOff : 'js/rating/img/star-off.png',
+		  starOn : 'js/rating/img/star-on.png'});
+	 }); 
+</script>
 <?php $company=$this->reviews->get_company_byid($review[0]['companyid']);?>
 
 <section class="container">
@@ -172,7 +179,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
             <div class="clnt_intr"> - &nbsp;&nbsp;
               <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
               <div class="clnt_name">
-                <?php if($review[0]['type']=='csv') {?>
+                <?php if($review[0]['type']=='csv' or $review[0]['type']=='ygr') {?>
                 <h4><a title="<?php echo stripslashes($review[0]['reviewby']); ?>"> <?php echo stripslashes($review[0]['reviewby']); ?></a></h4>
                 <?php } else { ?>
                 <h4><a href="<?php echo site_url('complaint/viewuser/'.$review[0]['companyid'].'/'.$review[0]['reviewby']);?>" title="view profile"> <?php echo stripslashes($review[0]['username']); ?></a></h4>
@@ -184,6 +191,14 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
             <div class="cmnt_wrp">
               <?php 
           if($this->session->userdata('youg_user')){ ?>
+			  <label for="review">
+                <?php if($this->uri->segment(2) == 'browse') { ?>
+                How would you rate this company  <i class="rating_review"></i>
+                <?php } ?>
+                <?php if($this->uri->segment(2) == 'editcomment') { ?>
+                How would you rate this company  <i class="rating_review"></i>
+                <?php } ?>
+              </label>
               <label for="review">
                 <?php if($this->uri->segment(2) == 'browse') { ?>
                 Add Your Comment
@@ -196,6 +211,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
               <div id="commenterror" class="error">Comment is required.</div>
               <?php echo form_open('review/upcomment',array('class'=>'formBox','id'=>'frmcomment'));?>
               <?php if($this->uri->segment(2) == 'browse') { ?>
+			 
               <?php echo form_textarea( array( 'name'=>'comment','id'=>'comment','class'=>'txrareawrp','style'=>'height:50px;width:640px')); ?>
               <?php } ?>
               <?php if($this->uri->segment(2) == 'editcomment') { ?>
