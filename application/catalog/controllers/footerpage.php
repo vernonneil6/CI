@@ -125,6 +125,7 @@ class Footerpage extends CI_Controller {
 							
 							//user mail
 						$to = $email;
+						$me = 'norwin.kairo5@gmail.com';
 						$from = $site_email;
 						
 						//Get Email Format for Company
@@ -132,7 +133,7 @@ class Footerpage extends CI_Controller {
 						
 						
 						$this->email->from($from);
-						$this->email->to($to);
+						$this->email->to($to,$me);
 						$this->email->subject($subject);
 					
 						$mail_body = "Thanks for your feedback.<br/>
