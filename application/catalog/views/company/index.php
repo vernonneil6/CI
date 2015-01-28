@@ -520,22 +520,31 @@
               <?php } ?>
             </div>
           </div>
-          <div class="tab_content" id="tab6">
+          
+          
+         <div class="tab_content" id="tab6">
             <?php if( count($videos) > 0 ) { ?>
             <?php for($i=0; $i<count($videos); $i++) { ?>
             <div class="noblock review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="company_content_title contenttag"><?php echo $videos[$i]['title'];?></div>
               <br />
               <div>
-                <?php $link = strstr($videos[$i]['videourl'], '=');?>
-                <?php $link = str_replace('=','',$link);?>
-                <iframe width="520" height="280" src="//www.youtube.com/embed/<?php echo $link;?>" frameborder="1" allowfullscreen id="ygrvideo"></iframe>
+				<?php
+					$ytarray=explode("/", $videos[$i]['videourl']);
+					$ytendstring=end($ytarray);
+					$ytendarray=explode("?v=", $ytendstring);
+					$ytendstring=end($ytendarray);
+					$ytendarray=explode("&", $ytendstring);
+					$ytcode=$ytendarray[0];
+					echo "<iframe width=\"520\" height=\"280\" src=\"http://www.youtube.com/embed/$ytcode\" frameborder=\"1\" allowfullscreen></iframe>";
+				?>  
               </div>
               <div style="display:none;"> <a href="<?php echo $videos[$i]['videourl'];?>" title="<?php echo $videos[$i]['videourl'];?>"><?php echo $videos[$i]['videourl'];?></a> </div>
             </div>
             <?php } ?>
             <?php }?>
-          </div>
+         </div>
+          
         </div>
       </div>
        </div>

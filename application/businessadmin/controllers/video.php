@@ -223,11 +223,11 @@ class Video extends CI_Controller {
 		
 		if(preg_match("/youtu.be\/[a-z1-9.-_]+/", $this->input->post('addvideourl'))) 
 		{
-			$videourl = preg_replace('~^https?://youtu\.be/([a-z\d]+)$~i', 'http://www.youtube.com/watch?v=$1', $this->input->post('addvideourl'));
+			$videourl = preg_replace('~^https?://youtu\.be/([a-z\d]+)$~i', 'www.youtube.com/watch?v=$1', $this->input->post('addvideourl'));
 		}
 		else if(preg_match("/y2u.be\/[a-z1-9.-_]+/", $this->input->post('addvideourl'))) 
 		{
-			$videourl = preg_replace('~^https?://y2u\.be/([a-z\d]+)$~i', 'http://www.youtube.com/watch?v=$1', $this->input->post('addvideourl'));
+			$videourl = preg_replace('~^https?://y2u\.be/([a-z\d]+)$~i', 'www.youtube.com/watch?v=$1', $this->input->post('addvideourl'));
 		}
 		else
 		{
