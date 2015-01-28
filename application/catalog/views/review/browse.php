@@ -88,7 +88,22 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
 		  {
 			  $("#rateerror").hide();
 		  }
-		  $('.rating_review').raty({ starOff : 'js/rating/img/star-off.png', starOn : 'images/YGR_Star_on.png'});
+		  $('.rating_review').raty({ starOff : '../js/rating/img/star-off.png', starOn : '../images/YGR_Star_on.png'});
+		  $('.rating_comment_review').raty({
+				starOff : '../js/rating/img/star-off.png', 
+				starOn : '../images/YGR_Star_on.png',
+				score: function() {
+				return $(this).attr('data-score');
+			  }
+			});
+		  $('.review_comment_view').raty({
+				readOnly: true,
+				starOff : '../js/rating/img/star-off.png', 
+				starOn : '../images/YGR_Star_on.png',
+				score: function() {
+				return $(this).attr('data-score');
+			  }
+			});
 	 }); 
 </script>
 <?php $company=$this->reviews->get_company_byid($review[0]['companyid']);?>
@@ -202,15 +217,13 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
 			  <div id="rateerror" class="error">Please choose a star rating.</div>
 			  <div>
                 <?php if($this->uri->segment(2) == 'browse') { ?>
-                How would you rate this company  <i class="rating_review"></i>
+                <label class = "comment_rating_label">Rate this company </label> <span class="error-sign">*</span> <i class="rating_review"></i>
                 <?php } ?>
                 <?php if($this->uri->segment(2) == 'editcomment') { ?>
-                How would you rate this company  
-                <?php for($r=0;$r<($commentbyid[0]['rating']);$r++){ ?>
-					<i class="vry_rat_icn"></i>
-				<?php } for($p=0;$p<(5-($commentbyid[0]['rating']));$p++){ ?>
-					<img src="images/no_star.png" alt="no_star" title="no_star" />
-				<?php } } ?>
+                <label class = "comment_rating_label">Rate this company </label>
+                <span class="error-sign">*</span>          
+				<i class="rating_comment_review" data-score = "<?php echo $commentbyid[0]['rating'];?>"></i>
+				<?php } ?>
               </div>
               <label for="review">
                 <?php if($this->uri->segment(2) == 'browse') { ?>
@@ -292,6 +305,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
         </div>
         <div class="review_rgt cmnt_dscr">
           <p><?php echo stripslashes($comments[$i]['comment']); ?></p>
+          <p><i data-score = "<?php echo $comments[$i]['rating']; ?>" class = "review_comment_view"></i></p>
           <p>
             <?php if( array_key_exists('youg_user',$this->session->userdata) ) { ?>
             <?php if(($comments[$i]['commentby']==$this->session->userdata['youg_user']['userid'])) { ?>

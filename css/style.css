@@ -1861,3 +1861,7 @@ font_color_white
     font-size: 20px;
     margin: 7px 0;
 }
+.comment_rating_label
+{
+	padding-right : 8px;
+}
