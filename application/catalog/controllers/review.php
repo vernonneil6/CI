@@ -1033,9 +1033,10 @@ class Review extends CI_Controller
 				echo $reviewid = $this->encrypt->decode($this->input->post('reviewid'));
 				$userid = $this->session->userdata['youg_user']['userid'];
 				$comment = (strip_tags($this->input->post('comment')));
+				$rating = $this->input->post('score');
 												
 				//Updating Record With Image
-				$updated = $this->reviews->update_comment($id,$reviewid,$userid,$comment);
+				$updated = $this->reviews->update_comment($id,$reviewid,$userid,$comment,$rating);
 				if( $updated == 'updated')
 				{
 					$this->session->set_flashdata('success', 'comment updated successfully.');
@@ -1060,6 +1061,7 @@ class Review extends CI_Controller
 
 				$userid = $this->session->userdata['youg_user']['userid'];
 				$comment = addslashes(strip_tags($this->input->post('comment')));
+				$rating = $this->input->post('score');
 
 				$review = $this->reviews->get_review1_byid($reviewid);
 				if(count($review)>0)
@@ -1078,7 +1080,7 @@ class Review extends CI_Controller
 							if($relation[0]['status']=='Decline')
 							{
 								
-								$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'yes');
+								$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'yes',$rating);
 								if( $updated = 'added')
 								{	
 									
@@ -1096,7 +1098,7 @@ class Review extends CI_Controller
 							else
 							{
 								
-								$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'no');
+								$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'no',$rating);
 								if( $updated = 'added')
 								{	
 									
@@ -1114,7 +1116,7 @@ class Review extends CI_Controller
 						}
 						else
 						{
-							$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'no');
+							$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'no',$rating);
 
 							if( $updated = 'added')
 							{
@@ -1197,7 +1199,7 @@ class Review extends CI_Controller
 					}
 					else
 					{
-						$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'no');
+						$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'no',$rating);
 						if( $updated = 'added')
 						{	
 							$this->session->set_flashdata('success', 'comment posted successfully.');							

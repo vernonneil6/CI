@@ -79,9 +79,16 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
           </script>
 <script>
 	$(document).ready(function() {
-<!-------- Rating---------->
-		  $('.rating_review').raty({ starOff : 'js/rating/img/star-off.png',
-		  starOn : 'js/rating/img/star-on.png'});
+		  if ($("input[name='score']").val()=='' )
+		  {
+			  $("#rateerror").show();
+			  return false;
+		  }
+		  else
+		  {
+			  $("#rateerror").hide();
+		  }
+		  $('.rating_review').raty({ starOff : 'js/rating/img/star-off.png', starOn : 'images/YGR_Star_on.png'});
 	 }); 
 </script>
 <?php $company=$this->reviews->get_company_byid($review[0]['companyid']);?>
@@ -191,14 +198,20 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
             <div class="cmnt_wrp">
               <?php 
           if($this->session->userdata('youg_user')){ ?>
-			  <label for="review">
+			  <?php echo form_open('review/upcomment',array('class'=>'formBox','id'=>'frmcomment'));?>
+			  <div id="rateerror" class="error">Please choose a star rating.</div>
+			  <div>
                 <?php if($this->uri->segment(2) == 'browse') { ?>
                 How would you rate this company  <i class="rating_review"></i>
                 <?php } ?>
                 <?php if($this->uri->segment(2) == 'editcomment') { ?>
-                How would you rate this company  <i class="rating_review"></i>
-                <?php } ?>
-              </label>
+                How would you rate this company  
+                <?php for($r=0;$r<($commentbyid[0]['rating']);$r++){ ?>
+					<i class="vry_rat_icn"></i>
+				<?php } for($p=0;$p<(5-($commentbyid[0]['rating']));$p++){ ?>
+					<img src="images/no_star.png" alt="no_star" title="no_star" />
+				<?php } } ?>
+              </div>
               <label for="review">
                 <?php if($this->uri->segment(2) == 'browse') { ?>
                 Add Your Comment
@@ -209,7 +222,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
               </label>
               <span class="error-sign">*</span>
               <div id="commenterror" class="error">Comment is required.</div>
-              <?php echo form_open('review/upcomment',array('class'=>'formBox','id'=>'frmcomment'));?>
+              
               <?php if($this->uri->segment(2) == 'browse') { ?>
 			 
               <?php echo form_textarea( array( 'name'=>'comment','id'=>'comment','class'=>'txrareawrp','style'=>'height:50px;width:640px')); ?>
@@ -225,7 +238,9 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
               <?php if($this->uri->segment(2) == 'editcomment') { ?>
               <?php echo form_input(array('name'=>'btncommentupdate','id'=>'btncommentupdate','class'=>'lgn_btn','type'=>'submit','value'=>'Update')); ?>
               <?php } ?>
-              <?php echo form_hidden( array( 'reviewid' => $this->encrypt->encode($reviewid) ) ); ?> <?php echo form_close();?> </div>
+              <?php echo form_hidden( array( 'reviewid' => $this->encrypt->encode($reviewid) ) ); ?> 
+              <?php echo form_close();?> 
+            </div>
             <?php  }
            else{?>
             <a href="login"> <i class="add_cmnt"></i> Please login add comment </a>

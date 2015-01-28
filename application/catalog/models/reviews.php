@@ -623,7 +623,7 @@ class Reviews extends CI_Model
 	}
 	
 	//Inserting comment on review
-	function insert_comment($reviewid,$userid,$comment,$statusdisable)
+	function insert_comment($reviewid,$userid,$comment,$statusdisable,$rating)
 	{
 		$siteid = $this->session->userdata('siteid');
 		$date = date_default_timezone_set('Asia/Kolkata');
@@ -638,7 +638,8 @@ class Reviews extends CI_Model
 							'commentby'		=> $userid,
 							'commentdate'	=> $date,
 							'commentip'		=> $varipaddress,
-							'websiteid'		=> $siteid
+							'websiteid'		=> $siteid,
+							'rating'		=> $rating
 						);
 		}
 		else
@@ -650,7 +651,8 @@ class Reviews extends CI_Model
 							'commentby'		=> $userid,
 							'commentdate'	=> $date,
 							'commentip'		=> $varipaddress,
-							'websiteid'		=> $siteid
+							'websiteid'		=> $siteid,
+							'rating'		=> $rating
 						);
 
 		}
@@ -666,7 +668,7 @@ class Reviews extends CI_Model
 	}
 	
 	//Updating Record
-	function update_comment($id,$reviewid,$userid,$comment)
+	function update_comment($id,$reviewid,$userid,$comment,$rating)
  	{
 		$date = date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d H:i:s');
@@ -676,6 +678,7 @@ class Reviews extends CI_Model
 							'comment'		=> $comment,
 							'commentdate'	=> $date,
 							'commentip'		=> $varipaddress,
+							'rating'		=> $rating
 						);
 
 		
