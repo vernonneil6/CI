@@ -45,6 +45,9 @@ height:70px !important;
           <li> <a href="<?php echo site_url('elite');?>" title="Elite Members Status"> <img src="images/member.png" alt="Elite Members Status" title="Elite Members Status">
           <p>Elite Members Status</p>
           </a> </li>
+          <li> <a href="<?php echo site_url('elite/update');?>" title="Update Payment Information"> <img src="images/payment_icon.png" alt="Update Payment Information" title="Update Payment Information">
+          <p>Update Payment Information</p>
+          </a> </li>
           <li> <a href="<?php echo site_url('pressrelease');?>" title="Press Releases"> <img src="images/press.png" alt="Pressrelease" title="Press Releases">
           <p>Press Releases</p>
           </a> </li>
@@ -64,6 +67,12 @@ height:70px !important;
 		</li>
 		<?php } ?>
 	
+		<li> <a href="<?php echo site_url('buyer');?>" title="Buyer Protection Badge"> <img src="images/BuyersProtection_Badge.png" alt="Buyer Protection Badge" title="Buyer Protection Badge">
+          <p>Buyer Protection Badge</p>
+          </a> </li>
+		<li> <a href="<?php echo site_url('tutorial');?>" title="Tutorials"> <img src="images/tutorial.png" alt="Tutorials" title="Tutorials">
+          <p>Tutorials</p>
+          </a> </li>
 		<li> <a href="<?php echo site_url('timing');?>" title="Hours Of Operation"> <img src="images/timing.png" alt="Hours Of Operation" title="Hours Of Operation">
           <p>Hours Of Operation</p>
           </a> </li>
