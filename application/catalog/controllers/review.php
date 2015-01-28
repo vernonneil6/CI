@@ -1028,9 +1028,9 @@ class Review extends CI_Controller
 			{
 
 				//Getting id
-				$id = $this->encrypt->decode($this->input->post('id'));
+				$id = $this->input->post('id');
 				//Getting value
-				echo $reviewid = $this->encrypt->decode($this->input->post('reviewid'));
+				$reviewid = $this->encrypt->decode($this->input->post('reviewid'));
 				$userid = $this->session->userdata['youg_user']['userid'];
 				$comment = (strip_tags($this->input->post('comment')));
 				$rating = $this->input->post('score');
