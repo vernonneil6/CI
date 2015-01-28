@@ -247,9 +247,10 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
               <?php echo form_textarea( array( 'name'=>'comment','id'=>'comment','class'=>'txrareawrp','style'=>'height:50px;width:640px')); ?>
               <?php } ?>
               <?php if($this->uri->segment(2) == 'editcomment') { ?>
+			  <input type = "hidden" value = "<?php echo $commentbyid[0]['id'];?>" name = "id" >
               <?php echo form_textarea( array( 'name'=>'comment','id'=>'comment','class'=>'txrareawrp','type'=>'text','value'=>nl2br(stripslashes($commentbyid[0]['comment'])),'style'=>'height:50px;width:640px' ) ); ?>
               <?php } ?>
-              <input type = "hidden" value = "<?php echo $commentbyid[0]['id'];?>" name = "id" >
+              
               <!-- Submit form -->
               <?php if($this->uri->segment(2) == 'browse') { ?>
               <?php echo form_input(array('name'=>'btncommentsubmit','id'=>'btncommentsubmit','class'=>'lgn_btn','type'=>'submit','value'=>'Post Comment')); ?>
