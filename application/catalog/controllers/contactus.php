@@ -182,7 +182,7 @@ class Contactus extends CI_Controller {
 							
 							
 							$this->session->set_flashdata('success', 'Your mail has been sent. we will contact you soon');
-							redirect('contactus', 'refresh');
+							redirect(base_url(), 'refresh');
 						  }
 						  else
 						  {

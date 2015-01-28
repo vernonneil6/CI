@@ -69,9 +69,21 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
 					  else
 					  {
 						   $("#commenterror").hide();
-						}
+					  }
+						
+					  if ($("input[name='score']").val() == "")
+					  {
+						  $("#rateerror").show();
+						  return false;
+					  }
+					  else
+					  {
+						  $("#rateerror").hide();
+					  }
 					  
 					    $("#frmcomment").submit();
+					    
+			
                           
                   });
               
@@ -79,15 +91,6 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
           </script>
 <script>
 	$(document).ready(function() {
-		  if ($("input[name='score']").val()=='' )
-		  {
-			  $("#rateerror").show();
-			  return false;
-		  }
-		  else
-		  {
-			  $("#rateerror").hide();
-		  }
 		  $('.rating_review').raty({ starOff : '../js/rating/img/star-off.png', starOn : '../images/YGR_Star_on.png'});
 		  $('.rating_comment_review').raty({
 				starOff : '../js/rating/img/star-off.png', 
@@ -215,6 +218,8 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
           if($this->session->userdata('youg_user')){ ?>
 			  <?php echo form_open('review/upcomment',array('class'=>'formBox','id'=>'frmcomment'));?>
 			  <div id="rateerror" class="error">Please choose a star rating.</div>
+			  <div id="commenterror" class="error">Comment is required.</div>
+			 
 			  <div>
                 <?php if($this->uri->segment(2) == 'browse') { ?>
                 <label class = "comment_rating_label">Rate this company </label> <span class="error-sign">*</span> <i class="rating_review"></i>
@@ -225,6 +230,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
 				<i class="rating_comment_review" data-score = "<?php echo $commentbyid[0]['rating'];?>"></i>
 				<?php } ?>
               </div>
+             
               <label for="review">
                 <?php if($this->uri->segment(2) == 'browse') { ?>
                 Add Your Comment
@@ -234,13 +240,14 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
                 <?php } ?>
               </label>
               <span class="error-sign">*</span>
-              <div id="commenterror" class="error">Comment is required.</div>
+             
               
               <?php if($this->uri->segment(2) == 'browse') { ?>
 			 
               <?php echo form_textarea( array( 'name'=>'comment','id'=>'comment','class'=>'txrareawrp','style'=>'height:50px;width:640px')); ?>
               <?php } ?>
               <?php if($this->uri->segment(2) == 'editcomment') { ?>
+			  <input type = "hidden" value = "<?php echo $commentbyid[0]['id'];?>" name = "id" >
               <?php echo form_textarea( array( 'name'=>'comment','id'=>'comment','class'=>'txrareawrp','type'=>'text','value'=>nl2br(stripslashes($commentbyid[0]['comment'])),'style'=>'height:50px;width:640px' ) ); ?>
               <?php } ?>
               
@@ -288,14 +295,15 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
 					if($seconds<=60){ $commenttime=$seconds.' seconds '; }
 					elseif($minutes<=60){ $commenttime=$minutes.' minutes '; }
 					elseif($hours<=24){ $commenttime=$hours.' hours '; }
-					elseif($days<=30){ 
+					elseif($days<=30)
+					{ 
 						if($days==1)
 						{
-						$commenttime=$days.' day ';
+							$commenttime=$days.' day ';
 						}else{
-					$commenttime=$days.' days ';
+							$commenttime=$days.' days ';
 						}
-					 }
+					}
 					elseif($months<=12){ $commenttime=$months.' months '; }
 					else { $commenttime=$years.' years '; }
 					?>

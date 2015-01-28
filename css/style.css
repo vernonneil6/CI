@@ -1865,3 +1865,12 @@ font_color_white
 {
 	padding-right : 8px;
 }
+.contactus_text
+{
+	font-family: myriadpro-semiboldcondit;
+    margin: 10px 0;
+}
+.noborder
+{
+	border : none!important;
+}
