@@ -72,8 +72,111 @@ class Footerpage extends CI_Controller {
 		$this->load->view('footerpage',$this->data);
 	}
 	
+	public function update()
+	{
+	    if($this->input->post('contactemail') != '')
+		{
+			$site_name = $this->common->get_setting_value(1);
+			$site_url = $this->common->get_setting_value(2);
+			
+			
+		  //Getting Sign up mail format
+			$name = $this->input->post('contactname');
+			$email = $this->input->post('contactemail');
+			$subjectname = $this->input->post('contactsubject');
+			$message = $this->input->post('contactmessage');
+			
+			$site_email = $this->common->get_setting_value(5);
+			
+			
+			if( count($site_email) > 0 )
+					{  
+						  //Loading E-mail config file
+						$this->config->load('email',TRUE);
+						$this->cnfemail = $this->config->item('email');
+							  
+						//Loading E-mail Class
+						$this->load->library('email');
+						  
+						$this->email->initialize($this->cnfemail);
+						$site_name = $this->common->get_setting_value(1);
+						$site_url = $this->common->get_setting_value(2);
+						$site_email = $this->common->get_setting_value(5);
+						
+						$to = $site_email;
+						$from = $email;
+						
+						//Get Email Format for Company
+						$mail = $this->common->get_email_byid(4);
+						$subject = $mail[0]['subject'];
+						$mailformat = $mail[0]['mailformat'];
+						
+						$this->email->from($from);
+						$this->email->to($to);
+						$this->email->subject($subject.' : '.$subjectname);
+					
+						$mail_body = str_replace("%subjectname%",$subjectname,str_replace("%username%",$name,str_replace("%email%",$email,str_replace("%subject%",$subject,str_replace("%message%",$message,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%sitemail%",$site_email,stripslashes($mailformat)))))))));
+					 		//echo "<pre>";
+							//print_r($mail_body);
+							//die();
+							$this->email->message($mail_body);
+						  if($this->email->send())
+						  {
+							
+							//user mail
+						$to = $email;
+						$from = $site_email;
+						
+						//Get Email Format for Company
+						$subject = $site_name."Thank you for contacting us";
+						
+						
+						$this->email->from($from);
+						$this->email->to($to);
+						$this->email->subject($subject);
+					
+						$mail_body = "Thanks for your feedback.<br/>
+									  Regards,<br/>
+									 ".$site_name."<br/>
+									 -----------------------------------------------
+									 <br/>
+									 ".$message."<br/>";
+					 				  	
+							
+							//echo "<pre>";
+							//print_r($mail_body);
+							//die();
+							$this->email->message($mail_body);
+						  if($this->email->send())
+						  {
+							
+							
+							
+							
+							$this->session->set_flashdata('success', 'Your mail has been sent. we will contact you soon');
+							redirect(site_url(),'refresh');	
+						  }
+						  else
+						  {
+							 $this->session->set_flashdata('error', 'There is an error in sending e-mail, please try again!');
+							 redirect(site_url(),'refresh');	
+						  }
+					  }else
+						{
+							 $this->session->set_flashdata('error', 'There is an error in sending e-mail, please try again!');
+							 redirect(site_url(),'refresh');	
+						  
+						}
+		
+				}
+			else
+			{
+			  $this->session->set_flashdata('error', 'There is an error in sending e-mail, please try again!');
+			  redirect(site_url(),'refresh');	
+			}
+		
+	}
+	}
+	
 	
 }
-
-/* End of file dashboard.php */
-/* Location: ./application/controllers/dashboard.php */

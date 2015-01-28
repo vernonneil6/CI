@@ -295,14 +295,15 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
 					if($seconds<=60){ $commenttime=$seconds.' seconds '; }
 					elseif($minutes<=60){ $commenttime=$minutes.' minutes '; }
 					elseif($hours<=24){ $commenttime=$hours.' hours '; }
-					elseif($days<=30){ 
+					elseif($days<=30)
+					{ 
 						if($days==1)
 						{
-						$commenttime=$days.' day ';
+							$commenttime=$days.' day ';
 						}else{
-					$commenttime=$days.' days ';
+							$commenttime=$days.' days ';
 						}
-					 }
+					}
 					elseif($months<=12){ $commenttime=$months.' months '; }
 					else { $commenttime=$years.' years '; }
 					?>
