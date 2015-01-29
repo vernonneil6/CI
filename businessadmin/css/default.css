@@ -476,12 +476,12 @@ a:hover.ico   { background-position: 0 0; }
 
 .badge_font
 {
-	float: left;
-	font-size: 6px;
-	text-align: center;
-	line-height: 9px;
-	margin-left: 5px;
-    margin-top: -14px;
+	 float: left;
+    font-size: 6px;
+    line-height: 9px;
+    margin-left: -5px;
+    margin-top: -4px;
+    text-align: center;
 }
 .cvvpop
 {
