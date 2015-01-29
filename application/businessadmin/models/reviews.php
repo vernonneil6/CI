@@ -105,7 +105,7 @@ class Reviews extends CI_Model
 							'reviewdate' 	=> $date,
 							'status' 		=> 'Enable',
 							'websiteid'		=> $siteid,
-							'reviewtitle'			=> $title,
+							'reviewtitle'	=> $title,
 							'type'			=> 'csv'
 							
 						);
