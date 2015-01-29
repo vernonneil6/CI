@@ -87,12 +87,14 @@
         </div>
       </div>
     </div>
-    <?php if(count($mypressreleases)>0){?>
-    <div class="cmnts_mainwrp">
+    <?php if(count($mypressreleases)> 0){?>
+    <?php for($i=0;$i<count($mypressreleases);$i++){?>
+     <?php if($pressrelease[0]['id'] !=$mypressreleases[$i]['id']) { ?>
+     <div class="cmnts_mainwrp">
       <h2>MORE PRESS RELEASES FROM <?php echo $mypressreleases[0]['company'];?> </h2>
 
-      <?php for($i=0;$i<count($mypressreleases);$i++){?>
-           <?php if($pressrelease[0]['id'] !=$mypressreleases[$i]['id']) { ?>
+      
+           
 			  <div class="cmnt_blckwrp">
 				<div class="clnt_intr cmt_none">
 				  <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
@@ -109,7 +111,11 @@
       <?php } ?>
      <?php } ?> 
     </div>
-    <?php } ?>
+    <?php } else { ?>
+		
+		<p>No pressrelease.</p>
+		
+	<?php } ?>	
   </section>
 </section>
 <?php echo $footer;?>
