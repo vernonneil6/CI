@@ -19,6 +19,7 @@ class Pressreleases extends CI_Model
 		$this->db->order_by('insertdate', 'DESC');
 		
 		$query = $this->db->get();
+		
 	
 		if ($query->num_rows() > 0)
 		{
