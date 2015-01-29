@@ -32,7 +32,7 @@ class Pressrelease extends CI_Controller {
 		 {
 		    $site = $regs['domain'];
 		 }
-		  $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
+		  $website = $this->common->get_site_by_domain_name($site);
 		 		 
 		 if(count($website)>0)
 		 {
