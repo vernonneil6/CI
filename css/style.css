@@ -1771,8 +1771,13 @@ font_color_white
 .font_size_banner
 {
 	font-size : 62px;
+	height: auto!important;
 }
-
+.footer_page_content
+{
+	min-height : 150px;
+	margin: 25px 0;
+}
 
 .ygr_receipt
 {

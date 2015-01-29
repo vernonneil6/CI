@@ -1,22 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 ob_start();
 class Page extends CI_Controller {
-
-	/**
-	* Index Page for this controller.
-	*
-	* Maps to the following URL
-	* 		http://example.com/index.php/dashboard
-	*	- or -  
-	* 		http://example.com/index.php/dashboard/index
-	*	- or -
-	* Since this controller is set as the default controller in 
-	* config/routes.php, it's displayed at http://example.com/
-	*
-	* So any other public methods not prefixed with an underscore will
-	* map to /index.php/dashboard/<method_name>
-	* @see http://codeigniter.com/user_guide/general/urls.html
-	*/
 	
 	public $paging;
 	public $data;
@@ -24,17 +8,12 @@ class Page extends CI_Controller {
 	public function __construct()
   	{
   	parent::__construct();
-		// Your own constructor code
 		if( $this->session->userdata('youg_admin'))
 	  	{
-		    //If no session, redirect to login page
-			//echo site_url();die();
 	      	if(!array_key_exists('type',$this->session->userdata['youg_admin']))
 			{
 				$a = site_url();
 				$p = explode('/admincp',$a);
-				//echo $p[0];
-				//die();
 				redirect($p[0].'/businessadmin', 'refresh');
 			}
 		}
@@ -42,10 +21,9 @@ class Page extends CI_Controller {
 		{
 			redirect('adminlogin', 'refresh');
 		}
-		//Loading Model File
+		
 	 	$this->load->model('pages');
 		
-		//Setting Page Title and Comman Variable
 		$this->data['title'] = $this->settings->get_setting_value(1).' : Pages';
 		$this->data['section_title'] = 'Pages';
 		$this->data['site_name'] = $this->settings->get_setting_value(1);
@@ -66,7 +44,6 @@ class Page extends CI_Controller {
 					$this->data['selsite'] = array();
 				}
 		
-		//Load heading and save in variable
 		$this->data['heading'] = $this->load->view('header',$this->data,true);
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
@@ -75,11 +52,9 @@ class Page extends CI_Controller {
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
-			//Addingg Setting Result to variable
 			$siteid = $this->session->userdata('siteid');
 			$this->data['pages'] = $this->pages->get_all_pages($siteid);
 						
-			//Loading View File
 			$this->load->view('page',$this->data);
 	  	}
 	}
@@ -96,14 +71,10 @@ class Page extends CI_Controller {
 				redirect('page', 'refresh');
 			}
 				
-			//Getting detail for displaying in form
 			$this->data['page'] = $this->pages->get_page_byid($id);
-			/*echo "<pre>";
-			print_r($this->data['page']);
-			die();*/
+
 			if( count($this->data['page'])>0 )
 			{
-				//Loading View File
 				$this->load->view('page',$this->data);
 			}
 			else
@@ -128,27 +99,10 @@ class Page extends CI_Controller {
 				redirect('page', 'refresh');
 			}
 					
-			//Getting detail for displaying in form
 			$this->data['page'] = $this->pages->get_page_byid($id);
-			/*echo "<pre>";
-			print_r($this->data['page']);
-			die();*/
+
 			if( count($this->data['page'])>0 )
-			{
-				$this->load->helper('ckeditor');
-				$this->data['ckeditor'] = array(
-				//ID of the textarea that will be replaced
-            	'id'	=>	'pagecontent',
-            	'path'  =>  '../../ckeditor',
-				//Optionnal values
-				'config' => array(
-									'toolbar'	=>	"Full",     //Using the Full toolbar
-									'width'   =>  "auto",    //a custom width
-									'height'  =>  "300px",    //a custom height
-								),
-						);
-				
-				//Loading View File
+			{			
 				$this->load->view('page',$this->data);
 			}
 			else
@@ -159,18 +113,14 @@ class Page extends CI_Controller {
 	  }
 	}
 	
-	//Updating the Record
 	public function update()
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
-			//If Old Record Update
 			if( $this->input->post('txtintid') )
 	  		{
-				//Getting intid
 				$intid = $this->encrypt->decode($this->input->post('txtintid'));
 				
-				//Getting value
 				$vartitle = addslashes($this->input->post('title'));
 				$varheading = addslashes($this->input->post('heading'));
 				$varmetakey = addslashes($this->input->post('metakeywords'));
@@ -180,7 +130,6 @@ class Page extends CI_Controller {
 				
 				if( $varpagecont!='' )
 				{				
-					//Updating Record
 					if( $this->pages->update($intid,$vartitle,$varheading,$varmetakey,$varmetades,$varpagecont,$footercategory) )
 					{
 						$this->session->set_flashdata('success', 'Page details updated successfully.');
@@ -201,7 +150,6 @@ class Page extends CI_Controller {
 		}
 	}
 
-	//Function For Change Status to "Disable"
 	public function disable($id='')
 	{
 		if($this->session->userdata['youg_admin'])
@@ -223,8 +171,7 @@ class Page extends CI_Controller {
 			}
 	  }
 	}
-	
-	//Function For Change Status to "Enable"
+
 	public function enable($id='')
 	{
 		if($this->session->userdata['youg_admin'])
@@ -300,5 +247,3 @@ class Page extends CI_Controller {
 	
 	
 }
-/* End of file page.php */
-/* Location: ./application/controllers/page.php */
