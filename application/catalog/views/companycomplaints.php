@@ -34,12 +34,12 @@
                         if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
                         ?>
           <div class="revw_blck_cnt">
-            <h2> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail" style="color:#0080FF;"> <?php echo strtoupper($complaints[$i]['company']);?> </a> </h2>
+            <h2> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail" class="complaintlist"> <?php echo strtoupper($complaints[$i]['company']);?> </a> </h2>
             <div class="revw_occupt"> <span></span>-
               <p>
                 <?php if($complaints[$i]['userid']!=0){ ?>
                 <?php if(count($user)>0) {?>
-                <a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" title="view profile" style="color:#0080FF;"><?php echo $user[0]['username'];?></a>
+                <a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" title="view profile" class="complaintlist"><?php echo $user[0]['username'];?></a>
                 <?php } ?>
                 <?php } else{ ?>
                 <a title="Anonymous">Anonymous</a>
