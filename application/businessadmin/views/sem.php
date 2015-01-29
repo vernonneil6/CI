@@ -200,7 +200,11 @@ else { ?>
         <td><?php echo stripslashes($sems[$i]['title']); ?></td>
         <td><a href="<?php echo stripslashes($sems[$i]['url']); ?>" title="<?php echo stripslashes($sems[$i]['title']); ?>" target="_blank"><?php echo stripslashes($sems[$i]['url']); ?> </a></td>
         <td><?php if(stripslashes($sems[$i]['thumbimg'])!='') { ?>
-          <img src="<?php echo $path;?>/uploads/companysem/thumb/<?php echo stripslashes($sems[$i]['thumbimg']); ?>" title="<?php echo stripslashes($sems[$i]['title']); ?>" alt="<?php echo stripslashes($sems[$i]['title']); ?>" style="height:40px;width:40px;border:none;" />
+			<?php if($sems[$i]['title']=='ebay') {?>
+             <img src="<?php echo $path;?>/uploads/companysem/thumb/<?php echo stripslashes($sems[$i]['thumbimg']); ?>" title="<?php echo stripslashes($sems[$i]['title']); ?>" alt="<?php echo stripslashes($sems[$i]['title']); ?>" style="height:25px;width:40px;border:none;" />
+          <?php } else { ?>
+             <img src="<?php echo $path;?>/uploads/companysem/thumb/<?php echo stripslashes($sems[$i]['thumbimg']); ?>" title="<?php echo stripslashes($sems[$i]['title']); ?>" alt="<?php echo stripslashes($sems[$i]['title']); ?>" style="height:40px;width:40px;border:none;" />
+          <?php } ?>
           <?php } else { echo "No Image"; } ?></td>
         <td><?php if( stripslashes($sems[$i]['status']) == 'Enable' ) { ?>
           <a href="<?php echo site_url('sem/disable/'.$sems[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this SEM?');"><span>Enabled</span></a>

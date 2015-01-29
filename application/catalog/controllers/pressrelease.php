@@ -32,7 +32,7 @@ class Pressrelease extends CI_Controller {
 		 {
 		    $site = $regs['domain'];
 		 }
-		  $website = $this->common->get_site_by_domain_name($site);
+		  $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
 		 		 
 		 if(count($website)>0)
 		 {
@@ -131,6 +131,7 @@ class Pressrelease extends CI_Controller {
 			//other pressreleases
 			
 			$this->data['otherpressreleases'] = $this->pressreleases->get_all_pressreleases(3);
+			$this->data['mypressreleases'] = $this->pressreleases->get_my_pressreleases($companyid);
 			
 	  		$this->load->view('pressrelease/browse1',$this->data);
 		}
