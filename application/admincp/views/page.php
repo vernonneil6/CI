@@ -495,12 +495,12 @@ else { ?>
 <?php echo $footer; ?>
 <?php } ?>
 
-<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'] ?>admincp/js/tinymce/jquery.tinymce.min.js"></script>
+<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'] ?>/admincp/js/tinymce/jquery.tinymce.min.js"></script>
  
 <script type="text/javascript">
 $(function(){$("textarea.tinymce").tinymce({
 	// Location of TinyMCE script
-	script_url : "<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'] ?>admincp/js/tinymce/tinymce.min.js",
+	script_url : "<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'] ?>/admincp/js/tinymce/tinymce.min.js",
  
 	// General options
 	theme : "modern",
