@@ -16,7 +16,7 @@
           <div class="revw_blck_img">
 			<a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']);?>" title="view profile">
 				<div class="task-photo"> 
-					<img width="60px" src="<?php if( strlen($complaints[$i]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($complaints[$i]['avatarbig']); } else { if($complaints[$i]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/default_user.png"; } 
+					<img width="90px" height="90" src="<?php if( strlen($complaints[$i]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($complaints[$i]['avatarbig']); } else { if($complaints[$i]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/default_user.png"; } 
 						if($complaints[$i]['gender']=='Female') { echo $this->common->get_setting_value('2')."images/default_user.png"; } 
 					  } 
 					   ?>" alt="<?php echo stripslashes($complaints[$i]['username']); ?>"/> 

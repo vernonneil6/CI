@@ -39,7 +39,7 @@
               <p>
                 <?php if($complaints[$i]['userid']!=0){ ?>
                 <?php if(count($user)>0) {?>
-                <a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" title="view profile" class="complaintlist" ><?php echo $user[0]['username'];?></a>
+                <a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" title="view profile" class="complaintlist"><?php echo $user[0]['username'];?></a>
                 <?php } ?>
                 <?php } else{ ?>
                 <a title="Anonymous">Anonymous</a>
