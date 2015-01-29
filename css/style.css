@@ -1684,9 +1684,9 @@ padding-left: 18px;
 {
 	color : #2C6A99;
 }
-font_color_3
+.font_color_3
 {
-	color: #333333;
+	color: #333333!important;
 }
 
 font_color_white
