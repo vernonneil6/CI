@@ -31,14 +31,16 @@ class Widget extends CI_Controller {
 		$company = $this->widgets->get_company_byid($companyid);
 		$elite = $this->complaints->get_eliteship_bycompanyid($companyid);
 		
-		if( count($elite)>0 ) {
-		if ( count($company) > 0 )
+		if( count($elite)>0 ) 
 		{
-			$this->data['total'] = $this->widgets->get_total_review($companyid);
-		}
-		else
-		{
-			$this->data['total'] = 0;
+			if ( count($company) > 0 )
+			{
+				$this->data['total'] = $this->widgets->get_total_review($companyid);
+			}
+			else
+			{
+				$this->data['total'] = 0;
+			}
 		}
 		
 		$this->data['reviews'] = $this->reviews->get_reviews_bycompanyid($companyid);	    
