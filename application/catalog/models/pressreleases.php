@@ -80,14 +80,13 @@ class Pressreleases extends CI_Model
 		$this->db->select('p.*,cm.company,cm.logo,cm.companyseokeyword');
 		$this->db->from('pressrelease as p');
 		$this->db->join('company as cm','p.companyid=cm.id');
-		$this->db->where('p.status','Enable');
-		$this->db->where('p.websiteid',$siteid);
+		$this->db->where(array('p.status'=>'Enable','p.websiteid'=>$siteid));
 		$this->db->like('p.title',$keyword);
 		$this->db->or_like('cm.company',$keyword);
 		$this->db->order_by('insertdate', 'DESC');
 
 	  $query = $this->db->get();
-	   
+	   echo $this->db->last_query();die;
 	   if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
