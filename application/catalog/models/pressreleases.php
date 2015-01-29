@@ -68,13 +68,14 @@ class Pressreleases extends CI_Model
 	
 	function search_pressrelease($keyword,$limit ='',$offset='')
  	{
-	  $siteid = $this->session->userdata('siteid');
+	  
 		//Setting Limit for Paging
 		if( $limit != '' && $offset == 0)
 		{ $this->db->limit($limit); }
 		else if( $limit != '' && $offset != 0)
 		{	$this->db->limit($limit, $offset);	}
 		
+		$siteid = $this->session->userdata('siteid');
 	  //Executing Query
 		$this->db->select('p.*,cm.company,cm.logo,cm.companyseokeyword');
 		$this->db->from('pressrelease as p');
