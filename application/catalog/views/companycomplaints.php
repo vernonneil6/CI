@@ -16,7 +16,7 @@
           <div class="revw_blck_img">
 			<a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']);?>" title="view profile">
 				<div class="task-photo"> 
-					<img width="60px" src="<?php if( strlen($complaints[$i]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($complaints[$i]['avatarbig']); } else { if($complaints[$i]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/default_user.png"; } 
+					<img width="90px" height="90" src="<?php if( strlen($complaints[$i]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($complaints[$i]['avatarbig']); } else { if($complaints[$i]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/default_user.png"; } 
 						if($complaints[$i]['gender']=='Female') { echo $this->common->get_setting_value('2')."images/default_user.png"; } 
 					  } 
 					   ?>" alt="<?php echo stripslashes($complaints[$i]['username']); ?>"/> 
@@ -34,12 +34,12 @@
                         if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
                         ?>
           <div class="revw_blck_cnt">
-            <h2> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail" style="color:#0080FF;"> <?php echo strtoupper($complaints[$i]['company']);?> </a> </h2>
+            <h2> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail" class="complaintlist"> <?php echo strtoupper($complaints[$i]['company']);?> </a> </h2>
             <div class="revw_occupt"> <span></span>-
               <p>
                 <?php if($complaints[$i]['userid']!=0){ ?>
                 <?php if(count($user)>0) {?>
-                <a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" title="view profile" style="color:#0080FF;"><?php echo $user[0]['username'];?></a>
+                <a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" title="view profile" class="complaintlist"><?php echo $user[0]['username'];?></a>
                 <?php } ?>
                 <?php } else{ ?>
                 <a title="Anonymous">Anonymous</a>
