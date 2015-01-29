@@ -655,12 +655,12 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 .txt_box{width:288px; display:inline-block; border:1px solid #666; height:23px; padding:0 0 0 10px; font-family:"myriadpro-regular"; font-size:14px;}
 .row{width:100%; display:inline-block; float:left;}
 .row span{width:100%; display:inline-block; float:left; font-family:"myriadpro-regular"; font-size:16px; text-transform:uppercase; color:#999; line-height:normal; margin-top:10px;}
-.row span a{font-family:"myriadpro-regular"; font-size:16px; text-transform:uppercase; color:#0080ff;}
+.row span a{font-family:"myriadpro-regular"; font-size:16px; text-transform:uppercase; color:#2C6A99;}
 .lgn_btn{background:#fff; overflow:hidden; font-family:"myriadpro-regular"; font-size:28px; color:#2C6A99; border:1px solid #999; text-transform:uppercase; padding:8px; line-height:20px; cursor:pointer; margin-top:17px;}
 .lgn_rgt{float:left; width:367px; display:block; height:auto;}
 .new_user{margin-left:50px; margin-top:109px;}
-.new_user h1{font-family:"myriadpro-regular"; font-size:28px; text-transform:uppercase; padding-left:10px; border-left:3px solid #0080ff; color:#333; font-weight:normal; float:left; margin:0px; width:inherit; height:inherit; border-bottom:0 none; padding-bottom:0;}
-.new_user a{font-family:"myriadpro-regular"; font-size:18px; text-transform:uppercase; padding-left:5px; color:#0080ff; display:inline-block; margin-top:6px;}
+.new_user h1{font-family:"myriadpro-regular"; font-size:28px; text-transform:uppercase; padding-left:10px; border-left:3px solid #2C6A99; color:#333; font-weight:normal; float:left; margin:0px; width:inherit; height:inherit; border-bottom:0 none; padding-bottom:0;}
+.new_user a{font-family:"myriadpro-regular"; font-size:18px; text-transform:uppercase; padding-left:5px; color:#2C6A99; display:inline-block; margin-top:6px;}
 .lgn_btnlogo{width:100%; display:inline-block; float:left; text-align:center; margin-top:60px;}
 
 /*========Register============*/
