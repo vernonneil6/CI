@@ -214,8 +214,7 @@ else { ?>
             <?php 
 			if($this->uri->segment(3) < 177 || $this->uri->segment(3)>192)
 			 { 
-				echo form_textarea( array( 'name'=>'pagecontent','id'=>'pagecontent','class'=> 'cleditor','value'=> stripslashes($page[0]['pagecontent']),'style'=>'width:900px' ) );
-				echo display_ckeditor($ckeditor);
+				echo form_textarea( array( 'name'=>'pagecontent','id'=>'pagecontent','class'=> 'tinymce','value'=> stripslashes($page[0]['pagecontent']),'style'=>'width:900px' ) );
 			}
 			else
 			{
@@ -337,8 +336,7 @@ else { ?>
           </div>
           <div class="con" style="float:left; width:77%">
           <?php 		
-				echo form_textarea( array( 'name'=>'pagecontent','id'=>'pagecontent','class'=> 'cleditor','style'=>'width:900px' ) );
-				echo display_ckeditor($ckeditor);
+				echo form_textarea( array( 'name'=>'pagecontent','id'=>'pagecontent','class'=> 'tinymce','style'=>'width:900px' ) );
 		  ?>
           </div>
           <div id="pageconterror" class="error" style="width:auto;">Page Content is required.</div>
@@ -495,3 +493,24 @@ else { ?>
 <!-- #footer --> 
 <?php echo $footer; ?>
 <?php } ?>
+
+<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'] ?>/admincp/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+tinymce.init({
+    selector: "textarea.tinymce",
+    theme: "modern",
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    toolbar2: "print preview media | forecolor backcolor emoticons",
+    image_advtab: true,
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+        {title: 'Test template 2', content: 'Test 2'}
+    ]
+});
+</script>

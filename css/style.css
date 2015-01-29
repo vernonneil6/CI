@@ -984,6 +984,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
     letter-spacing: 0;
     text-transform: uppercase;
 }
+.coupon_company_title{
+	font-family: "myriadpro-regular";
+    font-size: 36px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    color: #2c6a99;
+    margin : 0 0 7px 0;
+}
 .coupon_wrap{ display: inline-block; margin-top: 90px;  width: 100%;}
 .coupon_wrap .revw_blck_cnt h2, .coupon_wrap .revw_blck_cnt h2 .recenttitle{font-family:"myriadpro-regular"; font-weight:bold; font-size:23px; padding: 3px 0 0 6px; color:#fff; text-transform:uppercase; margin:0; line-height:30px; height:30px; background:#2C6A99;}
 .coupon_wrap .revw_blck_cnt h2 span, .coupon_wrap .revw_blck_cnt h2 .recentexpire{float:right; font-size:16px; color:#000; margin-right:10px;}
@@ -1673,6 +1684,11 @@ padding-left: 18px;
 {
 	color : #2C6A99;
 }
+font_color_3
+{
+	color: #333333;
+}
+
 font_color_white
 {
 	color: white;
@@ -1771,8 +1787,13 @@ font_color_white
 .font_size_banner
 {
 	font-size : 62px;
+	height: auto!important;
 }
-
+.footer_page_content
+{
+	min-height : 150px;
+	margin: 25px 0;
+}
 
 .ygr_receipt
 {

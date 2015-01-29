@@ -51,7 +51,7 @@
 		<a href="<?php echo site_url('email');?>" class="link" title="Email Formats">Email Formats</a>
     </li>
     <li class="<?=($this->uri->segment(1)==='page')?'active':''?>">
-		<a href="<?php echo site_url('page'); ?>" title="Page">Page</a>
+		<a href="<?php echo site_url('page'); ?>" title="Edit Pages">Edit Pages</a>
 		<ul class="submenu">
 			<li>
 				<a href="<?php echo site_url('page/add'); ?>" title="Add Page">Add Page</a>
