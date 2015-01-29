@@ -19,6 +19,7 @@ class Pressreleases extends CI_Model
 		$this->db->order_by('insertdate', 'DESC');
 		
 		$query = $this->db->get();
+		
 	
 		if ($query->num_rows() > 0)
 		{
@@ -68,25 +69,25 @@ class Pressreleases extends CI_Model
 	
 	function search_pressrelease($keyword,$limit ='',$offset='')
  	{
-	  $siteid = $this->session->userdata('siteid');
+	  
 		//Setting Limit for Paging
 		if( $limit != '' && $offset == 0)
 		{ $this->db->limit($limit); }
 		else if( $limit != '' && $offset != 0)
 		{	$this->db->limit($limit, $offset);	}
 		
+		$siteid = $this->session->userdata('siteid');
 	  //Executing Query
 		$this->db->select('p.*,cm.company,cm.logo,cm.companyseokeyword');
 		$this->db->from('pressrelease as p');
-		$this->db->join('company as cm','p.companyid=cm.id');
+		$this->db->join('company as cm','p.companyid=cm.id and p.websiteid='.$siteid.'');
 		$this->db->where('p.status','Enable');
-		$this->db->where('p.websiteid',$siteid);
 		$this->db->like('p.title',$keyword);
 		$this->db->or_like('cm.company',$keyword);
 		$this->db->order_by('insertdate', 'DESC');
 
-	  $query = $this->db->get();
-	   
+	   $query = $this->db->get();
+	
 	   if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
@@ -96,5 +97,33 @@ class Pressreleases extends CI_Model
 			return array();
 		}
  	}
+ 	function get_my_pressreleases($companyid,$limit ='',$offset='')
+ 	{
+		
+		//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+		
+		$siteid = $this->session->userdata('siteid');
+		//Executing Query
+		$this->db->select('p.*,cm.company,cm.logo,cm.country,cm.companyseokeyword');
+		$this->db->from('pressrelease as p');
+		$this->db->join('company as cm','p.companyid=cm.id and p.websiteid='.$siteid.'');
+		$this->db->where(array('p.status'=>'Enable','cm.id'=>$companyid));
+		$this->db->order_by('insertdate', 'DESC');
+		
+		$query = $this->db->get();
+	
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}           
+	}
 }
 ?>
