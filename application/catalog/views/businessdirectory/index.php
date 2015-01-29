@@ -16,7 +16,7 @@
 			<input type="submit" class="headersearchbtn" value="SEARCH" name="btnsearch">
 			<div class="orwrp">
 				<div class="orinnrwrp"> </div>
-				<h1 class="bus_tag"><a href="<?php echo site_url('businessdirectory/add');?>" title="Submit Business To YouGotRated Directory" style="color:#0080FF;">SUBMIT A NEW BUSINESS</a></h1>
+				<h1 class="bus_tag"><a href="<?php echo site_url('businessdirectory/add');?>" title="Submit Business To YouGotRated Directory" class="complaintlist">SUBMIT A NEW BUSINESS</a></h1>
 			</div>
 			<div class="lgn_btnlogo"> <a href="<?php echo base_url();?>"><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
 		 <?php echo form_close();?> 

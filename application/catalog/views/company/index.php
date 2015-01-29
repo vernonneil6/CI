@@ -394,19 +394,19 @@
             <div class="review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="review_lft">
                 <div class="user_img"><img src="images/default_user.png" alt="User image" title="User image"></div>
-	    </div>
+	         </div>
                 
               
               <div class="review_rgt reviewstab">
 		
-		<div class="user_name">
-                  <?php $user=$this->users->get_user_byid($complaints[$i]['userid']);?>
-                  <?php if(count($user)>0) { ?>
-                  <a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" title="view profile"><?php echo $user[0]['username'];?></a>
-                  <?php } else { ?>
-                  <a><?php echo "Anonymous";?></a>
-                  <?php	}?>
-		 <span class="datereview"><?php echo date('m/d/Y',strtotime($complaints[$i]['complaindate']));?></span>
+					<div class="user_name">
+							  <?php $user=$this->users->get_user_byid($complaints[$i]['userid']);?>
+							  <?php if(count($user)>0) { ?>
+							  <a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" title="view profile"><?php echo $user[0]['username'];?></a>
+							  <?php } else { ?>
+							  <a><?php echo "Anonymous";?></a>
+							  <?php	}?>
+					 <span class="datereview"><?php echo date('m/d/Y',strtotime($complaints[$i]['complaindate']));?></span>
                 </div>
 
 
@@ -414,9 +414,12 @@
                   <div class="rat_title reptitle">
                     <h2>Reported Damage: $<?php echo $complaints[$i]['damagesinamt'];?></h2>
                    </div>
+                 <p> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['detail']),0,212)."..."); ?></a> </p>
+                <div class="cmnt_wrp wrps "><a class="valigns" href="<?php echo site_url('company/complaints/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a></div>
                 </div>
-                <p> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['detail']),0,212)."..."); ?></a> </p>
-		<div class="cmnt_wrp wrps "><a class="valigns" href="<?php echo site_url('company/complaints/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a></div>
+                </div>
+                
+		
               </div>
               <?php } }else{?>
               <div class="review_block noblock">

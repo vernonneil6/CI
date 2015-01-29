@@ -204,8 +204,10 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
             <div class="clnt_intr"> - &nbsp;&nbsp;
               <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
               <div class="clnt_name">
-                <?php if($review[0]['type']=='csv' or $review[0]['type']=='ygr') {?>
-                <h4><a title="<?php echo stripslashes($review[0]['reviewby']); ?>"> <?php echo stripslashes($review[0]['reviewby']); ?></a></h4>
+                <?php if($review[0]['type']=='csv' or $review[0]['type']=='ygr') { 
+					$username = $this->users->get_user_bysingleid($review[0]['reviewby']);
+				?>
+                <h4><a title="<?php echo stripslashes($username['username']); ?>"> <?php echo stripslashes($username['username']); ?></a></h4>
                 <?php } else { ?>
                 <h4><a href="<?php echo site_url('complaint/viewuser/'.$review[0]['companyid'].'/'.$review[0]['reviewby']);?>" title="view profile"> <?php echo stripslashes($review[0]['username']); ?></a></h4>
                 <?php } ?>
