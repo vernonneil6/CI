@@ -87,15 +87,11 @@
         </div>
       </div>
     </div>
-    <?php if(count($mypressreleases)> 0){?>
-    <?php for($i=0;$i<count($mypressreleases);$i++){?>
-     <?php if($pressrelease[0]['id'] !=$mypressreleases[$i]['id']) { ?>
-     <div class="cmnts_mainwrp">
+    <?php if(count($mypressreleases) > 1){?>
+    <div class="cmnts_mainwrp">
       <h2>MORE PRESS RELEASES FROM <?php echo $mypressreleases[0]['company'];?> </h2>
-
-      
-           
-			  <div class="cmnt_blckwrp">
+		<?php for($i=1;$i<count($mypressreleases);$i++){?>
+		      	  <div class="cmnt_blckwrp">
 				<div class="clnt_intr cmt_none">
 				  <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
 				  <div class="clnt_name txt_right txt_left">
@@ -108,14 +104,11 @@
 				  <p><?php echo stripslashes(($mypressreleases[$i]['sortdesc'])); ?></p>
 				</div>
 			  </div>
-      <?php } ?>
+      
      <?php } ?> 
     </div>
-    <?php } else { ?>
-		
-		<p>No pressrelease.</p>
-		
-	<?php } ?>	
+    <?php } ?>
+			
   </section>
 </section>
 <?php echo $footer;?>
