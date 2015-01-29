@@ -73,14 +73,14 @@
 	padding : 15px;
 	overflow : auto;
 	height : 420px;
+	display: inline-block;
 }
 .review_tab_top
 {
 	background : #3085C7;
-	padding: 30px 0;
-    text-align: center;
     color: white;
     font-size: 18px;
+    display: inline-block;
 }
 .review_border_bottom
 {
@@ -128,4 +128,12 @@
 {
 	width: 450px!important;
 	height: 550px!important;
+}
+.widget_title
+{
+	float : left;
+}
+.widget_img
+{
+	float : right;
 }

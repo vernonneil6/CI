@@ -16,10 +16,11 @@ Reviews
 <div id="review_popup" class = "popupwidth">
 <div class = "review_poweredby">Powered by YouGotRated</div>
 <div class = "review_tab_top">
-	THESE ARE REAL REVIEWS FROM YOUGOTRATED
+	<label class="widget_title">THESE ARE REAL REVIEWS <br> FROM YOUGOTRATED</label>
+	<img class="widget_img" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>">
 </div>
 <div class = "review_tab_bottom">
-	
+			<?php echo $total; ?>
             <?php 
             if( count($reviews) > 0 ) 
             { 		
@@ -46,16 +47,16 @@ Reviews
 							 <div class = "review_firstletter">
 								<label><?php if($users['username']!=null){ $firstword = $users['username']; echo ucfirst($firstword[0]); } else { echo "A";}?></label>
 							 </div>
-						
+							
 							<div class = "review_username_row">
 								 <div class = "review_name_tab tooltip" title = "This review has been authenticated by <?php echo $cmpy['company']; ?> and has been posted on YouGotRated by a real shopper">
 									 <?php if($users['username']!=null){ echo $users['username']; } else { echo "Anonymous";}?>
 									 <span>					
-										<?php /*if(count($elitemem_status)==0) { ?>
-											Not Verified Buyer  
+										<?php if(count($elitemem_status)==0) { ?>
+											Not Verified Review  
 										<?php }else{  ?>
-											Verified Buyer
-										<?php } */?>           
+											Verified Review
+										<?php } ?>           
 									</span>
 								 </div>
 								 <div class = "review_date_tab"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>

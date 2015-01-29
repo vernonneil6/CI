@@ -88,18 +88,16 @@ class Review extends CI_Controller
 
 	public function import_csv()
 	{
-		// Your own constructor code
+
 		if( !$this->session->userdata('youg_admin'))
 	  	{
-		   	//If no session, redirect to login page
-			//echo site_url();die();
 	  	  	redirect('adminlogin', 'refresh');
 		}
+		
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			if($this->input->post('btnupload'))
 			{
-				//Loading Model File
 	  	  		$config['upload_path'] = '../uploads/reviewcsv/';
 				$config['allowed_types'] = 'csv';
 				//$config['max_size'] = '5000';
@@ -184,11 +182,9 @@ class Review extends CI_Controller
 
 	public function download()
 	{
-		// Your own constructor code
+
 		if( !$this->session->userdata('youg_admin'))
 	  	{
-		   	//If no session, redirect to login page
-			//echo site_url();die();
 	  	  	redirect('adminlogin', 'refresh');
 		}
 		
