@@ -170,7 +170,7 @@ class Reviews extends CI_Model
 	
 	function update_review_status($companyid,$reviewid)
 	{
-		$data = array('flag' => '1');
+		$data = array('flag' => '1','status' => 'Disable');
 
 		if( $this->db->where(array('id'=>$reviewid, 'companyid'=>$companyid))->update('reviews', $data) )
 		{

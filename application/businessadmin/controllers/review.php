@@ -10,18 +10,15 @@ class Review extends CI_Controller
   	{
   	parent::__construct();
 		
-		//Loading Helper File
 	  	$this->load->helper('form');
 			
-		//Loading Model File
 	 	$this->load->model('reviews');
 		$this->load->model('companys');
 		
-		//Loadin Pagination Custome Config File
+
 		$this->config->load('paging',TRUE);
 		$this->paging = $this->config->item('paging');
 		
-		//Setting Page Title and Comman Variable
 		$this->data['title'] = $this->settings->get_setting_value(1).' : Business Reviews';
 		$this->data['section_title'] = 'Business Reviews';
 		
@@ -30,21 +27,20 @@ class Review extends CI_Controller
 		$websites = $this->settings->get_all_urls();
 		
 		if( count($websites) > 0 )
-				{
-					$this->data['selsite']['zero'] = 'Select Site';
-					$this->data['selsite']['all'] = 'All Websites';
-					for($c=0;$c<count($websites);$c++)
-					{
-						$this->data['selsite'][stripslashes($websites[$c]['id'])] = ucwords(stripslashes($websites[$c]['title']));
-					}
-				}
-				else
-				{
-					$this->data['selsite']['all'] = 'All Websites';
-					$this->data['selsite'] = array();
-				}
+		{
+			$this->data['selsite']['zero'] = 'Select Site';
+			$this->data['selsite']['all'] = 'All Websites';
+			for($c=0;$c<count($websites);$c++)
+			{
+				$this->data['selsite'][stripslashes($websites[$c]['id'])] = ucwords(stripslashes($websites[$c]['title']));
+			}
+		}
+		else
+		{
+			$this->data['selsite']['all'] = 'All Websites';
+			$this->data['selsite'] = array();
+		}
 		
-		//Load heading and save in variable
 		$this->data['heading'] = $this->load->view('header',$this->data,true);
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
@@ -52,11 +48,8 @@ class Review extends CI_Controller
 	public function index()
 	{
 		
-		// Your own constructor code
 		if( !$this->session->userdata('youg_admin'))
 	  	{
-		   	//If no session, redirect to login page
-			//echo site_url();die();
 	  	  	redirect('adminlogin', 'refresh');
 		}
 		
@@ -67,21 +60,14 @@ class Review extends CI_Controller
 			
 			$companyid = $this->session->userdata['youg_admin']['id'];
 			$siteid = $this->session->userdata['siteid'];
-			//Addingg Setting Result to variable
+
 			$this->data['reviews'] = $this->reviews->get_all_reviews($companyid,$siteid,$limit,$offset);
-			//echo "<pre>";
-			//print_r($this->data['reviews']);
-			//die();
-			
+
 			$this->paging['base_url'] = site_url("review/index/");
 			$this->paging['uri_segment'] = 3;
 			$this->paging['total_rows'] = count($this->reviews->get_all_reviews($companyid,$siteid));
 			$this->pagination->initialize($this->paging);
-			//echo "<pre>";
-			//print_r($this->paging);
-			//die();
-			
-			//Loading View File
+
 			$this->load->view('review',$this->data);
 	  	}
 	}
