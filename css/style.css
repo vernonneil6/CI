@@ -896,8 +896,8 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .cmnt_blckwrp{width:950px; margin:43px auto 0 auto;display:table;}
 .cmt_lft{float:left !important;}
 .clnt_name.txt_right{text-align:right; margin-right:10px; }
-.review_rgt.cmnt_dscr{float:right; width:775px; padding-bottom:35px; border-bottom:1px solid #999;}
-
+.review_rgt.cmnt_dscr{float:right; width:765px; padding-bottom:35px; border-bottom:1px solid #999;}
+.coupon_left{width:185px;}
 .cmnt_blckwrp:last-child .review_rgt.cmnt_dscr{float:right; width:775px; padding-bottom:35px; border-bottom: none;}
 
 .cmnt_blckwrp .review_rgt p {color: #333333; float: left;  font-family: "myriadpro-regular"; font-size: 16px; margin: 0; width: 100%;}
