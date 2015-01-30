@@ -554,7 +554,7 @@ Class Settings extends CI_Model
 		$this->db->where('websiteid',$siteid);
 		$this->db->where('intid',$id);
 	  	$query = $this->db->get();
-		//echo $this->db->last_query();
+		
 
 		if ($query->num_rows() > 0)
 		{
