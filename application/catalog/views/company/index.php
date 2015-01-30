@@ -283,7 +283,7 @@
 		</div>
 	</div>
 	
-		<div>
+		<div class = "profile_tab_space">
 			<ul class="tabbs">
 			  <?php if(count($elitemem_status)==0){?>
 			  <li><a href="#tab1" title="REVIEWS">REVIEWS</a></li>
