@@ -471,10 +471,10 @@ else { ?>
         <td>
           
           <?php if( stripslashes($pages[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('pages/disable/'.$pages[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this page?');"><span>Enable</span></a>
+          <a href="<?php echo site_url('pages/disable/'.$pages[$i]['intid']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this page?');"><span>Enable</span></a>
           <?php } ?>
           <?php if( stripslashes($pages[$i]['status']) == 'Disable' ) { ?>
-          <a href="<?php echo site_url('pages/enable/'.$pages[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this page?');"><span>Disable</span></a>
+          <a href="<?php echo site_url('pages/enable/'.$pages[$i]['intid']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this page?');"><span>Disable</span></a>
           <?php } ?>
         
         </td>
