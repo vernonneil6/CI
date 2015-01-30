@@ -634,6 +634,11 @@ class Complaints extends CI_Model
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
 		
 		$data = array( 'company' 		=> $name ,
+					   'streetaddress'	=> $streetaddress,
+					   'city'	        => $city,
+					   'state'	        => $state,
+					   'country'	    => $country,
+					   'zip'	        => $zip,
 					   'companystreet'	=> $streetaddress,
 					   'companycity'	=> $city,
 					   'companystate'	=> $state,
@@ -1087,11 +1092,15 @@ class Complaints extends CI_Model
  	}
 	
 	//get pressreleases
-	function get_companypressreleases_bycompanyid($id)
+	function get_companypressreleases_bycompanyid($id,$limit ='',$offset='')
  	{
-		
+		//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
 		$siteid = $this->session->userdata('siteid');
-		$this->db->limit(5);
+		//$this->db->limit(5);
 		$query = $this->db->get_where('pressrelease',array('status'=>'Enable','companyid'=>$id,'websiteid'=>$siteid));
 		
 		if ($query->num_rows() > 0)

@@ -369,6 +369,11 @@ Class Companys extends CI_Model
 		$data = array(
 							'company' 		=> $company,
 							'email' 		=> $email,
+							'streetaddress' => $streetaddress,
+							'city' 		    => $city,
+							'state' 		=> $state,
+							'zip' 		    => $zip,
+							'country' 		=> $country,
 							'companystreet' => $streetaddress,
 							'companycity'	=> $city,
 							'companystate' 	=> $state,
