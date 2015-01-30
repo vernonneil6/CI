@@ -1771,7 +1771,10 @@ padding-left: 18px;
 {
 	float: right;
 }
-
+.float_left
+{
+	float:left!important;
+}
 .thumb
 {
 	margin : 0 0 0 10px;
