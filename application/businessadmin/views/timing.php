@@ -82,7 +82,7 @@
           <div class="col1">
             <div class="clearfix">
               <div class="lab">
-                <label for="timingurl">Off <span class="errorsign">*</span></label>
+                <label for="timingurl">Closed <span class="errorsign">*</span></label>
               </div>
               <div class="con">
                 <?php $array = array('Yes'=>'Yes','No'=>'No');?>
