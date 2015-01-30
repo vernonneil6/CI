@@ -149,9 +149,26 @@ class Discount extends CI_Controller {
 		//echo '<pre>';print_r($_REQUEST['detail']); die();
 		if( $this->session->userdata['youg_admin'] )
 	  	{
+			$elitemembershipprice=$this->settings->update_get_eliteprice_by_settingid(19);
 			//If Old Record Update
 			if( $this->input->post('id') )
 	  		{
+				if($_POST['percentage']=='101' || $_POST['percentage']=='102')
+				{
+							if($_POST['percentage']=='101'){							
+								$discounttype="30days-FT";
+								$discountprice=$elitemembershipprice['value'];
+							  } else {
+									$lowprice=$elitemembershipprice['value']-99;	 
+									$discounttype="30days-FT+LP";	
+									$discountprice=$lowprice;	
+							 }		
+				   } else {
+						$discounttype="Normal";
+						$discountprice=$elitemembershipprice['value'];
+				 
+			   }
+				//die();
 				//Getting id
 				$id = $this->encrypt->decode($this->input->post('id'));
 				
@@ -160,7 +177,7 @@ class Discount extends CI_Controller {
 				$percentage = addslashes($this->input->post('percentage'));
 						
 				//Updating Record With Image
-				if( $this->discounts->update($id,$title,$percentage))
+				if( $this->discounts->update($id,$title,$percentage,$discounttype,$discountprice))
 				{
 					$this->session->set_flashdata('success', 'discount updated successfully.');
 					redirect('discount', 'refresh');;
@@ -176,11 +193,30 @@ class Discount extends CI_Controller {
 			//If New Record Insert
 			else
 			{
-				//Getting value
+			   	  
+			  if($_POST['percentage']=='101' || $_POST['percentage']=='102')
+			   {
+						if($_POST['percentage']=='101'){
+							
+							$discounttype="30days-FT";  
+							$discountprice=$elitemembershipprice['value'];  
+							} else {
+							
+							$lowprice=$elitemembershipprice['value']-99;	 
+							$discounttype="30days-FT+LP";	
+							$discountprice=$lowprice;	
+						}		
+			   } else {
+				 	$discounttype="Normal";
+				 	$discountprice=$elitemembershipprice['value'];
+			   }
+	    		//Getting value
 				$title = addslashes($this->input->post('title'));
 				$percentage = addslashes($this->input->post('percentage'));
+				
+				
 				//Inserting Record
-					if( $this->discounts->insert($title,$percentage) )
+					if( $this->discounts->insert($title,$percentage,$discounttype,$discountprice))
 					{
 						$this->session->set_flashdata('success', 'discount inserted successfully.');
 						redirect('discount', 'refresh');
