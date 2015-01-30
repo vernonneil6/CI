@@ -406,7 +406,7 @@ class Solution extends CI_Controller {
 									$mail_body = str_replace("%name%",ucfirst($name),str_replace("%email%",$email,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat))))));
 									
 									$this->email->message($mail_body);
-									//$this->email->send();
+									$this->email->send();
 									
 									$this->session->set_flashdata('success', 'Your business has successfully been registered');
 									///redirect('solution/claim/'.$companyid, 'refresh');
