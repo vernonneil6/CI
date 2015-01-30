@@ -11,14 +11,12 @@
 
 <section class="container">
   <section class="main_contentarea">
-    <?php  //get avg star by cmpyid
-			$avgstar = $this->common->get_avg_ratings_bycmid($coupons[0]['companyid']);
+    <?php  	$avgstar = $this->common->get_avg_ratings_bycmid($coupons[0]['companyid']);
 			$avgstar = round($avgstar);
 			$elitemem_status = $this->common->get_eliteship_bycompanyid($coupons[0]['companyid']);
 			?>
       <div class="verified_wrp pr_rwrp pr_rwrp">
-        <!--<div class="vry_logo"> <a href="<php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view complaint Detail"><img src="<php if( $coupons[0]['logo'] ) { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><php echo stripslashes($coupons[0]['logo']); } else { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."no_image.png"; } ?>" alt="<php echo ucfirst(stripslashes($coupons[0]['company'])); ?>" width="103px" height="88px" /></a> </div>-->
-        
+
         <?php if(count($elitemem_status)==0){?>
         <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class="reviewnotverifiedlogo" alt="<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?>" /></a> </div>
         <?php }else{ ?>
@@ -39,7 +37,7 @@
         <div class="compny_name">
           <h1><?php echo $coupons[0]['company'];?></h1>
           <?php 
-		//get avg star by cmpyid
+
 		$avgstar = $this->common->get_avg_ratings_bycmid($coupons[0]['companyid']);
 		$avgstar = round($avgstar);
 		;?>
@@ -67,7 +65,7 @@
       <div class="pr_countwrp"> </div>
       <div class="pr_testmnl_wrp">
 	  <?php echo ucwords($coupons[0]['title']);?><br/>
-      <a href="<?php echo $coupons[0]['url'];?>" target="_blank" title="Promocode" rel="nofollow" style="color:#333333;"> <?php echo "Promocode: ";?><span>CLICK HERE TO VIEW PROMO CODE<?php //echo $coupons[0]['promocode'];?></span> </a><br/>
+      <a href="<?php echo $coupons[0]['url'];?>" target="_blank" title="Promocode" rel="nofollow" style="color:#333333;"> <?php echo "Promocode: ";?><span><?php echo $coupons[0]['promocode'];?></span> </a><br/>
         <?php echo "Expires: ";?><?php echo date('m/d/Y',strtotime($dbdate));?><br/>
         <?php echo "Category: ";?><?php echo $coupons[0]['category'];?><br/>
         <span id="couponshare" class="shareitcoupon">Share it</span>
@@ -81,10 +79,10 @@ echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].$_SE
     </div>
     <?php if(count($othercoupons)>0){?>
     <div class="cmnt_mainwrp">
-      <h2>WHAT OTHERS HAVE BEEN SAYING</h2>
+      <h2>OTHER COUPONS FROM  <?php echo strtoupper(stripslashes($coupons[0]['company'])); ?></h2>
       <?php for($j=0;$j<count($othercoupons);$j++){?>
       <div class="cmnt_blckwrp">
-        <div class="clnt_intr cmt_lft">
+        <div class="clnt_intr cmt_lft coupon_left">
           <div class="clnt_name txt_right">
             <h4><?php echo (stripslashes($coupons[0]['company'])); ?></h4>
           </div>

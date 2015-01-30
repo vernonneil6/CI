@@ -41,7 +41,7 @@
 						   <a href="<?php echo site_url('coupon/browse/'.$coupons[$i]['seokeyword']); ?>" title="Business Category"><span><?php echo ucfirst($coupons[$i]['category']);?></span> </a>
 						</div>
 					</div>
-					<div class="offer_wrp"> <a  class = "recent_view_all" href="<?php echo site_url('company').'/'.$coupons[$i]['companyseokeyword'].'/reviews/coupons/complaints';?>" title="view all"> + View All</a> </div>
+					<div class="offer_wrp"> <a  class = "recent_view_all" href="<?php echo site_url('company').'/'.$coupons[$i]['companyseokeyword'].'/reviews/coupons/complaints';?>" title="view all"> + READ MORE</a> </div>
 				</div>
 			</div>
 		</div>
