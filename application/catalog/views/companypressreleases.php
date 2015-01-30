@@ -34,13 +34,13 @@
 			</h2>
 		  </div>
               
-		  <div class="compny_name" style="margin-top:-15px;">
+		  <div class="compny_name" style="margin-top:-12px;">
 			<div class="vry_rating">
 			  <?php for($r=0;$r<$avgstar;$r++){?>
 			  <i class="vry_rat_icn"></i>
 			  <?php } ?>
 			  <?php for($p=0;$p<(5-$avgstar);$p++){?>
-			  <img src="images/no_star.png" alt="no_star" title="no_star" />
+			  <img src="images/no_star.png" alt="no_star" title="no_star" class = "float_left" />
 			  <?php } ?>
 			</div>
 		  </div>
