@@ -545,6 +545,27 @@ Class Settings extends CI_Model
 			return false;
 		}
 	}
+	function update_get_eliteprice_by_settingid($id)
+	{
+		$siteid = $this->session->userdata('siteid');
+		
+	  	$this->db->select('*');
+	  	$this->db->from('setting');
+		$this->db->where('websiteid',$siteid);
+		$this->db->where('intid',$id);
+	  	$query = $this->db->get();
+		//echo $this->db->last_query();
+
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}
 	
 }
 ?>

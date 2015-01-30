@@ -5,7 +5,7 @@ Class Discounts extends CI_Model
  	{
 		switch($sortby)
 		{
-			default 	    : $sortby = 'percentage';break;
+			default 	    : $sortby = 'addeddate';break;
 		}
 		
 		//Ordering Data
@@ -31,13 +31,29 @@ Class Discounts extends CI_Model
  	}
 	
 	//Inserting Record
-	function insert($title,$percentage)
+	function insert($title,$percentage,$discounttype,$discountprice)
 	{
+		
+		$notused=2;
+		if($percentage==101 || $percentage==102){
+			
+			  if($percentage==101){
+					$percentage="30 Days Free Trial"; 
+				 } else { 
+				$percentage="30 Days Free Trial+ Low Price";  
+			  }
+		}
+		
+		$date=date('Y-m-d H:i:s');
 		$code = uniqid();
-		$data = array(		'title' 		=> $title,
-							'status' 		=> 'Enable',
-							'percentage' 	=> $percentage,
-							'code'			=> $code
+		$data = array(		'title' 		     => $title,
+							'status' 		     => 'Enable',
+							'percentage' 	     => $percentage,
+							'code'			     => $code,
+							'discountcodetype'	 => $discounttype,
+							'discountprice'	     => $discountprice,
+							'apply'	             => $notused,
+							'addeddate'	         => $date,
 					);
 
 		if( $this->db->insert('discount', $data) )
@@ -66,9 +82,24 @@ Class Discounts extends CI_Model
  	}
 	
 	//Updating Record
-	function update($id,$title,$percentage)
+	function update($id,$title,$percentage,$discounttype,$discountprice)
  	{
-		$data = array('title' 		=> $title,'percentage' 		=> $percentage);
+		
+		$editdate=date('Y-m-d H:i:s');
+		if($percentage==101 || $percentage==102){
+			
+			  if($percentage==101){
+					$percentage="30 Days Free Trial"; 
+				 } else { 
+				$percentage="30 Days Free Trial+ Low Price";  
+			  }
+		}
+		$data = array('title' 		 => $title,
+		              'percentage'   => $percentage,
+		              'discountcodetype' => $discounttype, 
+		              'discountprice' => $discountprice, 
+		              'modifieddate' =>$editdate, 
+		              );
 		$this->db->where('id', $id);
 		if( $this->db->update('discount', $data) )
 		{
