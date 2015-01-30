@@ -1696,9 +1696,9 @@ padding-left: 18px;
 	color: #333333!important;
 }
 
-font_color_white
+.font_color_white
 {
-	color: white;
+	color: white!important;
 }
 .singletimings label
 {
