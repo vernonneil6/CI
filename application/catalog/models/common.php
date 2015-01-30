@@ -1006,7 +1006,7 @@ Class Common extends CI_Model
 	
 	function get_footerlink_byid($id)
 	{
-		$query = $this->db->get_where('youg_pages', array('id' => $id));
+		$query = $this->db->get_where('youg_pages', array('id' => $id, 'status' => 'Enable'));
 		if ($query->num_rows() > 0)
 		{			
 			return $query->result_array();

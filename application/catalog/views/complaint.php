@@ -850,7 +850,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 				</div>
               <?php } } else { ?>
 			  <div class="treding_title"> Complaints </div>
-              <div style="margin-bottom:10px;"> <span class="rev-company user_title" style="font-size:14px;"> No Complaint </span> </div>
+              <div style="margin-bottom:25px;"> <span class="rev-company user_title" style="font-size:14px;"> No Complaint </span> </div>
               <?php	} ?>
               
               <div class="blankdiv"></div>
