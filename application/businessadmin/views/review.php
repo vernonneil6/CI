@@ -82,7 +82,13 @@
       <tr>
         <td><?php echo (stripslashes($reviews[$i]['reviewtitle'])); ?></td>
         <td><?php echo nl2br(stripslashes($reviews[$i]['comment'])); ?></td>
-        <td><?php echo ucwords(stripslashes($reviews[$i]['reviewby'])); ?></td>
+        <td>
+		<?php
+			 $username = $this->reviews->get_user_bysingleid($reviews[$i]['reviewby']);
+			 echo ucwords(stripslashes($username['firstname']));
+			 echo ucwords(stripslashes($username['lastname'])); 
+		?>
+		</td>
         <td><img src="images/stars/<?php echo stripslashes($reviews[$i]['rate']); ?>.png" title="<?php echo stripslashes($reviews[$i]['rate']); ?> Stars" /></td>
         <td><?php echo date("M d Y",strtotime($reviews[$i]['reviewdate'])); ?></td>
         <td>  <?php $title=urlencode('My post');

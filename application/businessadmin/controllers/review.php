@@ -121,8 +121,9 @@ class Review extends CI_Controller
 									{
 										$line = trim($fcontents[$i]);
 										$arr = explode(",",$line);
-										$title = $arr[0];
-										$username = $arr[1];
+										$title = $arr[0];										
+										$emailid = $this->reviews->get_user_bysingleemail($arr[1]);
+										$username = $emailid['id'];
 										$rating = $arr[2];
 										$review = $arr[3];
 										$date = $arr[4];														

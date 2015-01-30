@@ -384,6 +384,34 @@ class Reviews extends CI_Model
 	{
 		return $this->db->get_where('youg_reviewmail',array('review_id' => $reviewid))->row_array();
 	}
+	
+	function get_user_bysingleemail($email)
+ 	{
+		$query = $this->db->get_where('user', array('email' => $email));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+ 	
+ 	function get_user_bysingleid($id)
+ 	{
+		$query = $this->db->get_where('user', array('id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 }
 
 ?>
