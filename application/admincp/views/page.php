@@ -461,12 +461,23 @@ else { ?>
       <tr class="top nodrop nodrag">
         <th>Title</th>
         <th>Heading</th>
+        <th>Status</th>
         <th>Action</th>
       </tr>
       <?php for($i=0;$i<count($pages);$i++) { ?>
       <tr>
         <td><a href="<?php echo site_url('page/view/'.$pages[$i]['intid']); ?>" title="View Detail of <?php echo stripslashes($pages[$i]['title']);?>" class="colorbox" style="color: #404040;"><?php echo stripslashes($pages[$i]['title']); ?></a></td>
         <td><?php echo stripslashes($pages[$i]['heading']); ?></td>
+        <td>
+          
+          <?php if( stripslashes($pages[$i]['status']) == 'Enable' ) { ?>
+          <a href="<?php echo site_url('page/disable/'.$pages[$i]['intid']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this page?');"><span>Enable</span></a>
+          <?php } ?>
+          <?php if( stripslashes($pages[$i]['status']) == 'Disable' ) { ?>
+          <a href="<?php echo site_url('page/enable/'.$pages[$i]['intid']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this page?');"><span>Disable</span></a>
+          <?php } ?>
+        
+        </td>
         <td><a href="<?php echo site_url('page/edit/'.$pages[$i]['intid']); ?>" title="Edit" class="ico ico-edit">Edit</a> <a href="<?php echo site_url('page/view/'.$pages[$i]['intid']); ?>" title="View Detail of <?php echo stripslashes($pages[$i]['title']);?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
       </tr>
       <?php } ?>

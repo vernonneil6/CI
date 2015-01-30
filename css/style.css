@@ -1141,17 +1141,24 @@ border-top:1px solid;
  padding: 0 10px 0 0;
     width: 560px !important;
 }
+.profile_tab_space
+{
+	padding : 5px 0 5px 17px;
+	display : inline-block;
+}
 ul.tabbs 
 {
 	margin: 0;
     padding: 0;
+    display : inline-block;
 }
 ul.tabbs li {
     float: left;
     list-style: none outside none;
     height: 35px;
     list-style: none outside none;
-	margin-right: 11px;
+	margin-right: 9.7px;
+	-webkit-margin-end: 17px;
 }
 ul.tabbs li:hover {
     background: #D58438;   
@@ -1895,7 +1902,28 @@ font_color_white
 {
 	border : none!important;
 }
+.margin_top_1
+{
+	margin : 5px 0  0;
+}
 .complaintlist
 {
   color: #2C6A99; 
+}
+.complaint_user_title
+{
+	font-family: myriadpro-boldcond;
+    font-size: 60px;
+}
+.complaint_user_table
+{
+	margin : 25px 0 0;
+	border : none;
+	font-family: myriadpro-regular;
+}
+.complaint_user_list
+{
+	margin-bottom:10px;
+	padding-bottom:10px;
+	border-bottom: 1px dotted #CCCCCC;
 }

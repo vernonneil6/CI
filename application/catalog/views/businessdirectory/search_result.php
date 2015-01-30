@@ -2,7 +2,7 @@
 
 <section class="container">
   <section class="main_contentarea serch_result">
-    <h1 class="bannertext btxt"><!--<a href="#"><img src="images/search_result_title.png" alt="Business Search Result" title="Business Search Result"></a>-->
+    <h1 class="bannertext btxt">
 		<span class="bannertextregular">YOUR SEARCH </span>RESULTS</h1>
     </h1>
     <div class="srch_rslt_wrp">
@@ -72,9 +72,9 @@
               <ul>
                 <li><span>ADDRESS</span> <a> <?php echo ucfirst($companies[$i]['streetaddress']);?>&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['city']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['state']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['country']);?>,&nbsp;&nbsp;&nbsp;<?php echo ($companies[$i]['zip']);?> </a></li>
                 <li><span>PHONE</span> <a href="tel:<?php echo ($companies[$i]['phone']);?>" title="call us"><?php echo ($companies[$i]['phone']);?></a></li>
-                <!--<li><span>FAX</span> <a href="" title="Fax"><php echo ($companies[$i]['fax']);?></a></li>-->
                 <li><span>WEBSITE</span> <a href="//<?php echo ($companies[$i]['siteurl']);?>" title="company website"><?php echo ($companies[$i]['siteurl']);?></a></li>
                 <li><span>E-MAIL</span> <a href="mailto:<?php echo ($companies[$i]['email']);?>" title="mail us"><?php echo ($companies[$i]['email']);?></a></li>
+                <li><span>Total Reviews</span><a>  <?php echo $this->complaints->get_to_reviews_cid($companies[$i]['id']); ?></a></li> 
               </ul>
             </div>
           </div>
@@ -85,10 +85,8 @@
    $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
 			  ?>
           <div class="srch_rslt_right srh_rght">
-<!--            <div class="map_wrap">-->
             <div class="" align="center">
-              <div class="Flexible-container">
-                <?php /*?><iframe width="424" height="214" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBkUSG003UBp7IiqoZXZUJjtC_-N4BOZ_c&q=<?php echo $mapaddress; ?>"></iframe><?php */?>
+              <div class="Flexible-container">         
                 <script>
 			function PopupCenter(pageURL, title,w,h)
 			{

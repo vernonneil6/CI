@@ -127,11 +127,7 @@
 					</a>
 				</span>-
 				<p>
-					<?php if($reviews[$i]['type']=='csv') { ?>
-					<a title="<?php echo stripslashes($reviews[$i]['reviewby']); ?>"><?php echo stripslashes($reviews[$i]['reviewby']); ?></a>
-					<?php } else {?>
-					<a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile" class="reviewcolor"> <?php echo stripslashes($reviews[$i]['username']); ?></a>
-					<?php } ?>
+					<a target = "_blank" href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile" class="reviewcolor"> <?php echo ucfirst(stripslashes($reviews[$i]['username'])); ?></a>
 				</p>
               <div class="revw_date">
                 <?php
@@ -189,7 +185,6 @@
 				</span>
 				<div class="cmnt_wrp">
                     <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add Comment" style="cursor:pointer !important;">
-                            <!--<i class="add_cmnt"></i>-->
                             +  Add comment
                     </a>
 	            </div>

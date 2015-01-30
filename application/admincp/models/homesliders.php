@@ -19,10 +19,12 @@ Class Homesliders extends CI_Model
 			return array();
 		}
  	}
+ 	
 	function slider()
 	{
 		return $this->db->get('youg_slider')->result();
 	}
+	
 	function addimage($title,$image)
 	{
 		$data = array(	
@@ -40,6 +42,7 @@ Class Homesliders extends CI_Model
 		}
 
 	}
+	
 	function deleteslider($id)
 	{
 		if($this->db->delete('youg_slider',array('id'=>$id)))
@@ -51,18 +54,20 @@ Class Homesliders extends CI_Model
 			return false;
 		}
 	}
-        function updateslider($id,$title,$image)
-        {
-                $data = array(	
-						'title'		=> $title,
-						'image'		=> $image
-								
-					     );
-                $this->db->where('id',$id)->update('youg_slider',$data);
-        }
-        function updatefield($id)
-        {
-               return $this->db->get_where('youg_slider',array('id'=>$id))->row_array();
-        }
+	
+	function updateslider($id,$title,$image)
+	{
+			$data = array(	
+					'title'		=> $title,
+					'image'		=> $image
+							
+					 );
+			$this->db->where('id',$id)->update('youg_slider',$data);
+	}
+	
+	function updatefield($id)
+	{
+		   return $this->db->get_where('youg_slider',array('id'=>$id))->row_array();
+	}
 }
 ?>

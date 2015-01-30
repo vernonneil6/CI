@@ -367,16 +367,23 @@ a:hover.ico   { background-position: 0 0; }
 	height: 22px;
 	margin-top: 14px;	
 }
-
+.slider_title_space
+{
+	width:13%!important;
+}
 .slider_text
 {
 	float: left!important;
-    margin: 0 0 0 11px!important;;
+    margin: 0 0 0 11px!important;
     width: 50%!important;;
+}
+.slider_caption
+{
+	font-size : 10px;
 }
 .slider_area
 {
-	width:13%!important;;
+	width:14%!important;
 }
 .slider_upload
 {

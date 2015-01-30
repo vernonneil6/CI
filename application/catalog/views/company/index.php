@@ -259,25 +259,6 @@
 
     <div class="right_panel rightpanelwidth">
 
-	<div>
-        <ul class="tabbs">
-          <?php if(count($elitemem_status)==0){?>
-          <li><a href="#tab1" title="REVIEWS">REVIEWS</a></li>
-          <li><a href="#tab2" title="COMPLAINTS">COMPLAINTS</a></li>
-          <li><a href="#tab4" title="COUPONS">COUPONS</a></li>
-          <?php } else {
-			  ?>
-          <li><a href="#tab1" title="REVIEWS">REVIEWS</a></li>
-          <li><a href="#tab2" title="COMPLAINTS">COMPLAINTS</a></li>
-          <li><a href="#tab3" title="PRESS RELEASES">PRESS RELEASES</a></li>
-          <li><a href="#tab4" title="COUPONS">COUPONS</a></li>
-          <li><a href="#tab5" title="PHOTOS">PHOTOS</a></li>
-          <li><a href="#tab6" title="VIDEOS" style="background:none !important;">VIDEOS</a></li>
-          <?php
-			   } ?>
-        </ul>
-      </div>
-	
 	<div class = "profile_about_us">
 		<?php if($company[0]['aboutus']){ ?>
 			<div class = "profile_about_company"><h3>About <?php echo $company[0]['company']; ?></h3></div>
@@ -302,6 +283,24 @@
 		</div>
 	</div>
 	
+		<div class = "profile_tab_space">
+			<ul class="tabbs">
+			  <?php if(count($elitemem_status)==0){?>
+			  <li><a href="#tab1" title="REVIEWS">REVIEWS</a></li>
+			  <li><a href="#tab2" title="COMPLAINTS">COMPLAINTS</a></li>
+			  <li><a href="#tab4" title="COUPONS">COUPONS</a></li>
+			  <?php } else {
+				  ?>
+			  <li><a href="#tab1" title="REVIEWS">REVIEWS</a></li>
+			  <li><a href="#tab2" title="COMPLAINTS">COMPLAINTS</a></li>
+			  <li><a href="#tab3" title="PRESS RELEASES">PRESS RELEASES</a></li>
+			  <li><a href="#tab4" title="COUPONS">COUPONS</a></li>
+			  <li><a href="#tab5" title="PHOTOS">PHOTOS</a></li>
+			  <li><a href="#tab6" title="VIDEOS" style="background:none !important;">VIDEOS</a></li>
+			  <?php
+				   } ?>
+			</ul>
+		</div>
 	
         <div class="tab_container">
           <div class="tab_content" id="tab1">
