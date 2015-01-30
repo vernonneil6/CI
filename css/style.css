@@ -1934,3 +1934,20 @@ padding-left: 18px;
 	padding-bottom:10px;
 	border-bottom: 1px dotted #CCCCCC;
 }
+
+
+.profile_page_heading
+{
+	display: table;
+    font-size: 70px !important;
+}
+.profile_page_title
+{
+	margin: 20px 20px 0;
+}
+.profile_page_content
+{
+	width:auto!important;
+	text-align:left;
+	float:right!important;
+}
