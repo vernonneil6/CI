@@ -29,7 +29,7 @@
           </div>
         </div>
 	<div class="clearfix file">
-          <div class="lab slider_area" > <label for="image">Image<div class = "slider_caption"><label>Photos must be 1200 x 371 in size</label></div></label> </div>
+          <div class="lab slider_area" > <label for="image">Image</label> <div class = "slider_caption"><label>(Photos must be 1200 x 371 in size)</label></div></div>
           <div class="con slider_upload"> <?php echo form_input( array( 'name'=>'images','class'=>'input file upload-file','type'=>'file') ); ?> </div>
         </div>
         <?php echo form_input(array('name'=>'submitimage','class'=>'button','type'=>'submit','value'=>'Add')); ?>
