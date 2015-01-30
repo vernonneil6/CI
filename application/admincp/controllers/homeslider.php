@@ -57,24 +57,19 @@ class Homeslider extends CI_Controller
 	public function index()
 	{
 		if($this->session->userdata['youg_admin'])
-	  {
-			//Addingg Setting Result to variable
+		{
 			$siteid = $this->session->userdata('siteid');
 			$this->data['homesliders'] = $this->homesliders->get_all_slidersetting($siteid);
 			
 			$this->data['sliderimage']=$this->homesliders->slider();
 
-			//Loading View File
 			$this->load->view('homeslider',$this->data);
-	  }
+		}
 	}	
 	public function add()
-	{
-		
+	{		
 		$this->load->view('homeslider');
 		
-		
-
 		if($this->input->post('submitimage'))
 		{
 		$config['upload_path'] = '../uploads/slider/';
@@ -84,25 +79,27 @@ class Homeslider extends CI_Controller
 		$config['max_height']  = '768000';
 		$this->load->library('upload', $config);
 		
-		if($this->upload->do_upload('images'))
-		{
-			$title =$this->input->post('title') ;	
-			$imgdata = $this->upload->data();
-    			$this->homesliders->addimage($title,$imgdata['file_name']);
-			redirect('homeslider', 'refresh');
-	
-		}
+			if($this->upload->do_upload('images'))
+			{
+				$title =$this->input->post('title') ;	
+				$imgdata = $this->upload->data();
+				$this->homesliders->addimage($title,$imgdata['file_name']);
+				redirect('homeslider', 'refresh');
+		
+			}
 		}
 	
 	}
-        public function edit($id)
+    
+    public function edit($id)
 	{
-		$row=$this->homesliders->updatefield($id);
-                $data['title']=$row['title'];
-                $data['image']=$row['image'];
-                $data['id']=$row['id'];
+		$row = $this->homesliders->updatefield($id);
+		$data['title']=$row['title'];
+		$data['image']=$row['image'];
+		$data['id']=$row['id'];
 		$this->load->view('homeslider',$data);
-                if($this->input->post('submitimage'))
+        
+        if($this->input->post('submitimage'))
 		{
 		$config['upload_path'] = '../uploads/slider/';
 		$config['allowed_types'] = 'gif|jpg|png';
@@ -111,22 +108,23 @@ class Homeslider extends CI_Controller
 		$config['max_height']  = '309';
 		$this->load->library('upload', $config);
 		
-		if($this->upload->do_upload('images'))
-		{
-			$title =$this->input->post('title') ;	
-			$imgdata = $this->upload->data();
-    			$this->homesliders->updateslider($id,$title,$imgdata['file_name']);
-			redirect('homeslider', 'refresh');
+			if($this->upload->do_upload('images'))
+			{
+				$title =$this->input->post('title') ;	
+				$imgdata = $this->upload->data();
+					$this->homesliders->updateslider($id,$title,$imgdata['file_name']);
+				redirect('homeslider', 'refresh');
+			}
+			else
+			{
+				$title =$this->input->post('title') ;
+				$image =$this->input->post('hiddenimage') ;
+				$this->homesliders->updateslider($id,$title,$image);
+				redirect('homeslider', 'refresh');
+			}
 		}
-		else
-		{
-			$title =$this->input->post('title') ;
-			$image =$this->input->post('hiddenimage') ;
-			$this->homesliders->updateslider($id,$title,$image);
-			redirect('homeslider', 'refresh');
-		}
-		}
-        }
+    }
+    
 	function delete($id)
 	{
 		$this->homesliders->deleteslider($id);
