@@ -79,7 +79,7 @@ echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].$_SE
     </div>
     <?php if(count($othercoupons)>0){?>
     <div class="cmnt_mainwrp">
-      <h2>OTHER COUPONS FROM  <?php echo strtoupper(stripslashes($coupons[0]['company'])); ?></h2>
+      <h2 class = "font_size_2">OTHER COUPONS FROM  <?php echo strtoupper(stripslashes($coupons[0]['company'])); ?></h2>
       <?php for($j=0;$j<count($othercoupons);$j++){?>
       <div class="cmnt_blckwrp">
         <div class="clnt_intr cmt_lft coupon_left">
