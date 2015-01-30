@@ -2,7 +2,9 @@
 <section class="container">
   <section class="main_contentarea">
     <div class="innr_wrap">
-      <div class="p_realese_head"><a href="#"><img src="./images/YouGotRated_HeaderGraphics_press_release.png" alt="Press Realease" title="Business Directory"></a></div>
+      
+      <h1 class="bannertext"><span class="bannertextregular">Press </span>Release</h1>
+      
       <form class="p_realse_wrap" action="pressrelease/search" method="post">
         <div class="main_press_srchwrp">
           <div class="pres_srch_wrp">
@@ -12,22 +14,75 @@
             </div>
           </div>
         </div>
-        </form>
-        <div class="pre_blckwrp">
-          
-          <?php if( count($pressreleases) > 0) { ?>
-        <?php for($i=0; $i<count($pressreleases); $i++) { ?>
-          
-          
-          
-          <div class="pre_blck">
-            <div class="pre_desc"><a href="<?php echo site_url('pressrelease/browse/'.$pressreleases[$i]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?>'s detail"> "<?php echo stripslashes(substr($pressreleases[$i]['sortdesc'],0,100)).'...'; ?>"</a></div>
-            <div class="pre_titlewrp">
-              <h3><a href="<?php echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>'s detail"><?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?></a></h3>
-              <p><a href="<?php echo site_url('pressrelease/browse/'.$pressreleases[$i]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?>'s detail">"<?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?>"</a></p>
-            </div>
+      </form>
+        
+        
+			<?php 
+			$avgstar = $this->common->get_avg_ratings_bycmid($company[0]['id']);
+			$avgstar = round($avgstar);
+			$elitemem_status = $this->common->get_eliteship_bycompanyid($company[0]['id']);
+			
+			 if( count($pressreleases) > 0) { ?>
+			 <div class="dir_rew_wrap">
+			<?php for($i=0; $i<count($pressreleases); $i++) { ?>
+
+			 <div class="revw_blck">
+			  <div class="revw_blck_img"> 
+				 <?php 
+					if(count($elitemem_status)==0)
+					{
+				 ?>
+						<div class="vry_logo"> 
+							<a href="<?php echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail">
+								<img  class="reviewnotverifiedlogo" src="images/notverified.png"  />
+							</a> 
+						</div>  <?php 
+						}else{  ?>
+						<div class="vry_logo"> 
+							<a href="<?php echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail">
+								<img class="reviewverifiedlogo" src="images/verifiedlogo.jpg" />
+							</a> 
+						</div>      
+				<?php
+					} 
+				?> 
+					
+			  </div>
+			  <div class="revw_blck_cnt">
+				<h2>
+					<a class = "font_color_2" href="<?php echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>'s detail"><?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?></a>
+				  
+				  <div class="rating">
+					
+					<?php for($r=0;$r<$avgstar;$r++){?>
+						<i class="vry_rat_icn"></i>
+					<?php } ?>
+					<?php for($p=0;$p<(5-$avgstar);$p++){?>
+						<img src="images/no_star.png" alt="no_star" title="no_star" />
+					<?php } ?>
+					
+				  </div>
+				</h2>
+				
+				<div class="revw_occupt"> 
+					<span>
+						<a class = "font_color_white" href="<?php echo site_url('pressrelease/browse/'.$pressreleases[$i]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?>'s detail">"<?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?>"</a>
+					</span>
+				</div>
+				
+				<div class="revw_desc">
+					<a href="<?php echo site_url('pressrelease/browse/'.$pressreleases[$i]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?>'s detail"> "<?php echo stripslashes(substr($pressreleases[$i]['sortdesc'],0,100)).'...'; ?>"</a>
+				</div>
+			  </div>
+			</div>
+                   
+          <?php 
+		  }
+          ?>
           </div>
-          <?php } }else
+          <?php	 
+		  }	 
+          else
 		  {
 		  ?>
           <div id="message-red">
@@ -40,14 +95,15 @@
             </div>
           <?php
 		  }?>
-        </div>
+      
         <?php  if($this->pagination->create_links()) { ?>
-       <div class="pagination"> <?php echo $this->pagination->create_links(); ?> </div>
-        
-        
+			<div class="pagination"> <?php echo $this->pagination->create_links(); ?> </div>
 		<?php } ?>
+      
+		<div class="lgn_btnlogo"> <a href=""><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
       
     </div>
   </section>
 </section>
+
 <?php echo $footer;?>
