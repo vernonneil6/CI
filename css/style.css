@@ -1151,7 +1151,8 @@ ul.tabbs li {
     list-style: none outside none;
     height: 35px;
     list-style: none outside none;
-	margin-right: 11px;
+	margin-right: 12.5px;
+	-webkit-margin-end: 19.8px;
 }
 ul.tabbs li:hover {
     background: #D58438;   
