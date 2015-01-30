@@ -7,7 +7,7 @@
       
       <h1  class="bannertextcoupon profile_page_heading">
 		<div class ="float_left profile_page_title">
-			<span class="bannertextregular">Related </span><br> Coupons
+			<span class="bannertextregular">RELATED </span><br> COUPONS
 		</div>
 		<?php 
 		    
@@ -16,7 +16,7 @@
 			$elitemem_status = $this->common->get_eliteship_bycompanyid($company[0]['id']);
 			
 		?>
-		<div class="srch_rslt_left ">
+		<div class="srch_rslt_left profile_page_content">
             
             <div class="verified_wrp srch_rslt_vrfy vfy_rvw">
               <?php if(count($elitemem_status)==0){?>
