@@ -133,7 +133,7 @@
       <tr class="top nodrop nodrag">
         <th width="40%">Day</th>
         <th width="40%">Timing</th>
-        <th width="7%">Off</th>
+        <th width="7%">Closed</th>
         <th width="13%">Action</th>
       </tr>
       <?php for($i=0;$i<count($timings);$i++) { ?>

@@ -98,8 +98,17 @@
 				{
 					if(count($company_timings) > 0)
 					{
+						if($company_timings['off']=='Yes')
+						{
 				?>
-						<label class = "font_size_bold">Open Today </label> : <?php echo date("g:i A",strtotime($company_timings['start']));?> - <?php echo date("g:i A",strtotime($company_timings['end']));
+							<label>Closed</label>
+				<?php
+						}
+						if($company_timings['off']=='No')
+						{
+						?>
+							<label class = "font_size_bold">Open Today </label> : <?php echo date("g:i A",strtotime($company_timings['start']));?> - <?php echo date("g:i A",strtotime($company_timings['end']));
+						}
 					}
 				} 
 				?>
