@@ -292,7 +292,6 @@ else { ?>
         <td><?php echo stripslashes($discounts[$i]['percentage']); ?></td>
         <td>
 			<?php if($discounts[$i]['apply']==1){ echo "Worked";?>
-			   
 			<?php } else if($discounts[$i]['apply']==2) { echo "Not Used ";?>
 			<?php } else { echo "Not Working";}?>
 		</td>

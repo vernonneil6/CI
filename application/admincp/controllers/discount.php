@@ -146,8 +146,8 @@ class Discount extends CI_Controller {
 	//Updating the Record
 	public function update()
 	{
-		//echo '<pre>';print_r($_REQUEST['detail']); die();
-		if( $this->session->userdata['youg_admin'] )
+		
+		if($this->session->userdata['youg_admin'] )
 	  	{
 			$elitemembershipprice=$this->settings->update_get_eliteprice_by_settingid(19);
 			//If Old Record Update

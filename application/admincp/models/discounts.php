@@ -43,7 +43,6 @@ Class Discounts extends CI_Model
 				$percentage="30 Days Free Trial+ Low Price";  
 			  }
 		}
-		
 		$date=date('Y-m-d H:i:s');
 		$code = uniqid();
 		$data = array(		'title' 		     => $title,
