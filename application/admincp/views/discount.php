@@ -100,6 +100,8 @@
               </div>
               <div class="con" style="width: 59% !important; float:left">
                 <?php $dis = range(0,100);
+    				  $dis[101]="30 Days Free trial ";
+    				  $dis[102]="30 Days Free trial+Lowprice";
     				  $dis[0]="Select";
 					  $js = "id='percentage' class='select'";
 					  ?>
@@ -269,11 +271,17 @@ else { ?>
     <?php } ?>
     <?php if( count($discounts) > 0 ) { ?>
     <!-- table -->
+    <style>
+    .tab th, .tab td
+    { padding: 8px 25px!important}
+    </style>
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
         <th>Description</th>
         <th>Code</th>
         <th>Discount(%)</th>
+        <th>Apply</th>
+        <th>Revised Price</th>
         <th>Status</th>
         <th>Action</th>
       </tr>
@@ -282,6 +290,13 @@ else { ?>
         <td><?php echo ucfirst(stripslashes($discounts[$i]['title'])); ?></td>
         <td><?php echo stripslashes($discounts[$i]['code']); ?></td>
         <td><?php echo stripslashes($discounts[$i]['percentage']); ?></td>
+        <td>
+			<?php if($discounts[$i]['apply']==1){ echo "Worked";?>
+			   
+			<?php } else if($discounts[$i]['apply']==2) { echo "Not Used ";?>
+			<?php } else { echo "Not Working";}?>
+		</td>
+        <td><?php echo "$".stripslashes($discounts[$i]['discountprice']); ?></td>
         <td><?php if( stripslashes($discounts[$i]['status']) == 'Enable' ) { ?>
           <a href="<?php echo site_url('discount/disable/'.$discounts[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this discount?');"><span>Enable</span></a>
           <?php } ?>
