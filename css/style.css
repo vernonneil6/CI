@@ -1895,7 +1895,28 @@ font_color_white
 {
 	border : none!important;
 }
+.margin_top_1
+{
+	margin : 5px 0  0;
+}
 .complaintlist
 {
   color: #2C6A99; 
+}
+.complaint_user_title
+{
+	font-family: myriadpro-boldcond;
+    font-size: 60px;
+}
+.complaint_user_table
+{
+	margin : 25px 0 0;
+	border : none;
+	font-family: myriadpro-regular;
+}
+.complaint_user_list
+{
+	margin-bottom:10px;
+	padding-bottom:10px;
+	border-bottom: 1px dotted #CCCCCC;
 }

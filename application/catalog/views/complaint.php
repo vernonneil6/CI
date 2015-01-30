@@ -790,6 +790,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
         </tr>
       </table>
       <?php }
+      
+      
+      
+      
 		else if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'viewuser' ) ){ ?>
       <?php if( $this->session->flashdata('success') ) { ?>
       <!--  start message-green -->
@@ -806,51 +810,76 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <div class="dir_panel">
         <?php if(count($user)>0) { ?>
         <div class="dir_title" style="font-size:18px;">
-          <h1>Profile for :&nbsp;<?php echo stripslashes($user[0]['username']); ?></h1>
+          <h1 class = "complaint_user_title">Profile for :&nbsp;<span class = "complaintlist"><?php echo stripslashes($user[0]['username']); ?></span></h1>
         </div>
-        <table width="95%" border="0" cellspacing="0" cellpadding="0" style="border:none">
+        <table width="95%" border="0" cellspacing="0" cellpadding="0" class="complaint_user_table">
           <tr height="80">
-            <td width="200" valign="top"><div class="task-photo"> <img width="60px" src="<?php if( strlen($user[0]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($user[0]['avatarbig']); } else { if($user[0]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/male.png"; } 
-		  	if($user[0]['gender']=='Female') { echo $this->common->get_setting_value('2')."images/female.png"; } 
-		  } 
-		   ?>" alt="<?php echo stripslashes($user[0]['username']); ?>"/> </div>
+            <td width="200" valign="top"><div class="task-photo"> <img width="60px" src="<?php if( strlen($user[0]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($user[0]['avatarbig']); } else {  echo $this->common->get_setting_value('2')."images/default_user.png";  }  ?>" alt="<?php echo stripslashes($user[0]['username']); ?>"/> </div>
               <span class="rev-company"><?php echo "Joined on";?><br/>
               <?php echo date('d M, Y',strtotime($user[0]['registerdate']));?></span><br/>
               <span class="rev-company"><?php echo $user[0]['city'];?></span><br/>
               <span class="rev-company"><?php echo $user[0]['state'];?></span>
               
               </td>
-            <td width="700"><?php if( count($complaintbyuser) > 0 ) { ?>
-              <span class="rev-company dir_title1">Complaints by&nbsp;<?php echo stripslashes($user[0]['username']); ?> </span><br/>
-              <br/>
+            <td width="700"><?php if( count($complaintbyuser) > 0 ) { ?>    
+			  <div class="treding_title"> Complaints </div>
               <?php for($i=0; $i<count($complaintbyuser); $i++) { ?>
               <?php $company=$this->complaints->get_company_byid($complaintbyuser[$i]['companyid']);?>
-              <div style="margin-bottom:10px;padding-bottom:10px;border-bottom: 1px dotted #CCCCCC;" class="user_view"><span>Company:</span><span>
-                <?php if(count($company)>0) { ?>
-                <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes($company[0]['company']);?>'s detail"> <?php echo stripslashes($company[0]['company']);?>
-                <?php } ?>
-                </a></span><br/>
-                <span style="padding-bottom:3px">Reported Damage:</span><span style="padding-bottom:3px">$<?php echo stripslashes($complaintbyuser[$i]['damagesinamt']);?></span><br/>
-                <span style="padding-bottom:3px">Submitted:</span><span style="padding-bottom:3px"><?php echo date('d M, Y',strtotime($complaintbyuser[$i]['complaindate']));?></span><br/>
-                <span style="padding-bottom:3px"><a href="<?php echo site_url('complaint/browse/'.$complaintbyuser[$i]['comseokeyword']);?>" title="view complaint detail"><?php echo strtolower(substr(stripslashes($complaintbyuser[$i]['detail']),0,150)."..."); ?></a></span> </div>
+              <div class="user_view complaint_user_list">
+				<div class = "margin_top_1">
+					<span>Company:</span>
+					<span>
+						<?php if(count($company)>0) { ?>
+							<a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes($company[0]['company']);?>'s detail"> <?php echo stripslashes($company[0]['company']);?>
+						<?php } ?>
+						</a>
+					</span>
+                </div>
+                <div class = "margin_top_1">
+					<span>Reported Damage:</span>
+					<span>$<?php echo stripslashes($complaintbyuser[$i]['damagesinamt']);?></span>
+                </div>
+                <div class = "margin_top_1">
+					<span style="padding-bottom:3px">Submitted:</span>
+					<span style="padding-bottom:3px"><?php echo date('d M, Y',strtotime($complaintbyuser[$i]['complaindate']));?></span>		
+                </div>
+                <div class = "margin_top_1">
+					<span style="padding-bottom:3px">
+						<a href="<?php echo site_url('complaint/browse/'.$complaintbyuser[$i]['comseokeyword']);?>" title="view complaint detail"><?php echo strtolower(substr(stripslashes($complaintbyuser[$i]['detail']),0,150)."..."); ?></a>
+					</span>
+				</div>
               <?php } } else { ?>
-              <div style="margin-bottom:10px;"> <span class="rev-company user_title" style="font-size:14px;"> No Complaints by <?php echo stripslashes($user[0]['username']); ?></span> </div>
+              <div style="margin-bottom:10px;"> <span class="rev-company user_title" style="font-size:14px;"> No Complaint </span> </div>
               <?php	} ?>
+              
               <div class="blankdiv"></div>
+              
+              
               <?php if( count($commentbyuser) > 0 ) { ?>
-              <span class="rev-company dir_title1">Comments by&nbsp;<?php echo stripslashes($user[0]['username']); ?> </span><br/>
-              <br/>
+              <div class="treding_title"> Comments </div>
               <?php for($i=0; $i<count($commentbyuser); $i++) { ?>
               <?php $company=$this->complaints->get_company_byid($commentbyuser[$i]['companyid']);?>
-              <div style="margin-bottom:10px;padding-bottom:10px;border-bottom: 1px dotted #CCCCCC;" class="user_view"><span style="padding-bottom:3px">Company:</span><span style="padding-bottom:3px">
-                <?php if(count($company)>0) { ?>
-                <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes($company[0]['company']);?>'s detail"> <?php echo stripslashes($company[0]['company']);?>
-                <?php } ?>
-                </a></span><br/>
-                <span style="padding-bottom:3px">Commented:</span><span style="padding-bottom:3px"><?php echo date('d M, Y',strtotime($commentbyuser[$i]['reviewdate']));?> </span><br/>
-                <span style="padding-bottom:3px"> <a href="<?php echo site_url('complaint/viewcomment/'.$commentbyuser[$i]['id']);?>" title="view comment detail"> <?php echo strtolower(substr(stripslashes($commentbyuser[$i]['comment']),0,150)."..."); ?></a></span> </div>
+              <div class="user_view complaint_user_list">
+				<div class = "margin_top_1">
+					<span>Company:</span>
+					<span>
+						<?php if(count($company)>0) { ?>
+						<a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes($company[0]['company']);?>'s detail"> <?php echo stripslashes($company[0]['company']);?>
+						<?php } ?>
+						</a>
+					</span>
+                </div>
+                <div class = "margin_top_1">
+					<span>Commented:</span>
+					<span><?php echo date('d M, Y',strtotime($commentbyuser[$i]['reviewdate']));?> </span>
+                </div>
+                <div class = "margin_top_1">
+					<span>
+						<a href="<?php echo site_url('complaint/viewcomment/'.$commentbyuser[$i]['id']);?>" title="view comment detail"> <?php echo strtolower(substr(stripslashes($commentbyuser[$i]['comment']),0,150)."..."); ?></a>
+					</span>
+				</div>
               <?php } } else { ?>
-              <div style="margin-bottom:10px;"> <span class="user_title" style="font-size:14px;"> No Comments by <?php echo stripslashes($user[0]['username']); ?></span> </div>
+              <div style="margin-bottom:10px;"> <span class="user_title" style="font-size:14px;"> No Comments </span> </div>
               <?php } ?></td>
           </tr>
         </table>
@@ -866,6 +895,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
         <?php } ?>
       </div>
       <?php }
+      
+      
+      
+      
 	else if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'browse' ) ){ ?>
       <div class="login_box_div" style="width:740px; margin-top:0; min-height:330px">
         <div class="box"> 
