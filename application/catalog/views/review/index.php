@@ -127,7 +127,7 @@
 					</a>
 				</span>-
 				<p>
-					<a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile" class="reviewcolor"> <?php echo stripslashes($reviews[$i]['username']); ?></a>
+					<a target = "_blank" href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile" class="reviewcolor"> <?php echo ucfirst(stripslashes($reviews[$i]['username'])); ?></a>
 				</p>
               <div class="revw_date">
                 <?php
