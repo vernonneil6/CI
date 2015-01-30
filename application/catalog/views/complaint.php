@@ -849,6 +849,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 					</span>
 				</div>
               <?php } } else { ?>
+			  <div class="treding_title"> Complaints </div>
               <div style="margin-bottom:10px;"> <span class="rev-company user_title" style="font-size:14px;"> No Complaint </span> </div>
               <?php	} ?>
               
@@ -879,7 +880,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 					</span>
 				</div>
               <?php } } else { ?>
-              <div style="margin-bottom:10px;"> <span class="user_title" style="font-size:14px;"> No Comments </span> </div>
+     	      <div class="treding_title"> Comments </div>
+              <div style="margin-bottom:10px;"> <span class="user_title" style="font-size:14px;"> No Comment </span> </div>
               <?php } ?></td>
           </tr>
         </table>
