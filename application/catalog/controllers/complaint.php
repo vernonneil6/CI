@@ -123,11 +123,10 @@ class Complaint extends CI_Controller {
 								
 						{
 						$company= $this->complaints->get_company_byseokeyword($this->uri->segment(3));
-						$companyname = $this->users->get_company_bysingleid($company['companyid']);
-						
+				
 			 	  	if(count($company)>0)
 						{
-								$this->data['title'] = $companyname['company'] ."". 'Complaints : YOUGOTRATED';
+								$this->data['title'] = $company['company'] ."  ". 'Complaints : YOUGOTRATED';
 								$this->data['keywords'] = $this->uri->segment(3);
 								$this->data['description'] = $company[0]['aboutus'];
 						}
