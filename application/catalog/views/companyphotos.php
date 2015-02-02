@@ -87,21 +87,23 @@
 				</script>
               <?php for($i=0; $i<count($gallerys); $i++) { ?>
               <?php $photos = $this->complaints->get_photos_bygalleryid($gallerys[$i]['id']);?>
-              <div class = "gallery_title"><?php echo $gallerys[$i]['title'];?></div>
-              <?php if(count($photos)>0){ ?>
-              <div class="container1">
-                <div id="featured" class = "gallery_featured">
-                  <?php for($f=0; $f<count($photos); $f++) { ?>
-					<img src="<?php echo $site;?>uploads/gallery/main/<?php echo stripslashes($photos[$f]['photo']); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="520;" height="392"/>
-                  <?php } ?>
-                </div>
-              </div>
-              <div style="padding-bottom:15; margin-top:15px;"></div>
-              <?php } else { ?>
-              <div class="form-message warning">
-                <p>No photos in this gallery.</p>
-              </div>
+              <div>
+				  <div class = "gallery_title"><?php echo $gallerys[$i]['title'];?></div>
+				  <?php if(count($photos)>0){ ?>
+				  <div class="container1">
+					<div id="featured" class = "gallery_featured">
+					  <?php for($f=0; $f<count($photos); $f++) { ?>
+						<img src="<?php echo $site;?>uploads/gallery/main/<?php echo stripslashes($photos[$f]['photo']); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="450;" height="380"/>
+					  <?php } ?>
+					</div>
+				  </div>
+				  <div style="padding-bottom:15; margin-top:15px;"></div>
+				  <?php } else { ?>
+				  <div class="form-message warning">
+					<p>No photos in this gallery.</p>
+				  </div>
               <?php } ?>
+              </div>
               <?php } ?>
               <?php }
 				
