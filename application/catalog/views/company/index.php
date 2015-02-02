@@ -128,6 +128,12 @@
 
           </ul>
         </div>
+        <div itemscope itemtype = "http://schema.org/aggregaterating" itemprop = "aggregaterating">
+			  <meta itemprop = "reviewcount" content = "<?php echo count($reviews); ?>" >
+			  <meta itemprop = "ratingvalue" content = "<?php echo $itemproaverage; ?>" >
+			  <meta itemprop = "bestrating" content = "<?php echo  '5'; ?>" >
+			  <meta itemprop = "worstrating" content = "<?php echo '0'; ?>" >	
+		</div>	
         <div class="social_blck">
           <?php if(count($elitemem_status)!=0){?>
           <ul>
@@ -257,12 +263,7 @@
 
         </ul>
      </div>
-     <div itemscope itemtype = "http://schema.org/aggregaterating" itemprop = "aggregaterating">
-			  <meta itemprop = "reviewcount" content = "<?php echo count($reviews); ?>" >
-			  <meta itemprop = "ratingvalue" content = "<?php echo $itemproaverage; ?>" >
-			  <meta itemprop = "bestrating" content = "<?php echo  '5'; ?>" >
-			  <meta itemprop = "worstrating" content = "<?php echo '0'; ?>" >	
-		</div>	
+     
 
     <div class="right_panel rightpanelwidth">
 
