@@ -6,6 +6,7 @@
 <meta HTTP-EQUIV="REFRESH" content="0; url=<?php echo base_url();?>noscript.php">
 </noscript>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title><?php echo $title;?></title>
 <meta name="keywords" content="<?php echo $keywords;?>">
 <meta name="description" content="<?php echo $description;?>">
 <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
@@ -23,7 +24,7 @@
  $('.data_table').delay(6000).fadeOut(600);
  });
 </script>
-<title><?php echo $title;?></title>
+
 <style>
 .isa_info, .isa_success, .isa_warning, .isa_error {
 	margin: 10px 0px;
