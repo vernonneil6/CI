@@ -76,28 +76,35 @@
       </h1>      
       <div class="coupon_wrap">
      
-        <?php 
-				if( count($videos) > 0 ) { 				
-			?>
-            <?php for($i=0; $i<count($videos); $i++) { ?>
-            <div>
-              <div class="company_content_title contenttag"><?php echo $videos[$i]['title'];?></div>
-              <br />
-              <div>
-				<?php
-					$ytarray=explode("/", $videos[$i]['videourl']);
-					$ytendstring=end($ytarray);
-					$ytendarray=explode("?v=", $ytendstring);
-					$ytendstring=end($ytendarray);
-					$ytendarray=explode("&", $ytendstring);
-					$ytcode=$ytendarray[0];
-					echo "<iframe width=\"520\" height=\"280\" src=\"http://www.youtube.com/embed/$ytcode\" frameborder=\"1\" allowfullscreen></iframe>";
-				?>  
+         <link rel="stylesheet" href="<?php echo base_url();?>js/orbit/orbit-1.2.3.css" type="text/css">
+              <script type="text/javascript" src="<?php echo base_url();?>js/orbit/jquery.orbit-1.2.3.min.js"></script>
+              <?php if( count($gallerys) > 0 ) { ?>
+              <?php $site = site_url();	?>
+              <script type="text/javascript">
+				$(window).load(function() {
+				$('.gallery_featured').orbit();
+					});
+				</script>
+              <?php for($i=0; $i<count($gallerys); $i++) { ?>
+              <?php $photos = $this->complaints->get_photos_bygalleryid($gallerys[$i]['id']);?>
+              <div class = "gallery_title"><?php echo $gallerys[$i]['title'];?></div>
+              <?php if(count($photos)>0){ ?>
+              <div class="container1">
+                <div id="featured" class = "gallery_featured">
+                  <?php for($f=0; $f<count($photos); $f++) { ?>
+					<img src="<?php echo $site;?>uploads/gallery/main/<?php echo stripslashes($photos[$f]['photo']); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="520;" height="392"/>
+                  <?php } ?>
+                </div>
               </div>
-              <div style="display:none;"> <a href="<?php echo $videos[$i]['videourl'];?>" title="<?php echo $videos[$i]['videourl'];?>"><?php echo $videos[$i]['videourl'];?></a> </div>
-            </div>
-            <?php 
-            }  }
+              <div style="padding-bottom:15; margin-top:15px;"></div>
+              <?php } else { ?>
+              <div class="form-message warning">
+                <p>No photos in this gallery.</p>
+              </div>
+              <?php } ?>
+              <?php } ?>
+              <?php }
+				
             ?>
        
       </div>
