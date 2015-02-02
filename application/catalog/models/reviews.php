@@ -435,7 +435,11 @@ class Reviews extends CI_Model
 	//Getting value for searching
 	function search_company($keyword,$limit ='',$offset='')
  	{
-	//Setting Limit for Paging
+		//Ordering Data
+		$sortby = 'company';
+		$orderby = 'ASC';
+		$this->db->order_by($sortby,$orderby);
+		//Setting Limit for Paging
 		if( $limit != '' && $offset == 0)
 		{ $this->db->limit($limit); }
 		else if( $limit != '' && $offset != 0)
