@@ -93,7 +93,7 @@ class Coupon extends CI_Controller {
 		{
 		$company = $this->coupons->get_company_bycouponseokeyword($this->uri->segment(3));
 		$companyname = $this->users->get_company_bysingleid($company['companyid']);
-		$this->data['title'] = $companyname['company'];
+		$this->data['title'] = $companyname['company'] ."". 'Coupons : YOUGOTRATED';
 		}
 		
 		//Load header and save in variable

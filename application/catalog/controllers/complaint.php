@@ -123,9 +123,11 @@ class Complaint extends CI_Controller {
 								
 						{
 						$company= $this->complaints->get_company_byseokeyword($this->uri->segment(3));
+						$companyname = $this->users->get_company_bysingleid($company['companyid']);
+						
 			 	  	if(count($company)>0)
 						{
-								$this->data['title'] = $company[0]['company'].' '.implode(' ', array_slice(explode(' ', $company[0]['aboutus']), 0, 10));
+								$this->data['title'] = $companyname['company'] ."". 'Complaints : YOUGOTRATED';
 								$this->data['keywords'] = $this->uri->segment(3);
 								$this->data['description'] = $company[0]['aboutus'];
 						}
@@ -133,7 +135,7 @@ class Complaint extends CI_Controller {
 						{
 								$this->data['keywords'] = $this->common->get_seosetting_value(4);
 								$this->data['description'] = $this->common->get_seosetting_value(5);
-								$this->data['title'] = 'Complaints';
+								$this->data['title'] = 'Complaints : YOUGOTRATED';
 						}
 					}
 					}
@@ -163,9 +165,9 @@ class Complaint extends CI_Controller {
 			//Meta Keywords and Description
 		$this->data['keywords'] = $this->common->get_seosetting_value(4);
 		$this->data['description'] = $this->common->get_seosetting_value(5);
-		$this->data['title'] = 'Complaints';
+		$this->data['title'] = 'Complaints : YOUGOTRATED';
 		}
-		$this->data['section_title'] = 'Complaints';
+		$this->data['section_title'] = 'Complaints : YOUGOTRATED';
 
 		//Load header and save in variable
 		$this->data['header'] = $this->load->view('header',$this->data,true);
