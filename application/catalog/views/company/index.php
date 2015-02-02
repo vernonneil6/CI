@@ -553,12 +553,11 @@
             </div>
             <?php 
 			}
-			if($i==5)
-			{
+			 
 			?>
 				<p align="right" class="cmnt_wrp">
 				<a href="<?php echo site_url('company/videos/'.$company[0]['id']);?>" title="View All">View All</a></p>
-            <?php } }?>
+            <?php  }?>
          </div>
           
         </div>
