@@ -70,7 +70,7 @@
 				<?php if($company[0]['company']!=''){ ?>
 			  <h1><span itemprop="name" class = "fn"><?php echo strtoupper($company[0]['company']);?></span></h1>
 			  <?php } else { ?>
-				  <h1><span itemprop="name" class = "fn"><?php echo "Anonymous");?></span></h1>
+				  <h1><span itemprop="name" class = "fn"><?php echo "Anonymous";?></span></h1>
 				 <?php } ?>
 			<div class="vrytitle">YouGotRated VERIFIED MERCHANT</div>
 			  <div class="vry_rating vryrating">
