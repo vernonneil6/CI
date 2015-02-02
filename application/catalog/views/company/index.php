@@ -31,7 +31,7 @@
       <div class="left_panel  leftpanelwidth" itemscope itemtype="http://schema.org/Organization">
 
 
-	<div>
+		<div>
         <?php if(count($elitemem_status)==0){?>
         <div class="vry_logo"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
         <?php }else{
@@ -39,12 +39,7 @@
         <div class="vry_logo"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
         <?php
 				  } ?>
-		 <div itemscope itemtype = "http://schema.org/aggregaterating" itemprop = "aggregaterating">
-			  <span style ="display : none" itemprop = "reviewcount"> <?php echo count($reviews); ?> </span>
-			  <span style ="display : none" itemprop = "ratingvalue"> <?php echo $itemproaverage; ?> </span>
-			  <span style ="display : none" itemprop = "bestrating"> <?php echo  '5'; ?> </span>
-			  <span style ="display : none" itemprop = "worstrating"> <?php echo '0'; ?> </span>	
-		</div>		  
+			  
 				  
 		<?php if(count($elitemem_status)==0){?>
         <div>
@@ -262,6 +257,12 @@
 
         </ul>
      </div>
+     <div itemscope itemtype = "http://schema.org/aggregaterating" itemprop = "aggregaterating">
+			  <meta itemprop = "reviewcount" content = "<?php echo count($reviews); ?>" >
+			  <meta itemprop = "ratingvalue" content = "<?php echo $itemproaverage; ?>" >
+			  <meta itemprop = "bestrating" content = "<?php echo  '5'; ?>" >
+			  <meta itemprop = "worstrating" content = "<?php echo '0'; ?>" >	
+		</div>	
 
     <div class="right_panel rightpanelwidth">
 
@@ -311,6 +312,10 @@
         <div class="tab_container">
           <div class="tab_content" id="tab1">
             <?php if( count($reviews) > 0 ) { ?>
+			<div itemscope itemtype = "http://schema.org/review" itemprop = "review">
+				
+			
+			
             <?php if(count($reviews)>5)
 			  {
 				$newreviews = 5;
@@ -337,16 +342,16 @@
 			    if(count($users)>0) 
 			    { 
 			?>
-                  <a><?php echo $users['username'];?></a>
+                  <a><span itemprop = "author"><?php echo $users['username'];?></span></a>
 			<?php
 				}
 			?>
-            <div class="datereview"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
+            <div class="datereview"><span itemprop = "datepublished"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></span></div>
                   <?php  } else {?>       
 				  <?php $user=$this->users->get_user_byid($reviews[$i]['reviewby']);?>
                   <?php if(count($user)>0) { ?>
                   <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><?php echo $user[0]['username'];?></a>
-			<div class="datereview"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
+			<div class="datereview"><span itemprop = "datepublished"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></span></div>
                   <?php } ?>
                   <?php } ?>
                   </a>
@@ -366,7 +371,7 @@
                     <h2><?php echo $reviews[$i]['reviewtitle'];?></h2>
                     </div>
                 </div>
-                <p><?php echo $reviews[$i]['comment'];?></p>
+                <p><span itemprop ="reviewbody"><?php echo $reviews[$i]['comment'];?></span></p>
                 <div class="cmnt_wrp wrps"> <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add comment">  +  Add comment </a> </div>
               </div>
             </div>
@@ -382,6 +387,13 @@
               <p>No Reviews.</p>
             </div>
             <?php } ?>
+            <div itemscope itemtype = "http://schema.org/rating" itemprop = "rating">
+
+				  <meta itemprop = "ratingvalue" content="<?php echo $reviews[$i]['rate']; ?>">
+				  <meta itemprop = "bestrating"  content="<?php echo  '5'; ?>">
+				  <meta itemprop = "worstrating" content="<?php echo '0'; ?>">	
+			</div>
+            </div>
           </div>
           <div class="tab_content" id="tab2">
             <?php if( count($complaints) > 0 ) { ?>
