@@ -724,10 +724,10 @@ public function eliteSubscribe($formpost,$companyid) {
 	   $host = "apitest.authorize.net";
 	
 	
-	/*live
+	/*live*/
 	    $loginname="5h7G7Sbr";
 		$transactionkey="94KU7Sznk72Kj3HK";
-		$host = "api.authorize.net";*/
+		$host = "api.authorize.net";
 	
 	
 	$path = "/xml/v1/request.api";
@@ -739,6 +739,8 @@ public function eliteSubscribe($formpost,$companyid) {
 	
 	$disccode_user=$this->input->post('discountcode');
 	$discountmethod=$this->complaints->get_discount_method($disccode_user);
+	$startDate = date("Y-m-d");
+	$amount = $subscriptionprice;
 	if(count($discountmethod) > 0){
 		  
 		 if($discountmethod['discountcodetype']=="30days-FT" || $discountmethod['discountcodetype']=="30days-FT+LP")
@@ -756,20 +758,10 @@ public function eliteSubscribe($formpost,$companyid) {
 					} else if($discountmethod['discountcodetype']=="30days-FT") {
 					  $startDate=date('Y-m-d', strtotime("+30 days")); 
 					  $amount = $subscriptionprice;	
-					} else { 
-						
-						$startDate = date("Y-m-d");
-				        $amount = $subscriptionprice;
-						
-					}		
+					} 	
 			}
-			
     }
-    else
-	{
-		$startDate = date("Y-m-d");
-		$amount = $subscriptionprice;
-	}
+    
 	
 	$refId = uniqid();
 	$name = "elite membership";
