@@ -53,6 +53,8 @@ class Company extends CI_Controller {
 		$this->data['searchword']='';	
 		$this->data['keywords'] = $this->common->get_seosetting_value(4);
 		$this->data['description'] = $this->common->get_seosetting_value(5);
+		
+		
 		//Loading Model File
 	 	$this->load->model('complaints');
 		$this->load->model('users');
@@ -80,6 +82,8 @@ class Company extends CI_Controller {
 		if(count($company)>0)
 		{
 						$elitecompany = $this->complaints->get_eliteship_bycompanyid($company[0]['id']);
+						
+						
 						
 						if(	count($elitecompany)>0)
 						{

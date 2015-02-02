@@ -1,5 +1,6 @@
 <?php echo $header;?>
 <?php $avgstar = $this->common->get_avg_ratings_bycmid($company[0]['id']);
+			$itemproaverage = $avgstar;
 			$avgstar = round($avgstar);
 			$elitemem_status = $this->common->get_eliteship_bycompanyid($company[0]['id']);
 			
@@ -38,6 +39,13 @@
         <div class="vry_logo"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
         <?php
 				  } ?>
+		 <div itemscope itemtype = "http://schema.org/aggregaterating" itemprop = "aggregaterating">
+			  <span style ="display : none" itemprop = "reviewcount"> <?php echo count($reviews); ?> </span>
+			  <span style ="display : none" itemprop = "ratingvalue"> <?php echo $itemproaverage; ?> </span>
+			  <span style ="display : none" itemprop = "bestrating"> <?php echo  '5'; ?> </span>
+			  <span style ="display : none" itemprop = "worstrating"> <?php echo '0'; ?> </span>	
+		</div>		  
+				  
 		<?php if(count($elitemem_status)==0){?>
         <div>
 			<?php $urls="http://business.yougotrated.com/?elitemem=".$company[0]['id'].""; ?>
@@ -49,10 +57,11 @@
 			</div>
 			</a>    
         </div>
-       
+      
 		<div class="compny_name">
           <h1><span itemprop="name"><?php echo strtoupper($company[0]['company']);?></span></h1>
           <div class="vry_rating vryrating">
+  
             <?php for($r=0;$r<$avgstar;$r++){?>
             <i class="vry_rat_icn"></i>
             <?php } ?>
