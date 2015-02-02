@@ -23,7 +23,7 @@
 		?>
         
 	
-		<form class="reg_frm" action="solution/receipt" id="frmaddcompany" method="post" enctype="multipart/form-data">
+		<form class="reg_frm" action="index.php/solution/receipt" id="frmaddcompany" method="post" enctype="multipart/form-data">
 
 		  <div class="reg-row">
             <label>INTRODUCE YOUR BUSINESS</label>
@@ -206,6 +206,9 @@
             <label>HAVE DISCOUNT CODE?</label>
             <div class="reg_fld">ENTER DISCOUNT CODE</div>
             <input type="text" class="reg_txt_box" placeholder="DISCOUNT CODE" id="discountcode" name="discountcode" maxlength="50" />
+            <div id="discsuccess" class="error">Its is enable</div>
+            <div id="discnorerror" class="error">Its is not Available</div>
+            <div id="discallrerror" class="error">please enter code</div>
           </div>
           <div class="reg-row" style="margin-top:27px;">
             <label>CREATE YOUR ACCOUNT</label>
@@ -232,5 +235,32 @@ function chkwebsite(website){
 		return false;
 	}
 }
+$(document).ready(function(){
+ $("#discountcode").blur(function(){
+  if($("#discountcode").val().length >= 4)
+  {
+  $.ajax({
+   type: "POST",
+   url: "<?php echo base_url();?>index.php/solution/check_discountcode",
+   data: "discountcode="+$("#discountcode").val(),
+   success: function(msg){
+    if(msg=="true")
+    {
+     $("#discsuccess").show();
+     $("#discnorerror").hide();
+     $("#discallrerror").hide();
+    }
+    else
+    {
+     $("#discnorerror").show();
+     $("#discsuccess").hide();
+     $("#discallrerror").hide();
+    }
+   }
+  });
+  }
+ 
+ });
+});
 </script>
 <?php echo $footer;?>

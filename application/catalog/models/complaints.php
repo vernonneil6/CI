@@ -926,9 +926,11 @@ class Complaints extends CI_Model
 		}
  	}
 	
-	function insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscr_id)
+	//function insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscr_id)
+	function insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscr_id,$disc,$disccode_type,$disccode_price,$disccode_use)
  	{
 		$date = date("Y-m-d H:i:s");
+		$disccode_usedate = date("Y-m-d H:i:s");
 		$payment_ip = $_SERVER['REMOTE_ADDR'];
 		$data = array(
 					'company_id' 	=> $companyid,
@@ -944,7 +946,12 @@ class Complaints extends CI_Model
 					'sign'			=> $sig,
 					'payer_id'		=> $payer_id,
 					'paymentmethod'	=> $paymentmethod,
-					'subscr_id'		=> $subscr_id
+					'subscr_id'		=> $subscr_id,
+					'discountcode' => $disc,
+					'discountcodetype' => $disccode_type, 
+					'discountprice' => $disccode_price,
+					'discountusedate' => $disccode_usedate,
+					'discountusecount' => $disccode_use,
 					
 		);
 		
@@ -1010,7 +1017,7 @@ class Complaints extends CI_Model
 		}
  	}
 	
-	function insert_discountcode($companyid,$disc)
+	/*function insert_discountcode($companyid,$disc)
  	{
 		$data = array('discountcode' => $disc);
 		
@@ -1024,7 +1031,47 @@ class Complaints extends CI_Model
 		{
 			return false;
 		}
+ 	}*/
+	function insert_discountcode($companyid,$disc,$disccode_type,$disccode_price,$disccode_use)
+ 	{
+		$disccode_usedate=date('Y-m-d H:i:s');
+		$data = array(
+		              'discountcode' => $disc,
+		              'discountcodetype' => $disccode_type, 
+		              'discountprice' => $disccode_price,
+		              'discountusedate' => $disccode_usedate,
+		              'discountusecount' => $disccode_use,
+		             );
+		
+		$this->db->where('company_id',$companyid);
+	
+		if ($this->db->update('elite',$data))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
  	}
+ 	function update_discount_used($discid)
+ 	{
+		
+		$discuse=1;
+		$data = array('apply' => $discuse);
+		$this->db->where('id',$discid);
+	
+		if ($this->db->update('discount',$data))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+		
+	}
 	
 	function get_company_by_emailid($email)
  	{
@@ -1754,5 +1801,60 @@ class Complaints extends CI_Model
 			return array();
 		}
  	}
+ 	function get_discount_enabled($discountcode)
+ 	{
+		$query = $this->db->select('*')
+		                  ->from('discount')
+		                  ->where(array('status'=>'Enable','code'=>$discountcode))
+		                  ->get();
+	
+		if ($query->num_rows() > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	function get_discount_method($disccode_user)
+	{
+	  	$query = $this->db->select('*')
+		                  ->from('discount')
+		                  ->where(array('status'=>'Enable','code'=>$disccode_user))
+		                  ->get();
+	  	
+	  	if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+		
+		
+	}
+	function get_companyelite_byid($id)
+	{
+		$query = $this->db->select('payment_amount')
+		                  ->from('elite')
+		                  ->where(array('status'=>'Enable','company_id'=>$id))
+		                  ->get();
+	  	
+	  	if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+		
+		
+		
+		
+	}
 }
 ?>
