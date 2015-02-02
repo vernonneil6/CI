@@ -495,7 +495,7 @@
 				$('.gallery_featured').orbit();
 					});
 				</script>
-              <?php for($i=0; $i<count($gallerys); $i++) { ?>
+              <?php for($i=0; $i<count($gallery); $i++) { ?>
               <?php $photos = $this->complaints->get_photos_bygalleryid($gallerys[$i]['id']);?>
               <div class = "gallery_title"><?php echo $gallerys[$i]['title'];?></div>
               <?php if(count($photos)>0){ ?>
@@ -553,11 +553,12 @@
             </div>
             <?php 
 			}
-			 
+			if($i==5)
+			{
 			?>
 				<p align="right" class="cmnt_wrp">
 				<a href="<?php echo site_url('company/videos/'.$company[0]['id']);?>" title="View All">View All</a></p>
-            <?php  }?>
+            <?php } }?>
          </div>
           
         </div>
