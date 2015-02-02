@@ -169,11 +169,24 @@
 			{
 				$("#error").attr('style','display:block;');
 				$("#siteurlerror").show();
+				$("#siteurlerror").text('Site Url is required.');
 				$("#siteurl").val('').focus();
 				return false;
 			}
 			else
 			{
+				var txt = $('#siteurl').val();
+				var re = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+				//var regexp = /(http(s)?:\\)?([\w-]+\.)+[\w-]+[.com|.in|.org]+(\[\?%&=]*)?/
+				if (re.test(txt)) {					
+				}
+				else {
+					$("#error").attr('style','display:block;');
+					$("#siteurlerror").show();
+					$("#siteurlerror").text('Please enter a valid URL. For example http://www.example.com');
+					$("#siteurl").focus();
+					return false;
+				}
 				$("#siteurlerror").hide();
 			}
 			
@@ -303,6 +316,14 @@
         <?php if($this->uri->segment(2) == 'edit') { echo "Edit Company"; } ?>
         </span></h2>
     </div>
+    
+    <!-- Correct form message -->
+    <?php if( $this->session->flashdata('success') ) { ?>
+    <div class="form-message correct">
+      <p><?php echo $this->session->flashdata('success'); ?></p>
+    </div>
+    <?php } ?>
+    <!-- Error form message -->
     <div class="box-content"> <?php echo form_open_multipart('company/update',array('class'=>'formBox','id'=>'frmcompany')); ?>
       <fieldset>
         <div class="form-cols"><!-- two form cols -->
@@ -375,7 +396,8 @@
                 <?php 
 					if($this->uri->segment(2) == 'edit') { 
 				?>				
-                <?php echo form_input( array( 'name'=>'country','id'=>'country','class'=>'input','type'=>'text','value'=>stripslashes($countryname['name']) ) ); ?>
+                <?php $countryname = ($countryname['name']) ? $countryname['name']: $company[0]['country'];
+                  echo form_input( array( 'name'=>'country','id'=>'country','class'=>'input','type'=>'text','value'=>stripslashes($countryname) ) ); ?>
                 <?php } ?>
               </div>
             </div>

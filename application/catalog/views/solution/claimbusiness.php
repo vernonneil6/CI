@@ -206,7 +206,7 @@
             <label>HAVE DISCOUNT CODE?</label>
             <div class="reg_fld">ENTER DISCOUNT CODE</div>
             <input type="text" class="reg_txt_box" placeholder="DISCOUNT CODE" id="discountcode" name="discountcode" maxlength="50" />
-            <div id="discsuccess" class="error">Its is enable</div>
+            <div id="discsuccess" class="error">Its is Valid code</div>
             <div id="discnorerror" class="error">Its is not Available</div>
             <div id="discallrerror" class="error">please enter code</div>
           </div>
