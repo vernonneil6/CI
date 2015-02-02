@@ -741,6 +741,7 @@ public function eliteSubscribe($formpost,$companyid) {
 	$discountmethod=$this->complaints->get_discount_method($disccode_user);
 	$startDate = date("Y-m-d");
 	$amount = $subscriptionprice;
+	$discid="";
 	$disc="";
 	$disccode_type="";
 	$disccode_price="";
