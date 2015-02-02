@@ -128,7 +128,7 @@
 
           </ul>
         </div>
-        <div itemscope itemtype = "http://schema.org/aggregaterating" itemprop = "aggregaterating">
+        <div itemscope itemtype = "http://schema.org/AggregateRating" itemprop = "aggregateRating">
 			  <meta itemprop = "reviewcount" content = "<?php echo count($reviews); ?>" >
 			  <meta itemprop = "ratingvalue" content = "<?php echo $itemproaverage; ?>" >
 			  <meta itemprop = "bestrating" content = "<?php echo  '5'; ?>" >
@@ -375,11 +375,11 @@
                 <p><span itemprop ="reviewbody"><?php echo $reviews[$i]['comment'];?></span></p>
                 <div class="cmnt_wrp wrps"> <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add comment">  +  Add comment </a> </div>
               </div>
-            <div itemscope itemtype = "http://schema.org/rating" itemprop = "reviewRating">
+            <div itemscope itemtype = "http://schema.org/Rating" itemprop = "reviewRating">
 
-				  <meta itemprop = "ratingvalue" content="<?php echo $reviews[$i]['rate']; ?>">
-				  <meta itemprop = "bestrating"  content="<?php echo  '5'; ?>">
-				  <meta itemprop = "worstrating" content="<?php echo '0'; ?>">	
+				  <meta itemprop = "ratingValue" content="<?php echo $reviews[$i]['rate']; ?>">
+				  <meta itemprop = "bestRating"  content="<?php echo  '5'; ?>">
+				  <meta itemprop = "worstRating" content="<?php echo '0'; ?>">	
 			</div>
             </div>
             
