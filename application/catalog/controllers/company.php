@@ -405,6 +405,41 @@ class Company extends CI_Controller {
 				}
 		
 		}
+		
+		public function videos($word='')
+		{
+		  	if( $word!='')
+			{
+				$this->data['company'] = $this->users->get_company_bysingleid($word); 
+				
+				if(count($this->data['company'])>0) 
+				{
+		
+				$this->data['videos'] = $this->complaints->get_videos_bycompanyid($this->data['company'][0]['id']);
+				
+				
+
+		 		 if(count($this->data['videos'])>0)
+					{
+						$this->load->view('companyvideos',$this->data);
+					}
+				else
+					{
+						redirect('', 'refresh');
+					}
+				}
+				else
+				{
+				redirect('', 'refresh');
+				}
+			}
+			else
+			{
+					redirect('', 'refresh');
+			}
+		
+		}
+		
 		public function upgrade_elite($id='')
 		{
 			//echo $id;
