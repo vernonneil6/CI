@@ -28,67 +28,66 @@
   <section class="main_contentarea">
    
     <div class="innr_wrap wrapborder">
-      <div class="left_panel  leftpanelwidth" itemscope itemtype="http://schema.org/Organization">
+      <div class="left_panel  leftpanelwidth" itemscope itemtype="http://schema.org/localBusiness">
 
 
 		<div>
-        <?php if(count($elitemem_status)==0){?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
-        <?php }else{
-				  ?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
-        <?php
-				  } ?>
+			<?php if(count($elitemem_status)==0){?>
+			<div class="vry_logo"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
+			<?php }else{
+					  ?>
+			<div class="vry_logo"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
+			<?php } ?>
 			  
 				  
-		<?php if(count($elitemem_status)==0){?>
-        <div>
-			<?php $urls="http://business.yougotrated.com/?elitemem=".$company[0]['id'].""; ?>
-			
-			<a href="<?php echo $urls;?>" title="Upgrade to Elite">
-				<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
-			<div class="business_link"> 			
-				IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
+			<?php if(count($elitemem_status)==0){?>
+			<div>
+				<?php $urls="http://business.yougotrated.com/?elitemem=".$company[0]['id'].""; ?>
+				
+				<a href="<?php echo $urls;?>" title="Upgrade to Elite">
+					<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
+				<div class="business_link"> 			
+					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
+				</div>
+				</a>    
 			</div>
-			</a>    
-        </div>
       
-		<div class="compny_name">
-          <h1><span itemprop="name"><?php echo strtoupper($company[0]['company']);?></span></h1>
-          <div class="vry_rating vryrating">
-  
-            <?php for($r=0;$r<$avgstar;$r++){?>
-            <i class="vry_rat_icn"></i>
-            <?php } ?>
-            <?php for($p=0;$p<(5-$avgstar);$p++){?>
-            <img src="images/no_star.png" alt="no_star" title="no_star" />
-            <?php } ?>
-          </div>
-        </div>
-        <?php }else { ?>
+			<div class="compny_name">
+			  <h1><span itemprop="name"><?php echo strtoupper($company[0]['company']);?></span></h1>
+			  <div class="vry_rating vryrating">
+	  
+				<?php for($r=0;$r<$avgstar;$r++){?>
+				<i class="vry_rat_icn"></i>
+				<?php } ?>
+				<?php for($p=0;$p<(5-$avgstar);$p++){?>
+				<img src="images/no_star.png" alt="no_star" title="no_star" />
+				<?php } ?>
+			  </div>
+			</div>
+			<?php }else { ?>
       
-	<div class="compny_name">
-          <h1><span itemprop="name"><?php echo strtoupper($company[0]['company']);?></span></h1>
-	  	<div class="vrytitle">YouGotRated VERIFIED MERCHANT</div>
-          <div class="vry_rating vryrating">
-            <?php for($r=0;$r<$avgstar;$r++){?>
-            <i class="vry_rat_icn"></i>
-            <?php } ?>
-            <?php for($p=0;$p<(5-$avgstar);$p++){?>
-            <img src="images/no_star.png" alt="no_star" title="no_star" />
-            <?php } ?>
-          </div>
-        </div>
-        <?php } ?>
+			<div class="compny_name">
+			  <h1><span itemprop="name"><?php echo strtoupper($company[0]['company']);?></span></h1>
+			<div class="vrytitle">YouGotRated VERIFIED MERCHANT</div>
+			  <div class="vry_rating vryrating">
+				<?php for($r=0;$r<$avgstar;$r++){?>
+				<i class="vry_rat_icn"></i>
+				<?php } ?>
+				<?php for($p=0;$p<(5-$avgstar);$p++){?>
+				<img src="images/no_star.png" alt="no_star" title="no_star" />
+				<?php } ?>
+			  </div>
+			</div>
+			<?php } ?>
         
-        <?php if(count($elitemem_status)==0){?>
-        <div class="vry_btn vry_width"><a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint">FILE COMPLAINT</a></div>
-        
-        <?php } else { ?>
-		<div class="vry_btn vry_width"><a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> 
-		<?php /*<a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint">FILE COMPLAINT</a>*/?>
-		<a href="complaint/dispute/<?php echo $company[0]['id'];?>" title="File A COMPLAINT">FILE A COMPLAINT</a></div>	
-       <?php } ?>
+			<?php if(count($elitemem_status)==0){?>
+			<div class="vry_btn vry_width"><a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint">FILE COMPLAINT</a></div>
+			
+			<?php } else { ?>
+			<div class="vry_btn vry_width"><a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> 
+			<?php /*<a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint">FILE COMPLAINT</a>*/?>
+			<a href="complaint/dispute/<?php echo $company[0]['id'];?>" title="File A COMPLAINT">FILE A COMPLAINT</a></div>	
+		   <?php } ?>
       </div>
 
 
@@ -129,10 +128,10 @@
           </ul>
         </div>
         <div itemscope itemtype = "http://schema.org/AggregateRating" itemprop = "aggregateRating">
-			  <meta itemprop = "reviewcount" content = "<?php echo count($reviews); ?>" >
-			  <meta itemprop = "ratingvalue" content = "<?php echo $itemproaverage; ?>" >
-			  <meta itemprop = "bestrating" content = "<?php echo  '5'; ?>" >
-			  <meta itemprop = "worstrating" content = "<?php echo '0'; ?>" >	
+			  <meta itemprop = "reviewCount" content = "<?php echo count($reviews); ?>" >
+			  <meta itemprop = "ratingValue" content = "<?php echo $itemproaverage; ?>" >
+			  <meta itemprop = "bestRating" content = "<?php echo  '5'; ?>" >
+			  <meta itemprop = "worstRating" content = "<?php echo '0'; ?>" >	
 		</div>	
         <div class="social_blck">
           <?php if(count($elitemem_status)!=0){?>
@@ -326,10 +325,10 @@
 			  	$newreviews = count($reviews);
 			  }?>
             <?php for($i=0; $i<$newreviews; $i++) { ?>
-            <div itemscope itemtype = "http://schema.org/review" itemprop = "review" class="review_block <?php if($i%2==0){echo "fadeout";}?>">
+            <div itemscope itemtype = "http://schema.org/Review" itemprop = "review" class="review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="review_lft">
                 <div class="user_img"><img src="images/default_user.png" alt="User image" title="User image"></div>
-               <meta itemprop = "itemreviewed" content = "<?php echo $i; ?>">
+               <meta itemprop = "itemReviewed" content = "<?php echo $i; ?>">
               </div>
               <div class="review_rgt reviewstab">
 
@@ -347,12 +346,12 @@
 			<?php
 				}
 			?>
-            <div class="datereview"><span itemprop = "datepublished"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></span></div>
+            <div class="datereview"><span itemprop = "datePublished"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></span></div>
                   <?php  } else {?>       
 				  <?php $user=$this->users->get_user_byid($reviews[$i]['reviewby']);?>
                   <?php if(count($user)>0) { ?>
                   <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><?php echo $user[0]['username'];?></a>
-			<div class="datereview"><span itemprop = "datepublished"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></span></div>
+			<div class="datereview"><span itemprop = "datePublished"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></span></div>
                   <?php } ?>
                   <?php } ?>
                   </a>
