@@ -67,7 +67,7 @@
 			<?php }else { ?>
       
 			<div class="compny_name">
-			  <h1><span itemprop="name"><?php echo strtoupper($company[0]['company']);?></span></h1>
+			  <h1><span itemprop="name" class = "fn"><?php echo strtoupper($company[0]['company']);?></span></h1>
 			<div class="vrytitle">YouGotRated VERIFIED MERCHANT</div>
 			  <div class="vry_rating vryrating">
 				<?php for($r=0;$r<$avgstar;$r++){?>
