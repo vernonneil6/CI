@@ -495,7 +495,7 @@
 				$('.gallery_featured').orbit();
 					});
 				</script>
-              <?php for($i=0; $i<count($gallery); $i++) { ?>
+              <?php for($i=0; $i<count($gallerys); $i++) { ?>
               <?php $photos = $this->complaints->get_photos_bygalleryid($gallerys[$i]['id']);?>
               <div class = "gallery_title"><?php echo $gallerys[$i]['title'];?></div>
               <?php if(count($photos)>0){ ?>
@@ -534,7 +534,7 @@
 			 
 			  		
 			?>
-            <?php for($i=0; $i<5; $i++) { ?>
+            <?php for($i=0; $i<count($videos); $i++) { ?>
             <div class="noblock review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="company_content_title contenttag"><?php echo $videos[$i]['title'];?></div>
               <br />
