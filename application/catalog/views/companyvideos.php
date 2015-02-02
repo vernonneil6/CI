@@ -91,7 +91,7 @@
 					$ytendstring=end($ytendarray);
 					$ytendarray=explode("&", $ytendstring);
 					$ytcode=$ytendarray[0];
-					echo "<iframe width=\"520\" height=\"280\" src=\"http://www.youtube.com/embed/$ytcode\" frameborder=\"1\" allowfullscreen></iframe>";
+					echo "<iframe width=\"967\" height=\"425\" src=\"http://www.youtube.com/embed/$ytcode\" frameborder=\"1\" allowfullscreen></iframe>";
 				?>  
               </div>
               <div style="display:none;"> <a href="<?php echo $videos[$i]['videourl'];?>" title="<?php echo $videos[$i]['videourl'];?>"><?php echo $videos[$i]['videourl'];?></a> </div>
