@@ -534,8 +534,10 @@
           
           
          <div class="tab_content" id="tab6">
-            <?php if( count($videos) > 0 ) { ?>
-            <?php for($i=0; $i<count($videos); $i++) { ?>
+            <?php 
+				if( count($videos) > 0 ) { 				
+			?>
+            <?php for($i=0; $i<5; $i++) { ?>
             <div class="noblock review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="company_content_title contenttag"><?php echo $videos[$i]['title'];?></div>
               <br />
@@ -552,14 +554,22 @@
               </div>
               <div style="display:none;"> <a href="<?php echo $videos[$i]['videourl'];?>" title="<?php echo $videos[$i]['videourl'];?>"><?php echo $videos[$i]['videourl'];?></a> </div>
             </div>
-            <?php } ?>
+            <?php 
+            if($i>5)
+            {
+			?>
+				<p align="right" class="cmnt_wrp wrps">
+				<a href="<?php echo site_url('company/videos/'.$company[0]['id']);?>" title="View All">View All</a></p>
+			<?php
+			}
+            } ?>
             <?php }?>
          </div>
           
         </div>
       </div>
        </div>
-<div class="load_rvw"> <a href="<?php echo site_url('company/reviews/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="Click here to see more review"><div ><label class="load_label">Click here to view more recent business reviews</label></div> <img class="logo_btm" src="images/ygr_logos.png" alt="Click here to see more review" title="Click here to see more review"> </a> </div>
+<div class="load_rvw"> <a href="<?php echo site_url('company/reviews/'.$videos[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="Click here to see more review"><div ><label class="load_label">Click here to view more recent business reviews</label></div> <img class="logo_btm" src="images/ygr_logos.png" alt="Click here to see more review" title="Click here to see more review"> </a> </div>
     </div>
   </section>
 </section>
