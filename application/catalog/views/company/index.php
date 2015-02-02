@@ -27,7 +27,7 @@
   <section class="main_contentarea">
    
     <div class="innr_wrap wrapborder">
-      <div class="left_panel  leftpanelwidth" itemscope itemtype="http://schema.org/LocalBusiness">
+      <div class="left_panel  leftpanelwidth" itemscope itemtype="http://schema.org/Organization">
 
 
 	<div>
