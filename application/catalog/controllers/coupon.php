@@ -92,7 +92,7 @@ class Coupon extends CI_Controller {
 		if($this->uri->segment(3))
 		{
 		$company = $this->coupons->get_company_bycouponseokeyword($this->uri->segment(3));
-		$companyname = $this->users->get_company_bysingleid($company['id']);
+		$companyname = $this->users->get_company_bysingleid($company['companyid']);
 		$this->data['title'] = $companyname['company'];
 		}
 		
