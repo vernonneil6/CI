@@ -272,9 +272,6 @@ class Solution extends CI_Controller {
 		
 	public function update()
 	{   
-		
-		//echo "<pre>";
-		 //print_r($_POST);
 		if($this->input->post('email'))
 		{
 			
@@ -715,21 +712,22 @@ public function eliteSubscribe($formpost,$companyid) {
 	//$transactionkey = $this->common->get_setting_value(23);
 	
 	
+	
 	/*test mode*/
 	  /* $loginname="2sRT3yAsr3tA";
 	   $transactionkey="38UzuaL2c6y5BQ88";
 	   $host = "apitest.authorize.net"; */
 	
-	/*sandbox test mode
+	/*sandbox test mode*/
 	  $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
-	   $host = "apitest.authorize.net";*/
+	   $host = "apitest.authorize.net";
 	
 	
-	/*live*/
+	/*live
 	    $loginname="5h7G7Sbr";
 		$transactionkey="94KU7Sznk72Kj3HK";
-		$host = "api.authorize.net";
+		$host = "api.authorize.net";*/
 	
 	
 	$path = "/xml/v1/request.api";
@@ -737,14 +735,46 @@ public function eliteSubscribe($formpost,$companyid) {
 	
 	include('authorize/authnetfunction.php');
 	$subscriptionprice = $this->common->get_setting_value(19);
-		   
-	//define variables to send
-	$amount = $subscriptionprice;
+	
+	
+	$disccode_user=$this->input->post('discountcode');
+	$discountmethod=$this->complaints->get_discount_method($disccode_user);
+	if(count($discountmethod) > 0){
+		  
+		 if($discountmethod['discountcodetype']=="30days-FT" || $discountmethod['discountcodetype']=="30days-FT+LP")
+			{
+					$startDate=date('Y-m-d', strtotime("+30 days"));
+					$discid=$discountmethod['id'];
+					$disc=$discountmethod['code'];
+					$disccode_type=$discountmethod['discountcodetype']; 
+					$disccode_price=$discountmethod['discountprice']; 
+					$disccode_date=date('Y-m-d'); 
+					$disccode_use=1; 
+					if($discountmethod['discountcodetype']=="30days-FT+LP"){
+						    $startDate=date('Y-m-d', strtotime("+30 days"));
+							$amount=200;
+					} else if($discountmethod['discountcodetype']=="30days-FT") {
+					  $startDate=date('Y-m-d', strtotime("+30 days")); 
+					  $amount = $subscriptionprice;	
+					} else { 
+						
+						$startDate = date("Y-m-d");
+				        $amount = $subscriptionprice;
+						
+					}		
+			}
+			
+    }
+    else
+	{
+		$startDate = date("Y-m-d");
+		$amount = $subscriptionprice;
+	}
+	
 	$refId = uniqid();
 	$name = "elite membership";
 	$length = 1;
 	$unit = "months";
-	$startDate = date("Y-m-d");
 	//$totalOccurrences = 999;
 	$totalOccurrences = 9999;
 	$trialOccurrences = 0;
@@ -825,6 +855,7 @@ public function eliteSubscribe($formpost,$companyid) {
 	//send the xml via curl
 	$response = send_request_via_curl($host,$path,$content);
 	//if the connection and send worked $response holds the return from Authorize.net
+	print_r($response);
 	if ($response)
 	{
 		list ($refId, $resultCode, $code, $text, $subscriptionId) =parse_return($response);
@@ -858,6 +889,7 @@ public function eliteSubscribe($formpost,$companyid) {
 		$content;
 		"<br \>";
 		"<br \>";
+		echo $resultCode;
 		if($resultCode=='Ok')
 		{
 			$tx  = $transactionkey;
@@ -872,9 +904,11 @@ public function eliteSubscribe($formpost,$companyid) {
 			$cardexpire=$expirationDate;
 			$fname=$firstName;
 			$lname=$lastName;
-			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
+			//if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
+			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId,$disc,$disccode_type,$disccode_price,$disccode_use))
 			{
 				$company = $this->complaints->get_company_byid($companyid);
+				
 				if( count($company)>0 )
 				{
 					$password = uniqid();
@@ -905,7 +939,10 @@ public function eliteSubscribe($formpost,$companyid) {
 					//Inserting Elite Membership Transaction Details for Company
 					$transaction = $this->complaints->add_transaction($companyid,$amount,'USD',$transactionkey,date('Y-m-d H:i:s'));
 					$websites = $this->complaints->get_all_websites();
-												
+					
+					//update to elite
+					$this->complaints->insert_discountcode($companyid,$disc,$disccode_type,$disccode_price,$disccode_use);
+					$this->complaints->update_discount_used($discid);							
 					$siteid = $this->session->userdata('siteid');
 					$page = $this->common->get_pages_by_id(12,$siteid);
 			
@@ -1424,6 +1461,7 @@ public function renew_update($id)
 	//echo $id;
 	
 	
+
 	//data.php start
 	//$loginname = $this->common->get_setting_value(22);
 	//$transactionkey = $this->common->get_setting_value(23);
@@ -1463,7 +1501,20 @@ public function renew_update($id)
 	
 	include('authorize/authnetfunction.php');
 	$subscriptionprice = $this->common->get_setting_value(19);
-		   
+	
+	//check previously paid amount for elitemembership//
+	
+	$previouspayment=$this->complaints->get_companyelite_byid($id);
+	if(empty($previouspayment))	{
+		
+		$amount = $subscriptionprice;
+		
+	 } else { 
+		 
+		$amount = $previouspayment;
+	 }	 	   
+	
+	
 	//define variables to send
 	$amount = $subscriptionprice;
 	$refId = uniqid();
@@ -2106,11 +2157,25 @@ public function upgrades($id)
 	{
 		echo "Transaction Failed. <br>";
 	}
-
-	
-	
 	
 }
+   
+   function check_discountcode()
+   {
+	      
+		$discountcode=$this->input->post('discountcode');
+		$discountusage=$this->complaints->get_discount_enabled($discountcode);
+		if(empty($discountusage)){ 
+			
+			echo "false";
+						
+		} else { 
+			
+			echo "true";
+			
+		}
+	   
+   }
 
 
 
