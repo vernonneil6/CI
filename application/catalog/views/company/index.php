@@ -27,7 +27,7 @@
   <section class="main_contentarea">
    
     <div class="innr_wrap wrapborder">
-      <div class="left_panel  leftpanelwidth" itemscope itemtype="http://schema.org/Organization">
+      <div class="left_panel  leftpanelwidth" itemscope itemtype="http://schema.org/LocalBusiness">
 
 
 	<div>
@@ -51,7 +51,7 @@
         </div>
        
 		<div class="compny_name">
-          <h1 itemprop="name"><?php echo strtoupper($company[0]['company']);?></h1>
+          <h1><span itemprop="name"><?php echo strtoupper($company[0]['company']);?></span></h1>
           <div class="vry_rating vryrating">
             <?php for($r=0;$r<$avgstar;$r++){?>
             <i class="vry_rat_icn"></i>
@@ -64,7 +64,7 @@
         <?php }else { ?>
       
 	<div class="compny_name">
-          <h1 itemprop="name"><?php echo strtoupper($company[0]['company']);?></h1>
+          <h1><span itemprop="name"><?php echo strtoupper($company[0]['company']);?></span></h1>
 	  	<div class="vrytitle">YouGotRated VERIFIED MERCHANT</div>
           <div class="vry_rating vryrating">
             <?php for($r=0;$r<$avgstar;$r++){?>
@@ -90,8 +90,8 @@
 
         <div class="contct_dtl">
           <ul itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-            <li ><a itemprop="streetAddress"><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></a></li>
-            <li itemprop="addressLocality"><a><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',		'.$company[0]['country'])); ?></a></li>
+            <li><a><span itemprop="streetAddress" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></span></a></li>
+            <li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',		'.$company[0]['country'])); ?></span></a></li>
             <li class = "singletimings">
 				<?php 
 				if(count($elitemem_status)!=0)
@@ -113,13 +113,13 @@
 				} 
 				?>
 			</li>
-            <li><a class="colors" itemprop="telephone" href="tel:<?php echo $company[0]['phone'];?>" title="<?php echo $company[0]['phone'];?>"><?php echo $company[0]['phone']; ?></a></li>
+            <li><a class="colors" href="tel:<?php echo $company[0]['phone'];?>" title="<?php echo $company[0]['phone'];?>"><span itemprop="telephone"><?php echo $company[0]['phone']; ?></span></a></li>
             <?php if(strlen($company[0]['fax']>8)){?>
             <li><a><?php echo $company[0]['fax'];?></a></li>
             <?php } ?>
 			<li><a href="mailto:<?php echo strtoupper($company[0]['email']);?>" title="Email us" class="colors"><?php echo strtoupper($company[0]['email']);?></a></li>
             <li>
-              <a class="colors" itemprop="url"  href="<?php  echo (strpos($company[0]['siteurl'],'http') !== false) ? '' :'//'; echo strtoupper($company[0]['siteurl']);?>" target="_blank" title="<?php echo $company[0]['siteurl'];?>"><?php echo strtoupper($company[0]['siteurl']);?></a>
+              <a class="colors" itemprop="url" href="<?php  echo (strpos($company[0]['siteurl'],'http') !== false) ? '' :'//'; echo strtoupper($company[0]['siteurl']);?>" target="_blank" title="<?php echo $company[0]['siteurl'];?>"><?php echo strtoupper($company[0]['siteurl']);?></a>
             </li>
 
           </ul>
