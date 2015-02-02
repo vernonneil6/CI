@@ -374,7 +374,7 @@
                 <p><span itemprop ="reviewbody"><?php echo $reviews[$i]['comment'];?></span></p>
                 <div class="cmnt_wrp wrps"> <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add comment">  +  Add comment </a> </div>
               </div>
-            <div itemscope itemtype = "http://schema.org/rating" itemprop = "rating">
+            <div itemscope itemtype = "http://schema.org/rating" itemprop = "reviewRating">
 
 				  <meta itemprop = "ratingvalue" content="<?php echo $reviews[$i]['rate']; ?>">
 				  <meta itemprop = "bestrating"  content="<?php echo  '5'; ?>">
