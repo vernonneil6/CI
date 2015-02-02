@@ -312,7 +312,7 @@
         <div class="tab_container">
           <div class="tab_content" id="tab1">
             <?php if( count($reviews) > 0 ) { ?>
-			<div itemscope itemtype = "http://schema.org/review" itemprop = "review">
+			<div >
 				
 			
 			
@@ -325,7 +325,7 @@
 			  	$newreviews = count($reviews);
 			  }?>
             <?php for($i=0; $i<$newreviews; $i++) { ?>
-            <div class="review_block <?php if($i%2==0){echo "fadeout";}?>">
+            <div itemscope itemtype = "http://schema.org/review" itemprop = "review" class="review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="review_lft">
                 <div class="user_img"><img src="images/default_user.png" alt="User image" title="User image"></div>
                
@@ -374,13 +374,14 @@
                 <p><span itemprop ="reviewbody"><?php echo $reviews[$i]['comment'];?></span></p>
                 <div class="cmnt_wrp wrps"> <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add comment">  +  Add comment </a> </div>
               </div>
-            </div>
             <div itemscope itemtype = "http://schema.org/rating" itemprop = "rating">
 
 				  <meta itemprop = "ratingvalue" content="<?php echo $reviews[$i]['rate']; ?>">
 				  <meta itemprop = "bestrating"  content="<?php echo  '5'; ?>">
 				  <meta itemprop = "worstrating" content="<?php echo '0'; ?>">	
 			</div>
+            </div>
+            
             <?php } 
 			?>
             <p align="right" class="cmnt_wrp wrps"><a href="<?php echo site_url('company/reviews/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a>
