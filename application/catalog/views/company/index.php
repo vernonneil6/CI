@@ -346,7 +346,7 @@
 			    $users = $this->users->get_user_bysingleid($reviews[$i]['reviewby']); 
 			    if(count($users)>0) 
 			    { 
-					 if($user[0]['username']!='')
+					 if($user['username']!='')
 					  {
 					
 			?>
