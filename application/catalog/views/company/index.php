@@ -346,10 +346,21 @@
 			    $users = $this->users->get_user_bysingleid($reviews[$i]['reviewby']); 
 			    if(count($users)>0) 
 			    { 
+					 if($user[0]['username']!='')
+					  {
+					
 			?>
                   <a><span itemprop = "author"><?php echo $users['username'];?></span></a>
 			<?php
 				}
+			
+			else
+					{
+					?>
+						<a><?php echo "Anonymous"; ?></a>
+					<?php
+					}
+				
 			?>
             <div class="datereview"><span itemprop = "datePublished"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></span></div>
                   <?php  } else {?>       
