@@ -492,10 +492,7 @@
 			  {
 				$newgallerys = 5;
 			  }
-			  else
-			  {
-			  	$newgallerys = count($gallerys);
-			  }			
+			 		
 			  		?>
               <script type="text/javascript">
 				$(window).load(function() {
@@ -519,12 +516,14 @@
                 <p>No photos in this gallery.</p>
               </div>
               <?php } 
-				} 
+				}
+				if(count($gallerys)<5) 
+				{
 				?>
 					<p align="right" class="cmnt_wrp">
 					<a href="<?php echo site_url('company/photos/'.$company[0]['id']);?>" title="View All">View All</a></p>
 
-              <?php } else { ?>
+              <?php } } else { ?>
               <div class="form-message warning">
                 <p>No Photos.</p>
               </div>
@@ -541,10 +540,7 @@
 			  {
 				$newvideos = 5;
 			  }
-			  else
-			  {
-			  	$newvideos = count($videos);
-			  }			
+			  		
 			?>
             <?php for($i=0; $i<$newvideos; $i++) { ?>
             <div class="noblock review_block <?php if($i%2==0){echo "fadeout";}?>">
@@ -565,10 +561,12 @@
             </div>
             <?php 
 			}
+			 if(count($videos)<5)
+			  {
 			?>
 				<p align="right" class="cmnt_wrp">
 				<a href="<?php echo site_url('company/videos/'.$company[0]['id']);?>" title="View All">View All</a></p>
-            <?php }?>
+            <?php } }?>
          </div>
           
         </div>
