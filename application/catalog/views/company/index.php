@@ -559,7 +559,7 @@
             {
 			?>
 				<p align="right" class="cmnt_wrp wrps">
-				<a href="<?php echo site_url('company/pressreleases/'.$company[0]['id']);?>" title="View All">View All</a></p>
+				<a href="<?php echo site_url('company/videos/'.$company[0]['id']);?>" title="View All">View All</a></p>
 			<?php
 			}
             } ?>
@@ -569,7 +569,9 @@
         </div>
       </div>
        </div>
-<div class="load_rvw"> <a href="<?php echo site_url('company/reviews/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="Click here to see more review"><div ><label class="load_label">Click here to view more recent business reviews</label></div> <img class="logo_btm" src="images/ygr_logos.png" alt="Click here to see more review" title="Click here to see more review"> </a> </div>
+	<div class="load_rvw"> 
+		<a href="<?php echo site_url();?>" title="YOUGOTRATED"><img class="logo_btm" src="images/ygr_logos.png" alt="YOUGOTRATED" title="YOUGOTRATED"> </a> 
+	</div>
     </div>
   </section>
 </section>
