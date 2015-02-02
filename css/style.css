@@ -1145,6 +1145,7 @@ border-top:1px solid;
 {
 	padding : 5px 0 5px 17px;
 	display : inline-block;
+	width: 100%;
 }
 ul.tabbs 
 {

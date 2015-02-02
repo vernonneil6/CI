@@ -67,11 +67,9 @@
 			<?php }else { ?>
       
 			<div class="compny_name">
-				<?php if($company[0]['company']!=''){ ?>
-			  <h1><span itemprop="name" class = "fn"><?php echo strtoupper($company[0]['company']);?></span></h1>
-			  <?php } else { ?>
-				  <h1><span itemprop="name" class = "fn"><?php echo "Anonymous";?></span></h1>
-				 <?php } ?>
+
+					<h1><span itemprop="name" class = "fn"><?php echo strtoupper($company[0]['company']);?></span></h1>
+
 			<div class="vrytitle">YouGotRated VERIFIED MERCHANT</div>
 			  <div class="vry_rating vryrating">
 				<?php for($r=0;$r<$avgstar;$r++){?>
@@ -335,7 +333,7 @@
             <div itemscope itemtype = "http://schema.org/Review" itemprop = "review" class="review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="review_lft">
                 <div class="user_img"><img src="images/default_user.png" alt="User image" title="User image"></div>
-               <meta itemprop = "itemReviewed" content = "<?php echo $i; ?>">
+               <meta itemprop = "itemReviewed" content = "<?php echo $site_url(); ?>">
               </div>
               <div class="review_rgt reviewstab">
 
@@ -356,8 +354,21 @@
             <div class="datereview"><span itemprop = "datePublished"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></span></div>
                   <?php  } else {?>       
 				  <?php $user=$this->users->get_user_byid($reviews[$i]['reviewby']);?>
-                  <?php if(count($user)>0) { ?>
+                  <?php if(count($user)>0) { 
+					  if($user[0]['username']!='')
+					  {
+				   ?>
+					  
                   <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><?php echo $user[0]['username'];?></a>
+                  <?php
+					}
+					else
+					{
+					?>
+						<a><?php echo "Anonymous"; ?></a>
+					<?php
+					}
+					?>
 			<div class="datereview"><span itemprop = "datePublished"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></span></div>
                   <?php } ?>
                   <?php } ?>
