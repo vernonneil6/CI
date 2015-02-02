@@ -123,10 +123,9 @@ class Complaint extends CI_Controller {
 								
 						{
 						$company= $this->complaints->get_company_byseokeyword($this->uri->segment(3));
-				
 			 	  	if(count($company)>0)
 						{
-								$this->data['title'] = $company['company'] ."  ". 'Complaints : YOUGOTRATED';
+								$this->data['title'] = $company[0]['company'].' '.'Complaints:YOUGOTRATED';
 								$this->data['keywords'] = $this->uri->segment(3);
 								$this->data['description'] = $company[0]['aboutus'];
 						}
@@ -144,9 +143,11 @@ class Complaint extends CI_Controller {
 		else if( $this->uri->segment(2)=='browse'  && $this->uri->segment(3))	
 			{
 						$complaint= $this->complaints->get_complaint_byseokeyword($this->uri->segment(3));
+						$companyname = $this->users->get_company_bysingleid($complaint[0]['companyid']);
+						
 					 	  		if(count($complaint)>0)
 								{
-									$this->data['title'] = $complaint[0]['company'].' '.implode(' ', array_slice(explode(' ', $complaint[0]['detail']), 0, 10));
+									$this->data['title'] = $companyname['company'].' '.'Complaints:YOUGOTRATED';
 									$this->data['keywords'] = $this->uri->segment(3);
 									$this->data['description'] = $complaint[0]['detail'];
 								}
