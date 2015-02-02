@@ -499,14 +499,22 @@
               <script type="text/javascript" src="<?php echo base_url();?>js/orbit/jquery.orbit-1.2.3.min.js"></script>
               <?php if( count($gallerys) > 0 ) { ?>
               <?php $site = site_url();
-			  		//$site = str_replace('new/','',$site);
+			  
+			  if(count($gallerys)>5)
+			  {
+				$newgallerys = 5;
+			  }
+			  else
+			  {
+			  	$newgallerys = count($gallerys);
+			  }			
 			  		?>
               <script type="text/javascript">
 				$(window).load(function() {
 				$('.gallery_featured').orbit();
 					});
 				</script>
-              <?php for($i=0; $i<count($gallerys); $i++) { ?>
+              <?php for($i=0; $i<$newgallerys; $i++) { ?>
               <?php $photos = $this->complaints->get_photos_bygalleryid($gallerys[$i]['id']);?>
               <div class = "gallery_title"><?php echo $gallerys[$i]['title'];?></div>
               <?php if(count($photos)>0){ ?>
@@ -522,8 +530,12 @@
               <div class="form-message warning">
                 <p>No photos in this gallery.</p>
               </div>
-              <?php } ?>
-              <?php } ?>
+              <?php } 
+				} 
+				?>
+					<p align="right" class="cmnt_wrp">
+					<a href="<?php echo site_url('company/photos/'.$company[0]['id']);?>" title="View All">View All</a></p>
+
               <?php } else { ?>
               <div class="form-message warning">
                 <p>No Photos.</p>
@@ -535,9 +547,18 @@
           
          <div class="tab_content" id="tab6">
             <?php 
-				if( count($videos) > 0 ) { 				
+				if( count($videos) > 0 ) { 	
+			  
+			  if(count($videos)>5)
+			  {
+				$newvideos = 5;
+			  }
+			  else
+			  {
+			  	$newvideos = count($videos);
+			  }			
 			?>
-            <?php for($i=0; $i<5; $i++) { ?>
+            <?php for($i=0; $i<$newvideos; $i++) { ?>
             <div class="noblock review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="company_content_title contenttag"><?php echo $videos[$i]['title'];?></div>
               <br />
@@ -555,14 +576,10 @@
               <div style="display:none;"> <a href="<?php echo $videos[$i]['videourl'];?>" title="<?php echo $videos[$i]['videourl'];?>"><?php echo $videos[$i]['videourl'];?></a> </div>
             </div>
             <?php 
-            if($i>5)
-            {
-			?>
-				<p align="right" class="cmnt_wrp wrps">
-				<a href="<?php echo site_url('company/videos/'.$company[0]['id']);?>" title="View All">View All</a></p>
-			<?php
 			}
-            } ?>
+			?>
+				<p align="right" class="cmnt_wrp">
+				<a href="<?php echo site_url('company/videos/'.$company[0]['id']);?>" title="View All">View All</a></p>
             <?php }?>
          </div>
           
