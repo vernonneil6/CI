@@ -495,7 +495,7 @@
 				$('.gallery_featured').orbit();
 					});
 				</script>
-              <?php for($i=0; $i<$newgallerys; $i++) { ?>
+              <?php for($i=0; $i<5; $i++) { ?>
               <?php $photos = $this->complaints->get_photos_bygalleryid($gallerys[$i]['id']);?>
               <div class = "gallery_title"><?php echo $gallerys[$i]['title'];?></div>
               <?php if(count($photos)>0){ ?>
