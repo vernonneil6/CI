@@ -119,19 +119,7 @@
             <?php } ?>
 			<li><a href="mailto:<?php echo strtoupper($company[0]['email']);?>" title="Email us" class="colors"><?php echo strtoupper($company[0]['email']);?></a></li>
             <li>
-              <?php if (strpos($company[0]['siteurl'],'http://') !== false)
-				 {
-    				?>
               <a class="colors"  href="<?php  echo strtoupper($company[0]['siteurl']);?>" target="_blank" title="<?php echo $company[0]['siteurl'];?>"><?php echo strtoupper($company[0]['siteurl']);?></a>
-              <?php
-					
-				 }
-				 else
-				 {
-				 ?>
-              <a class="colors" href="http://<?php echo ($company[0]['siteurl']);?>" target="_blank" title="http://<?php echo ($company[0]['siteurl']);?>"><?php echo strtoupper("http://".$company[0]['siteurl']);?></a>
-              <?php
-				 }?>
             </li>
 
           </ul>
