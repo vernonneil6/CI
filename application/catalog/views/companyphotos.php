@@ -7,7 +7,7 @@
       
       <h1  class="bannertextcoupon profile_page_heading">
 		<div class ="float_left profile_page_title">
-			<span class="bannertextregular">RELATED </span><br> VIDEOS
+			<span class="bannertextregular">RELATED </span><br> PHOTOS
 		</div>
 		<?php 
 		    
