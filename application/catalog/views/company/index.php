@@ -375,6 +375,12 @@
                 <div class="cmnt_wrp wrps"> <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add comment">  +  Add comment </a> </div>
               </div>
             </div>
+            <div itemscope itemtype = "http://schema.org/rating" itemprop = "rating">
+
+				  <meta itemprop = "ratingvalue" content="<?php echo $reviews[$i]['rate']; ?>">
+				  <meta itemprop = "bestrating"  content="<?php echo  '5'; ?>">
+				  <meta itemprop = "worstrating" content="<?php echo '0'; ?>">	
+			</div>
             <?php } 
 			?>
             <p align="right" class="cmnt_wrp wrps"><a href="<?php echo site_url('company/reviews/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a>
@@ -387,12 +393,7 @@
               <p>No Reviews.</p>
             </div>
             <?php } ?>
-            <div itemscope itemtype = "http://schema.org/rating" itemprop = "rating">
-
-				  <meta itemprop = "ratingvalue" content="<?php echo $reviews[$i]['rate']; ?>">
-				  <meta itemprop = "bestrating"  content="<?php echo  '5'; ?>">
-				  <meta itemprop = "worstrating" content="<?php echo '0'; ?>">	
-			</div>
+            
             </div>
           </div>
           <div class="tab_content" id="tab2">
