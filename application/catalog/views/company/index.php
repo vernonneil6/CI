@@ -53,7 +53,7 @@
 			</div>
       
 			<div class="compny_name">
-			  <h1><span itemprop="name"><?php echo strtoupper($company[0]['company']);?></span></h1>
+			  <h1><span itemprop="name" class = "fn" ><?php echo strtoupper($company[0]['company']);?></span></h1>
 			  <div class="vry_rating vryrating">
 	  
 				<?php for($r=0;$r<$avgstar;$r++){?>
@@ -91,7 +91,7 @@
       </div>
 
 
-        <div class="contct_dtl">
+      <div class="contct_dtl">
           <ul itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
             <li><a><span itemprop="streetAddress" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></span></a></li>
             <li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',		'.$company[0]['country'])); ?></span></a></li>
@@ -127,12 +127,14 @@
 
           </ul>
         </div>
+        
         <div itemscope itemtype = "http://schema.org/AggregateRating" itemprop = "aggregateRating">
 			  <meta itemprop = "reviewCount" content = "<?php echo count($reviews); ?>" >
 			  <meta itemprop = "ratingValue" content = "<?php echo $itemproaverage; ?>" >
 			  <meta itemprop = "bestRating" content = "<?php echo  '5'; ?>" >
 			  <meta itemprop = "worstRating" content = "<?php echo '0'; ?>" >	
 		</div>	
+		
         <div class="social_blck">
           <?php if(count($elitemem_status)!=0){?>
           <ul>
@@ -194,6 +196,7 @@
 			</script>
 			<label class = "view_direction_map" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">Get Directions</label>       		         
 		</div>
+		
 	   </div>
 		
 		
