@@ -741,6 +741,10 @@ public function eliteSubscribe($formpost,$companyid) {
 	$discountmethod=$this->complaints->get_discount_method($disccode_user);
 	$startDate = date("Y-m-d");
 	$amount = $subscriptionprice;
+	$disc="";
+	$disccode_type="";
+	$disccode_price="";
+	$disccode_use="";
 	if(count($discountmethod) > 0){
 		  
 		 if($discountmethod['discountcodetype']=="30days-FT" || $discountmethod['discountcodetype']=="30days-FT+LP")
