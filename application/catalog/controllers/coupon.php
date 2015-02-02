@@ -85,10 +85,17 @@ class Coupon extends CI_Controller {
 		//Meta Keywords and Description
 		$this->data['keywords'] = $this->common->get_seosetting_value(4);
 		$this->data['description'] = $this->common->get_seosetting_value(5);
-		$this->data['title'] = 'Coupons';
+		$this->data['title'] = 'Coupons : YOUGOTRATED';
 		
-		$this->data['section_title'] = 'Coupons';
-
+		$this->data['section_title'] = 'Coupons : YOUGOTRATED';
+		
+		if($this->uri->segment(3))
+		{
+		$company = $this->coupons->get_company_bycouponseokeyword($this->uri->segment(3));
+		$companyname = $this->users->get_company_bysingleid($company['id']);
+		$this->data['title'] = $companyname['company'];
+		}
+		
 		//Load header and save in variable
 		$this->data['header'] = $this->load->view('header',$this->data,true);
 		$this->data['menu'] = $this->load->view('menu',$this->data,true);
@@ -129,6 +136,7 @@ class Coupon extends CI_Controller {
 				{
 					$this->data['coupons'] = $this->coupons->get_coupon_byid($couponseo[0]['id']);
 		  			$this->data['couponcomments'] = $this->coupons->get_comments_bycouponid($couponseo[0]['id']);
+		  			
 			
 				if(count($this->data['coupons'])>0)
 				{

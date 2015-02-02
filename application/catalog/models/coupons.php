@@ -104,6 +104,20 @@ class Coupons extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	function get_company_bycouponseokeyword($word)
+ 	{
+		$query = $this->db->get_where('coupon', array('seokeyword' => $word));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 	function get_coupon_bycompanyid($id,$couponid='')
  	{
