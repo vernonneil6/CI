@@ -333,7 +333,7 @@
             <div itemscope itemtype = "http://schema.org/Review" itemprop = "review" class="review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="review_lft">
                 <div class="user_img"><img src="images/default_user.png" alt="User image" title="User image"></div>
-               <meta itemprop = "itemReviewed" content = "<?php echo $site_url(); ?>">
+               <meta itemprop = "itemReviewed" content = "<?php echo site_url(); ?>">
               </div>
               <div class="review_rgt reviewstab">
 
