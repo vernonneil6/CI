@@ -410,7 +410,7 @@ class Company extends CI_Controller {
 		{
 		  	if( $word!='')
 			{
-				$this->data['company'] = $this->users->get_company_bysingleid($word); 
+				$this->data['company'] = $this->users->get_company_byid($word); 
 				
 				if(count($this->data['company'])>0) 
 				{
