@@ -45,25 +45,21 @@
 				
              <div class="compny_name cpyynme">
                 <h2>
-				
-				 <?php if(count($elitemem_status)==0){?>
 				<a class="cmpn_name" href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" >
 				<?php echo strtoupper($companies[$i]['company']);?>
 				
-					<a class="image_novrf" href="http://business.yougotrated.com/?elitemem=<?php echo $companies[$i]['id'] ?>" title="Upgrade to Elite">
+				
+			<?php if(count($elitemem_status)==0){?>
+				<a class="image_novrf" href="http://business.yougotrated.com/?elitemem=<?php echo $companies[$i]['id'] ?>" title="Upgrade to Elite">
 					<img class="notverfiedimg" src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
-				<div class="business_link clickhere"> 			
-					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
-				</div>
-				</a>
+					<div class="business_link clickhere"> 			
+						IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
+					</div></a>
 				</a>
 				
               <?php } else { ?>
-                <a class="cmpn_name" href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" >
-				<?php echo strtoupper($companies[$i]['company']);?>
-				
-                <a class="vrf_merchant" href="<?php echo site_url('company/'.urlencode($companies[$i]['companyseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail"><div class="vrytitle verifytag">YouGotRated VERIFIED MERCHANT</div></a>
-                  <?php  } ?>
+                      <a class="vrf_merchant" href="<?php echo site_url('company/'.urlencode($companies[$i]['companyseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail"><div class="vrytitle verifytag">YouGotRated VERIFIED MERCHANT</div></a>
+              <?php  } ?>
 			
                 </a>
                 </h2>
