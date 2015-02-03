@@ -35,7 +35,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
 		$avgstar = $this->common->get_avg_ratings_bycmid($complaints[0]['companyid']);
 		$avgstar = round($avgstar);
 		;?>
-          <div class="vry_rating">
+          <div class="vry_rating comprates">
             <?php for($r=0;$r<($avgstar);$r++){?>
             <i class="vry_rat_icn"></i>
             <?php } ?>
@@ -43,9 +43,8 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
             <img src="images/no_star.png" alt="no_star" title="no_star" />
             <?php } ?>
           </div>
+        <div class="vry_btn compbtn"><a href="<?php echo site_url('review/add/'.$complaints[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$complaints[0]['companyid']);?>" title="File Complaint">FILE COMPLAINT</a></div>
       </div>
-      <div class="vry_btn"><a href="<?php echo site_url('review/add/'.$complaints[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$complaints[0]['companyid']);?>" title="File Complaint">FILE COMPLAINT</a></div>
-      
     </div>
     <div class="pr_detlwrp">
       <div class="titl_pr_rel">

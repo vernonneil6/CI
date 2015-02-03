@@ -1964,8 +1964,8 @@ color:#333333 !important;
 }
 .notverfiedimg{
 
-margin-top: 0 !important;
-margin-left:5px;
+margin-top: 10px !important;
+margin-left: 5px;
 display: inline-block;
 
 }
@@ -1983,10 +1983,33 @@ margin-top: -6px;
 
 margin-left:5px;
 margin-bottom: 5px !important;
-
+margin-top: 6px;
 }
 .moveup
 {
 margin-top: -0px !important;
 }
 .image_novrf{ margin-top: -14px;}
+
+.reviewbtn{
+
+width: auto!important;
+float: none!important;
+
+}
+.compbtn{
+
+width: auto!important;
+float: none!important;
+
+}
+.reviewrates{
+float: none!important;
+margin-top: 4px!important;
+
+}
+.comprates{
+float: none!important;
+margin-top: 4px!important;
+
+}
