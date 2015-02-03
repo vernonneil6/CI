@@ -99,7 +99,7 @@
         </div>
         <div class="clearfix">
           <div class="lab">
-            <label for="videourl">videourl <span class="errorsign">*</span></label>
+            <label for="videourl">video url <span class="errorsign">*</span></label>
           </div>
           <div class="con">
             <?php if($this->uri->segment(2) == 'add') { ?>
@@ -109,7 +109,7 @@
             <?php echo form_input( array( 'name'=>'videourl','id'=>'videourl','class'=>'input','type'=>'text','value'=>stripslashes($video[0]['videourl']),'placeholder'=>'just enter youtube video url'));?>
             <?php } ?>
           </div>
-          <div id="videourlerror" class="error" style="width:auto">videourl is required.</div>
+          <div id="videourlerror" class="error" style="width:auto">video url is required.</div>
           <div id="videovurlerror" class="error" style="width:auto">Invalid url please enter valid url.</div>
         </div>
         <div class="btn-submit"> 
@@ -149,12 +149,12 @@
         </div>
         <div class="clearfix">
           <div class="lab">
-            <label for="videourl">videourl <span class="errorsign">*</span></label>
+            <label for="videourl">video url <span class="errorsign">*</span></label>
           </div>
           <div class="con">
             	<?php echo form_input( array( 'name'=>'addvideourl','id'=>'addvideourl','class'=>'input','type'=>'text','placeholder'=>'enter youtube video url'));?>
           </div>
-          <div id="videourlerror" class="error" style="width:auto">videourl is required.</div>
+          <div id="videourlerror" class="error" style="width:auto">video url is required.</div>
           <div id="videovurlerror" class="error" style="width:auto">Invalid url please enter valid url.</div>
         </div>
           <?php echo form_input(array('name'=>'addbtn','id'=>'addbtn','class'=>'button','type'=>'submit','value'=>'Add')); ?>
@@ -195,7 +195,7 @@
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
         <th width="40%">Title</th>
-        <th width="40%">Videourl</th>
+        <th width="40%">Video url</th>
         <th width="7%">Status</th>
         <th width="13%">Action</th>
       </tr>
