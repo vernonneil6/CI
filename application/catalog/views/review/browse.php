@@ -132,6 +132,21 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
 				  } ?>
         <div class="compny_name">
           <h1><a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><?php  echo $review[0]['company'];?></a></h1>
+          
+          <?php if(count($elitemem_status)==0){?>
+			<a href="http://business.yougotrated.com/?elitemem=<?php echo $review[0]['companyid'] ?>" title="Upgrade to Elite">
+					<img class="notverfiedimg" src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
+				<div class="business_link clickhere"> 			
+					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
+				</div>
+			</a>
+			
+		  <?php } else { ?>
+			  
+			 <a href="<?php echo site_url('company/'.urlencode($review[0]['companyseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail"><div class="vrytitle verifytag">YouGotRated VERIFIED MERCHANT</div></a>
+			  
+		  <?php } ?>	  	  
+          
           <?php 
 		//get avg star by cmpyid
 		$avgstar = $this->common->get_avg_ratings_bycmid($review[0]['companyid']);

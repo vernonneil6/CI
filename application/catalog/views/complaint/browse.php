@@ -6,25 +6,31 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
   <section class="main_contentarea">
     <div class="verified_wrp pr_rwrp">
         <?php if(count($elitemem_status)==0){?>
-        <div class="vry_logo verified_browse"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class = "reviewnotverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo verified_browse"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class = "reviewnotverifiedlogos" alt="<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>" /></a> </div>
         <?php }else{
 				  ?>
         <div class="vry_logo verified_browse"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>" /></a> </div>
         <?php
 				  } ?>
-        <?php if(count($elitemem_status)==0){?>
-        <div class="bsntvry_title">
-          <div class="bsvry_tag"> <span>IS THIS YOUR BUSINESS?</span>
-            <p><a href="solution/claimbusiness" title="CLICK HERE TO BECOME VERIFIED">CLICK HERE TO BECOME VERIFIED</a></p>
-          </div>
-        </div>
-        <?php }else { ?>
-        <div class="vry_title"></div>
-        <?php } ?>
+     
       
       <div class="compny_name">
         <h1><?php echo (stripslashes($complaints[0]['company'])); ?></h1>
-                  <?php 
+          <?php if(count($elitemem_status)==0){?>
+			<a href="http://business.yougotrated.com/?elitemem=<?php echo $complaints[0]['companyid'] ?>" title="Upgrade to Elite">
+					<img class="notverfiedimg" src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
+				<div class="business_link clickhere"> 			
+					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
+				</div>
+			</a>
+			
+		  <?php } else { ?>
+			  
+			 <a href="<?php echo site_url('company/'.urlencode($complaints[0]['comseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail"><div class="vrytitle verifytag">YouGotRated VERIFIED MERCHANT</div></a>
+			  
+		  <?php } ?>	
+         
+          <?php 
 		//get avg star by cmpyid
 		$avgstar = $this->common->get_avg_ratings_bycmid($complaints[0]['companyid']);
 		$avgstar = round($avgstar);
