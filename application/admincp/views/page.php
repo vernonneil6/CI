@@ -230,7 +230,7 @@ else { ?>
 			}
 			else
 			{
-				echo form_textarea( array( 'name'=>'pagecontent','id'=>'pagecontent','class'=> 'textarea','value'=> stripslashes($page[0]['pagecontent']),'style'=>'width:200px','rows'=>'4','cols'=>'15' ) );
+				echo form_textarea( array( 'name'=>'pagecontent','id'=>'pagecontent','class'=> 'textarea tinymce','value'=> stripslashes($page[0]['pagecontent']),'style'=>'width:200px','rows'=>'4','cols'=>'15' ) );
 			}
 		?>
           </div>
