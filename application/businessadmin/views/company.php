@@ -225,37 +225,7 @@
 					$("#phoneerror").hide();
 				}
 			}
-			
-			/*if( $("#creditcard1").val().length > 0 )
-				{
-					var re16digit = /^\d{16}$/;
-				    if (!re16digit.test($("#creditcard1").val()))
-					 {
-				        $("#error").attr('style','display:block;');
-						$("#creditcard1error").show();
-				        return false;
-					 }
-					 else
-					 {
-						$("#creditcard1error").hide();	
-					 }
-				}
-				
-			if( $("#creditcard2").val().length > 0 )
-				{
-					var re16digit = /^\d{16}$/;
-				    if (!re16digit.test($("#creditcard2").val()))
-					 {
-				        $("#error").attr('style','display:block;');
-						$("#creditcard2error").show();
-				        return false;
-					 }
-					  else
-					 {
-						$("#creditcard2error").hide();	
-					 }
-				}*/	
-				
+
 			if(trim($("#price_range").val())!= "")
 			{
 				if( !pfilter.test(trim($("#price_range").val())) || trim($("#price_range").val()).length <10)
@@ -270,6 +240,143 @@
 					$("#price_rangeerror").hide();
 				}
 			}
+			
+			
+			
+			
+			if( trim($("#contactname").val()) == "" )
+			{
+				$("#error").attr('style','display:block;');
+				$("#contactnameerror").show();
+				$("#contactname").val('').focus();
+				return false;
+			}
+			else
+			{
+				$("#contactnameerror").hide();
+			}
+			
+			if( trim($("#companystreet").val()) == "" )
+			{
+				$("#error").attr('style','display:block;');
+				$("#contactcompanystreeterror").show();
+				$("#companystreet").val('').focus();
+				return false;
+			}
+			else
+			{
+				$("#contactcompanystreeterror").hide();
+			}
+			
+			if( trim($("#companycity").val()) == "" )
+			{
+				$("#error").attr('style','display:block;');
+				$("#contactcompanycityerror").show();
+				$("#companycity").val('').focus();
+				return false;
+			}
+			else
+			{
+				$("#contactcompanycityerror").hide();
+			}
+			
+			
+			if( trim($("#companystate").val()) == "" )
+			{
+				$("#error").attr('style','display:block;');
+				$("#contactcompanystateerror").show();
+				$("#companystate").val('').focus();
+				return false;
+			}
+			else
+			{
+				$("#contactcompanystateerror").hide();
+			}
+			
+			if( trim($("#companycountry").val()) == "" )
+			{
+				$("#error").attr('style','display:block;');
+				$("#contactcompanycountryerror").show();
+				$("#companycountry").val('').focus();
+				return false;
+			}
+			else
+			{
+				$("#contactcompanycountryerror").hide();
+			}
+			
+			var zipcode = /^([0-9\(\)\/\+ \-]*)$/; 
+			if(trim($("#companyzip").val()) == "")
+			{
+				$("#contactcompanyziperror").show();
+				$("#companyzip").val('').focus();
+				return false;
+			}
+			else
+			{
+				if( !zipcode.test(trim($("#companyzip").val())) || trim($("#companyzip").val()).length < 4)
+				{
+					$("#ziperror").hide();
+					$("#error").attr('style','display:block;');
+					$("#contactcompanyvziperror").show();
+					$("#companyzip").focus();
+					return false;
+				}
+				else
+				{
+					$("#contactcompanyziperror").hide();
+					$("#contactcompanyvziperror").hide();
+				}
+			}
+			
+			
+			var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+			if( trim($("#contactemail").val()) == "" )
+			{
+				$("#contactcompanyvemailerror").hide();
+				$("#contactcompanyemailerror").show();
+				$("#contactemail").val('').focus();
+				return false;
+			}
+			else
+			{
+				if( !filter.test(trim($("#contactemail").val())) )
+				{
+
+					$("#contactcompanyvemailerror").hide();
+					$("#contactcompanyemailerror").show();
+					$("#contactemail").val('').focus();
+					return false;
+
+				}
+
+			}
+			
+			
+			var pfilter = /^([0-9\(\)\/\+ \-]*)$/; 
+			if(trim($("#contactphonenumber").val()) == "")
+			{
+				$("#contactphonenumbererror").show();
+				$("#contactphonenumber").val('').focus();
+				return false;
+			}
+			else
+			{
+				if( !pfilter.test(trim($("#contactphonenumber").val())) || trim($("#contactphonenumber").val()).length <10)
+				{
+					$("#contactphonenumbererror").hide();
+					$("#error").attr('style','display:block;');
+					$("#contactvphonenumbererror").show();
+					$("#contactphonenumber").focus();
+					return false;
+				}
+				else
+				{
+					$("#contactvphonenumbererror").hide();
+					$("#contactphonenumbererror").hide();
+				}
+			}
+		
 			
 		});
 	
@@ -480,10 +587,10 @@
         <div class="form-cols"><!-- two form cols -->
           <div class="col1" style="width: 100% !important;">
             <div class="clearfix">
-              <div class="lab" style="width: 12% !important; padding-bottom:5px">
+              <div class="lab" style="width: 18% !important; padding-bottom:5px">
                 <label for="about">About</label>
               </div>
-              <div class="con" style="width: 99% !important; text-align:justify; float:left;">
+              <div class="con" style="width: 60% !important; text-align:justify; float:left;">
                 <?php if($this->uri->segment(2) == 'edit') { ?>
                 <?php echo form_textarea( array( 'name'=>'about','id'=>'about','class'=>'textarea','rows'=>'4','cols'=>'15','value'=>stripslashes($company[0]['aboutus']) ) ); ?>
                 <?php } ?>
@@ -523,6 +630,7 @@
           </div>
         </div>
         
+
         <div class="form-cols">
           <div class="col1">
             <div class="clearfix">
@@ -577,7 +685,138 @@
           
         </div>
         
+
         <div class="form-cols">
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+				  <label>Contact Information</label>
+              </div>          
+            </div>
+          </div>        
+        </div>
+        
+        
+        <div class="form-cols">
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+				  <label>Name <span class="errorsign">*</span></label>
+              </div>          
+              <div class="con">
+				<?php echo form_input( array( 'name'=>'contactname','id'=>'contactname','class'=>'input','type'=>'text','value'=>($company[0]['contactname'])) ); ?>
+              </div>
+            </div>
+          </div>        
+        </div>
+        <div id="contactnameerror" class="error">Contact Name is required.</div>
+        
+        <div class="form-cols">
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+				  <label>Address <span class="errorsign">*</span></label>
+              </div>          
+              <div class="con" id="companystreet">
+				<?php echo form_input( array( 'name'=>'companystreet','id'=>'companystreet','class'=>'input','type'=>'text','value'=>($company[0]['companystreet'])) ); ?>
+              </div>
+            </div>
+          </div>        
+        </div>
+        <div id="contactcompanystreeterror" class="error">Contact Address is required.</div>
+        
+        <div class="form-cols">
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+				  <label>City <span class="errorsign">*</span></label>
+              </div>          
+              <div class="con">
+				<?php echo form_input( array( 'name'=>'companycity','id'=>'companycity','class'=>'input','type'=>'text','value'=>($company[0]['companycity'])) ); ?>
+              </div>
+            </div>
+          </div>        
+        </div>
+        <div id="contactcompanycityerror" class="error">Contact City is required.</div>
+        
+        <div class="form-cols">
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+				  <label>State <span class="errorsign">*</span></label>
+              </div>          
+              <div class="con">
+				<?php echo form_input( array( 'name'=>'companystate','id'=>'companystate','class'=>'input','type'=>'text','value'=>($company[0]['companystate'])) ); ?>
+              </div>
+            </div>
+          </div>        
+        </div>
+        <div id="contactcompanystateerror" class="error">Contact State is required.</div>
+        
+        <div class="form-cols">
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+				  <label>Country<span class="errorsign">*</span></label>
+              </div>          
+              <div class="con">
+				<?php echo form_input( array( 'name'=>'companycountry','id'=>'companycountry','class'=>'input','type'=>'text','value'=>($company[0]['companycountry'])) ); ?>
+              </div>
+            </div>
+          </div>        
+        </div>
+        <div id="contactcompanycountryerror" class="error">Contact Country is required.</div>
+        
+        <div class="form-cols">
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+				  <label>Zip Code <span class="errorsign">*</span></label>
+              </div>          
+              <div class="con">
+				<?php echo form_input( array( 'name'=>'companyzip','id'=>'companyzip','class'=>'input','type'=>'text','value'=>($company[0]['companyzip'])) ); ?>
+              </div>
+            </div>
+          </div>        
+        </div>
+
+        <div id="contactcompanyziperror" class="error">Contact Zip Code is required.</div>
+        <div id="contactcompanyvziperror" class="error">Enter only digits valid format.</div>
+        
+        
+        <div class="form-cols">
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+				  <label> Email <span class="errorsign">*</span></label>
+              </div>          
+              <div class="con">
+				<?php echo form_input( array( 'name'=>'contactemail','id'=>'contactemail','class'=>'input','type'=>'text','value'=>($company[0]['contactemail'])) ); ?>
+              </div>
+            </div>
+          </div>        
+        </div>
+        <div id="contactcompanyemailerror" class="error">Enter valid Emailid.</div>
+        <div id="contactcompanyvemailerror" class="error">This Emailid already taken.</div>
+        
+        
+        <div class="form-cols">
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+				  <label>Phone <span class="errorsign">*</span></label>
+              </div>          
+              <div class="con">
+				<?php echo form_input( array( 'name'=>'contactphonenumber','id'=>'contactphonenumber','class'=>'input','type'=>'text','value'=>($company[0]['contactphonenumber'])) ); ?>
+              </div>
+            </div>
+          </div>        
+        </div>
+        <div id="contactphonenumbererror" class="error">Contact Phone is required.</div>
+        <div id="contactvphonenumbererror" class="error">Enter Only Digits. Valid Format : 0707123456.</div> 
+       
+       
+       <div class="form-cols">
           <div class="col1">
             <div class="clearfix">
               <div class="lab">
@@ -586,10 +825,10 @@
 				<a class = "profile_change_password" href = "/businessadmin/company/changepassword">Click here to change password</a>
               </div>
             </div>
-          </div>
-          
+          </div>        
         </div>
         
+       
         <div class="btn-submit"> 
           <!-- Submit form -->
           <?php if($this->uri->segment(2) == 'edit') { ?>
