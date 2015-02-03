@@ -231,7 +231,7 @@ else { ?>
   <!-- box -->
   <div class="box">
     <div class="headlines">
-      <h2><span> Gallerys </span></h2>
+      <h2><span> Galleries </span></h2>
     </div>
     
     <!-- Correct form message -->
