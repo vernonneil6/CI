@@ -685,7 +685,7 @@
           
         </div>
         
-		<?php if($this->uri->segment(2) == 'edit') { ?>
+
         <div class="form-cols page_contact_info" >
           <div class="col1">
             <div class="clearfix">
@@ -704,12 +704,15 @@
 				  <label>Name <span class="errorsign">*</span></label>
               </div>          
               <div class="con">
+				<?php if($this->uri->segment(2) == 'edit') { ?>
 				<?php echo form_input( array( 'name'=>'contactname','id'=>'contactname','class'=>'input','type'=>'text','value'=>($company[0]['contactname'])) ); ?>
+				<?php } ?>
               </div>
             </div>
-          </div>        
+          </div> 
+          <div id="contactnameerror" class="error">Contact Name is required.</div>       
         </div>
-        <div id="contactnameerror" class="error">Contact Name is required.</div>
+        
         
         <div class="form-cols">
           <div class="col1">
@@ -827,7 +830,7 @@
             </div>
           </div>        
         </div>
-        <?php } ?>
+      
        
         <div class="btn-submit"> 
           <!-- Submit form -->
