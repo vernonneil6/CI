@@ -33,6 +33,21 @@ Class Pages extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	//Getting Page value for editing
+	function get_page_bycategory($category, $position)
+ 	{
+		$query = $this->db->get_where('pages', array('id' => $category, 'position'=> $position));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 	//Updating Record
 	function update($id,$title,$heading,$varmetakey,$varmetades,$varpagecont,$footercategory,$footerposition)

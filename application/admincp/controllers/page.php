@@ -129,24 +129,28 @@ class Page extends CI_Controller {
 				$footercategory = addslashes($this->input->post('footercategory'));
 				$footerposition = addslashes($this->input->post('footerposition'));
 				
-				$checkingposition = $this->pages->get_page_byid($intid);
-				if($footerposition == $checkingposition[0]['position'] and $footercategory == $checkingposition[0]['id'])
-				{
-					$this->session->set_flashdata('error', 'Position is already taken!');
-					redirect('page', 'refresh');
-				}
+				
 				
 				if( $varpagecont!='' )
-				{				
-					if( $this->pages->update($intid,$vartitle,$varheading,$varmetakey,$varmetades,$varpagecont,$footercategory,$footerposition) )
+				{		
+					$checkingposition = $this->pages->get_page_byid($intid);
+					if($footerposition == $checkingposition[0]['position'] and $footercategory == $checkingposition[0]['id'])
 					{
-						$this->session->set_flashdata('success', 'Page details updated successfully.');
+						$this->session->set_flashdata('error', 'Position is already taken!');
 						redirect('page', 'refresh');
-					}
+					}		
 					else
 					{
-						$this->session->set_flashdata('error', 'There is error in updating Page details. Try later!');
-						redirect('page', 'refresh');
+						if( $this->pages->update($intid,$vartitle,$varheading,$varmetakey,$varmetades,$varpagecont,$footercategory,$footerposition) )
+						{
+							$this->session->set_flashdata('success', 'Page details updated successfully.');
+							redirect('page', 'refresh');
+						}
+						else
+						{
+							$this->session->set_flashdata('error', 'There is error in updating Page details. Try later!');
+							redirect('page', 'refresh');
+						}
 					}
 				}
 				else
@@ -234,21 +238,30 @@ class Page extends CI_Controller {
 				
 		if($request->post('btnupdate'))
 		{
-			$data = array(	
-			'id' => $request->post('footercategory'),
-			'websiteid' => '1',
-			'title' => $request->post('title'),
-			'heading' => $request->post('heading'),
-			'metakeywords' => $request->post('metakeywords'),
-			'metadescription' => $request->post('metadescription'),
-			'pagecontent' => $request->post('pagecontent'),
-			'position' => $request->post('footerposition'),
-			'deviceip' => $_SERVER['REMOTE_ADDR'],
-			'editdate' => date('Y-m-d H:i:s'),
-			'status' => 'Enable'		
-			);
-			$this->pages->pageadd($data);
-			redirect('page', 'refresh');
+			
+			if($this->pages->get_page_bycategory($request->post('footercategory'), $request->post('footerposition')))
+			{
+				$this->session->set_flashdata('error', 'Position is already taken!');
+				redirect('page', 'refresh');
+			}	
+			else
+			{
+				$data = array(	
+				'id' => $request->post('footercategory'),
+				'websiteid' => '1',
+				'title' => $request->post('title'),
+				'heading' => $request->post('heading'),
+				'metakeywords' => $request->post('metakeywords'),
+				'metadescription' => $request->post('metadescription'),
+				'pagecontent' => $request->post('pagecontent'),
+				'position' => $request->post('footerposition'),
+				'deviceip' => $_SERVER['REMOTE_ADDR'],
+				'editdate' => date('Y-m-d H:i:s'),
+				'status' => 'Enable'		
+				);
+				$this->pages->pageadd($data);
+				redirect('page', 'refresh');
+			}
 		}
 		$this->load->view('page', $this->data);
 	}

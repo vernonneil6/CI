@@ -272,7 +272,7 @@ else { ?>
                
                  $range = range(0, 25);
                 $class = 'id = "footerposition" class = "input"';
-				echo form_dropdown( 'footerposition', $range, $page[0]['postion'], $class ) ;
+				echo form_dropdown( 'footerposition', $range, $page[0]['position'], $class ) ;
 				?>
               </div>
             </div>
