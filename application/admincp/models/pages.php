@@ -3,10 +3,10 @@ Class Pages extends CI_Model
 {
 	function get_all_pages($siteid,$sortby = 'id',$orderby = 'ASC')
  	{
-		//Ordering Data
+
 		$this->db->order_by($sortby,$orderby);
+		$this->db->order_by('position', 'asc');
 		$this->db->where('websiteid', $siteid);
-		//Executing Query
 		$query = $this->db->get('pages');
 		
 		if ($query->num_rows() > 0)
