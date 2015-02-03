@@ -1956,3 +1956,37 @@ padding-left: 18px;
 {
 	padding : 0 23%;
 }
+.cmpn_name{
+height:auto;
+color:#333333 !important;
+
+}
+.notverfiedimg{
+
+margin-top: 0 !important;
+margin-left:5px;
+display: inline-block;
+
+}
+.vrf_merchant{
+
+font-size:22px!important;
+margin-left:5px;
+margin-top: -6px;
+}
+.bmoves{
+ 
+ margin-left: 21%;
+
+}
+.clickhere{
+
+margin-left:5px;
+margin-bottom: 5px !important;
+display: inline-block;
+}
+.moveup
+{
+margin-top: -0px !important;
+}
+.image_novrf{ margin-top: -14px;}
