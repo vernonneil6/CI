@@ -35,7 +35,7 @@ Class Pages extends CI_Model
  	}
 	
 	//Updating Record
-	function update($id,$title,$heading,$varmetakey,$varmetades,$varpagecont,$footercategory)
+	function update($id,$title,$heading,$varmetakey,$varmetades,$varpagecont,$footercategory,$footerposition)
  	{
 		$editdate = date('Y-m-d');
 		$vareditip = $_SERVER['REMOTE_ADDR'];
@@ -47,11 +47,10 @@ Class Pages extends CI_Model
 							'pagecontent' 	 	=> $varpagecont,
 							'editdate' 			=> $editdate,
 							'deviceip' 			=> $vareditip,
-							'id' 				=> $footercategory
+							'id' 				=> $footercategory,
+							'position' 			=> $footerposition
 						);
-			//echo "<pre>";
-			//print_r($data);
-			//die();
+
 		$this->db->where('intid', $id);
 		if( $this->db->update('pages', $data) )
 		{
@@ -105,7 +104,7 @@ Class Pages extends CI_Model
 		}
 	}
 	//Getting value for searching
-	function search_page($keyword,$siteid,$sortby = 'title',$orderby = 'ASC')
+	function search_page($keyword,$siteid,$sortby = 'id',$orderby = 'ASC')
 	{
 	 	$this->db->order_by($sortby,$orderby);
 		

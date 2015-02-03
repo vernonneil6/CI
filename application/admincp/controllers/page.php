@@ -127,10 +127,11 @@ class Page extends CI_Controller {
 				$varmetades = addslashes($this->input->post('metadescription'));
 				$varpagecont = addslashes($this->input->post('pagecontent'));
 				$footercategory = addslashes($this->input->post('footercategory'));
+				$footerposition = addslashes($this->input->post('footerposition'));
 				
 				if( $varpagecont!='' )
 				{				
-					if( $this->pages->update($intid,$vartitle,$varheading,$varmetakey,$varmetades,$varpagecont,$footercategory) )
+					if( $this->pages->update($intid,$vartitle,$varheading,$varmetakey,$varmetades,$varpagecont,$footercategory,$footerposition) )
 					{
 						$this->session->set_flashdata('success', 'Page details updated successfully.');
 						redirect('page', 'refresh');
@@ -234,6 +235,7 @@ class Page extends CI_Controller {
 			'metakeywords' => $request->post('metakeywords'),
 			'metadescription' => $request->post('metadescription'),
 			'pagecontent' => $request->post('pagecontent'),
+			'position' => $request->post('footerposition'),
 			'deviceip' => $_SERVER['REMOTE_ADDR'],
 			'editdate' => date('Y-m-d H:i:s'),
 			'status' => 'Enable'		
