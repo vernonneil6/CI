@@ -685,8 +685,8 @@
           
         </div>
         
-
-        <div class="form-cols">
+		<?php if($this->uri->segment(2) == 'edit') { ?>
+        <div class="form-cols page_contact_info" >
           <div class="col1">
             <div class="clearfix">
               <div class="lab">
@@ -827,7 +827,7 @@
             </div>
           </div>        
         </div>
-        
+        <?php } ?>
        
         <div class="btn-submit"> 
           <!-- Submit form -->
