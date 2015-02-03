@@ -68,7 +68,6 @@
 		  </tr>
 		
 		<!--For View details-->
-	
 	<!--Subbroker view popup-->	   		    
 	<?php if($titletype[0]['type'] =='subbroker') { 
 		?>

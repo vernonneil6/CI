@@ -859,17 +859,28 @@ class Report extends CI_Controller {
 	}
 	public function signupdetailss()
     {
-		$from= $_GET['fromdates'];
-		$end=$_GET['todates'];
-		$mid = ($_GET['mid']) ? $_GET['mid'] : '';
-		$from= ($from!='') ? date('Y-m-d', strtotime($from)) : '';
-		$end= ($end!='') ? date('Y-m-d', strtotime($end)) : $from;
-		$type ="broker";
+
+		   $fromdate= $_GET['fromdates'];
+			if($fromdate !='')	{
+			   $from=date('Y-m-d', strtotime($fromdate));
+		    }  else  {
+			    $from='';	
+			}
+			
+			$enddate=$_GET['todates'];
+		    if($enddate !='') {
+		         $end=date('Y-m-d', strtotime($enddate));	
+		    } else {
+				
+			     $end=date('Y-m-d', strtotime($fromdate));
+			}
+			
 		$site_url = $this->settings->get_setting_value(2);
 		if( $this->session->userdata['youg_admin'] )
-        {			
-			$objPHPExcel = new PHPExcel();
-			$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
+        {		
+		
+					$objPHPExcel = new PHPExcel();
+					$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
 					 ->setLastModifiedBy("YouGotRated Admin")
 					 ->setTitle("Office 2007 XLSX Test Document")
 					 ->setSubject("Office 2007 XLSX Test Document")
@@ -877,11 +888,20 @@ class Report extends CI_Controller {
 					 ->setKeywords("office 2007 openxml php")
 					 ->setCategory("Business");
 					 
-			$objPHPExcel->getActiveSheet()->setTitle('Report');
+					$objPHPExcel->getActiveSheet()->setTitle('Report');
 
-			$objPHPExcel->getActiveSheet()->getStyle("A1:M1")->getFont()->setBold(true);
+					/*$objPHPExcel->getActiveSheet()->getStyle("A1:G1")->getFont()->setBold(true);
 
-			$objPHPExcel->getActiveSheet()
+					$objPHPExcel->getActiveSheet()
+							->setCellValue('A1', 'Company')							
+							->setCellValue('B1', 'Register Date')							
+							->setCellValue('C1', 'Broker')	
+							->setCellValue('D1', 'Type');*/
+							
+							
+					$objPHPExcel->getActiveSheet()->getStyle("A1:M1")->getFont()->setBold(true);
+
+					$objPHPExcel->getActiveSheet()
 							->setCellValue('A1', 'Elite Member First/Lastname')							
 							->setCellValue('B1', 'Elite Company Name')							
 							->setCellValue('C1', 'Elite Mem Phone')	
@@ -896,31 +916,32 @@ class Report extends CI_Controller {
 							->setCellValue('L1', 'Number of Payments Made')
 							->setCellValue('M1', 'ID#');		
 														  
-			$items = $this->reports->signbtndate($from,$end,$mid,$type);
-			$row=2;
-			foreach($items as $row_data)
-			{
-				$col = 0;	
-				foreach($row_data as $key=>$value)
-				{
-					if(!$value)
-					$value='-';
-					$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-					$col++;
-				}
-				$row++;
-			}
+					$items = $this->reports->signbtndate($from,$end);
+					$row=2;
+					foreach($items as $row_data)
+					{
+					
+					$col = 0;	
+						foreach($row_data as $key=>$value)
+						{
+							if(!$value)
+							$value='-';
+							$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+							$col++;
+						}
+					$row++;
+			    	}
                     
-			$objPHPExcel->setActiveSheetIndex(0);
-			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-			$file=time().'.xls';
-			$objWriter->save('../uploads/my/'.$file);
-			$this->load->helper('download');
+					$objPHPExcel->setActiveSheetIndex(0);
+					$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+					$file=time().'.xls';
+					$objWriter->save('../uploads/my/'.$file);
+					$this->load->helper('download');
 
-			$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-			$name = 'Report-of-signup-details.xls';
+					$file1 = file_get_contents($site_url.'uploads/my/'.$file);
+					$name = 'Report-of-signup-details.xls';
 
-			force_download($name, $file1); 
+					force_download($name, $file1); 
 		
 	    } 
 		
@@ -1105,7 +1126,7 @@ class Report extends CI_Controller {
 			$this->data['streetaddress']=$datas['streetaddress'];
 		
 		    
-			/*$this->load->library('pagination');
+			$this->load->library('pagination');
 			$this->paging['per_page']=5;
 			$limit =$this->paging['per_page']; 
 			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
@@ -1115,7 +1136,7 @@ class Report extends CI_Controller {
 			$this->paging['base_url'] = site_url("report/reportsearch");
 			$this->paging['uri_segment'] = 3;
 			$this->paging['total_rows'] = $this->reports->report_count();
-		    $this->pagination->initialize($this->paging);*/
+		    $this->pagination->initialize($this->paging);
 			//print_r($this->paging);
 					
 		    $this->load->view('report',$this->data);

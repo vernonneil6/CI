@@ -1018,7 +1018,7 @@ class Reports extends CI_Model
 		->result_array();	
 		
 	}*/
- 	function signbtndate($from,$to,$mid,$type)
+ 	function signbtndate($from,$to)
  	{
 		if($to == $from){
 			$where = "`registerdate` >= '".$from."'";
@@ -1026,14 +1026,13 @@ class Reports extends CI_Model
 		else{
 			$where = "(`registerdate` >= '".$from ."' AND `registerdate` <= '".$to."')";
 		}
-		if($mid!="") { $where .= " AND (`brokerid` ='".$mid."')"; }
 		$query=$this->db->select('yc.contactname yccname,yc.company yccompany,yc.contactphonenumber ycphone,yc.email ycemail,yc.registerdate ycreg,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yc.brokerid ycbrokerid,ys.subscr_id yssubscr_id,ys.payment_date yspay,ys.expires ysexp,yc.status ycstatus')
 						   ->from('youg_company yc') 
 						   ->join('youg_subscription ys', 'ys.company_id=yc.id', 'left')
 						   ->where($where)
 						   ->get()
 						   ->result_array(); 
-           print_r($query); die;
+           
         $i=0;
         foreach($query as $q)
         {
