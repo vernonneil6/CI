@@ -136,7 +136,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
           <?php if(count($elitemem_status)==0){?>
 			<a href="http://business.yougotrated.com/?elitemem=<?php echo $review[0]['companyid'] ?>" title="Upgrade to Elite">
 					<img class="notverfiedimg" src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
-				<div class="business_link clickhere"> 			
+				<div class="business_link"> 			
 					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
 				</div>
 			</a>
@@ -152,7 +152,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
 		$avgstar = $this->common->get_avg_ratings_bycmid($review[0]['companyid']);
 		$avgstar = round($avgstar);
 		;?>
-          <div class="vry_rating">
+          <div class="vry_rating reviewrates">
             <?php for($r=0;$r<($avgstar);$r++){?>
             <i class="vry_rat_icn"></i>
             <?php } ?>
@@ -160,8 +160,9 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
             <img src="images/no_star.png" alt="no_star" title="no_star" />
             <?php } ?>
           </div>
+        <div class="vry_btn reviewbtn"><a href="<?php echo base_url('review/add/'.$review[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add');?>" title="File Complaint">FILE COMPLAINT</a></div>  
         </div>
-        <div class="vry_btn"><a href="<?php echo base_url('review/add/'.$review[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add');?>" title="File Complaint">FILE COMPLAINT</a></div>
+        
       </div>
       <div class="pr_detlwrp">
         <div class="titl_pr_rel">
