@@ -2006,6 +2006,8 @@ float: none!important;
 
 }
 .comprates{
-float: none!important;
+display: inline-block;
+float: none !important;
+margin-top: 5px;
 }
 .complink{ margin-left:5px; }
