@@ -50,6 +50,7 @@
 				
 				
 			<?php if(count($elitemem_status)==0){?>
+			
 				<a class="image_novrf" href="http://business.yougotrated.com/?elitemem=<?php echo $companies[$i]['id'] ?>" title="Upgrade to Elite">
 					<img class="notverfiedimg" src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
 					<div class="business_link clickhere"> 			
