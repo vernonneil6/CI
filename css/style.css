@@ -1964,9 +1964,7 @@ color:#333333 !important;
 }
 .notverfiedimg{
 
-margin-top: 10px !important;
-margin-left: 5px;
-display: inline-block;
+margin-top: 0px !important;
 
 }
 .vrf_merchant{
@@ -1983,7 +1981,7 @@ margin-top: -6px;
 
 margin-left:5px;
 margin-bottom: 5px !important;
-margin-top: 6px;
+margin-top: -7px;
 }
 .moveup
 {
@@ -2005,11 +2003,12 @@ float: none!important;
 }
 .reviewrates{
 float: none!important;
-margin-top: 4px!important;
+margin-top: -10px !important;
 
 }
 .comprates{
 float: none!important;
-margin-top: 4px!important;
+margin-top: -10px !important;
 
 }
+.complink{ margin-left:5px; }
