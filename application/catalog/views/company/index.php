@@ -13,12 +13,14 @@
 	$("ul.tabbs li:first").addClass("active").show(); //Activate first tab
 	$(".tab_content:first").show(); //Show first tab content
 		$("ul.tabbs li").click(function() {
-			$('.videotab')[0].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*'); 
 			$("ul.tabbs li").removeClass("active"); //Remove any "active" class
 			$(this).addClass("active"); //Add "active" class to selected tab
 			$(".tab_content").hide(); //Hide all tab content
 			var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
 			$(activeTab).fadeIn(); //Fade in the active content
+			$("#tab6 iframe").each(function() { 
+				$('.'+$(this).attr('class'))[0].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
+			});
 			return false;
 		});
 	 }); 
@@ -614,7 +616,7 @@
 					$ytendstring=end($ytendarray);
 					$ytendarray=explode("&", $ytendstring);
 					$ytcode=$ytendarray[0];
-					echo "<iframe class=\"videotab\" width=\"520\" height=\"280\" src=\"http://www.youtube.com/embed/$ytcode?enablejsapi=1&version=3&playerapiid=ytplayer\" frameborder=\"1\" allowscriptaccess=\"always\" allowfullscreen></iframe>";
+					echo "<iframe class=\"videotab$i\" width=\"520\" height=\"280\" src=\"http://www.youtube.com/embed/$ytcode?enablejsapi=1&version=3&playerapiid=ytplayer\" frameborder=\"1\" allowscriptaccess=\"always\" allowfullscreen></iframe>";
 				?>  
               </div>
               <div style="display:none;"> <a href="<?php echo $videos[$i]['videourl'];?>" title="<?php echo $videos[$i]['videourl'];?>"><?php echo $videos[$i]['videourl'];?></a> </div>
