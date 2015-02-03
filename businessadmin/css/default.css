@@ -499,3 +499,9 @@ z-index: 1000;
 text-decoration:none;
 
 }
+
+.page_contact_info
+{
+	margin : 15px 0;
+	font-size: 16px;
+}

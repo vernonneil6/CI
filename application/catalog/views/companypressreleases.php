@@ -5,7 +5,7 @@
       
       <h1  class="bannertextcoupon profile_page_heading">
 		<div class ="float_left profile_page_title">
-			<span class="bannertextregular">PRESS </span><br> RELEASE
+			<span class="bannertextregular">PRESS </span><br> RELEASES
 		</div>
 		<?php 
 		    
@@ -33,7 +33,22 @@
 			</a>
 			</h2>
 		  </div>
-              
+          
+          <?php if(count($elitemem_status)==0){?>
+			<div>
+				<?php $urls="http://business.yougotrated.com/?elitemem=".$company[0]['id'].""; ?>
+				
+				<a href="<?php echo $urls;?>" title="Upgrade to Elite">
+					<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
+				<div class="business_link"> 			
+					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
+				</div>
+				</a>    
+			</div>
+		<?php }else { ?>
+			<div class="vrytitle">YouGotRated VERIFIED MERCHANT</div>
+		<?php } ?>
+             
 		  <div class="compny_name" style="margin-top:-12px;">
 			<div class="vry_rating">
 			  <?php for($r=0;$r<$avgstar;$r++){?>

@@ -43,7 +43,7 @@ class Gallery extends CI_Controller {
 		$this->data['site_url'] = $this->settings->get_setting_value(2);
 		
 		$this->data['title'] = $this->settings->get_setting_value(1).' : Business Gallerys';
-		$this->data['section_title'] = 'Business Gallerys';
+		$this->data['section_title'] = 'Business Galleries';
 		$websites = $this->settings->get_all_urls();
 		
 		if( count($websites) > 0 )

@@ -58,8 +58,8 @@
   <div class="box">
     <div class="headlines">
       <h2><span>
-        <?php if($this->uri->segment(2) == 'add') { echo "Add  Gallery"; } ?>
-        <?php if($this->uri->segment(2) == 'edit') { echo "Edit  Gallery"; } ?>
+        <?php if($this->uri->segment(2) == 'add') { echo "Add  Galleries"; } ?>
+        <?php if($this->uri->segment(2) == 'edit') { echo "Edit  Galleries"; } ?>
         </span></h2>
     </div>
     <div class="box-content"> <?php echo form_open_multipart('gallery/update',array('class'=>'formBox','id'=>'frmgallery')); ?>
