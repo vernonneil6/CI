@@ -129,6 +129,13 @@ class Page extends CI_Controller {
 				$footercategory = addslashes($this->input->post('footercategory'));
 				$footerposition = addslashes($this->input->post('footerposition'));
 				
+				$checkingposition = $this->pages->get_page_byid($intid);
+				if($footerposition == $checkingposition[0]['position'] and $footercategory == $checkingposition[0]['id'])
+				{
+					$this->session->set_flashdata('error', 'Position is already taken!');
+					redirect('page', 'refresh');
+				}
+				
 				if( $varpagecont!='' )
 				{				
 					if( $this->pages->update($intid,$vartitle,$varheading,$varmetakey,$varmetades,$varpagecont,$footercategory,$footerposition) )
