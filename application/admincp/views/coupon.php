@@ -61,6 +61,9 @@ else { ?>
 
 <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'add' || $this->uri->segment(2) == 'edit' ) ) { ?>
 <?php //$companies = $this->companys->get_all_companys();?>
+		<style>
+		#frmcoupon.formBox .file .upload-file { margin-left:0 !important; } 
+		</style>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script> 
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
         <?php /*?><script>
