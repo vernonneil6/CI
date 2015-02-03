@@ -92,7 +92,7 @@ $(document).ready(function() {
 				</div>	    
 							
 				<div class="con">
-				   <?php echo form_input(array( 'name'=>'streetaddress','id'=>'streetaddress','class'=>'input','type'=>'text','placeholder'=>'Enter Your streetaddress')); ?>
+				   <?php echo form_input(array( 'name'=>'streetaddress','id'=>'streetaddress','class'=>'input','type'=>'text','placeholder'=>'Enter Your street address')); ?>
                 </div>
                
                <div class="con" style='margin-top:10px'> 
