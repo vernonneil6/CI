@@ -45,7 +45,7 @@
       <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
       <li><a href="<?php echo site_url('gallery');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
       <li>
-        <?php if($this->uri->segment(2) == 'add'){echo 'Add  Gallery';} else if($this->uri->segment(2) == 'edit') {echo 'Edit  Gallery'; }?>
+        <?php if($this->uri->segment(2) == 'add'){echo 'Add  Galleries';} else if($this->uri->segment(2) == 'edit') {echo 'Edit  Galleries'; }?>
       </li>
       <li> Photos </li>
     </ul>
