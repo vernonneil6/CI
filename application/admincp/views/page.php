@@ -114,6 +114,18 @@ else { ?>
 				$("#metadeserror").hide();
 			}
 			
+			if( trim($("#footerposition").val()) == 0 )
+			{
+				$("#error").attr('style','display:block;');
+				$("#positionerror").show();
+				$("#footerposition").val('').focus();
+				return false;
+			}
+			else
+			{
+				$("#positionerror").hide();
+			}
+			
 			if( $("#frmpage").submit() )
 			{
 				$("#error").attr('style','display:none;');
@@ -248,6 +260,26 @@ else { ?>
           </div>
         </div>
         
+        
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 20% !important;">
+                <label for="heading">Position</label>
+              </div>
+              <div class="con" style="width: 77% !important; float:left">
+                <?php 
+               
+                 $range = range(0, 25);
+                $class = 'id = "footerposition" class = "input"';
+				echo form_dropdown( 'footerposition', $range, $page[0]['position'], $class ) ;
+				?>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="positionerror" class="error" style="width:auto;">Position is required.</div>
+        
         <div class="btn-submit" style="padding: 15px 0 0 22%;"> 
           <!-- Submit form --> 
           <?php echo form_input(array('name'=>'btnupdate','id'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Update')); ?> or <a href="<?php echo site_url('page');?>" class="Cancel">Cancel</a> </div>
@@ -365,6 +397,26 @@ else { ?>
           </div>
         </div>
         
+         <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 20% !important;">
+                <label for="heading">Category</label>
+              </div>
+              <div class="con" style="width: 77% !important; float:left">
+                <?php 
+                $range = range(0, 25);
+                $class = 'id = "footerposition" class = "input"';
+                
+				echo form_dropdown( 'footerposition', $range, '0', $class ) ;
+				?>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        
         <div class="btn-submit" style="padding: 15px 0 0 22%;"> 
           <!-- Submit form --> 
           <?php echo form_input(array('name'=>'btnupdate','id'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Add')); ?> or <a href="<?php echo site_url('page');?>" class="Cancel">Cancel</a> </div>
@@ -459,13 +511,32 @@ else { ?>
     <!-- table -->
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
+        <th>Section</th>
         <th>Title</th>
         <th>Heading</th>
         <th>Status</th>
+        <th>Position</th>
         <th>Action</th>
       </tr>
       <?php for($i=0;$i<count($pages);$i++) { ?>
       <tr>
+        <td>
+			<?php 
+			$option = array(
+                '1' => 'YOUGOTRATED GUIDE',
+                '2' => 'COMPLAINT REPORTS',
+                '3' => 'MERCHANT INFORMATION',
+                '4' => 'COPYRIGHTS'
+                );
+              foreach ($option as $key => $value) 
+              {
+					if($pages[$i]['id'] == $key)
+					{
+						echo $value; 
+					}
+				}
+            ?>
+        </td>
         <td><a href="<?php echo site_url('page/view/'.$pages[$i]['intid']); ?>" title="View Detail of <?php echo stripslashes($pages[$i]['title']);?>" class="colorbox" style="color: #404040;"><?php echo stripslashes($pages[$i]['title']); ?></a></td>
         <td><?php echo stripslashes($pages[$i]['heading']); ?></td>
         <td>
@@ -478,6 +549,7 @@ else { ?>
           <?php } ?>
         
         </td>
+        <td><?php echo $pages[$i]['position']; ?></td>
         <td><a href="<?php echo site_url('page/edit/'.$pages[$i]['intid']); ?>" title="Edit" class="ico ico-edit">Edit</a> <a href="<?php echo site_url('page/view/'.$pages[$i]['intid']); ?>" title="View Detail of <?php echo stripslashes($pages[$i]['title']);?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
       </tr>
       <?php } ?>
