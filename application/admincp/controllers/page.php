@@ -132,13 +132,12 @@ class Page extends CI_Controller {
 				
 				
 				if( $varpagecont!='' )
-				{		
-					$checkingposition = $this->pages->get_page_byid($intid);
-					if($footerposition == $checkingposition[0]['position'] and $footercategory == $checkingposition[0]['id'])
+				{			
+					if($this->pages->get_page_bycategory($footercategory, $footerposition))
 					{
-						$this->session->set_flashdata('error', 'Position is already taken!');
+						$this->session->set_flashdata('error', 'Position in that category is already taken!');
 						redirect('page', 'refresh');
-					}		
+					}	
 					else
 					{
 						if( $this->pages->update($intid,$vartitle,$varheading,$varmetakey,$varmetades,$varpagecont,$footercategory,$footerposition) )
@@ -241,7 +240,7 @@ class Page extends CI_Controller {
 			
 			if($this->pages->get_page_bycategory($request->post('footercategory'), $request->post('footerposition')))
 			{
-				$this->session->set_flashdata('error', 'Position is already taken!');
+				$this->session->set_flashdata('error', 'Position in that category is already taken!');
 				redirect('page', 'refresh');
 			}	
 			else
