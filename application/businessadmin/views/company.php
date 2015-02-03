@@ -801,7 +801,7 @@
         </div>
         <div id="contactcompanyemailerror" class="error">Enter valid Emailid.</div>
         <div id="contactcompanyvemailerror" class="error">This Emailid already taken.</div>
-        
+        <div class="note-text">This email address will not be publicly visible in YouGotRated. This is where you want YGR to send you notifications regarding your Account, Reviews, Complaints and any other communication regarding your Business.</div>
         
         <div class="form-cols">
           <div class="col1">

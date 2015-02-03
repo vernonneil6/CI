@@ -157,6 +157,17 @@ class Company extends CI_Controller {
 					$price_range = ($this->input->post('price_range'));
 					$accept_credit_cards = ($this->input->post('accept_credit_cards'));
 					$accept_paypal = ($this->input->post('accept_paypal'));
+								
+					$contactname=$this->input->post('contactname');
+					$companystreet=$this->input->post('companystreet');
+					$companycity=$this->input->post('companycity');
+					$companystate=$this->input->post('companystate');
+					$companycountry=$this->input->post('companycountry');
+					$companyzip=$this->input->post('companyzip');
+					$contactemail=$this->input->post('contactemail');
+					$contactphonenumber=$this->input->post('contactphonenumber');
+
+
 					
 					//Loading Model File
 					$this->load->model('companys');
@@ -246,8 +257,9 @@ class Company extends CI_Controller {
 										}
 									}
 								
-									//Updating Record With Image
-									if( $this->companys->update($id,$company,$streetaddress,$city,$state,$country,$zip,$email,$siteurl,$paypalid,$imgdata['file_name'],$phone,$about,$category,$creditcard1,$creditcard2,$price_range,$accept_credit_cards,$accept_paypal) )
+									/*//Updating Record With Image
+									//if($this->companys->update($id,$company,$streetaddress,$city,$state,$country,$zip,$email,$cemail,$siteurl,$paypalid,$imgdata['file_name'],$phone,$about,$category,$creditcard1,$creditcard2,$price_range,$accept_credit_cards,$accept_paypal) )
+									if($this->companys->update($id,$company,$streetaddress,$city,$state,$country,$zip,$email,$cemail,$siteurl,$paypalid,$imgdata['file_name'],$phone,$about,$category,$creditcard1,$creditcard2,$price_range,$accept_credit_cards,$accept_paypal,$contactname,$companystreet,$companycity,$companystate,$companycountry,$contactemail,$contactphonenumber) )
 									{
 										$this->session->set_flashdata('success', 'company updated successfully.');
 										redirect('company/edit', 'refresh');
@@ -257,7 +269,7 @@ class Company extends CI_Controller {
 					
 										$this->session->set_flashdata('error', 'There is error in updating company. Try later!');
 										redirect('company/edit', 'refresh');
-									}
+									}*/
 								}
 								else
 								{
@@ -269,9 +281,10 @@ class Company extends CI_Controller {
 							else
 							{
 								//Updating Record Without Image
-								if( $this->companys->update_noimage($id,$company,$streetaddress,$city,$state,$country,$zip,$email,$siteurl,$phone,$about,$category,$creditcard1,$creditcard2,$price_range,$accept_credit_cards,$accept_paypal) )
+								//if( $this->companys->update_noimage($id,$company,$streetaddress,$city,$state,$country,$zip,$email,$cemail,$siteurl,$phone,$about,$category,$creditcard1,$creditcard2,$price_range,$accept_credit_cards,$accept_paypal) )
+								if($this->companys->update_noimage($id,$company,$streetaddress,$city,$state,$country,$zip,$companystreet,$companycity,$companystate,$companycountry,$companyzip,$email,$siteurl,$phone,$about,$creditcard1,$creditcard2,$category,$contactname,$contactemail,$contactphonenumber,$price_range,$accept_credit_cards,$accept_paypal))
 								{
-									$this->session->set_flashdata('success', 'company updated successfully.');
+									$this->session->set_flashdata('success', 'companys updated successfully.');
 									redirect('company/edit', 'refresh');
 								}
 								else

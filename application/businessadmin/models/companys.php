@@ -16,7 +16,7 @@ Class Companys extends CI_Model
  	}
 	
 	//Updating Record
-	function update($id,$company,$streetaddress,$city,$state,$country,$zip,$email,$siteurl,$paypalid,$logo,$phone,$about,$category,$creditcard1,$creditcard2,$price_range,$accept_credit_cards,$accept_paypal)
+	/*function update($id,$company,$streetaddress,$city,$state,$country,$zip,$email,$siteurl,$paypalid,$logo,$phone,$about,$category,$creditcard1,$creditcard2,$price_range,$accept_credit_cards,$accept_paypal,$contactname,$companystreet,$companycity,$companystate,$companycountry,$contactemail,$contactphonenumber)
  	{
 		$date = date('Y-m-d H:i:s');
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
@@ -27,21 +27,26 @@ Class Companys extends CI_Model
 							'state' 			=> $state,
 							'country' 			=> $country,
 							'zip' 				=> $zip,
-							'email'				=> $email,
-							'siteurl' 			=> $siteurl,
-							'paypalid'			=> $paypalid,
-							'logo' 				=> $logo,
+							'companystreet'		=>$companystreet,
+							'companycity'		=>$companycity,
+							'companystate'		=>$companystate,
+							'companycountry'	=>$companycountry,
+							'email' 			=> $email,
+					    	'siteurl' 			=> $siteurl,
 							'phone'				=> $phone,
 							'aboutus'			=> $about,
+							'creditcard1'		=> $creditcard1,
+							'creditcard2'		=> $creditcard2,
 							'categoryid'		=> $category,
 							'status' 			=> 'Enable',
 							'editip' 			=> $varipaddress,
 							'editdate'			=> $date,
-							'creditcard1'		=> $creditcard1,
-							'creditcard2'		=> $creditcard2,
+							'contactname'		=>$contactname,
+							'contactemail'	    =>$contactemail,
+							'contactphonenumber'=>$contactphonenumber,
 							'price_range'		=> $price_range,
 							'accept_credit_cards'=>$accept_credit_cards,
-							'accept_paypal'		=>$accept_paypal
+							'accept_paypal'		=>$accept_paypal,
 							
 						);
 		$this->db->where('id', $id);
@@ -53,10 +58,11 @@ Class Companys extends CI_Model
 		{
 			return false;
 		}
- 	}
+ 	}*/
 	
-	function update_noimage($id,$company,$streetaddress,$city,$state,$country,$zip,$email,$siteurl,$phone,$about,$category,$creditcard1,$creditcard2,$price_range,$accept_credit_cards,$accept_paypal)
+	function update_noimage($id,$company,$streetaddress,$city,$state,$country,$zip,$companystreet,$companycity,$companystate,$companycountry,$companyzip,$email,$siteurl,$phone,$about,$creditcard1,$creditcard2,$category,$contactname,$contactemail,$contactphonenumber,$price_range,$accept_credit_cards,$accept_paypal)
  	{
+		
 		$date = date('Y-m-d H:i:s');
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
 		$data = array(
@@ -66,19 +72,28 @@ Class Companys extends CI_Model
 							'state' 			=> $state,
 							'country' 			=> $country,
 							'zip' 				=> $zip,
+							'companystreet'		=>$companystreet,
+							'companycity'		=>$companycity,
+							'companystate'		=>$companystate,
+							'companycountry'	=>$companycountry,
+							'companyzip'	    =>$companyzip,
 							'email' 			=> $email,
-							'siteurl' 			=> $siteurl,
+					    	'siteurl' 			=> $siteurl,
 							'phone'				=> $phone,
 							'aboutus'			=> $about,
+							'creditcard1'		=> $creditcard1,
+							'creditcard2'		=> $creditcard2,
 							'categoryid'		=> $category,
 							'status' 			=> 'Enable',
 							'editip' 			=> $varipaddress,
 							'editdate'			=> $date,
-							'creditcard1'		=> $creditcard1,
-							'creditcard2'		=> $creditcard2,
+							'contactname'		=>$contactname,
+							'contactemail'	    =>$contactemail,
+							'contactphonenumber'=>$contactphonenumber,
 							'price_range'		=> $price_range,
 							'accept_credit_cards'=>$accept_credit_cards,
-							'accept_paypal'		=>$accept_paypal
+							'accept_paypal'		=>$accept_paypal,
+							
 					);
 		$this->db->where('id', $id);
 		if( $this->db->update('company', $data) )
