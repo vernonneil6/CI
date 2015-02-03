@@ -134,7 +134,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
           <h1><a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><?php  echo $review[0]['company'];?></a></h1>
           
           <?php if(count($elitemem_status)==0){?>
-			<a class="image_novrf" href="http://business.yougotrated.com/?elitemem=<?php echo $review[0]['companyid'] ?>" title="Upgrade to Elite">
+			<a href="http://business.yougotrated.com/?elitemem=<?php echo $review[0]['companyid'] ?>" title="Upgrade to Elite">
 					<img class="notverfiedimg" src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
 				<div class="business_link clickhere"> 			
 					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
