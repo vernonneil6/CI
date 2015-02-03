@@ -1143,7 +1143,7 @@ border-top:1px solid;
 }
 .profile_tab_space
 {
-	padding : 5px 0 5px 17px;
+	padding : 5px 0 5px 16px;
 	display : inline-block;
 	width: 100%;
 }
@@ -1158,8 +1158,8 @@ ul.tabbs li {
     list-style: none outside none;
     height: 35px;
     list-style: none outside none;
-	margin-right: 9.7px;
-	-webkit-margin-end: 17px;
+	margin-right: 9px;
+	-webkit-margin-end: 15px;
 }
 ul.tabbs li:hover {
     background: #D58438;   
