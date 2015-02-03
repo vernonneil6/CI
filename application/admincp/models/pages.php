@@ -1,7 +1,7 @@
 <?php
 Class Pages extends CI_Model
 {
-	function get_all_pages($siteid,$sortby = 'title',$orderby = 'ASC')
+	function get_all_pages($siteid,$sortby = 'id',$orderby = 'ASC')
  	{
 		//Ordering Data
 		$this->db->order_by($sortby,$orderby);

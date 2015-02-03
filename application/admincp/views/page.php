@@ -459,6 +459,7 @@ else { ?>
     <!-- table -->
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
+        <th>Section</th>
         <th>Title</th>
         <th>Heading</th>
         <th>Status</th>
@@ -466,6 +467,20 @@ else { ?>
       </tr>
       <?php for($i=0;$i<count($pages);$i++) { ?>
       <tr>
+        <td>
+			<?php 
+			$option = array(
+                '1' => 'YOU GOT RATED GUIDE',
+                '2' => 'COMPLAINT REPORTS',
+                '3' => 'MERCHANT INFORMATION',
+                '4' => 'COPYRIGHTS'
+                );
+				if($pages[$i]['id']==array_keys($option))
+				{
+					echo array_values($option); 
+				}
+            ?>
+        </td>
         <td><a href="<?php echo site_url('page/view/'.$pages[$i]['intid']); ?>" title="View Detail of <?php echo stripslashes($pages[$i]['title']);?>" class="colorbox" style="color: #404040;"><?php echo stripslashes($pages[$i]['title']); ?></a></td>
         <td><?php echo stripslashes($pages[$i]['heading']); ?></td>
         <td>
