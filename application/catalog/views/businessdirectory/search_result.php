@@ -30,7 +30,7 @@
 			$elitemem_status = $this->common->get_eliteship_bycompanyid($companies[$i]['id']);
 			
 			?>
-      <div class="srch_result_blck">
+     <div class="srch_result_blck">
         <div class="innr_wrap">
           <div class="srch_rslt_left">
             <div class="verified_wrp srch_rslt_vrfy vfy_rvw">
@@ -42,14 +42,33 @@
                   <?php
 				  } ?>
 			<div>
-              <div class="compny_name cpyynme">
+				
+             <div class="compny_name cpyynme">
                 <h2>
-				<a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" style="height:auto;color:#333333 !important;">
+				
+				 <?php if(count($elitemem_status)==0){?>
+				<a class="cmpn_name" href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" >
 				<?php echo strtoupper($companies[$i]['company']);?>
+				
+					<a class="image_novrf" href="http://business.yougotrated.com/?elitemem=<?php echo $companies[$i]['id'] ?>" title="Upgrade to Elite">
+					<img class="notverfiedimg" src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
+				<div class="business_link clickhere"> 			
+					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
+				</div>
+				</a>
+				</a>
+				
+              <?php } else { ?>
+                <a class="cmpn_name" href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" >
+				<?php echo strtoupper($companies[$i]['company']);?>
+				
+                <a class="vrf_merchant" href="<?php echo site_url('company/'.urlencode($companies[$i]['companyseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail"><div class="vrytitle verifytag">YouGotRated VERIFIED MERCHANT</div></a>
+                  <?php  } ?>
+			
                 </a>
                 </h2>
               </div>
-              <div class="compny_name" style="margin-top:-15px;">
+              <div class="compny_name">
                 <div class="vry_rating">
                   <?php for($r=0;$r<$avgstar;$r++){?>
                   <i class="vry_rat_icn"></i>
@@ -60,10 +79,10 @@
                 </div>
               </div>
 <?php if(count($elitemem_status)==0){?>
-              <div class="vry_btn"><a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
+              <div class="vry_btn bmoves"><a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
 </div>
 <?php }else{  ?>
-<div class="vry_btn"><a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/dispute/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
+<div class="vry_btn bmoves"><a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/dispute/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
 </div>
 <?php }  ?>
             </div>
