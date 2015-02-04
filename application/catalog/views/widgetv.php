@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="<?php echo base_url();?>css/style.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url();?>css/widget.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>businessadmin/css/tooltipster.css" />
+<link rel="stylesheet" href="<?php echo base_url(); ?>css/tooltipster.css" />
 
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.min.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>businessadmin/js/jquery.tooltipster.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.raty.min.js"></script>
 
 
