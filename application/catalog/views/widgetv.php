@@ -28,7 +28,7 @@ Reviews
 	</div>
 	<div class = "clear"></div>
 </div>
-<div class = "review_tab_bottom">
+<div class = "review_tab_bottom" id = "widget_review">
 			<div class = "review_total">
 				 <div class="vry_rating vryrating">
 					<?php for($r=0;$r<round($averagerating);$r++){?>
@@ -194,12 +194,9 @@ Reviews
 				<?php 
 					if(count($reviews)>5)
 					{
-						if($this->pagination->create_links()) 
-						{ 
-						?>
-							<div class="pagination"><?php echo $this->pagination->create_links(); ?></div>
-						<?php 
-						}     
+					?>
+						<div class = "widget_pagination"></div>
+					<?php
 					}
 				?>
 			</div>
@@ -221,6 +218,15 @@ Reviews
 		$('.fancybox').fancybox();
 	});
 
+$(document).ready(function () 
+{
+ 	$("div.widget_pagination").jPages({
+	containerID: "widget_review",
+	perPage: 5,
+	keyBrowse: true,
+	scrollBrowse: true
+	});
+});
 
 function countme(rid,vote)
 	{
