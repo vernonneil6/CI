@@ -63,6 +63,9 @@
 </div>
 <!-- /box -->
 <?php } 
+
+
+
 else { ?>
 <?php echo $heading; ?>
 <script type="text/javascript" language="javascript">
@@ -136,6 +139,8 @@ else { ?>
   </div>
   <!-- /box-content -->
   <?php } 
+  
+  
   		elseif( $this->uri->segment(2) && ( $this->uri->segment(2) == 'subscriptions' ) ) { ?>
     <!-- box -->
   <div class="box">
@@ -196,6 +201,8 @@ else { ?>
   </div>
   <!-- /box-content -->
   <?php } 
+  
+  
     	else { ?>
   <!-- box -->
   <div class="box">
@@ -268,42 +275,46 @@ else { ?>
       <?php echo form_close(); ?> </div>
 <?php } ?>
 		  
+    
+    
     <?php if( count($elitemembers) > 0 ) { ?>
     <script language="javascript">
-$(function(){
- 
-    // add multiple select / deselect functionality
-    $("#selectall").click(function () {
-          $('.case').attr('checked', this.checked);
-    });
- 
-    // if all checkbox are selected, check the selectall checkbox
-    // and viceversa
-    $(".case").click(function(){
- 
-        if($(".case").length == $(".case:checked").length) {
-            $("#selectall").attr("checked", "checked");
-        } else {
-            $("#selectall").removeAttr("checked");
-        }
- 
-    });
-});
+		$(function(){
+		 
+			// add multiple select / deselect functionality
+			$("#selectall").click(function () {
+				  $('.case').attr('checked', this.checked);
+			});
+		 
+			// if all checkbox are selected, check the selectall checkbox
+			// and viceversa
+			$(".case").click(function(){
+		 
+				if($(".case").length == $(".case:checked").length) {
+					$("#selectall").attr("checked", "checked");
+				} else {
+					$("#selectall").removeAttr("checked");
+				}
+		 
+			});
+		});
 
-function submitfrm()
-{
-	var len =$('[name="foo[]"]:checked').length;
-	
-	if(len==0)
-	{
-		alert("Select atleast one company");
-		return false;
-	}
-	
-	
-	$('#get_id').submit();
-}
-</script><form action="elite/foo" id="get_id" method="post" class="formBox">
+		function submitfrm()
+		{
+			var len =$('[name="foo[]"]:checked').length;
+			
+			if(len==0)
+			{
+				alert("Select atleast one company");
+				return false;
+			}
+			
+			
+			$('#get_id').submit();
+		}
+	</script>
+
+<form action="elite/foo" id="get_id" method="post" class="formBox">
     <!-- table --><table class="">
       <tr class="">
       <td>
@@ -356,9 +367,11 @@ function submitfrm()
     <!-- /pagination -->
     <?php  if($this->pagination->create_links()) { ?>
     <div class="pagination"> <?php echo $this->pagination->create_links(); ?> </div>
-    <?php } ?>
     <!-- /pagination -->
-    <?php } if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'payview' ) ) {?>
+    <?php }
+    
+    
+     if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'payview' ) ) {?>
 	
 	<table class="tab tab-drag">
 		  <tr class="top nodrop nodrag">
@@ -392,7 +405,7 @@ function submitfrm()
 		<?php } ?>	
     </table>  
       
-     <?php }     
+     <?php } }     
 	else { ?>
     <!-- Warning form message -->
     <div class="form-message warning">
