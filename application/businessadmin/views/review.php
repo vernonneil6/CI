@@ -91,7 +91,7 @@
 			 }
 			 else
 			 {
-				 $reviews[$i]['reviewby'];
+				 echo $reviews[$i]['reviewby'];
 			 }
 		?>
 		</td>
