@@ -127,7 +127,22 @@
 					</a>
 				</span>-
 				<p>
+					<?php
+					
+					if($reviews[$i]['username']== null)
+					{
+					?>
+					<a><?php echo $reviews[$i]['reviewby']; ?></a>
+					<?php
+					}
+					else
+					{
+					?>
 					<a target = "_blank" href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile" class="reviewcolor"> <?php echo ucfirst(stripslashes($reviews[$i]['username'])); ?></a>
+					<?php
+					}
+					?>
+					
 				</p>
               <div class="revw_date">
                 <?php
