@@ -80,8 +80,8 @@
 	background : #3085C7;
     color: white;
     font-size: 18px;
-    display: inline-block;
-    width: 100%;
+
+   
 }
 .review_border_bottom
 {
@@ -132,9 +132,9 @@
 }
 .widget_title
 {
-	float : left;
+	
 }
 .widget_img
 {
-	float : right;
+	
 }

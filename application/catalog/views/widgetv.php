@@ -16,8 +16,12 @@ Reviews
 <div id="review_popup" class = "popupwidth">
 <div class = "review_poweredby">Powered by YouGotRated</div>
 <div class = "review_tab_top">
-	<label class="widget_title">THESE ARE REAL REVIEWS <br> FROM YOUGOTRATED</label>
-	<img class="widget_img" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>">
+	<div>
+		<label class="widget_title">THESE ARE REAL REVIEWS <br> FROM YOUGOTRATED</label>
+	</div>
+	<div>
+		<img class="widget_img" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>">
+	</div>
 </div>
 <div class = "review_tab_bottom">
 			<?php echo $total; ?>
