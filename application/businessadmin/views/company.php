@@ -4,6 +4,7 @@
 
 <div id="content">
   <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'edit' ) ) { ?>
+	  <script type="text/javascript" src="js/profileedit.js"></script>
   <script type="text/javascript">
 	function trim(stringToTrim) {
 		return stringToTrim.replace(/^\s+|\s+$/g,"");
@@ -47,341 +48,6 @@
 		}
 	}
 </script> 
-  <script type="text/javascript" language="javascript">
-	function trim(stringToTrim) {
-		return stringToTrim.replace(/^\s+|\s+$/g,"");
-	}
-	$(document).ready(function() {
-		
-	<?php if( $this->uri->segment(2) == 'edit' ) { ?>
-		$("#btnupdate").click(function () {
-	<?php } ?>
-	
-			if( trim($("#company").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#companyerror").show();
-				$("#company").val('').focus();
-				return false;
-			}
-			else
-			{
-				$("#companyerror").hide();
-			}
-			
-			if( trim($("#streetaddress").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#streetaddresserror").show();
-				$("#streetaddress").val('').focus();
-				return false;
-			}
-			else
-			{
-				$("#streetaddresserror").hide();
-			}
-			
-			if( trim($("#city").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#cityerror").show();
-				$("#city").val('').focus();
-				return false;
-			}
-			else
-			{
-				$("#cityerror").hide();
-			}
-			
-			
-			if( trim($("#state").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#stateerror").show();
-				$("#state").val('').focus();
-				return false;
-			}
-			else
-			{
-				$("#stateerror").hide();
-			}
-			
-			if( trim($("#country").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#countryerror").show();
-				$("#country").val('').focus();
-				return false;
-			}
-			else
-			{
-				$("#countryerror").hide();
-			}
-			
-			var zipcode = /^([0-9\(\)\/\+ \-]*)$/; 
-			if(trim($("#zip").val()) == "")
-			{
-				$("#ziperror").show();
-				$("#zip").val('').focus();
-				return false;
-			}
-			else
-			{
-				if( !zipcode.test(trim($("#zip").val())) || trim($("#zip").val()).length < 4)
-				{
-					$("#ziperror").hide();
-					$("#error").attr('style','display:block;');
-					$("#zipverror").show();
-					$("#zip").focus();
-					return false;
-				}
-				else
-				{
-					$("#ziperror").hide();
-					$("#zipverror").hide();
-				}
-			}
-			
-			
-			var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-			if( trim($("#email").val()) == "" )
-			{
-				$("#emailtknerror").hide();
-				$("#emailerror").show();
-				$("#email").val('').focus();
-				return false;
-			}
-			else
-			{
-				if( !filter.test(trim($("#email").val())) )
-				{
-
-					$("#emailtknerror").hide();
-					$("#emailerror").show();
-					$("#email").val('').focus();
-					return false;
-
-				}
-
-			}
-			
-			if( trim($("#siteurl").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#siteurlerror").show();
-				$("#siteurlerror").text('Site Url is required.');
-				$("#siteurl").val('').focus();
-				return false;
-			}
-			else
-			{
-				var txt = $('#siteurl').val();
-				var re = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
-				//var regexp = /(http(s)?:\\)?([\w-]+\.)+[\w-]+[.com|.in|.org]+(\[\?%&=]*)?/
-				if (re.test(txt)) {					
-				}
-				else {
-					$("#error").attr('style','display:block;');
-					$("#siteurlerror").show();
-					$("#siteurlerror").text('Please enter a valid URL. For example http://www.example.com');
-					$("#siteurl").focus();
-					return false;
-				}
-				$("#siteurlerror").hide();
-			}
-			
-			if( trim($("#paypalid").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#paypaliderror").show();
-				$("#paypalid").val('').focus();
-				return false;
-			}
-			else
-			{
-				$("#paypaliderror").hide();
-			}
-			
-			var pfilter = /^([0-9\(\)\/\+ \-]*)$/; 
-			if(trim($("#phone").val()) == "")
-			{
-				$("#phoneerror").show();
-				$("#phone").val('').focus();
-				return false;
-			}
-			else
-			{
-				if( !pfilter.test(trim($("#phone").val())) || trim($("#phone").val()).length <10)
-				{
-					$("#phoneerror").hide();
-					$("#error").attr('style','display:block;');
-					$("#phoneinverror").show();
-					$("#phone").focus();
-					return false;
-				}
-				else
-				{
-					$("#phoneinverror").hide();
-					$("#phoneerror").hide();
-				}
-			}
-
-			if(trim($("#price_range").val())!= "")
-			{
-				if( !pfilter.test(trim($("#price_range").val())) || trim($("#price_range").val()).length <10)
-				{
-					$("#error").attr('style','display:block;');
-					$("#price_rangeerror").show();
-					$("#price_range").focus();
-					return false;
-				}
-				else
-				{
-					$("#price_rangeerror").hide();
-				}
-			}
-			
-			
-			
-			
-			if( trim($("#contactname").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#contactnameerror").show();
-				$("#contactname").val('').focus();
-				return false;
-			}
-			else
-			{
-				$("#contactnameerror").hide();
-			}
-			
-			if( trim($("#companystreet").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#contactcompanystreeterror").show();
-				$("#companystreet").val('').focus();
-				return false;
-			}
-			else
-			{
-				$("#contactcompanystreeterror").hide();
-			}
-			
-			if( trim($("#companycity").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#contactcompanycityerror").show();
-				$("#companycity").val('').focus();
-				return false;
-			}
-			else
-			{
-				$("#contactcompanycityerror").hide();
-			}
-			
-			
-			if( trim($("#companystate").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#contactcompanystateerror").show();
-				$("#companystate").val('').focus();
-				return false;
-			}
-			else
-			{
-				$("#contactcompanystateerror").hide();
-			}
-			
-			if( trim($("#companycountry").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#contactcompanycountryerror").show();
-				$("#companycountry").val('').focus();
-				return false;
-			}
-			else
-			{
-				$("#contactcompanycountryerror").hide();
-			}
-			
-			var zipcode = /^([0-9\(\)\/\+ \-]*)$/; 
-			if(trim($("#companyzip").val()) == "")
-			{
-				$("#contactcompanyziperror").show();
-				$("#companyzip").val('').focus();
-				return false;
-			}
-			else
-			{
-				if( !zipcode.test(trim($("#companyzip").val())) || trim($("#companyzip").val()).length < 4)
-				{
-					$("#ziperror").hide();
-					$("#error").attr('style','display:block;');
-					$("#contactcompanyvziperror").show();
-					$("#companyzip").focus();
-					return false;
-				}
-				else
-				{
-					$("#contactcompanyziperror").hide();
-					$("#contactcompanyvziperror").hide();
-				}
-			}
-			
-			
-			var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-			if( trim($("#contactemail").val()) == "" )
-			{
-				$("#contactcompanyvemailerror").hide();
-				$("#contactcompanyemailerror").show();
-				$("#contactemail").val('').focus();
-				return false;
-			}
-			else
-			{
-				if( !filter.test(trim($("#contactemail").val())) )
-				{
-
-					$("#contactcompanyvemailerror").hide();
-					$("#contactcompanyemailerror").show();
-					$("#contactemail").val('').focus();
-					return false;
-
-				}
-
-			}
-			
-			
-			var pfilter = /^([0-9\(\)\/\+ \-]*)$/; 
-			if(trim($("#contactphonenumber").val()) == "")
-			{
-				$("#contactphonenumbererror").show();
-				$("#contactphonenumber").val('').focus();
-				return false;
-			}
-			else
-			{
-				if( !pfilter.test(trim($("#contactphonenumber").val())) || trim($("#contactphonenumber").val()).length <10)
-				{
-					$("#contactphonenumbererror").hide();
-					$("#error").attr('style','display:block;');
-					$("#contactvphonenumbererror").show();
-					$("#contactphonenumber").focus();
-					return false;
-				}
-				else
-				{
-					$("#contactvphonenumbererror").hide();
-					$("#contactphonenumbererror").hide();
-				}
-			}
-		
-			
-		});
-	
-	});
-</script>
   <?php } ?>
   
   <!-- breadcrumbs -->
@@ -543,6 +209,7 @@
           <div id="emailerror" class="error">Enter valid Emailid.</div>
           <div id="emailtknerror" class="error">This Emailid already taken.</div>
         </div>
+        <div class="note-texts">Please note: This email address will be visible publicly.</div>
         <div class="form-cols"><!-- two form cols -->
           <div class="col1">
             <div class="clearfix">
@@ -720,14 +387,15 @@
               <div class="lab">
 				  <label>Address <span class="errorsign">*</span></label>
               </div>          
-              <div class="con" id="companystreet">
+              <div class="con">
 				<?php if(empty($company[0]['companystreet'])) { $contactaddress=$company[0]['streetaddress']; } else { $contactaddress=$company[0]['companystreet']; }?>
 				<?php echo form_input( array( 'name'=>'companystreet','id'=>'companystreet','class'=>'input','type'=>'text','value'=>$contactaddress));?>
               </div>
             </div>
-          </div>        
+          </div>   
+          <div id="contactcompanystreeterror" class="error">Contact Address is required.</div>     
         </div>
-        <div id="contactcompanystreeterror" class="error">Contact Address is required.</div>
+        
         
         <div class="form-cols">
           <div class="col1">
@@ -740,9 +408,10 @@
 				<?php echo form_input( array( 'name'=>'companycity','id'=>'companycity','class'=>'input','type'=>'text','value'=>$concity) ); ?>
               </div>
             </div>
-          </div>        
+          </div> 
+          <div id="contactcompanycityerror" class="error">Contact City is required.</div>       
         </div>
-        <div id="contactcompanycityerror" class="error">Contact City is required.</div>
+        
         
         <div class="form-cols">
           <div class="col1">
@@ -755,9 +424,10 @@
 				<?php echo form_input( array( 'name'=>'companystate','id'=>'companystate','class'=>'input','type'=>'text','value'=>$constate) ); ?>
               </div>
             </div>
-          </div>        
+          </div>
+          <div id="contactcompanystateerror" class="error">Contact State is required.</div>        
         </div>
-        <div id="contactcompanystateerror" class="error">Contact State is required.</div>
+        
         
         <div class="form-cols">
           <div class="col1">
@@ -770,9 +440,10 @@
 				<?php echo form_input( array( 'name'=>'companycountry','id'=>'companycountry','class'=>'input','type'=>'text','value'=>$concount) ); ?>
               </div>
             </div>
-          </div>        
+          </div>
+          <div id="contactcompanycountryerror" class="error">Contact Country is required.</div>        
         </div>
-        <div id="contactcompanycountryerror" class="error">Contact Country is required.</div>
+        
         
         <div class="form-cols">
           <div class="col1">
@@ -785,11 +456,11 @@
 				<?php echo form_input( array( 'name'=>'companyzip','id'=>'companyzip','class'=>'input','type'=>'text','value'=>$conzip) ); ?>
               </div>
             </div>
-          </div>        
+          </div> 
+         <div id="contactcompanyziperror" class="error">Contact Zip Code is required.</div>
+        <div id="contactcompanyvziperror" class="error">Enter only digits valid format.</div>       
         </div>
 
-        <div id="contactcompanyziperror" class="error">Contact Zip Code is required.</div>
-        <div id="contactcompanyvziperror" class="error">Enter only digits valid format.</div>
         
         
         <div class="form-cols">
@@ -802,11 +473,12 @@
 				<?php echo form_input( array( 'name'=>'contactemail','id'=>'contactemail','class'=>'input','type'=>'text','value'=>($company[0]['contactemail'])) ); ?>
               </div>
             </div>
-          </div>        
+          </div> 
+           <div id="contactcompanyemailerror" class="error">Enter valid Emailid.</div>
+           <div id="contactcompanyvemailerror" class="error">This Emailid already taken.</div>       
         </div>
-        <div id="contactcompanyemailerror" class="error">Enter valid Emailid.</div>
-        <div id="contactcompanyvemailerror" class="error">This Emailid already taken.</div>
-        <div class="note-text">This email address will not be publicly visible in YouGotRated. This is where you want YGR to send you notifications regarding your Account, Reviews, Complaints and any other communication regarding your Business.</div>
+       
+        <div class="note-text">THE FOLLOWING INFORMATION WILL NOT BE PUBLISHED YOUGOTRATED AND IS USED FOR ADMINISTRATION PURPOSES ONLY. THIS INFORMATION IS WHERE YOU WILL RECEIVE EMAILS, AND RECEIPTS FROM YOUGOTRATED.COM.</div>
         
         <div class="form-cols">
           <div class="col1">
@@ -818,10 +490,11 @@
 				<?php echo form_input( array( 'name'=>'contactphonenumber','id'=>'contactphonenumber','class'=>'input','type'=>'text','value'=>($company[0]['contactphonenumber'])) ); ?>
               </div>
             </div>
-          </div>        
+          </div> 
+          <div id="contactphonenumbererror" class="error">Contact Phone is required.</div>
+        <div id="contactvphonenumbererror" class="error">Enter Only Digits. Valid Format : 0707123456.</div>        
         </div>
-        <div id="contactphonenumbererror" class="error">Contact Phone is required.</div>
-        <div id="contactvphonenumbererror" class="error">Enter Only Digits. Valid Format : 0707123456.</div> 
+        
        
        
        <div class="form-cols">
