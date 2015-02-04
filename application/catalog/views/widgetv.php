@@ -258,7 +258,7 @@ function countme(rid,vote)
 <script type="text/javascript" src="<?php echo base_url();?>js/jPages.js"></script>
 
 <script>
-	$(document).ready(function() 
+	$(window).load(function() 
 	{		
 		$("div.holder").jPages({
 			containerID  : "itemContainer",

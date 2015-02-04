@@ -85,7 +85,14 @@
         <td>
 		<?php
 			 $username = $this->reviews->get_user_bysingleid($reviews[$i]['reviewby']);
-			 echo ucwords(stripslashes($username['firstname']." ".$username['lastname']));
+			 if($username)
+			 {
+				echo ucwords(stripslashes($username['firstname']." ".$username['lastname']));
+			 }
+			 else
+			 {
+				 $reviews[$i]['reviewby'];
+			 }
 		?>
 		</td>
         <td><img src="images/stars/<?php echo stripslashes($reviews[$i]['rate']); ?>.png" title="<?php echo stripslashes($reviews[$i]['rate']); ?> Stars" /></td>
