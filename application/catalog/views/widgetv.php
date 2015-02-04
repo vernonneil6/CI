@@ -1,7 +1,3 @@
-<?php $avgstar = $this->common->get_avg_ratings_bycmid($companyid);
-      $avgstar = round($avgstar);
-?>
-
 <link rel="stylesheet" href="<?php echo base_url();?>css/style.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url();?>css/widget.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
@@ -30,13 +26,14 @@ Reviews
 </div>
 <div class = "review_tab_bottom">
 			 <div class="vry_rating vryrating">
-				<?php for($r=0;$r<$avgstar;$r++){?>
+				<?php for($r=0;$r<$averagerating;$r++){?>
 				<i class="vry_rat_icn"></i>
 				<?php } ?>
-				<?php for($p=0;$p<(5-$avgstar);$p++){?>
+				<?php for($p=0;$p<(5-$averagerating);$p++){?>
 				<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
 				<?php } ?>
-			  </div><?php echo $total; ?><?php echo $averagerating; ?>
+			  </div>
+			  <label><?php echo $total."  Reviews"; ?></label>
             <?php 
             if( count($reviews) > 0 ) 
             { 		
