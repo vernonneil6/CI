@@ -66,9 +66,14 @@ Reviews
 							 </div>
 							
 							<div class = "review_username_row">
-								 <div class = "review_name_tab tooltip" title = "This review has been authenticated by <?php echo $cmpy['company']; ?> and has been posted on YouGotRated by a real shopper">
+								 <div class = "review_name_tab tooltip" >
 									 <?php if($users['username']!=null){ echo $users['username']; } else { echo "Anonymous";}?>
-									 <span>					
+									 <span class = "tooltip" 
+									 title = "&lt;div&gt; What is a Verified Review &lt;/div&gt;
+											  &lt;div&gt; A Verified Review is a user who has &lt;/div&gt;
+											  &lt;div&gt; reviewed company through Yougotrated &lt;/div&gt;
+												"
+									 >					
 										<?php if(count($elitemem_status)==0) { ?>
 											Not Verified Review  
 										<?php }else{  ?>
