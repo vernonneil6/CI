@@ -1145,7 +1145,6 @@ border-top:1px solid;
 {
 	padding : 5px 0 5px 16px;
 	display : inline-block;
-	width: 100%;
 }
 ul.tabbs 
 {
@@ -1159,7 +1158,6 @@ ul.tabbs li {
     height: 35px;
     list-style: none outside none;
 	margin-right: 9px;
-	-webkit-margin-end: 15px;
 }
 ul.tabbs li:hover {
     background: #D58438;   

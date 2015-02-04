@@ -52,10 +52,8 @@
     </tr>
     
     <td></td>
-        <?php /*?><td><?php echo date('d M Y',strtotime($subscriptions[$i]['payment_date']));?></td>
-		<?php */?>
+       
     <?php } else { ?>
-    <!-- Warning form message -->
     <div class="form-message warning">
       <p>No record found.</p>
     </div>
