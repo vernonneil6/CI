@@ -77,5 +77,7 @@ Class Widgets extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	
 }
 ?>

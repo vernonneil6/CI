@@ -84,6 +84,16 @@
 
    
 }
+.review_total
+{
+	display : inline-block;
+}
+.single_review
+{
+	vertical-align : super ;
+	margin : 0 0 0 10px;
+	color : #599DD2;
+}
 .review_border_bottom
 {
 	border-top : 1px solid #e3e3e3;
