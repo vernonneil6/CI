@@ -1,10 +1,11 @@
-.widget-tooltip {
-	border-radius: 5px; 
+.widget-tooltip 
+{
 	border: 1px solid #cccccc;
-	background: #ededed;
-	color: #666666;
+	background: #fff;
+	
 }
-.widget-tooltip .tooltipster-content {
+.widget-tooltip .tooltipster-content 
+{
 	font-size: 14px;
 	line-height: 16px;
 	padding: 8px 10px;

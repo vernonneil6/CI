@@ -126,6 +126,7 @@ Reviews
 		$('.tooltip').tooltipster({
 		
 			theme: 'widget-tooltip',
+			position: 'bottom',
 			contentAsHTML: true
 		
 		});
