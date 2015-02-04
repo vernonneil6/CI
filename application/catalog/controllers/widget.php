@@ -35,7 +35,9 @@ class Widget extends CI_Controller {
 		{
 			if ( count($company) > 0 )
 			{
+				
 				$this->data['total'] = $this->widgets->get_total_review($companyid);
+				$this->data['averagerating'] = $this->widgets->get_average_review($companyid);
 			}
 			else
 			{
@@ -43,6 +45,7 @@ class Widget extends CI_Controller {
 			}
 		}
 		
+		$this->data['companyid'] = $companyid;
 		$this->data['reviews'] = $this->reviews->get_reviews_bycompanyid($companyid);	    
 		$this->load->view('widgetv',$this->data);
 	}
