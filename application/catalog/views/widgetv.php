@@ -1,3 +1,7 @@
+<?php $avgstar = $this->common->get_avg_ratings_bycmid($companyid);
+      $avgstar = round($avgstar);
+?>
+
 <link rel="stylesheet" href="<?php echo base_url();?>css/style.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url();?>css/widget.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
@@ -16,11 +20,23 @@ Reviews
 <div id="review_popup" class = "popupwidth">
 <div class = "review_poweredby">Powered by YouGotRated</div>
 <div class = "review_tab_top">
-	<label class="widget_title">THESE ARE REAL REVIEWS <br> FROM YOUGOTRATED</label>
-	<img class="widget_img" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>">
+	<div class="widget_title">
+		<label >THESE ARE REAL REVIEWS <br> FROM YOUGOTRATED</label>
+	</div>
+	<div class="widget_img">
+		<img  src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" width = "80px">
+	</div>
+	<div class = "clear"></div>
 </div>
 <div class = "review_tab_bottom">
-			<?php echo $total; ?>
+			 <div class="vry_rating vryrating">
+				<?php for($r=0;$r<$avgstar;$r++){?>
+				<i class="vry_rat_icn"></i>
+				<?php } ?>
+				<?php for($p=0;$p<(5-$avgstar);$p++){?>
+				<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
+				<?php } ?>
+			  </div><?php echo $total; ?><?php echo $averagerating; ?>
             <?php 
             if( count($reviews) > 0 ) 
             { 		

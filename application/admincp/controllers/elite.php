@@ -118,9 +118,7 @@ class Elite extends CI_Controller {
 		if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
 		{
 			$keyword = addslashes($this->input->post('keysearch'));
-			$keyword = htmlspecialchars(str_replace('%20', ' ', $keyword));
-			$keyword = preg_replace('/[^a-zA-Z0-9\']/', '',$keyword);
-			$keyword = str_replace(' ','-', $keyword);
+			$keyword = urlencode($keyword);
 		
 			redirect('elite/searchresult/'.$keyword,'refresh');	
 		}
@@ -132,16 +130,13 @@ class Elite extends CI_Controller {
 	
 	public function searchresult($keyword='')
 	{
-		$keyword = str_replace('-',' ', $keyword);
+		$keyword = str_replace('+',' ', $keyword);
 		$this->load->model('elites');
 					
 		$limit = $this->paging['per_page'];
 		$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
 		
 		$this->data['elitemembers'] = $this->elites->search_elitemember($keyword,$limit,$offset);
-		//echo "<pre>";
-		//print_r($this->data['elitemembers']);
-		//die();
 				
 		$this->paging['base_url'] = site_url("elite/searchresult/".$keyword."/index");
 		$this->paging['uri_segment'] = 5;
