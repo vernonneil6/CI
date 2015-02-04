@@ -72,14 +72,15 @@
 {
 	padding : 15px;
 	overflow : auto;
-	height : 420px;
-	display: inline-block;
+	height : 392px;
+
 }
 .review_tab_top
 {
 	background : #3085C7;
     color: white;
     font-size: 18px;
+    padding : 15px;
 
    
 }
@@ -132,9 +133,16 @@
 }
 .widget_title
 {
-	
+	float : left;
+	padding: 15px;
+    text-align: center;
 }
 .widget_img
 {
-	
+	float : right;
+	padding: 0 15px 0 0;
+}
+.clear
+{
+	clear : both;
 }
