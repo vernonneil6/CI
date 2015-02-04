@@ -69,10 +69,13 @@ Reviews
 								 <div class = "review_name_tab tooltip" >
 									 <?php if($users['username']!=null){ echo $users['username']; } else { echo "Anonymous";}?>
 									 <span class = "tooltip" 
-									 title = "&lt;div&gt; What is a Verified Review &lt;/div&gt;
-											  &lt;div&gt; A Verified Review is a user who has &lt;/div&gt;
-											  &lt;div&gt; reviewed company through Yougotrated &lt;/div&gt;
-												"
+									 title = "
+									 &lt;div class&#61;&#34;tooltip_text&#34; &gt;
+									 &lt;div class&#61;&#34;tooltip_heading&#34; &gt; What is a &lt;span class&#61;&#34;tooltip_heading_color&#34; &gt;Verified Review &lt;/span&gt; &lt;/div&gt;
+									 &lt;div &gt; A Verified Review is a user who has &lt;/div&gt;
+									 &lt;div &gt; reviewed company through Yougotrated &lt;/div&gt;
+									 &lt;/div &gt;
+									 "
 									 >					
 										<?php if(count($elitemem_status)==0) { ?>
 											Not Verified Review  
@@ -122,7 +125,8 @@ Reviews
 	{
 		$('.tooltip').tooltipster({
 		
-			theme: 'widget-tooltip'
+			theme: 'widget-tooltip',
+			contentAsHTML: true
 		
 		});
 		
