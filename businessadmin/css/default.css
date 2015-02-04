@@ -508,5 +508,9 @@ text-decoration:none;
 
 .note-text{
 
-margin: 0 24% 15px 0;
+margin: 0 0 22px 0;
+}
+.note-texts{
+
+margin: 0 24% 22px 20%
 }
