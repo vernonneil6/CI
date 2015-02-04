@@ -2,15 +2,13 @@
 <link rel="stylesheet" href="<?php echo base_url();?>css/widget.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/tooltipster.css" />
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/jPages.css" />
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/animate.css" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/themes/widget-tooltip.css" />
 
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.min.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.raty.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>js/jPages.min.js"></script>
+
 
 
 <div class = "company_review_tab fancybox" href="#review_popup">
@@ -28,7 +26,7 @@ Reviews
 	</div>
 	<div class = "clear"></div>
 </div>
-<div class = "review_tab_bottom" id = "widget_review">
+<div class = "review_tab_bottom">
 			<div class = "review_total">
 				 <div class="vry_rating vryrating">
 					<?php for($r=0;$r<round($averagerating);$r++){?>
@@ -41,20 +39,12 @@ Reviews
 				  </div>				  
 			</div>
 			  
-			  
+			<div id = "itemContainer">
             <?php 
             if( count($reviews) > 0 ) 
             { 		
-				if(count($reviews)>5)
-				{
-					$newreviews = 5;
-				}
-				else
-				{
-					$newreviews = count($reviews);
-				}
-			  
-				for($i=0; $i<$newreviews; $i++) 
+							  
+				for($i=0; $i<count($reviews); $i++) 
 				{ 
 					if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') 
 					{ 
@@ -179,8 +169,12 @@ Reviews
 					} 
 				} 
 			}
+			?>
+			</div>
 			
-			 
+			<div class="holder"> </div>
+			
+			<?php			 
 			if( count($reviews)==0 ) 
 			{ 
 			?>
@@ -191,14 +185,9 @@ Reviews
             }
             ?>
             <div>
-				<?php 
-					if(count($reviews)>5)
-					{
-					?>
-						<div class = "widget_pagination"></div>
-					<?php
-					}
-				?>
+				
+			
+						
 			</div>
     </div>
     
@@ -216,17 +205,7 @@ Reviews
 		});
 		
 		$('.fancybox').fancybox();
-	});
-
-$(document).ready(function () 
-{
- 	$("div.widget_pagination").jPages({
-	containerID: "widget_review",
-	perPage: 5,
-	keyBrowse: true,
-	scrollBrowse: true
-	});
-});
+   });
 
 function countme(rid,vote)
 	{
@@ -273,4 +252,21 @@ function countme(rid,vote)
 	  
 	}
 
+</script>
+<link rel="stylesheet" href="<?php echo base_url(); ?>css/jPages.css" />
+<link rel="stylesheet" href="<?php echo base_url(); ?>css/animate.css" />
+<script type="text/javascript" src="<?php echo base_url();?>js/jPages.js"></script>
+
+<script>
+	$(document).ready(function() 
+	{		
+		$("div.holder").jPages({
+			containerID  : "itemContainer",
+			perPage      : 5,
+			startPage    : 1,
+			startRange   : 1,
+			midRange     : 5,
+			endRange     : 1
+			});
+	});
 </script>
