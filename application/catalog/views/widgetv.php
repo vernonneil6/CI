@@ -24,19 +24,20 @@ Reviews
 	</div>
 	<div class = "clear"></div>
 </div>
+
+<div class = "review_total">
+	<div class="vry_rating vryrating">
+	<?php for($r=0;$r<round($averagerating);$r++){?>
+	<i class="vry_rat_icn"></i>
+	<?php } ?>
+	<?php for($p=0;$p<(5-round($averagerating));$p++){?>
+	<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
+	<?php } ?>
+	<label class = "single_review"><?php echo $total."  Reviews"; ?></label>
+	</div>
+</div>
+
 <div class = "review_tab_bottom">
-			<div class = "review_total">
-				 <div class="vry_rating vryrating">
-					<?php for($r=0;$r<round($averagerating);$r++){?>
-					<i class="vry_rat_icn"></i>
-					<?php } ?>
-					<?php for($p=0;$p<(5-round($averagerating));$p++){?>
-					<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
-					<?php } ?>
-					<label class = "single_review"><?php echo $total."  Reviews"; ?></label>
-				  </div>
-				  
-			  </div>
             <?php 
             if( count($reviews) > 0 ) 
             { 		
@@ -116,7 +117,7 @@ Reviews
 	{
 		$('.tooltip').tooltipster({
 		
-			theme: 'tooltipster-noir'
+			theme: 'tooltipster-punk'
 		
 		});
 		
