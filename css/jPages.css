@@ -6,8 +6,8 @@
 .holder a {
 	cursor: pointer;
 	color: #a2a2a2;
-	font-size: 15px;
-	margin: 0 15px;
+	font-size: 14px;
+	margin: 0 10px;
 }
 
 .holder a:hover {

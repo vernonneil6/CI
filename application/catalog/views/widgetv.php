@@ -187,8 +187,8 @@ Reviews
 					$("div.holder").jPages({
 						
 						containerID  : "itemContainer",
-						previous    : "previous",
-						next        : "next",
+						previous    : "&#60;",
+						next        : "&#62;",
 						perPage      : 5
 					
 						});
