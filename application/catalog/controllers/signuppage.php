@@ -280,7 +280,7 @@ class Signuppage extends CI_Controller {
 			{
 				$id = $company[0]['id'];
 				$company = $this->complaints->get_company_by_emailid($email);
-				if($discountcode!='')
+				/*if($discountcode!='')
 				{
 					redirect('solution/claimdisc/'.$id.'/'.$discountcode, 'refresh');
 					
@@ -288,7 +288,7 @@ class Signuppage extends CI_Controller {
 				else
 				{
 					redirect('solution/claim/'.$id, 'refresh');
-				}
+				}*/
 				
 			}
 			else
@@ -358,7 +358,7 @@ class Signuppage extends CI_Controller {
 								$this->email->send();
 								
 								$this->session->set_flashdata('success', 'Business added successfully. claim your business here');
-								redirect('solution/claim/'.$companyid, 'refresh');
+								//redirect('solution/claim/'.$companyid, 'refresh');
 								
 							}
 							else
