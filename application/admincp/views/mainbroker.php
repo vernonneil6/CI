@@ -190,13 +190,13 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == '' )
  </style>
 	<table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-        <td width="30%">Broker-name</td>
-        <td width="20%">Type</td>
-        <td width="20%">Subbroker</td>
-		<td width="20%">Marketer</td>
-        <td width="20%">Agent</td>
-        <td width="20%">Action</td>
-        <td width="20%">Download report</td>
+        <td>Broker-name</td>
+        <td>Type</td>
+        <td>Subbroker</td>
+		<td>Marketer</td>
+        <td>Agent</td>
+        <td>Action</td>
+        <td>Download report</td>
       </tr>
       <?php
 	foreach($broker as $subbrokerview)
@@ -204,17 +204,17 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == '' )
 		
 	?>
 	<tr>
-		<td width="30%"><?php echo ucfirst($subbrokerview['name']); ?></td>
-        <td width="20%"><?php echo ucfirst($subbrokerview['type']); ?></td>
-        <td width="20%"><?php echo ucfirst($subbrokerview['subbroker']); ?></td>
-		<td width="20%"><?php echo $subbrokerview['marketer']; ?></td>
-        <td width="20%"><?php echo $subbrokerview['agent']; ?></td>
-        <td width="100px"><a href="<?php echo site_url('mainbroker/brokerview/'.$subbrokerview['id']); ?>" title="View Detail of <?php echo stripslashes($subbrokerview['name']); ?>" ><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> 
+		<td><?php echo ucfirst($subbrokerview['name']); ?></td>
+        <td><?php echo ucfirst($subbrokerview['type']); ?></td>
+        <td><?php echo ucfirst($subbrokerview['subbroker']); ?></td>
+		<td><?php echo $subbrokerview['marketer']; ?></td>
+        <td><?php echo $subbrokerview['agent']; ?></td>
+        <td><a href="<?php echo site_url('mainbroker/brokerview/'.$subbrokerview['id']); ?>" title="View Detail of <?php echo stripslashes($subbrokerview['name']); ?>" ><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> 
         
         <a class="ico ico-delete" onclick="return confirm('Are you sure to Delete this Broker?');" title="Delete" href="<?php echo site_url('mainbroker/bdelete/'.$subbrokerview['id']); ?>">Delete</a>
 		<a class="ico ico-edit" title="Edit" href="<?php echo site_url('mainbroker/brokeredit/'.$subbrokerview['id']); ?>">Edit</a>
         </td>
-        <td width="20%"><a href="<?php echo site_url('mainbroker/getmycsv/'.$subbrokerview['id'].'/'.'broker');?>">Elite csv</td>
+        <td><a href="<?php echo site_url('mainbroker/getmycsv/'.$subbrokerview['id'].'/'.'broker');?>">Elite csv</td>
         
 	</tr>
 	<?php
