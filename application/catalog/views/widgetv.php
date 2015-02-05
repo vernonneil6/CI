@@ -87,6 +87,7 @@ Reviews
 									<?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
 									<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
 									<?php } ?>
+									<div class = "clear"></div>
 								  </div>
 								   <div class="rat_title reptitle">
 										<h2 class = "font_size_tab"><?php echo $reviews[$i]['reviewtitle'];?></h2>
