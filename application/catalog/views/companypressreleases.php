@@ -138,7 +138,7 @@
 				<h2>
 					<a class = "font_color_2 float_left" href="<?php echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>'s detail"><?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?></a>
 				  
-				  <div class="rating float_left">
+				  <div class="rating float_left prof_rating">
 					
 					<?php for($r=0;$r<$avgstar;$r++){?>
 						<i class="vry_rat_icn"></i>
