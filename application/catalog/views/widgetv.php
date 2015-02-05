@@ -41,7 +41,7 @@ Reviews
 </div>
 
 <div class = "review_tab_bottom"> 
-			<div id = "itemContainer">
+			<div id = "itemContainer" style = "min-height: unset;">
             <?php 
             if( count($reviews) > 0 ) 
             { 		
