@@ -186,7 +186,7 @@
 			<div class="pagination"> <?php echo $this->pagination->create_links(); ?> </div>
 		<?php } ?>
       
-		<div class="lgn_btnlogo"> <a href=""><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
+		<div class="lgn_btnlogo"> <a href="<?php echo site_url(); ?>"><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
       
     </div>
   </section>
