@@ -116,6 +116,35 @@ if($this->uri->segment(2) == 'aview')
 </div>	
 <?php
 }
+if($this->uri->segment(2) == 'brokerview') 
+{
+?>
+<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Broker Elite sales Details" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+
+	<table class="tab tab-drag">
+      <tr class="top nodrop nodrag">
+        <td width="20%">Name</td>
+        <td width="20%">BrokerType</td>
+        <td width="20%">Company</td>
+		<td width="20%">Total Sales</td>
+      </tr>
+     <?php 	foreach($views as $broker) {  ?>
+	<tr>
+		  <td><?php echo ucfirst($broker['ybname']); ?></td>
+		  <td><?php echo $broker['ybtype']; ?></td>
+		  <td><?php echo ucfirst($broker['yccompany']); ?></td>
+		  <td style="padding-left: 8%;"><?php echo $broker['count']; ?></td>						  
+	</tr>
+	<?php } ?> 
+   </table>
+   </div>
+</div>	
+<?php
+}
 ?>
 </div>
 <?php include('leftmenu.php'); ?>
