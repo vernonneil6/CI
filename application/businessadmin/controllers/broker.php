@@ -14,7 +14,12 @@ class Broker extends CI_Controller {
 		}
 	 	$this->load->helper('form');
         $this->load->model('brokers');
-
+        //Setting Page Title and Comman Variable
+		$this->data['site_name'] = $this->settings->get_setting_value(1);
+		$this->data['title'] = $this->data['site_name'].' : Brokers ';
+		$this->data['section_title'] = 'Brokers';
+		$this->data['site_url'] = $this->settings->get_setting_value(2);
+		$websites = $this->settings->get_all_urls();
 
 		$this->data['header'] = $this->load->view('brokerheader',$this->data,true);
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
