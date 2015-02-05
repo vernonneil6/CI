@@ -129,7 +129,7 @@ class Review extends CI_Controller
 									}
 									else 
 									{
-										$this->session->set_flashdata('error', ' No records found, please confirm you are uploading a CSV file that has not been changed or resaved in another format. ');										
+										$this->session->set_flashdata('error', 'Some fields are empty in csv file, so that data cannot be inserted');										
 									}															
 								}
 							}
