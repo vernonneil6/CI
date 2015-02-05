@@ -18,7 +18,7 @@
     <table class="tab tab-drag">
      <tbody>
 	 <tr class="odd">
-        <td>Sub Broker Url</td>
+        <td>Broker Url</td>
         <td>
         <textarea cols='90' rows='10'>
 			<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/signuppage/affid/'.$this->session->userdata['broker_data'][0]->id;?>
@@ -167,7 +167,7 @@
 
 <?php } ?>
 
-<?php if($this->uri->segment(1)=='broker' && $this->uri->segment(2)=='elitemember') {?>
+<?php /*if($this->uri->segment(1)=='broker' && $this->uri->segment(2)=='elitemember') {?>
 	
 	
 	<div class="breadcrumbs">
@@ -212,7 +212,58 @@
 		
 		</div>
 	</div>	
+<?php }*/ ?>
+<?php if($this->uri->segment(1)=='broker' && $this->uri->segment(2)=='elitemembers') {?>
+	
+	
+	<div class="breadcrumbs">
+		<ul>
+		  <li class="home"><a href="<?php echo site_url('subbroker');?>" title="Dashboard">Dashboard</a></li>
+		  <li><a href="<?php echo site_url('subbroker/elitemember');?>" title="Elite Member">Elite Member</a></li>
+		</ul>
+	</div>
+
+
+	<div class="box">
+		<div class="headlines">
+		  <h2><span><?php echo "Elite Member" ?></span></h2>
+		</div>
+		<div class="box-content"> 
+		
+		<?php if( count($brokers) > 0 ) { ?>
+		<table class="tab tab-drag">
+		  <tr class="top nodrop nodrag">
+			<td>Name</td>
+			<td>Type</td>
+			<td>Company</td>
+			<td>Email</td>
+			<td>Phone</td>
+		  </tr>
+		<?php
+		foreach($brokers as $subbrok)
+		{
+		foreach($subbrok as $subbrokers)
+		{
+		?>
+		<tr>
+			<td width="30%"><?php echo ucfirst($subbrokers['yccompany']); ?></td>
+			<td width="20%"><?php echo ucfirst($subbrokers['ybname']);?></td>
+			<td width="20%"><?php echo $subbrokers['ybtype']; ?></td>
+			<td width="20%"><?php echo $subbrokers['ycemail']; ?></td>
+			<td width="20%"><?php echo $subbrokers['ycphone']; ?></td>
+		</tr>
+		<?php
+		}
+		}
+		?> 
+		</table>
+		<?php } ?>
+		
+		
+		</div>
+	</div>	
 <?php } ?>
+
 
 <?php if($this->uri->segment(1)=='broker' && $this->uri->segment(2)=='userprofile') { ?>
 	

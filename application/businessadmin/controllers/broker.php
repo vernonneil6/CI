@@ -161,6 +161,19 @@ class Broker extends CI_Controller {
 			redirect('brokerlogin', 'refresh');
 		}	
 	}
+	function elitemembers()
+	{   
+	   $array = array();
+		$this->data['wholebroker'] = $this->brokers->elitemembers();
+		foreach($this->data['wholebroker'] as $whole_broker)
+		{
+			$id = $whole_broker['id'];
+			$data = $this->brokers->brokerids($id);
+			$array[] = $this->brokers->view_detailss($id);
+		}
+		$this->data['brokers'] = $array;
+		$this->load->view('broker', $this->data);
+	}
 
 }
 
