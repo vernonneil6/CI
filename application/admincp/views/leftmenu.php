@@ -25,10 +25,22 @@
 		<a href="<?php echo site_url('mainbroker'); ?>" title="Multi-Tier Marketing">Multi-Tier Marketing</a>
 		<ul class="submenu">
 			<li>
-				<a href="<?php echo site_url('mainbroker/add'); ?>" title="Add Broker">Add Broker</a>
+				<a href="<?php echo site_url('mainbroker/brokeradd'); ?>" title="Add Broker">Add Broker</a>
 			</li>
 			<li>
-				<a href="<?php echo site_url('mainbroker'); ?>" title="List All Subbrokers">List All Subbrokers</a>
+				<a href="<?php echo site_url('mainbroker/add'); ?>" title="Add Subbroker">Add Subbroker</a>
+			</li>
+			<li>
+				<a href="<?php echo site_url('mainbroker/marketeradd'); ?>" title="Add marketer">Add marketer</a>
+			</li>
+			<li>
+				<a href="<?php echo site_url('mainbroker/agentadd'); ?>" title="Add agent">Add agent</a>
+			</li>
+			<li>
+				<a href="<?php echo site_url('mainbroker'); ?>" title="List All Brokers">List All Brokers</a>
+			</li>
+			<li>
+				<a href="<?php echo site_url('mainbroker/subbroker'); ?>" title="List All Subbrokers">List All Subbrokers</a>
 			</li>
 			<li>
 				<a href="<?php echo site_url('mainbroker/marketer'); ?>" title="List All Marketers">List All Marketers</a>

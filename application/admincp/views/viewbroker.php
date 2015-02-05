@@ -23,7 +23,7 @@
 	
 <div class="box">
     <div class="headlines">
-      <h2><span><?php echo "Edit Broker" ?></span></h2>
+      <h2><span><?php echo "Edit Subbroker" ?></span></h2>
     </div>
     <div class="box-content"> 
     	<?php echo form_open('mainbroker/update',array('class'=>'formBox broker')); ?>
@@ -119,6 +119,44 @@
 <?php
 }
 if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == '' )
+{
+?>
+<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Main Broker" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+
+	<table class="tab tab-drag">
+      <tr class="top nodrop nodrag">
+        <td width="30%">Broker-name</td>
+        <td width="20%">Type</td>
+        <td width="20%">Subbroker</td>
+		<td width="20%">Marketer</td>
+        <td width="20%">Agent</td>
+        <td width="20%">Action</td>
+      </tr>
+      <?php
+	foreach($broker as $subbrokerview)
+	{
+	?>
+	<tr>
+		<td width="30%"><?php echo ucfirst($subbrokerview['name']); ?></td>
+        <td width="20%"><?php echo ucfirst($subbrokerview['type']); ?></td>
+		<td width="20%"><?php echo $subbrokerview['subbroker']; ?></td>
+		<td width="20%"><?php echo $subbrokerview['marketer']; ?></td>
+        <td width="20%"><?php echo $subbrokerview['agent']; ?></td>
+        <td width="100px"><a href="<?php echo site_url('mainbroker/view/'.$subbrokerview['id']); ?>" title="View Detail of <?php echo stripslashes($subbrokerview['name']); ?>" ><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>
+	</tr>
+	<?php
+	}
+	?> 
+	</table >
+   </div>
+</div>
+<?php
+}
+if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'subbroker' )
 {
 ?>
 <div class="box">
@@ -272,7 +310,321 @@ if($this->uri->segment(1) == 'mainbroker' && $this->uri->segment(2) == 'nodetail
 </div>
 <?php
 }
+if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'medit')
+{
 ?>
+<!-- Correct form message -->
+<?php if( $this->session->flashdata('success') ) { ?>
+<div class="form-message correct">
+  <p><?php echo $this->session->flashdata('success'); ?></p>
+</div>
+<?php } ?>
+<!-- Error form message -->
+<?php if( $this->session->flashdata('error') ) { ?>
+<div class="form-message error1">
+  <p><?php echo $this->session->flashdata('error'); ?></p>
+</div>
+<?php } ?>
+<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Edit Marketer" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+    	<?php echo form_open('mainbroker/mupdate',array('class'=>'formBox broker')); ?>
+	 <fieldset>
+        <div class="clearfix">
+          <div class="lab">
+            <label for="name">Marketer Name<div style="font-size:10px;">(Also the username)</div></label><?php echo $data;?>
+          </div>
+          <div class="con">
+         <input type="text" class="input" name="username" value="<?php echo $Brokers['name'] ?>" required>
+         <input type="hidden" class="input" name="table_id" value="<?php echo $Brokers['id'] ?>" required>
+          </div>
+        </div>
+     <div class="clearfix">
+          <div class="lab">
+            <label for="name">Password</label><?php echo $data;?>
+          </div>
+          <div class="con">
+         <input type="password" class="input" name="password" value="<?php echo $Brokers['password'] ?>" required>
+          </div>
+        </div>
+	
+    <div class="clearfix">
+          <div class="lab">
+            <label>Company Name</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'companyname','value'=>$Brokers['companyname'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Company Contact Name</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'companycontactname','value'=>$Brokers['companycontactname'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Email Address</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'emailaddress','value'=>$Brokers['emailaddress'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Phone</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'phone','value'=>$Brokers['phone'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Address </label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'address','value'=>$Brokers['address'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>ID #</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'id','value'=>$Brokers['id#'])); ?>
+		</div>
+    </div>
+        <?php echo form_input(array('name'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+      </fieldset>
+       <?php echo form_close(); ?>
+    </div>
+</div>
+
+
+<?php
+ } 
+if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'aedit')
+{
+?>
+<!-- Correct form message -->
+<?php if( $this->session->flashdata('success') ) { ?>
+<div class="form-message correct">
+  <p><?php echo $this->session->flashdata('success'); ?></p>
+</div>
+<?php } ?>
+<!-- Error form message -->
+<?php if( $this->session->flashdata('error') ) { ?>
+<div class="form-message error1">
+  <p><?php echo $this->session->flashdata('error'); ?></p>
+</div>
+<?php } ?>
+<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Edit Agent" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+    	<?php echo form_open('mainbroker/aupdate',array('class'=>'formBox broker')); ?>
+	 <fieldset>
+        <div class="clearfix">
+          <div class="lab">
+            <label for="name">Agent Name<div style="font-size:10px;">(Also the username)</div></label><?php echo $data;?>
+          </div>
+          <div class="con">
+         <input type="text" class="input" name="username" value="<?php echo $Brokers['name'] ?>" required>
+         <input type="hidden" class="input" name="table_id" value="<?php echo $Brokers['id'] ?>" required>
+          </div>
+        </div>
+     <div class="clearfix">
+          <div class="lab">
+            <label for="name">Password</label><?php echo $data;?>
+          </div>
+          <div class="con">
+         <input type="password" class="input" name="password" value="<?php echo $Brokers['password'] ?>" required>
+          </div>
+        </div>
+	
+    <div class="clearfix">
+          <div class="lab">
+            <label>Company Name</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'companyname','value'=>$Brokers['companyname'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Company Contact Name</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'companycontactname','value'=>$Brokers['companycontactname'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Email Address</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'emailaddress','value'=>$Brokers['emailaddress'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Phone</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'phone','value'=>$Brokers['phone'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Address </label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'address','value'=>$Brokers['address'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>ID #</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'id','value'=>$Brokers['id#'])); ?>
+		</div>
+    </div>
+        <?php echo form_input(array('name'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+      </fieldset>
+       <?php echo form_close(); ?>
+    </div>
+</div>
+
+<?php
+ } 
+if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'brokeredit')
+{
+?>
+<!-- Correct form message -->
+<?php if( $this->session->flashdata('success') ) { ?>
+<div class="form-message correct">
+  <p><?php echo $this->session->flashdata('success'); ?></p>
+</div>
+<?php } ?>
+<!-- Error form message -->
+<?php if( $this->session->flashdata('error') ) { ?>
+<div class="form-message error1">
+  <p><?php echo $this->session->flashdata('error'); ?></p>
+</div>
+<?php } ?>
+<div class="box">
+    <div class="headlines">
+      <h2><span><?php echo "Edit Broker" ?></span></h2>
+    </div>
+    <div class="box-content"> 
+    	<?php echo form_open('mainbroker/brokerupdate',array('class'=>'formBox broker')); ?>
+	 <fieldset>
+        <div class="clearfix">
+          <div class="lab">
+            <label for="name">Broker Name<div style="font-size:10px;">(Also the username)</div></label><?php echo $data;?>
+          </div>
+          <div class="con">
+         <input type="text" class="input" name="username" value="<?php echo $Brokers['name'] ?>" required>
+         <input type="hidden" class="input" name="table_id" value="<?php echo $Brokers['id'] ?>" required>
+          </div>
+        </div>
+     <div class="clearfix">
+          <div class="lab">
+            <label for="name">Password</label><?php echo $data;?>
+          </div>
+          <div class="con">
+         <input type="password" class="input" name="password" value="<?php echo $Brokers['password'] ?>" required>
+          </div>
+        </div>
+	<div class="clearfix">
+          <div class="lab">
+            <label for="broker">Number of Allowed Subbrokers</label>
+          </div>
+		<div class="con">
+		 <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'subbroker','required'=>'required','value'=>$Brokers['subbroker'])); ?>
+		</div>
+    </div>
+	<div class="clearfix">
+          <div class="lab">
+            <label for="broker">Number of Allowed Marketers</label>
+          </div>
+		<div class="con">
+		 <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'marketer','required'=>'required','value'=>$Brokers['marketer'])); ?>
+		</div>
+    </div>
+	<div class="clearfix">
+          <div class="lab">
+            <label for="broker">Number of Allowed Agents</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'agent','required'=>'required','value'=>$Brokers['agent'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Company Name</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'companyname','value'=>$Brokers['companyname'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Company Contact Name</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'companycontactname','value'=>$Brokers['companycontactname'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Email Address</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'emailaddress','value'=>$Brokers['emailaddress'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Phone</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'phone','value'=>$Brokers['phone'])); ?>
+		</div>
+    </div>
+    <div class="clearfix">
+          <div class="lab">
+            <label>Address </label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'address','value'=>$Brokers['address'])); ?>
+		</div>
+    </div>
+    
+    <div class="clearfix">
+          <div class="lab">
+            <label>ID #</label>
+          </div>
+		<div class="con">
+		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'id','value'=>$Brokers['id#'])); ?>
+		</div>
+    </div>
+    
+        <?php echo form_input(array('name'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Update'));  ?> or <a href="<?php echo site_url('mainbroker');?>" class="Cancel">Cancel</a>
+      </fieldset>
+       <?php echo form_close(); ?>
+    </div>
+</div>
+
+<?php
+ } 
+ ?>
 </div>
 <?php include('leftmenu.php'); ?>
 <?php echo $footer; ?>
