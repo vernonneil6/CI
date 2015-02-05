@@ -191,14 +191,16 @@
 			<td>Email</td>
 			<td>Phone</td>
 		  </tr>
-			<?php for($e=0;$e)?>
+			
+			<?php for($e=0;$e<=count($elitemembers);$e++) {?>
 			<tr>
-				<td><?php echo $elite['ybname']; ?></td>
-				<td><?php echo $elite['ybtype']; ?></td>
-				<td><?php echo $elite['yccompany']; ?></td>
-				<td><?php echo $elite['ycemail']; ?></td>
-				<td><?php echo $elite['ycphone']; ?></td>
+				<td><?php echo $elitemembers[$e]['ybname']; ?></td>
+				<td><?php echo $elitemembers[$e]['ybtype']; ?></td>
+				<td><?php echo $elitemembers[$e]['yccompany']; ?></td>
+				<td><?php echo $elitemembers[$e]['ycemail']; ?></td>
+				<td><?php echo $elitemembers[$e]['ycphone']; ?></td>
 			</tr>
+			<?php } ?>
 			</table>
 		<?php } else { ?>
 			
