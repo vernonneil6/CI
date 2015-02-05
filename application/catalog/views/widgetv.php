@@ -27,7 +27,7 @@ Reviews
 	<div class = "clear"></div>
 </div>
 
-<div class = "review_total">
+<div class = "review_tab_middle">
 	 <div class="vry_rating vryrating">
 		<?php for($r=0;$r<round($averagerating);$r++){?>
 		<i class="vry_rat_icn"></i>
@@ -180,16 +180,23 @@ Reviews
 			<script type="text/javascript" src="<?php echo base_url();?>js/jPages.js"></script>
 
 			<script>
-				$(window).load(function() 
-				{		
+				$(document).ready(function() 
+				{	
+										
 					$("div.holder").jPages({
+						
 						containerID  : "itemContainer",
-						perPage      : 5,
-						startRange   : 1,
-						midRange     : 5,
-						endRange     : 1
+						previous    : "previous",
+						next        : "next",
+						perPage      : 5
+					
 						});
-				});
+					
+					$("div.holder > a").click(function(){
+						$('.review_tab_bottom').animate({scrollTop:0}, 'slow');
+						});
+					
+			   });
 			</script>
 			
 			<?php			 
