@@ -86,79 +86,63 @@ class Review extends CI_Controller
 			{
 	  	  		$config['upload_path'] = '../uploads/reviewcsv/';
 				$config['allowed_types'] = 'csv';
-				//$config['max_size'] = '5000';
-				//$config['file_name'] = $_FILES['csvfile']['name'];
 			
 				$this->load->library('upload', $config);
 				
 				if(!$this->upload->do_upload('csvfile')) 
 				{
-					//Error in upload
 					$this->session->set_flashdata('error', "Error while uploading file. 'Valid File Type ( csv )");
 					redirect('review','refresh');
 				}
 				else
-				 {
-								$file_info = $this->upload->data();
-								$filePath = "../uploads/reviewcsv/";
-								$file = $filePath.$file_info['file_name'];
-								$row = 0;
-								$reviews = array();
-								$handle = fopen($file, "r");
-			
-								$fcontents = file('../uploads/reviewcsv/'.$file_info['file_name']);
-								//echo "<pre>";
-								//print_r($fcontents);
-								//die();
-								$companyid = $this->session->userdata['youg_admin']['id'];
-								unset($fcontents[0]);
-								//echo "<pre>";
-								//print_r($fcontents);
-								//die();
-								if(count($fcontents)>0)
-								 {
-									for($i=1;$i<(sizeof($fcontents)+1); $i++)
+				{
+					
+					 $file_info = $this->upload->data();	
+					 $companyid = $this->session->userdata['youg_admin']['id'];				
+					 $filePath = 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/reviewcsv/'.$file_info['file_name'];
+								
+						$row = 1;
+						if (($handle = fopen($filePath, "r")) !== FALSE) 
+						{
+							while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
+							{
+								$row++;
+
+								if($row!=2)
+								{
+									$title = $data[0];										
+									$username = $data[1];
+									$rating = $data[2];
+									$review = $data[3];
+									$date = $data[4];														
+									$siteid = $this->session->userdata('siteid');	
+									if($title!='' && $username!='' && $rating!='' && $review!='' && $date!='')
 									{
-										$line = trim($fcontents[$i]);
-										$arr = explode(",",$line);
-										$title = $arr[0];										
-										$username = $arr[1];
-										$rating = $arr[2];
-										$review = $arr[3];
-										$date = $arr[4];														
-										$siteid = $this->session->userdata('siteid');	
-										$csvsuccess = 0;
-										if($title!='' && $username!='' && $rating!='' && $review!='' && $date!=''){
-											if( $this->reviews->insert($companyid,$username,$rating,$review,$date,$siteid,$title) ){ 
-												$csvsuccess = 1;
-												if(file_exists($file))
-												{
-													unlink($file);
-												}
-												$this->session->set_flashdata('success', 'reviews inserted successfully.');
-											}
-											else
-											{
-												$this->session->set_flashdata('error', 'There is error in inserting reviews. Try later!');
-											}
+										if( $this->reviews->insert($companyid,$username,$rating,$review,$date,$siteid,$title) )
+										{ 
+											$this->session->set_flashdata('success', 'reviews inserted successfully.');
+										}
+										else
+										{
+											$this->session->set_flashdata('error', 'There is error in inserting reviews. Try later!');
 										}
 									}
-									if($csvsuccess == 1){ 										
-										$this->session->set_flashdata('success', 'reviews inserted successfully.');
-									} else {
-										$this->session->set_flashdata('error', ' No records found, please confirm you are uploading a CSV file that has not been changed or resaved in another format. ');										
-									}
-									redirect('review','refresh');
-											
-
-											
-								 }
-								else
-								{
-								redirect('review','refresh');
+									else 
+									{
+										$this->session->set_flashdata('error', 'Some fields are empty in csv file, so that data cannot be inserted');										
+									}															
 								}
+							}
+							fclose($handle);
+							redirect('review','refresh');	
 						}
+						else
+						{
+							$this->session->set_flashdata('error', ' No records found, please confirm you are uploading a CSV file that has not been changed or resaved in another format. ');
+							redirect('review','refresh');
+						}			
 				}
+			}
 			else
 			{
 				redirect('review','refresh');
