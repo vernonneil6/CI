@@ -26,19 +26,20 @@ Reviews
 	</div>
 	<div class = "clear"></div>
 </div>
-<div class = "review_tab_bottom">
-			<div class = "review_total">
-				 <div class="vry_rating vryrating">
-					<?php for($r=0;$r<round($averagerating);$r++){?>
-					<i class="vry_rat_icn"></i>
-					<?php } ?>
-					<?php for($p=0;$p<(5-round($averagerating));$p++){?>
-					<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
-					<?php } ?>
-					<label class = "single_review"><?php echo $total."  Reviews"; ?></label>
-				  </div>				  
-			</div>
-			  
+
+<div class = "review_total">
+	 <div class="vry_rating vryrating">
+		<?php for($r=0;$r<round($averagerating);$r++){?>
+		<i class="vry_rat_icn"></i>
+		<?php } ?>
+		<?php for($p=0;$p<(5-round($averagerating));$p++){?>
+		<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
+		<?php } ?>
+		<label class = "single_review"><?php echo $total."  Reviews"; ?></label>
+	  </div>				  
+</div>
+
+<div class = "review_tab_bottom"> 
 			<div id = "itemContainer">
             <?php 
             if( count($reviews) > 0 ) 
@@ -174,6 +175,23 @@ Reviews
 			
 			<div class="holder"> </div>
 			
+			<link rel="stylesheet" href="<?php echo base_url(); ?>css/jPages.css" />
+			<link rel="stylesheet" href="<?php echo base_url(); ?>css/animate.css" />
+			<script type="text/javascript" src="<?php echo base_url();?>js/jPages.js"></script>
+
+			<script>
+				$(window).load(function() 
+				{		
+					$("div.holder").jPages({
+						containerID  : "itemContainer",
+						perPage      : 5,
+						startRange   : 1,
+						midRange     : 5,
+						endRange     : 1
+						});
+				});
+			</script>
+			
 			<?php			 
 			if( count($reviews)==0 ) 
 			{ 
@@ -253,20 +271,4 @@ function countme(rid,vote)
 	}
 
 </script>
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/jPages.css" />
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/animate.css" />
-<script type="text/javascript" src="<?php echo base_url();?>js/jPages.js"></script>
 
-<script>
-	$(window).load(function() 
-	{		
-		$("div.holder").jPages({
-			containerID  : "itemContainer",
-			perPage      : 5,
-			startPage    : 1,
-			startRange   : 1,
-			midRange     : 5,
-			endRange     : 1
-			});
-	});
-</script>
