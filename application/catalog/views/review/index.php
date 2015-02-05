@@ -132,7 +132,7 @@
 					if($reviews[$i]['username']== null)
 					{
 					?>
-					<a  class = "reviewcolor"><?php echo $reviews[$i]['reviewby']; ?></a>
+					<a  class = "reviewcolor"><?php echo ucfirst($reviews[$i]['reviewby']); ?></a>
 					<?php
 					}
 					else

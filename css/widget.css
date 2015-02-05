@@ -32,7 +32,7 @@
 	color: white;
     display: inline-block;
     font-size: 20px;
-    margin: 12px;
+    margin: 23% 0 0;
 }
 .review_username_row span
 {
@@ -75,9 +75,9 @@
 }
 .review_tab_bottom
 {
-	padding : 15px;
+	padding : 0 15px;
 	overflow : auto;
-	height : 393px;
+	height : 388px;
 
 }
 .review_tab_top
@@ -89,9 +89,9 @@
 
    
 }
-.review_total
+.review_tab_middle
 {
-	display : inline-block;
+	margin: 5px 15px;
 }
 .single_review
 {
@@ -117,20 +117,22 @@
 {
 	font-size: 11px;
     font-weight: bold;
-    padding: 0 15px 0 0;
+    padding: 0 12px 0 0;
     color: #4f4f4f;
 }
 .review_ratethis a
 {
 	font-size: 11px;
-    padding: 0 15px 0 0;
+    padding: 0 12px 0 0;
 }
 .review_poweredby
 {
-	background: rgba(0,0,0,.7)!important;
-	color : white;
-	font-size: 13px;
+	color: white;
+    font-size: 13px;
+    position: absolute;
+    top: -17px;
 }
+
 .fancybox-overlay
 {
 	background: rgba(0,0,0,.7)!important;
@@ -169,3 +171,5 @@
 {
 	margin : 0;
 }
+
+
