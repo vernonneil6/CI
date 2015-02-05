@@ -130,12 +130,11 @@ class Review extends CI_Controller
 									else 
 									{
 										$this->session->set_flashdata('error', ' No records found, please confirm you are uploading a CSV file that has not been changed or resaved in another format. ');										
-									}
-									
-									redirect('review','refresh');								
+									}															
 								}
 							}
 							fclose($handle);
+							redirect('review','refresh');	
 						}
 						else
 						{
