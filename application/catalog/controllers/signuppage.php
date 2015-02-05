@@ -15,7 +15,7 @@ class Signuppage extends CI_Controller {
 		    $site = $regs['domain'];
 		 }
 		 
-		 $website = $this->common->get_site_by_domain_name($site);
+		 $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
 		 
 		 if(count($website)>0)
 		 {
@@ -211,6 +211,12 @@ class Signuppage extends CI_Controller {
 			$actype = $this->input->post('actype');
 			$notes = $this->input->post('notes');
 			
+			$streetaddress1 = $this->input->post('streetaddress1');
+			$city1 = $this->input->post('city1');
+			$state1 = $this->input->post('state1');
+			$country1 = $this->input->post('country1');
+			$zip1 = $this->input->post('zip1');
+			
 			if($broker['type']=='broker')
 			{
 				$brokertype = $broker['type'];
@@ -274,7 +280,7 @@ class Signuppage extends CI_Controller {
 			{
 				$id = $company[0]['id'];
 				$company = $this->complaints->get_company_by_emailid($email);
-				if($discountcode!='')
+				/*if($discountcode!='')
 				{
 					redirect('solution/claimdisc/'.$id.'/'.$discountcode, 'refresh');
 					
@@ -282,7 +288,7 @@ class Signuppage extends CI_Controller {
 				else
 				{
 					redirect('solution/claim/'.$id, 'refresh');
-				}
+				}*/
 				
 			}
 			else
@@ -293,7 +299,7 @@ class Signuppage extends CI_Controller {
 				if($email1=='new' && $name1=='new')
 				{
 						//Inserting Record
-						if( $this->complaints->insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,'','',$category,'',$brokerid,$brokertype,$marketerid,$subbrokerid,$mainbrokerid,$actype,$notes ))
+						if( $this->complaints->insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'',$brokerid,$brokertype,$marketerid,$subbrokerid,$mainbrokerid,$actype,$notes ))
 						{
 							$companyid = $this->db->insert_id();
 							$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
@@ -352,7 +358,7 @@ class Signuppage extends CI_Controller {
 								$this->email->send();
 								
 								$this->session->set_flashdata('success', 'Business added successfully. claim your business here');
-								redirect('solution/claim/'.$companyid, 'refresh');
+								//redirect('solution/claim/'.$companyid, 'refresh');
 								
 							}
 							else
@@ -454,7 +460,7 @@ class Signuppage extends CI_Controller {
 		}
 		else
 		{ 
-			redirect('solution', 'refresh');
+			redirect('solution/claimbusiness', 'refresh');
 		}
 	}
 	public function eliteSubscribe($formpost,$companyid) {
@@ -487,16 +493,45 @@ class Signuppage extends CI_Controller {
 	
 	include('authorize/authnetfunction.php');
 	$subscriptionprice = $this->common->get_setting_value(19);
-		   
-	//define variables to send
+	
+	$disccode_user=$this->input->post('discountcode');
+	$discountmethod=$this->complaints->get_discount_method($disccode_user);
+	$startDate = date("Y-m-d");
 	$amount = $subscriptionprice;
+	$discid="";
+	$disc="";
+	$disccode_type="";
+	$disccode_price="";
+	$disccode_use="";
+	if(count($discountmethod) > 0){
+		  
+		 if($discountmethod['discountcodetype']=="30days-FT" || $discountmethod['discountcodetype']=="30days-FT+LP")
+			{
+					$startDate=date('Y-m-d', strtotime("+30 days"));
+					$discid=$discountmethod['id'];
+					$disc=$discountmethod['code'];
+					$disccode_type=$discountmethod['discountcodetype']; 
+					$disccode_price=$discountmethod['discountprice']; 
+					$disccode_date=date('Y-m-d'); 
+					$disccode_use=1; 
+					if($discountmethod['discountcodetype']=="30days-FT+LP"){
+						    $startDate=date('Y-m-d', strtotime("+30 days"));
+							$amount=200;
+					} else if($discountmethod['discountcodetype']=="30days-FT") {
+					  $startDate=date('Y-m-d', strtotime("+30 days")); 
+					  $amount = $subscriptionprice;	
+					} 	
+			}
+    }
+    	   
+	//define variables to send
+
 	$refId = uniqid();
 	$name = "elite membership";
-	$length = 10;
+	$length = 1;
 	$unit = "months";
-	$startDate = date("Y-m-d");
 	//$totalOccurrences = 999;
-	$totalOccurrences = 12;
+	$totalOccurrences = 9999;
 	$trialOccurrences = 0;
 	$trialAmount = 0;
 	$cardNumber = $_POST["ccnumber"];
@@ -618,7 +653,12 @@ class Signuppage extends CI_Controller {
 			$expires = date('Y-m-d H:i:s', strtotime("+$time Month"));
 			$payer_id=$email;
 			$paymentmethod = 'authorize';
-			if($this->complaints->insert_subscription($companyid,$amt,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
+			$ccnumber=$_POST['ccnumber'];
+			$cardexpire=$expirationDate;
+			$fname=$firstName;
+			$lname=$lastName;
+			//if($this->complaints->insert_subscription($companyid,$amt,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
+			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId,$disc,$disccode_type,$disccode_price,$disccode_use))
 			{
 				$company = $this->complaints->get_company_byid($companyid);
 				if( count($company)>0 )

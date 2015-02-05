@@ -9,6 +9,11 @@ class Brokerlogin extends CI_Controller {
   	{
   		parent::__construct();
 
+        //Setting Page Title and Comman Variable
+		$this->data['title'] = 'Administrator Log-in';
+		$this->data['section_title'] = 'Administrator Log-in';
+		$this->data['site_name'] = $this->settings->get_setting_value(1);
+		$this->data['site_url'] = $this->settings->get_setting_value(2);  
 		if( $this->session->userdata('broker_data') )
 	  	{
 	        redirect('broker', 'refresh');

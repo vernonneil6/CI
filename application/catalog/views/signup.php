@@ -115,6 +115,21 @@
             <input type="text" class="reg_txt_box" placeholder="CONTACT EMAIL" id="cemail" name="cemail" maxlength="200" /><div id="cemailerror" class="error">Enter valid Emailid.</div>
               
           </div>
+            <div class="reg-row" style="margin-top:10px !important; display:block;">
+
+        <div class="reg_fld">ACQUISITION TYPE</div>
+           <select id="actype" name="actype">
+             <option value="select">Select</option>
+             <option value="phone">Phone</option>
+ 	         <option value="internet">Internet</option>
+ 	        <option value="facetoface">Face to face</option>
+          </select>
+        </div>
+        <div class="reg-row" style="margin-top:20px;">
+          <div class="reg_fld">NOTES</div>
+          <input type="text" class="reg_txt_box" placeholder="NOTES" id="notes" name="notes" maxlength="50" />
+        </div>
+          
           <!-- payment details -->
           <div class="reg-row" style="margin-top:55px;">
             <label>BUSINESS PAYMENT INFORMATION</label>
