@@ -56,7 +56,7 @@ Reviews
 						if(count($users)>0) 
 						{ 
 						?>
-						<div class ="<?php if($i!='0'){ echo "review_border_bottom";} ?> padding_top_1">
+						<div class ="review_border_bottom padding_top_1">
 							 <div class = "review_firstletter">
 								<label><?php if($users['username']!=null){ $firstword = $users['username']; echo ucfirst($firstword[0]); } else { echo "A";}?></label>
 							 </div>

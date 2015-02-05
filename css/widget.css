@@ -75,9 +75,9 @@
 }
 .review_tab_bottom
 {
-	padding : 15px;
+	padding : 0 15px;
 	overflow : auto;
-	height : 346px;
+	height : 372px;
 
 }
 .review_tab_top
@@ -91,7 +91,7 @@
 }
 .review_tab_middle
 {
-	margin: 10px 15px;
+	margin: 5px 15px;
 }
 .single_review
 {
@@ -117,13 +117,13 @@
 {
 	font-size: 11px;
     font-weight: bold;
-    padding: 0 15px 0 0;
+    padding: 0 12px 0 0;
     color: #4f4f4f;
 }
 .review_ratethis a
 {
 	font-size: 11px;
-    padding: 0 15px 0 0;
+    padding: 0 12px 0 0;
 }
 .review_poweredby
 {
@@ -168,4 +168,16 @@
 .review_ratethis span
 {
 	margin : 0;
+}
+
+.holder 
+{
+    margin: 25px 0;
+    text-align: center;
+}
+
+.holder a
+{
+	font-size: 15px;
+	margin: 0 15px;
 }
