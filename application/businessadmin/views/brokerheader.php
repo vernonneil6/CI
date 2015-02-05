@@ -26,7 +26,11 @@
 <body>
 <div id="main">
 <div id="header"> 
-  	<div id="logo"> <a href="<?php echo site_url('broker'); ?>" title="Broker Admin"><span>Broker Admin</span></a> </div>
+  	<!-- #logo -->
+  <div id="logo"> <a href="<?php echo site_url(); ?>" title="Business Admin"><span>
+	   <img src="<?php echo base_url('../images/YGR_whiteLogo.png'); ?>" class="ebalogo" /> Broker Admin
+	</span></a> </div>
+  <!-- /#logo --> 
 	<div id="user" align="right">
 	    <?php echo "logged in as ".$this->session->userdata['broker_data'][0]->name; ?>
 	    <a href="<?php echo site_url('broker');?>" title="Dashboard">Dashboard</a> - <a href="<?php echo site_url('broker/logout');?>" title="Logout">Logout</a>
