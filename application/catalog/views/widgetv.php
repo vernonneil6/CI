@@ -103,13 +103,11 @@ Reviews
 								   <div class="rat_title reptitle">
 										<h2 class = "font_size_tab"><?php echo $reviews[$i]['reviewtitle'];?></h2>
 								   </div>
-								   <p><?php echo $reviews[$i]['comment'];?></p>		  
-							 
-							 
-									 
+								   <p><?php echo $reviews[$i]['comment'];?></p>		  					 
 							 </div>
+							 
 							 <div class = "review_rates">
-								 <div class = "widget_share"><i class="fa fa-share-square-o"></i>  Share  |</div>
+								 <div class = "widget_share"><i class="fa fa-share-square-o"></i>&nbsp;  Share  |</div>
 								 <div class = "widget_social_link" > 
 									 
 									<a target = "_blank" href = "http://www.facebook.com/sharer/sharer.php?u=<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/browse/'.$reviews[$i]['seokeyword']; ?>">
