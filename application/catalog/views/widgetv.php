@@ -113,7 +113,7 @@ Reviews
 								 <div class = "widget_social_link" > 
 									 
 
-									<a href = "#">Facebook</a><span>*</span>
+									<a target = "_blank" href = "http://www.facebook.com/sharer/sharer.php?u=<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/browse/'.$reviews[$i]['seokeyword']; ?>">Facebook</a><span>*</span>
 									<a
 									  href="https://twitter.com/share"
 									  data-url="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/browse/'.$reviews[$i]['seokeyword']; ?>"
@@ -122,9 +122,15 @@ Reviews
 									  data-count="none">
 										Twitter
 									</a>
+									<script>
+										window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+									</script>
 									<span>*</span>
 									
-									<a href = "#">Linkedin</a><span>*</span>
+									<a target = "_blank" href = "http://www.linkedin.com/shareArticle?mini=true&url=<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/browse/'.$reviews[$i]['seokeyword']; ?>">
+										Linkedin
+									</a>
+									<span>*</span>
 									
 									<a href="https://plus.google.com/share?url=<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/browse/'.$reviews[$i]['seokeyword']; ?>" onclick="javascript:window.open(this.href,
 									  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google</a>
@@ -213,9 +219,7 @@ Reviews
 			<link rel="stylesheet" href="<?php echo base_url(); ?>css/jPages.css" />
 			<link rel="stylesheet" href="<?php echo base_url(); ?>css/animate.css" />
 			<script type="text/javascript" src="<?php echo base_url();?>js/jPages.js"></script>
-			<script>
-				window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
-			</script>
+			
 			<script>
 				
 				$(document).ready(function() 
