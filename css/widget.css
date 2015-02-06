@@ -114,18 +114,22 @@
 	margin: 25px 0 10px;
 	font-weight: normal;
 }
+.review_ratethis
+{
+    float : left;
+}
 .review_ratethis label
 {
 	font-size: 11px;
     font-weight: bold;
     padding: 0 12px 0 0;
-    color: #4f4f4f;
-    float : left;
+    color: #777777;
 }
 .review_ratethis a
 {
 	font-size: 11px;
     padding: 0 12px 0 0;
+    color: #a2a2a2;
 }
 .review_poweredby
 {
