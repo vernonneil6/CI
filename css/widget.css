@@ -1,3 +1,13 @@
+@font-face 
+{
+  font-family: 'FontAwesome';
+  src: url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.eot');
+  src: url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+    url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.woff') format('woff'),
+    url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 .company_review_tab
 {
 	background: none repeat scroll 0 0 #39bced;
@@ -12,6 +22,7 @@
     -ms-transform-origin: left top;
     -webkit-transform: rotate(270deg);
     -webkit-transform-origin: left top;
+    font-family: myriadpro-regular;
 }
 #review_popup
 {
@@ -95,8 +106,8 @@
 }
 .single_review
 {
-	vertical-align : super ;
-	margin : 0 0 0 10px;
+	display: inline-block;
+    margin: 5px 0 0 10px;
 	color : #599DD2;
 }
 .review_border_bottom
