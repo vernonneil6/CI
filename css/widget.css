@@ -99,6 +99,7 @@
 	display: inline-block;
     margin: 5px 0 0 10px;
 	color : #599DD2;
+	vertical-align: super;
 }
 .review_border_bottom
 {
