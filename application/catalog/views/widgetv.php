@@ -36,7 +36,7 @@ Reviews
 		<?php for($p=0;$p<(5-round($averagerating));$p++){?>
 		<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
 		<?php } ?>
-		<label class = "single_review"><?php echo $total."  Reviews - ". ucfirst($company[0]['company']); ?></label>
+		<label class = "single_review"><?php echo $total."  Reviews - ". ucfirst($companyname); ?></label>
 	  </div>	
 	  <div class = "clear"></div>			  
 </div>
@@ -99,7 +99,7 @@ Reviews
 									 
 							 </div>
 							 <div class = "review_rates">
-								 <div class = "widget_share"><i class="fa fa-share-square-o">Share |</i></div>
+								 <div class = "widget_share"><i class="fa fa-share-square-o">Share  |</i></div>
 								 <div class = "review_ratethis">
 									<span>
 									  <label>RATE THIS REVIEW:</label>

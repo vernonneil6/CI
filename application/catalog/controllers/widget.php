@@ -46,6 +46,7 @@ class Widget extends CI_Controller {
 		}
 		
 		$this->data['companyid'] = $companyid;
+		$this->data['companyname'] = $company[0]['company'];
 		$this->data['reviews'] = $this->reviews->get_reviews_bycompanyid($companyid);	    
 		$this->load->view('widgetv',$this->data);
 	}
