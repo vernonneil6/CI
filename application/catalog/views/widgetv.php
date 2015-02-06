@@ -217,11 +217,12 @@ Reviews
 					$("div.holder > a").click(function(){
 						$('.review_tab_bottom').animate({scrollTop:0}, 'slow');
 						});
-						
-					$(".widget_share").click(function () {
-						  $(".widget_social_link").show("slide", { direction: "left" }, 1000);
-					});
-					
+											
+			   });
+			   $(".widget_share").toggle(function () {
+				  $(this).parent().find(".widget_social_link").show();
+			   },function(){
+				  $(this).parent().find(".widget_social_link").hide();
 			   });
 			</script>
 			
