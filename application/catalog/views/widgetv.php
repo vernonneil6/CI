@@ -110,6 +110,12 @@ Reviews
 							 </div>
 							 <div class = "review_rates">
 								 <div class = "widget_share"><i class="fa fa-share-square-o"></i>  Share  |</div>
+								 <div class = "widget_social_link" > 
+									<a href = "#">Facebook</a><span>*</span>
+									<a href = "#">Twitter</a><span>*</span>
+									<a href = "#">Linkedin</a><span>*</span>
+									<a href = "#">Google</a>
+								 </div>
 								 <div class = "review_ratethis">
 									<span>
 									  <label>RATE THIS REVIEW:</label>
@@ -211,6 +217,10 @@ Reviews
 					$("div.holder > a").click(function(){
 						$('.review_tab_bottom').animate({scrollTop:0}, 'slow');
 						});
+						
+					$(".widget_share").click(function () {
+						  $(".widget_social_link").show("slide", { direction: "left" }, 1000);
+					});
 					
 			   });
 			</script>
