@@ -111,6 +111,16 @@ Reviews
 							 <div class = "review_rates">
 								 <div class = "widget_share"><i class="fa fa-share-square-o"></i>  Share  |</div>
 								 <div class = "widget_social_link" > 
+									 <a class="twitter-share-button"
+									  href="https://twitter.com/share"
+									  data-url="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/browse/'.$reviews[$i]['seokeyword']; ?>"
+									  data-via="<?php echo $_SERVER['SERVER_NAME']; ?>"
+									  data-text="Checking out this page about the Tweet Button"
+									  data-related="twitterdev:Twitter Developer Relations"
+									  data-count="vertical">
+									Tweet
+									</a>
+
 									<a href = "#">Facebook</a><span>*</span>
 									<a href = "#">Twitter</a><span>*</span>
 									<a href = "#">Linkedin</a><span>*</span>
@@ -224,6 +234,9 @@ Reviews
 			   },function(){
 				  $(this).parent().find(".widget_social_link").hide();
 			   });
+			</script>
+			<script>
+				window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
 			</script>
 			
 			<?php			 
