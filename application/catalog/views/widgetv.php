@@ -111,19 +111,23 @@ Reviews
 							 <div class = "review_rates">
 								 <div class = "widget_share"><i class="fa fa-share-square-o"></i>  Share  |</div>
 								 <div class = "widget_social_link" > 
-									 <a class="twitter-share-button"
+									 
+
+									<a href = "#">Facebook</a><span>*</span>
+									<a
 									  href="https://twitter.com/share"
 									  data-url="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/browse/'.$reviews[$i]['seokeyword']; ?>"
 									  data-via="<?php echo $_SERVER['SERVER_NAME']; ?>"
 									  data-text="<?php echo $reviews[$i]['reviewtitle']; ?>"
 									  data-count="none">
-									Tweet
+									Twitter
 									</a>
-
-									<a href = "#">Facebook</a><span>*</span>
-									<a href = "#">Twitter</a><span>*</span>
+									<span>*</span>
+									
 									<a href = "#">Linkedin</a><span>*</span>
-									<a href = "#">Google</a>
+									
+									<a href="https://plus.google.com/share?url=<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/browse/'.$reviews[$i]['seokeyword']; ?>" onclick="javascript:window.open(this.href,
+									  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google</a>
 								 </div>
 								 <div class = "review_ratethis">
 									<span>
