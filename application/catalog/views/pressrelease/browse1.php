@@ -61,7 +61,7 @@
             <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
             <div class="clnt_name">
               <h4><?php echo $companyname;?></h4>
-              <span><?php echo $country;?></span>
+              <span><?php echo $address;?></span>
               <p><?php echo $this->pressreleases->get_count_for_pressreleases($pressrelease[0]['companyid']);?> POSTS</p>
             </div>
             <br/>
