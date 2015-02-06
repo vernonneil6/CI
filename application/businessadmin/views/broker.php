@@ -110,7 +110,7 @@
         <td><?php echo $subbrokers['password']; ?></td>
         <td><?php echo date('m-d-Y', strtotime($subbrokers['signup'])); ?></td>
         <td class="action">
-			<a href="<?php echo site_url('broker/deletemarketerr/'.$subbrokers['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this marketer?');">Delete</a>
+			<a href="<?php echo site_url('broker/deletemarketer/'.$subbrokers['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this marketer?');">Delete</a>
 			<a href="<?php echo site_url('broker/editmarketer/'.$subbrokers['id']); ?>" title="Edit" class="ico ico-edit">Edit</a>
 
 		</td>
