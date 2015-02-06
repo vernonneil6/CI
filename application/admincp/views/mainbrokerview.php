@@ -47,7 +47,7 @@ if( $this->uri->segment(2) == 'view')
 		  <td><?php echo ucfirst($subbroker['yccompany']); ?></td>
 		  <td style="padding-left: 8%;"><?php echo $subbroker['count']; ?></td>						  
 		  <td style="padding-left: 8%;"><?php echo $subbroker['totalelites']; ?></td>
-		  <td style="padding-left: 8%;"><?php echo $subbroker['totalelites']; ?></td>
+		
 		
 	</tr>
 	<?php } ?> 
@@ -130,14 +130,16 @@ if($this->uri->segment(2) == 'brokerview')
         <td width="20%">Name</td>
         <td width="20%">BrokerType</td>
         <td width="20%">Company</td>
-		<td width="20%">Total Sales</td>
+	<td width="20%">Individual Sales</td>
+        <td width="20%">Total Sales</td>
       </tr>
      <?php 	foreach($views as $broker) {  ?>
 	<tr>
 		  <td><?php echo ucfirst($broker['ybname']); ?></td>
 		  <td><?php echo $broker['ybtype']; ?></td>
 		  <td><?php echo ucfirst($broker['yccompany']); ?></td>
-		  <td style="padding-left: 8%;"><?php echo $broker['count']; ?></td>						  
+		  <td style="padding-left: 8%;"><?php echo $broker['count']; ?></td>
+                  <td style="padding-left: 8%;"><?php echo $broker['totalelites']; ?></td>						  
 	</tr>
 	<?php } ?> 
    </table>
