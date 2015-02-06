@@ -43,7 +43,7 @@
 	color: white;
     display: inline-block;
     font-size: 20px;
-    margin: 23% 0 0;
+    margin: 25% 0 0;
 }
 .review_username_row span
 {
@@ -130,6 +130,7 @@
     font-weight: bold;
     padding: 0 12px 0 0;
     color: #4f4f4f;
+    float : left;
 }
 .review_ratethis a
 {
@@ -182,5 +183,9 @@
 {
 	margin : 0;
 }
-
+.widget_share
+{
+	float : left;
+	color: #a2a2a2;
+}
 

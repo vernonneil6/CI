@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="<?php echo base_url();?>css/widget.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/tooltipster.css" />
+<link rel="stylesheet" href="<?php echo base_url(); ?>css/font-awesome.css" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/themes/widget-tooltip.css" />
 
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.min.js" ></script>
@@ -35,7 +36,7 @@ Reviews
 		<?php for($p=0;$p<(5-round($averagerating));$p++){?>
 		<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
 		<?php } ?>
-		<label class = "single_review"><?php echo $total."  Reviews - ". $companyid; ?></label>
+		<label class = "single_review"><?php echo $total."  Reviews - ". ucfirst($company[0]['company']); ?></label>
 	  </div>	
 	  <div class = "clear"></div>			  
 </div>
@@ -98,7 +99,7 @@ Reviews
 									 
 							 </div>
 							 <div class = "review_rates">
-								 <div><i class="fa fa-share-square-o"></i></div>
+								 <div class = "widget_share"><i class="fa fa-share-square-o">Share |</i></div>
 								 <div class = "review_ratethis">
 									<span>
 									  <label>RATE THIS REVIEW:</label>
@@ -166,7 +167,9 @@ Reviews
 										</script>           
 									</span>
 								</div>
+								<div class = "clear"></div>
 							 </div>
+							 
 						 </div> 
 						<?php
 						} 
