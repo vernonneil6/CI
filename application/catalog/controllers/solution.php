@@ -20,7 +20,7 @@ class Solution extends CI_Controller {
 		    $site = $regs['domain'];
 		}
 		
-		 $website = $this->common->get_site_by_domain_name($site);
+		 $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
 		 
 		 if(count($website)>0)
 		 {
@@ -718,16 +718,16 @@ public function eliteSubscribe($formpost,$companyid) {
 	   $transactionkey="38UzuaL2c6y5BQ88";
 	   $host = "apitest.authorize.net"; */
 	
-	/*sandbox test mode
+	/*sandbox test mode*/
+	
 	  $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
-	   $host = "apitest.authorize.net";*/
+	   $host = "apitest.authorize.net";
 	
-	
-	/*live*/
+	/*live
 	    $loginname="5h7G7Sbr";
 		$transactionkey="94KU7Sznk72Kj3HK";
-		$host = "api.authorize.net";
+		$host = "api.authorize.net";*/
 	
 	
 	$path = "/xml/v1/request.api";
@@ -746,28 +746,20 @@ public function eliteSubscribe($formpost,$companyid) {
 	$disccode_type="";
 	$disccode_price="";
 	$disccode_use="";
+	
 	if(count($discountmethod) > 0){
-		  
-		 if($discountmethod['discountcodetype']=="30days-FT" || $discountmethod['discountcodetype']=="30days-FT+LP")
-			{
-					$startDate=date('Y-m-d', strtotime("+30 days"));
+		
+		    if($discountmethod['discountcodetype']=="30-days-free-trial"){
+			        
+			        $startDate=date('Y-m-d', strtotime("+30 days"));
 					$discid=$discountmethod['id'];
 					$disc=$discountmethod['code'];
 					$disccode_type=$discountmethod['discountcodetype']; 
 					$disccode_price=$discountmethod['discountprice']; 
-					$disccode_date=date('Y-m-d'); 
 					$disccode_use=1; 
-					if($discountmethod['discountcodetype']=="30days-FT+LP"){
-						    $startDate=date('Y-m-d', strtotime("+30 days"));
-							$amount=200;
-					} else if($discountmethod['discountcodetype']=="30days-FT") {
-					  $startDate=date('Y-m-d', strtotime("+30 days")); 
-					  $amount = $subscriptionprice;	
-					} 	
-			}
+	                $amount=$discountmethod['discountprice'];
+			}  
     }
-    
-	
 	$refId = uniqid();
 	$name = "elite membership";
 	$length = 1;
