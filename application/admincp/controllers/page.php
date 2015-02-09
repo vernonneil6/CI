@@ -238,13 +238,7 @@ class Page extends CI_Controller {
 		if($request->post('btnupdate'))
 		{
 			
-			if($this->pages->get_page_bycategory($request->post('footercategory'), $request->post('footerposition')))
-			{
-				$this->session->set_flashdata('error', 'Position in that category is already taken!');
-				redirect('page', 'refresh');
-			}	
-			else
-			{
+			
 				$data = array(	
 				'id' => $request->post('footercategory'),
 				'websiteid' => '1',
@@ -260,7 +254,7 @@ class Page extends CI_Controller {
 				);
 				$this->pages->pageadd($data);
 				redirect('page', 'refresh');
-			}
+			
 		}
 		$this->load->view('page', $this->data);
 	}
