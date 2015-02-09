@@ -618,10 +618,11 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 .facebook{margin-right: 10px;}
 .google{margin-right: 10px;}
 .pinterest{margin-right: 10px;}
+.linkedin{margin-right: 10px;}
 
 .footerblock{float:left; height:auto; padding: 0 0 0 30px; width: 205px;}
 .footerblock ul{margin:0; padding:0;}
-.footerblock ul li{width:auto; height:auto;list-style:none; line-height:25px; float:left !important; }
+.footerblock ul li{width:auto; height:auto;list-style:none; line-height:25px; float:left !important; margin-left: -10px;}
 .footerblock ul li a{width:auto; height:auto;list-style:none; font-family:"myriadpro-regular"; font-style:normal; color:white; font-size:14px; text-transform:uppercase; float:none;}
 .footerblock ul li a:hover{width:auto; height:auto;list-style:none; color:#fff; font-size:14px;}
 

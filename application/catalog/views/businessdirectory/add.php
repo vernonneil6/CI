@@ -1,4 +1,5 @@
 <?php echo $header;?>
+
 <script type="text/javascript" language="javascript">
               function trim(stringToTrim) {
                   return stringToTrim.replace(/^\s+|\s+$/g,"");
@@ -201,6 +202,13 @@
 						  }
 					  }
 					  
+					challengeField = $("input#recaptcha_challenge_field").val();
+					responseField = $("input#recaptcha_response_field").val();	 
+					alert(challengeField);
+					alert(responseField);
+	
+					
+						  
 					  $("#frmaddcompany").submit();
                   });
               });
@@ -218,7 +226,7 @@
     <div class="container">
       <div class="reg_step_edit_add"></div>
       <div class="reg_frm_wrap">
-        <form class="reg_frm" action="solution/businessadd" id="frmaddcompany" method="post" enctype="multipart/form-data">
+        <form class="reg_frm" action="businessdirectory/add" id="frmaddcompany" method="post" enctype="multipart/form-data"> 
           <div class="reg-row">
             <label>BUSINESS' NAME</label>           
             <input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30">
@@ -234,7 +242,7 @@
             <div class="reg_fld">CATEGORY</div>
             <div id="" style="overflow-y: scroll; height:180px;border: 1px solid #D9D9D9;width:100%;">
 				<?php for($i=0;$i<count($categories);$i++) { ?>
-                <?php  $option = array( 'name'=>'cat[]', 'id'=>'cat[]', 'value'=>$categories[$i]['id'],'class'=>'checkboxLabel' );
+                <?php  $option = array( 'name'=>'cat[]', 'id'=>'cat-'.$categories[$i]['id'], 'value'=>$categories[$i]['id'],'class'=>'checkboxLabel' );
         	    echo form_checkbox( $option ); ?>
                 &nbsp; <span style="color: #999999;font-family: "nimbus-sans-condensed";"> <?php echo stripslashes($categories[$i]['category'])."<br/>";?> </span>
                 <?php } ?>
@@ -289,6 +297,8 @@
           
           <div class="reg-row" style="margin-top:27px;">        
             <div style='clear:both'>
+				
+			
             <?php echo $recaptcha_html; ?>
             </div>
             <button type="submit" class="lgn_btn" style="margin-top:32px;" title="SUBMIT BUSINESS" id="btnaddcompany" name="btnaddcompany">Submit Business</button>
@@ -303,4 +313,15 @@
     </div>
   </section>
 </section>
+
 <?php echo $footer;?>
+<script>
+<?php
+if(isset($post_data)){ foreach($post_data as $k => $v){ if($k == 'cat') { foreach($v as $key=>$value){ ?> 	
+	$("#cat-<?php echo $value; ?>").prop("checked", true);	 	
+<?php } }else{ ?>	
+	$("#<?php echo $k; ?>").val('<?php $varname = $k; if(isset($post_data[$varname])){ echo $post_data[$varname];  }  ?>');	
+<?php
+} } }
+?>
+</script> 

@@ -326,8 +326,8 @@ a:hover.ico   { background-position: 0 0; }
 .formBox .textarea        { /*width: 100% !important;*/ width: 98% !important; float: left; padding: 4px 5px; border: none; margin: 2px 0; background: transparent; }
 .formBox .textarea        { height: 90px; }
 
-.formBox .file .upload-file    { background: url("../images/bg-input.gif") repeat-x scroll 0 0 transparent; width: 235px !important; float: left; padding: 4px 0; border: none; margin: 2px 0; border: 1px solid #dadada;  -webkit-border-radius: 5px; border-radius: 5px;  -moz-border-radius: 5px;  }
-.formBox .file .button-upload  { position: absolute; left: 243px; width: 99px; height: 29px; overflow: hidden;  background: url("../images/choose-file.gif") no-repeat scroll right center;  }
+.formBox .file .upload-file    { background: url("../images/bg-input.gif") repeat-x scroll 0 0 transparent; width: 235px !important; float: left; padding: 4px 0; border: none; margin-left: 0 !important; border: 1px solid #dadada;  -webkit-border-radius: 5px; border-radius: 5px;  -moz-border-radius: 5px;  }
+.formBox .file .button-upload  { position: absolute; left: 243px; width: 99px; height: 29px; overflow: hidden;  background: url("../images/choose-file.gif") no-repeat scroll right center; cursor: pointer; }
 
 .formBox .textarea-wysiwyg .con    { background-position: 0 27px; }
 

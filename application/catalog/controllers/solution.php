@@ -719,10 +719,10 @@ public function eliteSubscribe($formpost,$companyid) {
 	   $host = "apitest.authorize.net"; */
 	
 	/*sandbox test mode
+	
 	  $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
 	   $host = "apitest.authorize.net";*/
-	
 	
 	/*live*/
 	    $loginname="5h7G7Sbr";
@@ -746,28 +746,20 @@ public function eliteSubscribe($formpost,$companyid) {
 	$disccode_type="";
 	$disccode_price="";
 	$disccode_use="";
+	
 	if(count($discountmethod) > 0){
-		  
-		 if($discountmethod['discountcodetype']=="30days-FT" || $discountmethod['discountcodetype']=="30days-FT+LP")
-			{
-					$startDate=date('Y-m-d', strtotime("+30 days"));
+		
+		    if($discountmethod['discountcodetype']=="30-days-free-trial"){
+			        
+			        $startDate=date('Y-m-d', strtotime("+30 days"));
 					$discid=$discountmethod['id'];
 					$disc=$discountmethod['code'];
 					$disccode_type=$discountmethod['discountcodetype']; 
 					$disccode_price=$discountmethod['discountprice']; 
-					$disccode_date=date('Y-m-d'); 
 					$disccode_use=1; 
-					if($discountmethod['discountcodetype']=="30days-FT+LP"){
-						    $startDate=date('Y-m-d', strtotime("+30 days"));
-							$amount=200;
-					} else if($discountmethod['discountcodetype']=="30days-FT") {
-					  $startDate=date('Y-m-d', strtotime("+30 days")); 
-					  $amount = $subscriptionprice;	
-					} 	
-			}
+	                $amount=$discountmethod['discountprice'];
+			}  
     }
-    
-	
 	$refId = uniqid();
 	$name = "elite membership";
 	$length = 1;
