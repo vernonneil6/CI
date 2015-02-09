@@ -160,9 +160,9 @@ class Discount extends CI_Controller {
 				  $discountprice= $elitemembershipprice['value']- $discountrate;
 				  $method=$this->input->post('discountmethod');
 				  if($method==1){
-						echo  $discounttype="30-days-free-trial";
+						$discounttype="30-days-free-trial";
 				  } else {
-						echo  $discounttype="normal-discount";
+						$discounttype="normal-discount";
 				  }
 				
 				//Getting id
