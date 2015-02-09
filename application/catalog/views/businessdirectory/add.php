@@ -317,9 +317,11 @@
 <?php echo $footer;?>
 <script>
 <?php
-foreach($post_data as $k => $v){ ?>	
-	$("#<?php echo $k; ?>").val('<?php $varname = $k; if(isset($post_data[$varname])){ echo $post_data[$varname];  }  ?>');
-<?php	
-}
+if(isset($post_data)){ foreach($post_data as $k => $v){ if($k == 'cat') { foreach($v as $key=>$value){ ?> 	
+	$("#cat-<?php echo $value; ?>").prop("checked", true);	 	
+<?php } }else{ ?>	
+	$("#<?php echo $k; ?>").val('<?php $varname = $k; if(isset($post_data[$varname])){ echo $post_data[$varname];  }  ?>');	
+<?php
+} } }
 ?>
-</script>
+</script> 
