@@ -1846,7 +1846,7 @@ class Complaints extends CI_Model
 	{
 		$query = $this->db->select('payment_amount')
 		                  ->from('elite')
-		                  ->where(array('status'=>'Enable','company_id'=>$id))
+		                  ->where(array('company_id'=>$id))
 		                  ->get();
 	  	
 	  	if ($query->num_rows() > 0)
