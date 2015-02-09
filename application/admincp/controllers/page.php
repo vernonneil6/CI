@@ -133,13 +133,7 @@ class Page extends CI_Controller {
 				
 				if( $varpagecont!='' )
 				{			
-					if($this->pages->get_page_bycategory($footercategory, $footerposition))
-					{
-						$this->session->set_flashdata('error', 'Position in that category is already taken!');
-						redirect('page', 'refresh');
-					}	
-					else
-					{
+					
 						if( $this->pages->update($intid,$vartitle,$varheading,$varmetakey,$varmetades,$varpagecont,$footercategory,$footerposition) )
 						{
 							$this->session->set_flashdata('success', 'Page details updated successfully.');
@@ -150,7 +144,7 @@ class Page extends CI_Controller {
 							$this->session->set_flashdata('error', 'There is error in updating Page details. Try later!');
 							redirect('page', 'refresh');
 						}
-					}
+					
 				}
 				else
 				{
@@ -237,7 +231,6 @@ class Page extends CI_Controller {
 				
 		if($request->post('btnupdate'))
 		{
-			
 			
 				$data = array(	
 				'id' => $request->post('footercategory'),
