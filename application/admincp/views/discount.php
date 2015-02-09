@@ -100,10 +100,8 @@
               </div>
               <div class="con" style="width: 59% !important; float:left">
                 <?php $dis = range(0,100);
-    				  $dis[101]="30 Days Free trial ";
-    				  $dis[102]="30 Days Free trial+Lowprice";
-    				  $dis[0]="Select";
-					  $js = "id='percentage' class='select'";
+                      $dis[0]="Select";
+    				  $js = "id='percentage' class='select' placeholder='Select'";
 					  ?>
 				<?php if($this->uri->segment(2) == 'add') { ?>
                 
@@ -114,6 +112,33 @@
                 <?php } ?>
               </div>
               <div id="percentageerror" class="error" style="width:145px">Select percentage.</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-cols">
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+                <label for="trial">30 day free trial<span class="errorsign">*</span></label>
+              </div>
+              <div>
+                <?php if($this->uri->segment(2) == 'add') { ?>
+                <?php echo form_radio(array('name'=>'discountmethod','type'=>'radio','id'=>'radyes','class'=>'input','value'=>'1','style'=>'float:none;width:5% !important')); ?>
+                <label for="radyes">Yes</label>
+                <?php echo form_radio(array('name'=>'discountmethod','type'=>'radio','id'=>'radno','class'=>'input','value'=>'0','checked'=>'checked','style'=>'float:none;width:5% !important')); ?>
+                <label for="radno">No</label>
+                <?php } ?>
+                <?php if($this->uri->segment(2) == 'edit') { ?>
+                <?php if($discount[0]['discountcodetype'] == '30-days-free-trial'){?>
+                <?php echo form_radio(array('name'=>'discountmethod','type'=>'radio','id'=>'radyes','class'=>'input','value'=>'1','checked'=>'checked','style'=>'float:none;width:3% !important'));  } else { ?> <?php echo form_radio(array('name'=>'discountmethod','type'=>'radio','id'=>'radyes','class'=>'input','value'=>'1','style'=>'float:none;width:3% !important')); ?>
+                <?php } ?>
+                <label for="radyes">Yes</label>
+                <?php if($discount[0]['discountcodetype'] == 'normal-discount'){?>
+                <?php echo form_radio(array('name'=>'discountmethod','type'=>'radio','id'=>'radno','class'=>'input','value'=>'0','checked'=>'checked','style'=>'float:none;width:3% !important')); } else { ?> <?php echo form_radio(array('name'=>'discountmethod','type'=>'radio','id'=>'radno','class'=>'input','value'=>'0','style'=>'float:none;width:3% !important')); ?>
+                <?php } ?>
+                <label for="radyes">No</label>
+                <?php } ?>
+              </div>
             </div>
           </div>
         </div>
@@ -280,6 +305,7 @@ else { ?>
         <th>Description</th>
         <th>Code</th>
         <th>Discount(%)</th>
+        <th>Discount Type</th>
         <th>Apply</th>
         <th>Revised Price</th>
         <th>Status</th>
@@ -290,6 +316,7 @@ else { ?>
         <td><?php echo ucfirst(stripslashes($discounts[$i]['title'])); ?></td>
         <td><?php echo stripslashes($discounts[$i]['code']); ?></td>
         <td><?php echo stripslashes($discounts[$i]['percentage']); ?></td>
+        <td><?php echo stripslashes($discounts[$i]['discountcodetype']); ?></td>
         <td>
 			<?php if($discounts[$i]['apply']==1){ echo "Worked";?>
 			<?php } else if($discounts[$i]['apply']==2) { echo "Not Used ";?>

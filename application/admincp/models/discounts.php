@@ -35,14 +35,11 @@ Class Discounts extends CI_Model
 	{
 		
 		$notused=2;
-		if($percentage==101 || $percentage==102){
-			
-			  if($percentage==101){
-					$percentage="30 Days Free Trial"; 
-				 } else { 
-				$percentage="30 Days Free Trial+ Low Price";  
-			  }
-		}
+		echo $title;
+		echo $percentage;
+		echo $discounttype;
+		echo $discountprice;
+		
 		$date=date('Y-m-d H:i:s');
 		$code = uniqid();
 		$data = array(		'title' 		     => $title,
@@ -85,14 +82,6 @@ Class Discounts extends CI_Model
  	{
 		
 		$editdate=date('Y-m-d H:i:s');
-		if($percentage==101 || $percentage==102){
-			
-			  if($percentage==101){
-					$percentage="30 Days Free Trial"; 
-				 } else { 
-				$percentage="30 Days Free Trial+ Low Price";  
-			  }
-		}
 		$data = array('title' 		 => $title,
 		              'percentage'   => $percentage,
 		              'discountcodetype' => $discounttype, 

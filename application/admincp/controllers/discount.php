@@ -153,22 +153,18 @@ class Discount extends CI_Controller {
 			//If Old Record Update
 			if( $this->input->post('id') )
 	  		{
-				if($_POST['percentage']=='101' || $_POST['percentage']=='102')
-				{
-							if($_POST['percentage']=='101'){							
-								$discounttype="30days-FT";
-								$discountprice=$elitemembershipprice['value'];
-							  } else {
-									$lowprice=$elitemembershipprice['value']-99;	 
-									$discounttype="30days-FT+LP";	
-									$discountprice=$lowprice;	
-							 }		
-				   } else {
-						$discounttype="Normal";
-						$discountprice=$elitemembershipprice['value'];
-				 
-			   }
-				//die();
+							
+				  $percent=$this->input->post('percentage');
+				  $discount=$percent / 100;	
+				  $discountrate=$discount * $elitemembershipprice['value'];
+				  $discountprice= $elitemembershipprice['value']- $discountrate;
+				  $method=$this->input->post('discountmethod');
+				  if($method==1){
+						echo  $discounttype="30-days-free-trial";
+				  } else {
+						echo  $discounttype="normal-discount";
+				  }
+				
 				//Getting id
 				$id = $this->encrypt->decode($this->input->post('id'));
 				
@@ -193,23 +189,18 @@ class Discount extends CI_Controller {
 			//If New Record Insert
 			else
 			{
-			   	  
-			  if($_POST['percentage']=='101' || $_POST['percentage']=='102')
-			   {
-						if($_POST['percentage']=='101'){
-							
-							$discounttype="30days-FT";  
-							$discountprice=$elitemembershipprice['value'];  
-							} else {
-							
-							$lowprice=$elitemembershipprice['value']-99;	 
-							$discounttype="30days-FT+LP";	
-							$discountprice=$lowprice;	
-						}		
-			   } else {
-				 	$discounttype="Normal";
-				 	$discountprice=$elitemembershipprice['value'];
-			   }
+				
+			  $percent=$this->input->post('percentage');
+			  $discount=$percent / 100;	
+			  $discountrate=$discount * $elitemembershipprice['value'];
+			  $discountprice= $elitemembershipprice['value']- $discountrate;
+			  $method=$this->input->post('discountmethod');
+			  if($method==1){
+			    	 $discounttype="30-days-free-trial";
+			  } else {
+			    	  $discounttype="normal-discount";
+			  }
+			
 	    		//Getting value
 				$title = addslashes($this->input->post('title'));
 				$percentage = addslashes($this->input->post('percentage'));
