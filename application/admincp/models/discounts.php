@@ -35,11 +35,7 @@ Class Discounts extends CI_Model
 	{
 		
 		$notused=2;
-		echo $title;
-		echo $percentage;
-		echo $discounttype;
-		echo $discountprice;
-		
+			
 		$date=date('Y-m-d H:i:s');
 		$code = uniqid();
 		$data = array(		'title' 		     => $title,

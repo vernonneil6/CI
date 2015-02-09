@@ -27,7 +27,7 @@
 				$("#titleerror").hide();
 			}
 			
-			if( $("#percentage").val() == 0 )
+			/*if( $("#percentage").val() == 0 )
 			{
 				$("#error").attr('style','display:block;');
 				$("#percentageerror").show();
@@ -37,7 +37,7 @@
 			else
 			{
 				$("#percentageerror").hide();
-			}
+			}*/
 					
 			if( $("#frmdiscount").submit() )
 			{
@@ -96,7 +96,7 @@
           <div class="col1" style="width:100%">
             <div class="clearfix">
               <div class="lab" style="width: 9% !important;">
-                <label for="percentage">Percentage <span class="errorsign">*</span></label>
+                <label for="percentage">Percentage</label>
               </div>
               <div class="con" style="width: 59% !important; float:left">
                 <?php $dis = range(0,100);
