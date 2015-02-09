@@ -105,14 +105,150 @@ class Businessdirectory extends CI_Controller {
 	
 	public function add()
 	{
-		  $siteid = $this->session->userdata('siteid');
-		  $this->load->library('recaptcha');
+		$this->load->library('recaptcha');
+		if($this->input->post('email')){
+			//Call to recaptcha to get the data validation set within the class. 
+            $this->recaptcha->recaptcha_check_answer();
+			if($this->recaptcha->getIsValid() == true){
+				$name = $this->input->post('name');			
+				//Billing address
+				$streetaddress = $this->input->post('streetaddress');
+				$city = $this->input->post('city');
+				$state = $this->input->post('state');
+				$country = $this->input->post('country');				
+				//company address 				
+				$streetaddress1 = $this->input->post('streetaddress1');
+				$city1 = $this->input->post('city1');
+				$state1 = $this->input->post('state1');
+				$country1 = $this->input->post('country1');
+				$zip1 = $this->input->post('zip1');				
+				//echo '<pre>';print_r($_POST);die('update_check');
+				//get country name
+				//$country_name =  $this->common->get_country_name($country);
+				//$country = $country_name[0]['name'];				
+				$zip = $this->input->post('zip');
+				$phone = $this->input->post('phone');
+				$email = $this->input->post('email');
+				$website = $this->input->post('website');
+				$cat = $this->input->post('cat');
+				if($cat!='')
+				{
+					$category=implode(',',$cat);
+				}
+				else
+				{
+					$category='1';
+				}
+				$cname = $this->input->post('cname');
+				$cphone = $this->input->post('cphone');
+				$cemail = $this->input->post('cemail');
+				$discountcode = $this->input->post('discountcode');
+				$company = $this->complaints->get_company_by_emailid($email);
+				if(count($company)>0){
+					$this->session->set_flashdata('error','This company email address is already exists. Try later!');
+					redirect('solution', 'refresh');
+				}else{
+					$email1 = $this->complaints->chkfield1(0,'email',$email);
+					$name1 = $this->complaints->chkfield1(0,'company',$name);
+					if($email1=='new' && $name1=='new'){
+						//Inserting Record
+							if( $this->complaints->insert_businesses($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,'','',$category,'' ))
+							{
+								
+								$companyid = $this->db->insert_id();							
+														
+								$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
+								if($this->complaints->insert_companyseo($companyid,$name))
+								{
+									$site_name = $this->common->get_setting_value(1);
+									$site_url = $this->common->get_setting_value(2);
+									$site_email = $this->common->get_setting_value(5);
+									
+									// user Mail
+									$to = $email;
+									$mail = $this->common->get_email_byid(11);
+				
+									$subject = $mail[0]['subject'];
+									$mailformat = $mail[0]['mailformat'];
+									
+									$this->load->library('email');
+									$this->email->from($site_email,$site_name);
+									$this->email->to($to);
+									$this->email->subject($subject);
+									
+									$com = $this->complaints->get_company_byid($companyid);
+									if(count($com)>0)
+									{
+										$link = "<a href='".site_url('complaint/viewcompany/'.$com[0]['companyseokeyword'])."' title='visit business page' target='_blank'>".site_url('complaint/viewcompany/'.$com[0]['companyseokeyword'])."</a>";
+									}
+									else
+									{
+										$link = "";
+									}
+									$mail_body = str_replace("%link%",ucfirst($link),str_replace("%companyname%",ucfirst($name),str_replace("%email%",$email,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat)))))));
 
-        	  //Store the captcha HTML for correct MVC pattern use.
-	          $this->data['recaptcha_html'] = $this->recaptcha->recaptcha_get_html();
-		  $this->data['categories'] = $this->common->get_all_categorys($siteid);
-		  //Loading View File
-		  $this->load->view('businessdirectory/add',$this->data);
+									$this->email->message($mail_body);
+									$this->email->send();
+									
+									$site_name = $this->common->get_setting_value(1);
+									$site_url = $this->common->get_setting_value(2);
+									$site_email = $this->common->get_setting_value(5);
+						
+									// Admin Mail
+									$to = $site_email;
+									$mail = $this->common->get_email_byid(10);
+				
+									$subject = $mail[0]['subject'];
+									$mailformat = $mail[0]['mailformat'];
+									
+									$this->load->library('email');
+									$this->email->from($site_email,$site_name);
+									$this->email->to($to);
+									$this->email->subject($subject);
+								
+									$mail_body = str_replace("%name%",ucfirst($name),str_replace("%email%",$email,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat))))));
+									
+									$this->email->message($mail_body);
+									$this->email->send();
+									
+									$this->session->set_flashdata('success', 'Your business has successfully been registered.');
+									///redirect('solution/claim/'.$companyid, 'refresh');
+									redirect('solution', 'refresh');
+									
+								}else{
+									$this->session->set_flashdata('error', 'There is error in adding Business. Try later!');
+									redirect('solution', 'refresh');
+								}
+							}else{
+									$this->session->set_flashdata('error', 'There is error in adding Business. Try later!');
+									redirect('solution', 'refresh');
+							}						
+							redirect('solution', 'refresh');
+					}else{
+						if($email1=='old'){
+							$this->session->set_flashdata('error', 'This company email address is already exists. Try later!');
+							redirect('solution', 'refresh');	
+						}
+						if($name1=='old'){
+							$this->session->set_flashdata('error', 'This company name is already exists. Try later!');
+							redirect('solution', 'refresh');
+						}
+					}
+				} 
+			}else{
+				//echo "<pre>";
+				$this->data['post_data'] = $_POST;
+				//print_r($_POST); print_r($this->data['post_data']);  die('tst');
+				$this->session->set_flashdata('error','incorrect captcha');
+                //redirect('businessdirectory/add', 'refresh');			
+			}		
+		}
+		$siteid = $this->session->userdata('siteid');
+		//Store the captcha HTML for correct MVC pattern use.
+		$this->data['recaptcha_html'] = $this->recaptcha->recaptcha_get_html();
+		$this->data['categories'] = $this->common->get_all_categorys($siteid);
+		//Loading View File
+		$this->load->view('businessdirectory/add',$this->data);
 		
 	}
 	
