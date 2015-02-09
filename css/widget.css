@@ -37,9 +37,7 @@
 .review_firstletter label
 {
 	color: white;
-    display: inline-block;
     font-size: 20px;
-    margin: 25% 0 0;
 }
 .review_username_row span
 {
@@ -188,7 +186,7 @@
 	display: inline-block;
 	color: #a2a2a2;
 	font-size: 11px;
-	margin: 0 15px 0 0;
+	margin: 0 10px 0 0;
 	cursor: pointer;
 }
 .widget_social_link
@@ -202,19 +200,19 @@
     font-size: 11px;
     margin-right: 10px;
 }
-#scrollbar::-webkit-scrollbar-track
+#scrollbar::-webkit-scrollbar-track, #scrollbar::-moz-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	border-radius: 10px;
 	background-color: white;
 }
 
-#scrollbar::-webkit-scrollbar
+#scrollbar::-webkit-scrollbar, #scrollbar::-moz-scrollbar
 {
 	width: 6px;
 }
 
-#scrollbar::-webkit-scrollbar-thumb
+#scrollbar::-webkit-scrollbar-thumb, #scrollbar::-moz-scrollbar-thumb
 {
 	border-radius: 10px;
 	background-color: #3085C7;
