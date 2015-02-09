@@ -66,7 +66,7 @@ Class Mainbrokers extends CI_Model
    	    if($query1[0]['type'] =='broker' and $query1[0]['id']==$id)
    	    {
    	     $query = $this->db
-			->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid,yc.brokerid ycbrokerid,(SELECT count(*) FROM `youg_company` where brokerid='.$id.' or subbrokerid='.$id.') as totalelite ')
+			->select('yb.name ybname,yb.id ybid,yc.company yccompany,yc.email ycemail,yb.type ybtype,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yb.marketerid ybmarketerid,yc.brokerid ycbrokerid,(SELECT count(*) FROM `youg_company` where brokerid='.$id.' or mainbrokerid='.$id.') as totalelite ')
 			->from('youg_broker yb')
 			->join('youg_company yc','yb.id = yc.brokerid and yc.brokertype = yb.type','left')
 			->where('yc.brokerid',$id)

@@ -1,14 +1,14 @@
 <link rel="stylesheet" href="<?php echo base_url();?>css/style.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url();?>css/widget.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/tooltipster.css" />
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/themes/widget-tooltip.css" />
+<link rel="stylesheet" href="<?php echo base_url(); ?>css/tooltipster.css" type="text/css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>css/themes/widget-tooltip.css" type="text/css">
 
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.min.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.raty.min.js"></script>
-
 
 
 <div class = "company_review_tab fancybox" href="#review_popup">
@@ -35,12 +35,12 @@ Reviews
 		<?php for($p=0;$p<(5-round($averagerating));$p++){?>
 		<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
 		<?php } ?>
-		<label class = "single_review"><?php echo $total."  Reviews - ". $companyid; ?></label>
+		<label class = "single_review"><?php echo $total."  Reviews - ". ucfirst($companyname); ?></label>
 	  </div>	
 	  <div class = "clear"></div>			  
 </div>
 
-<div class = "review_tab_bottom"> 
+<div class = "review_tab_bottom" id = "scrollbar"> 
 			<div id = "itemContainer" style = "min-height: unset;">
             <?php 
             if( count($reviews) > 0 ) 
@@ -57,10 +57,11 @@ Reviews
 						{ 
 						?>
 						<div class ="review_border_bottom padding_top_1">
+							<div class = "review_circle">
 							 <div class = "review_firstletter">
 								<label><?php if($users['username']!=null){ $firstword = $users['username']; echo ucfirst($firstword[0]); } else { echo "A";}?></label>
 							 </div>
-							
+							</div>
 							<div class = "review_username_row">
 								 <div class = "review_name_tab tooltip" >
 									 <?php if($users['username']!=null){ echo $users['username']; } else { echo "Anonymous";}?>
@@ -92,13 +93,37 @@ Reviews
 								   <div class="rat_title reptitle">
 										<h2 class = "font_size_tab"><?php echo $reviews[$i]['reviewtitle'];?></h2>
 								   </div>
-								   <p><?php echo $reviews[$i]['comment'];?></p>		  
-							 
-							 
-									 
+								   <p><?php echo $reviews[$i]['comment'];?></p>		  					 
 							 </div>
+							 
 							 <div class = "review_rates">
-								 <div><i class="fa fa-share-square-o"></i></div>
+								 <div class = "widget_share"><i class="fa fa-share-square-o"></i>&nbsp;  Share  |</div>
+								 <div class = "widget_social_link" > 
+									 
+									<a target = "_blank" href = "http://www.facebook.com/sharer/sharer.php?u=<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/browse/'.$reviews[$i]['seokeyword']; ?>">
+										Facebook
+									</a>
+									<span>*</span>
+									
+									<a target = "_blank"
+									  href="https://twitter.com/share?
+									  url=<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/browse/'.$reviews[$i]['seokeyword']; ?>							  
+									  &text=<?php echo $reviews[$i]['reviewtitle']; ?>"  >
+										Twitter
+									</a>
+									<span>*</span>
+									
+									<a target = "_blank" href = "http://www.linkedin.com/shareArticle?mini=true&url=<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/browse/'.$reviews[$i]['seokeyword']; ?>&amp;title=<?php echo $reviews[$i]['reviewtitle']; ?>">
+										Linkedin
+									</a>
+									<span>*</span>
+									
+									<a href="https://plus.google.com/share?url=<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/browse/'.$reviews[$i]['seokeyword']; ?>" onclick="javascript:window.open(this.href,
+									  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+									  Google
+									</a>
+									
+								 </div>
 								 <div class = "review_ratethis">
 									<span>
 									  <label>RATE THIS REVIEW:</label>
@@ -135,18 +160,18 @@ Reviews
 										  <script>
 											<?php $ip = $_SERVER['REMOTE_ADDR'];  ?>
 											
-											$(function(){ 
-											 $("#helpful_<?php echo $reviews[$i]['id'];?>").click(function() {
+											$(document).ready(function(){ 
+											 $("#helpful_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click', function() {
 												 var vote = 'helpful';
 												 var reviewid = $(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
 											   });
-											   $("#funny_<?php echo $reviews[$i]['id'];?>").click(function() {
+											   $("#funny_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
 												 var vote = 'funny';
 												 var reviewid = $(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
 											   });
-											   $("#agree_<?php echo $reviews[$i]['id'];?>").click(function() {
+											   $("#agree_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
 												 var vote = 'agree';
 												 var reviewid = $(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
@@ -154,7 +179,7 @@ Reviews
 												 $('#disagree_'+reviewid).removeClass('vote-disable');
 												 $('#disagree_'+reviewid).addClass('vote'); 
 											   });
-											   $("#disagree_<?php echo $reviews[$i]['id'];?>").click(function() {
+											   $("#disagree_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
 												 var vote = 'disagree';
 												 var reviewid = $(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
@@ -166,7 +191,9 @@ Reviews
 										</script>           
 									</span>
 								</div>
+								<div class = "clear"></div>
 							 </div>
+							 
 						 </div> 
 						<?php
 						} 
@@ -181,8 +208,9 @@ Reviews
 			<link rel="stylesheet" href="<?php echo base_url(); ?>css/jPages.css" />
 			<link rel="stylesheet" href="<?php echo base_url(); ?>css/animate.css" />
 			<script type="text/javascript" src="<?php echo base_url();?>js/jPages.js"></script>
-
+			
 			<script>
+				
 				$(document).ready(function() 
 				{	
 										
@@ -198,9 +226,15 @@ Reviews
 					$("div.holder > a").click(function(){
 						$('.review_tab_bottom').animate({scrollTop:0}, 'slow');
 						});
-					
+											
+			   });
+			   $(".widget_share").toggle(function () {
+				  $(this).parent().find(".widget_social_link").css('display', 'inline-block');
+			   },function(){
+				  $(this).parent().find(".widget_social_link").css('display', 'none');
 			   });
 			</script>
+			
 			
 			<?php			 
 			if( count($reviews)==0 ) 
@@ -234,8 +268,8 @@ Reviews
 		
 		$('.fancybox').fancybox();
    });
-
-function countme(rid,vote)
+	
+	function countme(rid,vote)
 	{
 	  $.ajax({
 		  type 				: "POST",
