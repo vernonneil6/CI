@@ -7,6 +7,16 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 	
+	var address = window.location.href;
+
+	$('.mainmenu').find('a').each(function() {
+	   if($(this).attr('href') == address)
+	   {
+		   $(this).parent().parent().parent().addClass('active');
+		   $(this).parent().addClass('active');
+	   }
+	});
+	
 	// Sidebar Accordion Menu
 	$(".mainmenu li ul").hide();
 	$(".mainmenu li.active a").parent().find("ul").slideToggle("slow");
