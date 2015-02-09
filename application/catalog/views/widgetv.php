@@ -4,22 +4,11 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/tooltipster.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/font-awesome.css" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/themes/widget-tooltip.css" type="text/css">
-<style>
-@font-face {
-  font-family: 'FontAwesome';
-  src: url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.eot');
-  src: url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
-    url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.woff') format('woff'),
-    url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-</style>
+
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.min.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.raty.min.js"></script>
-
 
 
 <div class = "company_review_tab fancybox" href="#review_popup">
@@ -51,7 +40,7 @@ Reviews
 	  <div class = "clear"></div>			  
 </div>
 
-<div class = "review_tab_bottom"> 
+<div class = "review_tab_bottom" id = "scrollbar"> 
 			<div id = "itemContainer" style = "min-height: unset;">
             <?php 
             if( count($reviews) > 0 ) 
@@ -68,10 +57,11 @@ Reviews
 						{ 
 						?>
 						<div class ="review_border_bottom padding_top_1">
+							<div class = "review_circle">
 							 <div class = "review_firstletter">
 								<label><?php if($users['username']!=null){ $firstword = $users['username']; echo ucfirst($firstword[0]); } else { echo "A";}?></label>
 							 </div>
-							
+							</div>
 							<div class = "review_username_row">
 								 <div class = "review_name_tab tooltip" >
 									 <?php if($users['username']!=null){ echo $users['username']; } else { echo "Anonymous";}?>
@@ -170,18 +160,18 @@ Reviews
 										  <script>
 											<?php $ip = $_SERVER['REMOTE_ADDR'];  ?>
 											
-											$(function(){ 
-											 $("#helpful_<?php echo $reviews[$i]['id'];?>").click(function() {
+											$(document).ready(function(){ 
+											 $("#helpful_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click', function() {
 												 var vote = 'helpful';
 												 var reviewid = $(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
 											   });
-											   $("#funny_<?php echo $reviews[$i]['id'];?>").click(function() {
+											   $("#funny_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
 												 var vote = 'funny';
 												 var reviewid = $(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
 											   });
-											   $("#agree_<?php echo $reviews[$i]['id'];?>").click(function() {
+											   $("#agree_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
 												 var vote = 'agree';
 												 var reviewid = $(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
@@ -189,7 +179,7 @@ Reviews
 												 $('#disagree_'+reviewid).removeClass('vote-disable');
 												 $('#disagree_'+reviewid).addClass('vote'); 
 											   });
-											   $("#disagree_<?php echo $reviews[$i]['id'];?>").click(function() {
+											   $("#disagree_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
 												 var vote = 'disagree';
 												 var reviewid = $(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
@@ -239,9 +229,9 @@ Reviews
 											
 			   });
 			   $(".widget_share").toggle(function () {
-				  $(this).parent().find(".widget_social_link").show();
+				  $(this).parent().find(".widget_social_link").css('display', 'inline-block');
 			   },function(){
-				  $(this).parent().find(".widget_social_link").hide();
+				  $(this).parent().find(".widget_social_link").css('display', 'none');
 			   });
 			</script>
 			
@@ -278,8 +268,8 @@ Reviews
 		
 		$('.fancybox').fancybox();
    });
-
-function countme(rid,vote)
+	
+	function countme(rid,vote)
 	{
 	  $.ajax({
 		  type 				: "POST",
