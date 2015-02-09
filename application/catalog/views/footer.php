@@ -2,6 +2,7 @@
 <?php $tw = $this->common->get_semsetting_value(2);?>
 <?php $pi = $this->common->get_semsetting_value(3);?>
 <?php $go = $this->common->get_semsetting_value(4);?>
+<?php $li= $this->common->get_semsetting_value(5);?>
 <script type="text/javascript" language="javascript">
 function elitelogin()
 {        
@@ -118,6 +119,7 @@ function userlogin()
 				<li class="facebook"><a href="<?php echo $fb;?>" title="Facebook"><img src="../images/img/socialicon/facebook.jpg" /></a></li>
 				<li class="google"><a href="<?php echo $go;?>" title="Google"></a><img src="../images/img/socialicon/googleplus.jpg" /></a></li>
 				<li class="pinterest"><a href="<?php echo $pi;?>" title="Pinterest"><img src="../images/img/socialicon/pinterest.jpg" /></a></li>
+				<li class="linkedin"><a href="<?php echo $li;?>" title="linkedin"><img src="../images/img/socialicon/LinkedIn_icon.jpg" /></a></li>
 			  </ul>
 			</div>
 			
