@@ -7,6 +7,8 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 	
+	var address = window.location.href;
+	
 	$('.mainmenu').find('a').each(function() {
 	   if($(this).attr('href') == address)
 	   {
