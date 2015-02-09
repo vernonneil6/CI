@@ -200,19 +200,19 @@
     font-size: 11px;
     margin-right: 10px;
 }
-#scrollbar::-webkit-scrollbar-track, #scrollbar::-moz-scrollbar-track
+#scrollbar::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	border-radius: 10px;
 	background-color: white;
 }
 
-#scrollbar::-webkit-scrollbar, #scrollbar::-moz-scrollbar
+#scrollbar::-webkit-scrollbar
 {
 	width: 6px;
 }
 
-#scrollbar::-webkit-scrollbar-thumb, #scrollbar::-moz-scrollbar-thumb
+#scrollbar::-webkit-scrollbar-thumb
 {
 	border-radius: 10px;
 	background-color: #3085C7;

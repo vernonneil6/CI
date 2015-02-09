@@ -74,7 +74,7 @@ Reviews
 							</div>
 							<div class = "review_username_row">
 								 <div class = "review_name_tab tooltip" >
-									 <?php if($users['username']!=null){ echo $users['username']; } else { echo "Anonymous";}?>
+									 <?php if($users['username']!=null){ echo ucfirst($users['username']); } else { echo "Anonymous";}?>
 									 <span class = "tooltip" 
 									 title = "
 									 &lt;div class&#61;&#34;tooltip_text&#34; &gt;
