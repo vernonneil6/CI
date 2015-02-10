@@ -26,7 +26,11 @@
 <body>
 <div id="main">
 <div id="header"> 
-  	<div id="logo"> <a href="<?php echo site_url('marketer'); ?>" title="Marketer Admin"><span>Marketer Admin</span></a> </div>
+  	 	<!-- #logo -->
+  <div id="logo"> <a href="<?php echo site_url(); ?>" title="Marketer Admin"><span>
+	   <img src="<?php echo base_url('../images/YGR_whiteLogo.png'); ?>" class="ebalogo" /> Marketer Admin
+	</span></a> </div>
+  <!-- /#logo -->
 	<div id="user" align="right">
 	    <?php echo "logged in as ".$this->session->userdata['marketer_data'][0]->name; ?>
 	    <a href="<?php echo site_url('marketer');?>" title="Dashboard">Dashboard</a> - <a href="<?php echo site_url('marketer/logout');?>" title="Logout">Logout</a>

@@ -27,7 +27,7 @@
 <div id="main">
 <div id="header"> 
   	<!-- #logo -->
-  <div id="logo"> <a href="<?php echo site_url(); ?>" title="Business Admin"><span>
+  <div id="logo"> <a href="<?php echo site_url(); ?>" title="Broker Admin"><span>
 	   <img src="<?php echo base_url('../images/YGR_whiteLogo.png'); ?>" class="ebalogo" /> Broker Admin
 	</span></a> </div>
   <!-- /#logo --> 
