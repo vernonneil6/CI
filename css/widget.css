@@ -220,6 +220,7 @@
 .widget_close
 {
 	position : absolute;
-	top : 8px;
-	right : 5px;
+	top : 6px;
+	right : 9px;
+	cursor : pointer;
 }
