@@ -57,6 +57,7 @@
 		<td>Password</td>
 		<td>Signup</td>
 		<td>Action</td>
+		 <td>Download report</td>
       </tr>
       <?php foreach($allmarketer as $marketers){ ?>
       <tr>
@@ -67,6 +68,7 @@
 			<a href="<?php echo site_url('subbroker/deletemarketer/'.$marketers['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this Marketer?');">Delete</a>
 			<a href="<?php echo site_url('subbroker/editmarketer/'.$marketers['id']); ?>" title="Edit" class="ico ico-edit">Edit</a>
 		</td>
+		 <td><a href="<?php echo site_url('subbroker/getmycsv/'.$marketers['id'].'/'.'marketer');?>">Elite csv</td>
       </tr>
       <?php } ?>
     </table>
@@ -198,6 +200,7 @@
 		<td>Password</td>
 		<td>Signup</td>
 		<td>Action</td>
+		<td>Download report</td>
       </tr>
       <?php foreach($allagent as $agents){ ?>
       <tr>
@@ -208,6 +211,7 @@
 			<a href="<?php echo site_url('subbroker/deleteagent/'.$agents['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this Agent?');">Delete</a>
 			<a href="<?php echo site_url('subbroker/editagent/'.$agents['id']); ?>" title="Edit" class="ico ico-edit">Edit</a>
 		</td>
+		<td><a href="<?php echo site_url('subbroker/getmycsv/'.$agents['id'].'/'.'agent');?>">Elite csv</td>
       </tr>
       <?php } ?>
     </table>
@@ -338,7 +342,7 @@
 
 
 
-<?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='elitemember') {?>
+<?php if($this->uri->segment(1)=='subbroker' && $this->uri->segment(2)=='elitemembers') {?>
 	
 	
 	<div class="breadcrumbs">
@@ -354,62 +358,40 @@
 		  <h2><span><?php echo "Elite Member" ?></span></h2>
 		</div>
 		<div class="box-content"> 
-			
+		<a href="<?php echo site_url('subbroker/getmycsv/'.$this->session->userdata['subbroker_data'][0]->id.'/'.'subbroker');?>">Download Total Subbroker Elite CSV Report</a>	
 		<?php if( count($elitemembers) > 0 ) { ?>
+		<style>
+		
+		.tab th, .tab td  {padding: 8px 33px}
+		
+		</style>
 		<table class="tab tab-drag">
 		  <tr class="top nodrop nodrag">
-			<td>Name</td>
+			<td>Subbroker Name</td>
+			<td>Marketer Name</td>
+			<td>Agent Name</td>
 			<td>Type</td>
 			<td>Company</td>
 			<td>Email</td>
-			<td>Phone</td>
+		
 		  </tr>
-			<?php  
-			foreach($elitemembers as $elite) 
-			{ 
-			if($elite['ybid']==$this->session->userdata['subbroker_data'][0]->id and $elite['ybtype']=='subbroker' and $elite['yctype']=='subbroker')	
-			{	  
-		    ?>
+			<?php  foreach($elitemembers as $elite) { ?>
+			
 			<tr>
-				<td><?php echo $elite['ybname']; ?></td>
-				<td><?php echo $elite['ybtype']; ?></td>
+				<td><?php echo $elite['ycsubbrokerid']; ?></td>
+				<td><?php echo $elite['ycmarketerid']; ?></td>
+				<td><?php echo $elite['ycbrokerid']; ?></td>
+				<td><?php echo $elite['ycbrokertype']; ?></td>
 				<td><?php echo $elite['yccompany']; ?></td>
 				<td><?php echo $elite['ycemail']; ?></td>
-				<td><?php echo $elite['ycphone']; ?></td>
+			
 			</tr>
 			<?php 
-			}
-			if($elite['ycsubbrokerid']==$this->session->userdata['subbroker_data'][0]->id and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer') 
-			{ 
-			?>
-			<tr>
-				<td><?php echo $elite['ybname']; ?></td>
-				<td><?php echo $elite['ybtype']; ?></td>
-				<td><?php echo $elite['yccompany']; ?></td>
-				<td><?php echo $elite['ycemail']; ?></td>
-				<td><?php echo $elite['ycphone']; ?></td>
-			</tr>
-			<?php 
-			foreach($elitemember as $agent)
-			{
-			if($agent['ycsubbrokerid']==$this->session->userdata['subbroker_data'][0]->id and $elite['ybid']==$agent['ycmarketerid'] and $agent['ybtype']=='agent' and $agent['yctype']=='agent') 
-			{ 
-			?>
-			<tr>
-				<td><?php echo $agent['ybname']; ?></td>
-				<td><?php echo $agent['ybtype']; ?></td>
-				<td><?php echo $agent['yccompany']; ?></td>
-				<td><?php echo $agent['ycemail']; ?></td>
-				<td><?php echo $agent['ycphone']; ?></td>
-			</tr>
-			<?php 	
-			}
-			}
 			} 
 			}
 			?>
 		</table>
-		<?php } ?>
+
 		
 		
 		</div>
