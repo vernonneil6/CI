@@ -64,17 +64,12 @@
 			</div>
 		  </div>
 		  
-			<?php if(count($elitemem_status)==0){?>
+			
 				<div class="vry_btn">
 					<a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> 
 					<a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
 				</div>
-			<?php }else{  ?>
-				<div class="vry_btn">
-					<a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> 
-					<a href="<?php echo site_url('complaint/dispute/'.$company[0]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
-				</div>
-			<?php }  ?>
+			
 				
             </div>
             </div>

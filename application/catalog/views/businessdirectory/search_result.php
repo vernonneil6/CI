@@ -64,8 +64,7 @@
 			
                 </a>
                 </h2>
-              </div>
-              <div class="compny_name">
+                <div class="compny_name">
                 <div class="vry_rating">
                   <?php for($r=0;$r<$avgstar;$r++){?>
                   <i class="vry_rat_icn"></i>
@@ -75,13 +74,15 @@
                   <?php } ?>
                 </div>
               </div>
-<?php if(count($elitemem_status)==0){?>
-              <div class="vry_btn bmoves"><a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
-</div>
-<?php }else{  ?>
-<div class="vry_btn bmoves"><a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/dispute/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
-</div>
-<?php }  ?>
+
+              <div class="vry_btn bmoves">
+				  <a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> 
+				  <a href="<?php echo site_url('complaint/add/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
+			  </div>
+            </div>
+              
+
+
             </div>
             </div>
             <div class="contct_dtl cntdll">
