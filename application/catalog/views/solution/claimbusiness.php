@@ -6,7 +6,7 @@
     <div class="banner_wrp"> <img class="containerimg" src="images/YouGotRated_HeaderGraphics_SignUpPage.png" alt="Register" title="Register"> </div>
     <div class="regr_lnk">
       <div class="innr_wrap">
-        <div class="new_usr"> Elite Member Registration: <a title="New Business">New Business</a> </div>
+        <div class="new_usr"> Elite Member Registration: <a title="New Business">New Business Monthly Cost:<span id="discpricebanner">$299.00</span> </a> </div>
         
       </div>
     </div>
@@ -207,6 +207,7 @@
             <label>HAVE DISCOUNT CODE?</label>
             <div class="reg_fld">ENTER DISCOUNT CODE</div>
             <input type="text" class="reg_txt_box" placeholder="DISCOUNT CODE" id="discountcode" name="discountcode" maxlength="50" />
+            <input type="button" id="applydisc" value="Apply code">
             <div id="discsuccess" class="error">Its is Valid code</div>
             <div id="discnorerror" class="error">Its is not Available</div>
             <div id="discallrerror" class="error">please enter code</div>
@@ -214,6 +215,7 @@
           <div class="reg-row" style="margin-top:27px;">
             <label>CREATE YOUR ACCOUNT</label>
             <div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
+            <div class="reg_fld">MONTHLY COST: <span id="discprice">$299.00</span></div>
             <button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CONTINUE TO CHECKOUT</button>
           </div>
         </form>
@@ -239,23 +241,30 @@ function chkwebsite(website){
 	}
 }
 $(document).ready(function(){
- $("#discountcode").blur(function(){
+ $("#applydisc").click(function(){
   if($("#discountcode").val().length >= 4)
   {
   $.ajax({
    type: "POST",
    url: "<?php echo base_url();?>index.php/solution/check_discountcode",
    data: "discountcode="+$("#discountcode").val(),
-   success: function(msg){
-    if(msg=="true")
+   dataType:"json",
+   success: function(data){
+	if(data.discstatus=="success")
     {
      $("#discsuccess").show();
+     $("#discsuccess").html('Your code was successfully applied! Updated monthly fee:'+data.monthlycost);
+     $("#discprice").html(data.monthlycost);
+     $("#discpricebanner").html(data.monthlycost);
      $("#discnorerror").hide();
      $("#discallrerror").hide();
     }
     else
     {
      $("#discnorerror").show();
+     $("#discnorerror").html('Your code was invalid. Please contact YouGotRated if you believe this is incorrect, or try your code again');
+     $("#discprice").html(data.subscriptionprice);
+     $("#discpricebanner").html(data.subscriptionprice);
      $("#discsuccess").hide();
      $("#discallrerror").hide();
     }

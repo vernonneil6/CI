@@ -1812,14 +1812,14 @@ class Complaints extends CI_Model
  	}
  	function get_discount_enabled($discountcode)
  	{
-		$query = $this->db->select('*')
+		$query = $this->db->select('discountprice,percentage,discountcodetype')
 		                  ->from('discount')
 		                  ->where(array('status'=>'Enable','code'=>$discountcode))
 		                  ->get();
 	
 		if ($query->num_rows() > 0)
 		{
-			return true;
+			return $query->row_array();
 		}
 		else
 		{
