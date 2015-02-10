@@ -1698,12 +1698,16 @@ class Complaints extends CI_Model
 		
 		
 	}
-	function update_subscription($subscriptionId,$companyid,$amt,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag)
+	function update_subscription($subscriptionId,$companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag)
 	{
 	    $date = date("Y-m-d H:i:s");
 		$payment_ip = $_SERVER['REMOTE_ADDR'];
 		$data = array(
 					'amount'  		=> $amt,
+					'ccnumber'  	=> $ccnumber,
+					'ccexpiredate'  => $cardexpire,
+					'firstname	'  	=> $fname,
+					'lastname	'  	=> $lname,
 					'txn_id'		=> $tx,
 					'payment_date'	=> $date,
 					'payment_ip'	=> $payment_ip,
@@ -1713,7 +1717,6 @@ class Complaints extends CI_Model
 					'paymentmethod'	=> $paymentmethod,
 		);
 		$this->db->where(array('subscr_id'=>$subscriptionId,'company_id'=>$companyid));
-		$this->db->update('subscription',$data);
 		if($this->db->update('subscription',$data))
 		{
 			return true;
@@ -1844,7 +1847,7 @@ class Complaints extends CI_Model
 	}
 	function get_companyelite_byid($id)
 	{
-		$query = $this->db->select('payment_amount')
+		$query = $this->db->select('payment_amount,discountcodetype,discountcode')
 		                  ->from('elite')
 		                  ->where(array('company_id'=>$id))
 		                  ->get();
@@ -1857,10 +1860,7 @@ class Complaints extends CI_Model
 		{
 			return false;
 		}
-		
-		
-		
-		
+			
 	}
 }
 ?>
