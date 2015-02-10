@@ -2011,3 +2011,12 @@ margin-top: 5px;
 }
 .complink{ margin-left:5px; }
 .prof_rating{padding : 0;margin:0 0 0 8px;}
+.in_block{display : inline-block;}
+.d_tab{display : inline-block;}
+.id_prov_business
+{	
+	color: #999;
+    display: inline-block;
+    font-family: myriadpro-regular;
+    font-size: 13px;
+}
