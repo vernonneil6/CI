@@ -162,7 +162,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
           </div>
         <div class="vry_btn reviewbtn d_tab">
 			<a href="<?php echo base_url('review/add/'.$review[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> 
-			<a href="<?php echo site_url('complaint/add'.$review[0]['companyid']);?>" title="File Complaint">FILE COMPLAINT</a>
+			<a href="<?php echo site_url('complaint/add/'.$review[0]['companyid']);?>" title="File Complaint">FILE COMPLAINT</a>
 		</div>  
         </div>
         
