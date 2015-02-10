@@ -10,7 +10,7 @@
     <li><a href="<?php echo site_url('marketer'); ?>" title="Elite Member">Elite Member</a>
       <ul class="submenu">
         <li><a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/signuppage/affid/'.$this->session->userdata['marketer_data'][0]->id;?>" title="Create Elite Member">Create Elite Member</a></li>
-        <li><a href="<?php echo site_url('marketer/elitemember'); ?>" title="List All Elite Members">List All Elite Members</a></li>
+        <li><a href="<?php echo site_url('marketer/elitemembers'); ?>" title="List All Elite Members">List All Elite Members</a></li>
       </ul>
     </li>
     <li><a href="<?php echo site_url('marketer/userprofile'); ?>/<?php echo $this->session->userdata['marketer_data'][0]->id; ?>" class="link" title="User Profile">User Profile</a></li>
