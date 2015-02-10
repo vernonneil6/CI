@@ -1078,7 +1078,16 @@ $this->complaints->set_video($companyid,"video2","http://www.youtube.com/watch?v
 		}
 		
 		$this->data['cmpyid']=$id;
-		$this->load->view('addcomplaint_new',$this->data);
+		$elitemem_status = $this->common->get_eliteship_bycompanyid($id);
+		if(count($elitemem_status)==0)
+		{
+			$this->load->view('addcomplaint_new',$this->data);
+		}
+		else
+		{
+			$check=$this->dispute_loadcmpnydata($id);	
+			return $check;
+		}
 	}
 	public function dispute()
 	{
