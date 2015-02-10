@@ -341,7 +341,7 @@
 						<?php if($users['avatarbig']==null) {?>
 						<img src="images/default_user.png" alt="User image" title="User image">
 						<?php } else {?>
-						<img src="uploads/user/main/<?php echo $users['avatarbig'];?>" alt="User image" title="User image">	
+						<img src="uploads/user/thumb/<?php echo $users['avatarthum'];?>" alt="User image" title="User image">	
 						<?php } ?>
 					</div>
                
