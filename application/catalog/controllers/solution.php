@@ -177,7 +177,6 @@ class Solution extends CI_Controller {
 	}
 	function claimbusiness()
 	{
-		
 		if(isset($_GET['elitemem'])){
 		    $eid=$_GET['elitemem'];
 		}else{
@@ -2152,13 +2151,29 @@ public function upgrades($id)
 	      
 		$discountcode=$this->input->post('discountcode');
 		$discountusage=$this->complaints->get_discount_enabled($discountcode);
+		$defaultprice=$this->common->get_setting_value(19);
 		if(empty($discountusage)){ 
 			
-			echo "false";
+			$discountusage['discstatus']='failure';
+			$discountusage['subscriptionprice']='$'.$defaultprice;
+			echo json_encode($discountusage);
 						
 		} else { 
 			
-			echo "true";
+			if($discountusage['percentage']==0 && $discountusage['discountcodetype']=='30-days-free-trial'){
+				
+				$discountusage['monthlycost']='1st mo free then $'.$discountusage['discountprice'].'/mo';
+			}
+			else if($discountusage['percentage']!="" && $discountusage['discountcodetype']=='30-days-free-trial'){
+				
+				$discountusage['monthlycost']='1st mo free then $'.$discountusage['discountprice'].'/mo';
+			}
+			else if($discountusage['percentage']!="" && $discountusage['discountcodetype']=='normal-discount'){
+				
+				$discountusage['monthlycost']='$'.$discountusage['discountprice'];
+			}
+			$discountusage['discstatus']='success';
+			echo json_encode($discountusage);
 			
 		}
 	   

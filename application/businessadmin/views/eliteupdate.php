@@ -85,81 +85,185 @@ $(document).ready(function() {
             <input type="hidden" class="reg_txt_box-lg" placeholder="cphone" name="cphone" id="cphone" maxlength="50" value="<?php echo $elite[0]['contactphonenumber'];?>" />
             <input type="hidden" class="reg_txt_box-lg" placeholder="cemail" name="cemail" id="cemail" maxlength="50" value="<?php echo $elite[0]['contactemail'];?>" />
      
-        <div class="clearfix" style="width: 71%;padding-left: 10px;margin-top:15px">
-				<div class="lab">
-					 <p style="width: 272px;">Enter Billing Address for your Credit Card</p>
-					
-				</div>	    
-							
-				<div class="con">
-				   <?php echo form_input(array( 'name'=>'streetaddress','id'=>'streetaddress','class'=>'input','type'=>'text','placeholder'=>'Enter Your street address')); ?>
-                </div>
-               
-               <div class="con" style='margin-top:10px'> 
-			     <div style="float:left;">
-				   <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
-				   </div>
-				   <?php 
-				  $selstate=array(''=>'--Select State--');
-				  ?>
-				  <div id="selstatediv" style="float:right;margin-right:127px;">
-				  <?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?></div>
-				  <br/>
-			   </div> 	    
-               <div class="con" style='margin-top:10px'> 
-			      <?php echo form_input(array( 'name'=>'city','id'=>'city','class'=>'input','type'=>'text','placeholder'=>'Enter Your city')); ?>
-			   </div> 	    
-               <div class="con" style='margin-top:10px'> 
-			    <?php echo form_input(array( 'name'=>'zip','id'=>'zip','class'=>'input','type'=>'text','placeholder'=>'Enter Your zip')); ?>
-			   </div>
-			   	 	    
-          
+     
+		<div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab">
+                <p style="width: 272px;">Enter Billing Address for your Credit Card</p>					
+              </div>
+              <div class="">            
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="clearfix" style="width: 71%;padding-left: 10px;overflow: visible;">
-				<div class="lab">
-					 <p style="width: 272px;">Enter Your New Credit Card Information</p>
-					<label for="title">Credit Card<span class="errorsign">*</span></label>
-				</div>
-				  <div class="con">
-					  <?php echo form_input(array( 'name'=>'ccnumber','id'=>'ccnumber','class'=>'input','type'=>'text','placeholder'=>'Enter Your credit card number','onkeypress'=>'return number(event)','onblur'=>'return checkcard();','required'=>'required')); ?>
-				  </div>
-				<div class="con" style='margin-top:10px'> 
-			         <?php echo form_input(array( 'name'=>'cvv','id'=>'cvv','class'=>'input','type'=>'text','placeholder'=>'Enter Your CVV number')); ?>
+		
+		<div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 8% !important;">
+                <label>Street:</label>
+              </div>
+              <div class="con" style="width: 59% !important; float:left">
+                <?php echo form_input(array( 'name'=>'streetaddress','id'=>'streetaddress','class'=>'input','type'=>'text','placeholder'=>'Enter Your street address')); ?>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+				
+              <div class="lab" style="width: 8% !important;">
+                <label>Country:</label>
+              </div>
+              <div class="" style="float:left">
+                <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
+              </div>
+              
+              <div class="lab" style="width: 8% !important;">
+                <label>State:</label>
+              </div>
+              <div class="" style="float:left">
+				<?php 
+				  $selstate=array(''=>'--Select State--');
+				?>
+                <div id="selstatediv">
+				  <?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?>
+				 </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+              
+        
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 8% !important;">
+                <label>City:</label>
+              </div>
+              <div class="con" style="width: 59% !important; float:left">
+                 <?php echo form_input(array( 'name'=>'city','id'=>'city','class'=>'input','type'=>'text','placeholder'=>'Enter Your city')); ?>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 8% !important;">
+                <label>Zip:</label>
+              </div>
+              <div class="con" style="width: 59% !important; float:left">
+                <?php echo form_input(array( 'name'=>'zip','id'=>'zip','class'=>'input','type'=>'text','placeholder'=>'Enter Your zip')); ?>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab">
+                <p style="width: 272px;">Enter Your New Credit Card Information</p>					
+              </div>
+              <div class="">            
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 8% !important;">
+                <label>CC Number:</label>
+              </div>
+              <div class="con" style="width: 59% !important; float:left">
+                <?php echo form_input(array( 'name'=>'ccnumber','id'=>'ccnumber','class'=>'input','type'=>'text','placeholder'=>'Enter Your credit card number','onkeypress'=>'return number(event)','onblur'=>'return checkcard();','required'=>'required')); ?>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 8% !important;">
+                <label>CVV Code:</label>
+              </div>
+              <div class="con" style="width: 59% !important; float:left">
+                <?php echo form_input(array( 'name'=>'cvv','id'=>'cvv','class'=>'input','type'=>'text','placeholder'=>'Enter Your CVV number')); ?>
 			       <a class="cvvpop" href="<?php echo base_url();?>">What is this? <img src="images/cvvpop1.jpg" id="cvvhover" style="display:none;"></a> 
-			       
-			   </div>
-			   
-			   <div class="con" style='margin-top:10px'>
-					   <?php echo form_input(array( 'name'=>'fname','id'=>'fname','class'=>'input','type'=>'text','placeholder'=>'Enter Your first name')); ?>
-					</div>
-				   <div id="cc-error"><?php echo $this->session->flashdata('success_msg'); ?></div>
-				   
-				<div class="con" style='margin-top:10px'>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 8% !important;">
+                <label>First Name:</label>
+              </div>
+              <div class="con" style="width: 59% !important; float:left">
+					<?php echo form_input(array( 'name'=>'fname','id'=>'fname','class'=>'input','type'=>'text','placeholder'=>'Enter Your first name')); ?>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="cc-error"><?php echo $this->session->flashdata('success_msg'); ?></div>
+        
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 8% !important;">
+                <label>Last Name:</label>
+              </div>
+              <div class="con" style="width: 59% !important; float:left">
 					<?php echo form_input(array( 'name'=>'lname','id'=>'lname','class'=>'input','type'=>'text','placeholder'=>'Enter Your last name')); ?>
-				</div>
-		</div>
-		
-		
-        <div class="clearfix" style="width: 90%;padding-left: 10px;">
-			  <div class="lab">
-				<label for="videourl">Expiration date<span class="errorsign">*</span></label>
-			  </div>
-          
+              </div>
+            </div>
+          </div>
+        </div>
+
+		<div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 8% !important;">
+                <label>Expiration date:<span class="errorsign">*</span></label>
+              </div>
+              <div class="" style="width: 59% !important; float:left">			 
+				  
+				   &nbsp;
 				  <select id="expirationdatey" name="expirationdatey">
-					<option value="">--Select--</option>
+					<option value="">--Year--</option>
 					<?php for($k=0;$k<10;$k++) {?>
 					<?php $a = date('Y')+$k;?>
 					<option value="<?php echo $a;?>"><?php echo $a;?></option>
 					<?php } ?>
 				  </select>
-				  &nbsp;
+				  
 				  <select id="expirationdatem" name="expirationdatem">
-					<option value="">--Select--</option>
+					<option value="">--Month--</option>
 					<?php for($i=1;$i<13;$i++) {?>
 					<option value="<?php echo $i;?>"><?php echo $i;?></option>
 					<?php } ?>
 				  </select>
+				  
+              </div>
+            </div>
+          </div>
         </div>
+        
         <div class="btn-submit"> 
           <!-- Submit form -->
           
