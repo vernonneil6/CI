@@ -34,7 +34,7 @@ Reviews
 	<div class="widget_img">
 		<img  src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" width = "80px">
 	</div>
-	<label class = "widget_close">x</label>
+	<label class = "widget_close">X</label>
 	<div class = "clear"></div>
 </div>
 
@@ -280,7 +280,7 @@ Reviews
 		$('.fancybox').fancybox();
 		
 		$('.widget_close').click(function(){
-			$('#review_popup').hide();
+			$('.fancybox-overlay').hide();
 		});
    });
 	
