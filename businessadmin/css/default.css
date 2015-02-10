@@ -486,12 +486,13 @@ a:hover.ico   { background-position: 0 0; }
 .cvvpop
 {
 	position: absolute;
+	padding-left:10px;
 }
 #cvvhover
 {
 	display: block;
 	position: relative;
-	left: -2em;
+	right: 10em;
 	z-index: 999;
 	text-decoration:none;
 	margin-top: 4px;
