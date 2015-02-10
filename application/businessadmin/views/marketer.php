@@ -18,7 +18,7 @@
     <table class="tab tab-drag">
      <tbody><tr class="top nodrop nodrag"> </tr>       
      <tr class="odd">
-        <td>Subbroker Url</td>
+        <td>Marketer Url</td>
         <td>
         <textarea cols='90' rows='10'>
 			<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/signuppage/affid/'.$this->session->userdata['marketer_data'][0]->id;?>
@@ -57,6 +57,7 @@
 		<td>Password</td>
 		<td>Signup</td>
 		<td>Action</td>
+		<td>Download report</td>
       </tr>
       <?php foreach($allagent as $agents){ ?>
       <tr>
@@ -67,6 +68,7 @@
 			<a href="<?php echo site_url('marketer/agentdelete/'.$agents['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this Agent?');">Delete</a>
 			<a href="<?php echo site_url('marketer/agentedit/'.$agents['id']); ?>" title="Edit" class="ico ico-edit">Edit</a>
 		</td>
+		<td><a href="<?php echo site_url('marketer/getmycsv/'.$agents['id'].'/'.'agent');?>">Elite csv</td>
       </tr>
       <?php } ?>
     </table>
@@ -168,7 +170,7 @@
 <?php } ?>
 
 
-<?php if($this->uri->segment(1)=='marketer' && $this->uri->segment(2)=='elitemember') {?>
+<?php if($this->uri->segment(1)=='marketer' && $this->uri->segment(2)=='elitemembers') {?>
 	
 	
 	<div class="breadcrumbs">
@@ -184,52 +186,33 @@
       <h2><span><?php echo "Elite Member" ?></span></h2>
     </div>
     <div class="box-content"> 
-			
-	
-     
+	<a href="<?php echo site_url('marketer/getmycsv/'.$this->session->userdata['marketer_data'][0]->id.'/'.'marketer');?>">Download Total Marketer Elite CSV Report</a>	
 		<?php if( count($elitemembers) > 0 ) { ?>
 		<table class="tab tab-drag">
 		  <tr class="top nodrop nodrag">
-			<td>Name</td>
+			<td>Marketer Name</td>
+			<td>Agent Name</td>
 			<td>Type</td>
 			<td>Company</td>
 			<td>Email</td>
-			<td>Phone</td>
-			
+		
 		  </tr>
-			<?php  
-			foreach($elitemembers as $elite) 
-			{ 
-			if($elite['ybid']==$this->session->userdata['marketer_data'][0]->id and $elite['ybtype']=='marketer' and $elite['yctype']=='marketer') 
-			{ 
-			?>
+			<?php  foreach($elitemembers as $elite) { ?>
+			
 			<tr>
-				<td><?php echo $elite['ybname']; ?></td>
-				<td><?php echo $elite['ybtype']; ?></td>
+				<td><?php echo $elite['ycmarketerid']; ?></td>
+				<td><?php echo $elite['ycbrokerid']; ?></td>
+				<td><?php echo $elite['ycbrokertype']; ?></td>
 				<td><?php echo $elite['yccompany']; ?></td>
 				<td><?php echo $elite['ycemail']; ?></td>
-				<td><?php echo $elite['ycphone']; ?></td>
+			
 			</tr>
-			<?php
+			<?php 
 			} 
-			if($elite['ycmarketerid']==$this->session->userdata['marketer_data'][0]->id and $elite['ybtype']=='agent' and $elite['yctype']=='agent') 
-			{	
-			?>
-			<tr>
-				<td><?php echo $elite['ybname']; ?></td>
-				<td><?php echo $elite['ybtype']; ?></td>
-				<td><?php echo $elite['yccompany']; ?></td>
-				<td><?php echo $elite['ycemail']; ?></td>
-				<td><?php echo $elite['ycphone']; ?></td>
-			</tr>
-			<?php  
-			} 
-			}	
+			}
 			?>
 		</table>
-		<?php } ?>
-		
-		
+	
     
 	</div>
 	</div>
