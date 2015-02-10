@@ -1199,7 +1199,7 @@
                 </div></td>
             </tr>
           </table>
-          <table border="0" align="left" class="tablecomment">
+          <table border="0" align="left" class="tablecomment usercomment">
             <tr>
               <td><div class="right_content_panel">
                   <div class="treding_title" >Comments</div>
