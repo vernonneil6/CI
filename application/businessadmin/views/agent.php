@@ -18,7 +18,7 @@
     <table class="tab tab-drag">
      <tbody><tr class="top nodrop nodrag"> </tr>       
      <tr class="odd">
-        <td>Subbroker Url</td>
+        <td>Agent Url</td>
         <td>
         <textarea cols='90' rows='10'>
 			<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/signuppage/affid/'.$this->session->userdata['agent_data'][0]->id;?>
@@ -34,7 +34,7 @@
 
 
 
-<?php if($this->uri->segment(1)=='agent' && $this->uri->segment(2)=='elitemember') {?>
+<?php if($this->uri->segment(1)=='agent' && $this->uri->segment(2)=='elitemembers') {?>
 	
 	
 	<div class="breadcrumbs">
@@ -51,29 +51,32 @@
     </div>
     <div class="box-content"> 
 			
-	
+	<a href="<?php echo site_url('agent/getmycsv/'.$this->session->userdata['agent_data'][0]->id.'/'.'agent');?>">Download Total Agent Elite CSV Report</a>	
      
 		<?php if( count($elitemembers) > 0 ) { ?>
 		<table class="tab tab-drag">
 		  <tr class="top nodrop nodrag">
-			<td>Name</td>
+			<td>Agent Name</td>
 			<td>Type</td>
 			<td>Company</td>
 			<td>Email</td>
-			<td>Phone</td>
+		
 		  </tr>
-		  <?php  foreach($elitemembers as $elite) { 
-		 	if($elite['ybid']==$this->session->userdata['agent_data'][0]->id) { ?>
+			<?php  foreach($elitemembers as $elite) { ?>
+			
 			<tr>
-				<td><?php echo $elite['ybname']; ?></td>
-				<td><?php echo $elite['ybtype']; ?></td>
+				<td><?php echo $elite['ycbrokerid']; ?></td>
+				<td><?php echo $elite['ycbrokertype']; ?></td>
 				<td><?php echo $elite['yccompany']; ?></td>
 				<td><?php echo $elite['ycemail']; ?></td>
-				<td><?php echo $elite['ycphone']; ?></td>
+			
 			</tr>
-			<?php } } ?>
+			<?php 
+			} 
+			}
+			?>
 		</table>
-		<?php } ?>
+
 		
     
 	</div>
