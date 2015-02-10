@@ -331,10 +331,20 @@
 			  {
 			  	$newreviews = count($reviews);
 			  }?>
-            <?php for($i=0; $i<$newreviews; $i++) { ?>
+            <?php for($i=0; $i<$newreviews; $i++) { 			    
+				  $users = $this->users->get_user_bysingleid($reviews[$i]['reviewby']); 
+			?>
             <div itemscope itemtype = "http://schema.org/Review" itemprop = "review" class="review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="review_lft">
-                <div class="user_img"><img src="images/default_user.png" alt="User image" title="User image"></div>
+				
+					<div class="user_img">
+						<?php if($users['avatarbig']==null) {?>
+						<img src="images/default_user.png" alt="User image" title="User image">
+						<?php } else {?>
+						<img src="uploads/user/main/<?php echo $users['avatarbig'];?>" alt="User image" title="User image">	
+						<?php } ?>
+					</div>
+               
                <meta itemprop = "itemReviewed" content = "<?php echo site_url(); ?>">
               </div>
               <div class="review_rgt reviewstab">
@@ -345,7 +355,6 @@
              <?php 
 			    if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') 
 			    { 
-			    $users = $this->users->get_user_bysingleid($reviews[$i]['reviewby']); 
 			    if(count($users)>0) 
 			    { 
 					 if($users['username']!='')
