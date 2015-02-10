@@ -278,7 +278,7 @@ class Complaints extends CI_Model
  	{
 		$siteid = $this->session->userdata('siteid');
 		$sites = array(1,$siteid);
-		$this->db->select('c.*, cm.company,cm.logo,cm.companyseokeyword,u.username,u.avatarbig,u.gender');
+		$this->db->select('c.*, cm.company,cm.logo,cm.companyseokeyword,u.username,u.avatarbig,u.avatarthum,u.gender');
 		$this->db->from('complaints as c');
 		$this->db->join('company as cm','c.companyid=cm.id');
 		$this->db->join('user u','c.userid=u.id');

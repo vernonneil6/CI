@@ -60,7 +60,16 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
 				?>
         <div class="testmnl_clntwrp browse_user">
           <div class="clnt_intr"> - &nbsp;&nbsp;
-            <div class="clnt_pic"> <a href="<?php echo site_url('complaint/viewuser/'.$complaints[0]['companyid'].'/'.$complaints[0]['userid']);?>" title="view profile"><img src="images/default_user.png" alt="Client Image" title="Client Image"> </a></div>
+            <div class="clnt_pic"> 
+				<?php if($user[0]['avatarthum']==null) {?>
+					<a href="<?php echo site_url('complaint/viewuser/'.$complaints[0]['companyid'].'/'.$complaints[0]['userid']);?>" title="view profile">
+						<img src="images/default_user.png" alt="Client Image" title="Client Image"> 
+					</a>
+				   <?php } else { ?>
+					  <img src="uploads/user/thumb/<?php echo $user[0]['avatarthum'];?>" alt="User image" title="User image">
+				   <?php } ?>
+				
+			</div>
             <div class="clnt_name">
               <h4><a href="<?php echo site_url('complaint/viewuser/'.$complaints[0]['companyid'].'/'.$complaints[0]['userid']);?>" title="view profile"><?php echo $user[0]['username'];?></a></h4>
                <h4><?php echo $user[0]['city'];?></h4>
@@ -82,7 +91,12 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
             
             
           </div>
-          <div class="clnt_pic photo"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
+          <div class="clnt_pic photo"> 
+			  <?php if($othercomplaints[$j]['avatarthum']==null) {?>
+					<img src="images/default_user.png" alt="Client Image" title="Client Image"> 
+			  <?php } else { ?>
+					<img src="uploads/user/thumb/<?php echo $othercomplaints[$j]['avatarthum'];?>" alt="User image" title="User image">
+			  <?php } ?>
         </div>
         <div class="review_rgt cmnt_dscr">
           <p><?php echo $othercomplaints[$j]['detail'];?></p>
