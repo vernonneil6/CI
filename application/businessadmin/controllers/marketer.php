@@ -15,6 +15,11 @@ class Marketer extends CI_Controller {
 	 	$this->load->helper('form');
         $this->load->model('marketers');
         require_once('../application/businessadmin/Classes/PHPExcel.php');
+        //Setting Page Title and Comman Variable
+		$this->data['site_name'] = $this->settings->get_setting_value(1);
+		$this->data['title'] = $this->data['site_name'].' : Marketers ';
+		$this->data['section_title'] = 'Marketers';
+		$this->data['site_url'] = $this->settings->get_setting_value(2);
 
 		$this->data['header'] = $this->load->view('marketerheader',$this->data,true);
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
