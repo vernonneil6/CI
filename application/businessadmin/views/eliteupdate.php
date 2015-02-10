@@ -118,14 +118,14 @@ $(document).ready(function() {
               <div class="lab" style="width: 8% !important;">
                 <label>Country:</label>
               </div>
-              <div class="" style="width: 59% !important; float:left">
+              <div class="" style="float:left">
                 <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
               </div>
               
               <div class="lab" style="width: 8% !important;">
                 <label>State:</label>
               </div>
-              <div class="" style="width: 59% !important; float:left">
+              <div class="" style="float:left">
 				<?php 
 				  $selstate=array(''=>'--Select State--');
 				?>
