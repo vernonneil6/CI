@@ -68,6 +68,7 @@
 		  </tr>
 		
 		<!--For View details-->
+	
 	<!--Subbroker view popup-->	   		    
 	<?php if($titletype[0]['type'] =='subbroker') { 
 		?>
@@ -177,6 +178,7 @@ function marketer_list(sel,id)
                     success: function(datas){
                         //alert(datas);
                         $('#marketer').html(datas);
+                        $('#agent').html('<option value="0">All</option>');
                        
                 },
 });
@@ -314,8 +316,53 @@ function viewlist(sel,id)
         </div>
         <div class="btn-submit"> 
           <!-- Submit form --> 
-          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;','onclick'=>'function showtext()')); ?> or <a href="<?php echo site_url('report');?>" class="Cancel">Cancel</a> </div>
+          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;','onclick'=>'showtext(); return false;')); ?> or <a href="<?php echo site_url('report');?>" class="Cancel">Cancel</a> </div>
       </fieldset>
+      <script>
+		function showtext() {		  
+		  var marketer = $("#marketer").val();
+		  var marketername = $("#marketername").val();
+		  var subbroker = $("#subbroker").val();
+		  var subbrokername = $("#subbrokername").val();
+		  var agent = $("#agent").val();
+		  var agentname = $("#agentname").val();
+		  var datepicker = $("#datepicker").val();
+		  var datepicker1 = $("#datepicker1").val();
+		  var mid = '';
+		  var type = '';
+		  var name = '';
+		  if(subbroker!=0 && subbrokername!=''){ mid = subbroker; name = subbrokername; type = 'subbroker';  }
+		  if(marketer!=0 && marketername!='' && marketer!='all'){ mid = marketer; name = marketername; type = 'marketer';}
+		  if(agent!=0 && agentname!='' && agent!='all'){ mid = agent; name = agentname; type = 'agent';}
+			if(mid!='' && datepicker=='' && datepicker1=='') {
+				$("#dateLinks").hide();
+				var getlink = '<a href="/admincp/report/subbrokerdetails/'+mid+'/'+type+'">Download broker-details CSV</a>';			
+				$("#linksub").html(getlink);
+				$("#linksub1").html(name);
+				$("#showresults").show();
+				$(".form-message.correct").show();
+				$(".form-message.correct").css("opacity", "1");
+				return false;
+			}
+			if(datepicker!='' || datepicker1!='' ) {
+				var mtype = '';
+				if(mid!='') mtype = '&	mid='+mid+'&type='+type;
+				$("#showresults").hide();
+				var getlink = '<a href="/admincp/report/signupdetailss?fromdates='+datepicker+'&todates='+datepicker1+''+mtype+'">Download Total EliteSales-Reports CSV</a>'
+				$("#dateLinks").html(getlink);
+				$("#dateLinks").show();
+				$(".form-message.correct").show();
+				$(".form-message.correct").css("opacity", "1");
+				return false;
+			}	
+			var getlink = '<a href="/admincp/report/elitereport_csv">Download Total EliteSales-Reports CSV</a>'
+			$("#dateLinks").html(getlink);
+			$("#dateLinks").show();		
+			$(".form-message.correct").show();	
+			$(".form-message.correct").css("opacity", "1");
+			return false;
+		}
+      </script>
       <?php echo form_close(); ?> 
     </div>
       
@@ -366,16 +413,24 @@ function viewlist(sel,id)
 				<p>Date Range Searched &nbsp;<input type="text" name="from" class="dateinput" value="<?php echo $_POST['fromdate'];?>"> To <input type="text" name="end" class="dateinput" value="<?php echo $_POST['enddate'];?>"></p>
 			<?php } ?>
 			
-	<?php if( count($reports) > 0 and $_POST['subbroker']!=0 and $_POST['fromdate']=='' ) { ?>
-    <!-- table -->
-    <table class="tab tab-drag">
+	
+    <!-- download csv links -->
+    <div style="display:none;" class="form-message correct">
+		  <p>Results...</p>
+		</div>
+    <div id="dateLinks" style="display:none;" ><a href="<?php echo site_url('report/signupdetailss?fromdates='.$_POST['fromdate'].'&todates='.$_POST['enddate']); ?>">Download Total EliteSales-Reports CSV</a><br></div>
+    
+    <table id="showresults" style="display:none;" class="tab tab-drag">
       <tr class="top nodrop nodrag">
         	<th>Name</th>
-			<th>Signup</th>
 			<th>Download report</th>
 			<!--<th>Action</th>-->
 	  </tr>
-	 
+	 <tr class="odd">
+		<td  id="linksub1" style="font-weight:bold;">Roven<input type="hidden" value="1"></td>
+		<td id="linksub"></td>
+	 </tr>
+		<?php if( count($reports) > 0 and $_POST['subbroker']!=0 and $_POST['fromdate']=='' ) { ?>
 		  <?php 
 				$site = site_url();			
 				$url = explode("/admincp",$site);
@@ -392,7 +447,7 @@ function viewlist(sel,id)
 									  <tr>
 										<td style="font-weight:bold;"><?php echo ucfirst(stripslashes($search['name']));?><input type="hidden" value="<?php echo stripslashes($search['id']);?>"></td>
 										<td><?php echo stripslashes($search['signup']);?></td>
-										<td><a href="<?php echo site_url('report/subbrokerdetails/'.$search['id']); ?>">Download subbroker-details CSV</a></td>
+										<td><a href="<?php echo site_url('report/subbrokerdetails/'.$search['id']); ?>">Download broker-details CSV</a></td>
 										<?php /*<td width="100px"><a href="<?php echo site_url('report/view/'.$search['id']); ?>" title="View Detail of <?php echo stripslashes($search['name']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> </td>*/?>
 									  </tr>
 								
@@ -461,24 +516,8 @@ function viewlist(sel,id)
 					  <?php }  ?>
 					  
 	</table>
-	
-	<?php /*if($this->pagination->create_links()) { ?>
-        <div class="pagination"><?php echo $this->pagination->create_links(); ?></div>
-    <?php } */?>
-    <?php  /*if($this->pagination->create_links()) { ?>
-    <tr style="background:#ffffff">
-      <td></td>
-      <td></td>
-      <td></td>
-      <td style="padding:10px"><div class="pagination"><?php echo $this->pagination->create_links(); ?></div></td>
-    </tr>
-    <?php } */?>
     <?php } 
 	else { ?>
-    <!-- Warning form message -->
-    <?php /*<div class="form-message warning">
-      <p>No records found.</p>
-    </div> */?>
     <?php } ?>
 <?php } ?>
     <table class="tab tab-drag" style="margin-top:15px;">
