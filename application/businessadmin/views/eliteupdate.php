@@ -201,8 +201,11 @@ $(document).ready(function() {
               </div>
               <div class="con" style="width: 59% !important; float:left">
                 <?php echo form_input(array( 'name'=>'cvv','id'=>'cvv','class'=>'input','type'=>'text','placeholder'=>'Enter Your CVV number')); ?>
-			       <a class="cvvpop" href="<?php echo base_url();?>">What is this? <img src="images/cvvpop1.jpg" id="cvvhover" style="display:none;"></a> 
+			       
               </div>
+               <a class="cvvpop" href="<?php echo base_url();?>">What is this? 
+					<img src="images/cvvpop1.jpg" id="cvvhover" style="display:none;">
+               </a> 
             </div>
           </div>
         </div>

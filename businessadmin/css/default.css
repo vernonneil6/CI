@@ -485,19 +485,16 @@ a:hover.ico   { background-position: 0 0; }
 }
 .cvvpop
 {
-position: absolute;
-right: -8em;
-width: 92px;	
-
+	position: absolute;
 }
 #cvvhover
 {
-display: block;
-position: absolute;
-left: -13em;
-z-index: 1000;
-text-decoration:none;
-
+	display: block;
+	position: relative;
+	left: -2em;
+	z-index: 999;
+	text-decoration:none;
+	margin-top: 4px;
 }
 
 .page_contact_info
