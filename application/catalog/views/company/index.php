@@ -338,7 +338,7 @@
               <div class="review_lft">
 				
 					<div class="user_img">
-						<?php if($users['avatarbig']==null) {?>
+						<?php if($users['avatarthum']==null) {?>
 						<img src="images/default_user.png" alt="User image" title="User image">
 						<?php } else {?>
 						<img src="uploads/user/thumb/<?php echo $users['avatarthum'];?>" alt="User image" title="User image">	
