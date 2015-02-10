@@ -336,7 +336,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
 					else { $commenttime=$years.' years '; }
 					?>
               <i><?php echo $commenttime; ?>&nbsp;ago</i> </p>
-          </div>
+          </div> 
           <div class="clnt_pic"> 
 			  <?php if($user[0]['avatarthum']==null) {?>
 				  <img src="images/default_user.png" alt="Client Image" title="Client Image"> 
