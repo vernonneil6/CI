@@ -106,4 +106,4 @@
 <?php echo $footer; ?>
 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/badge.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/buyer.js"></script>
