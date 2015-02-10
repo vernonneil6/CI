@@ -408,6 +408,23 @@ Class Settings extends CI_Model
 		
 		
 	}
+		function get_companyelite_byid($id)
+	{
+		$query = $this->db->select('payment_amount,discountcodetype,discountcode')
+		                  ->from('elite')
+		                  ->where(array('company_id'=>$id))
+		                  ->get();
+	  	
+	  	if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+			
+	}
 	
 	
 

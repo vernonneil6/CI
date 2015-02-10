@@ -335,16 +335,16 @@ class Elite extends CI_Controller {
 	  	{
 			//data.php start
 			
-			//echo '<pre>';print_r($_POST);die('2');
+			
 		/*test mode
 		  $loginname="2sRT3yAsr3tA";
 		  $transactionkey="38UzuaL2c6y5BQ88";
 		  $host = "apitest.authorize.net";*/ 
 		
-		/*sandbox test mode
+		/*sandbox test mode*/
 		   $loginname="9um8JTf3W";
 		   $transactionkey="9q24FTz678hQ9mAD";
-		   $host = "apitest.authorize.net";*/
+		   $host = "apitest.authorize.net";
 			
 			
 			/*live
@@ -373,8 +373,13 @@ class Elite extends CI_Controller {
 			$subscriptionprice = $this->settings->get_setting_value(19);
 				
 			//define variables to send
-				
 			$amount = $subscriptionprice;
+			$previouspayment=$this->settings->get_companyelite_byid($id);
+			if(!empty($previouspayment['payment_amount']))	{
+				
+				$amount = $previouspayment['payment_amount'];
+				
+			 } 
 			$refId = uniqid();
 			$name = "Elite membership";
 			$length = 1;

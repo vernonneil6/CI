@@ -20,7 +20,7 @@ class Solution extends CI_Controller {
 		    $site = $regs['domain'];
 		}
 		
-		 $website = $this->common->get_site_by_domain_name($site);
+		 $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
 		 
 		 if(count($website)>0)
 		 {
@@ -1459,21 +1459,21 @@ public function renew_update($id)
 	   $transactionkey="38UzuaL2c6y5BQ88";
 	   $host = "apitest.authorize.net"; */
 	
-	/*sandbox test mode
+	/*sandbox test mode*/ 
 	  $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
-	   $host = "apitest.authorize.net";*/ 
+	   $host = "apitest.authorize.net";
 	
 	
-	/*live*/
+	/*live
 	$loginname="5h7G7Sbr";
 	$transactionkey="94KU7Sznk72Kj3HK";
-	$host = "api.authorize.net";
+	$host = "api.authorize.net";*/
 	
 	
 	$path = "/xml/v1/request.api";
 	//data.php end
-	
+	//echo '<pre>';print_r($_POST);
 	
 	$firstName = $_POST["fname"];
 	$lastName = $_POST["lname"];	
@@ -1491,19 +1491,15 @@ public function renew_update($id)
 	
 	//check previously paid amount for elitemembership//
 	
-	$previouspayment=$this->complaints->get_companyelite_byid($id);
-	if(empty($previouspayment))	{
-		
-		$amount = $subscriptionprice;
-		
-	 } else { 
-		 
-		$amount = $previouspayment;
-	 }	 	   
-	
-	
-	//define variables to send
 	$amount = $subscriptionprice;
+	$previouspayment=$this->complaints->get_companyelite_byid($id);
+	if(!empty($previouspayment['payment_amount']))	{
+		
+		$amount = $previouspayment['payment_amount'];
+		
+	 } 	
+	//define variables to send
+	
 	$refId = uniqid();
 	$name = "elite membership";
 	$length = 1;
@@ -1614,8 +1610,12 @@ public function renew_update($id)
 			$paymentmethod = 'authorize';
 			$emailflag='1';
 			
+			$ccnumber=$_POST['ccnumber'];
+			$cardexpire=$expirationDate;
+			$fname=$firstName;
+			$lname=$lastName;
 			
-			$update_subscription=$this->complaints->update_subscription($subscriptionId,$companyid,$amt,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag);
+			$update_subscription=$this->complaints->update_subscription($subscriptionId,$companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag);
 			//echo '<pre>';print_r($update_subscription);	  
 			if($update_subscription)
 			{
