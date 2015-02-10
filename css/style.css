@@ -1973,7 +1973,7 @@ margin-top: -6px;
 }
 .bmoves{
  
- margin-left: 21%;
+ margin-left: 7px 0;
 
 }
 .clickhere{
@@ -2012,7 +2012,7 @@ margin-top: 5px;
 .complink{ margin-left:5px; }
 .prof_rating{padding : 0;margin:0 0 0 8px;}
 .in_block{display : inline-block;}
-.d_tab{display : inline-block;}
+.d_tab{display : table;}
 .id_prov_business
 {	
 	color: #999;
