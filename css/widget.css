@@ -217,3 +217,10 @@
 	border-radius: 10px;
 	background-color: #3085C7;
 }
+.widget_close
+{
+	position : absolute;
+	top : 6px;
+	right : 9px;
+	cursor : pointer;
+}
