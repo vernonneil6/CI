@@ -209,7 +209,7 @@
 	<div class="reg-row">
 	        <label>TRANSACTION DETAILS</label>
 		<div class="reg_fld"></div>
-		 <input type="text" class="reg_txt_box-lg" placeholder="Merchant Transaction ID" id="transid" name="transid"  maxlength="15">
+		 <input type="text" class="reg_txt_box-lg" placeholder="Merchant Transaction ID" id="transid" value = "<?php echo $cmpyid; ?>" name="transid"  maxlength="15" readonly>
 		<div id="transiderror" class="error">Enter Transaction id.</div>
 	        <input type="text" class="reg_txt_box-lg" placeholder="Transaction Amount" id="transamt" name="transamt">
 		<div id="transamterror" class="error">Enter Transaction Amount.</div>
