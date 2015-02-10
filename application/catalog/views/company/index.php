@@ -449,7 +449,7 @@
             <?php for($i=0; $i<($newcomplaints); $i++) { ?>
             <?php 
 				$company=$this->complaints->get_company_byid($complaints[$i]['companyid']);
-				$usersimg = $this->users->get_user_bysingleid($reviews[$i]['companyid'];
+				$usersimg = $this->users->get_user_bysingleid($reviews[$i]['companyid']);
             ?>
             <div class="review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="review_lft">
