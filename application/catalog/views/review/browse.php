@@ -1,5 +1,6 @@
 <?php echo $header;
 $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyid']);
+$username = $this->users->get_user_bysingleid($review[0]['reviewby']);
 ?><script type="text/javascript" language="javascript">				  
 		  function countme(rid,vote)
 		  {
@@ -221,10 +222,16 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
           <p class = "testmnl_p">"<?php echo stripslashes($review[0]['comment']); ?>"</p>
           <div class="testmnl_clntwrp testmnl_cln">
             <div class="clnt_intr"> - &nbsp;&nbsp;
-              <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
+              <div class="clnt_pic"> 
+				  <?php if($username['avatarthum']==null) {?>
+					  <img src="images/default_user.png" alt="Client Image" title="Client Image"> 
+				  <?php } else { ?>
+					  <img src="uploads/user/thumb/<?php echo $username['avatarthum'];?>" alt="User image" title="User image">
+				  <?php } ?>
+			  </div>
               <div class="clnt_name">
                 <?php if($review[0]['type']=='csv' or $review[0]['type']=='ygr') { 
-					$username = $this->users->get_user_bysingleid($review[0]['reviewby']);
+					
 				?>
                 <h4><a title="<?php echo stripslashes($username['username']); ?>"> <?php echo stripslashes($username['username']); ?></a></h4>
                 <?php } else { ?>
@@ -329,8 +336,14 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
 					else { $commenttime=$years.' years '; }
 					?>
               <i><?php echo $commenttime; ?>&nbsp;ago</i> </p>
-          </div>
-          <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
+          </div> 
+          <div class="clnt_pic"> 
+			  <?php if($user[0]['avatarthum']==null) {?>
+				  <img src="images/default_user.png" alt="Client Image" title="Client Image"> 
+			  <?php } else { ?>
+				  <img src="uploads/user/thumb/<?php echo $user[0]['avatarthum'];?>" alt="User image" title="User image">
+			  <?php } ?>
+		  </div>
         </div>
         <div class="review_rgt cmnt_dscr">
           <p><?php echo stripslashes($comments[$i]['comment']); ?></p>

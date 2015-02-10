@@ -338,10 +338,10 @@
               <div class="review_lft">
 				
 					<div class="user_img">
-						<?php if($users['avatarbig']==null) {?>
+						<?php if($users['avatarthum']==null) {?>
 						<img src="images/default_user.png" alt="User image" title="User image">
 						<?php } else {?>
-						<img src="uploads/user/main/<?php echo $users['avatarbig'];?>" alt="User image" title="User image">	
+						<img src="uploads/user/thumb/<?php echo $users['avatarthum'];?>" alt="User image" title="User image">	 
 						<?php } ?>
 					</div>
                
@@ -447,10 +447,19 @@
 			  	$newcomplaints = count($complaints);
 			  }?>
             <?php for($i=0; $i<($newcomplaints); $i++) { ?>
-            <?php $company=$this->complaints->get_company_byid($complaints[$i]['companyid'])?>
+            <?php 
+				$company=$this->complaints->get_company_byid($complaints[$i]['companyid']);
+				$usersimg = $this->users->get_user_bysingleid($complaints[$i]['userid']);
+            ?>
             <div class="review_block <?php if($i%2==0){echo "fadeout";}?>">
               <div class="review_lft">
-                <div class="user_img"><img src="images/default_user.png" alt="User image" title="User image"></div>
+                <div class="user_img">
+					<?php if($usersimg['avatarthum']==null) {?>
+						<img src="images/default_user.png" alt="User image" title="User image">
+						<?php } else {?>
+						<img src="uploads/user/thumb/<?php echo $usersimg['avatarthum'];?>" alt="User image" title="User image">	 
+					<?php } ?>
+				</div>
 	         </div>
                 
               
