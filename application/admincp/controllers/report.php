@@ -71,8 +71,6 @@ class Report extends CI_Controller {
 	  	{
 			
 			//Addingg Setting Result to variable
-			//$this->reportsearch();   
-			//$this->data['elitemembers'] = $this->reports->get_all_elitemembersforreport();
 			//Loading View File
 			$this->data['allsubbroker']=$this->reports->get_subbrokerdetails();  
 			$this->load->view('report',$this->data);
@@ -698,159 +696,10 @@ class Report extends CI_Controller {
 					$name = 'Report-of-subbroker-details.xls';
 
 					force_download($name, $file1); 
-	
-	} 
+	    } 
 			
 	}
-   /* public function marketerdetails($id)
-    {
-		
-		$site_url = $this->settings->get_setting_value(2);
-		if( $this->session->userdata['youg_admin'] )
-        {		
-		   //if($type=='subbrokerdetails'){
-		
-					$objPHPExcel = new PHPExcel();
-					$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
-					 ->setLastModifiedBy("YouGotRated Admin")
-					 ->setTitle("Office 2007 XLSX Test Document")
-					 ->setSubject("Office 2007 XLSX Test Document")
-					 ->setDescription("")
-					 ->setKeywords("office 2007 openxml php")
-					 ->setCategory("Business");
-					 
-					$objPHPExcel->getActiveSheet()->setTitle('Report');
-
-					$objPHPExcel->getActiveSheet()->getStyle("A1:M1")->getFont()->setBold(true);
-
-					
-					$objPHPExcel->getActiveSheet()
-							->setCellValue('A1', 'Elite Member First/Lastname')							
-							->setCellValue('B1', 'Elite Company Name')							
-							->setCellValue('C1', 'Elite Mem Phone')	
-							->setCellValue('D1', 'Elite Mem Email')	
-							->setCellValue('E1', 'Date of Signup')	
-							->setCellValue('F1', 'SubBroker Name')	
-							->setCellValue('G1', 'Marketer Name')	
-							->setCellValue('H1', 'Agent Name')	
-							->setCellValue('I1', 'Renew Date')	
-							->setCellValue('J1', 'Date Last CC Charge Occurred')	
-							->setCellValue('K1', 'Status')	
-							->setCellValue('L1', 'Number of Payments Made')
-							->setCellValue('M1', 'ID#');	
-														  
-					//$items = $this->reports->get_marketerdetails_byid($id);
-					$items = $this->reports->new_marketerdetails($id);
-					//$items1 = $this->reports->get_marketeragentdetails_byid($id);
-					$row=2;
-						foreach($items as $row_data)
-						{
-							$col = 0;	
-							foreach($row_data as $key=>$value)
-							{
-								if(!$value)
-								$value='-';
-								if($value=='0000-00-00 00:00:00')
-								{
-									$value='NA';
-								}
-								
-								$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-								$col++;
-							}
-							$row++;
-						}
-                    
-					$objPHPExcel->setActiveSheetIndex(0);
-					$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-					$file=time().'.xls';
-					$objWriter->save('../uploads/my/'.$file);
-					$this->load->helper('download');
-
-					$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-					$name = 'Report-of-marketer-details.xls';
-
-					force_download($name, $file1); 
-		
-		    //}
-	    } 
-		
-			
-	}*/	
-	
-	/*public function agentdetails($id)
-    {
-		$site_url = $this->settings->get_setting_value(2);
-		if( $this->session->userdata['youg_admin'] )
-        {		
-		   //if($type=='subbrokerdetails'){
-		
-					$objPHPExcel = new PHPExcel();
-					$objPHPExcel->getProperties()->setCreator("YouGotRated Admin")
-					 ->setLastModifiedBy("YouGotRated Admin")
-					 ->setTitle("Office 2007 XLSX Test Document")
-					 ->setSubject("Office 2007 XLSX Test Document")
-					 ->setDescription("")
-					 ->setKeywords("office 2007 openxml php")
-					 ->setCategory("Business");
-					 
-					$objPHPExcel->getActiveSheet()->setTitle('Report');
-
-					$objPHPExcel->getActiveSheet()->getStyle("A1:M1")->getFont()->setBold(true);
-
-					$objPHPExcel->getActiveSheet()
-							->setCellValue('A1', 'Elite Member First/Lastname')							
-							->setCellValue('B1', 'Elite Company Name')							
-							->setCellValue('C1', 'Elite Mem Phone')	
-							->setCellValue('D1', 'Elite Mem Email')	
-							->setCellValue('E1', 'Date of Signup')	
-							->setCellValue('F1', 'SubBroker Name')	
-							->setCellValue('G1', 'Marketer Name')	
-							->setCellValue('H1', 'Agent Name')	
-							->setCellValue('I1', 'Renew Date')	
-							->setCellValue('J1', 'Date Last CC Charge Occurred')	
-							->setCellValue('K1', 'Status')	
-							->setCellValue('L1', 'Number of Payments Made')
-							->setCellValue('M1', 'ID#');
-														  
-					//$items = $this->reports->get_agentdetails_byid($id);
-					$items = $this->reports->new_agentdetails($id);
-					$row=2;
-						foreach($items as $row_data)
-						{
-							$col = 0;	
-							foreach($row_data as $key=>$value)
-							{
-								if(!$value)
-								$value='-';
-								if($value=='0000-00-00 00:00:00')
-								{
-									$value='NA';
-								}
-								
-								$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
-								$col++;
-							}
-							$row++;
-						}
-                    
-					$objPHPExcel->setActiveSheetIndex(0);
-					$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-					$file=time().'.xls';
-					$objWriter->save('../uploads/my/'.$file);
-					$this->load->helper('download');
-
-					$file1 = file_get_contents($site_url.'uploads/my/'.$file);
-					$name = 'Report-of-agent-details.xls';
-
-					force_download($name, $file1); 
-		
-		    //}
-	    } 
-		
-			
-	}*/	
-	public function signupdetailss()
+   	public function signupdetailss()
     {
 		$from= $_GET['fromdates'];
 		$end=$_GET['todates'];
