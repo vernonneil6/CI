@@ -84,7 +84,7 @@ Reviews
 									   
 									 title = "
 									 &lt;div class&#61;&#34;tooltip_text&#34; &gt;
-									 &lt;div &gt; This review has been authenticated by &lt;span class&#61;&#34;tooltip_heading_color&#34; &gt; &lt;&#63;php echo strtoupper&#40;&#36;companyname&#41;;&#63;&gt; &lt;/span&gt; &lt;/div&gt;
+									 &lt;div &gt; This review has been authenticated by &lt;span class&#61;&#34;tooltip_heading_color&#34; &gt; <?php echo strtoupper($companyname); ?> &lt;/span&gt; &lt;/div&gt;
 									 &lt;div &gt; and has been posted on YouGotRated by a real shopper. &lt;/div&gt;
 									 &lt;/div &gt;
 									 "

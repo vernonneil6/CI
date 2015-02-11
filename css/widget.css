@@ -23,14 +23,23 @@
 .review_circle
 {
 	float: left;
+	position: relative;
 }
 .review_correct_circle
 {
 	border-radius: 50px;
-    height: 15px;
     margin: 18px 0 0 2px;
     position: absolute;
-    width: 17px;
+    background : white;
+    padding: 2px;
+}
+.review_correct_circle i
+{
+	font-size: 10px;
+    padding: 2px;
+    color : white;
+    border-radius: 50px;
+    background: #A2A2A2;
 }
 .review_firstletter
 {
