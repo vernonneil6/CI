@@ -2024,3 +2024,16 @@ margin-top: 5px;
 {
 	margin-left: 263px!important;
 }
+.valign_img
+{
+	vertical-align : top!important;
+	padding: 0 5px 0 0;
+}
+.text_compny_heading
+{
+	margin : 0 0 4px;
+}
+.txt_lefts
+{
+	text-align : left!important;
+}

@@ -57,29 +57,27 @@
         <p><?php echo stripslashes(($pressrelease[0]['sortdesc'])); ?></p>
         <p><?php echo stripslashes(($pressrelease[0]['presscontent'])); ?></p>
         <div class="testmnl_clntwrp cmt_single">
-          <div class="clnt_intr"> - &nbsp;&nbsp;
-            <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
+          <div class="clnt_intr">
+            <div class="clnt_pic valign_img"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
             <div class="clnt_name">
-              <h4><?php echo $companyname;?></h4>
+              
+              <h4 class = "text_compny_heading"><?php echo $companyname;?></h4>
               <span><?php echo $address;?></span>
               <p><?php echo $this->pressreleases->get_count_for_pressreleases($pressrelease[0]['companyid']);?> POSTS</p>
-            </div>
-            <br/>
-             <div  class ="txt_img"><a href="tel:<?php echo $phone;?>" style="color: #999999;font-size: 12px;font-family: MyriadPro-Regular"><?php echo $phone;?></a><br/>
-            <a href="<?php echo $url;?>" title="<?php echo $url;?>" target="_blank" style="color: #999999;font-family: MyriadPro-Regular;font-size: 12px;"><?php echo $url;?></a></div>
-            <div class ="txt_img">
-              <?php if( count($sems)>0 ) {?>
-              <?php for($j=0;$j<count($sems);$j++){?>
-              <?php if($sems[$j]['title']=='ebay') { ?>
-              <a href="<?php echo $sems[$j]['url'];?>" title="<?php echo $sems[$j]['title']; ?>" target="_blank"> <img src="<?php echo base_url(); ?>uploads/companysem/thumb/<?php echo $sems[$j]['thumbimg']; ?>" title="<?php echo $sems[$j]['title']; ?>" width="40px;" height="25px;" style="padding-bottom: 3px;" alt="<?php echo $sems[$j]['title']; ?>"/> </a>
-              <?php } else { ?>
-				  
-			  <a href="<?php echo $sems[$j]['url'];?>" title="<?php echo $sems[$j]['title']; ?>" target="_blank"> <img src="<?php echo base_url(); ?>uploads/companysem/thumb/<?php echo $sems[$j]['thumbimg']; ?>" title="<?php echo $sems[$j]['title']; ?>" width="30px;" height="30px;" alt="<?php echo $sems[$j]['title']; ?>"/> </a>
-			 <?php } ?>	  
-              <?php
-		
-		} }?>
-            </div>
+              <div>
+				  <a href="tel:<?php echo $phone;?>" style="color: #999999;font-size: 12px;font-family: MyriadPro-Regular"><?php echo $phone;?></a><br/>
+				  <a href="<?php echo $url;?>" title="<?php echo $url;?>" target="_blank" style="color: #999999;font-family: MyriadPro-Regular;font-size: 12px;"><?php echo $url;?></a>
+			  </div>
+              <div class ="txt_img">
+				  <?php if( count($sems)>0 ) {?>
+				  <?php for($j=0;$j<count($sems);$j++){?>
+				  <?php if($sems[$j]['title']=='ebay') { ?>
+				  <a href="<?php echo $sems[$j]['url'];?>" title="<?php echo $sems[$j]['title']; ?>" target="_blank"> <img src="<?php echo base_url(); ?>uploads/companysem/thumb/<?php echo $sems[$j]['thumbimg']; ?>" title="<?php echo $sems[$j]['title']; ?>" width="40px;" height="25px;" style="padding-bottom: 3px;" alt="<?php echo $sems[$j]['title']; ?>"/> </a>
+				  <?php } else { ?>					  
+				  <a href="<?php echo $sems[$j]['url'];?>" title="<?php echo $sems[$j]['title']; ?>" target="_blank"> <img src="<?php echo base_url(); ?>uploads/companysem/thumb/<?php echo $sems[$j]['thumbimg']; ?>" title="<?php echo $sems[$j]['title']; ?>" width="30px;" height="30px;" alt="<?php echo $sems[$j]['title']; ?>"/> </a>
+				  <?php } } }?>
+			  </div>           
+            </div>          
           </div>
         </div>
         <div class="addcmnt_wrp">
@@ -94,7 +92,7 @@
 		      	  <div class="cmnt_blckwrp">
 				<div class="clnt_intr cmt_none">
 				  <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
-				  <div class="clnt_name txt_right txt_left">
+				  <div class="clnt_name txt_right txt_lefts">
 					<h4><a href="<?php echo site_url('company/'.$mypressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View company"><?php echo stripslashes(ucfirst($mypressreleases[$i]['company'])); ?></a></h4>
 					<span><?php echo stripslashes(ucfirst($mypressreleases[$i]['country'])); ?></span>
 					<p><?php echo $this->pressreleases->get_count_for_pressreleases($mypressreleases[$i]['companyid']);?> POSTS</p>
