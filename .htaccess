@@ -2,17 +2,21 @@
 
 	RewriteEngine On
 
-
-
-        RewriteCond %{HTTP_HOST} !^www
-
-	RewriteRule (.*) http://www.%{HTTP_HOST}/$1 [L,R=301]
-
-         
-
 	RewriteBase /
 
-	
+	# force HTTPS
+	RewriteCond %{HTTPS} =off
+	RewriteCond %{REQUEST_URI} (solution\/claimbusiness|solution\/renew|businessadmin\/elite\/update)
+	RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+	# force HTTP
+	RewriteCond %{HTTPS} =on
+	RewriteCond %{REQUEST_URI} !(solution\/claimbusiness|solution\/renew|businessadmin\/elite\/update|css|img|js|font)
+	RewriteRule .* http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule .* index.php/$0 [L]
 
 	# GZIP compression
 
