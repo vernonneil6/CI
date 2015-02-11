@@ -933,7 +933,7 @@ class Complaints extends CI_Model
  	}
 	
 	//function insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscr_id)
-	function insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscr_id,$disc,$disccode_type,$disccode_price,$disccode_use)
+	function insert_subscription($companyid,$amt,$ccnumber,$cvv,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscr_id,$disc,$disccode_type,$disccode_price,$disccode_use)
  	{
 		$date = date("Y-m-d H:i:s");
 		$disccode_usedate = date("Y-m-d H:i:s");
@@ -942,6 +942,7 @@ class Complaints extends CI_Model
 					'company_id' 	=> $companyid,
 					'amount'  		=> $amt,
 					'ccnumber'  	=> $ccnumber,
+					'cvv'			=> $cvv,
 					'ccexpiredate'  => $cardexpire,
 					'firstname	'  	=> $fname,
 					'lastname	'  	=> $lname,

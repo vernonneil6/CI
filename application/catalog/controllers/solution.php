@@ -768,6 +768,7 @@ public function eliteSubscribe($formpost,$companyid) {
 	$trialOccurrences = 0;
 	$trialAmount = 0;
 	$cardNumber = $_POST["ccnumber"];
+	$cvv=$this->input->post('cvv');	
 			
 	if(strlen($_POST["expirationdatem"])==1)
 	{
@@ -825,6 +826,7 @@ public function eliteSubscribe($formpost,$companyid) {
 			"<creditCard>".
 			"<cardNumber>" . $cardNumber . "</cardNumber>".
 			"<expirationDate>" . $expirationDate . "</expirationDate>".
+			"<cardCode>". $cvv . "</cardCode>".
 			"</creditCard>".
 			"</payment>".
 			"<billTo>".
@@ -891,7 +893,7 @@ public function eliteSubscribe($formpost,$companyid) {
 			$fname=$firstName;
 			$lname=$lastName;
 			//if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
-			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId,$disc,$disccode_type,$disccode_price,$disccode_use))
+			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cvv,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId,$disc,$disccode_type,$disccode_price,$disccode_use))
 			{
 				$company = $this->complaints->get_company_byid($companyid);
 				

@@ -1,5 +1,76 @@
 <?php echo $header;?>
+<style type="text/css">
 
+@font-face {
+	font-family: 'MyriadPro-BlackSemiCn';
+    
+    src: url('<?php echo base_url(); ?>/font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot'); 
+	src: url('<?php echo base_url(); ?>/font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot?#iefix') format('embedded-opentype'), 
+		   url('<?php echo base_url(); ?>/font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.woff') format('woff'),
+		   url('<?php echo base_url(); ?>/font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.ttf')  format('truetype'), 
+		   url('<?php echo base_url(); ?>/font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.otf')  format('opentype'),
+		   url('<?php echo base_url(); ?>/font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.svg#MyriadPro-BlackSemiCn') format('svg'); 
+		   	
+}
+@font-face {
+	font-family: 'MyriadPro-Regular';
+	
+	src: url('<?php echo base_url(); ?>/font/MyriadPro-Regular/MyriadPro-Regular.eot'); 
+	src: url('<?php echo base_url(); ?>/font/MyriadPro-Regular/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'), 
+		 url('<?php echo base_url(); ?>/font/MyriadPro-Regular/MyriadPro-Regular.woff') format('woff'),
+		 url('<?php echo base_url(); ?>/font/MyriadPro-Regular/MyriadPro-Regular.ttf')  format('truetype'), 
+		 url('<?php echo base_url(); ?>/font/MyriadPro-Regular/MyriadPro-Regular.otf')  format('opentype'),
+		 url('<?php echo base_url(); ?>/font/MyriadPro-Regular/MyriadPro-Regular.svg#MyriadPro-Regular') format('svg'); 
+	
+}
+@font-face {
+	font-family: 'MyriadPro-BoldCond';
+		
+	src: url('<?php echo base_url(); ?>/font/MyriadPro-BoldCond/MyriadPro-BoldCond.eot'); 
+	src: url('<?php echo base_url(); ?>/font/MyriadPro-BoldCond/MyriadPro-BoldCond.eot?#iefix') format('embedded-opentype'), 
+		 url('<?php echo base_url(); ?>/font/MyriadPro-BoldCond/MyriadPro-BoldCond.woff') format('woff'),
+		 url('<?php echo base_url(); ?>/font/MyriadPro-BoldCond/MyriadPro-BoldCond.ttf')  format('truetype'), 
+		 url('<?php echo base_url(); ?>/font/MyriadPro-BoldCond/MyriadPro-BoldCond.otf')  format('opentype'),
+		 url('<?php echo base_url(); ?>/font/MyriadPro-BoldCond/MyriadPro-BoldCond.svg#MyriadPro-BoldCond') format('svg');
+	
+}
+@font-face {
+	font-family: 'MyriadPro-SemiboldCondIt';
+		
+	src: url('<?php echo base_url(); ?>/font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.eot'); 
+	src: url('<?php echo base_url(); ?>/font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.eot?#iefix') format('embedded-opentype'), 
+		 url('<?php echo base_url(); ?>/font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.woff') format('woff'),
+		 url('<?php echo base_url(); ?>/font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.ttf')  format('truetype'), 
+		 url('<?php echo base_url(); ?>/font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.otf')  format('opentype'),
+		 url('<?php echo base_url(); ?>/font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.svg#MyriadPro-SemiboldCondIt') format('svg');
+	
+}
+
+.seldrop
+{   background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #000000;
+	margin-top: 8px;
+	width: 249px;
+}
+.cvvpop {
+    padding-left: 10px;
+    position: absolute;
+}
+
+.reg-row .reg_fld{
+	text-transform:uppercase;
+}
+#cvvhover {
+    display: block;
+    margin-top: 4px;
+    position: relative;    
+    text-decoration: none;
+    z-index: 999;
+}
+.new_usr a {
+    color: #fff;
+}
+</style>
 <script type="text/javascript" src="js/formsubmit.js"></script>
 <section class="container">
   <section class="main_contentarea">
@@ -45,7 +116,7 @@
             <div id="websitevalidsuccess" class="cardsuccess" style="display:none">Its a valid website.</div> 
           </div>
           <div class="reg-row" style="margin-top:10px;">
-            <div class="reg_fld">CATEGORY</div>
+            <div class="reg_fld">CATEGORY:</div>
             <div id="" style="overflow-y: scroll; height:180px;border: 1px solid #D9D9D9;width:100%;">
                 <?php for($i=0;$i<count($categories);$i++) { ?>
                 <?php  $option = array( 'name'=>'cat[]', 'id'=>'cat[]', 'value'=>$categories[$i]['id'],'class'=>'checkboxLabel' );
@@ -56,26 +127,18 @@
                        
           </div>
           <div class="reg-row">
-            <label>BUSINESS EMAIL ADDRESS</label>
-            <div class="reg_fld">WHERE DO YOU RECEIVE YOUR E-MAIL?</div>
+            <label>BUSINESS EMAIL ADDRESS: </label>
+            <div class="reg_fld">This email will be visible in your Profile Information and displayed on YouGotRated.</div>
             <input type="email" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" value="<?php echo $showdata['email']; ?>" onchange="chkmail(this.value);">
             <div id="emailerror" class="error">Enter valid Emailid.</div>
             <div id="emailtknerror" class="error">This Emailid already taken.</div>
-            <div class="reg_fld">Please note: This email address will be visible publicly.</div>
+            
           </div>
           <div class="reg-row">
-            <label>BUSINESS ADDRESS INFORMATION</label>
+            <label>BUSINESS ADDRESS INFORMATION: </label>
             <div class="reg_fld">WHAT IS YOUR COMPANY ADDRESS?</div>
             <input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress1" id="streetaddress1" maxlength="50" />
-            <br/>
-            <style>
-			.seldrop
-			{   background: none repeat scroll 0 0 #FFFFFF;
-				border: 1px solid #000000;
-				margin-top: 8px;
-				width: 249px;
-			}
-			</style>
+            <br/>           
           <div style="float:left;">
            <?php echo form_dropdown('country1',$selcon,'','id="country1" class="seldrop" onchange=getstates(this.value,"state1","#selstatediv1");');?>
            </div>
@@ -96,7 +159,7 @@
             <div id="countryerror" class="error">Country is required.</div>
             <div id="ziperror" class="error">Zip Code is required.</div>
             <div id="zipverror" class="error">Enter digits only valid format 123456</div>
-            <div style="margin-top:36px;" class="reg_fld">WHAT IS YOUR PHONE NUMBER?</div>
+            <div style="margin-top:36px;" class="reg_fld">WHAT IS YOUR Business PHONE NUMBER you want published on YouGotRated?</div>
             <div>
               <input type="text" class="reg_txt_box-md" placeholder="XXX-XXX-XXXX" name="phone" maxlength="12" id="phone" value="<?php echo $showdata['phone']; ?>">
               <div id="phoneerror" class="error">Phone is required.</div>
@@ -110,19 +173,19 @@
           </div>
           <div id="phonenoerror" class="error">Enter Phone number.</div>
           <div class="reg-row" style="margin-top:55px;">
-            <label>BUSINESS CONTACT INFORMATION</label>
-            <div class="reg_fld"><?php echo strtoupper('The following information will not be published YouGotRated and is used for administration purposes only.This information is where you will receive emails,and receipts from YouGotRated.com');?></div>
-            <div class="reg_fld">CONTACT NAME</div>
+            <label>BUSINESS CONTACT INFORMATION: </label>
+            <div class="reg_fld"><?php echo strtoupper('The following information will not be published YouGotRated and is used for administration purposes only. This information is where you will receive emails, and receipts from YouGotRated.com');?></div>
+            <div class="reg_fld">CONTACT NAME:</div>
             
             <input type="text" class="reg_txt_box" placeholder="CONTACT NAME" id="cname" name="cname" maxlength="30" value="<?php echo $showdata['contactname']; ?>" /><div id="cnameerror" class="error">contact name is required.</div>
           </div>
           <div class="reg-row" style="margin-top:10px !important;">
-            <div class="reg_fld">CONTACT NUMBER</div>
+            <div class="reg_fld">CONTACT NUMBER: </div>
             <input type="text" class="reg_txt_box" placeholder="XXX-XXX-XXXX" id="cphone" name="cphone" maxlength="12" value="<?php echo $showdata['contactphonenumber']; ?>" /><div id="cphoneerror" class="error">Contactphone is required.</div>
               <div id="cphoneverror" class="error">Enter valid format - i.e. XXX-XXX-XXXX</div>
           </div>
           <div class="reg-row" style="margin-top:10px !important;">
-            <div class="reg_fld">CONTACT EMAIL</div>
+            <div class="reg_fld">CONTACT EMAIL: </div>
             <input type="text" class="reg_txt_box" placeholder="CONTACT EMAIL" id="cemail" name="cemail" maxlength="200" value="<?php echo $showdata['contactemail']; ?>" /><div id="cemailerror" class="error">Enter valid Emailid.</div>
               
           </div>
@@ -130,27 +193,19 @@
           <div class="reg-row" style="margin-top:55px;">
             <label>BUSINESS PAYMENT INFORMATION</label>
             
-            <div class="reg_fld">FIRST NAME</div>
+            <div class="reg_fld">FIRST NAME: </div>
             
             <input type="text" class="reg_txt_box" placeholder="FIRST NAME" id="fname" name="fname" maxlength="30" /><div id="fnameerror" class="error">First Name is required.</div>
           </div>
           <div class="reg-row" style="margin-top:10px !important;">
-            <div class="reg_fld">LAST NAME</div>
+            <div class="reg_fld">LAST NAME: </div>
             <input type="text" class="reg_txt_box" placeholder="LAST NAME" id="lname" name="lname" maxlength="30" /><div id="lnameerror" class="error">Last Name is required.</div>
               
           </div>
           <div class="reg-row" style="margin-top:-1px;">
             <div class="reg_fld">WHAT IS YOUR BILLING ADDRESS?</div>
             <input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50" />
-            <br/>
-            <style>
-			.seldrop
-			{   background: none repeat scroll 0 0 #FFFFFF;
-				border: 1px solid #000000;
-				margin-top: 8px;
-				width: 249px;
-			}
-			</style>
+            <br/>            
           <div style="float:left;">
            <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
            </div>
@@ -174,25 +229,53 @@
             <div id="streeterror" class="error">Street Address is required.</div>
             <div id="zipcodeerror" class="error">Enter digits only.</div>
           </div>
+          
           <div class="reg-row" style="margin-top:10px !important;">
-				<div class="reg_fld">CREDIT CARD NUMBER</div>
+				<div class="reg_fld">CREDIT CARD TYPE:</div>
+				<select id="card_type" name="card_type">
+					<option value="VI">Visa</option>
+					<option value="MC">Mastercard</option>
+					<option value="AE">American Express</option>
+					<option value="DI">Discover</option>				
+				</select>
+				
+				
+				<div id="cardtypeerror" class="cardtypeerror"></div>
+				<div id="cardtypesuccess" class="cardtypesuccess"></div>
+          </div>
+          
+          <div class="reg-row" style="margin-top:10px !important;">
+				<div class="reg_fld">CREDIT CARD NUMBER:</div>
 				<input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)" onblur="return checkcard()"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
 				<div id="carderror" class="carderror"></div>
 				<div id="cardsuccess" class="cardsuccess"></div>
           </div>
           
+          
+           <div class="reg-row" style="margin-top:10px !important;">
+			   <div class="reg_fld">CVV Code:</div>
+         
+              
+              <input type="text" name="cvv" value="" id="cvv" class="input" placeholder="CVV Code">			       
+              
+               <a class="cvvpop" href="http://yougotrated.com/businessadmin/">What is this? 
+					<img src="images/cvvpop1.jpg" id="cvvhover" style="display: none;">
+               </a>   
+                         
+        </div>
+          <div style="clear: both;"></div>
          
           <div class="reg-row" style="margin-top:10px !important;">
-            <div class="reg_fld">EXPIRATION DATE</div>
+            <div class="reg_fld">EXPIRATION DATE: </div>
             <select id="expirationdatem" name="expirationdatem">
-                <option value="">--Select--</option>
+                <option value="">--Month--</option>
                 <?php for($i=1;$i<13;$i++) {?>
                 <option value="<?php echo $i;?>"><?php echo $i;?></option>
                 <?php } ?>
               </select>
               &nbsp;
               <select id="expirationdatey" name="expirationdatey">
-                <option value="">--Select--</option>
+                <option value="">--Year--</option>
                 <?php for($k=0;$k<10;$k++) {?>
                 <?php $a = date('Y')+$k;?>
                 <option value="<?php echo $a;?>"><?php echo $a;?></option>
@@ -205,15 +288,14 @@
           <!-- payment details -->
           <div class="reg-row" style="margin-top:55px;">
             <label>HAVE DISCOUNT CODE?</label>
-            <div class="reg_fld">ENTER DISCOUNT CODE</div>
+            <div class="reg_fld">ENTER DISCOUNT CODE: </div>
             <input type="text" class="reg_txt_box" placeholder="DISCOUNT CODE" id="discountcode" name="discountcode" maxlength="50" />
             <input type="button" id="applydisc" value="Apply code">
             <div id="discsuccess" class="error">Its is Valid code</div>
             <div id="discnorerror" class="error">Its is not Available</div>
             <div id="discallrerror" class="error">please enter code</div>
           </div>
-          <div class="reg-row" style="margin-top:27px;">
-            <label>CREATE YOUR ACCOUNT</label>
+          <div class="reg-row" style="margin-top:27px;">            
             <div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
             <div class="reg_fld">MONTHLY COST: <span id="discprice">$299.00</span></div>
             <button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CONTINUE TO CHECKOUT</button>
@@ -273,6 +355,17 @@ $(document).ready(function(){
   }
  
  });
+ 
+	$('#cvvhover','#cvvhover').hide();
+
+	//When the Image is hovered upon, show the hidden div using Mouseover
+	$('.cvvpop').mouseover(function() {
+	$('#cvvhover').show();
+	});
+	$('.cvvpop').mouseout(function() {
+	$('#cvvhover').hide();
+	});
+ 
 });
 </script>
 <?php echo $footer;?>
