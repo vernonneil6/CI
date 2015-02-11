@@ -29,16 +29,19 @@ Reviews
 <div class = "review_poweredby">Powered by YouGotRated</div>
 <div class = "review_tab_top">
 	<div class="widget_title">
-		<label >THESE ARE REAL REVIEWS <br> FROM YOUGOTRATED</label>
+		<label >THESE ARE REAL REVIEWS <br> PUBLISHED ON YOUGOTRATED</label>
 	</div>
 	<div class="widget_img">
-		<img  src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" width = "80px">
+		<a href="<?php echo base_url(); ?>" title = "<?php echo base_url(); ?>">
+			<img  src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" width = "80px">
+		</a>
 	</div>
 	<label class = "widget_close">X</label>
 	<div class = "clear"></div>
 </div>
 
 <div class = "review_tab_middle">
+	 <div><label class = "widget_company_name"><a href = "<?php echo base_url().'/company/'.$companyseo.'reviews/coupons/complaints'; ?>"><?php echo ucfirst($companyname); ?></a></label></div>
 	 <div class="vry_rating vryrating">
 		<?php for($r=0;$r<round($averagerating);$r++){?>
 		<i class="vry_rat_icn"></i>
@@ -46,7 +49,7 @@ Reviews
 		<?php for($p=0;$p<(5-round($averagerating));$p++){?>
 		<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
 		<?php } ?>
-		<label class = "single_review"><?php echo $total."  Reviews - ". ucfirst($companyname); ?></label>
+		<label class = "single_review"><?php echo $total."  Reviews"; ?></label>
 	  </div>	
 	  <div class = "clear"></div>			  
 </div>
@@ -77,11 +80,11 @@ Reviews
 								 <div class = "review_name_tab tooltip" >
 									 <?php if($users['username']!=null){ echo ucfirst($users['username']); } else { echo "Anonymous";}?>
 									 <span class = "tooltip" 
+									   
 									 title = "
 									 &lt;div class&#61;&#34;tooltip_text&#34; &gt;
-									 &lt;div class&#61;&#34;tooltip_heading&#34; &gt; What is a &lt;span class&#61;&#34;tooltip_heading_color&#34; &gt;Verified Review &lt;/span&gt; &lt;/div&gt;
-									 &lt;div &gt; A Verified Review is a user who has &lt;/div&gt;
-									 &lt;div &gt; reviewed company through Yougotrated &lt;/div&gt;
+									 &lt;div &gt; This review has been authenticated by &lt;span class&#61;&#34;tooltip_heading_color&#34; &gt; &lt;?php echo strtoupper($companyname);?&gt; &lt;/span&gt; &lt;/div&gt;
+									 &lt;div &gt; and has been posted on YouGotRated by a real shopper. &lt;/div&gt;
 									 &lt;/div &gt;
 									 "
 									 >					
@@ -137,7 +140,7 @@ Reviews
 								 </div>
 								 <div class = "review_ratethis">
 									<span>
-									  <label>RATE THIS REVIEW:</label>
+									  <label>Was this review:</label>
 									  <?php $ip = $_SERVER['REMOTE_ADDR'];?>
 									  <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'helpful') == 'true'){ ?>
 									  <a class="vote-disable" id="helpful_<?php echo $reviews[$i]['id'];?>" reviewid="<?php echo $reviews[$i]['id'];?>" title="Helpful" style="cursor:pointer !important;"><b id="helpful<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'helpful');?></b> Helpful</a>
