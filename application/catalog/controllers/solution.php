@@ -213,6 +213,8 @@ class Solution extends CI_Controller {
 	
 	public function register_data()
 	{
+		
+		//print_r($this->input->post());die;
 		if($this->input->post('cat')!='')
 		{
 			$category=implode(',',$this->input->post('cat'));
@@ -265,6 +267,15 @@ class Solution extends CI_Controller {
 			$this->data['company_avail']=$this->complaints->company_available_by_id($eid);
 		}
 		
+		if($this->input->post('cat')!='')
+		{
+			$category=implode(',',$this->input->post('cat'));
+		}
+		else
+		{
+			$category='1';
+		}
+			
 		$this->data['register_data'] = $this->register_data();
 		$this->load->view('solution/receipt', $this->data);
 	}
@@ -1001,91 +1012,32 @@ public function eliteSubscribe($formpost,$companyid) {
 					$this->email->send();
 					
 					//For sending mail to user
+                                        
+					$mail = $this->common->get_email_byid(67);
+					$subject = $mail[0]['subject'];
+					$mailformat = $mail[0]['mailformat'];
+					
 					$this->email->from($site_mail,$site_name);
 					$this->email->to($email);	
-					$this->email->subject('YouGotRated: Elite Membership Signup Confirmation.');
-					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
-											  <tr>
-												<td>Hello '.$company[0]['company'].',</td>
-											  </tr>
-											  <tr>
-												<td><br/></td>
-											  </tr>
-											  <tr>
-												<td style="padding-left:20px;"> You have successfully claimed the Business <b>'.ucwords($company[0]['company']).'</b> as part of your Elite Membership package. </td>
-											  </tr>
-											  <tr>
-												<td style="padding-left:20px;"> You can login with the following credentials to your elite member admin account by clicking link below or paste it in the address bar. </td>
-											  </tr>
-											  <tr>
-												<td style="padding-left:20px;"> ----------------------------------------------------<br />
-												  Username : '.$company[0]['email'].'<br />
-												  password : '.$password.'<br />
-												  ----------------------------------------------------<br />
-												  Please click this link to login your account.<br />
-												  <a href="'.$site_url.'businessadmin">Elite Member Login</a></td>
-											  </tr>
-											  <tr>
-												<td style="padding-left:20px;"></td>
-											  </tr>
-											  <tr>
-												<td style="padding-left:20px;padding-top: 15px;"> Your Transaction Details are as follows. </td>
-											  </tr>
-											  <tr>
-												<td>
-													<table cellpadding="0" cellspacing="0" width="70%" border="0">
-														<tr>
-														  <td colspan="3" style="padding-left: 20px;padding-top: 5px;">Payment Details:</td>
-														</tr>
-														<tr>
-														  <td style="padding-left:20px;padding-top:5px">Payment Amount</td>
-														  <td>:</td>
-														  <td>USD '.$amount.'</td>
-														</tr>
-														<tr>
-														  <td style="padding-left:20px;padding-top:5px">Transacion ID</td>
-														  <td>:</td>
-														  <td><b>'.$transactionkey.'</b></td>
-														</tr>
-														<tr>
-														  <td colspan="3">&nbsp;</td>
-														</tr>
-												    </table>
-												</td>
-											  </tr>
-											  <tr>
-												<td style="padding-left:20px;"> Verified YouGotRated Seal </td>
-											  </tr>
-											  <tr>
-												<td style="padding-left:20px;padding-top:10px"> To download and use your official YouGotRated seal &#8211; simply embed this code into your email or website.  This will allow your customers to see your current ratings status and reviews with YouGotRated as a live feed. </td>
-											  </tr>
-											  <tr>
-												<td style="padding-left:20px;padding-top: 12px;">
-												&lt;iframe src=&quot;'.site_url("widget/business/".$company[0]['id']).'&quot; style=&quot;border:none;height:375px;&quot;&gt;&lt;/iframe&gt; 
-												 </td>
-											  </tr>
-											  <tr>
-												<td style="padding-left:20px;padding-top:12px"> <b>Business Reviews</b> </td>
-											  </tr>
-											  <tr>
-												<td style="padding-left:20px;padding-top:10px">You can share this link with your customers to allow them to add a review for your business:<br> <a href="'.$site_url.'review/add/'.$company[0]['id'].'">'.$site_url.'review/add/'.$company[0]['id'].'</a></td>
-											  </tr>
-											  <tr>
-												<td style="padding-left:20px;padding-top:20px">Using this link, your customers can view your existing reviews:</td>
-											  </tr>
-											  <tr>
-												<td style="padding-left:20px;padding-top:10px"><a href="'.$site_url.'company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints">'.$site_url.'company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints</a> </td>
-											  </tr>
-											  <tr>
-												<td><br/>
-												  <br/></td>
-											  </tr>
-											  <tr>
-												<td> Regards,<br/>
-												  The '.$site_name.' Team.<br/>
-												  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
-											  </tr>
-											</table>');
+					$this->email->subject($subject);
+					$companyname=$company[0]['company'];
+					$eliteemail=$company[0]['email'];
+					$companyid=$company[0]['id'];
+					$companyseo=$company[0]['companyseokeyword'];
+					$url=site_url("widget/business/".$companyid);
+					
+					$mail_body = str_replace("%companyname%",ucfirst($companyname),
+					             str_replace("%eliteemail%",$eliteemail,
+					             str_replace("%password%",$password,
+					             str_replace("%site_url%",$site_url,
+					             str_replace("%amount%",$amount,
+					             str_replace("%transactionkey%",$transactionkey,
+					             str_replace("%url%",$url,
+					             str_replace("%companyid%",$companyid,
+					             str_replace("%companyseo%",$companyseo,
+					             str_replace("%site_name%",$site_name,
+								 stripslashes($mailformat)))))))))));
+					$this->email->message($mail_body);
 									
 					//Sending mail user
 					$this->email->send();
