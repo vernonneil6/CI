@@ -42,8 +42,7 @@ class Businessdirectory extends CI_Controller {
 			if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs) )
 			{
 				$site = $regs['domain'];
-				echo $site;
-			   
+				   
 			}
 		}
 		
@@ -240,7 +239,7 @@ class Businessdirectory extends CI_Controller {
 				$this->data['post_data'] = $_POST;
 				//print_r($_POST); print_r($this->data['post_data']);  die('tst');
 				$this->session->set_flashdata('error','incorrect captcha');
-                //redirect('businessdirectory/add', 'refresh');			
+                redirect('businessdirectory/add', 'refresh');			
 			}		
 		}
 		$siteid = $this->session->userdata('siteid');
