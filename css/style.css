@@ -2029,13 +2029,9 @@ margin-top: 5px;
 	vertical-align : top!important;
 	padding: 0 5px 0 0;
 }
-.valign_top
-{
-	vertical-align : top!important;
-}
 .text_compny_heading
 {
-	margin : 0 0 4px;
+	margin : 0 0 4px!important;
 }
 .txt_lefts
 {

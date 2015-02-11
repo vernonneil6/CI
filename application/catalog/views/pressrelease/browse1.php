@@ -91,7 +91,7 @@
 		<?php for($i=1;$i<count($mypressreleases);$i++){?>
 		      	  <div class="cmnt_blckwrp">
 				<div class="clnt_intr cmt_none">
-				  <div class="clnt_pic valign_top"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
+				  <div class="clnt_pic valign_img"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
 				  <div class="clnt_name txt_right txt_lefts">
 					<h4><a href="<?php echo site_url('company/'.$mypressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View company"><?php echo stripslashes(ucfirst($mypressreleases[$i]['company'])); ?></a></h4>
 					<span><?php echo stripslashes(ucfirst($mypressreleases[$i]['country'])); ?></span>
