@@ -171,7 +171,7 @@
 .fancybox-overlay
 {
 	background: rgba(0,0,0,.7)!important;
-	overflow:hidden;
+	overflow:hidden!important;
 }
 .fancybox-inner, fancybox-wrap
 {
