@@ -32,7 +32,7 @@ Reviews
 		<label >THESE ARE REAL REVIEWS <br> PUBLISHED ON YOUGOTRATED</label>
 	</div>
 	<div class="widget_img">
-		<a href="<?php echo base_url(); ?>" title = "<?php echo base_url(); ?>">
+		<a target="_blank" href="<?php echo base_url(); ?>" title = "<?php echo base_url(); ?>">
 			<img  src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" width = "80px">
 		</a>
 	</div>
@@ -41,7 +41,7 @@ Reviews
 </div>
 
 <div class = "review_tab_middle">
-	 <div><label class = "widget_company_name"><a href = "<?php echo base_url().'/company/'.$companyseo.'reviews/coupons/complaints'; ?>"><?php echo ucfirst($companyname); ?></a></label></div>
+	 <div><label class = "widget_company_name"><a target="_blank" href = "<?php echo base_url().'company/'.$companyseo.'/reviews/coupons/complaints'; ?>"><?php echo ucfirst($companyname); ?></a></label></div>
 	 <div class="vry_rating vryrating">
 		<?php for($r=0;$r<round($averagerating);$r++){?>
 		<i class="vry_rat_icn"></i>
