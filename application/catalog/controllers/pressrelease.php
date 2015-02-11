@@ -125,7 +125,7 @@ class Pressrelease extends CI_Controller {
 			{
 				$this->data['companyname'] = ucfirst($company[0]['company']);
 				$this->data['aboutus'] = $company[0]['aboutus'];
-				$this->data['address'] = $company[0]['streetaddress'].'<br>'.$company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip'];
+				$this->data['address'] = $company[0]['streetaddress'].'<br>'.$company[0]['city'].', '.$company[0]['state'].', '.$company[0]['country'].', '.$company[0]['zip'];
 				$this->data['phone'] = $company[0]['phone'];
 				$this->data['url'] = $company[0]['siteurl'];
 				$this->data['country'] = $company[0]['country'];
