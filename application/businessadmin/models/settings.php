@@ -1,14 +1,83 @@
 <?php
 Class Settings extends CI_Model
 {
+	//Function for getting all Settings
+	function get_all_setting($siteid,$sortby = 'fieldname',$orderby = 'ASC')
+ 	{
+		switch($sortby)
+		{
+			case 'title' : $sortby = 'fieldname';break;
+			case 'value' : $sortby = 'value';break;
+			default : $sortby = 'id';break;
+		}
+		
+		//Ordering Data
+		
+		$this->db->order_by($sortby,$orderby);
+		$this->db->where('websiteid',$siteid);
+		//Executing Query
+		$query = $this->db->get('setting');
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+	
+	//Getting setting field name By id
+	function get_setting_fieldname($id)
+ 	{
+		$query = $this->db->get_where('setting', array('id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			$result = $query->result_array();
+			return stripslashes($result[0]['fieldname']);
+		}
+		else
+		{
+			return false;
+		}
+ 	}
+	
 	//Getting setting value for editing By id
 	function get_setting_value($id)
  	{
-		$siteid = $this->session->userdata('siteid');
-		if($siteid=='')
+		if($this->session->userdata('youg_admin'))
 		{
-		$siteid=1;
+			$siteid = $this->session->userdata('siteid');
 		}
+		else
+		{
+			$url = 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+  			$pieces = parse_url($url);
+			$domain = isset($pieces['host']) ? $pieces['host'] : '';
+			
+			if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs))
+			 {
+			    $site = $regs['domain'];
+			 }
+		 
+		 		$query11 = $this->db->get_where('url', array('url' => $site));
+		
+				if ($query11->num_rows() > 0)
+				{
+					$result = $query11->result_array();
+					$siteid = $result[0]['id'];
+				}
+				else
+				{
+					$siteid = 1;	
+				}
+		
+		}
+		
+		
+		
 		$query = $this->db->get_where('setting', array('id' => $id,'websiteid' => $siteid));
 		
 		if ($query->num_rows() > 0)
@@ -21,19 +90,11 @@ Class Settings extends CI_Model
 			return false;
 		}
  	}
- 	function get_country_by_countryid($cid)
-	{
-		$query = $this->db->get_where('youg_country',array('country_id'=>$cid));
-		return $query->row_array();
-		
-	}
- 	function get_all_countrys()
-	{
-		//Executing Query
-		$this->db->select('country_id,name');
-		$this->db->from('country');
-						
-		$query = $this->db->get();
+	
+	//Getting setting value for editing By id
+	function get_setting_byid($id,$siteid)
+ 	{
+		$query = $this->db->get_where('setting', array('intid' => $id,'websiteid' => $siteid));
 		
 		if ($query->num_rows() > 0)
 		{
@@ -43,53 +104,37 @@ Class Settings extends CI_Model
 		{
 			return array();
 		}
-	}
-	function update_billingaddress($address,$city,$state,$country,$zip,$id)
-	{
+ 	}
+	
+	//Updating Record
+	function update($id,$value)
+ 	{
+		$data = array( 'value' => $value );
 		
-		$data = array(
-					'streetaddress' => $address,
-					'city'		    => $city,
-					'state'	        => $state,
-					'country'	    => $country,
-					'zip'		    => $zip
-					
-		);
-		$query=$this->db->update('youg_company', $data, array('id' => $id));
-	  
-		if ($query)
+		$this->db->where('intid', $id);
+		if( $this->db->update('setting', $data) )
 		{
 			return true;
 		}
 		else
 		{
 			return false;
-		}	
-			
-	}
-	function get_all_states_by_cid($country_id)
-	{
-		//Executing Query
-		$this->db->select('country_id,name');
-		$this->db->from('state');
-		$this->db->where('country_id',$country_id);
-						
-		$query = $this->db->get();
-		
-		if ($query->num_rows() > 0)
-		{
-			return $query->result_array();
 		}
-		else
-		{
-			return array();
-		}
-	}
+ 	}
 	
-	//Getting Email value
-	function get_email_byid($id)
+	function get_all_elitemembers($limit ='',$offset='',$sortby = 'payment_date',$orderby = 'DESC')
  	{
-		$query = $this->db->get_where('emails', array('id' => $id));
+		//Ordering Data
+		$this->db->order_by($sortby,$orderby);
+		
+		//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+		
+		//Executing Query
+		$query = $this->db->get('elite');
 		
 		if ($query->num_rows() > 0)
 		{
@@ -115,85 +160,23 @@ Class Settings extends CI_Model
 			return array();
 		}
  	}
-
-	//Getting value for editing
-	function get_user_byid($id)
- 	{
-		$query = $this->db->get_where('user', array('id' => $id));
-		
-		if ($query->num_rows() > 0)
-		{
-			return $query->result_array();
-		}
-		else
-		{
-			return array();
-		}
- 	}
-
 	
-	function get_elitecompany_byid($id)
- 	{
-		$query = $this->db->get_where('elite', array('company_id' => $id));
-		
-		if ($query->num_rows() > 0)
-		{
-			return $query->result_array();
-		}
-		else
-		{
-			return array();
-		}
- 	}
- 	function get_elitepayment_byid($id)
+	//Getting value for searching
+	function search_setting($keyword,$siteid,$sortby = 'fieldname',$orderby = 'ASC')
 	{
-		$enablecheck=$this->db->get_where('elite', array('company_id' => $id))->row_array();
-		$subscription_amount = $this->db->get_where('setting', array('id' => '19'))->row_array();
-		if(trim($enablecheck['status'])=='Enable')
-		 {
-		   $sub_id=$this->db->get_where('subscription', array('company_id' => $id))->row_array();
-		   $query= $this->db->select('*')
-							->from('subscription sb')
-							->join('silent si', 'sb.subscr_id = si.subscription_id', 'left')
-							->where(array('sb.subscr_id'=>$sub_id['subscr_id'],'sb.company_id'=>$id))
-							->get()
-							->row_array();
-		 }
-	    $eid=$query['subscr_id'];
-		$individual= $this->db->query('select count(subscription_paynumber) as count from youg_silent where subscription_id="'.$eid.'" and subscription_paynumber=1')->row_array();
-		$startdate=$this->db->get_where('company', array('id' => $id))->result_array();
-		$query['startdate']=$startdate['registerdate'];
-		$query['sub_amt']=$subscription_amount['value'];
-		$query['totalpayment']=$individual['count'];
+	 	$this->db->order_by($sortby,$orderby);
 		
-		return $query;	
-			
-	}
-	function cancel_elitemembership_bycompnayid($id,$companyid)
- 	{
-		$data = array('status' =>'Disable' );
-		
-		$this->db->where('id', $id);
-		$this->db->where('company_id', $companyid);
-		if ($this->db->update('elite',$data))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
- 	}
- 	function get_elitecancel_email_byid($companyid)
- 	{
-		$query = $this->db->select('id, company, email')
-						  ->from('company')
-						  ->where('id',$companyid)
-    					  ->get();
-		
+	  	$this->db->select('*');
+	  	$this->db->from('setting');
+		$this->db->where('websiteid',$siteid);
+	  	$this->db->like(array('value'=> $keyword ) );
+
+	  	$query = $this->db->get();
+		//echo $this->db->last_query();
+
 		if ($query->num_rows() > 0)
 		{
-			return $query->row_array();
+			return $query->result_array();
 		}
 		else
 		{
@@ -201,9 +184,19 @@ Class Settings extends CI_Model
 		}
  	}
 	
-	function get_all_unclickedreviewstatus()
+	function get_all_subscriptions($limit ='',$offset='',$sortby = 'payment_date',$orderby = 'DESC')
  	{
-		$query = $this->db->get_where('reviewstatus', array('status' => 'sent','click'=>'No'));
+		//Ordering Data
+		$this->db->order_by($sortby,$orderby);
+		
+		//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+		
+		//Executing Query
+		$query = $this->db->get('subscription');
 		
 		if ($query->num_rows() > 0)
 		{
@@ -215,20 +208,21 @@ Class Settings extends CI_Model
 		}
  	}
 	
-	function update_reviewstatus($id)
+	function get_all_elitemembersforreport()
  	{
-		$data = array('click' =>'Yes' );
+		$query = $this->db->query("SELECT  e.*, s.*,c.*,e.payment_date as joindate,e.status as elitestatus FROM youg_elite e LEFT JOIN youg_company c ON c.id = e.company_id LEFT JOIN youg_subscription s ON c.id = s.company_id");
 		
-		$this->db->where('id', $id);
-		if ($this->db->update('reviewstatus',$data))
+		if ($query->num_rows() > 0)
 		{
-			return true;
+			return $query->result_array();
 		}
 		else
 		{
-			return false;
+			return array();
 		}
- 	}
+		
+	}
+	
 	function get_all_urls()
  	{
 		$query = $this->db->get('url');
@@ -242,9 +236,12 @@ Class Settings extends CI_Model
 			return array();
 		}
  	}
-	function get_url_by_id($id)
+	function get_elite_status_of_companyid($company_id)
  	{
-		$query = $this->db->get_where('url',array('id'=>$id));
+		$this->db->select('company_id');
+		$this->db->from('elite');
+		$this->db->where('company_id',$company_id);
+		$query = $this->db->get();
 		
 		if ($query->num_rows() > 0)
 		{
@@ -255,112 +252,14 @@ Class Settings extends CI_Model
 			return array();
 		}
  	}
-	//insert wining amount as per calculation
-	function insert_test_user($name)
+	
+		function insert_subscription($companyid,$amt,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscr_id)
  	{
-		$data = array('name' => $name);
-		
-		if( $this->db->insert('test', $data) )
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-		}
-	
-	
-	function get_all_Subscribtionofcompany()
-	{
 		$date = date("Y-m-d H:i:s");
-		$query = $this->db->where('expires <', $date);
-		
-		if ($query->num_rows() > 0)
-		{
-			return $query->result_array();
-		}
-		else
-		{
-			return array();
-		}
-	}
-	
-	function disable_elitemember($id)
-	{
-		$data = array('status' =>'Disable' );
-		
-		$this->db->where('company_id', $id);
-		if ($this->db->update('elite',$data))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	
-	}
-	
-	function get_subscribtion_bycompanyid($id)
-	{
-		$query = $this->db->get_where('subscription',array('company_id'=>$id));
-		
-		if ($query->num_rows() > 0)
-		{
-			return $query->result_array();
-		}
-		else
-		{
-			return array();
-		}
-	
-	}
-	
-	function cancel_elitemembership_bycompnayid1($companyid)
- 	{
-		$data = array('status' =>'Disable');
-		
-		$this->db->where('company_id', $companyid);
-		if($this->db->update('elite',$data))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
- 	}
-	
-	function brokerlimitview($idea)
-	{
-		return  $this->db->get_where('youg_broker',array('subbrokerid'=>$idea,'type'=>''))->row_array();
-	}
-	function get_subscriptionid($sid)
-	{
-		$query = $this->db->get_where('youg_subscription',array('company_id'=>$sid));
-		return $query->row_array();
-				         
-	}
-	function get_elitesubscription_detailsbycompanyid($emailcompany)
-	{
-		
-		$query = $this->db->get_where('youg_company',array('id'=>$emailcompany));
-		return $query->row_array();
-		
-	}
-	function update_subscription($subscriptionId,$companyid,$amt,$ccnumber,$cvv,$cardexpire,$fname,$lname,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag)
-	{
-	    $date = date("Y-m-d H:i:s");
 		$payment_ip = $_SERVER['REMOTE_ADDR'];
 		$data = array(
+					'company_id' 	=> $companyid,
 					'amount'  		=> $amt,
-					'ccnumber'  	=> $ccnumber,
-					'cvv'  		    => $cvv,
-					'ccexpiredate'  => $cardexpire,
-					'firstname	'  	=> $fname,
-					'lastname	'  	=> $lname,
-					
 					'txn_id'		=> $tx,
 					'payment_date'	=> $date,
 					'payment_ip'	=> $payment_ip,
@@ -368,65 +267,320 @@ Class Settings extends CI_Model
 					'sign'			=> $sig,
 					'payer_id'		=> $payer_id,
 					'paymentmethod'	=> $paymentmethod,
+					'subscr_id'		=> $subscr_id
+					
 		);
-		$query=$this->db->where(array('subscr_id'=>$subscriptionId,'company_id'=>$companyid))
-		                ->update('subscription',$data);
-		if ($query)
+		
+		if ($this->db->insert('subscription',$data))
 		{
 			return true;
 		}
 		else
 		{
 			return false;
-		}	
+		}
+ 	}
+	
+	
+	function get_videos_bycompanyid($id)
+ 	{
+		$siteid = $this->session->userdata('siteid');
+		$query = $this->db->get_where('video',array('status'=>'Enable','companyid'=>$id,'websiteid'=>$siteid));
 		
-		
-	}
-	function update_elite($companyid,$payment_amount,$payment_currency,$transactionid,$payment_date)
-	{
-		$varipaddress = $_SERVER['REMOTE_ADDR'];
-		$emailflag='1';
-		  $date = date("Y-m-d H:i:s");
-		$data = array(   
-							'payment_amount'	=> $payment_amount,
-							'payment_currency'	=> $payment_currency,
-							'transactionid'		=> $transactionid,
-							'payment_date' 		=> $payment_date,
-							'payment_ip'		=> $varipaddress,
-							'renew_emailflag'   => $emailflag,
-							'dateofrenew'		=>$date
-						);
-		$this->db->where('company_id',$companyid);				
-		$this->db->update('elite', $data); 
-		
-	}
-	function list_all_tutorials()
-	{
-		
-	  $query = $this->db->get_where('youg_tutorial',array('status'=>'Enable'));
-	  return $query->result_array();
-		
-		
-	}
-		function get_companyelite_byid($id)
-	{
-		$query = $this->db->select('payment_amount,discountcodetype,discountcode')
-		                  ->from('elite')
-		                  ->where(array('company_id'=>$id))
-		                  ->get();
-	  	
-	  	if ($query->num_rows() > 0)
+		if ($query->num_rows() > 0)
 		{
-			return $query->row_array();
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+	
+	function get_companysem_bycompanyid($id)
+ 	{
+		$siteid = $this->session->userdata('siteid');
+		$query = $this->db->get_where('companysem',array('status'=>'Enable','companyid'=>$id,'websiteid'=>$siteid));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+	
+	function get_companyseo_bycompanyid($id)
+ 	{
+		$siteid = $this->session->userdata('siteid');
+		$query = $this->db->get_where('companyseo',array('status'=>'Enable','companyid'=>$id,'websiteid'=>$siteid));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+	
+	function set_password($companyid,$password)
+	{
+		$data = array(	'password' 	=> $password );
+
+		$this->db->where('id', $companyid);
+		if( $this->db->update('company', $data) )
+		{
+			return true;
 		}
 		else
 		{
 			return false;
 		}
-			
 	}
 	
 	
+	
+	function set_sem($companyid,$title,$url,$mainimg,$thumbimg,$siteid,$semtype)
+	{
+		$data = array(	'companyid' => $companyid,
+						'title' 	=> $title,
+						'url'		=> $url,
+						'mainimg'	=> $mainimg,
+						'thumbimg'	=> $thumbimg,
+						'status'	=> 'Enable',
+						'websiteid'	=> $siteid,
+						'type'		=> $semtype
+						 );
 
+		if( $this->db->insert('companysem', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	function set_seo($companyid,$fieldname,$value,$siteid)
+	{
+		$data = array(	'companyid'		=>$companyid,
+						'value' 		=> $value,
+						'fieldname'		=> $fieldname,
+						'status'		=>'Enable',
+						'websiteid'	 	=> $siteid
+						 );
+
+		if( $this->db->insert('companyseo', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	function set_video($companyid,$title,$videourl,$siteid,$videono)
+	{
+		$data = array(	'companyid'	 => $companyid,
+						'title' 	 => $title,
+						'videourl'	 => $videourl,
+						'status'	 => 'Enable',
+						'websiteid'	 => $siteid,
+						'videono'	 => $videono
+						 );
+
+		if( $this->db->insert('video', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	function get_company_timings($cid)
+	{
+		//Executing Query
+		$this->db->select('*');
+		$this->db->from('timings');
+		$this->db->where('companyid',$cid);
+		$this->db->order_by('id','ASC');
+		
+		$query = $this->db->get();
+		//echo $this->db->last_query();
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	
+	
+	}
+	
+	
+	function set_timing($websiteid,$companyid,$daytype,$off,$start,$end)
+	{
+		$data = array(		'websiteid' => $websiteid,
+							'companyid' => $companyid,
+							'daytype'	=> $daytype,
+							'off' 		=> $off,
+							'start'		=> $start,
+					    	'end'		=> $end,
+							
+						);
+		
+		if( $this->db->insert('timings', $data) )
+		{
+			
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	//Inserting Elite Membership Transaction Details for Company
+	function add_transaction($company_id,$payment_amount,$payment_currency,$transactionid,$payment_date)
+	{
+		$varipaddress = $_SERVER['REMOTE_ADDR'];
+		$data = array(
+							'company_id' 		=> $company_id,
+							'payment_amount'	=> $payment_amount,
+							'payment_currency'	=> $payment_currency,
+							'transactionid'		=> $transactionid,
+							'payment_date' 		=> $payment_date,
+							'payment_ip'		=> $varipaddress,
+							'status'			=> 'Enable'
+						);
+		if( $this->db->insert('elite', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	
+		function get_all_websites()
+ 	{
+		$this->db->select('*');
+		$this->db->from('url');
+		//$this->db->where('status','Enable');
+		
+		$query = $this->db->get();
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+	
+	//Getting page value by id
+	function get_pages_by_id($intid,$siteid)
+ 	{
+		$siteid = $this->session->userdata('siteid');
+		$query = $this->db->get_where('pages', array('id' => $intid,'websiteid'=>$siteid));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+	function broker_view($ids)
+	{
+		return  $this->db->get_where('youg_broker',array('subbrokerid'=>$ids))->result();
+	}
+		//Changing Status to "Disable"
+	function disable_tutorial_byid($id)
+	{
+		$data = array(
+						'status'		=> 'Disable',
+		
+		
+					);
+		$this->db->where('id', $id);
+		if($this->db->update('tutorial', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	//Changing Status to "Enable"
+	function enable_tutorial_byid($id)
+	{
+		$data = array(
+							'status'	=> 'Enable',
+					);
+		$this->db->where('id', $id);
+		if( $this->db->update('tutorial', $data) )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	function update_get_eliteprice_by_settingid($id)
+	{
+		$siteid = $this->session->userdata('siteid');
+		
+	  	$this->db->select('*');
+	  	$this->db->from('setting');
+		$this->db->where('websiteid',$siteid);
+		$this->db->where('intid',$id);
+	  	$query = $this->db->get();
+		
+
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+	}
+	//Getting Email value
+	function get_email_byid($id)
+ 	{
+		$query = $this->db->get_where('youg_emails', array('id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+	
 }
 ?>
+
