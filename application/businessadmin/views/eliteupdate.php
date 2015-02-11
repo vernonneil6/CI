@@ -122,23 +122,28 @@ $(document).ready(function() {
                 <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
               </div>
               
-              <div class="lab" style="width: 8% !important;">
-                <label>State:</label>
-              </div>
-              <div class="" style="float:left">
-				<?php 
-				  $selstate=array(''=>'--Select State--');
-				?>
-                <div id="selstatediv">
-				  <?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?>
-				 </div>
-              </div>
+             
               
             </div>
           </div>
         </div>
-              
-        
+		<div class="form-cols">
+			<div class="col1" style="width:100%">
+				<div class="clearfix">    
+					<div class="lab" style="width: 8% !important;">
+						<label>State:</label>
+					</div>
+					<div class="" style="float:left">
+					<?php 
+					  $selstate=array(''=>'--Select State--');
+					?>
+						<div id="selstatediv">
+						  <?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?>
+						 </div>
+					</div>
+				</div>
+			</div>
+		</div>             
         <div class="form-cols">
           <div class="col1" style="width:100%">
             <div class="clearfix">
@@ -244,16 +249,7 @@ $(document).ready(function() {
               <div class="lab" style="width: 8% !important;">
                 <label>Expiration date:<span class="errorsign">*</span></label>
               </div>
-              <div class="" style="width: 59% !important; float:left">			 
-				  
-				   &nbsp;
-				  <select id="expirationdatey" name="expirationdatey">
-					<option value="">--Year--</option>
-					<?php for($k=0;$k<10;$k++) {?>
-					<?php $a = date('Y')+$k;?>
-					<option value="<?php echo $a;?>"><?php echo $a;?></option>
-					<?php } ?>
-				  </select>
+              <div class="" style="width: 59% !important; float:left">	 	  
 				  
 				  <select id="expirationdatem" name="expirationdatem">
 					<option value="">--Month--</option>
@@ -261,7 +257,14 @@ $(document).ready(function() {
 					<option value="<?php echo $i;?>"><?php echo $i;?></option>
 					<?php } ?>
 				  </select>
-				  
+				   &nbsp;
+				   <select id="expirationdatey" name="expirationdatey">
+					<option value="">--Year--</option>
+					<?php for($k=0;$k<10;$k++) {?>
+					<?php $a = date('Y')+$k;?>
+					<option value="<?php echo $a;?>"><?php echo $a;?></option>
+					<?php } ?>
+				  </select>
               </div>
             </div>
           </div>
