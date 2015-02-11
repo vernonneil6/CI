@@ -24,6 +24,14 @@
 {
 	float: left;
 }
+.review_correct_circle
+{
+	border-radius: 50px;
+    height: 15px;
+    margin: 18px 0 0 2px;
+    position: absolute;
+    width: 17px;
+}
 .review_firstletter
 {
 	background: #83b6dd;
@@ -79,7 +87,7 @@
 {
 	font-size: 13px!important;
 }
-.widget_company_name
+.widget_company_name a
 {
 	color: #599dd2;
     display: inline-block;
@@ -89,7 +97,7 @@
 {
 	padding : 0 15px;
 	overflow : auto;
-	height : 371px;
+	height : 363px;
 
 }
 .review_tab_top
