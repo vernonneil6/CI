@@ -68,7 +68,7 @@
 				  <a href="tel:<?php echo $phone;?>" style="color: #999999;font-size: 12px;font-family: MyriadPro-Regular"><?php echo $phone;?></a><br/>
 				  <a href="<?php echo $url;?>" title="<?php echo $url;?>" target="_blank" style="color: #999999;font-family: MyriadPro-Regular;font-size: 12px;"><?php echo $url;?></a>
 			  </div>
-              <div class ="txt_img">
+              <div>
 				  <?php if( count($sems)>0 ) {?>
 				  <?php for($j=0;$j<count($sems);$j++){?>
 				  <?php if($sems[$j]['title']=='ebay') { ?>
@@ -91,7 +91,7 @@
 		<?php for($i=1;$i<count($mypressreleases);$i++){?>
 		      	  <div class="cmnt_blckwrp">
 				<div class="clnt_intr cmt_none">
-				  <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
+				  <div class="clnt_pic valign_top"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
 				  <div class="clnt_name txt_right txt_lefts">
 					<h4><a href="<?php echo site_url('company/'.$mypressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View company"><?php echo stripslashes(ucfirst($mypressreleases[$i]['company'])); ?></a></h4>
 					<span><?php echo stripslashes(ucfirst($mypressreleases[$i]['country'])); ?></span>
