@@ -320,18 +320,22 @@ function checkcard(){
     if (/^5[1-5]/.test(card))
 	  {
 		success.innerHTML="mastercard";
+		$("#card_type option[value='MC']").attr('selected', 'selected');
 	  }
 	 else if (/^4[0-9]{6,}/.test(card))
 	  {
 	   success.innerHTML="visa";
+	   $("#card_type option[value='VI']").attr('selected', 'selected');
 	  }
       else if (/^3[47][0-9]{13}$/.test(card))
 	  {
 	   success.innerHTML="American Express";
+	   $("#card_type option[value='AE']").attr('selected', 'selected');
 	  }
 	  else if(/^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/.test(card))
 	  {
 	   success.innerHTML="discover"; 
+	   $("#card_type option[value='DI']").attr('selected', 'selected');
 	  }
 	  else if(/^(?:3(?:0[0-5]|[68][0-9])[0-9]{11})$/.test(card))
 	  {
