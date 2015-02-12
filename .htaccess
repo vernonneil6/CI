@@ -6,12 +6,12 @@
 
 	# force HTTPS
 	RewriteCond %{HTTPS} =off
-	RewriteCond %{REQUEST_URI} (solution\/claimbusiness|solution\/getallstates|solution\/receipt|solution\/update|solution\/register\_data|solution\/renew|businessadmin\/elite\/update)
+	RewriteCond %{REQUEST_URI} (solution\/claimbusiness|solution\/ajaxRequest|solution\/receipt|solution\/update|solution\/register\_data|solution\/renew)
 	RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 	# force HTTP
 	RewriteCond %{HTTPS} =on
-	RewriteCond %{REQUEST_URI} !(solution\/claimbusiness|solution\/getallstates|solution\/receipt|solution\/update|solution\/register\_data|solution\/renew|businessadmin\/elite\/update|css|img|js|font|images)
+	RewriteCond %{REQUEST_URI} !(solution\/claimbusiness|solution\/ajaxRequest|solution\/receipt|solution\/update|solution\/register\_data|solution\/renew|css|img|js|font|images)
 	RewriteRule .* http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 	RewriteCond %{REQUEST_FILENAME} !-f
