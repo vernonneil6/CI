@@ -1,11 +1,11 @@
 <?php 
-include_once "db_connection.php";
+include_once "db.php";
 $sql = "SELECT count(*) FROM youg_company";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 	$row = $result->fetch_assoc();
 	$no_of_rows = $row['count(*)'];
-	$limit = intval($no_of_rows / $row_count) + 1;	
+	$limit = intval($no_of_rows / $row_count) + 1;	 
 ?>
 <script>
 var limit = <?php echo $limit; ?>;
@@ -27,7 +27,7 @@ xmlhttp.onreadystatechange=function()
     }
 }
 
-	xmlhttp.open("GET","http://www.yougotrated.writerbin.com/sm/search_sitemap_gen.php?page_no="+i,true);
+	xmlhttp.open("GET","http://www.yougotrated.writerbin.com/GMI_scripts/search_sitemap_gen.php?page_no="+i,true);
 	xmlhttp.send();
 }
 
@@ -35,4 +35,4 @@ xmlhttp.onreadystatechange=function()
 <div id="myDiv">Sitemap Generating ...</div>
 <?php 
 }
-?>
+?> 

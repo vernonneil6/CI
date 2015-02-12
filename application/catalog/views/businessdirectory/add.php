@@ -1,4 +1,19 @@
 <?php echo $header;?>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+<script type="text/javascript">
+      var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+			if(window.location.href == 'yougotrated.writerbin.com')
+			{
+				'sitekey' : '6Le85AETAAAAAEgGWdPSbpxLzPed2jNdORibzov-'
+			}
+			else
+			{
+				'sitekey' : '6Lcj5QETAAAAAGjqfr2_v-jKUhz6CGVVJG-QlpOb'
+			}
+        });
+      };
+    </script>
 
 <script type="text/javascript" language="javascript">
               function trim(stringToTrim) {
@@ -299,7 +314,8 @@
             <div style='clear:both'>
 				
 			
-            <?php echo $recaptcha_html; ?>
+            <div id="html_element"></div>
+
             </div>
             <button type="submit" class="lgn_btn" style="margin-top:32px;" title="SUBMIT BUSINESS" id="btnaddcompany" name="btnaddcompany">Submit Business</button>
           </div>
