@@ -186,6 +186,11 @@
       <h2><span><?php echo "Elite Member" ?></span></h2>
     </div>
     <div class="box-content"> 
+		<style>
+		
+		.tab th, .tab td{padding: 8px 19px;}
+		
+		</style>
 	<a href="<?php echo site_url('marketer/getmycsv/'.$this->session->userdata['marketer_data'][0]->id.'/'.'marketer');?>">Download Total Marketer Elite CSV Report</a>	
 		<?php if( count($elitemembers) > 0 ) { ?>
 		<table class="tab tab-drag">
@@ -195,6 +200,9 @@
 			<td>Type</td>
 			<td>Company</td>
 			<td>Email</td>
+			<td>Date signed</td>
+			<td>Monthly fee</td>
+			<td>Status</td>
 		
 		  </tr>
 			<?php  foreach($elitemembers as $elite) { ?>
@@ -205,6 +213,9 @@
 				<td><?php echo $elite['ycbrokertype']; ?></td>
 				<td><?php echo $elite['yccompany']; ?></td>
 				<td><?php echo $elite['ycemail']; ?></td>
+				<td><?php echo $elite['ycreg']; ?></td>
+				<td><?php echo $elite['ysamt']; ?></td>
+				<td><?php echo $elite['ycstatus']; ?></td>
 			
 			</tr>
 			<?php 

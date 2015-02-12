@@ -157,7 +157,7 @@ class Marketers extends CI_Model
 			
 		 }	
 			
-	 	$query=$this->db->select('yc.contactname yccname,yc.company yccompany,yc.brokertype ycbrokertype,yc.contactphonenumber ycphone,yc.email ycemail,yc.registerdate ycreg,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yc.brokerid ycbrokerid,ys.subscr_id yssubscr_id,ys.payment_date yspay,ys.expires ysexp,yc.status ycstatus')
+	 	$query=$this->db->select('yc.contactname yccname,yc.company yccompany,yc.brokertype ycbrokertype,yc.contactphonenumber ycphone,yc.email ycemail,yc.registerdate ycreg,yc.subbrokerid ycsubbrokerid,yc.marketerid ycmarketerid,yc.brokerid ycbrokerid,ys.subscr_id yssubscr_id,ys.payment_date yspay,ys.expires ysexp,yc.status ycstatus,ys.amount ysamt')
 						   ->from('youg_company yc') 
 						   ->join('youg_subscription ys', 'ys.company_id=yc.id', 'left')
 						   ->where($where)

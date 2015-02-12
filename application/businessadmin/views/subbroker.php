@@ -362,10 +362,10 @@
 		<?php if( count($elitemembers) > 0 ) { ?>
 		<style>
 		
-		.tab th, .tab td  {padding: 8px 33px}
+		.tab th, .tab td  {padding: 8px 9px;}
 		
 		</style>
-		<table class="tab tab-drag">
+		<table class="tab tab-drag" style="font-size: 11px;">
 		  <tr class="top nodrop nodrag">
 			<td>Subbroker Name</td>
 			<td>Marketer Name</td>
@@ -373,6 +373,9 @@
 			<td>Type</td>
 			<td>Company</td>
 			<td>Email</td>
+			<td>Date signed</td>
+			<td>Monthly fee</td>
+			<td>Status</td>
 		
 		  </tr>
 			<?php  foreach($elitemembers as $elite) { ?>
@@ -384,6 +387,9 @@
 				<td><?php echo $elite['ycbrokertype']; ?></td>
 				<td><?php echo $elite['yccompany']; ?></td>
 				<td><?php echo $elite['ycemail']; ?></td>
+				<td><?php echo $elite['ycreg']; ?></td>
+				<td><?php echo $elite['ysamt']; ?></td>
+				<td><?php echo $elite['ycstatus']; ?></td>
 			
 			</tr>
 			<?php 
