@@ -26,6 +26,6 @@ if($_SERVER['SERVER_NAME'] == 'www.yougotrated.writerbin.com'){
 	$row_count = 49000;
 	$no_of_rows = 0;
 }else{
-	echo "DB Connection Failed"
+	echo "DB Connection Failed";
 }
 ?>
