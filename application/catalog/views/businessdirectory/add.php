@@ -151,7 +151,17 @@
 						  }
 					  }
 					  
-					 
+					  
+					  if($('#g-recaptcha-response').val() == "");
+					  {
+						  $('#recaptcha_error').show();
+						  $('#g-recaptcha-response').val('').focus();
+						  return false;
+					  }
+					  
+					  
+					  
+					  
 					  
 					 
 					  
@@ -210,12 +220,7 @@
 						  }
 					  }
 					  
-					  if($('#g-recaptcha-response').val() == "");
-					  {
-						  $('#recaptcha_error').show();
-						  $('#g-recaptcha-response').val('').focus();
-						  return false;
-					  }
+					  
 					 					
 						  
 					  $("#frmaddcompany").submit();
