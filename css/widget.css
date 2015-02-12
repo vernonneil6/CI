@@ -15,6 +15,7 @@
     -webkit-transform-origin: right top;
     font-family: myriadpro-regular;
     font-size: 16px;
+    letter-spacing : 1px;
 }
 #review_popup
 {
