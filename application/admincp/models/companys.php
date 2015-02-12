@@ -1,7 +1,7 @@
 <?php
 Class Companys extends CI_Model
 {
-	function get_all_companys($limit ='',$offset='',$sortby = 'registerdate',$orderby = 'DESC')
+	function get_all_companys($limit ='',$offset='',$sortby = 'registerdate',$orderby = 'ASC')
  	{
 		switch($sortby)
 		{
