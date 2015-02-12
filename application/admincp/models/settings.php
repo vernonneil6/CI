@@ -122,7 +122,7 @@ Class Settings extends CI_Model
 		}
  	}
 	
-	function get_all_elitemembers($limit ='',$offset='',$sortby = 'payment_date',$orderby = 'DESC')
+	function get_all_elitemembers($limit ='',$offset='',$sortby = 'company',$orderby = 'ASC')
  	{
 		//Ordering Data
 		$this->db->order_by($sortby,$orderby);
@@ -133,8 +133,12 @@ Class Settings extends CI_Model
 		else if( $limit != '' && $offset != 0)
 		{	$this->db->limit($limit, $offset);	}
 		
-		//Executing Query
-		$query = $this->db->get('elite');
+		$this->db->select('e.*, c.*');
+		$this->db->from('elite as e');
+		$this->db->join('company as c','e.company_id=c.id');
+		$this->db->or_like(array('company'=> $keyword , 'streetaddress'=> $keyword , 'email'=> $keyword , 'siteurl'=> $keyword , 'aboutus' => $keyword));
+		
+		$query = $this->db->get();
 		
 		if ($query->num_rows() > 0)
 		{
@@ -566,6 +570,20 @@ Class Settings extends CI_Model
 		}
 		
 	}
+	//Getting Email value
+	function get_email_byid($id)
+ 	{
+		$query = $this->db->get_where('youg_emails', array('id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 }
 ?>

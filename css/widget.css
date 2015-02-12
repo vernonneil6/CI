@@ -1,9 +1,9 @@
 .company_review_tab
 {
 	background: none repeat scroll 0 0 #39bced;
-    padding: 15px;
+    padding: 13px;
     position: fixed;
-    top: 53%;
+    top: 52%;
     cursor : pointer;
     color: white;
     right : 0;
@@ -14,6 +14,8 @@
     -webkit-transform: rotate(90deg);
     -webkit-transform-origin: right top;
     font-family: myriadpro-regular;
+    font-size: 16px;
+    letter-spacing : 1px;
 }
 #review_popup
 {

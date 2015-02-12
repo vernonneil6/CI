@@ -63,7 +63,6 @@
               
               <h4 class = "text_compny_heading"><?php echo $companyname;?></h4>
               <span><?php echo $address;?></span>
-              <p class= "post_cnt"><?php echo $this->pressreleases->get_count_for_pressreleases($pressrelease[0]['companyid']);?> posts</p>
               <div>
 				  <a href="tel:<?php echo $phone;?>" style="color: #999999;font-size: 12px;font-family: MyriadPro-Regular"><?php echo $phone;?></a><br/>
 				  <a href="<?php echo $url;?>" title="<?php echo $url;?>" target="_blank" style="color: #999999;font-family: MyriadPro-Regular;font-size: 12px;"><?php echo 'http://'.strtolower($url); ?></a>
