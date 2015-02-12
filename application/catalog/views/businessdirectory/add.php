@@ -1,4 +1,12 @@
 <?php echo $header;?>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+<script type="text/javascript">
+      var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+          'sitekey' : 'your_site_key'
+        });
+      };
+    </script>
 
 <script type="text/javascript" language="javascript">
               function trim(stringToTrim) {
@@ -299,11 +307,8 @@
             <div style='clear:both'>
 				
 			
-            <?php 
-				
-				echo $recaptcha_html; 
-			?>
-			<div id="captcha-status"></div>
+            <div id="html_element"></div>
+
             </div>
             <button type="submit" class="lgn_btn" style="margin-top:32px;" title="SUBMIT BUSINESS" id="btnaddcompany" name="btnaddcompany">Submit Business</button>
           </div>
@@ -329,29 +334,3 @@ if(isset($post_data)){ foreach($post_data as $k => $v){ if($k == 'cat') { foreac
 } } }
 ?>
 </script> 
-<script>
-$(document).ready(function(){
-//Validate the Recaptcha' Before continuing with POST ACTION
-function validateCaptcha()
-{
-    challengeField = $("input#recaptcha_challenge_field").val();
-    responseField = $("input#recaptcha_response_field").val();
- 
-    var html = $.ajax({
-        type: "POST",
-        url: "/businessdirectory/validcaptcha",
-        data: "recaptcha_challenge_field=" + challengeField + "&amp;recaptcha_response_field=" + responseField,
-        async: false
-        }).responseText;
- 
-    //console.log( html );
-    if(html == "success") {
-        //Indicate a Successful Captcha
-        $("#captcha-status").html("<p class="green bold">Success! Thanks you may now proceed.</p>");
-    } else {
-        $("#captcha-status").html("<p class="red bold">The security code you entered did not match. Please try again.</p>");
-        Recaptcha.reload();
-    }
-}   
-});
-</script>
