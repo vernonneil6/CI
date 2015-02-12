@@ -1,5 +1,5 @@
 <?php echo $header;?>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="http://www.google.com/recaptcha/api.js" async defer></script>
 <script type="text/javascript">
       var onloadCallback = function() {
         grecaptcha.render('recaptcha', {			
@@ -7,48 +7,8 @@
         });
       };
 </script>
-<?php 
-
-function getCaptcha(){
-	
-	
-if($_SERVER["REQUEST_METHOD"] == "POST")
-{
-$recaptcha=$_POST['g-recaptcha-response'];
-if(!empty($recaptcha))
-{
-	
-$google_url="https://www.google.com/recaptcha/api/siteverify";	
-	
-$secret='6Lcj5QETAAAAAPty66XTLlKG1ERLbMkLkMI-Yguf';
-$ip=$_SERVER['REMOTE_ADDR'];
-$url=$google_url."?secret=".$secret."&response=".$recaptcha."&remoteip=".$ip;
-$res=getCurlData($url);
-$res= json_decode($res, true);
-//reCaptcha success check 
-if($res['success'])
-{
-//Include login check code
-}
-else
-{
-$msg="Please re-enter your reCAPTCHA.";
-}
-
-}
-else
-{
-$msg="Please re-enter your reCAPTCHA.";
-}
-
-}
-}
-
-?>
 
 <script type="text/javascript" language="javascript">
-	
-	
 
               function trim(stringToTrim) {
                   return stringToTrim.replace(/^\s+|\s+$/g,"");
@@ -56,6 +16,7 @@ $msg="Please re-enter your reCAPTCHA.";
               $(document).ready(function() {
                   $("#btnaddcompany").click(function () {
 					  
+					 
 					  if($('#g-recaptcha-response').val() != ''){
 					  var site_domain = '<?php echo $_SERVER['REMOTE_ADDR']; ?>';
 					  var responseData = {
@@ -63,23 +24,20 @@ $msg="Please re-enter your reCAPTCHA.";
 						  response :  $('#g-recaptcha-response').val(),
 						  remoteip: site_domain
 					  }
-					 var google_url="https://www.google.com/recaptcha/api/siteverify";	
-					 $.ajax( { url: google_url,
+					 var google_url="http://www.google.com/recaptcha/api/siteverify";	
+					 $.ajax( { 
+						url: google_url,
 						type:'GET',
 						dataType:'json',
 						data:responseData,
-						success: function(data){
-							console.log(data);							
+						success: function(data){							
 							if(data.success=='true'){
 								$('#recaptcha_error').html('success');
 							}else{
 								$('#recaptcha_error').html('Please re-enter your reCAPTCHA.');
 							}
 							
-						},
-						error:function(){
-							$('#recaptcha_error').html('Error');
-						}
+						}						
 					 });
 				 }else{
 					 $('#recaptcha_error').show();
@@ -225,13 +183,6 @@ $msg="Please re-enter your reCAPTCHA.";
 					  
 					  
 					  
-					  
-					  
-					  
-					  
-					  
-					 
-					  
 					  if( trim($("#cname").val()) == "" )
 					  {
 						  $("#cnameerror").show();
@@ -374,7 +325,6 @@ $msg="Please re-enter your reCAPTCHA.";
             <div style='clear:both'>
 				
 			<div class="g-recaptcha" data-sitekey="6Lcj5QETAAAAAGjqfr2_v-jKUhz6CGVVJG-QlpOb"></div>
-            <!--<div id="recaptcha"></div>-->
             <div id="recaptcha_error" class="error">Recaptcha is required</div>
 
             </div>
