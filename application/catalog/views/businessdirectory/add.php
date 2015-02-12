@@ -1,5 +1,5 @@
 <?php echo $header;?>
-<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script type="text/javascript">
       var onloadCallback = function() {
         grecaptcha.render('recaptcha', {			
@@ -7,13 +7,85 @@
         });
       };
 </script>
+<?php 
+
+function getCaptcha(){
+	
+	
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+$recaptcha=$_POST['g-recaptcha-response'];
+if(!empty($recaptcha))
+{
+	
+$google_url="https://www.google.com/recaptcha/api/siteverify";	
+	
+$secret='6Le85AETAAAAAAD7R4dTZPsV4hRd_iDvxzd9wqU9';
+$ip=$_SERVER['REMOTE_ADDR'];
+$url=$google_url."?secret=".$secret."&response=".$recaptcha."&remoteip=".$ip;
+$res=getCurlData($url);
+$res= json_decode($res, true);
+//reCaptcha success check 
+if($res['success'])
+{
+//Include login check code
+}
+else
+{
+$msg="Please re-enter your reCAPTCHA.";
+}
+
+}
+else
+{
+$msg="Please re-enter your reCAPTCHA.";
+}
+
+}
+}
+
+?>
 
 <script type="text/javascript" language="javascript">
+	
+	
+
               function trim(stringToTrim) {
                   return stringToTrim.replace(/^\s+|\s+$/g,"");
               }
               $(document).ready(function() {
                   $("#btnaddcompany").click(function () {
+					  
+					  if($('#g-recaptcha-response').val() != ''){
+					  var site_domain = '<?php echo $_SERVER['REMOTE_ADDR']; ?>';
+					  var responseData = {
+						  secret : '6Le85AETAAAAAAD7R4dTZPsV4hRd_iDvxzd9wqU9',
+						  response :  $('#g-recaptcha-response').val(),
+						  remoteip: site_domain
+					  }
+					 var google_url="https://www.google.com/recaptcha/api/siteverify";	
+					 $.ajax( { url: google_url,
+						type:'GET',
+						dataType:'json',
+						data:responseData,
+						success: function(data){
+							console.log(data);							
+							if(data.success=='true'){
+								$('#recaptcha_error').html('success');
+							}else{
+								$('#recaptcha_error').html('Please re-enter your reCAPTCHA.');
+							}
+							
+						},
+						error:function(){
+							$('#recaptcha_error').html('Error');
+						}
+					 });
+				 }else{
+					 $('#recaptcha_error').show();
+					 return false;
+				 }
+					  
 					  
 					  if( trim($("#name").val()) == "" )
 					  {
@@ -152,12 +224,7 @@
 					  }
 					  
 					  
-					  if($('#g-recaptcha-response').val() == "");
-					  {
-						  $('#recaptcha_error').show();
-						  $('#g-recaptcha-response').val('').focus();
-						  return false;
-					  }
+					  
 					  
 					  
 					  
@@ -306,8 +373,8 @@
           <div class="reg-row" style="margin-top:27px;">        
             <div style='clear:both'>
 				
-			
-            <div id="recaptcha"></div>
+			<div class="g-recaptcha" data-sitekey="6Le85AETAAAAAEgGWdPSbpxLzPed2jNdORibzov-"></div>
+            <!--<div id="recaptcha"></div>-->
             <div id="recaptcha_error" class="error">Recaptcha is required</div>
 
             </div>
