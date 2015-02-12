@@ -2,15 +2,8 @@
 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 <script type="text/javascript">
       var onloadCallback = function() {
-        grecaptcha.render('html_element', {
-			if(window.location.href == 'yougotrated.writerbin.com')
-			{
-				'sitekey' : '6Le85AETAAAAAEgGWdPSbpxLzPed2jNdORibzov-'
-			}
-			else
-			{
-				'sitekey' : '6Lcj5QETAAAAAGjqfr2_v-jKUhz6CGVVJG-QlpOb'
-			}
+        grecaptcha.render('html_element', {			
+				'sitekey' : '6Le85AETAAAAAEgGWdPSbpxLzPed2jNdORibzov-'		
         });
       };
     </script>
@@ -217,10 +210,16 @@
 						  }
 					  }
 					  
-					challengeField = $("input#recaptcha_challenge_field").val();
-					responseField = $("input#recaptcha_response_field").val();	 
-					alert(challengeField);
-					alert(responseField);
+					  if($('#g-recaptcha-response').val() == "");
+					  {
+						  $('#recaptcha_error').show();
+						  $('#g-recaptcha-response').val('').focus();
+						  return false;
+					  }
+					  else
+					  {
+						  $('#recaptcha_error').hide();
+					  }
 	
 					
 						  
@@ -275,12 +274,6 @@
             <input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50">
             <input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
             <input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" />
-            <!--<select class="reg_txt_box-md" id="state" name="state" maxlength="50"/>
-               <option>SELECT STATE</option>
-               <option>ALASKA</option>
-               <option>CALIFORNIA</option>
-               <option>NEWYORK</option>
-            </select>-->
             <input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" />
             <input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
             <div id="streetaddresserror" class="error">Street Address is required.</div>
@@ -314,7 +307,8 @@
             <div style='clear:both'>
 				
 			
-            <div id="html_element"></div>
+            <div id="recaptcha"></div>
+            <div id="recaptcha_error" class="error">Recaptcha is required</div>
 
             </div>
             <button type="submit" class="lgn_btn" style="margin-top:32px;" title="SUBMIT BUSINESS" id="btnaddcompany" name="btnaddcompany">Submit Business</button>
