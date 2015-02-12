@@ -373,7 +373,7 @@ $msg="Please re-enter your reCAPTCHA.";
           <div class="reg-row" style="margin-top:27px;">        
             <div style='clear:both'>
 				
-			<div class="g-recaptcha" data-sitekey="6Le85AETAAAAAEgGWdPSbpxLzPed2jNdORibzov-"></div>
+			<div class="g-recaptcha" data-sitekey="6Lcj5QETAAAAAGjqfr2_v-jKUhz6CGVVJG-QlpOb"></div>
             <!--<div id="recaptcha"></div>-->
             <div id="recaptcha_error" class="error">Recaptcha is required</div>
 
