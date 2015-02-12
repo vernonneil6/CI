@@ -50,7 +50,10 @@
       <h2><span><?php echo "Elite Member" ?></span></h2>
     </div>
     <div class="box-content"> 
-			
+		<style>
+		.tab th, .tab td{padding: 8px 26px;	}
+		
+		</style>	
 	<a href="<?php echo site_url('agent/getmycsv/'.$this->session->userdata['agent_data'][0]->id.'/'.'agent');?>">Download Total Agent Elite CSV Report</a>	
      
 		<?php if( count($elitemembers) > 0 ) { ?>
@@ -60,6 +63,9 @@
 			<td>Type</td>
 			<td>Company</td>
 			<td>Email</td>
+			<td>Date signed</td>
+			<td>Monthly fee</td>
+			<td>Status</td>
 		
 		  </tr>
 			<?php  foreach($elitemembers as $elite) { ?>
@@ -69,7 +75,9 @@
 				<td><?php echo $elite['ycbrokertype']; ?></td>
 				<td><?php echo $elite['yccompany']; ?></td>
 				<td><?php echo $elite['ycemail']; ?></td>
-			
+			    <td><?php echo $elite['ycreg']; ?></td>
+				<td><?php echo $elite['ysamt']; ?></td>
+				<td><?php echo $elite['ycstatus']; ?></td>
 			</tr>
 			<?php 
 			} 
