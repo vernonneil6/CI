@@ -3,7 +3,14 @@
 <script type="text/javascript">
       var onloadCallback = function() {
         grecaptcha.render('html_element', {
-          'sitekey' : '6Le85AETAAAAAEgGWdPSbpxLzPed2jNdORibzov-'
+			if(window.location.href == 'yougotrated.writerbin.com')
+			{
+				'sitekey' : '6Le85AETAAAAAEgGWdPSbpxLzPed2jNdORibzov-'
+			}
+			else
+			{
+				'sitekey' : '6Lcj5QETAAAAAGjqfr2_v-jKUhz6CGVVJG-QlpOb'
+			}
         });
       };
     </script>

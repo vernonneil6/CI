@@ -104,27 +104,19 @@ class Businessdirectory extends CI_Controller {
 	
 	public function add()
 	{
-		$this->load->library('recaptcha');
-		if($this->input->post('email')){
-			//Call to recaptcha to get the data validation set within the class. 
-            $this->recaptcha->recaptcha_check_answer();
-			if($this->recaptcha->getIsValid() == true){
+
+		if($this->input->post('email'))
+		{
 				$name = $this->input->post('name');			
-				//Billing address
 				$streetaddress = $this->input->post('streetaddress');
 				$city = $this->input->post('city');
 				$state = $this->input->post('state');
-				$country = $this->input->post('country');				
-				//company address 				
+				$country = $this->input->post('country');								
 				$streetaddress1 = $this->input->post('streetaddress1');
 				$city1 = $this->input->post('city1');
 				$state1 = $this->input->post('state1');
 				$country1 = $this->input->post('country1');
-				$zip1 = $this->input->post('zip1');				
-				//echo '<pre>';print_r($_POST);die('update_check');
-				//get country name
-				//$country_name =  $this->common->get_country_name($country);
-				//$country = $country_name[0]['name'];				
+				$zip1 = $this->input->post('zip1');								
 				$zip = $this->input->post('zip');
 				$phone = $this->input->post('phone');
 				$email = $this->input->post('email');
@@ -150,7 +142,6 @@ class Businessdirectory extends CI_Controller {
 					$email1 = $this->complaints->chkfield1(0,'email',$email);
 					$name1 = $this->complaints->chkfield1(0,'company',$name);
 					if($email1=='new' && $name1=='new'){
-						//Inserting Record
 							if( $this->complaints->insert_businesses($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,'','',$category,'' ))
 							{
 								
@@ -211,7 +202,6 @@ class Businessdirectory extends CI_Controller {
 									$this->email->send();
 									
 									$this->session->set_flashdata('success', 'Your business has successfully been registered.');
-									///redirect('solution/claim/'.$companyid, 'refresh');
 									redirect('solution', 'refresh');
 									
 								}else{
@@ -234,19 +224,11 @@ class Businessdirectory extends CI_Controller {
 						}
 					}
 				} 
-			}else{
-				//echo "<pre>";
-				$this->data['post_data'] = $_POST;
-				//print_r($_POST); print_r($this->data['post_data']);  die('tst');
-				$this->session->set_flashdata('error','incorrect captcha');
-                //redirect('businessdirectory/add', 'refresh');			
-			}		
+			
 		}
+		
 		$siteid = $this->session->userdata('siteid');
-		//Store the captcha HTML for correct MVC pattern use.
-		$this->data['recaptcha_html'] = $this->recaptcha->recaptcha_get_html();
 		$this->data['categories'] = $this->common->get_all_categorys($siteid);
-		//Loading View File
 		$this->load->view('businessdirectory/add',$this->data);
 		
 	}
