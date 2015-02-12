@@ -28,6 +28,7 @@ class Businessdirectory extends CI_Controller {
 		//Loading Model File
   		$this->load->model('reviews');
 		$this->load->model('complaints');
+		$this->load->library('recaptchalib');
 		
 		$url = 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
   		$pieces = parse_url($url);
@@ -104,11 +105,9 @@ class Businessdirectory extends CI_Controller {
 	
 	public function add()
 	{
-		$this->load->library('recaptcha');
 		if($this->input->post('email')){
 			//Call to recaptcha to get the data validation set within the class. 
-            $this->recaptcha->recaptcha_check_answer();
-			if($this->recaptcha->getIsValid() == true){
+			
 				$name = $this->input->post('name');			
 				//Billing address
 				$streetaddress = $this->input->post('streetaddress');
@@ -234,17 +233,12 @@ class Businessdirectory extends CI_Controller {
 						}
 					}
 				} 
-			}else{
-				//echo "<pre>";
-				$this->data['post_data'] = $_POST;
-				//print_r($_POST); print_r($this->data['post_data']);  die('tst');
-				$this->session->set_flashdata('error','incorrect captcha');
-                //redirect('businessdirectory/add', 'refresh');			
-			}		
+				
 		}
 		$siteid = $this->session->userdata('siteid');
 		//Store the captcha HTML for correct MVC pattern use.
-		$this->data['recaptcha_html'] = $this->recaptcha->recaptcha_get_html();
+		$publickey = "6Le85AETAAAAAEgGWdPSbpxLzPed2jNdORibzov-";
+		$this->data['recaptcha_html'] = $this->recaptcha_get_html($publickey);
 		$this->data['categories'] = $this->common->get_all_categorys($siteid);
 		//Loading View File
 		$this->load->view('businessdirectory/add',$this->data);
@@ -519,6 +513,23 @@ class Businessdirectory extends CI_Controller {
 			$this->data['address']=$address;
 			$this->load->view('businessdirectory/map',$this->data);
 			
+	}
+	
+	function validcaptcha()
+	{
+		
+		$privatekey = "6Le85AETAAAAAAD7R4dTZPsV4hRd_iDvxzd9wqU9";
+		$resp = $this->recaptcha_check_answer ($privatekey,
+				 $_SERVER["REMOTE_ADDR"],
+				 $_POST["recaptcha_challenge_field"],
+				 $_POST["recaptcha_response_field"]);
+		 
+		if (!$resp->is_valid) {
+			// What happens when the CAPTCHA was entered incorrectly
+			echo "fail";
+		} else {
+			echo "success";
+		}
 	}
 }
 
