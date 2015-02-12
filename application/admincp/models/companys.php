@@ -12,7 +12,7 @@ Class Companys extends CI_Model
 		
 		//Ordering Data
 		$this->db->order_by($sortby,$orderby);
-		
+		$this->db->where('company !=','');
 		//Setting Limit for Paging
 		if( $limit != '' && $offset == 0)
 		{ $this->db->limit($limit); }
@@ -259,7 +259,7 @@ Class Companys extends CI_Model
 
  	}
 	
-	//Getting value for searching
+	/*Getting value for searching
 	function search_company($keyword,$limit ='',$offset='',$sortby = 'company',$orderby = 'ASC')
  	{
 	  //echo $keyword;
@@ -279,6 +279,42 @@ Class Companys extends CI_Model
 	  $query = $this->db->get();
 		//echo $this->db->last_query();
 
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}*/
+	//Getting value for searching
+	function search_company($keyword,$limit ='',$offset='')
+ 	{
+	 //Ordering Data
+		$sortby = 'company';
+		$orderby = 'ASC';
+		$this->db->order_by($sortby,$orderby);
+		//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+		
+		$this->db->select('*');
+		$this->db->from('company');
+		//$this->db->or_like(array('streetaddress'=> $keyword,'city'=>$keyword,'state'=>$keyword,'country'=>$keyword,'zip'=>$keyword,'LOWER(company)'=>strtolower($keyword),'companyseokeyword'=>$keyword));
+		$this->db->or_like('city',$keyword,'after');
+	    $this->db->or_like('state',$keyword,'after');
+	    $this->db->or_like('country',$keyword,'after');
+	    $this->db->or_like('zip',$keyword,'after');
+	    $this->db->or_like('company',strtolower($keyword),'after');
+	    $this->db->or_like('companyseokeyword',$keyword,'after');
+		
+		$query = $this->db->get();
+		//echo "<pre>";
+		//echo $this->db->last_query();
+		
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
