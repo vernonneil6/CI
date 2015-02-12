@@ -1,76 +1,4 @@
 <?php echo $header;?>
-<style type="text/css">
-
-@font-face {
-	font-family: 'MyriadPro-BlackSemiCn';
-    
-    src: url('<?php echo base_url(); ?>/font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot'); 
-	src: url('<?php echo base_url(); ?>/font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.eot?#iefix') format('embedded-opentype'), 
-		   url('<?php echo base_url(); ?>/font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.woff') format('woff'),
-		   url('<?php echo base_url(); ?>/font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.ttf')  format('truetype'), 
-		   url('<?php echo base_url(); ?>/font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.otf')  format('opentype'),
-		   url('<?php echo base_url(); ?>/font/MyriadPro-BlackSemiCn/MyriadPro-BlackSemiCn.svg#MyriadPro-BlackSemiCn') format('svg'); 
-		   	
-}
-@font-face {
-	font-family: 'MyriadPro-Regular';
-	
-	src: url('<?php echo base_url(); ?>/font/MyriadPro-Regular/MyriadPro-Regular.eot'); 
-	src: url('<?php echo base_url(); ?>/font/MyriadPro-Regular/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'), 
-		 url('<?php echo base_url(); ?>/font/MyriadPro-Regular/MyriadPro-Regular.woff') format('woff'),
-		 url('<?php echo base_url(); ?>/font/MyriadPro-Regular/MyriadPro-Regular.ttf')  format('truetype'), 
-		 url('<?php echo base_url(); ?>/font/MyriadPro-Regular/MyriadPro-Regular.otf')  format('opentype'),
-		 url('<?php echo base_url(); ?>/font/MyriadPro-Regular/MyriadPro-Regular.svg#MyriadPro-Regular') format('svg'); 
-	
-}
-@font-face {
-	font-family: 'MyriadPro-BoldCond';
-		
-	src: url('<?php echo base_url(); ?>/font/MyriadPro-BoldCond/MyriadPro-BoldCond.eot'); 
-	src: url('<?php echo base_url(); ?>/font/MyriadPro-BoldCond/MyriadPro-BoldCond.eot?#iefix') format('embedded-opentype'), 
-		 url('<?php echo base_url(); ?>/font/MyriadPro-BoldCond/MyriadPro-BoldCond.woff') format('woff'),
-		 url('<?php echo base_url(); ?>/font/MyriadPro-BoldCond/MyriadPro-BoldCond.ttf')  format('truetype'), 
-		 url('<?php echo base_url(); ?>/font/MyriadPro-BoldCond/MyriadPro-BoldCond.otf')  format('opentype'),
-		 url('<?php echo base_url(); ?>/font/MyriadPro-BoldCond/MyriadPro-BoldCond.svg#MyriadPro-BoldCond') format('svg');
-	
-}
-@font-face {
-	font-family: 'MyriadPro-SemiboldCondIt';
-		
-	src: url('<?php echo base_url(); ?>/font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.eot'); 
-	src: url('<?php echo base_url(); ?>/font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.eot?#iefix') format('embedded-opentype'), 
-		 url('<?php echo base_url(); ?>/font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.woff') format('woff'),
-		 url('<?php echo base_url(); ?>/font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.ttf')  format('truetype'), 
-		 url('<?php echo base_url(); ?>/font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.otf')  format('opentype'),
-		 url('<?php echo base_url(); ?>/font/MyriadPro-SemiboldCondIt/MyriadPro-SemiboldCondIt.svg#MyriadPro-SemiboldCondIt') format('svg');
-	
-}
-
-.seldrop
-{   background: none repeat scroll 0 0 #FFFFFF;
-	border: 1px solid #000000;
-	margin-top: 8px;
-	width: 249px;
-}
-.cvvpop {
-    padding-left: 10px;
-    position: absolute;
-}
-
-.reg-row .reg_fld{
-	text-transform:uppercase;
-}
-#cvvhover {
-    display: block;
-    margin-top: 4px;
-    position: relative;    
-    text-decoration: none;
-    z-index: 999;
-}
-.new_usr a {
-    color: #fff;
-}
-</style>
 <script type="text/javascript" src="js/formsubmit.js"></script>
 <section class="container">
   <section class="main_contentarea">
@@ -326,10 +254,14 @@ $(document).ready(function(){
  $("#applydisc").click(function(){
   if($("#discountcode").val().length >= 4)
   {
+  var requestData = {
+		type: 'checkDiscountCode',
+		discountcode: $("#discountcode").val()
+	  };
   $.ajax({
    type: "POST",
-   url: "<?php echo base_url();?>index.php/solution/check_discountcode",
-   data: "discountcode="+$("#discountcode").val(),
+   url: "/solution/ajaxRequest",
+   data: requestData,
    dataType:"json",
    success: function(data){
 	if(data.discstatus=="success")
