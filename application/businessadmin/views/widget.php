@@ -61,25 +61,9 @@
       </tr>
       <tr>
         <td>Widget Code</td>
-        <td>&lt;iframe src=&quot;<?php echo $url[0]['siteurl'];?>widget/business/<?php echo $companyid;?>&quot; style=&quot;border:none;height:375px;&quot;&gt;&lt;/iframe&gt; 
-        	<br/>
-			&lt;div style=&quot;display:none;&quot;&gt;
-			&lt;a href=&quot;<?php echo $websites[0]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-			&lt;a href=&quot;<?php echo $websites[1]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;<?php echo $websites[2]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;<?php echo $websites[3]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;<?php echo $websites[4]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;<?php echo $websites[5]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;<?php echo $websites[6]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;<?php echo $websites[7]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;<?php echo $websites[8]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;<?php echo $websites[9]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;<?php echo $websites[10]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;<?php echo $websites[11]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;<?php echo $websites[12]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;<?php echo $websites[13]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;<?php echo $websites[14]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;<?php echo $websites[15]['siteurl'].("company/".$company[0]['companyseokeyword']."/reviews/coupons/complaints");?>&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+        <td>&lt;div style=&quot;position:fixed;top:0;bottom:0;right:0;left:0;&quot;&gt;
+            &lt;iframe src=&quot;<?php echo $url[0]['siteurl'];?>widget/business/<?php echo $companyid;?>&quot; style=&quot;width:100%;height:100%;&quot; &gt;&lt;/iframe&gt;
+            &lt;/div &gt;
         </td>
       </tr>
       
