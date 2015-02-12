@@ -216,12 +216,7 @@
 						  $('#g-recaptcha-response').val('').focus();
 						  return false;
 					  }
-					  else
-					  {
-						  $('#recaptcha_error').hide();
-					  }
-	
-					
+					 					
 						  
 					  $("#frmaddcompany").submit();
                   });
