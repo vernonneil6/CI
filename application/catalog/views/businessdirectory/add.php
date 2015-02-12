@@ -2,11 +2,11 @@
 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 <script type="text/javascript">
       var onloadCallback = function() {
-        grecaptcha.render('html_element', {			
+        grecaptcha.render('recaptcha', {			
 				'sitekey' : '6Le85AETAAAAAEgGWdPSbpxLzPed2jNdORibzov-'		
         });
       };
-    </script>
+</script>
 
 <script type="text/javascript" language="javascript">
               function trim(stringToTrim) {
