@@ -3,7 +3,7 @@
 <script type="text/javascript">
       var onloadCallback = function() {
         grecaptcha.render('recaptcha', {			
-				'sitekey' : '6Le85AETAAAAAEgGWdPSbpxLzPed2jNdORibzov-'		
+				'sitekey' : '6Lcj5QETAAAAAGjqfr2_v-jKUhz6CGVVJG-QlpOb'		
         });
       };
 </script>
@@ -20,7 +20,7 @@ if(!empty($recaptcha))
 	
 $google_url="https://www.google.com/recaptcha/api/siteverify";	
 	
-$secret='6Le85AETAAAAAAD7R4dTZPsV4hRd_iDvxzd9wqU9';
+$secret='6Lcj5QETAAAAAPty66XTLlKG1ERLbMkLkMI-Yguf';
 $ip=$_SERVER['REMOTE_ADDR'];
 $url=$google_url."?secret=".$secret."&response=".$recaptcha."&remoteip=".$ip;
 $res=getCurlData($url);
@@ -59,7 +59,7 @@ $msg="Please re-enter your reCAPTCHA.";
 					  if($('#g-recaptcha-response').val() != ''){
 					  var site_domain = '<?php echo $_SERVER['REMOTE_ADDR']; ?>';
 					  var responseData = {
-						  secret : '6Le85AETAAAAAAD7R4dTZPsV4hRd_iDvxzd9wqU9',
+						  secret : '6Lcj5QETAAAAAPty66XTLlKG1ERLbMkLkMI-Yguf',
 						  response :  $('#g-recaptcha-response').val(),
 						  remoteip: site_domain
 					  }
