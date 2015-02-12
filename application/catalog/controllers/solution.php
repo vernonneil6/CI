@@ -668,52 +668,6 @@ class Solution extends CI_Controller {
 		}
 	}
 	
-	
-	public function getallstates()
-	{
-		if( $this->input->is_ajax_request() && ( $this->input->post('cid') ) )
-		{
-			$selcatid = (($this->input->post('cid')));
-			$state = (($this->input->post('state')));
-			$state = ($state!='') ? $state : 'state' ;
-			if( $selcatid!='' || $selcatid!='0' )
-			{
-				$subcats = $this->common->get_all_states_by_cid($selcatid);
-				//echo "<pre>";
-				//print_r($subcats);
-				if( count($subcats) > 0 )
-					{
-						$this->data['selstates'][''] = '--Select--';
-						
-						for($c=0;$c<count($subcats);$c++)
-						{
-						
-							$this->data['selstates'][($subcats[$c]['name'])] = ucfirst($subcats[$c]['name']);
-						
-						}
-					}
-					else
-					{
-						$this->data['selstates'][''] = '--Select--';
-					}
-					
-					//echo "<pre>";
-					//print_r($this->data['selstates']);
-					//die();
-					$js="id='".$state."' class='seldrop'";
-					$data='';
-					$data="";
-					echo form_dropdown($state,$this->data['selstates'],'',$js);
-					$data="";
-					echo $data;   
-					return $data;
-			}
-		}
-		else
-		{ 
-			redirect('solution', 'refresh');
-		}
-	}
 
 public function eliteSubscribe($formpost,$companyid) {
 	
@@ -2100,39 +2054,95 @@ public function upgrades($id)
 	
 }
    
-   function check_discountcode()
-   {
-	      
-		$discountcode=$this->input->post('discountcode');
-		$discountusage=$this->complaints->get_discount_enabled($discountcode);
-		$defaultprice=$this->common->get_setting_value(19);
-		if(empty($discountusage)){ 
-			
-			$discountusage['discstatus']='failure';
-			$discountusage['subscriptionprice']='$'.$defaultprice;
-			echo json_encode($discountusage);
+   
+	function ajaxRequest(){
+		
+		/*get All States*/
+		
+		if($this->input->post('type')=='getAllStates')  {
+		
+			if( $this->input->is_ajax_request() && ( $this->input->post('cid') ) )
+			{
+				$selcatid = (($this->input->post('cid')));
+				$state = (($this->input->post('state')));
+				$state = ($state!='') ? $state : 'state' ;
+				if( $selcatid!='' || $selcatid!='0' )
+				{
+					$subcats = $this->common->get_all_states_by_cid($selcatid);
+					//echo "<pre>";
+					//print_r($subcats);
+					if( count($subcats) > 0 )
+						{
+							$this->data['selstates'][''] = '--Select--';
+							
+							for($c=0;$c<count($subcats);$c++)
+							{
+							
+								$this->data['selstates'][($subcats[$c]['name'])] = ucfirst($subcats[$c]['name']);
+							
+							}
+						}
+						else
+						{
+							$this->data['selstates'][''] = '--Select--';
+						}
 						
-		} else { 
-			
-			if($discountusage['percentage']==0 && $discountusage['discountcodetype']=='30-days-free-trial'){
-				
-				$discountusage['monthlycost']='1st mo free then $'.$discountusage['discountprice'].'/mo';
+						//echo "<pre>";
+						//print_r($this->data['selstates']);
+						//die();
+						$js="id='".$state."' class='seldrop'";
+						$data='';
+						$data="";
+						echo form_dropdown($state,$this->data['selstates'],'',$js);
+						$data="";
+						echo $data;   
+						return $data;
+				}
 			}
-			else if($discountusage['percentage']!="" && $discountusage['discountcodetype']=='30-days-free-trial'){
-				
-				$discountusage['monthlycost']='1st mo free then $'.$discountusage['discountprice'].'/mo';
+			else
+			{ 
+				redirect('solution', 'refresh');
 			}
-			else if($discountusage['percentage']!="" && $discountusage['discountcodetype']=='normal-discount'){
-				
-				$discountusage['monthlycost']='$'.$discountusage['discountprice'];
-			}
-			$discountusage['discstatus']='success';
-			echo json_encode($discountusage);
-			
 		}
-	   
-   }
-
+		
+	  /*get Discount Code*/
+	  
+	  if($this->input->post('type')=='checkDiscountCode')  {	
+		  
+		  if( $this->input->is_ajax_request() && ( $this->input->post('discountcode') ) ){
+				$discountcode=$this->input->post('discountcode');
+				$discountusage=$this->complaints->get_discount_enabled($discountcode);
+				$defaultprice=$this->common->get_setting_value(19);
+				if(empty($discountusage)){ 
+					
+					$discountusage['discstatus']='failure';
+					$discountusage['subscriptionprice']='$'.$defaultprice;
+					echo json_encode($discountusage);
+								
+				} else { 
+					
+					if($discountusage['percentage']==0 && $discountusage['discountcodetype']=='30-days-free-trial'){
+						
+						$discountusage['monthlycost']='1st mo free then $'.$discountusage['discountprice'].'/mo';
+					}
+					else if($discountusage['percentage']!="" && $discountusage['discountcodetype']=='30-days-free-trial'){
+						
+						$discountusage['monthlycost']='1st mo free then $'.$discountusage['discountprice'].'/mo';
+					}
+					else if($discountusage['percentage']!="" && $discountusage['discountcodetype']=='normal-discount'){
+						
+						$discountusage['monthlycost']='$'.$discountusage['discountprice'];
+					}
+					$discountusage['discstatus']='success';
+					echo json_encode($discountusage);
+					
+				}
+			}
+		}
+		
+		
+		
+	}
 
 
 /* End of file dashboard.php */
