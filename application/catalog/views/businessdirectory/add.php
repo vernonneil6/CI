@@ -3,7 +3,7 @@
 <script type="text/javascript">
       var onloadCallback = function() {
         grecaptcha.render('html_element', {
-          'sitekey' : 'your_site_key'
+          'sitekey' : '6Le85AETAAAAAEgGWdPSbpxLzPed2jNdORibzov-'
         });
       };
     </script>
