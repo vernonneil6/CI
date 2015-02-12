@@ -1,5 +1,5 @@
 <?php
-include_once "db_connection.php";
+include_once "db.php";
 $sql = "SELECT id,company_id FROM youg_elite";
 $page_no = $_REQUEST['page_no'];
 $filename ='coapany_details_';
@@ -8,7 +8,7 @@ if(empty($page_no)){
 	$page_no = 0;
 }
 $start_id = $page_no * $rowcount; 
-$sql = "SELECT * FROM `youg_company` LIMIT $start_id , $rowcount";
+$sql = "SELECT * FROM `youg_company` LIMIT $start_id , $row_count";
 $result = $conn->query($sql);
 $conn->close();
 
@@ -24,4 +24,4 @@ if ($result->num_rows > 0) {
 	file_put_contents($foldername."/".$filename.$page_no.".xml", $response);	 
 }
 
-?>
+?> 
