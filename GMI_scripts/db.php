@@ -12,7 +12,7 @@ if($_SERVER['SERVER_NAME'] == 'www.yougotrated.writerbin.com'){
 	}
 	$row_count = 49000;
 	$no_of_rows = 0;
-}elseif($_SERVER['SERVER_NAME'] == 'www.yougotrated.writerbin.com'){
+}elseif($_SERVER['SERVER_NAME'] == 'www.yougotrated.com' || $_SERVER['SERVER_NAME'] == 'yougotrated.com'){
 	$servername = "localhost";
 	$username = "root";
 	$password = "ygrmysql";
@@ -26,6 +26,6 @@ if($_SERVER['SERVER_NAME'] == 'www.yougotrated.writerbin.com'){
 	$row_count = 49000;
 	$no_of_rows = 0;
 }else{
-	echo "DB Connection Failed"
+	echo "DB Connection Failed";
 }
 ?>

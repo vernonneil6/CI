@@ -27,7 +27,7 @@ xmlhttp.onreadystatechange=function()
     }
 }
 
-	xmlhttp.open("GET","http://www.yougotrated.writerbin.com/GMI_scripts/search_sitemap_gen.php?page_no="+i,true);
+	xmlhttp.open("GET","http://<?php echo $_SERVER['SERVER_NAME']; ?>/GMI_scripts/search_sitemap_gen.php?page_no="+i,true);
 	xmlhttp.send();
 }
 
