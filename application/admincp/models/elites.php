@@ -41,7 +41,13 @@ class Elites extends CI_Model
 		$this->db->select('e.*, c.*');
 		$this->db->from('elite as e');
 		$this->db->join('company as c','e.company_id=c.id');
-		$this->db->or_like(array('company'=> $keyword , 'streetaddress'=> $keyword , 'email'=> $keyword , 'siteurl'=> $keyword , 'aboutus' => $keyword));
+		//$this->db->or_like(array('streetaddress'=> $keyword,'city'=>$keyword,'state'=>$keyword,'country'=>$keyword,'zip'=>$keyword,'LOWER(company)'=>strtolower($keyword),'companyseokeyword'=>$keyword));
+		$this->db->or_like('c.city',$keyword,'after');
+	    $this->db->or_like('c.state',$keyword,'after');
+	    $this->db->or_like('c.country',$keyword,'after');
+	    $this->db->or_like('c.zip',$keyword,'after');
+	    $this->db->or_like('c.company',strtolower($keyword),'after');
+	    $this->db->or_like('c.companyseokeyword',$keyword,'after');
 		
 		$query = $this->db->get();
 	
