@@ -163,15 +163,8 @@ Reviews
 									  <?php }else{ ?>
 									  <a id="disagree_<?php echo $reviews[$i]['id'];?>" class="vote" title="disagree" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;">Disagree</a>
 									  <?php } ?>
-									  <?php if($this->session->userdata('youg_user')){$userid = $this->session->userdata['youg_user']['userid']; ?>
-									  <?php if($reviews[$i]['reviewby'] == $userid) {?>
-									  <a href="<?php echo site_url('review/edit').'/'.$reviews[$i]['id'];?>" title="Edit Review" class="" style="cursor:pointer !important;">Edit</a> <a href="<?php echo site_url('review/delete').'/'.$reviews[$i]['id'];?>" title="Delete Review" class="" onclick="return confirm('Are you sure to remove this review?');" style="cursor:pointer !important;">Delete</a>
-									  <?php } else {?>
-									  <a href="<?php echo site_url('review/add').'/'.$reviews[$i]['companyid'];?>" title="Review This Company" class="dir-searchbtn" style="cursor:pointer !important;">Review It</a>
-									  <?php } ?>
-									  <?php } else {?>
-									  <a href="<?php echo site_url('review/add').'/'.$reviews[$i]['companyid'];?>" title="Review This Company" class="dir-searchbtn" style="cursor:pointer !important;">Review It</a>
-									  <?php } ?>   
+									  <a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/browse/'. $reviews[$i]['id']; ?>" title="Review This Company" class="dir-searchbtn" style="cursor:pointer !important;">Review It</a>
+									  
 										  <script>
 											<?php $ip = $_SERVER['REMOTE_ADDR'];  ?>
 											
