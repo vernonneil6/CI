@@ -119,6 +119,7 @@ class Pressrelease extends CI_Controller {
 		{
 			//echo "<pre>"; print_r($this->data['pressrelease']); die();
 			//Loading View File
+			$this->data['companyseo'] = $id;
 			$company = $this->complaints->get_company_byid($this->data['pressrelease'][0]['companyid']);
 			$companyid = $this->data['pressrelease'][0]['companyid'];
 			if(count($company)>0)

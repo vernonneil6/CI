@@ -125,5 +125,14 @@ class Pressreleases extends CI_Model
 			return array();
 		}           
 	}
+	
+	function get_pressrelease_byseoid($id)
+ 	{	
+		$query = $this->db->get_where('youg_pressrelease',array('seokeyword'=>$id));
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+ 	}
 }
 ?>
