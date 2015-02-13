@@ -394,7 +394,7 @@ else { ?>
         <th>Status</th>
         <th>Action</th>
       </tr>
-      <?php for($i=0;$i<count($discounts);$i++) { ?>
+      <?php for($i=0;$i<count($discounts);$i++) { if($discounts[$i]['id']){ ?>
       <tr>
         <td><?php echo ucfirst(stripslashes($discounts[$i]['title'])); ?></td>
         <td><?php echo stripslashes($discounts[$i]['code']); ?></td>
@@ -422,7 +422,7 @@ else { ?>
           <?php } ?></td>
         <td><a href="<?php echo site_url('discount/edit/'.$discounts[$i]['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> <a href="<?php echo site_url('discount/delete/'.$discounts[$i]['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this discount?');">Delete</a></td>
       </tr>
-      <?php } ?>
+      <?php } } ?>
      
     </table>
     <!-- /pagination -->
