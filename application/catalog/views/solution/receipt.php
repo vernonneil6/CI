@@ -87,13 +87,13 @@ function FormatCreditCard($cc)
 <input type = "hidden" value = "<?php echo $register_data['ccnumber']; ?>" name = "ccnumber">
 <input type = "hidden" value = "<?php echo $register_data['expirationdatem']; ?>" name = "expirationdatem">
 <input type = "hidden" value = "<?php echo $register_data['expirationdatey']; ?>" name = "expirationdatey">
-
+<?php if(!empty($broker_info)){ ?>
 <input type = "hidden" value = "<?php if($broker_info['id']==''){ echo "0"; }else{ echo $broker_info['id']; }?>" name = "brokerid">
 <input type = "hidden" value = "<?php if($broker_info['mainbrokerid']==''){ echo "0"; }else{ echo $broker_info['mainbrokerid']; } ?>" name = "mainbrokerid">
 <input type = "hidden" value = "<?php if($broker_info['subbrokerid']==''){ echo "0"; }else{ echo $broker_info['subbrokerid']; }?>" name = "subbrokerid">
 <input type = "hidden" value = "<?php if($broker_info['marketerid']==''){ echo "0"; }else{ echo $broker_info['marketerid']; }?>" name = "marketerid">
 <input type = "hidden" value = "<?php if($broker_info['type']==''){ echo "0"; }else{ echo $broker_info['type'];} ?>" name = "brokertype">
-
+<?php } ?>
 	
 <div class = "ygr_receipt">
 	
