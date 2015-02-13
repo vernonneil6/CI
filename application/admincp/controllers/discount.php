@@ -114,6 +114,9 @@ class Discount extends CI_Controller {
 		if( $this->session->userdata['youg_admin'] )
 	  	{			
 			//Loading View File
+			$elitemembershipprice=$this->settings->update_get_eliteprice_by_settingid(19);
+			$this->data['discount']['elitemembershipprice'] = $elitemembershipprice['value'];
+			$this->data['discount']['discount_type'] = 'percentage';
 			$this->load->view('discount',$this->data);
 	  	}
 	}
@@ -133,6 +136,15 @@ class Discount extends CI_Controller {
 			if( count($this->data['discount'])>0 )
 			{
 				//Loading View File
+				$elitemembershipprice=$this->settings->update_get_eliteprice_by_settingid(19);
+				$this->data['discount']['elitemembershipprice'] = $elitemembershipprice['value'];				
+				$this->data['discount']['discount_type'] = 'percentage';		
+				
+				if(($elitemembershipprice['value'] != $this->data['discount'][0]['discountprice']) && ($this->data['discount'][0]['percentage'] == 0) && ($this->data['discount'][0]['discountcodetype'] != '30-days-free-trial')){
+					$this->data['discount']['discount_type'] = '';
+					$this->data['discount']['discount_amount'] = $elitemembershipprice['value'] - $this->data['discount'][0]['discountprice'];					
+				}
+				
 				$this->load->view('discount',$this->data);
 			}
 			else
@@ -153,10 +165,14 @@ class Discount extends CI_Controller {
 			//If Old Record Update
 			if( $this->input->post('id') )
 	  		{
-							
-				  $percent=$this->input->post('percentage');
-				  $discount=$percent / 100;	
-				  $discountrate=$discount * $elitemembershipprice['value'];
+				if($this->input->post('discounttype') == 1){
+				  	$percent=$this->input->post('percentage');
+				  	$discount=$percent / 100;
+					$discountrate=$discount * $elitemembershipprice['value'];
+				  }else{
+					$discountrate = $this->input->post('percentage_amount');
+			  	}
+				  
 				  $discountprice= $elitemembershipprice['value']- $discountrate;
 				  $method=$this->input->post('discountmethod');
 				  if($method==1){
@@ -189,10 +205,15 @@ class Discount extends CI_Controller {
 			//If New Record Insert
 			else
 			{
-				
-			  $percent=$this->input->post('percentage');
-			  $discount=$percent / 100;	
-			  $discountrate=$discount * $elitemembershipprice['value'];
+			  if($this->input->post('discounttype') == 1){
+			  	$percent=$this->input->post('percentage');
+			  	$discount=$percent / 100;
+				$discountrate=$discount * $elitemembershipprice['value'];
+			  }else{
+				$discountrate = $this->input->post('percentage_amount');
+			  }	
+			  	
+			  
 			  $discountprice= $elitemembershipprice['value']- $discountrate;
 			  $method=$this->input->post('discountmethod');
 			  if($method==1){

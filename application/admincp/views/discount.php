@@ -92,13 +92,65 @@
             </div>
           </div>
         </div>
+	
+
+	
+	 <script>
+			$(document).ready(function() {
+				
+				var discount_type = '<?php echo $discount['discount_type']; ?>';
+				console.log(discount_type);				
+				if(discount_type == 'percentage'){
+					$("#discount_type_yes").attr('checked', true);
+					$("#percentage_area").show();
+					$("#amount_area").hide();
+				}else{
+					$("#discount_type_no").attr('checked', true);
+					$("#percentage_area").hide();
+					$("#amount_area").show();
+				}			
+			});
+			function show_percentage_area(a){				
+				if(a.id == 'discount_type_yes'){
+					if(a.value == 1){
+						$("#percentage_area").show();
+						$("#amount_area").hide();
+					}else{
+						$("#percentage_area").hide();
+						$("#amount_area").show();
+					} 		
+				}else{
+					if(a.value == 1){
+						$("#percentage_area").show();
+						$("#amount_area").hide();
+					}else{
+						$("#percentage_area").hide();
+						$("#amount_area").show();
+					} 						
+				}
+			}
+        </script>	
         <div class="form-cols"><!-- two form cols -->
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 9% !important;">
+                <label for="title">Discount Type</label>
+              </div>              
+               <?php echo form_radio(array('name'=>'discounttype','type'=>'radio','id'=>'discount_type_yes','class'=>'input','value'=>'1','style'=>'float:none;width:5% !important','onclick'=>'show_percentage_area(this);')); ?>
+                <label for="radyes">Percentage Discount</label>
+                <?php echo form_radio(array('name'=>'discounttype','type'=>'radio','id'=>'discount_type_no','class'=>'input','value'=>'0','style'=>'float:none;width:5% !important','onclick'=>'show_percentage_area(this);')); ?>
+                <label for="radno">Dollar Amount Discount</label>                   
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-cols" id="percentage_area"><!-- two form cols -->
           <div class="col1" style="width:100%">
             <div class="clearfix">
               <div class="lab" style="width: 9% !important;">
                 <label for="percentage">Percentage</label>
               </div>
-              <div class="con" style="width: 59% !important; float:left">
+              <div class="con" style="width: 7% !important; float:left">
                 <?php $dis = range(0,100);
                       $dis[0]="Select";
     				  $js = "id='percentage' class='select' placeholder='Select'";
@@ -115,6 +167,37 @@
             </div>
           </div>
         </div>
+        
+        <div class="form-cols" id="amount_area"><!-- two form cols -->
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 9% !important;">
+                <label for="percentage">Dollar Amount ($)</label>
+              </div>
+              <div class="con" style="width: 7% !important; float:left">
+                <?php $dis = range(0,$discount['elitemembershipprice']);
+                      $dis[0]="Select";
+    				  $js = "id='percentage' class='select' placeholder='Select'";
+					  ?>
+				<?php if($this->uri->segment(2) == 'add') { ?>
+                
+				<?php echo form_dropdown('percentage_amount',$dis,'0',$js);?>
+                <?php } ?>
+                <?php if($this->uri->segment(2) == 'edit') { ?>
+                <?php echo form_dropdown('percentage',$dis,$discount['discount_amount'],$js);?>
+                <?php } ?>
+              </div>
+              <div id="percentageerror" class="error" style="width:145px">Select Amount.</div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+	
         <div class="form-cols">
           <div class="col1">
             <div class="clearfix">
