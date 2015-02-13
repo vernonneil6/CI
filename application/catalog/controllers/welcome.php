@@ -574,6 +574,12 @@ public function fblogin()
 	$fb_appId = $this->common->get_setting_value(20);
 	$fb_secret = $this->common->get_setting_value(21);
 	
+	$lasturl = $this->session->userdata('last_url');  
+	if($lasturl == ''){
+		$lasturl ='user';
+	}	
+	
+	
 	$this->data['fbconfig'] = array(
 					  'appId'  => $fb_appId,
 					  'secret' => $fb_secret,
@@ -633,7 +639,7 @@ public function fblogin()
 		);
 		}
 		$this->session->set_userdata('youg_user', $user_array);
-		redirect('user','refresh');
+		redirect($lasturl,'refresh');
 				}
 		else
 		{
@@ -748,10 +754,10 @@ public function fblogin()
 		$sess_array[$key] = $val;
 		}	
 		$this->session->set_userdata('youg_user', $sess_array);
-		redirect('user','refresh');
+		redirect($lasturl,'refresh');
 			   
 		 $this->session->set_flashdata('success', 'User account created successfully.');
-		 redirect('user','refresh');
+		 redirect($lasturl,'refresh');
 		//}
 		//else
 		//{
