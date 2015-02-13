@@ -97,7 +97,7 @@ class Pressreleases extends CI_Model
 			return array();
 		}
  	}
- 	function get_my_pressreleases($companyid,$limit ='',$offset='')
+ 	function get_my_pressreleases($companyid,$limit ='',$offset='', $id)
  	{
 		
 		//Setting Limit for Paging
@@ -112,6 +112,7 @@ class Pressreleases extends CI_Model
 		$this->db->from('pressrelease as p');
 		$this->db->join('company as cm','p.companyid=cm.id and p.websiteid='.$siteid.'');
 		$this->db->where(array('p.status'=>'Enable','cm.id'=>$companyid));
+		$this->db->where('seokeyword !=', $id);
 		$this->db->order_by('insertdate', 'DESC');
 		
 		$query = $this->db->get();
@@ -125,14 +126,5 @@ class Pressreleases extends CI_Model
 			return array();
 		}           
 	}
-	
-	function get_pressrelease_byseoid($id)
- 	{	
-		$query = $this->db->get_where('youg_pressrelease',array('seokeyword'=>$id));
-		if ($query->num_rows() > 0)
-		{
-			return $query->row_array();
-		}
- 	}
 }
 ?>

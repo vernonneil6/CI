@@ -87,11 +87,7 @@
     <?php if(count($mypressreleases) > 1){?>
     <div class="cmnts_mainwrp">
       <h2>MORE PRESS RELEASES FROM <?php echo $mypressreleases[0]['company'];?> </h2>
-		<?php 
-			for($i=1;$i<count($mypressreleases);$i++){
-			if(!$this->pressreleases->get_pressrelease_byseoid($companyseo))
-			{		
-		?>
+		<?php for($i=1;$i<count($mypressreleases);$i++){ ?>
 		      	  <div class="cmnt_blckwrp">
 				<div class="clnt_intr cmt_none">
 				  <div class="clnt_pic valign_img"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
@@ -106,7 +102,7 @@
 				</div>
 			  </div>
       
-     <?php } }?> 
+     <?php } ?> 
     </div>
     <?php } ?>
 			
