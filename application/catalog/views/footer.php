@@ -62,32 +62,7 @@ function readCookie(name) {
 
 	function eraseCookie(name) {
 		createCookie(name, "", -1);
-	}
-	
-	
-	
-	
-
-$(document).ready(function(){
-	
-	$("#merchant-signup").click(function(e){
-	e.preventDefault();
-	var affiliateId = readCookie('affiliateId');
-	//alert(affiliateId);
-	var domainURL = '<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/signuppage/affid/'; ?>';
-	if(affiliateId!= null){
-		
-		window.location.href= domainURL + affiliateId;
-	}else{
-		window.location.href=$("#merchant-signup").attr('href');
 	}	
-	
-	
-	});	
-});
-	
-
-	
 
 </script>
 
