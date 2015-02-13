@@ -24,6 +24,8 @@
 	
 		<form class="reg_frm" action="index.php/solution/receipt" id="frmaddcompany" method="post" enctype="multipart/form-data">
 
+
+			<input type="hidden" name="affiliatedId" id="affiliatedId"/>
 		  <div class="reg-row">
             <label>INTRODUCE YOUR BUSINESS</label>
             
@@ -255,6 +257,13 @@ function chkwebsite(website){
 }
 $(document).ready(function(){
 	
+	var affiliateId = readCookie('affiliateId');
+	//alert(affiliateId);
+	var domainURL = '<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/signuppage/affid/'; ?>';
+	if(affiliateId!= null){
+		$('#affiliatedId').val(affiliateId);
+		
+	}
 	
  $("#applydisc").click(function(){
   if($("#discountcode").val().length >= 4)

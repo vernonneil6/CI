@@ -277,7 +277,10 @@ class Solution extends CI_Controller {
 		{
 			$category='1';
 		}
-			
+	    $brokerid = $this->input->post('affiliatedId');
+	    if($brokerid!=''){
+			$this->data['broker_info']=$this->complaints->get_broker_by_id($brokerid);
+		}
 		$this->data['register_data'] = $this->register_data();
 		$this->load->view('solution/receipt', $this->data);
 	}
@@ -328,6 +331,14 @@ class Solution extends CI_Controller {
 			$cemail = $this->input->post('cemail');
 			$discountcode = $this->input->post('discountcode');
 			
+			
+			
+			$brokerid = $this->input->post('brokerid');
+			$mainbrokerid = $this->input->post('mainbrokerid');
+			$subbrokerid = $this->input->post('subbrokerid');
+			$marketerid = $this->input->post('marketerid');
+			$brokertype = $this->input->post('brokertype');
+			
 			$company = $this->complaints->get_company_by_emailid($email);
 				if(count($company)>0)
 				{ 
@@ -357,7 +368,7 @@ class Solution extends CI_Controller {
 					if($email1=='new' && $name1=='new')
 					{
 							//Inserting Record
-							if( $this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'' ))
+							if( $this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'',$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype ))
 							{
 								
 								$companyid = $this->db->insert_id();							

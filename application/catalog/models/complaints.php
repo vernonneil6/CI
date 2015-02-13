@@ -585,7 +585,7 @@ class Complaints extends CI_Model
 		}
 	}
 	
-	function insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,$paypalid,$logo,$category,$aboutus)
+	function insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,$paypalid,$logo,$category,$aboutus,$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype)
 	{
 		
 		$date = date_default_timezone_set('Asia/Kolkata');
@@ -613,7 +613,12 @@ class Complaints extends CI_Model
 					   'status'			=> 'Enable',
 					   'registerip' 	=> $varipaddress,
 					   'registerdate'	=> $date,
-					   'aboutus'		=> $aboutus
+					   'aboutus'		=> $aboutus,
+					   'brokerid'		=> $brokerid,
+					   'mainbrokerid'	=> $mainbrokerid,
+					   'subbrokerid'	=> $subbrokerid,
+					   'marketerid'		=> $marketerid,
+					   'brokertype'		=> $brokertype
  					   ); 
  		
 		if ($this->db->insert('company',$data))
@@ -1863,5 +1868,21 @@ class Complaints extends CI_Model
 		}
 			
 	}
+	
+	function get_broker_by_id($id)
+	{
+		$query = $this->db->get_where('youg_broker',array('id'=>$id));
+	  	
+	  	if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+			
+	}
+	
 }
 ?>
