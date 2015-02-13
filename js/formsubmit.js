@@ -2,6 +2,13 @@ function trim(stringToTrim) {
       return stringToTrim.replace(/^\s+|\s+$/g,"");
 }
 $(document).ready(function() {
+	
+	$("#submitorder").click(function(){
+		if(!$("#terms-conditions").prop('checked')){
+			$("#terms-error").show().delay(5000).fadeOut();				
+			return false;
+		}
+	});
   $("#btnaddcompany").click(function () {
 	  
 	  if( trim($("#name").val()) == "" )
@@ -15,6 +22,14 @@ $(document).ready(function() {
 		  $("#nameerror").hide();
 		
 	  }
+	  
+	  var checkedCategory = [];
+	$('.checkboxLabel:checked').each(function(){
+         checkedCategory.push($(this).next("span").text());         
+    });
+    $("#categorylist").val(checkedCategory);
+    
+	  
 	  
 	   if( trim($("#website").val()) == "" )
 	  {
@@ -47,6 +62,27 @@ $(document).ready(function() {
 		  else
 		  {
 			  $("#emailerror").hide();
+			  
+			  /*ajax Email check*/
+				var requestData = {
+				type: 'checkEmail',
+				email: $("#email").val()
+				};
+				
+				$.ajax({
+					type: "POST",
+					url: "/solution/ajaxRequest",
+					data: requestData,
+					dataType:"json",
+					success: function(data){
+						console.log(data);
+						if(data.status == 'error'){
+							$("#emailtknerror").show().delay(5000).fadeOut();
+							$("#emailtknerror").html(data.emailError);
+						}						
+					}
+				});
+			  
 		  }
 	  }
 	  
@@ -284,7 +320,11 @@ $(document).ready(function() {
 /*get All States*/        
 function getstates(id,state,where) {	//alert(id);
 	if(id !='') {
-
+		if(state == 'state1'){
+			$('#countryname1').val($("#country1 :selected").text());
+		}else{
+			$('#countryname').val($("#country :selected").text());
+		}
 		var requestData = { 'type' : 'getAllStates', 'cid' : id , 'state':state };
 		
 		$.ajax({
