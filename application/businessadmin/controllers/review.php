@@ -102,6 +102,7 @@ class Review extends CI_Controller
 					 $filePath = 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/reviewcsv/'.$file_info['file_name'];
 								
 						$row = 1;
+						ini_set('auto_detect_line_endings',TRUE);
 						if (($handle = fopen($filePath, "r")) !== FALSE) 
 						{
 							while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
@@ -133,6 +134,7 @@ class Review extends CI_Controller
 									}															
 								}
 							}
+							ini_set('auto_detect_line_endings',FALSE);
 							fclose($handle);
 							redirect('review','refresh');	
 						}

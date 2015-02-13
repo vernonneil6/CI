@@ -1,11 +1,49 @@
 <?php echo $header;?>
+<script src="http://www.google.com/recaptcha/api.js" async defer></script>
+<script type="text/javascript">
+      var onloadCallback = function() {
+        grecaptcha.render('recaptcha', {			
+				'sitekey' : '6Lcj5QETAAAAAGjqfr2_v-jKUhz6CGVVJG-QlpOb'		
+        });
+      };
+</script>
 
 <script type="text/javascript" language="javascript">
+
               function trim(stringToTrim) {
                   return stringToTrim.replace(/^\s+|\s+$/g,"");
               }
               $(document).ready(function() {
                   $("#btnaddcompany").click(function () {
+					  
+					 
+					  if($('#g-recaptcha-response').val() != ''){
+					  var site_domain = '<?php echo $_SERVER['REMOTE_ADDR']; ?>';
+					  var responseData = {
+						  secret : '6Lcj5QETAAAAAPty66XTLlKG1ERLbMkLkMI-Yguf',
+						  response :  $('#g-recaptcha-response').val(),
+						  remoteip: site_domain
+					  }
+					 var google_url="http://www.google.com/recaptcha/api/siteverify";	
+					 $.ajax( { 
+						url: google_url,
+						type:'GET',
+						dataType:'json',
+						data:responseData,
+						success: function(data){							
+							if(data.success=='true'){
+								$('#recaptcha_error').html('success');
+							}else{
+								$('#recaptcha_error').html('Please re-enter your reCAPTCHA.');
+							}
+							
+						}						
+					 });
+				 }else{
+					 $('#recaptcha_error').show();
+					 return false;
+				 }
+					  
 					  
 					  if( trim($("#name").val()) == "" )
 					  {
@@ -143,9 +181,7 @@
 						  }
 					  }
 					  
-					 
 					  
-					 
 					  
 					  if( trim($("#cname").val()) == "" )
 					  {
@@ -202,12 +238,8 @@
 						  }
 					  }
 					  
-					challengeField = $("input#recaptcha_challenge_field").val();
-					responseField = $("input#recaptcha_response_field").val();	 
-					alert(challengeField);
-					alert(responseField);
-	
-					
+					  
+					 					
 						  
 					  $("#frmaddcompany").submit();
                   });
@@ -260,12 +292,6 @@
             <input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50">
             <input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
             <input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" />
-            <!--<select class="reg_txt_box-md" id="state" name="state" maxlength="50"/>
-               <option>SELECT STATE</option>
-               <option>ALASKA</option>
-               <option>CALIFORNIA</option>
-               <option>NEWYORK</option>
-            </select>-->
             <input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" />
             <input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
             <div id="streetaddresserror" class="error">Street Address is required.</div>
@@ -298,8 +324,9 @@
           <div class="reg-row" style="margin-top:27px;">        
             <div style='clear:both'>
 				
-			
-            <?php echo $recaptcha_html; ?>
+			<div class="g-recaptcha" data-sitekey="6Lcj5QETAAAAAGjqfr2_v-jKUhz6CGVVJG-QlpOb"></div>
+            <div id="recaptcha_error" class="error">Recaptcha is required</div>
+
             </div>
             <button type="submit" class="lgn_btn" style="margin-top:32px;" title="SUBMIT BUSINESS" id="btnaddcompany" name="btnaddcompany">Submit Business</button>
           </div>

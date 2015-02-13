@@ -450,7 +450,7 @@
 <?php if($this->uri->segment(1)=='broker' && $this->uri->segment(2)=='elitemembers') {?>
 	
 	<style>
-        .tab th, .tab td{padding: 8px 24px; }
+        .tab th, .tab td{padding: 8px 10px; }
         </style>
 
 	<div class="breadcrumbs">
@@ -468,15 +468,18 @@
 		<div class="box-content"> 
 		<a href="<?php echo site_url('broker/getmycsv/'.$this->session->userdata['broker_data'][0]->id.'/'.'broker');?>">Download Total Broker Elite CSV Report</a>
 		<?php if( count($brokers) > 0 ) { ?>
-		<table class="tab tab-drag">
+		<table class="tab tab-drag" style="font-size: 11px;">
 		  <tr class="top nodrop nodrag">
 			<td>Broker Name</td>
-                        <td>Subbroker Name</td>
+            <td>Subbroker Name</td>
 			<td>Marketer Name</td>
 			<td>Agent Name</td>
 			<td>Type</td>
 			<td>Company</td>
 			<td>Email</td>
+			<td>Date signed</td>
+			<td>Monthly fee</td>
+			<td>Status</td>
 			
 		  </tr>
 		<?php
@@ -492,6 +495,9 @@
 			<td><?php echo ucfirst($subbrok['ycbrokertype']);?></td>
 			<td><?php echo $subbrok['yccompany']; ?></td>
 			<td><?php echo $subbrok['ycemail']; ?></td>
+			<td><?php echo $subbrok['ycreg']; ?></td>
+			<td><?php echo $subbrok['ysamt']; ?></td>
+			<td><?php echo $subbrok['ycstatus']; ?></td>
 		
 		</tr>
 		<?php
