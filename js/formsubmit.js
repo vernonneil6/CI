@@ -61,9 +61,11 @@ $(document).ready(function() {
 		  }
 		  else
 		  {
-			  $("#emailerror").hide();
+			  $("#emailerror").hide();		 
 			  
-			  /*ajax Email check*/
+		  }
+		  
+		  /*ajax Email check*/
 				var requestData = {
 				type: 'checkEmail',
 				email: $("#email").val()
@@ -71,7 +73,7 @@ $(document).ready(function() {
 				
 				$.ajax({
 					type: "POST",
-					url: "/solution/ajaxRequest",
+					url: "/index.php/solution/ajaxRequest",
 					data: requestData,
 					dataType:"json",
 					success: function(data){
@@ -79,12 +81,15 @@ $(document).ready(function() {
 						if(data.status == 'error'){
 							$("#emailtknerror").show().delay(5000).fadeOut();
 							$("#emailtknerror").html(data.emailError);
+							return false;
 						}						
 					}
 				});
-			  
-		  }
 	  }
+	  
+	
+	   
+	  
 	  
 	  if( trim($("#streetaddress").val()) == "" )
 	  {
