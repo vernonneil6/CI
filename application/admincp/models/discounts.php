@@ -74,7 +74,7 @@ Class Discounts extends CI_Model
  	}
 	
 	//Updating Record
-	function update($id,$title,$percentage,$discounttype,$discountprice)
+	function update($id,$title,$percentage,$discounttype,$discountprice,$code)
  	{
 		
 		$editdate=date('Y-m-d H:i:s');
@@ -82,6 +82,7 @@ Class Discounts extends CI_Model
 		              'percentage'   => $percentage,
 		              'discountcodetype' => $discounttype, 
 		              'discountprice' => $discountprice, 
+			      'code' => $code,	
 		              'modifieddate' =>$editdate, 
 		              );
 		$this->db->where('id', $id);

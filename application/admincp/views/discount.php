@@ -26,7 +26,20 @@
 			{
 				$("#titleerror").hide();
 			}
-			
+			<?php if($this->uri->segment(2) == 'edit') { ?>
+			if( trim($("#code").val()) == "" )
+			{
+				$("#error").attr('style','display:block;');
+				$("#codeerror").show();
+				$("#code").val('').focus();
+				return false;
+			}
+			else
+			{
+				$("#codeerror").hide();
+			}
+
+			<?php } ?>
 			/*if( $("#percentage").val() == 0 )
 			{
 				$("#error").attr('style','display:block;');
@@ -129,7 +142,22 @@
 					} 						
 				}
 			}
-        </script>	
+        </script>
+	<?php if($this->uri->segment(2) == 'edit') { ?>
+	<div class="form-cols"><!-- two form cols -->
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 9% !important;">
+                <label for="title">Discount Code<span class="errorsign">*</span></label>
+              </div>              
+ 		<div class="con" style="width: 59% !important; float:left">
+                <?php echo form_input( array( 'name'=>'code','id'=>'code','class'=>'input','type'=>'text','value'=>$discount[0]['code'] ) ); ?>
+                </div>     
+		<div id="codeerror" class="error" style="width:145px">Discount Code is required.</div>       
+            </div>
+          </div>
+        </div>
+	<?php } ?>   
         <div class="form-cols"><!-- two form cols -->
           <div class="col1" style="width:100%">
             <div class="clearfix">

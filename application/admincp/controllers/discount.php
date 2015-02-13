@@ -191,9 +191,9 @@ class Discount extends CI_Controller {
 				//Getting value
 				$title = addslashes($this->input->post('title'));
 				$percentage = addslashes($percent);
-						
+				$code = $this->input->post('code');		
 				//Updating Record With Image
-				if( $this->discounts->update($id,$title,$percentage,$discounttype,$discountprice))
+				if( $this->discounts->update($id,$title,$percentage,$discounttype,$discountprice,$code))
 				{
 					$this->session->set_flashdata('success', 'discount updated successfully.');
 					redirect('discount', 'refresh');;
