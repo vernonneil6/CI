@@ -52,12 +52,12 @@
                 &nbsp; <span style="color:#666666;"> <?php echo stripslashes($categories[$i]['category'])."<br/>";?> </span>
                 <?php } ?>
               </div>
-                       
+                <input type="hidden" name="categorylist" id="categorylist"/>       
           </div>
           <div class="reg-row">
             <label>BUSINESS EMAIL ADDRESS: </label>
             <div class="reg_fld">This email will be visible in your Profile Information and displayed on YouGotRated.</div>
-            <input type="email" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" value="<?php echo $showdata['email']; ?>" onchange="chkmail(this.value);">
+            <input type="email" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" value="<?php echo $showdata['email']; ?>">
             <div id="emailerror" class="error">Enter valid Emailid.</div>
             <div id="emailtknerror" class="error">This Emailid already taken.</div>
             
@@ -69,6 +69,7 @@
             <br/>           
           <div style="float:left;">
            <?php echo form_dropdown('country1',$selcon,'','id="country1" class="seldrop" onchange=getstates(this.value,"state1","#selstatediv1");');?>
+           <input type="hidden" name="countryname1" id="countryname1"/>
            </div>
            <?php 
 		  $selstate=array(''=>'--Select State--');
@@ -136,6 +137,7 @@
             <br/>            
           <div style="float:left;">
            <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
+           <input type="hidden" name="countryname" id="countryname"/>
            </div>
            <?php 
 		  $selstate=array(''=>'--Select State--');
@@ -222,6 +224,7 @@
             <div id="discsuccess" class="error">Its is Valid code</div>
             <div id="discnorerror" class="error">Its is not Available</div>
             <div id="discallrerror" class="error">please enter code</div>
+            <input type="hidden" id="discount-code-type" name="discount-code-type" />
           </div>
           <div class="reg-row" style="margin-top:27px;">            
             <div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
@@ -251,6 +254,8 @@ function chkwebsite(website){
 	}
 }
 $(document).ready(function(){
+	
+	
  $("#applydisc").click(function(){
   if($("#discountcode").val().length >= 4)
   {
@@ -270,6 +275,7 @@ $(document).ready(function(){
      $("#discsuccess").html('Your code was successfully applied! Updated monthly fee:'+data.monthlycost);
      $("#discprice").html(data.monthlycost);
      $("#discpricebanner").html(data.monthlycost);
+     $("#discount-code-type").val(data.discountcodetype);
      $("#discnorerror").hide();
      $("#discallrerror").hide();
     }

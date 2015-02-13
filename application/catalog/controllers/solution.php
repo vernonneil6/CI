@@ -228,9 +228,10 @@ class Solution extends CI_Controller {
 					'name' => $this->input->post('name'),
 					'website' => $this->input->post('website'),
 					'category' => $category,
+					'categorylist' => $this->input->post('categorylist'),
 					'email' => $this->input->post('email'),
 					'streetaddress1' => $this->input->post('streetaddress1'),
-					'country1' => $this->input->post('country1'),
+					'country1' => $this->input->post('countryname1'),
 					'state1' => $this->input->post('state1'),
 					'city1' => $this->input->post('city1'),
 					'zip1' => $this->input->post('zip1'),
@@ -241,14 +242,15 @@ class Solution extends CI_Controller {
 					'fname' => $this->input->post('fname'),
 					'lname' => $this->input->post('lname'),
 					'streetaddress' => $this->input->post('streetaddress'),
-					'country' => $this->input->post('country'),
+					'country' => $this->input->post('countryname'),
 					'state' => $this->input->post('state'),
 					'city' => $this->input->post('city'),
 					'zip' => $this->input->post('zip'),
 					'ccnumber' => $this->input->post('ccnumber'),
 					'expirationdatem' => $this->input->post('expirationdatem'),
 					'expirationdatey' => $this->input->post('expirationdatey'),
-					'discountcode' => $this->input->post('discountcode')
+					'discountcode' => $this->input->post('discountcode'),
+					'discount-code-type' => $this->input->post('discount-code-type'),
 		);
 		return $data;
 		
@@ -2121,8 +2123,7 @@ public function upgrades($id)
 								
 				} else { 
 					
-					if($discountusage['percentage']==0 && $discountusage['discountcodetype']=='30-days-free-trial'){
-						
+					if($discountusage['percentage']==0 && $discountusage['discountcodetype']=='30-days-free-trial'){						
 						$discountusage['monthlycost']='1st mo free then $'.$discountusage['discountprice'].'/mo';
 					}
 					else if($discountusage['percentage']!="" && $discountusage['discountcodetype']=='30-days-free-trial'){
@@ -2140,6 +2141,24 @@ public function upgrades($id)
 			}
 		}
 		
+		/*check Email*/
+		if($this->input->post('type')=='checkEmail'){
+			if( $this->input->is_ajax_request() && ( $this->input->post('email') ) ){
+				$email=$this->input->post('email');
+				$emailStatus = array();
+				$company = $this->complaints->get_company_by_emailid($email);
+				if(count($company)>0)
+				{
+					$emailStatus['status'] = "error";
+					$emailStatus['emailError'] = "This company email address is already exists. Try later!";
+					echo json_encode($emailStatus);
+				}else{
+					$emailStatus['status'] = "success";
+					echo json_encode($emailStatus);
+					return true;
+				}
+			}				
+		}		
 		
 		
 	}
