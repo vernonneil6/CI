@@ -162,9 +162,11 @@ class Discount extends CI_Controller {
 		if($this->session->userdata['youg_admin'] )
 	  	{
 			$elitemembershipprice=$this->settings->update_get_eliteprice_by_settingid(19);
+			
 			//If Old Record Update
 			if( $this->input->post('id') )
 	  		{
+				$percent=0;
 				if($this->input->post('discounttype') == 1){
 				  	$percent=$this->input->post('percentage');
 				  	$discount=$percent / 100;
@@ -172,7 +174,7 @@ class Discount extends CI_Controller {
 				  }else{
 					$discountrate = $this->input->post('percentage_amount');
 			  	}
-				  
+					
 				  $discountprice= $elitemembershipprice['value']- $discountrate;
 				  $method=$this->input->post('discountmethod');
 				  if($method==1){
@@ -186,7 +188,7 @@ class Discount extends CI_Controller {
 				
 				//Getting value
 				$title = addslashes($this->input->post('title'));
-				$percentage = addslashes($this->input->post('percentage'));
+				$percentage = addslashes($percent);
 						
 				//Updating Record With Image
 				if( $this->discounts->update($id,$title,$percentage,$discounttype,$discountprice))
@@ -205,6 +207,7 @@ class Discount extends CI_Controller {
 			//If New Record Insert
 			else
 			{
+			  $percent=0;
 			  if($this->input->post('discounttype') == 1){
 			  	$percent=$this->input->post('percentage');
 			  	$discount=$percent / 100;
@@ -224,7 +227,7 @@ class Discount extends CI_Controller {
 			
 	    		//Getting value
 				$title = addslashes($this->input->post('title'));
-				$percentage = addslashes($this->input->post('percentage'));
+				$percentage = addslashes($percent);
 				
 				
 				//Inserting Record

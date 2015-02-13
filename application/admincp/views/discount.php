@@ -159,7 +159,7 @@
                 
 				<?php echo form_dropdown('percentage',$dis,'0',$js);?>
                 <?php } ?>
-                <?php if($this->uri->segment(2) == 'edit') { ?>
+                <?php if($this->uri->segment(2) == 'edit') {  ?>
                 <?php echo form_dropdown('percentage',$dis,$discount[0]['percentage'],$js);?>
                 <?php } ?>
               </div>
@@ -177,14 +177,14 @@
               <div class="con" style="width: 7% !important; float:left">
                 <?php $dis = range(0,$discount['elitemembershipprice']);
                       $dis[0]="Select";
-    				  $js = "id='percentage' class='select' placeholder='Select'";
+    				  $js = "id='percentage_amount' class='select' placeholder='Select'";
 					  ?>
 				<?php if($this->uri->segment(2) == 'add') { ?>
                 
 				<?php echo form_dropdown('percentage_amount',$dis,'0',$js);?>
                 <?php } ?>
                 <?php if($this->uri->segment(2) == 'edit') { ?>
-                <?php echo form_dropdown('percentage',$dis,$discount['discount_amount'],$js);?>
+                <?php echo form_dropdown('percentage_amount',$dis,$discount['discount_amount'],$js);?>
                 <?php } ?>
               </div>
               <div id="percentageerror" class="error" style="width:145px">Select Amount.</div>
