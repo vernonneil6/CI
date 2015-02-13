@@ -9,9 +9,7 @@ if($_SERVER['SERVER_NAME'] == 'www.yougotrated.writerbin.com'){
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
-	}
-	$row_count = 49000;
-	$no_of_rows = 0;
+	}	
 }elseif($_SERVER['SERVER_NAME'] == 'www.yougotrated.com' || $_SERVER['SERVER_NAME'] == 'yougotrated.com'){
 	$servername = "localhost";
 	$username = "root";
@@ -22,10 +20,14 @@ if($_SERVER['SERVER_NAME'] == 'www.yougotrated.writerbin.com'){
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
-	}
-	$row_count = 49000;
-	$no_of_rows = 0;
+	}	
 }else{
 	echo "DB Connection Failed";
 }
+$foldername = 'sitemap';
+$gzfoldername = 'gz';
+$bulkfoldername = 'bulk_sitemap';
+$company_filename ='company_details_';
+$row_count = 49000;
+$no_of_rows = 0;
 ?>

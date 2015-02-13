@@ -34,5 +34,18 @@ xmlhttp.onreadystatechange=function()
 </script>
 <div id="myDiv">Sitemap Generating ...</div>
 <?php 
+
+
+$response ='<?xml version="1.0" encoding="UTF-8"?>';
+$response .='<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+for($i=0;$i<$limit;$i++){
+	$response .='<sitemap>';
+	$response .="<loc>http://".$_SERVER['SERVER_NAME']."/GMI_scripts/".$gzfoldername.'/'.$company_filename.$i.".xml.gz</loc>";
+	$response .='<lastmod>'.date('Y-m-d').'</lastmod>';
+	$response .='</sitemap>';
 }
+$response .='</sitemapindex>';
+file_put_contents($bulkfoldername."/".$company_filename."_".date('Y-m-d').".xml", $response);
+}
+echo "<br>Please Add Bellow URL to Sitemap <br>GMI_scripts/".$bulkfoldername."/".$company_filename."_".date('Y-m-d').".xml"."<br>";
 ?> 
