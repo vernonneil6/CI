@@ -36,6 +36,59 @@ function userlogin()
 		
 	 $("#userflogin").submit();		
 }
+function createCookie(name, value, days) {
+    var expires;
+
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    } else {
+        expires = "";
+    }
+		document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
+	}
+	
+function readCookie(name) {
+		var nameEQ = encodeURIComponent(name) + "=";
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+			if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+		}
+		return null;
+	}
+
+	function eraseCookie(name) {
+		createCookie(name, "", -1);
+	}
+	
+	
+	
+	
+
+$(document).ready(function(){
+	
+	$("#merchant-signup").click(function(e){
+	e.preventDefault();
+	var affiliateId = readCookie('affiliateId');
+	//alert(affiliateId);
+	var domainURL = '<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/signuppage/affid/'; ?>';
+	if(affiliateId!= null){
+		
+		window.location.href= domainURL + affiliateId;
+	}else{
+		window.location.href=$("#merchant-signup").attr('href');
+	}	
+	
+	
+	});	
+});
+	
+
+	
+
 </script>
 
 <div align="center">
@@ -96,7 +149,7 @@ function userlogin()
                 <?php 
 				$url = str_replace( 'http://', 'https://',site_url('solution/claimbusiness'));
 				?>
-                <li><a href="<?php echo site_url('solution/claimbusiness'); ?>" title="Merchant Signup">merchant sign up</a></li>
+                <li><a id="merchant-signup" href="<?php echo site_url('solution/claimbusiness'); ?>" title="Merchant Signup">merchant sign up</a></li>
                 <?php 
 				$footerpart3 = $this->common->get_footerlink_byid(3); 
 				if($footerpart3 != '')

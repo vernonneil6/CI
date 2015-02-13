@@ -1,49 +1,24 @@
-<?php
- $number_of_days = 30 ;
-$date_of_expiry = time() + 60 * 60 * 24 * $number_of_days ; 
-
-
-?>
-
 <?php echo $header;?>
-<script>
+<input type = "hidden" name = "affi-url" id = "affi-url">
+<script type="text/javascript">
+
 $(document).ready(function(){
 	
-	$('#affi-url').val(window.location.href);
+	//$('#affi-url').val(window.location.href);
 	var affid = "<?php echo $this->uri->segment('3');  ?>";
-	createCookie('affid',affid,1);
-	function createCookie(name, value, days) {
-    var expires;
-
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 30));
-        expires = "; expires=" + date.toGMTString();
-    } else {
-        expires = "";
-    }
-		document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
+	
+	
+	if(affid !=''){
+		var affiliateId = 'affiliateId';
+		createCookie(affiliateId,affid,30);
 	}
-
-	function readCookie(name) {
-		var nameEQ = encodeURIComponent(name) + "=";
-		var ca = document.cookie.split(';');
-		for (var i = 0; i < ca.length; i++) {
-			var c = ca[i];
-			while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-			if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
-		}
-		return null;
-	}
-
-	function eraseCookie(name) {
-		createCookie(name, "", -1);
-	}
+	
+	
+	
+});
 
 
-	});
 </script>
-<input type = "hidden" name = "affi-url" id = "affi-url">
 <script type="text/javascript" src="js/formsubmit.js"></script>
 <section class="container">
   <section class="main_contentarea">
