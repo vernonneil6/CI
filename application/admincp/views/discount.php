@@ -387,7 +387,7 @@ else { ?>
       <tr class="top nodrop nodrag">
         <th>Description</th>
         <th>Code</th>
-        <th>Discount(%)</th>
+        <th>Discount</th>
         <th>Discount Type</th>
         <th>Apply</th>
         <th>Revised Price</th>
@@ -398,7 +398,15 @@ else { ?>
       <tr>
         <td><?php echo ucfirst(stripslashes($discounts[$i]['title'])); ?></td>
         <td><?php echo stripslashes($discounts[$i]['code']); ?></td>
-        <td><?php echo stripslashes($discounts[$i]['percentage']); ?></td>
+        <td><?php 
+	
+	if(($discounts['elitemembershipprice'] != $discounts[$i]['discountprice']) && ($discounts[$i]['percentage'] == 0) && ($discounts[$i]['discountcodetype'] != '30-days-free-trial')){		
+		$this->data['discount']['discount_amount'] = $discounts['elitemembershipprice'] - $discounts[$i]['discountprice'];					
+		echo '$ '.$this->data['discount']['discount_amount'];
+	}else{
+		echo stripslashes($discounts[$i]['percentage']).' %'; 
+	}
+	?></td>
         <td><?php echo stripslashes($discounts[$i]['discountcodetype']); ?></td>
         <td>
 			<?php if($discounts[$i]['apply']==1){ echo "Worked";?>

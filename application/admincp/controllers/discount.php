@@ -95,6 +95,8 @@ class Discount extends CI_Controller {
 			/*echo "<pre>";
 			print_r($this->data['discounts']);
 			die();*/
+			$elitemembershipprice=$this->settings->update_get_eliteprice_by_settingid(19);
+			$this->data['discounts']['elitemembershipprice'] = $elitemembershipprice['value'];
 			
 			$this->paging['base_url'] = site_url("discount/index");
 			$this->paging['uri_segment'] = 3;
