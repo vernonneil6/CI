@@ -105,7 +105,7 @@
           <div id="phonenoerror" class="error">Enter Phone number.</div>
           <div class="reg-row" style="margin-top:55px;">
             <label>BUSINESS CONTACT INFORMATION: </label>
-            <div class="reg_fld"><?php echo strtoupper('The following information will not be published YouGotRated and is used for administration purposes only. This information is where you will receive emails, and receipts from YouGotRated.com');?></div>
+            <div class="reg_fld"><?php echo strtoupper('The following information will not be published on YouGotRated and is used for administration purposes only. &#160;&#160;This information is where you will receive emails, and receipts from YouGotRated.com');?></div>
             <div class="reg_fld">CONTACT NAME:</div>
             
             <input type="text" class="reg_txt_box" placeholder="CONTACT NAME" id="cname" name="cname" maxlength="30" value="<?php echo $showdata['contactname']; ?>" /><div id="cnameerror" class="error">contact name is required.</div>
