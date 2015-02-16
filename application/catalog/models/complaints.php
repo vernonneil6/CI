@@ -1009,6 +1009,24 @@ class Complaints extends CI_Model
 			return array();
 		}
  	}
+	function find_company_for_check($company)
+ 	{
+		//Executing Query
+		$this->db->select('id,company');
+		$this->db->from('company');
+		$this->db->where('company',$company);
+	
+		$query = $this->db->get();
+	
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 	function find_company_by_email($email)
  	{

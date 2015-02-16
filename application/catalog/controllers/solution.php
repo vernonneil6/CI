@@ -251,6 +251,8 @@ class Solution extends CI_Controller {
 					'expirationdatey' => $this->input->post('expirationdatey'),
 					'discountcode' => $this->input->post('discountcode'),
 					'discount-code-type' => $this->input->post('discount-code-type'),
+					'discounted-price' => $this->input->post('discounted-price'),
+					'subscriptionprice' => $this->input->post('subscriptionprice'),
 		);
 		return $data;
 		
@@ -735,6 +737,10 @@ public function eliteSubscribe($formpost,$companyid) {
 					$disccode_price=$discountmethod['discountprice']; 
 					$disccode_use=1; 
 	                $amount=$discountmethod['discountprice'];
+			}
+			else if($discountmethod['discountcodetype']=="normal-discount"){
+				
+				$amount=$discountmethod['discountprice'];
 			}  
     }
 	$refId = uniqid();
@@ -2136,14 +2142,20 @@ public function upgrades($id)
 					
 					if($discountusage['percentage']==0 && $discountusage['discountcodetype']=='30-days-free-trial'){						
 						$discountusage['monthlycost']='1st mo free then $'.$discountusage['discountprice'].'/mo';
+						$discountusage['monthlyprice']=$discountusage['discountprice'];
+						$discountusage['subscriptionprice']='$'.$defaultprice;
 					}
 					else if($discountusage['percentage']!="" && $discountusage['discountcodetype']=='30-days-free-trial'){
 						
 						$discountusage['monthlycost']='1st mo free then $'.$discountusage['discountprice'].'/mo';
+						$discountusage['monthlyprice']=$discountusage['discountprice'];
+						$discountusage['subscriptionprice']='$'.$defaultprice; 
 					}
 					else if($discountusage['percentage']!="" && $discountusage['discountcodetype']=='normal-discount'){
 						
 						$discountusage['monthlycost']='$'.$discountusage['discountprice'];
+						$discountusage['monthlyprice']=$discountusage['discountprice'];
+						$discountusage['subscriptionprice']='$'.$defaultprice;
 					}
 					$discountusage['discstatus']='success';
 					echo json_encode($discountusage);
@@ -2166,6 +2178,24 @@ public function upgrades($id)
 				}else{
 					$emailStatus['status'] = "success";
 					echo json_encode($emailStatus);
+					return true;
+				}
+			}				
+		}		
+		/*check Email*/
+		if($this->input->post('type')=='checkCompanyname'){
+			if( $this->input->is_ajax_request() && ( $this->input->post('name'))){
+				$company=$this->input->post('name');
+				$nameStatus = array();
+				$companyname = $this->complaints->find_company_for_check($company);
+				if(count($companyname)>0)
+				{
+					$nameStatus['status'] = "error";
+					$nameStatus['nameError'] = "This company Name already exists. Try later!";
+					echo json_encode($nameStatus);
+				}else{
+					$nameStatus['status'] = "success";
+					echo json_encode($nameStatus);
 					return true;
 				}
 			}				
