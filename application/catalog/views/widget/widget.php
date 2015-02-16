@@ -1,25 +1,25 @@
-<link rel="stylesheet" href="<?php echo base_url();?>css/style.css" type="text/css">
-<link rel="stylesheet" href="<?php echo base_url();?>css/widget.css" type="text/css">
-<link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/tooltipster.css" type="text/css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/font-awesome.css" type="text/css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/themes/widget-tooltip.css" type="text/css">
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/style.css'; ?>" type="text/css">
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/widget.css'; ?>" type="text/css">
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/fancybox.css'; ?>" type="text/css">
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/tooltipster.css'; ?>" type="text/css">
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/font-awesome.css'; ?>" type="text/css">
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/themes/widget-tooltip.css'; ?>" type="text/css">
 <style>
 @font-face {
   font-family: 'FontAwesome';
-  src: url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.eot');
-  src: url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
-    url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.woff') format('woff'),
-    url('<?php echo base_url(); ?>/font/Font-Awesome/fontawesome-webfont.ttf') format('truetype');
+  src: url('<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']; ?>/font/Font-Awesome/fontawesome-webfont.eot');
+  src: url('<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']; ?>/font/Font-Awesome/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+       url('<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']; ?>/font/Font-Awesome/fontawesome-webfont.woff') format('woff'),
+       url('<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']; ?>/font/Font-Awesome/fontawesome-webfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 </style> 
-<script type="text/javascript" src="<?php echo base_url();?>js/noconflict.js" ></script>
-<script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.min.js" ></script>
-<script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>js/jquery.raty.min.js"></script>
+<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/noconflict.js'; ?>" ></script>
+<script type="text/javascript" src<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/jquery-1.7.min.js'; ?>" ></script>
+<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/fancybox.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/jquery.tooltipster.min.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/jquery.raty.min.js'; ?>"></script>
 
 
 <div class = "company_review_tab fancybox" href="#review_popup">

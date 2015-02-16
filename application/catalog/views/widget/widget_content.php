@@ -140,32 +140,32 @@
 										  <script>
 											<?php $ip = $_SERVER['REMOTE_ADDR'];  ?>
 											
-											$(document).ready(function(){ 
-											 $("#helpful_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click', function() {
+											jQuery(document).ready(function(){ 
+											 jQuery("#helpful_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click', function() {
 												 var vote = 'helpful';
-												 var reviewid = $(this).attr('reviewid');
+												 var reviewid = jQuery(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
 											   });
-											   $("#funny_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
+											   jQuery("#funny_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
 												 var vote = 'funny';
-												 var reviewid = $(this).attr('reviewid');
+												 var reviewid = jQuery(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
 											   });
-											   $("#agree_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
+											   jQuery("#agree_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
 												 var vote = 'agree';
-												 var reviewid = $(this).attr('reviewid');
+												 var reviewid = jQuery(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
 												 countme(reviewid,'disagree');
-												 $('#disagree_'+reviewid).removeClass('vote-disable');
-												 $('#disagree_'+reviewid).addClass('vote'); 
+												 jQuery('#disagree_'+reviewid).removeClass('vote-disable');
+												 jQuery('#disagree_'+reviewid).addClass('vote'); 
 											   });
-											   $("#disagree_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
+											   jQuery("#disagree_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
 												 var vote = 'disagree';
-												 var reviewid = $(this).attr('reviewid');
+												 var reviewid = jQuery(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
 												 countme(reviewid,'agree');
-												 $('#agree_'+reviewid).removeClass('vote-disable');
-												 $('#agree_'+reviewid).addClass('vote'); 
+												 jQuery('#agree_'+reviewid).removeClass('vote-disable');
+												 jQuery('#agree_'+reviewid).addClass('vote'); 
 											   });
 											});
 										</script>           
@@ -191,10 +191,10 @@
 			
 			<script>
 				
-				$(document).ready(function() 
+				jQuery(document).ready(function() 
 				{	
 										
-					$("div.holder").jPages({
+					jQuery("div.holder").jPages({
 						
 						containerID  : "itemContainer",
 						previous    : "&#60;",
@@ -203,15 +203,15 @@
 					
 						});
 					
-					$("div.holder > a").click(function(){
-						$('.review_tab_bottom').animate({scrollTop:0}, 'slow');
+					jQuery("div.holder > a").click(function(){
+						jQuery('.review_tab_bottom').animate({scrollTop:0}, 'slow');
 						});
 											
 			   });
-			   $(".widget_share").toggle(function () {
-				  $(this).parent().find(".widget_social_link").css('display', 'inline-block');
+			   jQuery(".widget_share").toggle(function () {
+				  jQuery(this).parent().find(".widget_social_link").css('display', 'inline-block');
 			   },function(){
-				  $(this).parent().find(".widget_social_link").css('display', 'none');
+				  jQuery(this).parent().find(".widget_social_link").css('display', 'none');
 			   });
 			</script>
 			
