@@ -36,7 +36,7 @@
             
             <input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30" value="<?php echo $showdata['company']; ?>">
             <div id="nameerror" class="error">Name is required.</div>
-            <div id="nametknerror" class="error">This compnay name is already exists.</div>
+            <div id="nametknerror" class="error">This company name is already exists.</div>
           </div>
           <div class="reg-row" style="margin-top:10px;">
             <div class="reg_fld">WHAT IS YOUR COMPANY WEBSITE?</div>
@@ -227,6 +227,8 @@
             <div id="discnorerror" class="error">Its is not Available</div>
             <div id="discallrerror" class="error">please enter code</div>
             <input type="hidden" id="discount-code-type" name="discount-code-type" />
+            <input type="hidden" id="discounted-price" name="discounted-price" />
+            <input type="hidden" id="subscriptionprice" name="subscriptionprice" />
           </div>
           <div class="reg-row" style="margin-top:27px;">            
             <div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
@@ -285,6 +287,8 @@ $(document).ready(function(){
      $("#discprice").html(data.monthlycost);
      $("#discpricebanner").html(data.monthlycost);
      $("#discount-code-type").val(data.discountcodetype);
+     $("#discounted-price").val(data.monthlyprice);
+     $("#subscriptionprice").val(data.subscriptionprice);
      $("#discnorerror").hide();
      $("#discallrerror").hide();
     }
@@ -296,6 +300,35 @@ $(document).ready(function(){
      $("#discpricebanner").html(data.subscriptionprice);
      $("#discsuccess").hide();
      $("#discallrerror").hide();
+    }
+   }
+  });
+  }
+ 
+ });
+ 
+ $("#name").blur(function(){
+  if($("#name").val().length >= 4)
+  {
+  var requestData = {
+		type: 'checkCompanyname',
+		name: $("#name").val()
+	  };
+  $.ajax({
+   type: "POST",
+   url: "/solution/ajaxRequest",
+   data: requestData,
+   dataType:"json",
+   success: function(data){
+	if(data.status=="success")
+    {
+      $('#nametknerror').hide();
+      return true;
+    }
+    else
+    {
+      $('#nametknerror').show();
+      return false;
     }
    }
   });

@@ -61,7 +61,6 @@ function FormatCreditCard($cc)
 <script type="text/javascript" src="/js/formsubmit.js"></script>	
 <section class="container">
   <section class="main_contentarea">
-
 <input type = "hidden" value = "<?php echo $register_data['name']; ?>" name = "name">
 <input type = "hidden" value = "<?php echo $register_data['website']; ?>" name = "website">
 <input type = "hidden" value = "<?php echo $register_data['category']; ?>" name = "category">
@@ -74,6 +73,8 @@ function FormatCreditCard($cc)
 <input type = "hidden" value = "<?php echo $register_data['phone']; ?>" name = "phone">
 <input type = "hidden" value = "<?php echo $register_data['discountcode']; ?>" name = "discountcode">
 <input type = "hidden" value = "<?php echo $register_data['discount-code-type']; ?>" name = "discount-code-type">
+<input type = "hidden" value = "<?php echo $register_data['discounted-price']; ?>" name = "discounted-price">
+<input type = "hidden" value = "<?php echo $register_data['subscriptionprice']; ?>" name = "subscriptionprice">
 <input type = "hidden" value = "<?php echo $register_data['cname']; ?>" name = "cname">
 <input type = "hidden" value = "<?php echo $register_data['cphone']; ?>" name = "cphone">
 <input type = "hidden" value = "<?php echo $register_data['cemail']; ?>" name = "cemail">
@@ -114,7 +115,8 @@ function FormatCreditCard($cc)
 				<tr><td>Phone</td><td class = "receipt_data"><?php echo $register_data['phone']; ?></td></tr>
 				<?php if($register_data['discountcode']!='') { ?>
 					<tr><td>Discount Code</td><td class = "receipt_data"><?php echo $register_data['discountcode']; ?></td></tr>
-					<tr><td>Amount of Discount</td><td class = "receipt_data"><?php echo $register_data['discount-code-type']; ?></td></tr>
+					<tr><td>Discount Type</td><td class = "receipt_data"><?php echo $register_data['discount-code-type']; ?></td></tr>
+					<tr><td>Amount Discounted</td><td class = "receipt_data"><?php echo '$'.$register_data['discounted-price']; ?></td></tr>
 				<?php } ?>
 			</table>
 
@@ -154,7 +156,7 @@ function FormatCreditCard($cc)
 				<th colspan="2">Credit Card Information</th>
 				<tr><td>Card Number</td><td class = "receipt_data"><?php echo FormatCreditCard(MaskCreditCard($register_data['ccnumber'])); ?></td></tr>
 				<tr><td>Expiration Date</td><td class = "receipt_data"><?php echo $register_data['expirationdatey'].'/'.$register_data['expirationdatem']; ?></td></tr>
-				<tr><td>Amount Per Month</td><td class = "receipt_data">$299</td></tr>				
+				<tr><td>Amount Per Month</td><td class = "receipt_data"><?php echo $register_data['subscriptionprice'];?></td></tr>				
 				<tr><td colspan='2'>
 					<div id="termscondn">
 						<input type="checkbox" id="terms-conditions" />
