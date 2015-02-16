@@ -126,6 +126,8 @@
     </div>
     <?php } 
     }
+    
+    
 	if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'reviews' )
 	{ ?>
 	<!-- Correct form message -->
