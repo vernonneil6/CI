@@ -1,3 +1,27 @@
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/style.css'; ?>" type="text/css">
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/widget.css'; ?>" type="text/css">
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/fancybox.css'; ?>" type="text/css">
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/tooltipster.css'; ?>" type="text/css">
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/font-awesome.css'; ?>" type="text/css">
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/themes/widget-tooltip.css'; ?>" type="text/css">
+<style>
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']; ?>/font/Font-Awesome/fontawesome-webfont.eot');
+  src: url('<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']; ?>/font/Font-Awesome/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+       url('<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']; ?>/font/Font-Awesome/fontawesome-webfont.woff') format('woff'),
+       url('<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']; ?>/font/Font-Awesome/fontawesome-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+</style> 
+
+<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/jquery-1.7.min.js'; ?>" ></script>
+<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/noconflict.js'; ?>" ></script>
+<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/fancybox.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/jquery.tooltipster.min.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/jquery.raty.min.js'; ?>"></script>
+
 <div class = "review_poweredby">Powered by YouGotRated</div>
 <div class = "review_tab_top">
 	<div class="widget_title">
@@ -140,32 +164,32 @@
 										  <script>
 											<?php $ip = $_SERVER['REMOTE_ADDR'];  ?>
 											
-											$(document).ready(function(){ 
-											 $("#helpful_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click', function() {
+											jQuery(document).ready(function(){ 
+											 jQuery("#helpful_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click', function() {
 												 var vote = 'helpful';
-												 var reviewid = $(this).attr('reviewid');
+												 var reviewid = jQuery(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
 											   });
-											   $("#funny_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
+											   jQuery("#funny_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
 												 var vote = 'funny';
-												 var reviewid = $(this).attr('reviewid');
+												 var reviewid = jQuery(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
 											   });
-											   $("#agree_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
+											   jQuery("#agree_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
 												 var vote = 'agree';
-												 var reviewid = $(this).attr('reviewid');
+												 var reviewid = jQuery(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
 												 countme(reviewid,'disagree');
-												 $('#disagree_'+reviewid).removeClass('vote-disable');
-												 $('#disagree_'+reviewid).addClass('vote'); 
+												 jQuery('#disagree_'+reviewid).removeClass('vote-disable');
+												 jQuery('#disagree_'+reviewid).addClass('vote'); 
 											   });
-											   $("#disagree_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
+											   jQuery("#disagree_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
 												 var vote = 'disagree';
-												 var reviewid = $(this).attr('reviewid');
+												 var reviewid = jQuery(this).attr('reviewid');
 												 check('<?php echo $ip;?>',reviewid,vote);
 												 countme(reviewid,'agree');
-												 $('#agree_'+reviewid).removeClass('vote-disable');
-												 $('#agree_'+reviewid).addClass('vote'); 
+												 jQuery('#agree_'+reviewid).removeClass('vote-disable');
+												 jQuery('#agree_'+reviewid).addClass('vote'); 
 											   });
 											});
 										</script>           
@@ -191,10 +215,10 @@
 			
 			<script>
 				
-				$(document).ready(function() 
+				jQuery(document).ready(function() 
 				{	
 										
-					$("div.holder").jPages({
+					jQuery("div.holder").jPages({
 						
 						containerID  : "itemContainer",
 						previous    : "&#60;",
@@ -203,15 +227,15 @@
 					
 						});
 					
-					$("div.holder > a").click(function(){
-						$('.review_tab_bottom').animate({scrollTop:0}, 'slow');
+					jQuery("div.holder > a").click(function(){
+						jQuery('.review_tab_bottom').animate({scrollTop:0}, 'slow');
 						});
 											
 			   });
-			   $(".widget_share").toggle(function () {
-				  $(this).parent().find(".widget_social_link").css('display', 'inline-block');
+			   jQuery(".widget_share").toggle(function () {
+				  jQuery(this).parent().find(".widget_social_link").css('display', 'inline-block');
 			   },function(){
-				  $(this).parent().find(".widget_social_link").css('display', 'none');
+				  jQuery(this).parent().find(".widget_social_link").css('display', 'none');
 			   });
 			</script>
 			
