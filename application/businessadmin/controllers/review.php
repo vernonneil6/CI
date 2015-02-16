@@ -115,7 +115,7 @@ class Review extends CI_Controller
 									$username = $data[1];
 									$rating = $data[2];
 									$review = $data[3];
-									$date = $data[4];														
+									$date = date("Y-d-m", strtotime($data[4]));														
 									$siteid = $this->session->userdata('siteid');	
 									if($title!='' && $username!='' && $rating!='' && $review!='' && $date!='')
 									{
