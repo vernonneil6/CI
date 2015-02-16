@@ -61,7 +61,7 @@
       </tr>
       <tr>
         <td>Widget Code</td>
-        <td>&lt;div style=&quot;position:fixed;top:0;bottom:0;right:0;left:0;&quot;&gt;
+        <td>&lt;div style=&quot;position:fixed;top:0;bottom:0;right:0;left:0;&quot;  id=&quot;container_frame&quot;&gt;
             &lt;iframe src=&quot;<?php echo $url[0]['siteurl'];?>widget/business/<?php echo $companyid;?>&quot; style=&quot;width:100%;height:100%;&quot; &gt;&lt;/iframe&gt;
             &lt;/div &gt;
         </td>
