@@ -264,7 +264,7 @@
 		  cache				: false,
 		  success			: function(data)
 							  {	
-								$('#'+vote+'_'+rid).html("<b>"+data.total+"</b>&nbsp;"+vote);
+								jQuery('#'+vote+'_'+rid).html("<b>"+data.total+"</b>&nbsp;"+vote);
 							
 							  }
 	   });
@@ -283,13 +283,13 @@
 							  {	
 								if(data.message == 'deleted')
 								{
-								   $('#'+vote+'_'+rid).removeClass('vote-disable');
-								   $('#'+vote+'_'+rid).addClass('vote');
+								   jQuery('#'+vote+'_'+rid).removeClass('vote-disable');
+								   jQuery('#'+vote+'_'+rid).addClass('vote');
 								}
 								if(data.message == 'added')
 								{
-								   $('#'+vote+'_'+rid).removeClass('vote');
-								   $('#'+vote+'_'+rid).addClass('vote-disable');										   										  
+								   jQuery('#'+vote+'_'+rid).removeClass('vote');
+								   jQuery('#'+vote+'_'+rid).addClass('vote-disable');										   										  
 								}
 								countme(rid,vote);
 							  }
