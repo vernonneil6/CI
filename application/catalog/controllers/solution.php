@@ -2187,7 +2187,7 @@ public function upgrades($id)
 			if( $this->input->is_ajax_request() && ( $this->input->post('name'))){
 				$company=$this->input->post('name');
 				$nameStatus = array();
-				$companyname = $this->complaints->find_company($company);
+				$companyname = $this->complaints->find_company_for_check($company);
 				if(count($companyname)>0)
 				{
 					$nameStatus['status'] = "error";
