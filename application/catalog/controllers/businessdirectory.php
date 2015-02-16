@@ -201,8 +201,7 @@ class Businessdirectory extends CI_Controller {
 									$this->email->message($mail_body);
 									$this->email->send();
 									
-									$this->session->set_flashdata('success', 'Your business has successfully been registered.');
-									redirect('solution', 'refresh');
+									echo '<script>window.location = "http://business.yougotrated.com/"</script>';
 									
 								}else{
 									$this->session->set_flashdata('error', 'There is error in adding Business. Try later!');
