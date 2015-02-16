@@ -2454,13 +2454,13 @@
 /* Global properties ======================================================== */
 html, body{width:100%;}
 body {
-	/*background:url(../images/body_bg.png) top center no-repeat #E8E8E8;*/
 	font-size:14px; 
 	color:#333; 
 	margin:0px;
 	padding:0px;
 	background-attachment:fixed; 
 	display:table;
+	font-family: myriadpro-regular;
 	}
 a {color:#666;font-family: MyriadPro-Regular; outline:none; text-decoration:none;word-wrap: break-word;}
 a:hover {text-decoration:none}
