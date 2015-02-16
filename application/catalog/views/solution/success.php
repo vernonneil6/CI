@@ -53,7 +53,7 @@
 
 <h4>Note you will receive an email with this information for reference.</h4>
 
-<h4>Thank you for working with YouGotRated!</h4>
+<h4>Thank you for Signing-up with YouGotRated!</h4>
 </div>
 </section>
 
