@@ -8,9 +8,7 @@
 <script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/jquery.raty.min.js'; ?>"></script>
  
 
-<div class = "company_review_tab fancybox" href="#review_popup">
-Reviews
-</div>
+<div class = "company_review_tab fancybox" href="#review_popup"></div>
 
 <div id="review_popup" class = "popupwidth">
 

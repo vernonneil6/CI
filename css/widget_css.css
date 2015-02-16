@@ -2,8 +2,7 @@
 
 .company_review_tab
 {
-	background: none repeat scroll 0 0 #39bced;
-    padding: 13px;
+	background: url("../images/widget.png");
     position: fixed;
     top: 52%;
     cursor : pointer;
