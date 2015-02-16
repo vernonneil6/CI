@@ -96,7 +96,7 @@
 		?>
 		</td>
         <td><img src="images/stars/<?php echo stripslashes($reviews[$i]['rate']); ?>.png" title="<?php echo stripslashes($reviews[$i]['rate']); ?> Stars" /></td>
-        <td><?php echo date("m d Y",strtotime($reviews[$i]['reviewdate'])); ?></td>
+        <td><?php echo date("m-d-Y",strtotime($reviews[$i]['reviewdate'])); ?></td>
         <td>  <?php $title=urlencode('My post');
                 $url=urlencode($pageurl.$reviews[$i]['seokeyword']);
                 $image=urlencode('http://livemarketnews.com/dressfinity/skin/frontend/default/default/images/logo.jpg');
