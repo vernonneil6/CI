@@ -120,6 +120,7 @@ class Pressrelease extends CI_Controller {
 			//echo "<pre>"; print_r($this->data['pressrelease']); die();
 			//Loading View File
 			$company = $this->complaints->get_company_byid($this->data['pressrelease'][0]['companyid']);
+			$this->data['company'] = $this->complaints->get_company_byid($this->data['pressrelease'][0]['companyid']);
 			$companyid = $this->data['pressrelease'][0]['companyid'];
 			if(count($company)>0)
 			{
@@ -135,7 +136,8 @@ class Pressrelease extends CI_Controller {
 			//other pressreleases
 			
 			$this->data['otherpressreleases'] = $this->pressreleases->get_all_pressreleases(3);
-			$this->data['mypressreleases'] = $this->pressreleases->get_my_pressreleases($companyid);
+			$except=$id;
+			$this->data['mypressreleases'] = $this->pressreleases->get_my_pressreleases($companyid,$except);
 			
 	  		$this->load->view('pressrelease/browse1',$this->data);
 		}
