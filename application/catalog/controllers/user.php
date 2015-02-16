@@ -723,7 +723,7 @@ class User extends CI_Controller {
 		if( array_key_exists('youg_user',$this->session->userdata ) )
 		{
 			$this->session->set_flashdata('success', 'You have been successfully logged out.');
-			
+			$this->session->unset_userdata('last_url');
 			$this->session->unset_userdata('youg_user');
 			
 			redirect('login', 'refresh');
