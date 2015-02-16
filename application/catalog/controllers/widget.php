@@ -51,4 +51,31 @@ class Widget extends CI_Controller {
 		$this->data['reviews'] = $this->reviews->get_reviews_bycompanyid($companyid);	    
 		$this->load->view('widget/widget',$this->data);
 	}
+	
+	public function content($companyid='')
+	{
+
+		$company = $this->widgets->get_company_byid($companyid);
+		$elite = $this->complaints->get_eliteship_bycompanyid($companyid);
+		
+		if( count($elite)>0 ) 
+		{
+			if ( count($company) > 0 )
+			{
+				
+				$this->data['total'] = $this->widgets->get_total_review($companyid);
+				$this->data['averagerating'] = $this->widgets->get_average_review($companyid);
+			}
+			else
+			{
+				$this->data['total'] = 0;
+			}
+		}
+		
+		$this->data['companyid'] = $companyid;
+		$this->data['companyname'] = $company[0]['company'];
+		$this->data['companyseo'] = $company[0]['companyseokeyword'];
+		$this->data['reviews'] = $this->reviews->get_reviews_bycompanyid($companyid);	    
+		$this->load->view('widget/widget_content',$this->data);
+	}
 }
