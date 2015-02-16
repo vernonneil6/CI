@@ -2,21 +2,13 @@
 
 .company_review_tab
 {
-	background: url("../images/widget.png");
+	background: url("../images/widget.png") no-repeat;
     position: fixed;
-    top: 52%;
+    top: 43%;
     cursor : pointer;
-    color: white;
     right : 0;
-    transform: rotate(90deg);
-    transform-origin: right top;
-    -ms-transform: rotate(90deg); 
-    -ms-transform-origin: right top;
-    -webkit-transform: rotate(90deg);
-    -webkit-transform-origin: right top;
-    font-family: myriadpro-regular;
-    font-size: 18px;
-    letter-spacing : 2px;
+    width: 45px;
+    height: 100px;
 }
 #review_popup
 {

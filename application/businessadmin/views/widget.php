@@ -62,7 +62,7 @@
       <tr>
         <td>Widget Code</td>
         <td>
-<textarea rows = "10" cols = "50">
+<textarea rows = "10" cols = "125">
 	
 	<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/widget_css.css'; ?>" type="text/css">
 	<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/themes/widget-tooltip.css'; ?>" type="text/css">
