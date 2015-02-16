@@ -15,6 +15,7 @@
   font-style: normal;
 }
 </style>
+<script type="text/javascript" src="<?php echo base_url();?>js/noconflict.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.min.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tooltipster.min.js"></script>
@@ -32,9 +33,9 @@ Reviews
 </div>
 
 <script>
-	$(document).ready(function() 
+	jQuery(document).ready(function() 
 	{
-		$('.tooltip').tooltipster({
+		jQuery('.tooltip').tooltipster({
 		
 			theme: 'widget-tooltip',
 			position: 'bottom',
@@ -42,16 +43,16 @@ Reviews
 		
 		});
 		
-		$('.fancybox').fancybox();
+		jQuery('.fancybox').fancybox();
 		
-		$('.widget_close').click(function(){
-			$('.fancybox-overlay').hide();
+		jQuery('.widget_close').click(function(){
+			jQuery('.fancybox-overlay').hide();
 		});
    });
 	
 	function countme(rid,vote)
 	{
-	  $.ajax({
+	  jQuery.ajax({
 		  type 				: "POST",
 		  url 				: "<?php echo site_url('review/countme');?>",
 		  dataType 			: "json",
@@ -68,7 +69,7 @@ Reviews
 	function check(ip,rid,vote)
 	{
 	  
-	  $.ajax({
+	  jQuery.ajax({
 		  type 				: "POST",
 		  url 				: "<?php echo site_url('review/checkvote');?>",
 		  dataType 			: "json",
