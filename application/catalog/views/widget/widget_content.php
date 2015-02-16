@@ -253,11 +253,12 @@
 			</div>
     </div>
 <script>
-function countme(rid,vote)
+	
+	function countme(rid,vote)
 	{
 	  jQuery.ajax({
 		  type 				: "POST",
-		  url 				: "<?php echo site_url('review/countme');?>",
+		  url 				: "<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/countme';?>",
 		  dataType 			: "json",
 		  data				: {reviewid:rid,vote : vote},
 		  cache				: false,
@@ -274,7 +275,7 @@ function countme(rid,vote)
 	  
 	  jQuery.ajax({
 		  type 				: "POST",
-		  url 				: "<?php echo site_url('review/checkvote');?>",
+		  url 				: "<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/checkvote';?>",
 		  dataType 			: "json",
 		  data				: { ip:ip,reviewid:rid,vote : vote},
 		  cache				: false,
