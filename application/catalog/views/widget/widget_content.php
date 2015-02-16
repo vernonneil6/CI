@@ -252,4 +252,49 @@
 						
 			</div>
     </div>
-<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/widget.js'; ?>"></script>
+<script>
+function countme(rid,vote)
+	{
+	  jQuery.ajax({
+		  type 				: "POST",
+		  url 				: "<?php echo site_url('review/countme');?>",
+		  dataType 			: "json",
+		  data				: {reviewid:rid,vote : vote},
+		  cache				: false,
+		  success			: function(data)
+							  {	
+								$('#'+vote+'_'+rid).html("<b>"+data.total+"</b>&nbsp;"+vote);
+							
+							  }
+	   });
+	}
+	
+	function check(ip,rid,vote)
+	{
+	  
+	  jQuery.ajax({
+		  type 				: "POST",
+		  url 				: "<?php echo site_url('review/checkvote');?>",
+		  dataType 			: "json",
+		  data				: { ip:ip,reviewid:rid,vote : vote},
+		  cache				: false,
+		  success			: function(data)
+							  {	
+								if(data.message == 'deleted')
+								{
+								   $('#'+vote+'_'+rid).removeClass('vote-disable');
+								   $('#'+vote+'_'+rid).addClass('vote');
+								}
+								if(data.message == 'added')
+								{
+								   $('#'+vote+'_'+rid).removeClass('vote');
+								   $('#'+vote+'_'+rid).addClass('vote-disable');										   										  
+								}
+								countme(rid,vote);
+							  }
+		  
+
+	   });
+	  
+	}
+</script>
