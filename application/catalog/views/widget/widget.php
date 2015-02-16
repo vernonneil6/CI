@@ -14,7 +14,7 @@
   font-weight: normal;
   font-style: normal;
 }
-</style>
+</style> 
 <script type="text/javascript" src="<?php echo base_url();?>js/noconflict.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.min.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
