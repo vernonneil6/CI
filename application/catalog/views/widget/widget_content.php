@@ -226,6 +226,14 @@
 					jQuery("div.holder > a").click(function(){
 						jQuery('.review_tab_bottom').animate({scrollTop:0}, 'slow');
 						});
+						
+					jQuery('.tooltip').tooltipster({
+		
+						theme: 'widget-tooltip',
+						position: 'bottom',
+						contentAsHTML: true
+					
+					});
 											
 			   });
 			   jQuery(".widget_share").toggle(function () {
