@@ -64,6 +64,7 @@ $(document).ready(function() {
 			  $("#emailerror").hide();		 
 			  
 		  }
+		  console.log('inemail');
 		  
 		  /*ajax Email check*/
 				var requestData = {
@@ -82,7 +83,11 @@ $(document).ready(function() {
 							$("#emailtknerror").show().delay(5000).fadeOut();
 							$("#emailtknerror").html(data.emailError);
 							return false;
-						}						
+						}
+						return true;						
+					},
+					error: function(data){
+						console.log(data)
 					}
 				});
 	  }

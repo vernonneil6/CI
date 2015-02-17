@@ -87,6 +87,7 @@ function FormatCreditCard($cc)
 <input type = "hidden" value = "<?php echo $register_data['zip']; ?>" name = "zip">
 <input type = "hidden" value = "<?php echo $register_data['ccnumber']; ?>" name = "ccnumber">
 <input type = "hidden" value = "<?php echo $register_data['expirationdatem']; ?>" name = "expirationdatem">
+<input type = "hidden" value = "<?php echo $register_data['cvv']; ?>" name = "cvv">
 <input type = "hidden" value = "<?php echo $register_data['expirationdatey']; ?>" name = "expirationdatey">
 <?php if(!empty($broker_info)){ ?>
 <input type = "hidden" value = "<?php if($broker_info['id']==''){ echo "0"; }else{ echo $broker_info['id']; }?>" name = "brokerid">

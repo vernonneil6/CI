@@ -247,6 +247,7 @@ class Solution extends CI_Controller {
 					'city' => $this->input->post('city'),
 					'zip' => $this->input->post('zip'),
 					'ccnumber' => $this->input->post('ccnumber'),
+					'cvv' => $this->input->post('cvv'),
 					'expirationdatem' => $this->input->post('expirationdatem'),
 					'expirationdatey' => $this->input->post('expirationdatey'),
 					'discountcode' => $this->input->post('discountcode'),
@@ -2177,12 +2178,11 @@ public function upgrades($id)
 					echo json_encode($emailStatus);
 				}else{
 					$emailStatus['status'] = "success";
-					echo json_encode($emailStatus);
-					return true;
+					echo json_encode($emailStatus);					
 				}
 			}				
 		}		
-		/*check Email*/
+		/*check checkCompanyname*/
 		if($this->input->post('type')=='checkCompanyname'){
 			if( $this->input->is_ajax_request() && ( $this->input->post('name'))){
 				$company=$this->input->post('name');
