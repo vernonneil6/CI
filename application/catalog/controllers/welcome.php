@@ -578,7 +578,7 @@ public function fblogin()
 	if($lasturl == ''){
 		$lasturl ='user';
 	}	
-	
+	 
 	
 	$this->data['fbconfig'] = array(
 					  'appId'  => $fb_appId,
@@ -603,6 +603,7 @@ public function fblogin()
 			}
 		if (!empty($user_profile ))
 		{
+			$this->session->unset_userdata('last_url');
 				$email = $user_profile['email'];
 				$uid = $user_profile['id'];	
 				//Loading model file

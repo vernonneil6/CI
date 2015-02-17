@@ -148,7 +148,9 @@ class Complaint extends CI_Controller {
 		else if( $this->uri->segment(2)=='browse'  && $this->uri->segment(3))	
 			{
 						$complaint= $this->complaints->get_complaint_byseokeyword($this->uri->segment(3));
-						$companyname = $this->users->get_company_bysingleid($complaint[0]['companyid']);
+						$companyid="";
+						if(count($complaint) > 0) { $companyid=$complaint[0]['companyid']; }
+						$companyname = $this->users->get_company_bysingleid($companyid);
 						
 					 	  		if(count($complaint)>0)
 								{
