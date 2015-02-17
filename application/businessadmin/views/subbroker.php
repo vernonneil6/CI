@@ -21,7 +21,10 @@
         <td>Sub Broker Url</td>
         <td>
         <textarea cols='90' rows='10'>
-			<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/signuppage/affid/'.$this->session->userdata['subbroker_data'][0]->id;?>
+			<?php 
+				$url = $this->setting->get_url_by_id(17); 
+				echo $url[0]['siteurl'].'?affid='.$this->session->userdata['subbroker_data'][0]->id;
+			?>
         </textarea>
         </td>
 	 </tr>
