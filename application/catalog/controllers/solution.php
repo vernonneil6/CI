@@ -740,7 +740,13 @@ public function eliteSubscribe($formpost,$companyid) {
 	                $amount=$discountmethod['discountprice'];
 			}
 			else if($discountmethod['discountcodetype']=="normal-discount"){
-				
+
+                                 
+				$discid=$discountmethod['id'];
+				$disc=$discountmethod['code'];
+				$disccode_type=$discountmethod['discountcodetype']; 
+				$disccode_price=$discountmethod['discountprice']; 
+				$disccode_use=1; 
 				$amount=$discountmethod['discountprice'];
 			}  
     }
@@ -774,7 +780,7 @@ public function eliteSubscribe($formpost,$companyid) {
 	$zip=$_POST["zip"];
 	$cid=$_POST["country"];
 	$c_code=$this->complaints->get_country_by_countryid($cid);
-	$country=$c_code['name'];
+	$country=$_POST["country"];
 		
 	
 	$company = $this->complaints->get_company_by_emailid($email);
