@@ -70,10 +70,12 @@
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
         <th width="10%">Title</th>
-        <th width="50%">Review</th>
+        <th width="30%">Review</th>
         <th width="8%">User</th>
         <th width="8%">Rating</th>
         <th width="20%">Review Date</th>
+        <th width="10%">Status</th>
+        <th width="10%">Action</th>
         <th width="15%">Share On</th>
         
       </tr>
@@ -97,6 +99,15 @@
 		</td>
         <td><img src="images/stars/<?php echo stripslashes($reviews[$i]['rate']); ?>.png" title="<?php echo stripslashes($reviews[$i]['rate']); ?> Stars" /></td>
         <td><?php echo date("m-d-Y",strtotime($reviews[$i]['reviewdate'])); ?></td>
+        <td>
+		  <?php if( stripslashes($reviews[$i]['status']) == 'Enable' ) { ?>
+          <a href="<?php echo site_url('review/disable/'.$reviews[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this review?');"><span>Enable</span></a>
+          <?php } ?>
+          <?php if( stripslashes($reviews[$i]['status']) == 'Disable' ) { ?>
+          <a href="<?php echo site_url('review/enable/'.$reviews[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this review?');"><span>Disable</span></a>
+          <?php } ?>
+        </td>
+        <td><a href="<?php echo site_url('review/delete/'.$reviews[$i]['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this review ?');">Delete</a></td>
         <td>  <?php $title=urlencode('My post');
                 $url=urlencode($pageurl.$reviews[$i]['seokeyword']);
                 $image=urlencode('http://livemarketnews.com/dressfinity/skin/frontend/default/default/images/logo.jpg');

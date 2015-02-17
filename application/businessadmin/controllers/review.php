@@ -629,6 +629,65 @@ public function request($reviewid='',$userid='')
 				redirect($site_url,'refresh');
 			}
 		}
+		
+		function delete($id)
+		{
+			if($this->reviews->delete_review_byid($id))
+			{
+				$this->session->set_flashdata('success', 'Review deleted successfully');
+				redirect('review','refresh');
+			}
+			else
+			{
+				$this->session->set_flashdata('error', 'There is error in deleting review. Try later!');
+				redirect('review','refresh');
+			}
+		}
+		
+		
+		public function enable($id='')
+		{
+			  if($this->session->userdata['youg_admin'])
+			  {
+					if(!$id)
+					{
+						redirect('review', 'refresh');
+					}
+					
+					if( $this->reviews->enable_review_byid($id) )
+					{
+						$this->session->set_flashdata('success', 'Review status enabled successfully.');
+						redirect('review', 'refresh');
+					}
+					else
+					{
+						$this->session->set_flashdata('error', 'There is error in updating review status. Try later!');
+						redirect('review', 'refresh');
+					}
+			  }
+		}
+		
+		public function disable($id='')
+		{
+			if($this->session->userdata['youg_admin'])
+			{
+				if(!$id)
+				{
+					redirect('review', 'refresh');
+				}
+					
+				if( $this->reviews->disable_review_byid($id) )
+				{
+					$this->session->set_flashdata('success', 'Review status disabled successfully.');
+					redirect('review', 'refresh');
+				}
+				else
+				{
+					$this->session->set_flashdata('error', 'There is error in updating review status. Try later!');
+					redirect('review', 'refresh');
+				}
+		  }
+		}
 }
 
 /* End of file page.php */

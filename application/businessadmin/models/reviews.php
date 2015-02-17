@@ -259,13 +259,8 @@ class Reviews extends CI_Model
 						 		);
 		$this->db->where('id', $id);
 		if( $this->db->update('reviews', $data) )
-		{
-			$this->db->where('reviewid', $id);
-			$data1 = array('click'=>'Yes');
-			if( $this->db->update('reviewstatus', $data1) )
-			{		
-				return true;
-			}
+		{				
+			return true;			
 		}
 		else
 		{
@@ -284,13 +279,8 @@ class Reviews extends CI_Model
 						);
 		$this->db->where('id', $id);
 		if( $this->db->update('reviews', $data) )
-		{
-			$this->db->where('reviewid', $id);
-			$data1 = array('click'=>'Yes');
-			if( $this->db->update('reviewstatus', $data1) )
-			{		
-				return true;
-			}
+		{				
+			return true;			
 		}
 		else
 		{
@@ -412,6 +402,8 @@ class Reviews extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	
 }
 
 ?>
