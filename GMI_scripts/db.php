@@ -27,7 +27,7 @@ if($_SERVER['SERVER_NAME'] == 'www.yougotrated.writerbin.com'){
 $foldername = 'sitemap';
 $gzfoldername = 'gz';
 $bulkfoldername = 'bulk_sitemap';
-$company_filename ='company_details_';
+$company_filename ='company_details_'.date('Y-m-d').'_';
 $row_count = 49000;
 $no_of_rows = 0;
 ?>

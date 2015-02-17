@@ -9,7 +9,7 @@ if ($result->num_rows > 0) {
 ?>
 <script>
 var limit = <?php echo $limit; ?>;
-for(var i= 0;i<limit;i++){
+for(var i= 0;i<limit;i++){ 
 var xmlhttp;
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -48,4 +48,16 @@ $response .='</sitemapindex>';
 file_put_contents($bulkfoldername."/".$company_filename."_".date('Y-m-d').".xml", $response);
 }
 echo "<br>Please Add Bellow URL to Sitemap <br>GMI_scripts/".$bulkfoldername."/".$company_filename."_".date('Y-m-d').".xml"."<br>";
+
+$fn = "../robots.txt";
+$file = fopen($fn, "a+");
+$size = filesize($fn);
+$tests = '
+Sitemap: http://'.$_SERVER['SERVER_NAME']."/GMI_scripts/".$bulkfoldername."/".$company_filename."_".date('Y-m-d').".xml";
+
+if($tests) fwrite($file, $tests);
+
+$text = fread($file, $size);
+fclose($file);
+
 ?> 
