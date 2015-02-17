@@ -41,6 +41,7 @@
 						<input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30" value="<?php echo $showdata['company']; ?>">
 						<div id="nameerror" class="error">Name is required.</div>
 						<div id="nametknerror" class="error">This compnay name is already exists.</div>
+                                                <input id="namecheck" type="hidden">
 					</span>
 				</div>            
           </div>
@@ -86,6 +87,7 @@
 						<input type="email" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" value="<?php echo $showdata['email']; ?>">
 						<div id="emailerror" class="error">Enter valid Emailid.</div>
 						<div id="emailtknerror" class="error">This Emailid already taken.</div>
+                                                <input id="emailcheck" type="hidden">
 					</span>
 				</div>
             
@@ -452,11 +454,14 @@ $(document).ready(function(){
 	if(data.status=="success")
     {
       $('#nametknerror').hide();
+      $('#nameerror').hide();
+      $('#namecheck').val(data.checkname);
       return true;
     }
     else
     {
       $('#nametknerror').show();
+      $('#namecheck').val(data.checkname);
       return false;
     }
    }
@@ -464,6 +469,39 @@ $(document).ready(function(){
   }
  
  });
+
+
+ $("#email").blur(function(){
+ 
+  var requestData = {
+		type: 'checkEmail',
+		email: $("#email").val()
+	  };
+  $.ajax({
+   type: "POST",
+   url: "/solution/ajaxRequest",
+   data: requestData,
+   dataType:"json",
+   success: function(data){
+    if(data.status=="success")
+    {
+      $('#emailtknerror').hide();
+      $('#emailerror').hide();
+      $('#emailcheck').val(data.checkvalue);
+           return true;
+    }
+    else
+    {
+      $('#emailtknerror').show();
+      $('#emailcheck').val(data.checkvalue);
+      return false;
+    }
+   }
+  });
+
+ 
+ });
+
  
 	$('#cvvhover','#cvvhover').hide();
 
