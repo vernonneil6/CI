@@ -22,7 +22,7 @@
         <td>
         <textarea cols='90' rows='10'>
 			<?php 
-				$url = $this->setting->get_url_by_id(17); 
+				$url = $this->settings->get_url_by_id(17); 
 				echo $url[0]['siteurl'].'?affid='.$this->session->userdata['subbroker_data'][0]->id;
 			?>
         </textarea>
