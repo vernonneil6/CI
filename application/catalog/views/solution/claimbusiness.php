@@ -350,6 +350,9 @@
 						<div id="discnorerror" class="error">Its is not Available</div>
 						<div id="discallrerror" class="error">please enter code</div>
 						<input type="hidden" id="discount-code-type" name="discount-code-type" />
+                                                <input type="hidden" id="discounted-price" name="discounted-price" />  
+
+
 					</span>
 				</div>
           </div>
