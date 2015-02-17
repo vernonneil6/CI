@@ -2170,14 +2170,16 @@ public function upgrades($id)
 			if( $this->input->is_ajax_request() && ( $this->input->post('email') ) ){
 				$email=$this->input->post('email');
 				$emailStatus = array();
-				$company = $this->complaints->get_company_by_emailid($email);
+				$company = $this->complaints->get_companyemail_by_emailid($email);
 				if(count($company)>0)
 				{
 					$emailStatus['status'] = "error";
 					$emailStatus['emailError'] = "This company email address is already exists. Try later!";
-					echo json_encode($emailStatus);
+					$emailStatus['checkvalue']="0";
+                                        echo json_encode($emailStatus);
 				}else{
 					$emailStatus['status'] = "success";
+                                        $emailStatus['checkvalue']="1"; 
 					echo json_encode($emailStatus);					
 				}
 			}				
@@ -2192,9 +2194,11 @@ public function upgrades($id)
 				{
 					$nameStatus['status'] = "error";
 					$nameStatus['nameError'] = "This company Name already exists. Try later!";
-					echo json_encode($nameStatus);
+					$nameStatus['checkname']="0";
+                                        echo json_encode($nameStatus);
 				}else{
 					$nameStatus['status'] = "success";
+                                        $nameStatus['checkname']="1"; 
 					echo json_encode($nameStatus);
 					return true;
 				}

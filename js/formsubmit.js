@@ -64,32 +64,6 @@ $(document).ready(function() {
 			  $("#emailerror").hide();		 
 			  
 		  }
-		  console.log('inemail');
-		  
-		  /*ajax Email check*/
-				var requestData = {
-				type: 'checkEmail',
-				email: $("#email").val()
-				};
-				
-				$.ajax({
-					type: "POST",
-					url: "/index.php/solution/ajaxRequest",
-					data: requestData,
-					dataType:"json",
-					success: function(data){
-						console.log(data);
-						if(data.status == 'error'){
-							$("#emailtknerror").show().delay(5000).fadeOut();
-							$("#emailtknerror").html(data.emailError);
-							return false;
-						}
-						return true;						
-					},
-					error: function(data){
-						console.log(data)
-					}
-				});
 	  }
 	  
 	
@@ -322,7 +296,14 @@ $(document).ready(function() {
 	  {
 		return false;  
 	  }
-	  
+          if($("#namecheck").val()==0)
+          {
+               return false; 
+          }
+	  if($("#emailcheck").val()==0)
+          {
+               return false; 
+          } 
 	  
 	  $("#frmaddcompany").submit();
   });
