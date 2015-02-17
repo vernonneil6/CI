@@ -324,7 +324,8 @@ echo $header; ?>
           <div class="col1" style="width:100%">
             <div class="clearfix">
               <div class="lab" style="width: 14% !important;">
-                <label for="sortdesc">Sort Description <span class="errorsign">*</span></label>
+                <label for="sortdesc">Short Description <span class="errorsign">*</span></label>
+                <div class="pressrelease-note">This overview/summary will appear on your profile page or any page requiring a short description of the press release.</div>
               </div>
               <div class="con" style="width: 59% !important; text-align:justify; float:left;">
                 <?php if($this->uri->segment(2) == 'add') { ?>
@@ -334,7 +335,7 @@ echo $header; ?>
                 <?php echo form_textarea( array( 'name'=>'sortdesc','id'=>'sortdesc','class'=>'textarea','rows'=>'4','cols'=>'15','value'=>stripslashes($pressrelease[0]['sortdesc']) ) ); ?>
                 <?php } ?>
               </div>
-              <div id="sortdescerror" class="error" style="width:135px">Sort Description is required.</div>
+              <div id="sortdescerror" class="error" style="width:135px">Short Description is required.</div>
             </div>
           </div>
         </div>
