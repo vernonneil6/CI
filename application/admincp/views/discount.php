@@ -165,9 +165,9 @@
                 <label for="title">Discount Type</label>
               </div>              
                <?php echo form_radio(array('name'=>'discounttype','type'=>'radio','id'=>'discount_type_yes','class'=>'input','value'=>'1','style'=>'float:none;width:auto !important','onclick'=>'show_percentage_area(this);')); ?>
-                <label for="radyes" class="radspace" >Percentage Discount</label>
+                <label for="discount_type_yes" class="radspace" >Percentage Discount</label>
                 <?php echo form_radio(array('name'=>'discounttype','type'=>'radio','id'=>'discount_type_no','class'=>'input','value'=>'0','style'=>'float:none;width:auto !important','onclick'=>'show_percentage_area(this);')); ?>
-                <label for="radno" class="rednospace">Dollar Amount Discount</label>                   
+                <label for="discount_type_no" class="rednospace">Dollar Amount Discount</label>                   
             </div>
           </div>
         </div>
