@@ -348,52 +348,33 @@
                <meta itemprop = "itemReviewed" content = "<?php echo site_url(); ?>">
               </div>
               <div class="review_rgt reviewstab">
-
-			<div class="user_name">
-				
-				
-             <?php 
-			    if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') 
-			    { 
-			    if(count($users)>0) 
-			    { 
-					 if($users['username']!='')
-					  {
-					
+			
+			
+			<div class="user_name">	
+            <?php 
+			if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') 
+			{ 
+			    if($users['id']==$reviews[$i]['reviewby'])
+			    {
 			?>
-                  <a><span itemprop = "author"><?php echo $users['username'];?></span></a>
+					<a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><span itemprop = "author"><?php echo $users['username']; ?></span></a>
 			<?php
-				}else
-					{
-					?>
-						<a><?php echo "Anonymous"; ?></a>
-					<?php
-					}
-			}
+				}
+				else
+				{
+			?>
+					<a><span itemprop = "author"><?php echo $reviews[$i]['reviewby']; ?></span></a>
+			<?php
+				}
 			?>
             <div class="datereview"><span itemprop = "datePublished"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></span></div>
-                  <?php  } else {?>       
-				  <?php $user=$this->users->get_user_byid($reviews[$i]['reviewby']);?>
-                  <?php if(count($user)>0) { 
-					  if($user[0]['username']!='')
-					  {
-				   ?>
-					  
-                  <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><?php echo $user[0]['username'];?></a>
-                  <?php
-					}
-					else
-					{
-					?>
-						<a><?php echo "Anonymous"; ?></a>
-					<?php
-					}
-					?>
-			<div class="datereview"><span itemprop = "datePublished"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></span></div>
-                  <?php } ?>
-                  <?php } ?>
-                  </a>
-             </div>
+            <?php  
+            } 
+            ?>
+            </div>
+            
+            
+			
 
 
                 <div class="review_ratng_wrp">
