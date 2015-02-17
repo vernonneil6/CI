@@ -57,7 +57,7 @@
         <td>Widget</td>
         <td>
 		<a class="widgetview" href="<?php echo $url[0]['siteurl'];?>widget/business/<?php echo $companyid;?>" target="_blank" title="Click to view your widget">Click to view your widget</a>
-        Please copy and paste this embed code into your HTML/website code to add this widget to your website.</td>
+        <div>This embeddable widget will create a 'reviews' tab on the right side of the site it is embedded on. When clicked, the tab will show an iFrame popup, with an interactive list of reviews. Please copy and paste this embed code into your website's code. We recommend you place this code in a footer/file that appears on every page, or you can simply copy and paste this as-is into your website's CMS content editor.</div></td>
       </tr>
       <tr>
         <td>Widget Code</td>

@@ -152,7 +152,9 @@
     <div class="form-message error1">
       <p><?php echo $this->session->flashdata('error'); ?></p>
     </div>
-    <?php } 
+    <?php } ?>
+    <div class = "review_para">Find below a list of all reviews posted by customers on the front end of the YouGotRated.com website. You can go through our negative removal tool process for any of them - by clicking the icon in the removal request column. For reviews that you posted via our review-import tool, you can remove them at any time by clicking the Import Reviews tab in the left menu.</div>
+    <?php 
     if( count($reviews) > 0 ) {	 ?>
     <!-- table -->
     <table class="tab tab-drag">
