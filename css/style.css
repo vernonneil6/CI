@@ -2064,3 +2064,24 @@ margin-top: 5px;
 {
 	color : #999!important;
 }
+.form-col-1{
+	float:left;
+	width:190px;
+}
+.form-col-2{
+	float:left;
+	width:630px;
+}
+.form-circle{
+	width: 100px;
+	height: 100px;
+	background: none repeat scroll 0 0 #303030;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	color:white;
+	font-weight:bolder;
+	border-radius: 50%;				    
+	margin-left: 84px;
+	margin-top: 20px;
+	padding: 21px;   
+} 
