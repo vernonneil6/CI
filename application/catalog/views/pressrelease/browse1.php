@@ -96,7 +96,7 @@
               <span><?php echo $address;?></span>
               <div>
 				  <a href="tel:<?php echo $phone;?>" style="color: #999999;font-size: 12px;font-family: MyriadPro-Regular"><?php echo $phone;?></a><br/>
-				  <a href="<?php echo $url;?>" title="<?php echo $url;?>" target="_blank" style="color: #999999;font-family: MyriadPro-Regular;font-size: 12px;"><?php echo 'http://'.strtolower($url); ?></a>
+				  <a href="<?php echo $url;?>" title="<?php echo $url;?>" target="_blank" style="color: #999999;font-family: MyriadPro-Regular;font-size: 12px;"><?php echo strtolower($url); ?></a>
 			  </div>
               <div>
 				  <?php if( count($sems)>0 ) {?>
