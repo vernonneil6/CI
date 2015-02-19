@@ -428,7 +428,7 @@ else { ?>
     <!-- table -->
     <style>
     .tab th, .tab td
-    { padding: 8px 20px!important;}
+    { padding: 10px 18px !important;}
     </style>
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
