@@ -32,7 +32,7 @@ class Reviews extends CI_Model
 		
 	}
 	
-	function get_all_mainreviews($companyid,$siteid,$limit ='',$offset='',$sortby = 'id',$orderby = 'DESC')
+	function get_all_mainreviews($companyid,$siteid,$limit ='',$offset='',$sortby = 'reviewdate',$orderby = 'DESC')
  	{
 		//Ordering Data
 		$this->db->order_by($sortby,$orderby);
