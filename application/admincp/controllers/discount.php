@@ -142,7 +142,7 @@ class Discount extends CI_Controller {
 				$this->data['discount']['elitemembershipprice'] = $elitemembershipprice['value'];				
 				$this->data['discount']['discount_type'] = 'percentage';		
 				
-				if(($elitemembershipprice['value'] != $this->data['discount'][0]['discountprice']) && ($this->data['discount'][0]['percentage'] == 0) && ($this->data['discount'][0]['discountcodetype'] != '30-days-free-trial')){
+				if(($elitemembershipprice['value'] != $this->data['discount'][0]['discountprice']) && ($this->data['discount'][0]['percentage'] == 0)){
 					$this->data['discount']['discount_type'] = '';
 					$this->data['discount']['discount_amount'] = $elitemembershipprice['value'] - $this->data['discount'][0]['discountprice'];					
 				}
@@ -176,7 +176,7 @@ class Discount extends CI_Controller {
 				  }else{
 					$discountrate = $this->input->post('percentage_amount');
 			  	}
-					
+				  
 				  $discountprice= $elitemembershipprice['value']- $discountrate;
 				  $method=$this->input->post('discountmethod');
 				  if($method==1){
@@ -217,7 +217,6 @@ class Discount extends CI_Controller {
 			  }else{
 				$discountrate = $this->input->post('percentage_amount');
 			  }	
-			  	
 			  
 			  $discountprice= $elitemembershipprice['value']- $discountrate;
 			  $method=$this->input->post('discountmethod');

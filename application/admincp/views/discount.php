@@ -90,7 +90,7 @@
         <div class="form-cols"><!-- two form cols -->
           <div class="col1" style="width:100%">
             <div class="clearfix">
-              <div class="lab" style="width: 9% !important;">
+              <div class="lab" style="width: 13% !important;">
                 <label for="title">Discount Title<span class="errorsign">*</span></label>
               </div>
               <div class="con" style="width: 59% !important; float:left">
@@ -123,7 +123,8 @@
 					$("#amount_area").show();
 				}			
 			});
-			function show_percentage_area(a){				
+			function show_percentage_area(a){
+				console.log(a);	 				
 				if(a.id == 'discount_type_yes'){
 					if(a.value == 1){
 						$("#percentage_area").show();
@@ -147,7 +148,7 @@
 	<div class="form-cols"><!-- two form cols -->
           <div class="col1" style="width:100%">
             <div class="clearfix">
-              <div class="lab" style="width: 9% !important;">
+              <div class="lab" style="width: 13% !important;">
                 <label for="title">Discount Code<span class="errorsign">*</span></label>
               </div>              
  		<div class="con" style="width: 59% !important; float:left">
@@ -161,13 +162,33 @@
         <div class="form-cols"><!-- two form cols -->
           <div class="col1" style="width:100%">
             <div class="clearfix">
-              <div class="lab" style="width: 9% !important;">
+              <div class="lab" style="width: 13% !important;">
                 <label for="title">Discount Type</label>
-              </div>              
-               <?php echo form_radio(array('name'=>'discounttype','type'=>'radio','id'=>'discount_type_yes','class'=>'input','value'=>'1','style'=>'float:none;width:auto !important','onclick'=>'show_percentage_area(this);')); ?>
-                <label for="discount_type_yes" class="radspace" >Percentage Discount</label>
-                <?php echo form_radio(array('name'=>'discounttype','type'=>'radio','id'=>'discount_type_no','class'=>'input','value'=>'0','style'=>'float:none;width:auto !important','onclick'=>'show_percentage_area(this);')); ?>
-                <label for="discount_type_no" class="rednospace">Dollar Amount Discount</label>                   
+              </div>
+              <?php if($this->uri->segment(2) == 'add') { ?>              
+               
+				   <?php echo form_radio(array('name'=>'discounttype','type'=>'radio','id'=>'discount_type_yes','class'=>'input','value'=>'1','style'=>'float:none;width:auto !important','onclick'=>'show_percentage_area(this);')); ?>
+					<label for="discount_type_yes" class="radspace" >Percentage Discount</label>
+					<?php echo form_radio(array('name'=>'discounttype','type'=>'radio','id'=>'discount_type_no','class'=>'input','value'=>'0','style'=>'float:none;width:auto !important','onclick'=>'show_percentage_area(this);')); ?>
+					<label for="discount_type_no" class="radnospace">Dollar Amount Discount</label>                   
+    		  <?php } ?>
+               
+              <?php if($this->uri->segment(2) == 'edit') { ?>
+				    <?php if($discount[0]['percentage']!=0) { 
+							  echo form_radio(array('name'=>'discounttype','type'=>'radio','id'=>'discount_type_yes','class'=>'input','checked'=>'checked','value'=>'1','style'=>'float:none;width:auto !important','onchange'=>'show_percentage_area(this);')); 
+						   } else { 
+							  echo form_radio(array('name'=>'discounttype','type'=>'radio','id'=>'discount_type_yes','class'=>'input','value'=>'1','style'=>'float:none;width:auto !important','onclick'=>'show_percentage_area(this);')); 	 
+						   } 
+					  ?>	 
+					 <label for="discount_type_yes" class="radspace" >Percentage Discount</label>
+					 <?php if($discount[0]['percentage']==0) { 
+							  echo form_radio(array('name'=>'discounttype','type'=>'radio','id'=>'discount_type_no','class'=>'input','checked'=>'checked','value'=>'0','style'=>'float:none;width:auto !important','onchange'=>'show_percentage_area(this);')); 
+						   } else {
+							  echo form_radio(array('name'=>'discounttype','type'=>'radio','id'=>'discount_type_no','class'=>'input','value'=>'0','style'=>'float:none;width:auto !important','onclick'=>'show_percentage_area(this);')); 	     
+						   }
+					 ?>
+                 <label for="discount_type_no" class="radnospace">Dollar Amount Discount</label> 
+			  <?php } ?>	   
             </div>
           </div>
         </div>
@@ -175,45 +196,43 @@
         <div class="form-cols" id="percentage_area"><!-- two form cols -->
           <div class="col1" style="width:100%">
             <div class="clearfix">
-              <div class="lab" style="width: 9% !important;">
-                <label for="percentage">Percentage</label>
+              <div class="lab" style="width: 13% !important;">
+                <label for="percentage">Percentage (%)</label>
               </div>
-              <div class="con" style="width: 7% !important; float:left">
-                <?php $dis = range(0,100);
-                      $dis[0]="Select";
-    				  $js = "id='percentage' class='select' placeholder='Select'";
-					  ?>
-				<?php if($this->uri->segment(2) == 'add') { ?>
-                
-				<?php echo form_dropdown('percentage',$dis,'0',$js);?>
-                <?php } ?>
+              <div class="con" style="width: 11% !important; float:left">
+               	<?php if($this->uri->segment(2) == 'add') { ?>
+                <?php echo form_input( array( 'name'=>'percentage','id'=>'percentage','class'=>'input','type'=>'text','placeholder'=>'Enter Percentage')); ?>
+				<?php } ?>
                 <?php if($this->uri->segment(2) == 'edit') {  ?>
-                <?php echo form_dropdown('percentage',$dis,$discount[0]['percentage'],$js);?>
+			
+				<?php if($discount[0]['percentage']!=0) { $value=$discount[0]['percentage'];} ?>
+				<?php echo form_input( array( 'name'=>'percentage','id'=>'percentage','class'=>'input','type'=>'text','value'=>$value)); ?>	
                 <?php } ?>
               </div>
               <div id="percentageerror" class="error" style="width:145px">Select percentage.</div>
             </div>
           </div>
         </div>
-        
+        <?php $elitemembershipprice=$this->settings->update_get_eliteprice_by_settingid(19); ?>
         <div class="form-cols" id="amount_area"><!-- two form cols -->
           <div class="col1" style="width:100%">
             <div class="clearfix">
-              <div class="lab" style="width: 9% !important;">
+              <div class="lab" style="width: 13% !important;">
                 <label for="percentage">Dollar Amount ($)</label>
               </div>
-              <div class="con" style="width: 7% !important; float:left">
-                <?php $dis = range(0,$discount['elitemembershipprice']);
-                      $dis[0]="Select";
-    				  $js = "id='percentage_amount' class='select' placeholder='Select'";
-					  ?>
-				<?php if($this->uri->segment(2) == 'add') { ?>
-                
-				<?php echo form_dropdown('percentage_amount',$dis,'0',$js);?>
-                <?php } ?>
+            <div class="con" style="width: 11% !important; float:left">
+              	<?php if($this->uri->segment(2) == 'add') { ?>
+                <?php echo form_input( array( 'name'=>'percentage_amount','id'=>'percentage_amount','class'=>'input','type'=>'text','placeholder'=>'Enter Amount')); ?>
+				<?php } ?>
+				
                 <?php if($this->uri->segment(2) == 'edit') { ?>
-                <?php echo form_dropdown('percentage_amount',$dis,$discount['discount_amount'],$js);?>
+           
+                <?php if($discount[0]['percentage']==0) { $values=$elitemembershipprice['value']-$discount[0]['discountprice'];} ?>
+                <?php echo form_input( array( 'name'=>'percentage_amount','id'=>'percentage_amount','class'=>'input','type'=>'text','value'=>$values)); ?>
                 <?php } ?>
+            </div>
+              <div>
+                <span style="margin-left: 9px;margin-top: 6px;display: inline-block;">Price Range(0-<?php echo $elitemembershipprice['value'];?>)</span>
               </div>
               <div id="percentageerror" class="error" style="width:145px">Select Amount.</div>
             </div>
@@ -409,7 +428,7 @@ else { ?>
     <!-- table -->
     <style>
     .tab th, .tab td
-    { padding: 8px 25px!important}
+    { padding: 8px 20px!important;}
     </style>
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
@@ -428,12 +447,12 @@ else { ?>
         <td><?php echo stripslashes($discounts[$i]['code']); ?></td>
         <td><?php 
 	
-	if(($discounts['elitemembershipprice'] != $discounts[$i]['discountprice']) && ($discounts[$i]['percentage'] == 0) && ($discounts[$i]['discountcodetype'] != '30-days-free-trial')){		
+	if(($discounts['elitemembershipprice'] != $discounts[$i]['discountprice']) && ($discounts[$i]['percentage'] == 0)){		
 		$this->data['discount']['discount_amount'] = $discounts['elitemembershipprice'] - $discounts[$i]['discountprice'];					
-		echo '$ '.$this->data['discount']['discount_amount'];
-	}else{
-		echo stripslashes($discounts[$i]['percentage']).' %'; 
-	}
+		echo '$ '.$this->data['discount']['discount_amount']."&nbsp;OFF";
+		}else{
+			echo stripslashes($discounts[$i]['percentage']).' %'; 
+		}
 	?></td>
         <td><?php echo stripslashes($discounts[$i]['discountcodetype']); ?></td>
         <td>
