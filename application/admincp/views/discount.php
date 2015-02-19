@@ -232,7 +232,7 @@
                 <?php } ?>
             </div>
               <div>
-                <span style="margin-left: 9px;margin-top: 6px;display: inline-block;">Price Range(0-<?php echo $elitemembershipprice['value'];?>)</span>
+                <span style="margin-left: 9px;margin-top: 6px;display: inline-block;">Price Range(max-<?php echo $elitemembershipprice['value'];?>)</span>
               </div>
               <div id="percentageerror" class="error" style="width:145px">Select Amount.</div>
             </div>
