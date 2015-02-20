@@ -5,7 +5,7 @@
     <div class="banner_wrp"> <img class="containerimg" src="images/YouGotRated_HeaderGraphics_SignUpPage.png" alt="Register" title="Register"> </div>
     <div class="regr_lnk">
       <div class="innr_wrap">
-        <div class="new_usr"> Elite Member Registration: <a title="New Business">New Business Monthly Cost:<span id="discpricebanner">$299.00</span> </a> </div>
+        <div class="new_usr"> Elite Member Registration: <a title="New Business">New Business Monthly Cost:<span id="discpricebanner">$<?php echo $defaultprice=$this->common->get_setting_value(19);?>.00</span> </a> </div>
         
       </div>
     </div>
@@ -363,7 +363,7 @@
 					</span>
 					<span class="form-col-2">
 						<div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
-            <div class="reg_fld">MONTHLY COST: <span id="discprice">$299.00</span></div>
+            <div class="reg_fld">MONTHLY COST: <span id="discprice">$<?php echo $defaultprice=$this->common->get_setting_value(19);?>.00</span></div>
             <button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CONTINUE TO CHECKOUT</button>
 					</span>
 				</div>

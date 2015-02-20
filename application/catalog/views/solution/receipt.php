@@ -157,7 +157,13 @@ function FormatCreditCard($cc)
 				<th colspan="2">Credit Card Information</th>
 				<tr><td>Card Number</td><td class = "receipt_data"><?php echo FormatCreditCard(MaskCreditCard($register_data['ccnumber'])); ?></td></tr>
 				<tr><td>Expiration Date</td><td class = "receipt_data"><?php echo $register_data['expirationdatey'].'/'.$register_data['expirationdatem']; ?></td></tr>
-				<tr><td>Amount Per Month</td><td class = "receipt_data">$<?php echo $defaultprice=$this->common->get_setting_value(19);?></td></tr>				
+				
+<?php if(empty($register_data['discounted-price'])) { ?>
+<tr><td>Amount Per Month</td><td class = "receipt_data">$<?php echo $defaultprice=$this->common->get_setting_value(19);?></td></tr>
+<?php } else { ?>
+
+<tr><td>Amount Per Month</td><td class = "receipt_data">$<?php echo $register_data['discounted-price'];?></td></tr>
+<?php } ?>				
 				<tr><td colspan='2'>
 					<div id="termscondn">
 						<input type="checkbox" id="terms-conditions" />
