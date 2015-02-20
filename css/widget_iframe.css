@@ -24,7 +24,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 5;
+    z-index: 9999;
 }
 .close_popup{
 	background: url("../images/close.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
