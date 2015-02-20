@@ -7,6 +7,9 @@
     top: 43%;
     width: 45px;
 }
+.popupwidth{
+  position:absolute;
+}
 .close_popup{
 
 background: url("../images/close.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
