@@ -14,11 +14,11 @@
 #review_popup
 {
 	font-family: myriadpro-regular;
-	display: none;
+	display: block;
 }
 .review_cover{
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
-    display: block;
+    display: none;
     height: 100%;
     left: 0;
     position: fixed;

@@ -9,9 +9,9 @@ function popupwindow(w, h) {
 
 function showPopup(){
  popupwindow('500','560');
- document.getElementById('review_popup').style.display = 'block';
+ document.getElementById('review_cover').style.display = 'block';
 }
 
 function closePopup(){
- document.getElementById('review_popup').style.display = 'none'; 
+ document.getElementById('review_cover').style.display = 'none'; 
 }
