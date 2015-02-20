@@ -11,6 +11,21 @@
   position:absolute;
   background-color: #fff;
 }
+#review_popup
+{
+	font-family: myriadpro-regular;
+	display: none;
+}
+.review_cover{
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+    display: block;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+}
 .close_popup{
 	background: url("../images/close.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     display: inline-block;
@@ -21,4 +36,5 @@
     top: -20px;
     width: 32px;
     z-index: 50;
+    cursor: pointer;
 }
