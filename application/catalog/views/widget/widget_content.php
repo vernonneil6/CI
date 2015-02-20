@@ -28,8 +28,7 @@
 		<a target="_blank" href="<?php echo base_url(); ?>" title = "<?php echo base_url(); ?>">
 			<img  src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" width = "80px">
 		</a>
-	</div>
-	<label class = "widget_close">X</label>
+	</div>	
 	<div class = "clear"></div>
 </div>
 
