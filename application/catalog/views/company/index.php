@@ -462,13 +462,13 @@
                     <h2>Reported Damage: $<?php echo $complaints[$i]['damagesinamt'];?></h2>
                    </div>
                  <p> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['detail']),0,212)."..."); ?></a> </p>
-                <div class="cmnt_wrp wrps "><a class="valigns" href="<?php echo site_url('company/complaints/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a></div>
+                
                 </div>
                 </div>
                 
 		
               </div>
-              <?php } }else{?>
+              <?php } ?><div class="cmnt_wrp wrps "><a class="valigns" href="<?php echo site_url('company/complaints/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a></div> <?php }else{?>
               <div class="review_block noblock">
                 <p>No Complaints.</p>
               </div>

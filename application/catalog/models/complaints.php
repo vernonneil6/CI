@@ -282,8 +282,8 @@ class Complaints extends CI_Model
 		$this->db->from('complaints as c');
 		$this->db->join('company as cm','c.companyid=cm.id');
 		$this->db->join('user u','c.userid=u.id');
-		//$this->db->where('c.status','Enable');
-		//$this->db->where_in('c.websiteid',$sites);
+		$this->db->where('c.status','Enable');
+		$this->db->where_in('c.websiteid',$sites);
 		if($oldcmid!=''){
 		$this->db->where('c.id !=',$oldcmid);
 			}
