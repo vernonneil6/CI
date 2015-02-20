@@ -12,7 +12,7 @@
 
 <div id="review_popup" class = "popupwidth">
 
-	<iframe id="container_frame" src="http://www.yougotrated.com/widget/content/<?php echo $companyid; ?>" style="width:100%;height:100%;position:relative;" ></iframe></div> 
+	<iframe id="container_frame" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']. '/widget/content/'.$companyid; ?>" style="width:100%;height:100%;position:relative;" ></iframe></div> 
     
 </div>
 
