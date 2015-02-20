@@ -40,7 +40,7 @@
 						
 						<input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30" value="<?php echo $showdata['company']; ?>">
 						<div id="nameerror" class="error">Name is required.</div>
-						<div id="nametknerror" class="error">This compnay name is already exists.</div>
+						<div id="nametknerror" class="error">This company name is already exists.</div>
                                                 <input id="namecheck" type="hidden">
 					</span>
 				</div>            
