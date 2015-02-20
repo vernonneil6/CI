@@ -47,7 +47,7 @@
 </div>
 
 <div class = "review_tab_bottom" id = "scrollbar"> 
-			<div id = "itemContainer" style = "min-height: 850px;">
+			<div id = "itemContainer" style = "min-height:0px !important;">
             <?php 
             if( count($reviews) > 0 ) 
             { 		

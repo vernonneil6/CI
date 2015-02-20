@@ -4461,3 +4461,6 @@ margin-top: 5px;
 	color : #999!important;
 }
 
+#itemContainer{
+	min-height:5px !important;
+}
