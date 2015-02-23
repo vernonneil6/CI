@@ -65,35 +65,13 @@
 						<div class ="review_border_bottom padding_top_1">
 							<div class = "review_circle">
 							 <div class = "review_firstletter">
-								<label>
-									 <?php
-										if($users['id']==$reviews[$i]['reviewby'])
-										{
-											$firstword = $users['firstname']; 
-											echo ucfirst($firstword[0]);								
-										}
-										else
-										{											
-											$firstword = $reviews[$i]['reviewby']; 
-											echo ucfirst($firstword[0]);										
-										}
-									?>
-								</label>
+								<label><?php if($users['username']!=null){ $firstword = $users['username']; echo ucfirst($firstword[0]); } else { echo "A";}?></label>
 								<span class = "review_correct_circle"><i class="fa fa-check"></i></span>
 							 </div>
 							</div>
 							<div class = "review_username_row">
 								 <div class = "review_name_tab tooltip" >
-									 <?php
-										if($users['id']==$reviews[$i]['reviewby'])
-										{
-											echo ucfirst($users['firstname']);									
-										}
-										else
-										{
-											echo ucfirst($reviews[$i]['reviewby']); 									
-										}
-									?>
+									 <?php if($users['username']!=null){ echo ucfirst($users['username']); } else { echo "Anonymous";}?>
 									 <span class = "tooltip" 
 									   
 									 title = "
