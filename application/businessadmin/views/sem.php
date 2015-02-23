@@ -159,7 +159,7 @@ else { ?>
     <div class="headlines">
       <h2><span><?php echo "Social Media"; ?></span></h2>
     </div>
-    
+    <div class = "review_para">You can view and edit the social media account here. You can add URL to the social media account and also can enable it, So that it can be viewed at the front end of the Profile page in YouGotRated.com website(show publicly in YouGotRated).</div>
     <!-- Correct form message -->
     <?php if( $this->session->flashdata('success') ) { ?>
     <div class="form-message correct">
