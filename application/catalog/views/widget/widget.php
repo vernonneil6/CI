@@ -13,5 +13,5 @@
     
 </div>
 
-<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/widget.js'; ?>"></script>
+
 
