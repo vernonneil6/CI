@@ -69,7 +69,7 @@
 									 <?php
 										if($users['id']==$reviews[$i]['reviewby'])
 										{
-											$firstword = $users['username']; 
+											$firstword = $users['firstname']; 
 											echo ucfirst($firstword[0]);								
 										}
 										else
@@ -87,7 +87,7 @@
 									 <?php
 										if($users['id']==$reviews[$i]['reviewby'])
 										{
-											echo ucfirst($users['username']);									
+											echo ucfirst($users['firstname']);									
 										}
 										else
 										{
