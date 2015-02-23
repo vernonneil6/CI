@@ -103,10 +103,13 @@
             <span>FORGOT YOUR USERNAME? <a href="<?php echo site_url('login/forgotusername');?>" title="Click Here">CLICK HERE</a></span>
              </div>
           <div class="row">
-            <button type="submit" class="lgn_btn" title="Login" id="btnsubmit" name="btnsubmit" style="font-size:24px !important;">Login</button>
-            
+			<!--  
+            <button type="submit" class="lgn_btn" title="Login" id="btnsubmit" name="btnsubmit" style="font-size:24px !important;">Login</button>            
             <button onclick="FBLogin();" title="Signin in with facebook" style="cursor:pointer;font-size:24px !important;" class="lgn_btn">LOGIN WITH FACEBOOK</button>
-          </div>
+            -->
+            <input type="button" class="lgn_btn" title="Login" id="btnsubmit" name="btnsubmit" style="font-size:24px !important;" value="Login" />
+            <input type="button" onclick="FBLogin();" value="LOGIN WITH FACEBOOK" title="Signin in with facebook" style="cursor:pointer;font-size:24px !important;" class="lgn_btn"/>
+          </div> 
         </div>
         <div class="lgn_rgt">
           <div class="new_user">
