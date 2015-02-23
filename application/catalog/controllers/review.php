@@ -465,6 +465,9 @@ class Review extends CI_Controller
 					'charset'   => 'iso-8859-1'
 				);	
 		$this->load->library('email');
+		$this->config->load('email',TRUE);
+		$this->cnfemail = $this->config->item('email');
+		
 		$message  = $this->common->get_email_byid($emailid);
 		$subject  = str_replace("%reviewid%", $reviewid, stripslashes($message[0]['subject']));			
 		$mail     = str_replace("%url%", site_url($url), str_replace("%address%", $company['streetaddress'], str_replace("%merchantname%", $company['company'], str_replace("%city%", $company['city'], str_replace("%state%", $company['state'], str_replace("%zip%", $company['zip'], str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company['company']), str_replace("%name%", ucfirst($user['firstname']." ".$user['lastname']),str_replace("%carrier%", $reviewmail['carrier'], str_replace("%trackingno%", $reviewmail['trackingno'], str_replace("%dateshipped%", $reviewmail['dateshipped'], stripslashes($message[0]['mailformat']))))))))))))));			
