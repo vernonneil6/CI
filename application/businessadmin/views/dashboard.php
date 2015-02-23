@@ -80,6 +80,25 @@ height:70px !important;
 			<p>Embed YGR Seal</p>
           </a> </li>
       </ul>
+     
+       <?php if(count($checksem) > 0) { ?>
+       <?php for($i=0;$i<=count($checksem);$i++) { 
+			
+				$url= $checksem[$i]['url'];
+				$parsed_url=parse_url($url);
+				$sub_folder = explode('/',$parsed_url['path']);
+				$domain=$parsed_url['scheme'].'://'.$parsed_url['host'];
+				$folder="";
+				$a=array_filter($sub_folder);
+				if(!empty($a)){
+				  $check[]=$a;
+			    }
+			}
+		?>	
+        <?php if(count($check)==0) { ?>
+        <div class = "review_para">Note: Please update your social media account by clicking the Social Media tab in the left menu. You can add URL to the social media account and also can enable it, So that it can be viewed at the front end of the Profile page in YouGotRated.com website(show publicly in YouGotRated).</div>
+        <?php } ?>
+      <?php } ?>
     </div>
   </div>
   <!-- /box --> 

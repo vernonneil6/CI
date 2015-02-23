@@ -425,6 +425,29 @@ Class Settings extends CI_Model
 		}
 			
 	}
+	function get_social_status_by_id($id)
+	{
+		
+		$siteid = $this->session->userdata('siteid');
+		if($siteid=='')
+		{
+		$siteid=1;
+		}
+		$query=$this->db->select('*')
+		                ->from('youg_companysem')
+		                ->where(array('companyid'=>$id,'websiteid'=>$siteid,'status'=>'Enable'))
+		                ->get();
+		                
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return false;
+		}                
+		                  
+	}
 	
 	
 

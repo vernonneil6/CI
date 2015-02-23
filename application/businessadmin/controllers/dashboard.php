@@ -61,6 +61,8 @@ class Dashboard extends CI_Controller {
 	{
 		$session_data = $this->session->userdata['youg_admin'];
 		$this->data['username'] = ucfirst($session_data['username']);
+		$id=$session_data = $this->session->userdata['youg_admin']['id'];
+		$this->data['checksem'] = $this->settings->get_social_status_by_id($id);
 			
 		$this->load->view('dashboard',$this->data);	  
 	}
