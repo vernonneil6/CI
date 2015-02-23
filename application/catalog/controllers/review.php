@@ -455,12 +455,21 @@ class Review extends CI_Controller
 		$site_name  = $this->common->get_setting_value(1);
 		$site_email = $this->common->get_setting_value(5);
 		$site_url   = $this->reviews->get_setting_value(2);
-		
+		$config =  array(
+					'protocol' => 'smtp',
+					'smtp_host' => 'smtp.mandrillapp.com',
+					'smtp_port' => 587,
+					'smtp_user' => 'alankenn@grossmaninteractive.com',
+					'smtp_pass' => 'vPVq6nWolBWIKNp1LaWNFw',
+					'mailtype'  => 'html', 
+					'charset'   => 'iso-8859-1'
+				);	
 		$this->load->library('email');
 		$message  = $this->common->get_email_byid($emailid);
 		$subject  = str_replace("%reviewid%", $reviewid, stripslashes($message[0]['subject']));			
 		$mail     = str_replace("%url%", site_url($url), str_replace("%address%", $company['streetaddress'], str_replace("%merchantname%", $company['company'], str_replace("%city%", $company['city'], str_replace("%state%", $company['state'], str_replace("%zip%", $company['zip'], str_replace("%reviewid%", $reviewid, str_replace("%siteurl%", $site_url, str_replace("%company%", ucfirst($company['company']), str_replace("%name%", ucfirst($user['firstname']." ".$user['lastname']),str_replace("%carrier%", $reviewmail['carrier'], str_replace("%trackingno%", $reviewmail['trackingno'], str_replace("%dateshipped%", $reviewmail['dateshipped'], stripslashes($message[0]['mailformat']))))))))))))));			
 		
+		$this->email->initialize($config);
 		$this->email->from($site_email,$site_name);
 		$this->email->to($to);
 		$this->email->subject($subject);	
