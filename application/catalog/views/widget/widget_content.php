@@ -87,11 +87,11 @@
 									 <?php
 										if($users['id']==$reviews[$i]['reviewby'])
 										{
-											echo $users['username'];									
+											echo ucfirst($users['username']);									
 										}
 										else
 										{
-											echo $reviews[$i]['reviewby']; 									
+											echo ucfirst($reviews[$i]['reviewby']); 									
 										}
 									?>
 									 <span class = "tooltip" 
