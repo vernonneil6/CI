@@ -353,9 +353,9 @@ class Reviews extends CI_Model
 		}	
 	}
 	
-	function select_review_date($companyid, $userid)
+	function select_review_date($companyid, $userid, $reviewid)
 	{
-		$query = $this->db->get_where('youg_review_date',array('company_id'=>$companyid,'user_id'=>$userid));
+		$query = $this->db->get_where('youg_review_date',array('company_id'=>$companyid,'user_id'=>$userid, 'review_id'=>$reviewid));
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
