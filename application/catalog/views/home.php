@@ -53,10 +53,10 @@
         <div class="review_rgt  ">
               <div class="review_ratng_wrp">              
                 <div class="rat_title">  
-			  <?php if($complaints[$i]['reviewby']!=0 && count($user)>0){ ?>
+			  <?php if($complaints[$i]['reviewby']==$user[0]['id']){ ?>
 				  	<label><a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby']); ?>" class="homename" title="view profile"><?php echo $user[0]['username'];?></a></label>
 				  <?php } else{ ?>
-					<label><a href="Anonymous">Anonymous</a></label>
+					<label><a><?php echo $complaints[$i]['reviewby'];?></a></label>
 				  <?php } ?>
 				    
                    <span class="datehome"><?php echo date('m/d/Y',strtotime($complaints[$i]['reviewdate']));?></span>

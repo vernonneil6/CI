@@ -448,10 +448,12 @@
 		
 					<div class="user_name">
 							  <?php $user=$this->users->get_user_byid($complaints[$i]['userid']);?>
-							  <?php if(count($user)>0) { ?>
-							  <a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" title="view profile"><?php echo $user[0]['username'];?></a>
+							  <?php 
+								if(count($user)>0) { 
+							  ?>
+									<a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" title="view profile"><?php echo $user[0]['username'];?></a>
 							  <?php } else { ?>
-							  <a><?php echo "Anonymous";?></a>
+							  <a><?php echo "";?></a>
 							  <?php	}?>
 					 <span class="datereview"><?php echo date('m/d/Y',strtotime($complaints[$i]['complaindate']));?></span>
                 </div>
