@@ -129,7 +129,7 @@
 				<p>
 					<?php
 					$users = $this->users->get_user_bysingleid($reviews[$i]['reviewby']);
-					if($users['id']==$reviews[$i]['reviewby'])
+					if($users)
 					{
 					?>
 						<a target = "_blank" href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile" class="reviewcolor"><?php echo $users['username']; ?></a>
