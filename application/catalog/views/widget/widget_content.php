@@ -1,7 +1,7 @@
 <html>
 <head>
 	
-	<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/widget_css.css'; ?>" type="text/css">
+	<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/widget_content.css'; ?>" type="text/css">
 	<style>
 	@font-face {
 	  font-family: 'FontAwesome';
@@ -124,6 +124,7 @@
 								   <div class="rat_title reptitle">
 										<h2 class = "font_size_tab"><?php echo $reviews[$i]['reviewtitle'];?></h2>
 								   </div>
+								   <div class="clear"></div>
 								   <p><?php echo $reviews[$i]['comment'];?></p>		  					 
 							 </div>
 							 
