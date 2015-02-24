@@ -42,7 +42,7 @@
         <div class="hm_rvw_wrp">
           <?php if(count($complaints)>0) {?>
           <?php for($i=0; $i<count($complaints); $i++) {     ?>           
-          <?php $user=$this->users->get_user_byid($complaints[$i]['reviewby']) ;?>
+          <?php $user=$this->users->get_user_bysingleid($complaints[$i]['reviewby']) ;?>
           <div class="review_block <?php if($i%2==1)   {echo "fadeout";   }?>">
             <div class="review_lft">
               <div class="user_img"><img title="User image" alt="User image" src="images/default_user.png"></div>            
@@ -53,8 +53,8 @@
         <div class="review_rgt  ">
               <div class="review_ratng_wrp">              
                 <div class="rat_title">  
-			  <?php if($complaints[$i]['reviewby']==$user[0]['id']){ ?>
-				  	<label><a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby']); ?>" class="homename" title="view profile"><?php echo $user[0]['username'];?></a></label>
+			  <?php if($complaints[$i]['reviewby']==$user['id']){ ?>
+				  	<label><a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby']); ?>" class="homename" title="view profile"><?php echo $user['username'];?></a></label>
 				  <?php } else{ ?>
 					<label><a><?php echo $complaints[$i]['reviewby'];?></a></label>
 				  <?php } ?>
