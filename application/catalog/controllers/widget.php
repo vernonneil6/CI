@@ -17,6 +17,8 @@ class Widget extends CI_Controller {
 		$this->load->model('reviews');
 		$this->load->model('reviews');
 		$this->load->model('widgets');
+		
+		$this->load->library("pagination");
 
 	}
 	
@@ -71,11 +73,26 @@ class Widget extends CI_Controller {
 				$this->data['total'] = 0;
 			}
 		}
+
+		
+		$config = array();
+        $config["base_url"] = base_url() . "widget/content/". $companyid;
+        $config["total_rows"] =$this->reviews->get_reviews_bycompanyid_count($companyid);
+        $config["per_page"] = 5;
+        $config["uri_segment"] = 4;
+		$config['first_link'] = '';
+		$config['last_link'] = '';
+
+        $this->pagination->initialize($config);
+ 
+        $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+        $this->data["links"] = $this->pagination->create_links();
+      
 		
 		$this->data['companyid'] = $companyid;
 		$this->data['companyname'] = $company[0]['company'];
 		$this->data['companyseo'] = $company[0]['companyseokeyword'];
-		$this->data['reviews'] = $this->reviews->get_reviews_bycompanyid($companyid);	    
+		$this->data['reviews'] = $this->reviews->get_reviews_bycompanyid($companyid,$config["per_page"], $page);	    
 		$this->load->view('widget/widget_content',$this->data);
 	}
 }
