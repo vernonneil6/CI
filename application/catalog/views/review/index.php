@@ -127,21 +127,9 @@
 					</a>
 				</span>-
 				<p>
-					<?php
 					
-					if($reviews[$i]['id']==$reviews[$i]['reviewby'])
-					{
-					?>
-					<a target = "_blank" href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile" class="reviewcolor"> <?php echo ucfirst(stripslashes($reviews[$i]['username'])); ?></a>		
-					<?php
-					}
-					else
-					{
-					?>
-					<a  class = "reviewcolor"><?php echo ucfirst($reviews[$i]['reviewby']); ?></a>
-					<?php
-					}
-					?>
+					<a target = "_blank" href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile" class="reviewcolor"> <?php echo ucfirst(stripslashes($reviews[$i]['username'])); ?></a>
+					
 					
 				</p>
               <div class="revw_date">
