@@ -1,5 +1,6 @@
+<html>
+<head>
 <link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/widget_css.css'; ?>" type="text/css">
-<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/css/themes/widget-tooltip.css'; ?>" type="text/css">
 <style>
 @font-face {
   font-family: 'FontAwesome';
@@ -14,11 +15,10 @@
 
 <script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/jquery-1.7.min.js'; ?>" ></script>
 <script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/noconflict.js'; ?>" ></script>
-<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/fancybox.js'; ?>"></script>
-<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/jquery.tooltipster.min.js'; ?>"></script>
 <script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/jquery.raty.min.js'; ?>"></script>
-<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/widget.js'; ?>"></script>
-
+</head>
+<body>
+<div style="width: 498px;">
 <div class = "review_poweredby">Powered by YouGotRated</div>
 <div class = "review_tab_top">
 	<div class="widget_title">
@@ -83,7 +83,7 @@
 							 </div>
 							</div>
 							<div class = "review_username_row">
-								 <div class = "review_name_tab tooltip" >
+								 <div class = "review_name_tab" >
 									 <?php
 										if($users['id']==$reviews[$i]['reviewby'])
 										{
@@ -94,21 +94,18 @@
 											echo ucfirst($reviews[$i]['reviewby']); 									
 										}
 									?>
-									 <span class = "tooltip" 
-									   
-									 title = "
-									 &lt;div class&#61;&#34;tooltip_text&#34; &gt;
-									 &lt;div &gt; This review has been authenticated by &lt;span class&#61;&#34;tooltip_heading_color&#34; &gt; <?php echo strtoupper($companyname); ?> &lt;/span&gt; &lt;/div&gt;
-									 &lt;div &gt; and has been posted on YouGotRated by a real shopper. &lt;/div&gt;
-									 &lt;/div &gt;
-									 "
-									 >					
+									 <span class = "tool" >				
 										<?php if(count($elitemem_status)==0) { ?>
 											Not Verified Review  
 										<?php }else{  ?>
 											Verified Review
-										<?php } ?>           
+										<?php } ?>  
+												
 									</span>
+										<div class='tooltip_text'>
+											<div>This review has been authenticated by <span class="tooltip_heading_color"><?php echo strtoupper($companyname); ?> </span></div>
+											<div>and has been posted on YouGotRated by a real shopper.</div>
+										</div>	 
 								 </div>
 								 <div class = "review_date_tab"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
 								 <div class="review_rating_tab">
@@ -158,59 +155,28 @@
 									  <label>Was this review:</label>
 									  <?php $ip = $_SERVER['REMOTE_ADDR'];?>
 									  <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'helpful') == 'true'){ ?>
-									  <a class="vote-disable" id="helpful_<?php echo $reviews[$i]['id'];?>" reviewid="<?php echo $reviews[$i]['id'];?>" title="Helpful" style="cursor:pointer !important;"><b id="helpful<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'helpful');?></b> Helpful</a>
+									  <a class="vote-disable vote-helpful" id="helpful_<?php echo $reviews[$i]['id'];?>" reviewid="<?php echo $reviews[$i]['id'];?>" title="Helpful" style="cursor:pointer !important;"><b id="helpful<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'helpful');?></b> Helpful</a>
 									  <?php }else{ ?>
-									  <a class="vote" id="helpful_<?php echo $reviews[$i]['id'];?>" reviewid="<?php echo $reviews[$i]['id'];?>" title="Helpful" style="cursor:pointer !important;">Helpful</a>
+									  <a class="vote vote-helpful" id="helpful_<?php echo $reviews[$i]['id'];?>" reviewid="<?php echo $reviews[$i]['id'];?>" title="Helpful" style="cursor:pointer !important;">Helpful</a>
 									  <?php } ?>
 									  <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'funny') == 'true'){?>
-									  <a id="funny_<?php echo $reviews[$i]['id'];?>" class="vote-disable" title="funny" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;"><b id="funny<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'funny');?></b> Funny</a>
+									  <a id="funny_<?php echo $reviews[$i]['id'];?>" class="vote-disable vote-funny" title="funny" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;"><b id="funny<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'funny');?></b> Funny</a>
 									  <?php }else{ ?>
-									  <a id="funny_<?php echo $reviews[$i]['id'];?>" class="vote" title="funny" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;">Funny</a>
+									  <a id="funny_<?php echo $reviews[$i]['id'];?>" class="vote vote-funny" title="funny" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;">Funny</a>
 									  <?php } ?>
 									  <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'agree') == 'true'){?>
-									  <a id="agree_<?php echo $reviews[$i]['id'];?>" class="vote-disable" reviewid="<?php echo $reviews[$i]['id'];?>" title="Agree" style="cursor:pointer !important;"><b id="agree<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'agree');?></b> Agree</a>
+									  <a id="agree_<?php echo $reviews[$i]['id'];?>" class="vote-disable vote-agree" reviewid="<?php echo $reviews[$i]['id'];?>" title="Agree" style="cursor:pointer !important;"><b id="agree<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'agree');?></b> Agree</a>
 									  <?php }else{ ?>
-									  <a id="agree_<?php echo $reviews[$i]['id'];?>" class="vote" reviewid="<?php echo $reviews[$i]['id'];?>" title="Agree" style="cursor:pointer !important;">Agree</a>
+									  <a id="agree_<?php echo $reviews[$i]['id'];?>" class="vote vote-agree" reviewid="<?php echo $reviews[$i]['id'];?>" title="Agree" style="cursor:pointer !important;">Agree</a>
 									  <?php } ?>
 									  <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'disagree') == 'true'){?>
-									  <a id="disagree_<?php echo $reviews[$i]['id'];?>" class="vote-disable" title="disagree" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;"><b id="disagree<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'disagree');?></b> Disagree</a>
+									  <a id="disagree_<?php echo $reviews[$i]['id'];?>" class="vote-disable vote-disagree" title="disagree" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;"><b id="disagree<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'disagree');?></b> Disagree</a>
 									  <?php }else{ ?>
-									  <a id="disagree_<?php echo $reviews[$i]['id'];?>" class="vote" title="disagree" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;">Disagree</a>
+									  <a id="disagree_<?php echo $reviews[$i]['id'];?>" class="vote vote-disagree" title="disagree" reviewid="<?php echo $reviews[$i]['id'];?>" style="cursor:pointer !important;">Disagree</a>
 									  <?php } ?>
 									  <a target="_blank" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/browse/'. $reviews[$i]['seokeyword']; ?>" title="Review This Company" class="dir-searchbtn" style="cursor:pointer !important;">Review It</a>
 									  
-										  <script>
-											<?php $ip = $_SERVER['REMOTE_ADDR'];  ?>
-											
-											jQuery(document).ready(function(){ 
-											 jQuery("#helpful_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click', function() {
-												 var vote = 'helpful';
-												 var reviewid = jQuery(this).attr('reviewid');
-												 check('<?php echo $ip;?>',reviewid,vote);
-											   });
-											   jQuery("#funny_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
-												 var vote = 'funny';
-												 var reviewid = jQuery(this).attr('reviewid');
-												 check('<?php echo $ip;?>',reviewid,vote);
-											   });
-											   jQuery("#agree_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
-												 var vote = 'agree';
-												 var reviewid = jQuery(this).attr('reviewid');
-												 check('<?php echo $ip;?>',reviewid,vote);
-												 countme(reviewid,'disagree');
-												 jQuery('#disagree_'+reviewid).removeClass('vote-disable');
-												 jQuery('#disagree_'+reviewid).addClass('vote'); 
-											   });
-											   jQuery("#disagree_<?php echo $reviews[$i]['id'];?>").unbind('click').bind('click',function() {
-												 var vote = 'disagree';
-												 var reviewid = jQuery(this).attr('reviewid');
-												 check('<?php echo $ip;?>',reviewid,vote);
-												 countme(reviewid,'agree');
-												 jQuery('#agree_'+reviewid).removeClass('vote-disable');
-												 jQuery('#agree_'+reviewid).addClass('vote'); 
-											   });
-											});
-										</script>           
+										             
 									</span>
 								</div>
 								<div class = "clear"></div>
@@ -220,43 +186,98 @@
 						<?php
 						} 
 					} 
-				} 
-			}
+				}  ?>
+				
+			<?php  if(isset($links)) { ?>
+    <div class="pagination"> <?php echo $links; ?> </div>
+    <?php } ?>
+				
+		<?php	}
+			
 			?>
 			</div>
-			
-			<div class="holder"> </div>
-			
-			<link rel="stylesheet" href="<?php echo base_url(); ?>css/jPages.css" />
-			<link rel="stylesheet" href="<?php echo base_url(); ?>css/animate.css" />
-			<script type="text/javascript" src="<?php echo base_url();?>js/jPages.js"></script>
-			
+	
 			<script>
-				
+
 				jQuery(document).ready(function() 
 				{	
-										
-					jQuery("div.holder").jPages({
-						
-						containerID  : "itemContainer",
-						previous    : "&#60;",
-						next        : "&#62;",
-						perPage      : 5
-					
+					<?php $ip = $_SERVER['REMOTE_ADDR'];  ?>				
+									
+						jQuery(".vote-helpful").unbind('click').bind('click', function() {
+						 var vote = 'helpful';
+						 var reviewid = jQuery(this).attr('reviewid');
+						 check('<?php echo $ip;?>',reviewid,vote);
 						});
+						
+						jQuery(".vote-funny").unbind('click').bind('click', function() {
+						 var vote = 'funny';
+						 var reviewid = jQuery(this).attr('reviewid');
+						 check('<?php echo $ip;?>',reviewid,vote);
+						});
+						
+						jQuery(".vote-agree").unbind('click').bind('click', function() {
+						 var vote = 'agree';
+						 var reviewid = jQuery(this).attr('reviewid');
+						 check('<?php echo $ip;?>',reviewid,vote);
+						});
+						
+						jQuery(".vote-disagree").unbind('click').bind('click', function() {
+						 var vote = 'disagree';
+						 var reviewid = jQuery(this).attr('reviewid');
+						 check('<?php echo $ip;?>',reviewid,vote);
+						});
+											   		
+						
+function check(ip,rid,vote)
+ {
+
+ jQuery.ajax({
+ type : "POST",
+ url : "<?php echo site_url('review/checkvote');?>",
+ dataType : "json",
+ data : { ip:ip,reviewid:rid,vote : vote},
+ cache : false,
+ success : function(data)
+ {
+ if(data.message == 'deleted')
+ {
+ jQuery('#'+vote+'_'+rid).removeClass('vote-disable');
+ jQuery('#'+vote+'_'+rid).addClass('vote');
+ }
+ if(data.message == 'added')
+ {
+ jQuery('#'+vote+'_'+rid).removeClass('vote');
+ jQuery('#'+vote+'_'+rid).addClass('vote-disable');
+ }
+ countme(rid,vote);
+ }
+
+
+ });
+
+}
+
+
+function countme(rid,vote)
+ {
+ jQuery.ajax({
+ type : "POST",
+ url : "<?php echo site_url('review/countme');?>",
+ dataType : "json",
+ data : {reviewid:rid,vote : vote},
+ cache : false,
+ success : function(data)
+ {
+ jQuery('#'+vote+'_'+rid).html("<b>"+data.total+"</b>&nbsp;"+vote);
+
+ }
+ });
+ }
+	
 					
 					jQuery("div.holder > a").click(function(){
 						jQuery('.review_tab_bottom').animate({scrollTop:0}, 'slow');
-						});
-						
-					jQuery('.tooltip').tooltipster({
-		
-						theme: 'widget-tooltip',
-						position: 'bottom',
-						contentAsHTML: true
-					
-					});
-											
+						});											
 			   });
 			   jQuery(".widget_share").toggle(function () {
 				  jQuery(this).parent().find(".widget_social_link").css('display', 'inline-block');
@@ -282,50 +303,6 @@
 						
 			</div>
     </div>
-<script>
-	
-	function countme(rid,vote)
-	{
-	  jQuery.ajax({
-		  type 				: "POST",
-		  url 				: "<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/countme';?>",
-		  dataType 			: "json",
-		  data				: {reviewid:rid,vote : vote},
-		  cache				: false,
-		  success			: function(data)
-							  {	
-								jQuery('#'+vote+'_'+rid).html("<b>"+data.total+"</b>&nbsp;"+vote);
-							
-							  }
-	   });
-	}
-	
-	function check(ip,rid,vote)
-	{
-	  
-	  jQuery.ajax({
-		  type 				: "POST",
-		  url 				: "<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/checkvote';?>",
-		  dataType 			: "json",
-		  data				: { ip:ip,reviewid:rid,vote : vote},
-		  cache				: false,
-		  success			: function(data)
-							  {	
-								if(data.message == 'deleted')
-								{
-								   jQuery('#'+vote+'_'+rid).removeClass('vote-disable');
-								   jQuery('#'+vote+'_'+rid).addClass('vote');
-								}
-								if(data.message == 'added')
-								{
-								   jQuery('#'+vote+'_'+rid).removeClass('vote');
-								   jQuery('#'+vote+'_'+rid).addClass('vote-disable');										   										  
-								}
-								countme(rid,vote);
-							  }
-		  
-
-	   });
-	  
-	}
-</script>
+    </div>
+</body>
+</html>
