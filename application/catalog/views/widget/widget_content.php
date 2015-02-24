@@ -20,34 +20,38 @@
 </head>
 <body>
 <div class = "pop_width">
-<div class = "review_poweredby">Powered by YouGotRated</div>
-<div class = "review_tab_top">
-	<div class="widget_title">
-		<label >THESE ARE REAL REVIEWS <br> PUBLISHED ON YOUGOTRATED</label>
+	<div class = "review_poweredby">Powered by YouGotRated</div>
+	
+	<div class = "review_tab_top">
+		<div class="widget_title">
+			<label >THESE ARE REAL REVIEWS <br> PUBLISHED ON YOUGOTRATED</label>
+		</div>
+		<div class="widget_img">
+			<a target="_blank" href="<?php echo base_url(); ?>" title = "<?php echo base_url(); ?>">
+				<img  src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" width = "80px">
+			</a>
+		</div>	
+		<div class = "clear"></div>
 	</div>
-	<div class="widget_img">
-		<a target="_blank" href="<?php echo base_url(); ?>" title = "<?php echo base_url(); ?>">
-			<img  src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" width = "80px">
-		</a>
-	</div>	
-	<div class = "clear"></div>
-</div>
 
-<div class = "review_tab_middle">
-	 <div><label class = "widget_company_name"><a target="_blank" href = "<?php echo base_url().'company/'.$companyseo.'/reviews/coupons/complaints'; ?>"><?php echo ucfirst($companyname); ?></a></label></div>
-	 <div class="vry_rating vryrating">
-		<?php for($r=0;$r<round($averagerating);$r++){?>
-		<i class="vry_rat_icn"></i>
-		<?php } ?>
-		<?php for($p=0;$p<(5-round($averagerating));$p++){?>
-		<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
-		<?php } ?>
-		<label class = "single_review"><?php echo $total."  Reviews"; ?></label>
-	  </div>	
-	  <div class = "clear"></div>			  
-</div>
 
-<div class = "review_tab_bottom" id = "scrollbar"> 
+
+	<div class = "review_tab_middle">
+		 <div><label class = "widget_company_name"><a target="_blank" href = "<?php echo base_url().'company/'.$companyseo.'/reviews/coupons/complaints'; ?>"><?php echo ucfirst($companyname); ?></a></label></div>
+		 <div class="vry_rating vryrating">
+			<?php for($r=0;$r<round($averagerating);$r++){?>
+			<i class="vry_rat_icn"></i>
+			<?php } ?>
+			<?php for($p=0;$p<(5-round($averagerating));$p++){?>
+			<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
+			<?php } ?>
+			<label class = "single_review"><?php echo $total."  Reviews"; ?></label>
+		  </div>	
+		  <div class = "clear"></div>			  
+	</div>
+
+
+	<div class = "review_tab_bottom" id = "scrollbar"> 
 			<div id = "itemContainer" style = "min-height:0px !important;">
             <?php 
             if( count($reviews) > 0 ) 
@@ -189,48 +193,49 @@
 					} 
 				}  ?>
 				
-			<?php  if(isset($links)) { ?>
+	<?php  if(isset($links)) { ?>
     <div class="pagination"> <?php echo $links; ?> </div>
     <?php } ?>
 				
 		<?php	}
 			
 			?>
-			</div>
+	</div>
 	
-			<script>
+<script>
 
-				jQuery(document).ready(function() 
-				{	
-					<?php $ip = $_SERVER['REMOTE_ADDR'];  ?>				
-									
-						jQuery(".vote-helpful").unbind('click').bind('click', function() {
-						 var vote = 'helpful';
-						 var reviewid = jQuery(this).attr('reviewid');
-						 check('<?php echo $ip;?>',reviewid,vote);
-						});
-						
-						jQuery(".vote-funny").unbind('click').bind('click', function() {
-						 var vote = 'funny';
-						 var reviewid = jQuery(this).attr('reviewid');
-						 check('<?php echo $ip;?>',reviewid,vote);
-						});
-						
-						jQuery(".vote-agree").unbind('click').bind('click', function() {
-						 var vote = 'agree';
-						 var reviewid = jQuery(this).attr('reviewid');
-						 check('<?php echo $ip;?>',reviewid,vote);
-						});
-						
-						jQuery(".vote-disagree").unbind('click').bind('click', function() {
-						 var vote = 'disagree';
-						 var reviewid = jQuery(this).attr('reviewid');
-						 check('<?php echo $ip;?>',reviewid,vote);
-						});
+jQuery(document).ready(function() 
+{	
+	
+	<?php $ip = $_SERVER['REMOTE_ADDR'];  ?>				
+					
+	jQuery(".vote-helpful").unbind('click').bind('click', function() {
+	 var vote = 'helpful';
+	 var reviewid = jQuery(this).attr('reviewid');
+	 check('<?php echo $ip;?>',reviewid,vote);
+	});
+	
+	jQuery(".vote-funny").unbind('click').bind('click', function() {
+	 var vote = 'funny';
+	 var reviewid = jQuery(this).attr('reviewid');
+	 check('<?php echo $ip;?>',reviewid,vote);
+	});
+	
+	jQuery(".vote-agree").unbind('click').bind('click', function() {
+	 var vote = 'agree';
+	 var reviewid = jQuery(this).attr('reviewid');
+	 check('<?php echo $ip;?>',reviewid,vote);
+	});
+	
+	jQuery(".vote-disagree").unbind('click').bind('click', function() {
+	 var vote = 'disagree';
+	 var reviewid = jQuery(this).attr('reviewid');
+	 check('<?php echo $ip;?>',reviewid,vote);
+	});
 											   		
 						
 function check(ip,rid,vote)
- {
+{
 
  jQuery.ajax({
  type : "POST",
@@ -260,7 +265,7 @@ function check(ip,rid,vote)
 
 
 function countme(rid,vote)
- {
+{
  jQuery.ajax({
  type : "POST",
  url : "<?php echo site_url('review/countme');?>",
@@ -274,35 +279,36 @@ function countme(rid,vote)
  }
  });
  }
-	
+ 				
+	jQuery("div.holder > a").click(function(){
+		jQuery('.review_tab_bottom').animate({scrollTop:0}, 'slow');
+		});											
+   });
+   
+   jQuery(".widget_share").toggle(function () {
+	  jQuery(this).parent().find(".widget_social_link").css('display', 'inline-block');
+   },function(){
+	  jQuery(this).parent().find(".widget_social_link").css('display', 'none');
+   });
+   
+</script>
+			
+			
+		<?php			 
+		if( count($reviews)==0 ) 
+		{ 
+		?>
+		<div class="form-message warning">
+		  <p>No Reviews.</p>
+		</div>
+		<?php 
+		}
+		?>
+		<div>
+			
+		
 					
-					jQuery("div.holder > a").click(function(){
-						jQuery('.review_tab_bottom').animate({scrollTop:0}, 'slow');
-						});											
-			   });
-			   jQuery(".widget_share").toggle(function () {
-				  jQuery(this).parent().find(".widget_social_link").css('display', 'inline-block');
-			   },function(){
-				  jQuery(this).parent().find(".widget_social_link").css('display', 'none');
-			   });
-			</script>
-			
-			
-			<?php			 
-			if( count($reviews)==0 ) 
-			{ 
-			?>
-            <div class="form-message warning">
-              <p>No Reviews.</p>
-            </div>
-            <?php 
-            }
-            ?>
-            <div>
-				
-			
-						
-			</div>
+		</div>
     </div>
     </div>
 </body>
