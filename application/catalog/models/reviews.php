@@ -11,7 +11,7 @@ class Reviews extends CI_Model
 		
 		$siteid = $this->session->userdata('siteid');
 		//Executing Query
-		$this->db->select('r.*, cm.company,cm.logo,u.firstname,u.username,u.lastname,u.avatarbig,u.gender,u.id');
+		$this->db->select('r.*, cm.company,cm.logo,u.firstname,u.username,u.lastname,u.avatarbig,u.gender');
 		$this->db->from('reviews as r');
 		$this->db->join('company as cm','r.companyid=cm.id','left');
 		$this->db->join('user as u','r.reviewby=u.id','left');

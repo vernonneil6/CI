@@ -53,7 +53,7 @@
         <div class="review_rgt  ">
               <div class="review_ratng_wrp">              
                 <div class="rat_title">  
-			  <?php if($user){ ?>
+			  <?php if($complaints[$i]['reviewby']==$user['id']){ ?>
 				  	<label><a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby']); ?>" class="homename" title="view profile"><?php echo $user['username'];?></a></label>
 				  <?php } else{ ?>
 					<label><a><?php echo $complaints[$i]['reviewby'];?></a></label>
