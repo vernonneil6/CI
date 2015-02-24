@@ -245,7 +245,10 @@
 	right : 9px;
 	cursor : pointer;
 }
-
+.pop_width
+{
+	width: 500px;
+}
 /*tools*/
 
 

@@ -1,61 +1,21 @@
-jQuery(document).ready(function()
- {
- jQuery('.tooltip').tooltipster({
-
- theme: 'widget-tooltip',
- position: 'bottom',
- contentAsHTML: true
-
- });
-
- jQuery('.fancybox').fancybox();
-
- jQuery('.widget_close').click(function(){
- jQuery('.fancybox-overlay').hide();
- });
- });
-
- function countme(rid,vote)
- {
- jQuery.ajax({
- type : "POST",
- url : "<?php echo site_url('review/countme');?>",
- dataType : "json",
- data : {reviewid:rid,vote : vote},
- cache : false,
- success : function(data)
- {
- $('#'+vote+'_'+rid).html("<b>"+data.total+"</b>&nbsp;"+vote);
-
- }
- });
- }
-
- function check(ip,rid,vote)
- {
-
- jQuery.ajax({
- type : "POST",
- url : "<?php echo site_url('review/checkvote');?>",
- dataType : "json",
- data : { ip:ip,reviewid:rid,vote : vote},
- cache : false,
- success : function(data)
- {
- if(data.message == 'deleted')
- {
- $('#'+vote+'_'+rid).removeClass('vote-disable');
- $('#'+vote+'_'+rid).addClass('vote');
- }
- if(data.message == 'added')
- {
- $('#'+vote+'_'+rid).removeClass('vote');
- $('#'+vote+'_'+rid).addClass('vote-disable');
- }
- countme(rid,vote);
- }
-
-
- });
-
+function popupwindow(w, h) {
+  var left = (screen.width/2)-(w/2);
+  var top = (screen.height/2)-(h/2);
+  document.getElementById("review_popup").style.left = left+'px'; 
+  document.getElementById("review_popup").style.top = top+'px';
+  document.getElementById("review_popup").style.width = w+'px';
+  document.getElementById("review_popup").style.height = h+'px';  
 }
+
+function showPopup(){
+ 
+ document.getElementById('review_cover').style.display = 'block';
+ document.getElementById('review_cover').style.visibility = 'visible';
+}
+
+function closePopup(){
+ document.getElementById('review_cover').style.display = 'none'; 
+ document.getElementById('review_cover').style.visibility = 'hidden';
+}
+
+popupwindow('500','560');
