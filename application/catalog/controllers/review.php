@@ -621,150 +621,153 @@ class Review extends CI_Controller
 	
 	public function merchantbuyermail($reviewid)
 	{
-		$data 		= $this->reviews->get_reviewmail_bysinglereviewid($reviewid);
-		$user 		= $this->users->get_user_bysingleid($data['user_id']);
-		$company 	= $this->users->get_company_bysingleid($data['company_id']);	
-		$resolution = $data['resolution'];
-		$status 	= $data['status'];
-		$url 		= 'businessadmin/review/resolution/'.$reviewid;
-		
-		$date2 		= date("Y-m-d");
-		
-		$date1  	= $data['date'];
-		$diff   	= abs(strtotime($date2) - strtotime($date1));
-		$years  	= floor($diff / (365*60*60*24));
-		$months 	= floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-		$days 		= floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-		
-		$checkdate1 = $data['checkdate'];
-		$diff1   	= abs(strtotime($date2) - strtotime($checkdate1));
-		$years1  	= floor($diff1 / (365*60*60*24));
-		$months1 	= floor(($diff1 - $years1 * 365*60*60*24) / (30*60*60*24));
-		$checkdays 	= floor(($diff1 - $years1 * 365*60*60*24 - $months1*30*60*60*24)/ (60*60*24));
-		
-		if ($resolution == '1')
+		if($this->reviews->get_reviewmail_bysinglereviewid($reviewid))
 		{
-			if ($days == 5 and $status == 0)
-			{
-				$this->review_mail($data['review_id'], '24', $url, $company['contactemail']);	
-				$this->email->send();
-			}
+			$data 		= $this->reviews->get_reviewmail_bysinglereviewid($reviewid);
+			$user 		= $this->users->get_user_bysingleid($data['user_id']);
+			$company 	= $this->users->get_company_bysingleid($data['company_id']);	
+			$resolution = $data['resolution'];
+			$status 	= $data['status'];
+			$url 		= 'businessadmin/review/resolution/'.$reviewid;
 			
-			else if ($days == 7 and $status == 0)
+			$date2 		= date("Y-m-d");
+			
+			$date1  	= $data['date'];
+			$diff   	= abs(strtotime($date2) - strtotime($date1));
+			$years  	= floor($diff / (365*60*60*24));
+			$months 	= floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+			$days 		= floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+			
+			$checkdate1 = $data['checkdate'];
+			$diff1   	= abs(strtotime($date2) - strtotime($checkdate1));
+			$years1  	= floor($diff1 / (365*60*60*24));
+			$months1 	= floor(($diff1 - $years1 * 365*60*60*24) / (30*60*60*24));
+			$checkdays 	= floor(($diff1 - $years1 * 365*60*60*24 - $months1*30*60*60*24)/ (60*60*24));
+			
+			if ($resolution == '1')
 			{
-				$this->review_mail($data['review_id'], '26', $url, $user['email']);	
-				if($this->email->send())
+				if ($days == 5 and $status == 0)
 				{
-					$this->reviews->get_update_review_status($reviewid);
+					$this->review_mail($data['review_id'], '24', $url, $company['contactemail']);	
+					$this->email->send();
 				}
-			}
-		}
-		
-		if($resolution == '2')
-		{
-			if ($days == 7 and $status == 0 || $checkdays == 15 and $status == 2)
-			{
-				$this->reviews->delete_review_byid($reviewid);
-				$this->reviews->delete_comment($reviewid);
-				$this->reviews->delete_reviewmail($reviewid);
-			}
-			
-			else if ($checkdays == 10 and $status == 1)
-			{
 				
-				$this->review_mail($data['review_id'], '31', $url, $company['contactemail']);				
-				$this->email->send();
-			}
-			
-			else if ($checkdays == 13 and $status == 1)
-			{
-				$this->review_mail($data['review_id'], '26', $url, $user['email']);	
-				if($this->email->send())
+				else if ($days == 7 and $status == 0)
 				{
-					$this->reviews->get_update_review_status($reviewid);
-				}
-			}			
-		}
-		
-		if($resolution == '3')
-		{
-			if ($days == 7 and $status == 0)
-			{
-				$this->reviews->delete_review_byid($reviewid);
-				$this->reviews->delete_comment($reviewid);
-				$this->reviews->delete_reviewmail($reviewid);
-			}
-			
-			else if ($checkdays == 10 and $status == 1)
-			{
-				$this->review_mail($data['review_id'], '35', $url, $company['contactemail']);				
-				$this->email->send();
-			}
-			
-			else if ($checkdays == 12 and $status == 1)
-			{
-				$this->review_mail($data['review_id'], '26', $url, $user['email']);	
-				if($this->email->send())
-				{
-					$this->reviews->get_update_review_status($reviewid);
+					$this->review_mail($data['review_id'], '26', $url, $user['email']);	
+					if($this->email->send())
+					{
+						$this->reviews->get_update_review_status($reviewid);
+					}
 				}
 			}
 			
-			else if ($checkdays == 30 and $status == 2)
+			if($resolution == '2')
 			{
-				$this->reviews->delete_review_byid($reviewid);
-				$this->reviews->delete_comment($reviewid);
-				$this->reviews->delete_reviewmail($reviewid);
-			}
-		}
-		
-		if($resolution == '4')
-		{
-			if ($days == 15 and $status == 0)
-			{
-				$this->review_mail($data['review_id'], '38', $url, $company['contactemail']);				
-				$this->email->send();
-			}
-		
-			else if ($days == 17 and $status == 0)
-			{
-				$this->review_mail($data['review_id'], '26', $url, $user['email']);	
-				if($this->email->send())
+				if ($days == 7 and $status == 0 || $checkdays == 15 and $status == 2)
 				{
-					$this->reviews->get_update_review_status($reviewid);
+					$this->reviews->delete_review_byid($reviewid);
+					$this->reviews->delete_comment($reviewid);
+					$this->reviews->delete_reviewmail($reviewid);
+				}
+				
+				else if ($checkdays == 10 and $status == 1)
+				{
+					
+					$this->review_mail($data['review_id'], '31', $url, $company['contactemail']);				
+					$this->email->send();
+				}
+				
+				else if ($checkdays == 13 and $status == 1)
+				{
+					$this->review_mail($data['review_id'], '26', $url, $user['email']);	
+					if($this->email->send())
+					{
+						$this->reviews->get_update_review_status($reviewid);
+					}
+				}			
+			}
+			
+			if($resolution == '3')
+			{
+				if ($days == 7 and $status == 0)
+				{
+					$this->reviews->delete_review_byid($reviewid);
+					$this->reviews->delete_comment($reviewid);
+					$this->reviews->delete_reviewmail($reviewid);
+				}
+				
+				else if ($checkdays == 10 and $status == 1)
+				{
+					$this->review_mail($data['review_id'], '35', $url, $company['contactemail']);				
+					$this->email->send();
+				}
+				
+				else if ($checkdays == 12 and $status == 1)
+				{
+					$this->review_mail($data['review_id'], '26', $url, $user['email']);	
+					if($this->email->send())
+					{
+						$this->reviews->get_update_review_status($reviewid);
+					}
+				}
+				
+				else if ($checkdays == 30 and $status == 2)
+				{
+					$this->reviews->delete_review_byid($reviewid);
+					$this->reviews->delete_comment($reviewid);
+					$this->reviews->delete_reviewmail($reviewid);
 				}
 			}
 			
-			else if ($checkdays == 30 and $status == 2)
+			if($resolution == '4')
 			{
-				$this->reviews->delete_review_byid($reviewid);
-				$this->reviews->delete_comment($reviewid);
-				$this->reviews->delete_reviewmail($reviewid);
-			}
-		}
-		
-		if($resolution == '5')
-		{
-			if ($days == 15 and $status == 0)
-			{
-				$this->review_mail($data['review_id'], '40', $url, $company['contactemail']);				
-				$this->email->send();
-			}
-			
-			else if ($days == 17 and $status == 0)
-			{
-				$this->review_mail($data['review_id'], '26', $url, $user['email']);	
-				if($this->email->send())
+				if ($days == 15 and $status == 0)
 				{
-					$this->reviews->get_update_review_status($reviewid);
+					$this->review_mail($data['review_id'], '38', $url, $company['contactemail']);				
+					$this->email->send();
+				}
+			
+				else if ($days == 17 and $status == 0)
+				{
+					$this->review_mail($data['review_id'], '26', $url, $user['email']);	
+					if($this->email->send())
+					{
+						$this->reviews->get_update_review_status($reviewid);
+					}
+				}
+				
+				else if ($checkdays == 30 and $status == 2)
+				{
+					$this->reviews->delete_review_byid($reviewid);
+					$this->reviews->delete_comment($reviewid);
+					$this->reviews->delete_reviewmail($reviewid);
 				}
 			}
 			
-			else if ($checkdays == 15 and $status == 2)
+			if($resolution == '5')
 			{
-				$this->reviews->delete_review_byid($reviewid);
-				$this->reviews->delete_comment($reviewid);
-				$this->reviews->delete_reviewmail($reviewid);
+				if ($days == 15 and $status == 0)
+				{
+					$this->review_mail($data['review_id'], '40', $url, $company['contactemail']);				
+					$this->email->send();
+				}
+				
+				else if ($days == 17 and $status == 0)
+				{
+					$this->review_mail($data['review_id'], '26', $url, $user['email']);	
+					if($this->email->send())
+					{
+						$this->reviews->get_update_review_status($reviewid);
+					}
+				}
+				
+				else if ($checkdays == 15 and $status == 2)
+				{
+					$this->reviews->delete_review_byid($reviewid);
+					$this->reviews->delete_comment($reviewid);
+					$this->reviews->delete_reviewmail($reviewid);
+				}
 			}
 		}
 	}	
