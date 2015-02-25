@@ -70,6 +70,7 @@
 {
 	float : left;
 	color: #3085cc;
+	position : relative;
 }
 .review_date_tab
 {
@@ -254,6 +255,7 @@
 	padding : 15px;
 	color: black;
     font-weight: 100;
+    width: 310px;
 }
 .tooltip_heading_color
 {
