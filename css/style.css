@@ -144,7 +144,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 
 
 .home_mar_line{margin:8px 0;}
-.home_mar_title{color: black;font-family: "MyriadPro-BlackSemiCn"; font-size: 15px;}
+.home_mar_title{color: black!important;font-family: MyriadPro-BlackSemiCn!important; font-size: 15px!important;}
 /*============================Menu===================================*/
 .menu{
  	   

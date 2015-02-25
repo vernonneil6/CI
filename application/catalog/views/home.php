@@ -60,9 +60,9 @@
               <div class="review_ratng_wrp">              
                 <div class="rat_title">  
 			  <?php if($complaints[$i]['reviewby']==$user['id']){ ?>
-				  	<label><a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby']); ?>" class="homename" title="view profile"><?php echo $user['username'];?></a></label>
+				  	<label><a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby']); ?>" class="homename" title="view profile"><?php echo ucfirst($user['username']);?></a></label>
 				  <?php } else{ ?>
-					<label><a><?php echo $complaints[$i]['reviewby'];?></a></label>
+					<label><a><?php echo ucfirst($complaints[$i]['reviewby']);?></a></label>
 				  <?php } ?>
 				    
                    <span class="datehome"><?php echo date('m/d/Y',strtotime($complaints[$i]['reviewdate']));?></span>
