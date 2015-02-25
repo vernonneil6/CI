@@ -469,7 +469,7 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
 }
 .review_size_change
 {
-	padding:15px 0!important;
+	padding:20px 0!important;
 }
 .homename
 {
@@ -1754,7 +1754,7 @@ padding-left: 18px;
 
 .reviewrate{padding-left: 20px;margin-top: 0;}
 .reviewname{float:left;}
-.reviewspace{padding-top: 10px;}
+.reviewspace{padding-top: 15px;margin: 0 0 20px!important;}
 
 .badgeviews
 {
