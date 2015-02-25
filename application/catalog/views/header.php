@@ -76,7 +76,8 @@
         <div class="head_right_lnk">
 		<div class="headersignup"><a href="<?php echo site_url('go/register');?>" title="Signup">Signup</a></div>
 		<div class="headerlogin"><a href="<?php echo site_url('login');?>" title="Login">Login</a></div>
-		<div class="headerfb"><a onclick="FBLogin();" title="Login with facebook" style="cursor:pointer;" >Login WITH FACEBOOK</a></div>
+		<div class="headerbusiness"><a href="https://business.yougotrated.com" title="Become A Verified Business" style="cursor:pointer;" >Become A Verified Business</a></div>
+		<!--<div class="headerfb"><a onclick="FBLogin();" title="Login with facebook" style="cursor:pointer;" >Login WITH FACEBOOK</a></div>-->
 	</div>
         <?php }?>
         <?php $actual_link = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];?>
