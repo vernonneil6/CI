@@ -383,6 +383,10 @@ class Reviews extends CI_Model
  	{
 		return $this->db->get('youg_reviewmail')->result_array();
 	}
+	function get_all_reviewscron()
+ 	{
+		return $this->db->get('youg_reviews')->result_array();
+	}
 	
 	function get_review_bysingleid($reviewid)
  	{

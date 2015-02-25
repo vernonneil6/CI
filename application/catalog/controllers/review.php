@@ -611,7 +611,7 @@ class Review extends CI_Controller
 	
 	public function cronjob()
 	{
-		$result = $this->reviews->get_all_reviewmail();
+		$result = $this->reviews->get_all_reviewscron();
 		foreach ( $result as $record )
 		{
 			$this->merchantbuyermail($record['id']);
@@ -621,7 +621,7 @@ class Review extends CI_Controller
 	
 	public function merchantbuyermail($reviewid)
 	{
-		$data = $this->reviews->get_reviewmail_bysinglereviewid($reviewid);
+		$data 		= $this->reviews->get_reviewmail_bysinglereviewid($reviewid);
 		$user 		= $this->users->get_user_bysingleid($data['user_id']);
 		$company 	= $this->users->get_company_bysingleid($data['company_id']);	
 		$resolution = $data['resolution'];
