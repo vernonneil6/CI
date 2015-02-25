@@ -42,6 +42,7 @@
 						<div id="nameerror" class="error">Name is required.</div>
 						<div id="nametknerror" class="error">This company name is already exists.</div>
                                                 <input id="namecheck" type="hidden">
+                                                <input name="elitemem" id="elitemem" type="hidden" value="<?php echo $showdata['id'];?>">
 					</span>
 				</div>            
           </div>
@@ -440,42 +441,48 @@ $(document).ready(function(){
   }
  
  });
- 
+
+
+
  $("#name").blur(function(){
-  if($("#name").val().length >= 4)
-  {
-  var requestData = {
-		type: 'checkCompanyname',
-		name: $("#name").val()
-	  };
-  $.ajax({
-   type: "POST",
-   url: "/solution/ajaxRequest",
-   data: requestData,
-   dataType:"json",
-   success: function(data){
-	if(data.status=="success")
-    {
-      $('#nametknerror').hide();
-      $('#nameerror').hide();
-      $('#namecheck').val(data.checkname);
-      return true;
-    }
-    else
-    {
-      $('#nametknerror').show();
-      $('#namecheck').val(data.checkname);
-      return false;
-    }
-   }
-  });
-  }
+ var elitememflag=$('#elitemem').val();
+  if(elitememflag==''){
+	  if($("#name").val().length >= 4)
+	  {
+	  var requestData = {
+			type: 'checkCompanyname',
+			name: $("#name").val()
+		  };
+	  $.ajax({
+	   type: "POST",
+	   url: "/solution/ajaxRequest",
+	   data: requestData,
+	   dataType:"json",
+	   success: function(data){
+		if(data.status=="success")
+	    {
+	      $('#nametknerror').hide();
+	      $('#nameerror').hide();
+	      $('#namecheck').val(data.checkname);
+	      return true;
+	    }
+	    else
+	    {
+	      $('#nametknerror').show();
+	      $('#namecheck').val(data.checkname);
+	      return false;
+	    }
+	   }
+	  });
+	  }
  
- });
+ }
+});
 
 
  $("#email").blur(function(){
- 
+var elitememflag=$('#elitemem').val();
+ if(elitememflag==''){
   var requestData = {
 		type: 'checkEmail',
 		email: $("#email").val()
@@ -503,7 +510,7 @@ $(document).ready(function(){
   });
 
  
- });
+  }});
 
  
 	$('#cvvhover','#cvvhover').hide();
