@@ -1582,7 +1582,7 @@ class Complaints extends CI_Model
 	function get_to_reviews_cid($cid)
 	{
 		$this->db->select('rate');
-		$this->db->where('companyid',$cid);	
+		$this->db->where(array('companyid'=>$cid, 'status'=>'Enable'));	
 		$query = $this->db->get('reviews');	
 		$a = count($query->result_array());
 		return $a;
