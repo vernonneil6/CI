@@ -126,12 +126,7 @@ class Category extends CI_Controller {
 			{
 				redirect('category', 'refresh');
 			}
-			
-			if($id==1)
-			{
-				redirect('category', 'refresh');
-			}
-			
+						
 			//Getting detail for displaying in form
 			$this->data['category'] = $this->categorys->get_category_byid($id);
 
