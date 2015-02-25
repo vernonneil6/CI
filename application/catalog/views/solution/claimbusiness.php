@@ -264,7 +264,11 @@
 				</div>
 				
           </div>
-          
+          <script type="text/javascript"> // initialise variable to save cc input string 
+
+		var cc_number_saved = ""; 
+
+	</script>
           <div class="reg-row" style="margin-top:10px !important;">
 				<div>
 					<span class="form-col-1">
@@ -272,7 +276,7 @@
 					</span>
 					<span class="form-col-2">
 						<div class="reg_fld">CREDIT CARD NUMBER:</div>
-						<input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)" onblur="return checkcard()"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+						<input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20"  onblur="cc_number_saved = this.value; this.value = this.value.replace(/[^\d]/g, ''); return checkcard();" onfocus="if(this.value != cc_number_saved) this.value = cc_number_saved;  " /><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
 						<div id="carderror" class="carderror"></div>
 						<div id="cardsuccess" class="cardsuccess"></div>
 					</span>
