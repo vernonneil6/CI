@@ -1017,7 +1017,7 @@ class Complaints extends CI_Model
 		$this->db->where('company',$company);
 	
 		$query = $this->db->get();
-	
+	        
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
@@ -1918,6 +1918,31 @@ class Complaints extends CI_Model
 			return false;
 		}
 			
+	}
+        function update_businessdetails($companyid,$address,$city,$state,$country,$zip)
+	{
+		
+		$date = date_default_timezone_set('Asia/Kolkata');
+		$date = date('Y-m-d H:i:s');
+		
+		$varipaddress = $_SERVER['REMOTE_ADDR'];
+		
+		$data = array( 'streetaddress'	=> $address,
+			       'city'		=> $city,
+			       'state'		=> $state,
+			       'country'	=> $country,
+			       'zip'		=> $zip
+        ); 
+ 		$updation=$this->db->where('id', $companyid)
+                                   ->update('company',$data);
+		if ($updation)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 }

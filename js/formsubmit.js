@@ -296,6 +296,8 @@ $(document).ready(function() {
 	  {
 		return false;  
 	  }
+          var elitememflag=$('#elitemem').val();
+          if(elitememflag==''){ 
           if($("#namecheck").val()==0)
           {
                return false; 
@@ -304,7 +306,7 @@ $(document).ready(function() {
           {
                return false; 
           } 
-	  
+	  }
 	  $("#frmaddcompany").submit();
   });
 });

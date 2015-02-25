@@ -52,8 +52,8 @@ function FormatCreditCard($cc)
 
 
 	
-<?php  if(isset($_GET['elitemem']) && $_GET['elitemem'] !="") {?>
-	<form action="index.php/solution/upgrades/<?php echo $showdata['id'];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
+<?php  if($register_data['elitemem'] !="") {?>
+	<form action="index.php/solution/upgrades/<?php echo $register_data['elitemem'];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
 	
 <?php } else { ?>
 	<form action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
@@ -62,6 +62,7 @@ function FormatCreditCard($cc)
 <section class="container">
   <section class="main_contentarea">
 <input type = "hidden" value = "<?php echo $register_data['name']; ?>" name = "name">
+<input type = "hidden" value = "<?php echo $register_data['elitemem']; ?>" name = "elitemem">
 <input type = "hidden" value = "<?php echo $register_data['website']; ?>" name = "website">
 <input type = "hidden" value = "<?php echo $register_data['category']; ?>" name = "category">
 <input type = "hidden" value = "<?php echo $register_data['email']; ?>" name = "email">
