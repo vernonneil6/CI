@@ -80,7 +80,7 @@ $(document).ready(function() {
           if( trim($("#country1").val()) == "" )
 	  {
 		  $("#countryerror").show();
-		  $("#country").val('').focus();
+		  $("#country1").val('').focus();
 		  return false;
 	  }
 	  else
@@ -91,7 +91,7 @@ $(document).ready(function() {
           if( trim($("#state1").val()) == "" )
 	  {
 		  $("#stateerror").show();
-		  $("#state").val('').focus();
+		  $("#state1").val('').focus();
 		  return false;
 	  }
 	  else
@@ -102,7 +102,7 @@ $(document).ready(function() {
 	  if( trim($("#city1").val()) == "" )
 	  {
 		  $("#cityerror").show();
-		  $("#city").val('').focus();
+		  $("#city1").val('').focus();
 		  return false;
 	  }
 	  else
@@ -115,7 +115,7 @@ $(document).ready(function() {
 	  {
 		  $("#ziperror").show();
 		  $("#zipverror").hide();
-		  $("#zip").val('').focus();
+		  $("#zip1").val('').focus();
 		  return false;
 	  }
 	  else
