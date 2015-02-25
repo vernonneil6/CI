@@ -265,6 +265,7 @@
 			<?php if($date['status'] == '5') { echo "Email sent to customer with proof of refund";}?>
 			<?php if($date['status'] == '6') { echo "Email sent to customer with shipping information";}?>
 			<?php if($date['status'] == '7') { echo "Email sent to customer with new shipping information";}?>
+			<?php if($date['status'] == '8') { echo "Waiting for customer to close the case";}?>
 		</td>
       </tr>
       <?php } ?>

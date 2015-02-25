@@ -271,6 +271,7 @@ class Review extends CI_Controller
 			
 			$this->reviews->reviewmail_update($data, $id);
 			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'5');
+			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'8');
 			
 			$this->load->library('email');	
 			
@@ -331,6 +332,7 @@ class Review extends CI_Controller
 			
 			$this->reviews->reviewmail_update($data, $id);
 			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'5');
+			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'8');
 			
 			$this->load->library('email');	
 			
@@ -380,6 +382,7 @@ class Review extends CI_Controller
 			
 			$this->reviews->reviewmail_update($data, $id);
 			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'6');
+			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'8');
 			$reviewmail = $this->reviews->get_reviewmail_byreviewid($reviewid);
 			$option = $reviewmail['resolution'];
 			$this->load->library('email');	
@@ -444,6 +447,7 @@ class Review extends CI_Controller
 			
 			$this->reviews->reviewmail_update($data, $id);
 			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'7');
+			$this->reviews->review_date($companyid,$userid,$reviewid,date('Y-m-d'),'8');
 			$this->load->library('email');	
 			
 			$user 		= $this->settings->get_user_byid($userid);
