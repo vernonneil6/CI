@@ -622,7 +622,7 @@ Class Common extends CI_Model
 	function get_home_category()
  	{
 		$siteid = $this->session->userdata('siteid');
-		$query = $this->db->get_where('category', array('websiteid' => $siteid,'status' => 'Enable'));
+		$query = $this->db->order_by("category", "asc")->get_where('category', array('websiteid' => $siteid,'status' => 'Enable'));
 		
 		if ($query->num_rows() > 0)
 		{
