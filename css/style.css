@@ -141,6 +141,10 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .treding_title{border-bottom: 1px solid #CCCCCC; margin-bottom: 10px; padding-bottom: 5px; font-size:16px;font-family: MyriadPro-BoldCond;letter-spacing: 1px;}
 .main_livepost{font-family: MyriadPro-Regular;}
 .containerimg{height:100%;width:966px;}
+
+
+.home_mar_line{margin:8px 0;}
+.home_mar_title{color: black;font-family: "MyriadPro-BlackSemiCn"; font-size: 15px;}
 /*============================Menu===================================*/
 .menu{
  	   

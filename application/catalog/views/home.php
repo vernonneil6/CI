@@ -45,7 +45,13 @@
           <?php $user=$this->users->get_user_bysingleid($complaints[$i]['reviewby']) ;?>
           <div class="review_block <?php if($i%2==1)   {echo "fadeout";   }?>">
             <div class="review_lft">
-              <div class="user_img"><img title="User image" alt="User image" src="images/default_user.png"></div>            
+              <div class="user_img">
+				  <?php if($user['id']==$complaints[$i]['reviewby']) { ?>
+					  <img title="User image" alt="User image" src="uploads/user/thumb/<?php echo $user['avatarthum']; ?>">
+				  <?php } else { ?>
+					  <img title="User image" alt="User image" src="images/default_user.png">
+				  <?php } ?>             
+              </div>            
             </div>
             <style>
             
@@ -60,22 +66,27 @@
 				  <?php } ?>
 				    
                    <span class="datehome"><?php echo date('m/d/Y',strtotime($complaints[$i]['reviewdate']));?></span>
-                   <?php $companyname = $this->users->get_company_bysingleid($complaints[$i]['companyid']); ?>
-                  <h2><a href="<?php echo site_url('company/'.$companyname['companyseokeyword'].'/reviews/coupons/complaints');?>" class="reviewname" title="view Review Detail"><?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?></a>
-                   
-                   <?php //get avg star by cmpyid
+                  
+                   <?php 
 						$avgstar = $this->common->get_avg_ratings_bycmid($complaints[$i]['companyid']);
 						$avgstar = round($avgstar);
 					?>
-					  <div class="vry_rating reviewrate">
+					  <div class="home_mar_line">
 						<?php for($r=0;$r<($avgstar);$r++){?>
 						<i class="vry_rat_icn"></i>
 						<?php } ?>
 						<?php for($p=0;$p<(5-($avgstar));$p++){?>
 						<img src="images/no_star.png" alt="no_star" title="no_star" />
 						<?php } ?>
+						<div class="clear"></div>
 					  </div>
-					  </h2>
+					  
+					  
+                  <?php $companyname = $this->users->get_company_bysingleid($complaints[$i]['companyid']); ?>
+                  <div class="reptitle">
+					<h2><a href="<?php echo site_url('company/'.$companyname['companyseokeyword'].'/reviews/coupons/complaints');?>" class="reviewname home_mar_title" title="view Review Detail"><?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?></a></h2>
+                 </div>
+                 
                  </div>
               </div>
               <p class="reviewspace"><a href="<?php echo site_url('review/browse/'.$complaints[$i]['seokeyword']); ?>" title="view Review Detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['comment']),0,212)."..."); ?></a></p>
