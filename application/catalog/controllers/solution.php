@@ -1695,7 +1695,7 @@ public function renew_update($id)
 			
 }
 
-public function upgrades($id)
+public function upgrades($companyid)
 {
 	//data.php start
 	//$loginname = $this->common->get_setting_value(22);
@@ -1715,8 +1715,8 @@ public function upgrades($id)
 	
 	/*live*/
 	    $loginname="5h7G7Sbr";
-		$transactionkey="94KU7Sznk72Kj3HK";
-		$host = "api.authorize.net";
+	    $transactionkey="94KU7Sznk72Kj3HK";
+            $host = "api.authorize.net";
 	
 	
 	$path = "/xml/v1/request.api";
@@ -1791,12 +1791,7 @@ public function upgrades($id)
 	$c_code=$this->complaints->get_country_by_countryid($cid);
 	$country=$_POST["country"];
 		
-	$company = $this->complaints->get_company_by_emailid($email);
-	if(count($company)>0)
-	{
-		$companyid = $company[0]['id'];
-	}
-
+	
 	"Results <br><br>";
 
 	//build xml to post
@@ -1825,6 +1820,7 @@ public function upgrades($id)
 			"<creditCard>".
 			"<cardNumber>" . $cardNumber . "</cardNumber>".
 			"<expirationDate>" . $expirationDate . "</expirationDate>".
+                        "<cardCode>". $cvv . "</cardCode>". 
 			"</creditCard>".
 			"</payment>".
 			"<billTo>".
@@ -1843,7 +1839,6 @@ public function upgrades($id)
 	//send the xml via curl
 	$response = send_request_via_curl($host,$path,$content);
 	//if the connection and send worked $response holds the return from Authorize.net
-	
 	if ($response)
 	{
 		list ($refId, $resultCode, $code, $text, $subscriptionId) =parse_return($response);
