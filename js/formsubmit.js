@@ -401,7 +401,7 @@ function getstates(id,state,where) {	//alert(id);
 }
 function number(evt){
 	var charCode = (evt.which) ? evt.which : event.keyCode
-	if (charCode > 31 && (charCode < 48 || charCode > 57))
+	if (charCode > 31 && (charCode < 48 || charCode > 57 || charCode==189 || charCode==32) )
 	return false;
 	return true;
 } 
