@@ -47,9 +47,9 @@
             <div class="review_lft">
               <div class="user_img">
 				  <?php if($user['id']==$complaints[$i]['reviewby']) { ?>
-					  <img title="User image" alt="User image" src="uploads/user/thumb/<?php echo $user['avatarthum']; ?>" width="45px" height="45px">
+					  <img title="User image" alt="User image" src="uploads/user/thumb/<?php echo $user['avatarthum']; ?>" style="width:50px;height:50px">
 				  <?php } else { ?>
-					  <img title="User image" alt="User image" src="images/default_user.png" width="45px" height="45px">
+					  <img title="User image" alt="User image" src="images/default_user.png" style="width:50px;height:50px">
 				  <?php } ?>             
               </div>            
             </div>
