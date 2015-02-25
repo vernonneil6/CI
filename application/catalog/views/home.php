@@ -43,7 +43,7 @@
           <?php if(count($complaints)>0) {?>
           <?php for($i=0; $i<count($complaints); $i++) {     ?>           
           <?php $user=$this->users->get_user_bysingleid($complaints[$i]['reviewby']) ;?>
-          <div class="review_block <?php if($i%2==1)   {echo "fadeout";   }?>">
+          <div class="review_block <?php if($i%2==1)   {echo "fadeout";   }?> review_size_change">
             <div class="review_lft">
               <div class="user_img">
 				  <?php if($user['id']==$complaints[$i]['reviewby']) { ?>
@@ -83,7 +83,7 @@
 					  
 					  
                   <?php $companyname = $this->users->get_company_bysingleid($complaints[$i]['companyid']); ?>
-                  <div class="reptitle">
+                  <div class="reptitle browse_ptag">
 					<h2><a href="<?php echo site_url('company/'.$companyname['companyseokeyword'].'/reviews/coupons/complaints');?>" class="reviewname home_mar_title" title="view Review Detail"><?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?></a></h2>
                  </div>
                  </div>

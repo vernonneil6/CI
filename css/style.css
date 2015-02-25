@@ -467,6 +467,10 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
     text-transform: uppercase !important;
     letter-spacing: 1px!important;
 }
+.review_size_change
+{
+	padding:15px 0!important;
+}
 .homename
 {
 	font-size:16px!important;
