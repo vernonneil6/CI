@@ -583,7 +583,7 @@ Class Common extends CI_Model
 	function get_avg_ratings_bycmid($companyid)
  	{	
 		$this->db->select_avg('rate');
-		$this->db->where('companyid',$companyid);
+		$this->db->where(array('companyid'=>$companyid, 'status'=>'Enable'));
 		$query1 = $this->db->get('reviews');	
 		
 		$a = $query1->result_array();
