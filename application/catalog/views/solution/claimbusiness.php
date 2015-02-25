@@ -131,11 +131,6 @@
 					  <div id="phoneerror" class="error">Phone is required.</div>
 					  <div id="phoneverror" class="error">Enter valid format - i.e. XXX-XXX-XXXX</div>
 					</div>
-					<div id="streeterror" class="error">Street Address is required.</div>
-					<div id="cityerror" class="error">City is required.</div>
-					<div id="stateerror" class="error">State is required.</div>
-					<div id="streeterror" class="error">Street Address is required.</div>
-					<div id="zipcodeerror" class="error">Enter digits only.</div>
 					</span>
 				</div>
             
@@ -232,17 +227,17 @@
 					  <br/>
 						<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
 						<input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
-						<div id="streetaddresserror" class="error">Street Address is required.</div>
-						<div id="cityerror" class="error">City is required.</div>
-						<div id="stateerror" class="error">State is required.</div>
-						<div id="countryerror" class="error">Country is required.</div>
-						<div id="ziperror" class="error">Zip Code is required.</div>
-						<div id="zipverror" class="error">Enter digits only valid format 123456</div>
-						<div id="streeterror" class="error">Street Address is required.</div>
-						<div id="cityerror" class="error">City is required.</div>
-						<div id="stateerror" class="error">State is required.</div>
-						<div id="streeterror" class="error">Street Address is required.</div>
-						<div id="zipcodeerror" class="error">Enter digits only.</div>
+						<div id="b_streetaddresserror" class="error">Street Address is required.</div>
+						<div id="b_cityerror" class="error">City is required.</div>
+						<div id="b_stateerror" class="error">State is required.</div>
+						<div id="b_countryerror" class="error">Country is required.</div>
+						<div id="b_ziperror" class="error">Zip Code is required.</div>
+						<div id="b_zipverror" class="error">Enter digits only valid format 123456</div>
+						<div id="b_streeterror" class="error">Street Address is required.</div>
+						<div id="b_cityerror" class="error">City is required.</div>
+						<div id="b_stateerror" class="error">State is required.</div>
+						<div id="b_streeterror" class="error">Street Address is required.</div>
+						<div id="b_zipcodeerror" class="error">Enter digits only.</div>
 					</span>
 				</div>
             
