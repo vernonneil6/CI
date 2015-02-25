@@ -60,9 +60,9 @@
               <div class="review_ratng_wrp">              
                 <div class="rat_title">  
 			  <?php if($complaints[$i]['reviewby']==$user['id']){ ?>
-				  	<label><a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby']); ?>" class="homename" title="view profile"><?php echo ucfirst($user['username']);?></a></label>
+				  	<label><a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby']); ?>" class="homename home_cap" title="view profile"><?php echo $user['username'];?></a></label>
 				  <?php } else{ ?>
-					<label><a><?php echo ucfirst($complaints[$i]['reviewby']);?></a></label>
+					<label><a class="home_cap"><?php echo $complaints[$i]['reviewby'];?></a></label>
 				  <?php } ?>
 				    
                    <span class="datehome"><?php echo date('m/d/Y',strtotime($complaints[$i]['reviewdate']));?></span>
@@ -86,10 +86,9 @@
                   <div class="reptitle">
 					<h2><a href="<?php echo site_url('company/'.$companyname['companyseokeyword'].'/reviews/coupons/complaints');?>" class="reviewname home_mar_title" title="view Review Detail"><?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?></a></h2>
                  </div>
-                 
                  </div>
               </div>
-              <p class="reviewspace"><a href="<?php echo site_url('review/browse/'.$complaints[$i]['seokeyword']); ?>" title="view Review Detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['comment']),0,212)."..."); ?></a></p>
+              <p class="reviewspace"><a href="<?php echo site_url('review/browse/'.$complaints[$i]['seokeyword']); ?>" title="view Review Detail"><?php echo ucfirst(substr(stripslashes($complaints[$i]['comment']),0,212)."..."); ?></a></p>
             </div>
           </div>
           

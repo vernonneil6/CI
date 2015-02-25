@@ -144,7 +144,8 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 
 
 .home_mar_line{margin:8px 0;}
-.home_mar_title{color: black!important;font-family: MyriadPro-BlackSemiCn!important; font-size: 15px!important;}
+.home_mar_title{color: black!important;font-family: MyriadPro-BlackSemiCn!important; font-size: 15px!important;font-weight: normal!important;}
+.home_cap{text-transform: uppercase;font-size:13px;}
 /*============================Menu===================================*/
 .menu{
  	   
@@ -458,12 +459,13 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
     font-size: 13px;}
 
 .datehome{
-	color: #666!important;
-    float: right!important;
-    font-family: "MyriadPro-BlackSemiCn"!important;
-    font-size: 11px!important;
-    font-weight: bold!important;
-    text-transform: uppercase!important;
+    color: #333!important;
+    float: right !important;
+    font-family: "MyriadPro-BlackSemiCn" !important;
+    font-size: 12px !important;
+    font-weight: lighter;
+    text-transform: uppercase !important;
+    letter-spacing: 1px!important;
 }
 .homename
 {
