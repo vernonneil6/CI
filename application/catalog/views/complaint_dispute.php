@@ -85,13 +85,30 @@ if( $this->session->userdata('youg_user') )
             <?php $data=$this->session->userdata('youg_user'); ?>	
 			 
 				
-			<?php echo form_input(array('name'=>'userid','type'=>'hidden','class'=>'reg_txt_box','value'=>$data['userid'])); ?>
+			<?php 
+			
+			if(!empty($data['userid'])){
+				echo form_input(array('name'=>'userid','type'=>'hidden','class'=>'reg_txt_box','value'=>$data['userid'])); 
+			}
+			
+			?>
 			
 			<div class="reg-row username"><label class="names">username</label></div><br>		
-			<?php echo form_input(array('name'=>'username','type'=>'text','class'=>'reg_txt_box','value'=>$data['name']))."<br>";  ?>
+			<?php 
+			if(!empty($data['name'])){
+				echo form_input(array('name'=>'username','type'=>'text','class'=>'reg_txt_box','value'=>$data['name']))."<br>";  
+			
+			}			
+			?>
 			
 				
-			<?php echo form_input(array('name'=>'useremail','type'=>'hidden','class'=>'reg_txt_box','value'=>$data['emailid'])); ?> 
+			<?php 
+			
+			if(!empty($data['emailid'])){
+				echo form_input(array('name'=>'useremail','type'=>'hidden','class'=>'reg_txt_box','value'=>$data['emailid'])); 
+			}
+			
+			?> 
 		
 			<?php /*<div class="reg-row disputenote"><label>dispute</label></div><br>		
 			<?php echo form_textarea(array('name'=>'dispute','class'=>'disputenotes','required' => 'required'))."<br>"; ?>*/?>
