@@ -428,7 +428,7 @@ class Reviews extends CI_Model
 	
 	function insert_reviewmail_check($companyid, $userid)
 	{
-		return $this->db->get_where('youg_reviewmail', array('company_id' => $companyid, 'user_id' => $userid))->result_array();
+		return $this->db->get_where('youg_reviewmail', array('company_id' => $companyid, 'user_id' => $userid, 'review_id'=>$reviewid))->result_array();
 	}
 	
 	//Getting value for searching

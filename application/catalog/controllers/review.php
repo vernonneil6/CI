@@ -480,7 +480,7 @@ class Review extends CI_Controller
 		$buyeroption 	= $this->input->post('buyeroption');
 		$textarea   	= $this->input->post('buyer_textarea');
 		
-		if(count($this->reviews->insert_reviewmail_check($review['companyid'], $review['reviewby'])) > 0)
+		if(count($this->reviews->insert_reviewmail_check($review['companyid'], $review['reviewby'], $reviewid)) > 0)
 		{
 			$this->session->set_flashdata('error', 'You have already contact this company.');
 			redirect('review','refresh');
