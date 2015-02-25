@@ -65,12 +65,8 @@ $(document).ready(function() {
 			  
 		  }
 	  }
-	  
-	
-	   
-	  
-	  
-	  if( trim($("#streetaddress").val()) == "" )
+/*Contact address validation*/
+	  if( trim($("#streetaddress1").val()) == "" )
 	  {
 		  $("#streetaddresserror").show();
 		  $("#streetaddress").val('').focus();
@@ -80,10 +76,8 @@ $(document).ready(function() {
 	  {
 		  $("#streetaddresserror").hide();
 	  }
-	  
-	 
-	  
-	  if( trim($("#country").val()) == "" )
+	
+          if( trim($("#country1").val()) == "" )
 	  {
 		  $("#countryerror").show();
 		  $("#country").val('').focus();
@@ -92,9 +86,9 @@ $(document).ready(function() {
 	  else
 	  {
 		  $("#countryerror").hide();
-	  }
-	  
-	  if( trim($("#state").val()) == "" )
+	  } 
+
+          if( trim($("#state1").val()) == "" )
 	  {
 		  $("#stateerror").show();
 		  $("#state").val('').focus();
@@ -105,7 +99,7 @@ $(document).ready(function() {
 		  $("#stateerror").hide();
 	  }
 	  
-	  if( trim($("#city").val()) == "" )
+	  if( trim($("#city1").val()) == "" )
 	  {
 		  $("#cityerror").show();
 		  $("#city").val('').focus();
@@ -117,7 +111,7 @@ $(document).ready(function() {
 	  }
 	  
 	  
-	  if( trim($("#zip").val()) == "" )
+	  if( trim($("#zip1").val()) == "" )
 	  {
 		  $("#ziperror").show();
 		  $("#zipverror").hide();
@@ -139,6 +133,76 @@ $(document).ready(function() {
 			  $("#zipverror").hide();
 		  }
 	  }
+	   
+	  
+/*billing address validation*/	  
+	  if( trim($("#streetaddress").val()) == "" )
+	  {
+		  $("#b_streetaddresserror").show();
+		  $("#streetaddress").val('').focus();
+		  return false;
+	  }
+	  else
+	  {
+		  $("#b_streetaddresserror").hide();
+	  }
+	  
+	 if( trim($("#country").val()) == "" )
+	  {
+		  $("#b_countryerror").show();
+		  $("#country").val('').focus();
+		  return false;
+	  }
+	  else
+	  {
+		  $("#b_countryerror").hide();
+	  }
+	  
+	  if( trim($("#state").val()) == "" )
+	  {
+		  $("#b_stateerror").show();
+		  $("#state").val('').focus();
+		  return false;
+	  }
+	  else
+	  {
+		  $("#b_stateerror").hide();
+	  }
+	  
+	  if( trim($("#city").val()) == "" )
+	  {
+		  $("#b_cityerror").show();
+		  $("#city").val('').focus();
+		  return false;
+	  }
+	  else
+	  {
+		  $("#b_cityerror").hide();
+	  }
+	  
+	  
+	  if( trim($("#zip").val()) == "" )
+	  {
+		  $("#b_ziperror").show();
+		  $("#b_zipverror").hide();
+		  $("#zip").val('').focus();
+		  return false;
+	  }
+	  else
+	  {
+		  if( isNaN(trim($("#zip").val())))
+		  {
+			  $("#b_ziperror").hide();
+			  $("#b_zipverror").show();
+			  $("#zip").focus();
+			  return false;
+		  }
+		  else
+		  {
+			  $("#b_ziperror").hide();
+			  $("#b_zipverror").hide();
+		  }
+	  }
 	  
 	  if( trim($("#phone").val()) == "" )
 	  {
@@ -149,8 +213,8 @@ $(document).ready(function() {
 	  }
 	  else
 	  {
-		  var characterReg = /^\d{3}-\d{3}-\d{4}$/;
-		  if(!characterReg.test($("#phone").val())) 
+		  var characterReg = /^\d{3}-?\d{3}-?\d{4}$/;
+                  if(!(characterReg.test($("#phone").val()))) 
 		  {
 			  $("#phoneerror").hide();
 			  $("#phoneverror").show();
@@ -249,7 +313,7 @@ $(document).ready(function() {
 	  }
 	  else
 	  {
-		  var characterReg = /^\d{3}-\d{3}-\d{4}$/;
+		  var characterReg = /^\d{3}-?\d{3}-?\d{4}$/;
 		  if(!characterReg.test($("#cphone").val())) 
 		  {
 			  $("#cphoneerror").hide();
