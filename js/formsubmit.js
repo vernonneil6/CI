@@ -69,7 +69,7 @@ $(document).ready(function() {
 	  if( trim($("#streetaddress1").val()) == "" )
 	  {
 		  $("#streetaddresserror").show();
-		  $("#streetaddress").val('').focus();
+		  $("#streetaddress1").val('').focus();
 		  return false;
 	  }
 	  else
