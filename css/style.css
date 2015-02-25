@@ -463,7 +463,7 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
     float: right !important;
     font-family: "MyriadPro-BlackSemiCn" !important;
     font-size: 12px !important;
-    font-weight: lighter;
+    font-weight: lighter!important;
     text-transform: uppercase !important;
     letter-spacing: 1px!important;
 }
