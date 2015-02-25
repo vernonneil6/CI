@@ -101,8 +101,8 @@ header{width:100%;	height: auto; position:relative;   margin:0 auto; display:inl
 .head_bg{float:left; height:80px; margin-top:10px; width:967px;}
 .head_right{float:right; height:auto;}
 .head_right_lnk{width:auto; height:auto; /*text-align:right;*/ color:#999999;}
-.head_right_lnk a{width:auto; height:auto; display:inline-block; padding: 4px 0 0 15px; font-size:11px; color:#0080ff; text-transform:uppercase; color: white; font-family: "MyriadPro-BlackSemiCn";}
-.head_right_lnk div:hover{background:#2C6A99; }
+.head_right_lnk a{width:auto; height:auto; display:inline-block; padding: 0 0 0 15px; vertical-align: sub; font-size:11px; color:#0080ff; text-transform:uppercase; color: white; font-family: "MyriadPro-BlackSemiCn";}
+
 .social_icn{padding:0; float:right; display:block; margin-top:10px;}
 .social_icn ul{margin:0; padding:0;}
 .social_icn li{list-style:none; margin-right:7px; float:left; height:50px; line-height:normal;}
@@ -117,9 +117,9 @@ header{width:100%;	height: auto; position:relative;   margin:0 auto; display:inl
 .main_searchbox{width:250px; height:32px; float:right; margin-top:3px;}
 input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; background:transparent; border:0 none; font-style:italic; font-family:"myriadpro-regular"; color:#000; font-size:16px; float:left;}
 .srch_btn{width:36px; box-shadow:none; height:30px; background: url(../images/icons.png) -177px 1px; border:0 none; overflow:hidden; cursor:pointer; float:left;}
-.headersignup{background:url('../images/loginbg.png') no-repeat; height: 22px; width:64px;  margin-right: 10px; float: left;}
-.headerlogin{background:url('../images/loginbg.png') no-repeat; height: 22px;  width: 62px; margin-right: 10px; float: left;}
-.headerbusiness{background:url('../images/loginbg.png') repeat; height: 22px;  width: 175px; margin-right: 10px; float: left;}
+.headersignup{background:#2c6a99; height: 22px; width:64px;  margin-right: 10px; float: left;}
+.headerlogin{background:#2c6a99; height: 22px;  width: 62px; margin-right: 10px; float: left;}
+.headerbusiness{background:#2c6a99; height: 22px;  width: 175px; margin-right: 10px; float: left;}
 .headerfb{background:url('../images/fbbg.png') no-repeat; height: 22px; width: 160px; float: left;}
 .headerfb a{padding: 4px 0 0 35px;  display: inline-block;}
 .headersearch{display:inline-block; margin: 30px 0 20px; text-align: center; width: 100%;}
