@@ -3,7 +3,7 @@ Class Login extends CI_Model
 {
 	function logincheck($username,$password)
  	{
-   	   	$query = $this->db->get_where('company',  array( 'contactemail' => $username,'password'=>$password));
+   	   	$query = $this->db->get_where('company',  array( 'email' => $username,'password'=>$password));
 	    
 		
 		if ($query->num_rows() > 0)
@@ -56,7 +56,7 @@ Class Login extends CI_Model
  	}
  	function disablelogincheck($username,$password)
  	{
-   	   	$query = $this->db->get_where('company',  array( 'contactemail' => $username,'password'=>$password));
+   	   	$query = $this->db->get_where('company',  array( 'email' => $username,'password'=>$password));
 	    
 		
 		if ($query->num_rows() > 0)
