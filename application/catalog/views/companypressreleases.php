@@ -63,7 +63,9 @@
 
 				<div class="vry_btn">
 					<a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> 
+					<?php if(count($elitemem_status)!=0){?>		
 					<a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
+					<?php } ?>
 				</div>
 			
 				
