@@ -1002,7 +1002,7 @@ public function eliteSubscribe($formpost,$companyid) {
 					$this->email->to($email);	
 					$this->email->subject($subject);
 					$companyname=$company[0]['company'];
-					$eliteemail=$company[0]['contactemail'];
+					$eliteemail=$company[0]['email'];
 					$companyid=$company[0]['id'];
 					$companyseo=$company[0]['companyseokeyword'];
 					$url=site_url("widget/business/".$companyid);
@@ -2030,7 +2030,7 @@ public function upgrades($companyid)
 					$this->email->to($email);	
 					$this->email->subject($subject);
 					$companyname=$company[0]['company'];
-					$eliteemail=$company[0]['contactemail'];
+					$eliteemail=$company[0]['email'];
 					$companyid=$company[0]['id'];
 					$companyseo=$company[0]['companyseokeyword'];
 					$url=site_url("widget/business/".$companyid);
