@@ -24,7 +24,7 @@
 	:
 	</td>
 	<td>
-		<?php echo $company['email']; ?>
+		<?php echo $company['contactemail']; ?>
 	</td>
 </tr>
 <tr>
