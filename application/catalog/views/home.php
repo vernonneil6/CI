@@ -27,12 +27,13 @@
 </div>
 
   
-<section class="container">
+<section class="container" >
   <section class="main_contentarea">    
-    <div class="container">      
+    <div class="container" >      
+	
 	<div class="hm_rght_panel">
 	 <div class="hm_live_menus"></div>
-        <div class="hm_live_menu">
+        <div class="hm_live_menu" style = "margin:0">
 			<ul>
 				<li><a href="<?php echo base_url();?>" title="RECENT ACTIVITY" style="color:black;">RECENT ACTIVITY</a></li>
 				<li><a href="<?php echo site_url('complaint');?>" title="Trending Complaints">TRENDING COMPLAINTS<span>:<span></a></li>
@@ -43,7 +44,7 @@
           <?php if(count($complaints)>0) {?>
           <?php for($i=0; $i<count($complaints); $i++) {     ?>           
           <?php $user=$this->users->get_user_bysingleid($complaints[$i]['reviewby']) ;?>
-          <div class="review_block <?php if($i%2==1)   {echo "fadeout";   }?> review_size_change">
+          <div class="review_block <?php if($i%2==1)   {echo "fadeout";   }?>">
             <div class="review_lft">
               <div class="user_img">
 				  <?php if($user['id']==$complaints[$i]['reviewby']) { ?>
@@ -53,16 +54,14 @@
 				  <?php } ?>             
               </div>            
             </div>
-            <style>
-            
-            </style>
-        <div class="review_rgt  ">
+        <div class="review_rgt">
               <div class="review_ratng_wrp">              
                 <div class="rat_title">  
+					<label><a class="home_cap"><?php echo $complaints[$i]['reviewtitle']."  -  "?></a></label>
 			  <?php if($complaints[$i]['reviewby']==$user['id']){ ?>
-				  	<label><a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby']); ?>" class="home_cap" title="view profile"><?php echo $user['username'];?></a></label>
+				  	<label><a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby']); ?>" class="home_cap1" title="view profile"><?php echo ucfirst($user['username']);?></a></label>
 				  <?php } else{ ?>
-					<label><a class="home_cap"><?php echo $complaints[$i]['reviewby'];?></a></label>
+					<label><a class="home_cap1"><?php echo ucfirst($complaints[$i]['reviewby']);?></a></label>
 				  <?php } ?>
 				    
                    <span class="datehome"><?php echo date('m/d/Y',strtotime($complaints[$i]['reviewdate']));?></span>
@@ -88,7 +87,7 @@
                  </div>
                  </div>
               </div>
-              <p class="reviewspace"><a href="<?php echo site_url('review/browse/'.$complaints[$i]['seokeyword']); ?>" title="view Review Detail"><?php echo ucfirst(substr(stripslashes($complaints[$i]['comment']),0,212)."..."); ?></a></p>
+              <p class="reviewspace_new"><a href="<?php echo site_url('review/browse/'.$complaints[$i]['seokeyword']); ?>" title="view Review Detail"><?php echo ucfirst(substr(stripslashes($complaints[$i]['comment']),0,212)."..."); ?></a></p>
             </div>
           </div>
           
@@ -133,6 +132,7 @@
 </div>
 </section>
 </section>
+<script>$(".hm_rght_panel").height($(".hm_lft_panel").height());</script>
 <?php echo $footer;?>
 
 <script type="text/javascript">
@@ -151,5 +151,18 @@ $(document).ready(function(){
 		$(this) .find('#browseimg').css('display','block');
 		$(this) .find('.hovertxt').css('color','black');
 	});
+	var height = $(".hm_lft_panel").height();
+	var portion = Math.round(height)-81;
+	var singleheight = Math.round(portion/5);
+	var m_1 = Math.round(height/90);//8
+	var m_2 = Math.round(height/74);//10
+	var m_3 = Math.round(height/144);//5
+	
+	$(".reviewspace_new").css({'margin-top': m_3,'margin-bottom':'0'});
+	$(".review_block ").css({'height': singleheight, 'padding-top': '0', 'padding-bottom':'0', 'margin-bottom':'0'});
+	$(".home_mar_line").css({'margin-top': m_3,'margin-bottom':m_3 });
+	$(".reptitle h2").css({'padding':'0'});
+	$(".review_lft").css({'padding-top':m_2});
+	$(".review_rgt").css({'padding-top':m_2});
 });
 </script>	
