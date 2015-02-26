@@ -16,8 +16,7 @@
             <input type="hidden" class="reg_txt_box" placeholder="companyid" id="companyid" name="companyid"  maxlength="30" value="<?php echo $renewelite[0]['id'];?>" />
             <input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30" value="<?php echo $renewelite[0]['company'];?>" />
             <input type="hidden" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150" value="<?php echo $renewelite[0]['siteurl'];?>" />
-            <input type="hidden" class="reg_txt_box-lg" placeholder="category" name="cat" id="category" maxlength="50" value="<?php echo $renewelite[0]['categoryid'];?>" />
-            <input type="hidden" class="reg_txt_box-lg" placeholder="category" name="categorylist" id="category" maxlength="50" value="" />
+            <input type="hidden" class="reg_txt_box-lg" placeholder="category" name="categorylist" id="category" maxlength="50" value="<?php echo $renewelite[0]['categoryid'];?>" />
             <input type="hidden" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" value="<?php echo $renewelite[0]['email'];?>" />
             <input type="hidden" class="reg_txt_box"  id="streetaddress1" name="streetaddress1"  maxlength="250" value="<?php echo $renewelite[0]['companystreet'];?>" />
             <input type="hidden" class="reg_txt_box"  id="country1" name="countryname1"  maxlength="250" value="<?php echo $renewelite[0]['companycountry'];?>" />
