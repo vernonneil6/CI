@@ -1454,38 +1454,49 @@ public function renew_update($id)
 			
 	$email = $this->input->post('email');					
 	$sid=$id;
-	$sub_id=$this->complaints->get_subscriptionid($sid);
-	$subscriptionId=$sub_id['subscr_id'];	
+		
 		"Results <br><br>";
 
 	//build xml to post
 	$content =
-        "<?xml version=\"1.0\" encoding=\"utf-8\"?>".
-        "<ARBUpdateSubscriptionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">".
-        "<merchantAuthentication>".
-        "<name>" . $loginname . "</name>".
-        "<transactionKey>" . $transactionkey . "</transactionKey>".
-        "</merchantAuthentication>".
-        "<subscriptionId>" . $subscriptionId . "</subscriptionId>".
-        "<subscription>".
-        "<payment>".
-        "<creditCard>".
-        "<cardNumber>" . $cardNumber ."</cardNumber>".
-        "<expirationDate>" . $expirationDate . "</expirationDate>".
-         "<cardCode>". $cvv . "</cardCode>". 
-        "</creditCard>".
-        "</payment>".
-        "<billTo>".
-		"<firstName>". $firstName . "</firstName>".
-		"<lastName>" . $lastName . "</lastName>".
-		"<address>" . $address . "</address>".
-		"<city>" . $city . "</city>".
-		"<state>" . $state . "</state>".
-		"<zip>" . $zip . "</zip>".
-		"<country>" . $country . "</country>".
-		"</billTo>".
-        "</subscription>".
-        "</ARBUpdateSubscriptionRequest>";
+			"<?xml version=\"1.0\" encoding=\"utf-8\"?>" .
+			"<ARBCreateSubscriptionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">" .
+			"<merchantAuthentication>".
+			"<name>" . $loginname . "</name>".
+			"<transactionKey>" . $transactionkey . "</transactionKey>".
+			"</merchantAuthentication>".
+			"<refId>" . $refId . "</refId>".
+			"<subscription>".
+			"<name>" . $name . "</name>".
+			"<paymentSchedule>".
+			"<interval>".
+			"<length>". $length ."</length>".
+			"<unit>". $unit ."</unit>".
+			"</interval>".
+			"<startDate>" . $startDate . "</startDate>".
+			"<totalOccurrences>". $totalOccurrences . "</totalOccurrences>".
+			"<trialOccurrences>". $trialOccurrences . "</trialOccurrences>".
+			"</paymentSchedule>".
+			"<amount>". $amount ."</amount>".
+			"<trialAmount>" . $trialAmount . "</trialAmount>".
+			"<payment>".
+			"<creditCard>".
+			"<cardNumber>" . $cardNumber . "</cardNumber>".
+			"<expirationDate>" . $expirationDate . "</expirationDate>".
+			"<cardCode>". $cvv . "</cardCode>".
+			"</creditCard>".
+			"</payment>".
+			"<billTo>".
+			"<firstName>". $firstName . "</firstName>".
+			"<lastName>" . $lastName . "</lastName>".
+			"<address>" . $address . "</address>".
+			"<city>" . $city . "</city>".
+			"<state>" . $state . "</state>".
+			"<zip>" . $zip . "</zip>".
+			"<country>" . $country . "</country>".
+			"</billTo>".
+			"</subscription>".
+			"</ARBCreateSubscriptionRequest>";
 
 	//send the xml via curl
 	$response = send_request_via_curl($host,$path,$content);
@@ -1531,9 +1542,8 @@ public function renew_update($id)
 		{
 			//update status in elite table and subscription table
 			
-			$sub_id=$this->complaints->get_subscriptionid($sid);
-			$subscriptionId=$sub_id['subscr_id'];
-			$sig=$sub_id['sign'];
+			
+			$sig=$refId;;
 			$tx  = $transactionkey;
 			$amt = $amount;
 			$companyid  = $id;
@@ -1547,14 +1557,17 @@ public function renew_update($id)
 			$cardexpire=$expirationDate;
 			$fname=$firstName;
 			$lname=$lastName;
-			
-			$update_subscription=$this->complaints->update_subscription($subscriptionId,$companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag);
-			//echo '<pre>';print_r($update_subscription);	  
-			if($update_subscription)
+			$disc="";
+                        $disccode_type="";
+                        $disccode_price="";
+                        $disccode_use="";
+				  
+			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cvv,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId,$disc,$disccode_type,$disccode_price,$disccode_use))
 			{
+
 			  $update_companytable=$this->complaints->update_company($address,$city,$state,$country,$zip,$companyid);	
 			  $update_elite= $this->complaints->update_elite($companyid,$amount,'USD',$transactionkey,date('Y-m-d H:i:s'));
-				    //echo '<pre>';print_r($update_elite);
+			
 				    
 				   
 			$site_name = $this->common->get_setting_value(1);
