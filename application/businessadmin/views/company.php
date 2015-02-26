@@ -362,7 +362,7 @@
             </div>
           </div>        
         </div>
-        
+        <div class="note-text">THE FOLLOWING INFORMATION WILL NOT BE PUBLISHED YOUGOTRATED AND IS USED FOR ADMINISTRATION PURPOSES ONLY. THIS INFORMATION IS WHERE YOU WILL RECEIVE EMAILS, AND RECEIPTS FROM YOUGOTRATED.COM.</div>
         
         <div class="form-cols">
           <div class="col1">
@@ -478,7 +478,7 @@
            <div id="contactcompanyvemailerror" class="error">This Emailid already taken.</div>       
         </div>
        
-        <div class="note-text">THE FOLLOWING INFORMATION WILL NOT BE PUBLISHED YOUGOTRATED AND IS USED FOR ADMINISTRATION PURPOSES ONLY. THIS INFORMATION IS WHERE YOU WILL RECEIVE EMAILS, AND RECEIPTS FROM YOUGOTRATED.COM.</div>
+        
         
         <div class="form-cols">
           <div class="col1">
