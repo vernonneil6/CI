@@ -1919,7 +1919,7 @@ class Complaints extends CI_Model
 		}
 			
 	}
-        function update_businessdetails($companyid,$address,$city,$state,$country,$zip)
+    function update_businessdetails($companyid,$name, $address,$city,$state,$country,$zip,$address1,$city1,$state1,$country1,$zip1,$phone,$email,$website,$category)
 	{
 		
 		$date = date_default_timezone_set('Asia/Kolkata');
@@ -1927,14 +1927,29 @@ class Complaints extends CI_Model
 		
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
 		
-		$data = array( 'streetaddress'	=> $address,
-			       'city'		=> $city,
-			       'state'		=> $state,
-			       'country'	=> $country,
-			       'zip'		=> $zip
+		$data = array(
+		           'company' 		=> $name , 
+		           'streetaddress'	=> $address,
+				   'city'		    => $city,
+				   'state'		    => $state,
+				   'country'	    => $country,
+				   'zip'		    => $zip,
+			       'companystreet'	=> $address1,
+				   'companycity'	=> $city1,
+				   'companystate'	=> $state1,
+				   'companycountry'	=> $country1,
+				   'companyzip'		=> $zip1,
+				   'phone'			=> $phone,
+				   'email'			=> $email,
+				   'siteurl'		=> $website,
+				   'categoryid'		=> $category,
+				   'status'			=> 'Enable',
+				   'registerip' 	=> $varipaddress,
+				   'registerdate'	=> $date
+				   
         ); 
  		$updation=$this->db->where('id', $companyid)
-                                   ->update('company',$data);
+                           ->update('company',$data);
 		if ($updation)
 		{
 			return true;
@@ -1944,6 +1959,5 @@ class Complaints extends CI_Model
 			return false;
 		}
 	}
-	
 }
 ?>

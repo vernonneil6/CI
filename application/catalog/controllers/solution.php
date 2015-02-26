@@ -1002,7 +1002,7 @@ public function eliteSubscribe($formpost,$companyid) {
 					$this->email->to($email);	
 					$this->email->subject($subject);
 					$companyname=$company[0]['company'];
-					$eliteemail=$company[0]['email'];
+					$eliteemail=$company[0]['contactemail'];
 					$companyid=$company[0]['id'];
 					$companyseo=$company[0]['companyseokeyword'];
 					$url=site_url("widget/business/".$companyid);
@@ -1707,16 +1707,16 @@ public function upgrades($companyid)
 	   $transactionkey="38UzuaL2c6y5BQ88";
 	   $host = "apitest.authorize.net"; */
 	
-	/*sandbox test mode
+	/*sandbox test mode*/
 	  $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
-	   $host = "apitest.authorize.net";*/
+	   $host = "apitest.authorize.net";
 	
 	
-	/*live*/
+	/*live
 	    $loginname="5h7G7Sbr";
 	    $transactionkey="94KU7Sznk72Kj3HK";
-            $host = "api.authorize.net";
+            $host = "api.authorize.net";*/
 	
 	
 	$path = "/xml/v1/request.api";
@@ -1782,15 +1782,34 @@ public function upgrades($companyid)
         
 	$firstName = $_POST["fname"];
 	$lastName = $_POST["lname"];	
-	$email = $this->input->post('email');					
+			
+	//companyinformation
+	$name=$_POST["name"];
+	$phone=$_POST["phone"];
+	$website=$_POST["website"];
+	$category=$_POST["category"];
+	$email = $this->input->post('email');		
+	
+	//contact information
+	$cname=$_POST["cname"];
+	$cemail=$_POST["cemail"];
+	$cphone=$_POST["cphone"];
+	
+	
+	//billing address
 	$address=$_POST["streetaddress"];
-        $city=$_POST["city"];	
+    $city=$_POST["city"];	
 	$state=$_POST["state"];
-        $zip=$_POST["zip"];
-        $cid=$_POST["country"];
-	$c_code=$this->complaints->get_country_by_countryid($cid);
-	$country=$_POST["country"];
-		
+    $zip=$_POST["zip"];
+  	$country=$_POST["country"];
+	
+	//business address	
+	$address1=$_POST["streetaddress1"];
+    $city1=$_POST["city1"];	
+	$state1=$_POST["state1"];
+    $zip1=$_POST["zip1"];
+  	$country1=$_POST["country1"];
+	
 	
 	"Results <br><br>";
 
@@ -1890,8 +1909,15 @@ public function upgrades($companyid)
 			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cvv,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId,$disc,$disccode_type,$disccode_price,$disccode_use))
                             {
 				$company = $this->complaints->get_company_byid($companyid);
-                                $update_business=$this->complaints->update_businessdetails($companyid,$address,$city,$state,$country,$zip);                           
-                                
+                
+                ///update company details here 
+                //$this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'',$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype ))
+                
+                
+                $update_business=$this->complaints->update_businessdetails($companyid,$name, $address,$city,$state,$country,$zip,
+									 $address1,$city1,$state1,$country1,$zip1,$phone,$email,
+									 $website,$category);                           
+                $this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);                
 				if( count($company)>0 )
 				{
 					$password = uniqid();
@@ -2004,7 +2030,7 @@ public function upgrades($companyid)
 					$this->email->to($email);	
 					$this->email->subject($subject);
 					$companyname=$company[0]['company'];
-					$eliteemail=$company[0]['email'];
+					$eliteemail=$company[0]['contactemail'];
 					$companyid=$company[0]['id'];
 					$companyseo=$company[0]['companyseokeyword'];
 					$url=site_url("widget/business/".$companyid);
