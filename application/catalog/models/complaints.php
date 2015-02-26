@@ -1170,6 +1170,24 @@ class Complaints extends CI_Model
 			return array();
 		}
  	}
+ 	//Getting value for editing
+	function get_categories_byid($id)
+ 	{
+		$categoryid=explode(",",$id);
+		$siteid = $this->session->userdata('siteid');
+		$this->db->select('GROUP_CONCAT(category SEPARATOR ",") as categoryname',false);
+		$this->db->where_in('id',$categoryid);
+		$this->db->where('websiteid',$siteid);
+		$query = $this->db->get('category');
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 	function get_companypdfs_bycompanyid($id)
  	{

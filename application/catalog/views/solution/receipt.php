@@ -55,6 +55,10 @@ function FormatCreditCard($cc)
 <?php  if($register_data['elitemem'] !="") {?>
 	<form action="index.php/solution/upgrades/<?php echo $register_data['elitemem'];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
 	
+<?php } else if($register_data['renewid'] !="") { ?>
+	
+	   <form action="index.php/solution/renew_update/<?php echo $register_data['renewid'];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
+	
 <?php } else { ?>
 	<form action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
 <?php } ?>

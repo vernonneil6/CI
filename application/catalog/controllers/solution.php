@@ -226,7 +226,8 @@ class Solution extends CI_Controller {
 		
 		$data = array(
 					'name' => $this->input->post('name'),
-                                        'elitemem'=>$this->input->post('elitemem'),
+                    'elitemem'=>$this->input->post('elitemem'),
+                    'renewid'=>$this->input->post('renewid'), 
 					'website' => $this->input->post('website'),
 					'category' => $category,
 					'categorylist' => $this->input->post('categorylist'),
@@ -1381,8 +1382,6 @@ public function renew_update($id)
 {
 	//echo $id;
 	
-	
-
 	//data.php start
 	//$loginname = $this->common->get_setting_value(22);
 	//$transactionkey = $this->common->get_setting_value(23);
@@ -1393,16 +1392,16 @@ public function renew_update($id)
 	   $transactionkey="38UzuaL2c6y5BQ88";
 	   $host = "apitest.authorize.net"; */
 	
-	/*sandbox test mode
+	/*sandbox test mode*/
 	  $loginname="9um8JTf3W";
 	   $transactionkey="9q24FTz678hQ9mAD";
-	   $host = "apitest.authorize.net";*/ 
+	   $host = "apitest.authorize.net"; 
 	
 	
-	/*live*/
+	/*live
 	$loginname="5h7G7Sbr";
 	$transactionkey="94KU7Sznk72Kj3HK";
-	$host = "api.authorize.net";
+	$host = "api.authorize.net";*/
 	
 	
 	$path = "/xml/v1/request.api";
@@ -1416,9 +1415,8 @@ public function renew_update($id)
 	$city=$_POST["city"];	
 	$state=$_POST["state"];
 	$zip=$_POST["zip"];
-	$cid=$_POST["country"];
-	$c_code=$this->complaints->get_country_by_countryid($cid);
-	$country=$c_code['name'];
+	$country=$_POST["country"]; 
+	$cvv=$this->input->post('cvv');
 	
 	include('authorize/authnetfunction.php');
 	$subscriptionprice = $this->common->get_setting_value(19);
@@ -1474,17 +1472,18 @@ public function renew_update($id)
         "<creditCard>".
         "<cardNumber>" . $cardNumber ."</cardNumber>".
         "<expirationDate>" . $expirationDate . "</expirationDate>".
+         "<cardCode>". $cvv . "</cardCode>". 
         "</creditCard>".
         "</payment>".
         "<billTo>".
-			"<firstName>". $firstName . "</firstName>".
-			"<lastName>" . $lastName . "</lastName>".
-			"<address>" . $address . "</address>".
-			"<city>" . $city . "</city>".
-			"<state>" . $state . "</state>".
-			"<zip>" . $zip . "</zip>".
-			"<country>" . $country . "</country>".
-			"</billTo>".
+		"<firstName>". $firstName . "</firstName>".
+		"<lastName>" . $lastName . "</lastName>".
+		"<address>" . $address . "</address>".
+		"<city>" . $city . "</city>".
+		"<state>" . $state . "</state>".
+		"<zip>" . $zip . "</zip>".
+		"<country>" . $country . "</country>".
+		"</billTo>".
         "</subscription>".
         "</ARBUpdateSubscriptionRequest>";
 
@@ -1531,13 +1530,13 @@ public function renew_update($id)
 		if($resultCode=='Ok')
 		{
 			//update status in elite table and subscription table
-			$sid=$id;
+			
 			$sub_id=$this->complaints->get_subscriptionid($sid);
 			$subscriptionId=$sub_id['subscr_id'];
 			$sig=$sub_id['sign'];
 			$tx  = $transactionkey;
 			$amt = $amount;
-			$companyid  = $sid;
+			$companyid  = $id;
 			$time = $this->common->get_setting_value(18);
 			$expires = date('Y-m-d H:i:s', strtotime("+$time Month"));
 			$payer_id=$email;
@@ -1839,7 +1838,7 @@ public function upgrades($companyid)
 			"<creditCard>".
 			"<cardNumber>" . $cardNumber . "</cardNumber>".
 			"<expirationDate>" . $expirationDate . "</expirationDate>".
-                        "<cardCode>". $cvv . "</cardCode>". 
+            "<cardCode>". $cvv . "</cardCode>". 
 			"</creditCard>".
 			"</payment>".
 			"<billTo>".

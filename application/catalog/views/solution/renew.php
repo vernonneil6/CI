@@ -1,6 +1,6 @@
 <?php echo $header;?>
 
-
+<script type="text/javascript" src="js/renewform.js"></script>
 <section class="container">
   <section class="main_contentarea">
     
@@ -14,9 +14,11 @@
             <div class="reg_fld">PLEASE RENEW YOUR ELITEMEMBERSHIP SUBSCRIPTION HERE FOR ACTIVATING IT.</div>
             <?php //print_r($renewelite[0]);?>
             <input type="hidden" class="reg_txt_box" placeholder="companyid" id="companyid" name="companyid"  maxlength="30" value="<?php echo $renewelite[0]['id'];?>" />
+            <input type="hidden" class="reg_txt_box" placeholder="companyid" id="renewid" name="renewid"  maxlength="30" value="<?php echo $renewelite[0]['id'];?>" />
             <input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30" value="<?php echo $renewelite[0]['company'];?>" />
             <input type="hidden" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150" value="<?php echo $renewelite[0]['siteurl'];?>" />
-            <input type="hidden" class="reg_txt_box-lg" placeholder="category" name="categorylist" id="category" maxlength="50" value="<?php echo $renewelite[0]['categoryid'];?>" />
+                                                                                 <?php $category=$this->complaints->get_categories_byid($renewelite[0]['categoryid']);?>
+            <input type="hidden" class="reg_txt_box-lg" placeholder="category" name="categorylist" id="category" maxlength="50" value="<?php echo $category[0]['categoryname'];?>" />
             <input type="hidden" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" value="<?php echo $renewelite[0]['email'];?>" />
             <input type="hidden" class="reg_txt_box"  id="streetaddress1" name="streetaddress1"  maxlength="250" value="<?php echo $renewelite[0]['companystreet'];?>" />
             <input type="hidden" class="reg_txt_box"  id="country1" name="countryname1"  maxlength="250" value="<?php echo $renewelite[0]['companycountry'];?>" />
@@ -65,21 +67,25 @@
           <br/>
             <input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
             <input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
-            <div id="streetaddresserror" class="error">Street Address is required.</div>
-            <div id="cityerror" class="error">City is required.</div>
-            <div id="stateerror" class="error">State is required.</div>
-            <div id="countryerror" class="error">Country is required.</div>
-            <div id="ziperror" class="error">Zip Code is required.</div>
-            <div id="zipverror" class="error">Enter digits only valid format 123456</div>
-            <div id="streeterror" class="error">Street Address is required.</div>
-            <div id="cityerror" class="error">City is required.</div>
-            <div id="stateerror" class="error">State is required.</div>
-            <div id="streeterror" class="error">Street Address is required.</div>
-            <div id="zipcodeerror" class="error">Enter digits only.</div>
+            <div id="b_streetaddresserror" class="error">Street Address is required.</div>
+            <div id="b_cityerror" class="error">City is required.</div>
+            <div id="b_stateerror" class="error">State is required.</div>
+            <div id="b_countryerror" class="error">Country is required.</div>
+            <div id="b_ziperror" class="error">Zip Code is required.</div>
+            <div id="b_zipverror" class="error">Enter digits only valid format 123456</div>
+            <div id="b_streeterror" class="error">Street Address is required.</div>
+            <div id="b_cityerror" class="error">City is required.</div>
+            <div id="b_stateerror" class="error">State is required.</div>
+            <div id="b_streeterror" class="error">Street Address is required.</div>
+            <div id="b_zipcodeerror" class="error">Enter digits only.</div>
           </div>
+           <script type="text/javascript"> // initialise variable to save cc input string 
+     		var cc_number_saved = ""; 
+        	</script>
           <div class="reg-row" style="margin-top:10px !important;">
             <div class="reg_fld">CREDIT CARD NUMBER</div>
-            <input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)" onblur="return checkcard()"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+            <!--<input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20" onkeypress="return number(event)" onblur="return checkcard()"/><div id="ccnumbererror" class="error">Credit Card Number is required.</div>-->
+            <input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20"  onblur="cc_number_saved = this.value; this.value = this.value.replace(/[^\d]/g, ''); return checkcard();" onfocus="if(this.value != cc_number_saved) this.value = cc_number_saved;  " /><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
             <div id="carderror" class="carderror"></div>
             <div id="cardsuccess" class="cardsuccess"></div>   
           </div>
@@ -137,4 +143,19 @@
     </div>
   </section>
 </section>
+<script>
+$(document).ready(function(){
+	
+	$('#cvvhover','#cvvhover').hide();
+
+	//When the Image is hovered upon, show the hidden div using Mouseover
+	$('.cvvpop').mouseover(function() {
+	$('#cvvhover').show();
+	});
+	$('.cvvpop').mouseout(function() {
+	$('#cvvhover').hide();
+	});
+	
+});		
+</script>	
 <?php echo $footer;?>
