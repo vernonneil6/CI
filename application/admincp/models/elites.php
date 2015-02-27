@@ -24,6 +24,44 @@ class Elites extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	function get_all_elitememberss($limit ='',$offset='',$sortby,$orderby)
+ 	{
+		switch($sortby)
+		{
+			case 'paymentdate'  : $sortby = 'payment_date';break;
+			case 'createddate'  : $sortby = 'registerdate';break;
+			case 'paymentamt' 	: $sortby = 'payment_amount';break;
+			case 'privateemail' : $sortby = 'contactemail';break;
+			case 'publicemail' 	: $sortby = 'email';break;
+			case 'name' 		: $sortby = 'contactname';break;
+			default 			: $sortby = 'company';break;
+		}
+		//Ordering Data
+		$this->db->order_by($sortby,$orderby);
+		
+		//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+		
+		$this->db->select('e.*, c.*');
+		$this->db->from('elite as e');
+		$this->db->join('company as c','e.company_id=c.id');
+		$this->db->or_like(array('company'=> $keyword , 'streetaddress'=> $keyword , 'email'=> $keyword , 'siteurl'=> $keyword , 'aboutus' => $keyword));
+		
+		$query = $this->db->get();
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 	function search_elitemember($keyword,$limit ='',$offset='',$sortby = 'company',$orderby = 'ASC')
  	{

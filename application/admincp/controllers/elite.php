@@ -76,24 +76,75 @@ class Elite extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	public function index($sortby)
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			//Loading Model File
 	    			
 			$limit = $this->paging['per_page'];
-			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+			
+			
+			if($sortby=='paymentdate')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("elite/index/paymentdate");
+				$orderby = 'desc';
+				$url = 4;
+				
+			}
+			else if($sortby=='createddate')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("elite/index/createddate");
+				$orderby = 'desc';
+				$url = 4;
+			}
+			else if($sortby=='paymentamt')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("elite/index/paymentamt");
+				$orderby = 'desc';
+				$url = 4;
+			}
+			else if($sortby=='privateemail')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("elite/index/privateemail");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else if($sortby=='publicemail')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("elite/index/publicemail");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else if($sortby=='name')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("elite/index/name");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else
+			{
+				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+				$base = site_url("elite/index");
+				$orderby = 'asc';
+				$url = 3;
+			}
 			
 			//Addingg Setting Result to variable
-			$this->data['elitemembers'] = $this->settings->get_all_elitemembers($limit,$offset);
+			$this->data['elitemembers'] = $this->elites->get_all_elitememberss($limit,$offset,$sortby,$orderby);
 			/*echo "<pre>";
 			print_r($this->data['complaints']);
 			die();*/
 			
-			$this->paging['base_url'] = site_url("elite/index");
-			$this->paging['uri_segment'] = 3;
-			$this->paging['total_rows'] = count($this->settings->get_all_elitemembers());
+			$this->paging['base_url'] = $base;
+			$this->paging['uri_segment'] = $url;
+			$this->paging['total_rows'] = count($this->elites->get_all_elitememberss());
 			$this->pagination->initialize($this->paging);
 			//echo "<pre>";
 			//print_r($this->paging);
@@ -256,6 +307,58 @@ class Elite extends CI_Controller {
 		}
 		
 	}
+	
+	public function csv($keyword)
+    {
+        if( $this->session->userdata['youg_admin'] )
+        {
+				if($keyword!='') 
+				{
+					$file = 'Report-of-search-elite.csv';
+					$keyword = str_replace('+',' ', $keyword);					
+					$elite = $this->elites->search_elitemember($keyword);
+				}
+				else
+				{
+					$file = 'Report-of-all-elite.csv';
+					$elite = $this->elites->get_all_elitememberss();
+				}
+				ob_start();
+				echo "Company,Name,Public Email,Private Email,Payment Amount,Status,Date Created,Payment Date"."\n";
+				
+				   for($i=0;$i<count($elite);$i++) { 
+					
+						echo stripslashes(ucwords($elite[$i]['company'])).',';
+						echo stripslashes(ucwords($elite[$i]['contactname'])).',';
+						echo stripslashes(ucwords($elite[$i]['email'])).',';
+						echo stripslashes(ucwords($elite[$i]['contactemail'])).',';
+						echo stripslashes($elitemembers[$i]['payment_currency']).' '.$elitemembers[$i]['payment_amount'].',';
+						echo stripslashes(ucwords($elite[$i]['status'])).',';
+						echo date("m-d-Y",strtotime($elite[$i]['registerdate'])).','; 
+						echo date("m-d-Y",strtotime($elite[$i]['payment_date'])); 
+						echo "\n";							
+					}
+			
+					$content = ob_get_contents();
+					ob_end_clean();
+					header("Expires: 0");
+					header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+					header("Cache-Control: no-store, no-cache, must-revalidate");
+					header("Cache-Control: post-check=0, pre-check=0", false);
+					header("Pragma: no-cache");  header("Content-type: application/csv;charset:UTF-8");
+					header('Content-length: '.strlen($content));
+					header('Content-disposition: attachment; filename='.basename($file));
+					echo $content;
+					exit;
+							
+						
+		}
+		else
+		{
+			redirect('adminlogin','refresh');
+		}
+    }
+    
 }
 
 /* End of file page.php */

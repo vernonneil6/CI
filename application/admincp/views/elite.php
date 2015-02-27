@@ -149,6 +149,13 @@ else { ?>
   <div class="box">
     <div class="headlines">
       <h2><span><?php echo "Elite Members"; ?></span></h2>
+       <h2>
+		   <span>
+				<a href="<?php if($this->uri->segment(2)=='searchresult'){ echo site_url('elite/csv/'.$this->uri->segment(3)); } else { echo site_url('elite/csv'); } ?>" title="Export as CSV file">
+					<img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
+				</a>
+			</span>
+		</h2>
     </div>
     
     <!-- Correct form message -->
@@ -273,14 +280,14 @@ else { ?>
     <table class="tab tab-drag elites elites1">
       <tr class="top nodrop nodrag">
         <th><input type="checkbox" id="selectall" name="maincheck"/></th>
-        <th>Company</th>
-        <th>Name</th>
-        <th>Public <br>E-mail</th>
-        <th>Private <br>E-mail</th>
-        <th>Payment <br>Amount</th>
+        <th><a class="sorttitle" href="<?php echo base_url('elite/index'); ?>">Company</a></th>
+        <th><a class="sorttitle" href="<?php echo base_url('elite/index/name'); ?>">Name</a></th>
+        <th><a class="sorttitle" href="<?php echo base_url('elite/index/publicemail'); ?>">Public <br>E-mail</a></th>
+        <th><a class="sorttitle" href="<?php echo base_url('elite/index/privateemail'); ?>">Private <br>E-mail</a></th>
+        <th><a class="sorttitle" href="<?php echo base_url('elite/index/paymentamt'); ?>">Payment <br>Amount</a></th>
         <th>Status</th>
-        <th>Date <br>Created</th>       
-        <th>Payment <br>Date</th>
+        <th><a class="sorttitle" href="<?php echo base_url('elite/index/createddate'); ?>">Date <br>Created</a></th>       
+        <th><a class="sorttitle" href="<?php echo base_url('elite/index/paymentdate'); ?>">Payment <br>Date</a></th>
         <th>Payment <br>Details</th>
         <th>Business <br>Admin</th>
       </tr>

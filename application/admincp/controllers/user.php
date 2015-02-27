@@ -633,12 +633,12 @@ class User extends CI_Controller {
         {
 				if($keyword!='') 
 				{
-					$file = 'Report-of-all-user.csv';
+					$file = 'Report-of-search-user.csv';
 					$users = $this->users->search_user($keyword);
 				}
 				else
 				{
-					$file = 'Report-of-search-user.csv';
+					$file = 'Report-of-all-user.csv';
 					$users = $this->users->get_all_users();
 				}
 				ob_start();
