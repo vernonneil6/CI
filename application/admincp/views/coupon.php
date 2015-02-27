@@ -510,6 +510,13 @@ else { ?>
 <div class="box">
     <div class="headlines">
 	    <h2><span><?php echo 'CouponsDeals & Steals'; ?></span></h2>
+	    <h2>
+		   <span>
+				<a href="<?php if($this->uri->segment(2)=='searchresult'){ echo site_url('coupon/csv/'.$this->uri->segment(3)); } else { echo site_url('coupon/csv'); } ?>" title="Export as CSV file">
+					<img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
+				</a>
+			</span>
+		</h2>
     </div>
     <div class="box-content"> <?php echo form_open('coupon/searchcoupon',array('class'=>'formBox','id'=>'frmsearch')); ?>
       <fieldset>
@@ -567,10 +574,10 @@ else { ?>
 	</style>
 	<table class="tab tab-drag">
     <tr class="top nodrop nodrag">
-        <th>Company</th>
-        <th>Title</th>
-        <th width="10%">Promocode</th>
-        <th width="10%">Enddate</th>
+        <th><a class="sorttitle" href="<?php echo base_url('coupon/index/company'); ?>">Company</th>
+        <th><a class="sorttitle" href="<?php echo base_url('coupon/index'); ?>">Title</th>
+        <th width="10%"><a class="sorttitle" href="<?php echo base_url('coupon/index/promocode'); ?>">Promocode</th>
+        <th width="10%"><a class="sorttitle" href="<?php echo base_url('coupon/index/enddate'); ?>">Enddate</th>
         <th width="10%">Status</th>
         <th width="10%">Action</th>
     </tr>
@@ -580,7 +587,7 @@ else { ?>
 	  <td><?php if(count($company)>0) { echo ucfirst(stripslashes($company[0]['company'])); } else { echo "---"; } ?></td>
       <td><?php echo substr(stripslashes($coupons[$i]['title']),0,100).'...'; ?></td>
       <td><?php echo stripslashes($coupons[$i]['promocode']); ?></td>
-      <td><?php echo date("M d Y",strtotime($coupons[$i]['enddate'])); ?></td>
+      <td><?php echo date("m-d-Y",strtotime($coupons[$i]['enddate'])); ?></td>
       <td><?php if( stripslashes($coupons[$i]['status']) == 'Enable' ) { ?>
           <a href="<?php echo site_url('coupon/disable/'.$coupons[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this Coupon?');" style="cursor:pointer">Enable</a>
           <?php } ?>

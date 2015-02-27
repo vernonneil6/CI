@@ -76,21 +76,52 @@ class Coupon extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	public function index($sortby)
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			$limit = $this->paging['per_page'];
-			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+			
+			if($sortby=='enddate')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("coupon/index/enddate");
+				$orderby = 'desc';
+				$url = 4;
+				
+			}
+			else if($sortby=='promocode')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("coupon/index/promocode");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else if($sortby=='company')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("coupon/index/company");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else
+			{
+				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+				$base = site_url("coupon/index");
+				$orderby = 'asc';
+				$url = 3;
+			}
+			
+			
 			$siteid = $this->session->userdata('siteid');
 			//Addingg Setting Result to variable
-			$this->data['coupons'] = $this->coupons->get_all_coupons($siteid,$limit,$offset);
+			$this->data['coupons'] = $this->coupons->get_all_coupons($siteid,$limit,$offset,$sortby,$orderby);
 			/*echo "<pre>";
 			print_r($this->data['coupons']);
 			die();*/
 			
-			$this->paging['base_url'] = site_url("coupon/index");
-			$this->paging['uri_segment'] = 3;
+			$this->paging['base_url'] = $base;
+			$this->paging['uri_segment'] = $url;
 			$this->paging['total_rows'] = count($this->coupons->get_all_coupons($siteid));
 			$this->pagination->initialize($this->paging);
 			//echo "<pre>";
@@ -557,6 +588,54 @@ class Coupon extends CI_Controller {
 			redirect('coupon', 'refresh');
 		}
 	}
+	
+	
+	public function csv($keyword)
+    {
+        if( $this->session->userdata['youg_admin'] )
+        {
+				if($keyword!='') 
+				{
+					$file = 'Report-of-search-coupon.csv';				
+					$coupons = $this->coupons->search_coupon($keyword);
+				}
+				else
+				{
+					$file = 'Report-of-all-coupon.csv';
+					$coupons = $this->coupons->get_all_coupons();
+				}
+				ob_start();
+				echo "Company,Title,Promo Code,End Date"."\n";
+				
+				   for($i=0;$i<count($coupons);$i++) { 
+					
+						$company = $this->companys->get_company_byid($coupons[$i]['companyid']);
+						echo stripslashes(ucwords($company[0]['company'])).',';
+						echo stripslashes(ucwords($coupons[$i]['title'])).',';
+						echo stripslashes(ucwords($coupons[$i]['promocode'])).',';
+						echo stripslashes(ucwords($coupons[$i]['enddate'])); 
+						echo "\n";							
+					}
+			
+					$content = ob_get_contents();
+					ob_end_clean();
+					header("Expires: 0");
+					header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+					header("Cache-Control: no-store, no-cache, must-revalidate");
+					header("Cache-Control: post-check=0, pre-check=0", false);
+					header("Pragma: no-cache");  header("Content-type: application/csv;charset:UTF-8");
+					header('Content-length: '.strlen($content));
+					header('Content-disposition: attachment; filename='.basename($file));
+					echo $content;
+					exit;
+							
+						
+		}
+		else
+		{
+			redirect('adminlogin','refresh');
+		}
+    }
 }
 /* End of file dashboard.php */
 /* Location: ./application/controllers/dashboard.php */

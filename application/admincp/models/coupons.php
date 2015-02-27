@@ -1,16 +1,17 @@
 <?php
 class Coupons extends CI_Model
 {
-	function get_all_coupons($siteid,$limit ='',$offset='',$sortby = 'title',$orderby = 'ASC')
+	function get_all_coupons($siteid,$limit ='',$offset='',$sortby,$orderby)
  	{
 		switch($sortby)
 		{
-			case 'title': $sortby = 'title';break;
-			default 	     : $sortby = 'title';break;
+			case 	'enddate'    : $sortby = 'enddate';break;
+			case 	'promocode'  : $sortby = 'promocode';break;
+			case 	'company'	 : $sortby = 'companyid';break;
+			default 	   		 : $sortby = 'title';break;
 		}
 		
 		//Ordering Data
-		$this->db->where('websiteid',$siteid);
 		$this->db->where('type','admin');
 		$this->db->order_by($sortby,$orderby);
 		
