@@ -367,30 +367,30 @@ class Signuppage extends CI_Controller {
 							else
 							{
 								$this->session->set_flashdata('error', 'There is error in adding Business. Try later!');
-								redirect('signuppage/claimbusiness', 'refresh');
+								redirect('solution', 'refresh');
 							}
 						}
 						else
 						{
 								$this->session->set_flashdata('error', 'There is error in adding Business. Try later!');
-								redirect('signuppage/claimbusiness', 'refresh');
+								redirect('solution', 'refresh');
 						}
 					
 					
 					
-					redirect('signuppage/claimbusiness', 'refresh');
+					redirect('signuppage', 'refresh');
 				}
 				else
 				{
 					if($email1=='old')
 					{
 						$this->session->set_flashdata('error', 'This company email address is already exists. Try later!');
-						redirect('signuppage/claimbusiness', 'refresh');	
+						redirect('solution', 'refresh');	
 					}
 					if($name1=='old')
 					{
 						$this->session->set_flashdata('error', 'This company name is already exists. Try later!');
-						redirect('signuppage/claimbusiness', 'refresh');
+						redirect('solution', 'refresh');
 					}
 				}
 			}
@@ -507,24 +507,27 @@ class Signuppage extends CI_Controller {
 	$disccode_price="";
 	$disccode_use="";
 	if(count($discountmethod) > 0){
-		  
-		 if($discountmethod['discountcodetype']=="30days-FT" || $discountmethod['discountcodetype']=="30days-FT+LP")
-			{
-					$startDate=date('Y-m-d', strtotime("+30 days"));
+		
+		    if($discountmethod['discountcodetype']=="30-days-free-trial"){
+			        
+			        $startDate=date('Y-m-d', strtotime("+30 days"));
 					$discid=$discountmethod['id'];
 					$disc=$discountmethod['code'];
 					$disccode_type=$discountmethod['discountcodetype']; 
 					$disccode_price=$discountmethod['discountprice']; 
-					$disccode_date=date('Y-m-d'); 
 					$disccode_use=1; 
-					if($discountmethod['discountcodetype']=="30days-FT+LP"){
-						    $startDate=date('Y-m-d', strtotime("+30 days"));
-							$amount=200;
-					} else if($discountmethod['discountcodetype']=="30days-FT") {
-					  $startDate=date('Y-m-d', strtotime("+30 days")); 
-					  $amount = $subscriptionprice;	
-					} 	
+	                $amount=$discountmethod['discountprice'];
 			}
+			else if($discountmethod['discountcodetype']=="normal-discount"){
+
+                                 
+				$discid=$discountmethod['id'];
+				$disc=$discountmethod['code'];
+				$disccode_type=$discountmethod['discountcodetype']; 
+				$disccode_price=$discountmethod['discountprice']; 
+				$disccode_use=1; 
+				$amount=$discountmethod['discountprice'];
+			}  
     }
     	   
 	//define variables to send
@@ -558,14 +561,8 @@ class Signuppage extends CI_Controller {
 	$cid=$_POST["country"];
 	$c_code=$this->complaints->get_country_by_countryid($cid);
 	$country=$c_code['name'];
-		
+	$cvv=$this->input->post('cvv');	
 	
-	$company = $this->complaints->get_company_by_emailid($email);
-	if(count($company)>0)
-	{
-		$companyid = $company[0]['id'];
-	}
-
 	"Results <br><br>";
 
 	//build xml to post
@@ -660,8 +657,13 @@ class Signuppage extends CI_Controller {
 			$cardexpire=$expirationDate;
 			$fname=$firstName;
 			$lname=$lastName;
+                        $discid="";
+			$disc="";
+			$disccode_type="";
+			$disccode_price="";
+			$disccode_use="";
 			//if($this->complaints->insert_subscription($companyid,$amt,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
-			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId,$disc,$disccode_type,$disccode_price,$disccode_use))
+			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cvv,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId,$disc,$disccode_type,$disccode_price,$disccode_use))
 			{
 				$company = $this->complaints->get_company_byid($companyid);
 				if( count($company)>0 )

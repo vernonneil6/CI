@@ -203,7 +203,22 @@ $(document).ready(function(){
 				<div id="carderror" class="carderror"></div>
 				<div id="cardsuccess" class="cardsuccess"></div>
           </div>
-          
+          <div class="reg-row" style="margin-top:10px !important;">
+				<div>
+					<span class="form-col-1">
+						&nbsp;
+					</span>
+					<span class="form-col-2">
+						<div class="reg_fld">CVV Code:</div>
+         
+              
+					  <input type="text" name="cvv" value="" id="cvv" class="input" placeholder="CVV Code">			       
+					  
+					   <a class="cvvpop" href="http://yougotrated.com/businessadmin/">What is this? 
+							<img src="images/cvvpop1.jpg" id="cvvhover" style="display: none;">
+					   </a>   
+					</span>
+				</div>
          
           <div class="reg-row" style="margin-top:10px !important;">
             <div class="reg_fld">EXPIRATION DATE</div>
