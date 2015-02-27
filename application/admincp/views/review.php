@@ -221,6 +221,13 @@ else { ?>
         <?php if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult')
 	   {} else { ?>
         <?php echo "Business Reviews"; } ?></span></h2>
+        <h2>
+		   <span>
+				<a href="<?php echo site_url('review/csv/'.$keyword); ?>" title="Export as CSV file">
+					<img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
+				</a>
+			</span>
+		</h2>
     </div>
     
     <!-- Correct form message -->
@@ -248,9 +255,7 @@ else { ?>
 		});*/
   });
 </script>
-    <?php if( $this->uri->segment(2)=='searchreview')
-	   {
-	   	?>
+
     <script type="text/javascript" language="javascript">
 	function trim(stringToTrim) {
 		return stringToTrim.replace(/^\s+|\s+$/g,"");
@@ -301,7 +306,10 @@ else { ?>
           <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('review');?>" class="Cancel">Cancel</a> </div>
       </fieldset>
       <?php echo form_close(); ?> </div>
-    <?php }?>
+   
+    
+    
+    
     <?php if( count($reviews) > 0 ) { ?>
 		<script language="javascript">
 		
@@ -362,10 +370,11 @@ function submitfrm()
     </table>
     <table class="tab tab-drag">
       <th width="7%"><input type="checkbox" id="selectall" name="maincheck"/></th>
-        <th width="58%">Review</th>
-        <th width="7%">Review to</th>
-        <th width="7%">Review by</th>
-        <th width="7%">IP</th>
+        <th width="51%"><a class="sorttitle" href="<?php echo base_url('review/index/review'); ?>">Review</a></th>
+        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/to'); ?>">Review to</a></th>
+        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/by'); ?>">Review by</a></th>
+        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/ip'); ?>">IP</a></th>
+        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index'); ?>">Date Reviewed</a></th>
         <th width="7%">status</th>
         <th width="7%">&nbsp;View&nbsp;</th>
       </tr>
@@ -388,6 +397,7 @@ function submitfrm()
 		<?php } else { echo $reviews[$i]['reviewby'];} ?>
           </td>
         <td><?php echo $reviews[$i]['reviewip']; ?></td>
+        <td><?php echo date('m-d-Y', strtotime($reviews[$i]['reviewdate'])); ?></td>
         <td><?php if( stripslashes($reviews[$i]['status']) == 'Enable' ) { ?>
           <a href="<?php echo site_url('review/disable/'.$reviews[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this review?');"><span>Enable</span></a>
           <?php } ?>

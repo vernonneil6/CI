@@ -1,8 +1,16 @@
 <?php
 class Reviews extends CI_Model
 {
-	function get_all_reviews($limit ='',$offset='',$sortby = 'reviewdate',$orderby = 'DESC')
+	function get_all_reviews($limit ='',$offset='',$sortby ,$orderby)
  	{
+		switch($sortby)
+		{
+			case 'ip' 			: $sortby = 'reviewip';break;
+			case 'by' 			: $sortby = 'firstname';break;
+			case 'to' 			: $sortby = 'company';break;
+			case 'review' 		: $sortby = 'comment';break;
+			default 			: $sortby = 'reviewdate';break;
+		}
 		//Ordering Data
 		$this->db->order_by($sortby,$orderby);
 		

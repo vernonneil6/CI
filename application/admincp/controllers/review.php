@@ -83,21 +83,57 @@ class Review extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	public function index($sortby)
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			$limit = $this->paging['per_page'];
-			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+			
+			if($sortby=='review')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("review/index/review");
+				$orderby = 'asc';
+				$url = 4;
+				
+			}
+			else if($sortby=='to')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("review/index/to");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else if($sortby=='by')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("review/index/by");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else if($sortby=='ip')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("review/index/ip");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else
+			{
+				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+				$base = site_url("review/index");
+				$orderby = 'asc';
+				$url = 3;
+			}
 			
 			//Addingg Setting Result to variable
-			$this->data['reviews'] = $this->reviews->get_all_reviews($limit,$offset);
+			$this->data['reviews'] = $this->reviews->get_all_reviews($limit,$offset,$sortby, $orderby);
 			/*echo "<pre>";
 			print_r($this->data['reviews']);
 			die();*/
 			
-			$this->paging['base_url'] = site_url("review/index");
-			$this->paging['uri_segment'] = 3;
+			$this->paging['base_url'] = $base;
+			$this->paging['uri_segment'] = $url;
 			$this->paging['total_rows'] = count($this->reviews->get_all_reviews());
 			$this->pagination->initialize($this->paging);
 			//echo "<pre>";
@@ -403,6 +439,55 @@ class Review extends CI_Controller {
 		}
 		
 	}
+	
+	public function csv($keyword)
+    {
+        if( $this->session->userdata['youg_admin'] )
+        {
+				if($keyword!='') 
+				{
+					$file = 'Report-of-search-reviews.csv';					
+					$review = $this->reviews->search_review($keyword);
+				}
+				else
+				{
+					$file = 'Report-of-all-reviews.csv';
+					$review = $this->reviews->get_all_reviews();
+				}
+				ob_start();
+				echo "Review,Review to,Review by,IP,Date Reviewed,Status"."\n";
+				
+				   for($i=0;$i<count($review);$i++) { 
+					
+						echo stripslashes(ucwords($review[$i]['comment'])).',';
+						echo stripslashes(ucwords($review[$i]['company'])).',';
+						echo ucfirst($reviews[$i]['firstname'].' '.$reviews[$i]['lastname']).',';
+						echo stripslashes(ucwords($review[$i]['reviewip'])).',';
+						echo stripslashes($review[$i]['reviewdate']).',';
+						echo stripslashes(ucwords($review[$i]['status'])); 
+						echo "\n";							
+					}
+			
+					$content = ob_get_contents();
+					ob_end_clean();
+					header("Expires: 0");
+					header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+					header("Cache-Control: no-store, no-cache, must-revalidate");
+					header("Cache-Control: post-check=0, pre-check=0", false);
+					header("Pragma: no-cache");  header("Content-type: application/csv;charset:UTF-8");
+					header('Content-length: '.strlen($content));
+					header('Content-disposition: attachment; filename='.basename($file));
+					echo $content;
+					exit;
+							
+						
+		}
+		else
+		{
+			redirect('adminlogin','refresh');
+		}
+    }
+    
 }
 
 /* End of file page.php */

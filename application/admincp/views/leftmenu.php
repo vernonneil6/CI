@@ -185,9 +185,9 @@
 			<li>
 				<a href="<?php echo site_url('review'); ?>" title="List All Reviews">List All Reviews</a>
 			</li>
-			<li>
-				<a href="<?php echo site_url('review/search'); ?>" title="Search Review">Search Review</a>
-			</li>
+			<!--<li>
+				<a href="<php echo site_url('review/search'); ?>" title="Search Review">Search Review</a>
+			</li>-->
 		</ul>
     </li>
     <li class="<?=($this->uri->segment(1)==='dispute')?'active':''?>">
