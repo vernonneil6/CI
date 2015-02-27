@@ -78,20 +78,45 @@ class Comment extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	public function index($sortby)
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			$limit = $this->paging['per_page'];
-			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+			
+			if($sortby=='commentby')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("comment/index/commentby");
+				$orderby = 'asc';
+				$url = 4;
+				
+			}
+			else if($sortby=='comment')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("comment/index/comment");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else
+			{
+				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+				$base = site_url("comment/index");
+				$orderby = 'desc';
+				$url = 3;
+			}
+			
+			
+			
 			
 			//Addingg Setting Result to variable
-			$this->data['comments'] = $this->comments->get_all_comments($limit,$offset);
+			$this->data['comments'] = $this->comments->get_all_comments($limit,$offset,$sortby,$orderby);
 			/*echo "<pre>";
 			print_r($this->data['comments']);
 			die();*/
-			$this->paging['base_url'] = site_url("comment/index");
-			$this->paging['uri_segment'] = 3;
+			$this->paging['base_url'] = $base;
+			$this->paging['uri_segment'] = $url;
 			$this->paging['total_rows'] = count($this->comments->get_all_comments());
 			$this->pagination->initialize($this->paging);
 			//echo "<pre>";
@@ -268,6 +293,8 @@ class Comment extends CI_Controller {
 		}
 		
 	}
+	
+	
 }
 
 /* End of file page.php */

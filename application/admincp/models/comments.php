@@ -1,8 +1,15 @@
 <?php
 class Comments extends CI_Model
 {
-	function get_all_comments($limit ='',$offset='',$sortby = 'commentdate',$orderby = 'DESC')
+	function get_all_comments($limit ='',$offset='',$sortby ,$orderby)
  	{
+		switch($sortby)
+		{
+			case 'commentby' 	: $sortby = 'commentby';break;
+			case 'comment' 		: $sortby = 'comment';break;
+			default 			: $sortby = 'commentdate';break;
+		}
+		
 		//Ordering Data
 		$this->db->order_by($sortby,$orderby);
 		
@@ -162,6 +169,20 @@ class Comments extends CI_Model
 		}
 	}
 	}
+	
+	function get_user_bysingleid($id)
+ 	{
+		$query = $this->db->get_where('user', array('id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+ 	}
 }
 
 ?>

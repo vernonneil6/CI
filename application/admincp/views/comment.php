@@ -253,8 +253,9 @@ function submitfrm()
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
       <th width="7%"><input type="checkbox" id="selectall" name="maincheck"/></th>
-        <th width="60%">Title</th>
-        <th width="20%">Submitted by</th>
+        <th width="50%"><a class="sorttitle" href="<?php echo base_url('comment/index/comment'); ?>">Title</a></th> 
+        <th width="20%"><a class="sorttitle" href="<?php echo base_url('comment/index/commentby'); ?>">Submitted by</a></th>
+        <th width="20%"><a class="sorttitle" href="<?php echo base_url('comment/index'); ?>">Date</a></th>
         <th width="10%">status</th>
         <th width="10%">View</th>
       </tr>
@@ -263,9 +264,8 @@ function submitfrm()
       <tr>
         <td><input type="checkbox" class="case" name="foo[]" value="<?php echo $comments[$i]['id'];?>" /></td>
         <td><?php echo nl2br(substr($comments[$i]['comment'],0,100)).'...'; ?></td>
-        <td><?php if(count($user)>0) {?>
-          <div class="task-photo"> <img width="60" height="40" src="<?php if( $user[0]['avatarbig'] ){ echo $this->settings->get_setting_value('2').substr($this->config->item('user_thumb_upload_path'),3);?><?php echo stripslashes($user[0]['avatarbig']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('user_thumb_upload_path'),3)."/no_image.png"; } ?>" alt="<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']);?>" title="<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']);?>"/> </div>
-          <?php } else { echo "Anonymous"; } ?></td>
+        <td><?php $username = $this->comments->get_user_bysingleid($comments[$i]['commentby']); echo $username['username'];?></td>
+        <td><?php echo date('m-d-Y',strtotime($comments[$i]['commentdate'])); ?></td>
         <td><?php if( stripslashes($comments[$i]['status']) == 'Enable' ) { ?>
           <a href="<?php echo site_url('comment/disable/'.$comments[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this complaint?');"><span>Enable</span></a>
           <?php } ?>
