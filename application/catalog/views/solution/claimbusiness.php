@@ -393,12 +393,20 @@ function chkwebsite(website){
 }
 $(document).ready(function(){
 	
-	var affiliateId = readCookie('affiliateId');
-	//alert(affiliateId);
-	var domainURL = '<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/signuppage/affid/'; ?>';
-	if(affiliateId!= null){
-		$('#affiliatedId').val(affiliateId);
+	var affid = "<?php echo $this->uri->segment('4');  ?>";
+	
+	
+	if(affid !='')
+	{
+		var affiliateId = 'affiliateId';
+		createCookie(affiliateId,affid,30);
 		
+		var affiliateId = readCookie('affiliateId');
+	
+		if(affiliateId!= null){
+			$('#affiliatedId').val(affiliateId);
+			
+		}
 	}
 	
  $("#applydisc").click(function(){
