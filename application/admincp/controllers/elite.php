@@ -71,7 +71,7 @@ class Elite extends CI_Controller {
 					$this->data['selsite'] = array();
 				}
 		
-		//Load heading and save in variable
+		//Load heading and save in variable 
 		$this->data['heading'] = $this->load->view('header',$this->data,true);
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}

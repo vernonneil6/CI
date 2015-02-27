@@ -1,12 +1,12 @@
 <?php
 Class Users extends CI_Model
 {
-	function get_all_users($limit ='',$offset='',$sortby = 'firstname',$orderby = 'ASC')
+	function get_all_users($limit ='',$offset='',$sortby, $orderby)
  	{
 		switch($sortby)
 		{
-			case 'firstname' 	: $sortby = 'firstname';break;
 			case 'email' 		: $sortby = 'email';break;
+			case 'date' 		: $sortby = 'registerdate';break;
 			default 			: $sortby = 'firstname';break;
 		}
 		
@@ -32,7 +32,7 @@ Class Users extends CI_Model
 		}
  	}
 	
-	//Inserting Record
+	//Inserting Record 
 	function insert($firstname,$lastname,$email,$password,$gender,$street,$city,$state,$zipcode,$phoneno,$avatarthum,$avatarbig)
 	{
 		$date = date('Y-m-d H:i:s');

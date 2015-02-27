@@ -84,21 +84,46 @@ class User extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	public function index($sortby)
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			$limit = $this->paging['per_page'];
-			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+			
+			if($sortby=='email')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("user/index/email");
+				$orderby = 'asc';
+				$url = 4;
+				
+			}
+			else if($sortby=='date')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("user/index/date");
+				$orderby = 'desc';
+				$url = 4;
+			}
+			else
+			{
+				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+				$base = site_url("user/index");
+				$orderby = 'asc';
+				$url = 3;
+			}
+			
 			
 			//Addingg Setting Result to variable
-			$this->data['users'] = $this->users->get_all_users($limit,$offset);
+			$this->data['users'] = $this->users->get_all_users($limit,$offset,$sortby,$orderby);
 			/*echo "<pre>";
 			print_r($this->data['users']);
 			die();*/
 			
-			$this->paging['base_url'] = site_url("user/index");
-			$this->paging['uri_segment'] = 3;
+			
+			
+			$this->paging['base_url'] = $base;
+			$this->paging['uri_segment'] = $url;
 			$this->paging['total_rows'] = count($this->users->get_all_users());
 			$this->pagination->initialize($this->paging);
 			//echo "<pre>";
@@ -602,22 +627,31 @@ class User extends CI_Controller {
 		$this->load->view('user',$this->data);
 	}
 	
-	public function csv()
+	public function csv($keyword)
     {
         if( $this->session->userdata['youg_admin'] )
         {
-				$file = 'Report-of-all-user.csv';
+				if($keyword!='') 
+				{
+					$file = 'Report-of-all-user.csv';
+					$users = $this->users->search_user($keyword);
+				}
+				else
+				{
+					$file = 'Report-of-search-user.csv';
+					$users = $this->users->get_all_users();
+				}
 				ob_start();
-				echo "User;Join date;Email";
+				echo "User,Join date,Email";
 				echo "\n";
-							$users = $this->users->get_all_users();
+							
 					
 				    		for($i=0;$i<count($users);$i++) { 
 							
 								echo stripslashes(ucwords($users[$i]['firstname'].' '.$users[$i]['lastname']));
-								echo ";";
+								echo ",";
 								echo date("M d Y",strtotime($users[$i]['registerdate'])); 
-								echo ";";
+								echo ",";
 								echo stripslashes($users[$i]['email']);
 								echo "\n";
 							

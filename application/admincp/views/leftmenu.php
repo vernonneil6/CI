@@ -113,7 +113,7 @@
 		</ul>
     </li>
     <li class="<?=($this->uri->segment(1)==='search')?'active':''?>">
-		<a href="<?php echo site_url('search'); ?>" title="Trending Searches">Trending Searches</a>
+		<a href="<?php echo site_url('search'); ?>" title="Trending Searches">Trending Searches</a> 
 		<ul class="submenu">
 			<li>
 				<a href="<?php echo site_url('search/add'); ?>" title="Add Search">Add Search</a>
@@ -132,9 +132,9 @@
 			<li>
 				<a href="<?php echo site_url('user'); ?>" title="List All Users">List All Users</a>
 			</li>
-			<li>
-				<a href="<?php echo site_url('user/search'); ?>" title="Search User">Search User</a>
-			</li>
+			<!--<li>
+				<a href="<php echo site_url('user/search'); ?>" title="Search User">Search User</a>
+			</li>-->
 		</ul>
     </li>
     <li class="<?=($this->uri->segment(1)==='company')?'active':''?>">
@@ -157,9 +157,9 @@
 			<li>
 				<a href="<?php echo site_url('elite'); ?>" title="List All Elite Members">List All Elite Members</a>
 			</li>
-			<li>
-				<a href="<?php echo site_url('elite/search'); ?>" title="Search Elite Member">Search Elite Member</a>
-			</li>
+			<!--<li>
+				<a href="<php echo site_url('elite/search'); ?>" title="Search Elite Member">Search Elite Member</a>
+			</li>-->
 			<li>
 				<a href="<?php echo site_url('elite/subscriptions'); ?>" title="Subscribtions">Subscriptions</a>
 			</li>

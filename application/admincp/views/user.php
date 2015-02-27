@@ -709,69 +709,11 @@ else { ?>
       <?php if($this->uri->segment(2) == 'edit') { ?>
       <?php echo form_hidden( array( 'id' => $this->encrypt->encode($user[0]['id']) ) ); ?>
       <?php } ?>
-      <?php echo form_close(); ?> </div>
+      <?php echo form_close(); ?></div>
   </div>
   <!-- /box-content -->
   
-  <?php } 
-elseif( $this->uri->segment(2) && ( $this->uri->segment(2) == 'search' ) ) { ?>
-  <script type="text/javascript" language="javascript">
-	function trim(stringToTrim) {
-		return stringToTrim.replace(/^\s+|\s+$/g,"");
-	}
-	$(document).ready(function() {
-		$("#btnsearch").click(function () {
-	
-			if( trim($("#keysearch").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#keysearcherror").show();
-				$("#keysearch").val('').focus();
-				return false;
-			}
-			else
-			{
-				$("#keysearcherror").hide();
-			}
-			
-			if( $("#frmsearch").submit() )
-			{
-				$("#error").attr('style','display:none;');
-			}
-    	});
-	
-	});
-</script> 
-  <!-- box -->
-  <div class="box">
-    <div class="headlines">
-      <h2><span>Search Users</span></h2>
-    </div>
-    <div class="box-content"> <?php echo form_open('user/searchuser',array('class'=>'formBox','id'=>'frmsearch')); ?>
-      <fieldset>
-        
-        <!-- Error form message -->
-        
-        <div class="form-cols"><!-- two form cols -->
-          <div class="col1">
-            <div class="clearfix">
-              <div class="lab">
-                <label for="keysearch">Keyword<span>*</span></label>
-              </div>
-              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search user by name or email')); ?> </div>
-            </div>
-          </div>
-          <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
-        </div>
-        <div class="btn-submit"> 
-          <!-- Submit form --> 
-          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('user');?>" class="Cancel">Cancel</a> </div>
-      </fieldset>
-      <?php echo form_close(); ?> </div>
-  </div>
-  <!-- /box-content -->
-  <?php } 
-else { ?>
+  <?php } else { ?>
   <?php echo link_tag('colorbox/colorbox.css'); ?> 
   <script language="javascript" type="text/javascript" src="<?php echo base_url();?>colorbox/jquery.colorbox.js"></script> 
   <script language="javascript" type="text/javascript">
@@ -798,7 +740,8 @@ else { ?>
 	   } else { echo "Users"; } ?></span></h2>
        
         <h2><span>
-        <a href="<?php echo site_url('user/csv'); ?>" title="Export as CSV file">
+
+        <a href="<?php if($this->uri->segment(2)=='searchresult'){ echo site_url('user/csv/'.$this->uri->segment(3)); } else { echo site_url('user/csv'); } ?>" title="Export as CSV file">
        <img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV </a>
         </span></h2>
     </div>
@@ -815,7 +758,7 @@ else { ?>
       <p><?php echo $this->session->flashdata('error'); ?></p>
     </div>
     <?php } ?>
-    <?php if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult') { ?>
+
     <script type="text/javascript" language="javascript">
 	function trim(stringToTrim) {
 		return stringToTrim.replace(/^\s+|\s+$/g,"");
@@ -864,14 +807,15 @@ else { ?>
           <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('user');?>" class="Cancel">Cancel</a> </div>
       </fieldset>
       <?php echo form_close(); ?> </div>
-    <?php } ?>
+  
     <?php if( count($users) > 0 ) { ?>
     <!-- table -->
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-        <th>Name</th>
-        <th>Email</th>
-        <th>Status</th>
+        <th><a class="sorttitle" href="<?php echo base_url('user/index'); ?>">Name</a></th>
+        <th><a class="sorttitle" href="<?php echo base_url('user/index/email'); ?>">Email</a></th>        
+        <th><a class="sorttitle" href="<?php echo base_url('user/index/date'); ?>">Date Created</a></th>
+        <th>Status</th> 
         <th>Action</th>
       </tr>
       <?php 
@@ -883,12 +827,13 @@ else { ?>
       <tr>
         <td><a href="<?php echo site_url('user/view/'.$users[$i]['id']); ?>" title="View Detail of <?php echo stripslashes($users[$i]['firstname']).' '.stripslashes($users[$i]['lastname']); ?>" class="colorbox" style="color: #404040;"><?php echo stripslashes($users[$i]['firstname']).' '.stripslashes($users[$i]['lastname']); ?></a></td>
         <td><?php echo stripslashes($users[$i]['email']); ?></td>
+        <td><?php echo date('m-d-Y',strtotime($users[$i]['registerdate'])); ?></td>
         <td><?php if( stripslashes($users[$i]['status']) == 'Enable' ) { ?>
           <a href="<?php echo site_url('user/disable/'.$users[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span>Enable</span></a>
           <?php } ?>
           <?php if( stripslashes($users[$i]['status']) == 'Disable' ) { ?>
           <a href="<?php echo site_url('user/enable/'.$users[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this user?');"><span>Disable</span></a>
-          <?php } ?></td>
+          <?php } ?></td>        
         <td><a href="<?php echo site_url('user/edit/'.$users[$i]['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> <a href="<?php echo site_url('user/view/'.$users[$i]['id']); ?>" title="View Detail of <?php echo stripslashes($users[$i]['firstname']).' '.stripslashes($users[$i]['lastname']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> <a href="<?php echo site_url('user/delete/'.$users[$i]['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this user?');">Delete</a></td>
       </tr>
       <?php } ?>

@@ -363,7 +363,7 @@ a:hover.ico   { background-position: 0 0; }
 
 .dateinput
 {
-	width: 150px;
+	width: 150px; 
 	height: 22px;
 	margin-top: 14px;	
 }
@@ -387,6 +387,16 @@ a:hover.ico   { background-position: 0 0; }
 }
 .slider_upload
 {
-	width:40%!important;; 
-	float:left!important;;
+	width:40%!important;
+	float:left!important;
+}
+.sorttitle
+{
+	color: #052b4d;
+    text-decoration: none!important;
+}
+
+table.elites1 td, table.elites1 th
+{
+	padding : 8px 6px!important;
 }

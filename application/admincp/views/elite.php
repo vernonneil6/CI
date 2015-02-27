@@ -82,66 +82,7 @@ else { ?>
       <li><a href="<?php echo site_url('elite');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
     </ul>
   </div>
-  <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'search' ) ) { ?>
-  <script type="text/javascript" language="javascript">
-	function trim(stringToTrim) {
-		return stringToTrim.replace(/^\s+|\s+$/g,"");
-	}
-	$(document).ready(function() {
-		$("#btnsearch").click(function () {
-	
-			if( trim($("#keysearch").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#keysearcherror").show();
-				$("#keysearch").val('').focus();
-				return false;
-			}
-			else
-			{
-				$("#keysearcherror").hide();
-			}
-			
-			if( $("#frmsearch").submit() )
-			{
-				$("#error").attr('style','display:none;');
-			}
-    	});
-	
-	});
-</script> 
-  <!-- box -->
-  <div class="box">
-    <div class="headlines">
-      <h2><span>Search Elite Members</span></h2>
-    </div>
-    <div class="box-content"> <?php echo form_open('elite/searchelitemember',array('class'=>'formBox','id'=>'frmsearch')); ?>
-      <fieldset>
-        
-        <!-- Error form message -->
-        
-        <div class="form-cols"><!-- two form cols -->
-          <div class="col1">
-            <div class="clearfix">
-              <div class="lab">
-                <label for="keysearch">Keyword<span>*</span></label>
-              </div>
-              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search elite member by name')); ?> </div>
-            </div>
-          </div>
-          <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
-        </div>
-        <div class="btn-submit"> 
-          <!-- Submit form --> 
-          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('elite');?>" class="Cancel">Cancel</a> </div>
-      </fieldset>
-      <?php echo form_close(); ?> </div>
-  </div>
-  <!-- /box-content -->
-  <?php } 
-  
-  
-  		elseif( $this->uri->segment(2) && ( $this->uri->segment(2) == 'subscriptions' ) ) { ?>
+  <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'subscriptions' ) ) { ?>
     <!-- box -->
   <div class="box">
     <div class="headlines">
@@ -251,8 +192,8 @@ else { ?>
 	});
 </script> 
   <!-- box -->
-  <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'searchresult' ) ) { ?>
-   <div class="box-content"> <?php echo form_open('elite/searchelitemember',array('class'=>'formBox','id'=>'frmsearch')); ?>
+
+   <div class="box-content"> <?php echo form_open('elite/searchelitemember',array('class'=>'formBox','id'=>'frmsearch')); ?>  
       <fieldset>
         
         <!-- Error form message -->
@@ -273,7 +214,7 @@ else { ?>
           <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('elite');?>" class="Cancel">Cancel</a> </div>
       </fieldset>
       <?php echo form_close(); ?> </div>
-<?php } ?>
+
 		  
     
     
@@ -329,16 +270,19 @@ else { ?>
     </tr>
     </table>
     </form>
-    <table class="tab tab-drag elites">
+    <table class="tab tab-drag elites elites1">
       <tr class="top nodrop nodrag">
-        <th width="7%"><input type="checkbox" id="selectall" name="maincheck"/></th>
+        <th><input type="checkbox" id="selectall" name="maincheck"/></th>
         <th>Company</th>
-        <th>Payment Amount</th>
+        <th>Name</th>
+        <th>Public <br>E-mail</th>
+        <th>Private <br>E-mail</th>
+        <th>Payment <br>Amount</th>
         <th>Status</th>
-        <th width="17%">Payment date</th>
-        <!--<th>Discount Code</th>-->
-        <th>Payment details</th>
-        <th>Business admin</th>
+        <th>Date <br>Created</th>       
+        <th>Payment <br>Date</th>
+        <th>Payment <br>Details</th>
+        <th>Business <br>Admin</th>
       </tr>
       <?php for($i=0;$i<count($elitemembers);$i++) { ?>
       <?php $company=$this->settings->get_company_byid($elitemembers[$i]['company_id'])?>
@@ -347,10 +291,14 @@ else { ?>
         <td><?php if(count($company)>0) {?>
           <div class="task-photo"><?php echo stripslashes($company[0]['company']); ?></div>
           <?php } ?></td>
-        <td><?php echo stripslashes($elitemembers[$i]['payment_currency']).' '.$elitemembers[$i]['payment_amount'];?></td>
+        <td><?php echo stripslashes($elitemembers[$i]['contactname']);?></td>
+        <td><?php echo stripslashes($elitemembers[$i]['email']);?></td>
+        <td><?php echo stripslashes($elitemembers[$i]['contactemail']);?></td>
+        <td><?php echo stripslashes($elitemembers[$i]['payment_currency']).' '.$elitemembers[$i]['payment_amount'];?></td>        
         <td><?php echo stripslashes($elitemembers[$i]['status']);?></td>
-        <td><?php echo date('M d Y',strtotime($elitemembers[$i]['payment_date']));?></td>
-        <!--<td><php echo stripslashes($elitemembers[$i]['discountcode']);?></td>-->
+        <td><?php echo date('m-d-Y',strtotime($elitemembers[$i]['registerdate'])); ?></td>
+        <td><?php echo date('m-d-Y',strtotime($elitemembers[$i]['payment_date']));?></td>
+       
        <td width="100px"><a href="<?php echo site_url('elite/payview/'.$elitemembers[$i]['company_id']); ?>" title="View Detail of <?php echo stripslashes($elitemembers[$i]['company_id']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
         <td>
         <form action="<?php echo $site_url;?>businessadmin/adminlogin/index/" method="post" id="formBox<?php echo $i;?>" class="formBox" target="_blank" style="padding-bottom:0px;">

@@ -1,7 +1,7 @@
 <?php
 class Elites extends CI_Model
 {
-	function get_all_elitemembers($limit ='',$offset='',$sortby = 'payment_date',$orderby = 'DESC')
+	function get_all_elitemembers($limit ='',$offset='',$sortby = 'payment_date',$orderby = 'DESC') 
  	{
 		//Ordering Data
 		$this->db->order_by($sortby,$orderby);
