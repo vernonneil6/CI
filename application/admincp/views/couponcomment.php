@@ -147,9 +147,7 @@ else { ?>
 		
   });
 </script>
-    <?php if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult')
-	   {
-	   	?>
+
     <script type="text/javascript" language="javascript">
 	function trim(stringToTrim) {
 		return stringToTrim.replace(/^\s+|\s+$/g,"");
@@ -200,7 +198,8 @@ else { ?>
           <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('couponcomment');?>" class="Cancel">Cancel</a> </div>
       </fieldset>
       <?php echo form_close(); ?> </div>
-    <?php }?>
+
+
     <?php if( count($couponcomments) > 0 ) { ?><script language="javascript">
 $(function(){
  

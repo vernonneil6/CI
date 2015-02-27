@@ -226,9 +226,9 @@
 			<li>
 				<a href="<?php echo site_url('couponcomment'); ?>" title="List All Comments">List All Comments</a>
 			</li>
-			<li>
-				<a href="<?php echo site_url('couponcomment/search'); ?>" title="Search Comment">Search Comment</a>
-			</li>
+			<!--<li>
+				<a href="<php echo site_url('couponcomment/search'); ?>" title="Search Comment">Search Comment</a>
+			</li>-->
 		</ul>
     </li>
     <li class="<?=($this->uri->segment(1)==='ad')?'active':''?>">
