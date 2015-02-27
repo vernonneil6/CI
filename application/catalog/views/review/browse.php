@@ -163,9 +163,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
           </div>
         <div class="vry_btn reviewbtn d_tab">
 			<a href="<?php echo base_url('review/add/'.$review[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> 
-			<?php if(count($elitemem_status)!=0){?>		
 			<a href="<?php echo site_url('complaint/add/'.$review[0]['companyid']);?>" title="File Complaint">FILE COMPLAINT</a>
-			<?php } ?>
 		</div>  
         </div>
         

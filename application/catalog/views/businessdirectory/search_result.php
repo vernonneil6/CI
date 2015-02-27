@@ -77,9 +77,7 @@
 
               <div class="vry_btn bmoves">
 				  <a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> 
-				  <?php if(count($elitemem_status)!=0){?>				
-				   <a href="<?php echo site_url('complaint/add/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
-				  <?php } ?>
+				  <a href="<?php echo site_url('complaint/add/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
 			  </div>
             </div>
               

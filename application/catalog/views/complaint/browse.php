@@ -43,12 +43,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
             <img src="images/no_star.png" alt="no_star" title="no_star" />
             <?php } ?>
           </div>
-        <div class="vry_btn compbtn">
-			<a href="<?php echo site_url('review/add/'.$complaints[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> 
-			<?php if(count($elitemem_status)!=0){?>		
-			<a href="<?php echo site_url('complaint/add/'.$complaints[0]['companyid']);?>" title="File Complaint">FILE COMPLAINT</a>
-			<?php } ?>
-		</div>
+        <div class="vry_btn compbtn"><a href="<?php echo site_url('review/add/'.$complaints[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$complaints[0]['companyid']);?>" title="File Complaint">FILE COMPLAINT</a></div>
       </div>
     </div>
     <div class="pr_detlwrp">
