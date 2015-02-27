@@ -401,13 +401,16 @@ $(document).ready(function(){
 		var affiliateId = 'affiliateId';
 		createCookie(affiliateId,affid,30);
 		
-		var affiliateId = readCookie('affiliateId');
-	
-		if(affiliateId!= null){
-			$('#affiliatedId').val(affiliateId);
-			
-		}
+		
 	}
+	
+	var affiliateId = readCookie('affiliateId');
+
+	if(affiliateId!= null){
+		$('#affiliatedId').val(affiliateId);
+		
+	}
+	
 	
  $("#applydisc").click(function(){
   if($("#discountcode").val().length >= 4)
