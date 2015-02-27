@@ -1758,13 +1758,15 @@ class Complaints extends CI_Model
 		
 		
 	}
-	function update_subscription($subscriptionId,$companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag)
+	function update_subscription($subscriptionId,$companyid,$amt,$ccnumber,$cvv,$cardexpire,$fname,$lname,$tx,$sig,$time,$expires,$payer_id,$paymentmethod,$emailflag)
 	{
+           
 	    $date = date("Y-m-d H:i:s");
 		$payment_ip = $_SERVER['REMOTE_ADDR'];
 		$data = array(
 					'amount'  		=> $amt,
 					'ccnumber'  	=> $ccnumber,
+                                        'cvv'           =>$cvv,
 					'ccexpiredate'  => $cardexpire,
 					'firstname	'  	=> $fname,
 					'lastname	'  	=> $lname,
@@ -1775,8 +1777,9 @@ class Complaints extends CI_Model
 					'sign'			=> $sig,
 					'payer_id'		=> $payer_id,
 					'paymentmethod'	=> $paymentmethod,
+                                        'subscr_id '    => $subscriptionId         
 		);
-		$this->db->where(array('subscr_id'=>$subscriptionId,'company_id'=>$companyid));
+		$this->db->where('company_id',$companyid);
 		if($this->db->update('subscription',$data))
 		{
 			return true;
