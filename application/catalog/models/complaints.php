@@ -1711,6 +1711,35 @@ class Complaints extends CI_Model
 		return $query;
 		
 	}
+	function ccexpire_email()
+	{
+		$ccexpiredate=date('Y-n',strtotime("+1 Month"));
+		$query=$this->db->select('*')
+							->from('youg_subscription')
+							->where(array('transactionstatus'=>'0','paymentmethod'=>'authorize','subscr_id !='=>'','emailflag'=>'0'))
+							->like('ccexpiredate',$ccexpiredate) 
+							->get()
+							->result_array();
+		
+		//echo $this->db->last_query();
+		//echo '<pre>';print_r($query);die('1122');
+						
+		foreach($query as $q){
+		
+		    $split=explode('-',$q['ccexpiredate']);
+			$year=$split[0];
+			$month=$split[1];
+			$from_unix_time = mktime(0, 0, 0,$month, 0, $year);
+			$day_before = strtotime("-15 days", $from_unix_time);
+			$fifteendays_days_ago =date('Y-m-d', $day_before);
+            //$date1 		= strtotime(date("Y-m-d"));
+            $date1 		= strtotime(date("2015-03-16"));
+			$date2  	= strtotime($fifteendays_days_ago);
+			if($date1 == $date2){
+				return $query;
+			} 
+		}
+	}
 	function disable_elitemembership($company_id)
 	{
 		$data=array(

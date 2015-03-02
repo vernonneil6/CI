@@ -20,7 +20,7 @@ class Solution extends CI_Controller {
 		    $site = $regs['domain'];
 		}
 		
-		 $website = $this->common->get_site_by_domain_name($site);
+		 $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
 		 
 		 if(count($website)>0)
 		 {
@@ -1197,12 +1197,112 @@ public function cron()
 					//Sending mail to admin
 					$this->email->send();
 					$this->adminreport();
+					$this->cc_alerted();
 		}			
 					
 		
 	}
 	
 }
+public function cc_alerted()
+{
+   $ccalert=$this->complaints->ccexpire_email();
+  
+   $site_mail = $this->common->get_setting_value(5);
+   $site_name = $this->common->get_setting_value(1);
+   $site_url = $this->common->get_setting_value(2);
+   $site_urls = $this->common->get_setting_value(2).'businessadmin/';
+    //Loading E-mail library
+					$config = Array(
+					'protocol' => 'smtp',
+					'smtp_host' => 'smtp.mandrillapp.com',
+					'smtp_port' => 587,
+					'smtp_user' => 'alankenn@grossmaninteractive.com',
+					'smtp_pass' => 'vPVq6nWolBWIKNp1LaWNFw',
+					'mailtype'  => 'html', 
+					'charset'   => 'iso-8859-1'
+				);	
+					$this->load->library('email');
+					$this->email->set_newline("\r\n");				
+					//Loading E-mail config file
+					$this->config->load('email',TRUE);
+					$this->cnfemail = $this->config->item('email');
+										
+				//CHANGE THE RECEPTIENT AND URL LINK AFTER CHECKING
+				//$this->email->initialize($this->cnfemail); 
+				$this->email->initialize($config);
+				
+        if(count($ccalert) > 0) {
+	        foreach($ccalert as $ccalerter){
+				    
+            	        $company_id=$ccalerter['company_id'];
+				        $companydetails=$this->complaints->get_company_byid($company_id); 
+			           	$this->email->clear();
+						$this->email->from('memberships@yougotrated.com',$site_name);
+						$this->email->bcc('memberships@yougotrated.com'); 
+						$this->email->to($companydetails[0]['contactemail']);	
+						$this->email->subject('Your EliteMembership Subscription credit card will expire in 15 days.');
+						$this->email->message('<table cellpadding="0" cellspacing="0" width="100%" border="0">
+															<tr>
+																<td>Hello '.$companydetails[0]['company'].',</td>
+															</tr>
+															<tr><td><br/></td></tr>
+															<tr>
+																<td style="padding-left:20px;">
+																Your subscription to Elitemembership with YouGotRated will expire in 15 days due to your credit card expiration date. To avoid account
+																cancellation, please log into your elite admin area to update your credit expiration date:
+																'.$site_urls.'
+																</td>
+															</tr>
+															<tr>
+																<table cellpadding="0" cellspacing="0" width="50%" border="0">
+																	<tr><td colspan="3"><h3>Payment Transaction Detail</h3></td></tr>
+																	<tr>
+																		<td>Subscription ID</td>
+																		<td>:</td>
+																		<td>'.$ccalerter['subscr_id'].'</td>
+																		
+																	</tr>
+																	<tr>
+																		<td>Subscription Amount</td>
+																		<td>:</td>
+																		<td>'.$ccalerter['amount'].'</td>
+																		
+																	</tr>
+																	<tr>
+																		<td>Transacion ID</td>
+																		<td>:</td>
+																		<td>'.$ccalerter['txn_id'].'</td>
+																		
+																	</tr>
+																	<tr>
+																		<td>Last Payment Made</td>
+																		<td>:</td>
+																		<td>'.$ccalerter['payment_date'].'</td>
+																	
+																	</tr>
+																	</table>
+																</tr>
+															<tr>
+												<td><br/>
+												  <br/></td>
+											  </tr>
+											  <tr>
+												<td> Regards,<br/>
+												  The '.$site_name.' Staff.<br/>
+												  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
+											   </tr>
+											</table>');
+											
+					
+						//Sending mail to admin
+						$this->email->send();
+								
+					}					
+						
+        }
+}
+
 public function adminreport()
 {
 	///ALERT EMAIL LISTING SUCCESS AND FAILED PAYMENT  TO ADMIN USER 
