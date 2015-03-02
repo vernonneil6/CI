@@ -29,8 +29,18 @@ Class Disputes extends CI_Model
 	{
 		return $this->db->get_where('youg_dispute',array('id'=>$id))->row_array();
 	}
- 	function listdispute($limit ='',$offset='')
+ 	function listdispute($limit ='',$offset='',$sortby, $orderby)
  	{
+		switch($sortby)
+		{
+			case 'company'  : $sortby = 'companyname';break;
+			case 'username' : $sortby = 'username';break;
+			case 'dispute' 	: $sortby = 'dispute';break;
+			case 'status' 	: $sortby = 'status';break;
+			default 		: $sortby = 'ondate';break;
+		}
+		
+		$this->db->order_by($sortby,$orderby);
 		
 		//Setting Limit for Paging
 		if( $limit != '' && $offset == 0)
@@ -56,6 +66,35 @@ Class Disputes extends CI_Model
 		return $query;
 	}
  	
+ 	function search_elitemember($keyword,$limit ='',$offset='',$sortby = 'ondate',$orderby = 'desc')
+ 	{
+		
+		//Ordering Data
+		$this->db->order_by($sortby,$orderby);
+		
+	  	//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+		
+		//Executing Query
+		$this->db->select('*');
+		$this->db->from('dispute');
+		$this->db->or_like('companyname',$keyword,'after');
+	    $this->db->or_like('username',$keyword,'after');
+	    $this->db->or_like('dispute',$keyword,'after');		
+		$query = $this->db->get();
+	
+		if ($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
  	
 }
 ?>

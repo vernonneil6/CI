@@ -171,9 +171,9 @@
 			<li>
 				<a href="<?php echo site_url('complaint'); ?>" title="List All Complaints">List All Complaints</a>
 			</li>
-			<li>
-				<a href="<?php echo site_url('complaint/search'); ?>" title="Search Complaint">Search Complaint</a>
-			</li>
+			<!--<li>
+				<a href="<php echo site_url('complaint/search'); ?>" title="Search Complaint">Search Complaint</a>
+			</li>-->
 			<li>
 				<a href="<?php echo site_url('complaint/removed'); ?>" title="Removed Complaints">Removed Complaints</a>
 			</li>

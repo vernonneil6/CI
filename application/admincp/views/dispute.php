@@ -11,17 +11,46 @@
 <div class="box">
     <div class="headlines">
       <h2><span><?php echo "Disputes" ?></span></h2>
+      <h2>
+	    <span>
+			<a href="<?php if($this->uri->segment(2)=='searchresult'){ echo site_url('dispute/csv/'.$this->uri->segment(3)); } else { echo site_url('dispute/csv'); } ?>" title="Export as CSV file">
+				<img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
+			</a>
+		</span>
+	  </h2>
     </div>
+    
+    <div class="box-content"> 
+	  <?php echo form_open('dispute/searchdispute',array('class'=>'formBox','id'=>'frmsearch')); ?>  
+      <fieldset>
+        <div class="form-cols"><!-- two form cols -->
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+                <label for="keysearch">Keyword<span>*</span></label>
+              </div>
+              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search elite member by name')); ?> </div>
+            </div>
+          </div>
+          <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
+        </div>
+        <div class="btn-submit"> 
+      <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('dispute');?>" class="Cancel">Cancel</a> </div>
+      </fieldset>
+      <?php echo form_close(); ?> 
+    </div>
+
+
     <div class="box-content">
      <?php if( count($dispute) > 0 ) { ?>
     <!-- table -->
     <table class="tab tab-drag">
         <tr class="top nodrop nodrag">
-			<th>Companyname</th>
-			<th>Username</th>
-			<th>Dispute</th>
-			<th>Status</th>
-			<th>Date</th>
+			<th><a class="sorttitle" href="<?php echo base_url('dispute/index/company'); ?>">Companyname</a></th>
+			<th><a class="sorttitle" href="<?php echo base_url('dispute/index/username'); ?>">Username</a></th>
+			<th><a class="sorttitle" href="<?php echo base_url('dispute/index/dispute'); ?>">Dispute</a></th>
+			<th><a class="sorttitle" href="<?php echo base_url('dispute/index/status'); ?>">Status</a></th>
+			<th><a class="sorttitle" href="<?php echo base_url('dispute/index'); ?>">Date</a></th>
 			<th>Dispute Review</th>
         </tr>
       <?php foreach($dispute as $disp){ ?>

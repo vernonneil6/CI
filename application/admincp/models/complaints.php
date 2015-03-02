@@ -1,8 +1,15 @@
 <?php
 class Complaints extends CI_Model
 {
-	function get_all_complaints($siteid,$limit ='',$offset='',$sortby = 'complaindate',$orderby = 'DESC')
+	function get_all_complaints($siteid,$limit ='',$offset='',$sortby, $orderby)
  	{
+		switch($sortby)
+		{
+			case 'against' 		: $sortby = 'companyid';break;
+			case 'by' 			: $sortby = 'userid';break;
+			case 'complaint' 	: $sortby = 'detail';break;
+			default 			: $sortby = 'complaindate';break;
+		}
 		//Ordering Data
 		$this->db->order_by($sortby,$orderby);
 		
@@ -256,6 +263,36 @@ class Complaints extends CI_Model
 		}
 	}
 	}
+	
+	
+	function get_company_bysingleid($id)
+ 	{
+		$query = $this->db->get_where('company', array('id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+ 	
+ 	
+ 	function get_user_bysingleid($id)
+ 	{
+		$query = $this->db->get_where('user', array('id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+ 	}
 }
 
 ?>

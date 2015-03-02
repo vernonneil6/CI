@@ -520,6 +520,13 @@ else { ?>
         <?php
 	   } else { echo "Complaints"; } ?>
         </span></h2>
+        <h2>
+		   <span>
+				<a href="<?php if($this->uri->segment(2)=='searchresult'){ echo site_url('complaint/csv/'.$this->uri->segment(3)); } else { echo site_url('complaint/csv'); } ?>" title="Export as CSV file">
+					<img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
+				</a>
+			</span>
+		</h2>
     </div>
     
     <!-- Correct form message -->
@@ -534,7 +541,8 @@ else { ?>
       <p><?php echo $this->session->flashdata('error'); ?></p>
     </div>
     <?php } ?>
-    <?php if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult') { ?>
+
+
     <script type="text/javascript" language="javascript">
 	function trim(stringToTrim) {
 		return stringToTrim.replace(/^\s+|\s+$/g,"");
@@ -583,7 +591,8 @@ else { ?>
           <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('complaint');?>" class="Cancel">Cancel</a> </div>
       </fieldset>
       <?php echo form_close(); ?> </div>
-    <?php } ?>
+
+
     <?php if( count($complaints) > 0 ) { ?><script language="javascript">
 $(function(){
  
@@ -638,9 +647,10 @@ function submitfrm()
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
         <th><input type="checkbox" id="selectall" name="maincheck"/></th>
-        <th width="50%">Complaint</th>
-        <th width="15%">Against</th>
-        <th width="15%">By</th>
+        <th width="40%"><a class="sorttitle" href="<?php echo base_url('complaint/index/complaint'); ?>">Complaint</a></th>
+        <th width="15%"><a class="sorttitle" href="<?php echo base_url('complaint/index/against'); ?>">Against</a></th>
+        <th width="15%"><a class="sorttitle" href="<?php echo base_url('complaint/index/by'); ?>">By</a></th>
+        <th width="10%"><a class="sorttitle" href="<?php echo base_url('complaint/index'); ?>">Date</a></th>
         <th width="10%">Status</th>
         <th width="10%">&nbsp;&nbsp;Action&nbsp;&nbsp;</th>
       </tr>
@@ -664,6 +674,7 @@ function submitfrm()
           <?php } else { ?>
           <span title="Anonymous">Anonymous</span>
           <?php } ?></td>
+        <td><?php echo date('m-d-Y', strtotime($complaints[$i]['complaindate'])); ?></td>
         <td><?php if( stripslashes($complaints[$i]['status']) == 'Enable' ) { ?>
           <a href="<?php echo site_url('complaint/disable/'.$complaints[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span>Enable</span></a>
           <?php } ?>
