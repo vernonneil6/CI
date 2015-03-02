@@ -20,7 +20,7 @@ class Solution extends CI_Controller {
 		    $site = $regs['domain'];
 		}
 		
-		 $website = $this->common->get_site_by_domain_name($site);
+		 $website = $this->common->get_site_by_domain_name('yougotrated.writerbin.com');
 		 
 		 if(count($website)>0)
 		 {
@@ -1053,10 +1053,23 @@ public function success($companyid)
 public function cron()
 {	
 	$crons=$this->complaints->elitecrondetails();
-	//print_r($crons);
-	foreach($crons as $con)	{
+	
+	 /*sandbox test mode
+      $loginname="9um8JTf3W";
+      $transactionkey="9q24FTz678hQ9mAD";
+      $host = "apitest.authorize.net";*/
+   
+	   /*live*/
+		$loginname="5h7G7Sbr";
+		$transactionkey="94KU7Sznk72Kj3HK";
+		$host = "api.authorize.net";
+		   
+	    $path = "/xml/v1/request.api";
+	    include('authorize/authnetfunction.php');
+    
+    foreach($crons as $con)	{
 	  
-	  	$subscription_id=$con['subscr_id'];
+	  	$subscriptionId=$con['subscr_id'];
 		$subscription_amount=$con['amount'];
 		$paymentfailed_date=$con['expires'];
 		$company_id=$con['company_id'];
@@ -1073,10 +1086,35 @@ public function cron()
 	 	$site_url = $this->common->get_setting_value(2);
 		
 		$secureurl=str_replace('http://', 'https://',$site_urls);
+		//build xml to post
+					$content =
+							"<?xml version=\"1.0\" encoding=\"utf-8\"?>".
+							"<ARBCancelSubscriptionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">".
+							"<merchantAuthentication>".
+							"<name>" . $loginname . "</name>".
+							"<transactionKey>" . $transactionkey . "</transactionKey>".
+							"</merchantAuthentication>" .
+							"<subscriptionId>" . $subscriptionId . "</subscriptionId>".
+							"</ARBCancelSubscriptionRequest>";
+
+					//send the xml via curl
+					$response = send_request_via_curl($host,$path,$content);
+					//if the connection and send worked $response holds the return from Authorize.net
+					if ($response)
+					{ 
+						list ($resultCode, $code, $text, $subscriptionId) =parse_return($response);
+					
+					 " Response Code: $resultCode <br>";
+					 " Response Reason Code: $code<br>";
+					 " Response Text: $text<br>";
+					 " Subscription Id: $subscriptionId <br><br>";
+					
+					}
 		
-		
-		$site_mail = $this->common->get_setting_value(5);      
-        //Loading E-mail library
+		if($resultCode=='Ok')
+		{
+		   $site_mail = $this->common->get_setting_value(5);      
+           //Loading E-mail library
 					$config = Array(
 					'protocol' => 'smtp',
 					'smtp_host' => 'smtp.mandrillapp.com',
@@ -1116,7 +1154,7 @@ public function cron()
 																	<tr>
 																		<td>Subscription ID</td>
 																		<td>:</td>
-																		<td>'.$subscription_id.'</td>
+																		<td>'.$subscriptionId.'</td>
 																	</tr>
 																	<tr>
 																		<td>Subscription Amount</td>
@@ -1156,6 +1194,9 @@ public function cron()
 					//Sending mail to admin
 					$this->email->send();
 					$this->adminreport();
+		}			
+					
+		
 	}
 	
 }
