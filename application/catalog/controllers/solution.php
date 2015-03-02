@@ -774,7 +774,7 @@ public function eliteSubscribe($formpost,$companyid) {
 	$firstName = $_POST["fname"];
 	$lastName = $_POST["lname"];	
 	$email = $this->input->post('email');					
-	$cemail = $this->input->post('cemail');					
+	$cemail=$_POST["cemail"];				
 	$address=$_POST["streetaddress"];
 	$city=$_POST["city"];	
 	$state=$_POST["state"];
@@ -814,6 +814,9 @@ public function eliteSubscribe($formpost,$companyid) {
 			"<cardCode>". $cvv . "</cardCode>".
 			"</creditCard>".
 			"</payment>".
+			"<customer>".
+			"<email>".$cemail."</email>".
+			"</customer>".
 			"<billTo>".
 			"<firstName>". $firstName . "</firstName>".
 			"<lastName>" . $lastName . "</lastName>".
@@ -1520,9 +1523,9 @@ public function renew_update($id)
 			"<cardCode>". $cvv . "</cardCode>".
 			"</creditCard>".
 			"</payment>".
-                        "<customer>".
-                        "<email>".$customeremail."</email>".
-                        "</customer>".
+			"<customer>".
+			"<email>".$customeremail."</email>".
+			"</customer>".
 			"<billTo>".
 			"<firstName>". $firstName . "</firstName>".
 			"<lastName>" . $lastName . "</lastName>".
@@ -1890,6 +1893,9 @@ public function upgrades($companyid)
             "<cardCode>". $cvv . "</cardCode>". 
 			"</creditCard>".
 			"</payment>".
+			"<customer>".
+			"<email>".$cemail."</email>".
+			"</customer>".
 			"<billTo>".
 			"<firstName>". $firstName . "</firstName>".
 			"<lastName>" . $lastName . "</lastName>".
