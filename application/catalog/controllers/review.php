@@ -664,7 +664,7 @@ class Review extends CI_Controller
 			
 			if($resolution == '2')
 			{
-				if ($days == 7 and $status == 0 || $checkdays == 15 and $status == 2)
+				if ($days == 7 and $status == 0 or $checkdays == 15 and $status == 2)
 				{
 					$this->reviews->delete_review_byid($reviewid);
 					$this->reviews->delete_comment($reviewid);
