@@ -83,13 +83,42 @@ class Couponcomment extends CI_Controller {
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			$limit = $this->paging['per_page'];
-			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+			
+			if($sortby=='coupon')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("couponcomment/index/coupon");
+				$orderby = 'asc';
+				$url = 4;
+				
+			}
+			else if($sortby=='user')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("couponcomment/index/user");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else if($sortby=='title')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("couponcomment/index/title");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else
+			{
+				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+				$base = site_url("couponcomment/index");
+				$orderby = 'asc';
+				$url = 3;
+			}
+			
 			
 			//Addingg Setting Result to variable
-			$this->data['couponcomments'] = $this->couponcomments->get_all_couponcomments($limit,$offset);
-			
-			$this->paging['base_url'] = site_url("couponcomment/index");
-			$this->paging['uri_segment'] = 3;
+			$this->data['couponcomments'] = $this->couponcomments->get_all_couponcomments($limit,$offset, $sortby, $orderby);			
+			$this->paging['base_url'] = $base;
+			$this->paging['uri_segment'] = $url;
 			$this->paging['total_rows'] = count($this->couponcomments->get_all_couponcomments());
 			$this->pagination->initialize($this->paging);
 			//Loading View File
@@ -257,6 +286,29 @@ class Couponcomment extends CI_Controller {
 			}
 		}
 		
+	}
+	
+	function edit($id)
+	{
+		$this->data['edit'] = $this->couponcomments->get_couponcomment_byid($id);
+		$this->data['id'] = $id;
+		$this->load->view('couponcomment',$this->data);
+	}
+	
+	function update()
+	{
+		$title = $this->input->post('title');
+		$id = $this->input->post('id');
+		if($this->couponcomments->updatecomment($title, $id))
+		{
+			$this->session->set_flashdata('success', 'Title is updated successfully');
+			redirect('couponcomment','refresh');
+		}
+		else
+		{
+			$this->session->set_flashdata('error', 'There is error in updating');
+			redirect('couponcomment','refresh');
+		}
 	}
 }
 

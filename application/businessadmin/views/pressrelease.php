@@ -440,14 +440,39 @@ else { ?>
       <p><?php echo $this->session->flashdata('error'); ?></p>
     </div>
     <?php } ?>
+    
+    <div class="box-content"> 
+	<?php echo form_open('pressrelease/searchpressrelease',array('class'=>'formBox','id'=>'frmsearch')); ?>  
+    <fieldset>
+		<div class="form-cols">
+		  <div class="col1">
+			<div class="clearfix">
+			  <div class="lab">
+				<label for="keysearch">Keyword<span>*</span></label>
+			  </div>
+			  <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','class'=>'input','type'=>'text')); ?> </div>
+			</div>
+		  </div>
+		  <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
+		</div>
+		<div class="btn-submit"> 
+		  <?php echo form_input(array('name'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('pressrelease');?>" class="Cancel">Cancel</a> 
+		</div>
+    </fieldset>
+    <?php echo form_close(); ?> 
+    </div>
+      
+      
+    
+    
     <?php if( count($pressreleases) > 0 ) { ?>
     <!-- table -->
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-        <th>Site Name</th>
-        <th>Title</th>
-		<th>Subtitle</th>
-        <th>Release Date</th>
+        <th><a class="sorttitle" href="<?php echo base_url('pressrelease/index/sitename'); ?>">Site Name</a></th>
+        <th><a class="sorttitle" href="<?php echo base_url('pressrelease/index/title'); ?>">Title</a></th>
+		<th><a class="sorttitle" href="<?php echo base_url('pressrelease/index/subtitle'); ?>">Subtitle</a></th>
+        <th><a class="sorttitle" href="<?php echo base_url('pressrelease/index'); ?>">Release Date</a></th>
         <th>Status</th>
         <th>Action</th>
         <th>Share On</th>

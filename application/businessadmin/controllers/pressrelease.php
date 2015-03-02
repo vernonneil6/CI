@@ -69,19 +69,49 @@ class Pressrelease extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	public function index($sortby)
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			$companyid = $this->session->userdata['youg_admin']['id'];
 			$siteid = $this->session->userdata['siteid'];
 			$limit = $this->paging['per_page'];
-			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+			
+			if($sortby=='sitename')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("pressrelease/index/sitename");
+				$orderby = 'asc';
+				$url = 4;
+				
+			}
+			else if($sortby=='subtitle')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("pressrelease/index/subtitle");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else if($sortby=='title')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("pressrelease/index/date");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else
+			{
+				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+				$base = site_url("pressrelease/index");
+				$orderby = 'asc';
+				$url = 3;
+			}
+			
 			
 			//Addingg Setting Result to variable
-			$this->data['pressreleases'] = $this->pressreleases->get_all_pressreleases($companyid,$siteid,$limit,$offset);
-			$this->paging['base_url'] = site_url("pressrelease/index");
-			$this->paging['uri_segment'] = 3;
+			$this->data['pressreleases'] = $this->pressreleases->get_all_pressreleases($companyid,$siteid,$limit,$offset,$sortby,$orderby);
+			$this->paging['base_url'] = $base;
+			$this->paging['uri_segment'] = $url;
 			$this->paging['total_rows'] = count($this->pressreleases->get_all_pressreleases($companyid,$siteid));
 			$this->pagination->initialize($this->paging);
 						
@@ -424,6 +454,34 @@ class Pressrelease extends CI_Controller {
 		{
 			redirect('pressrelease', 'refresh');
 		}
+	}
+	
+	function searchpressrelease()
+	{
+		if($this->input->post('btnsearch'))
+		{
+			$keyword = $this->input->post('keysearch');
+			redirect('pressrelease/searchresult/'.$keyword,'refresh');				
+		}
+		else
+		{
+			redirect('pressrelease','refresh');
+		}
+	}
+	
+	function searchresult($keyword)
+	{
+		$companyid = $this->session->userdata['youg_admin']['id'];
+		$limit = $this->paging['per_page'];
+		$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+
+		$this->data['pressreleases'] = $this->pressreleases->searchpr($keyword,$companyid,$limit,$offset);
+		$this->paging['base_url'] = site_url("pressrelease/searchresult/".$keyword);
+		$this->paging['uri_segment'] = 3;
+		$this->paging['total_rows'] = count($this->pressreleases->searchpr($keyword,$companyid));
+		$this->pagination->initialize($this->paging);
+
+		$this->load->view('pressrelease',$this->data);
 	}
 }
 

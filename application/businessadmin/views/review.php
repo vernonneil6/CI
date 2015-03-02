@@ -25,10 +25,8 @@
      <?php $id = $this->session->userdata('siteid');?>
       <?php $url1 = $this->reviews->get_url_byid($id);?>
 	  <?php $pageurl = $url1[0]['siteurl'].'review/browse/';?>
-    <?php if( $this->uri->segment(1) == 'review' && ( $this->uri->segment(2) == 'index' || $this->uri->segment(2) == '' ) )
-	{
-    if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == '' )
-  	{ ?>
+    <?php if( $this->uri->segment(1) == 'review' && ( $this->uri->segment(2) == 'index' || $this->uri->segment(2) == '' || $this->uri->segment(2) == 'searchresult' ) )
+	{ ?>
     <script language="javascript" type="text/javascript">
 	  $(document).ready(function(){
 		$('#uploadcsv').click(function() {
@@ -49,6 +47,28 @@
       <p><?php echo $this->session->flashdata('error'); ?></p>
     </div>
     <?php } ?>
+    
+    <div class="box-content"> 
+	<?php echo form_open('review/searchrevs',array('class'=>'formBox','id'=>'frmsearch')); ?>  
+    <fieldset>
+		<div class="form-cols">
+		  <div class="col1">
+			<div class="clearfix">
+			  <div class="lab">
+				<label for="keysearch">Keyword<span>*</span></label>
+			  </div>
+			  <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','class'=>'input','type'=>'text')); ?> </div>
+			</div>
+		  </div>
+		  <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
+		</div>
+		<div class="btn-submit"> 
+		  <?php echo form_input(array('name'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('review');?>" class="Cancel">Cancel</a> 
+		</div>
+    </fieldset>
+    <?php echo form_close(); ?> 
+    </div>
+    
     <?php echo form_open_multipart('review/import_csv',array('class'=>'formBox','id'=>'frmupload')); ?>
     <?php 
 	$site = site_url();			
@@ -64,16 +84,15 @@
       <div class="btn-submit" id="submitupload"> <?php echo form_input(array('name'=>'btnupload','id'=>'btnupload','class'=>'button','type'=>'submit','value'=>'Submit')); ?> or <a href="<?php echo site_url('review');?>" class="Cancel">Cancel</a> </div>
     </div>
     <?php echo form_close();?>
-    <?php } ?>
     <?php if( count($reviews) > 0 ) { ?>
     <!-- table -->
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-        <th width="10%">Title</th>
-        <th width="30%">Review</th>
-        <th width="8%">User</th>
-        <th width="8%">Rating</th>
-        <th width="20%">Review Date</th>
+        <th width="10%"><a class="sorttitle" href="<?php echo base_url('review/index/title'); ?>">Title</a></th>
+        <th width="30%"><a class="sorttitle" href="<?php echo base_url('review/index/review'); ?>">Review</a></th>
+        <th width="8%"><a class="sorttitle" href="<?php echo base_url('review/index/user'); ?>">User</a></th>
+        <th width="8%"><a class="sorttitle" href="<?php echo base_url('review/index/rating'); ?>">Rating</a></th>
+        <th width="20%"><a class="sorttitle" href="<?php echo base_url('review/index'); ?>">Review Date</a></th>
         <th width="10%">Status</th>
         <th width="10%">Action</th>
         <th width="15%">Share On</th>

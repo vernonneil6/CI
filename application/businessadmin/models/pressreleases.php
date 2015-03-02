@@ -1,8 +1,18 @@
 <?php
 Class Pressreleases extends CI_Model
 {
-	function get_all_pressreleases($id,$siteid,$limit ='',$offset='')
+	function get_all_pressreleases($id,$siteid,$limit ='',$offset='',$sortby,$orderby)
  	{
+		switch($sortby)
+		{
+			case 'title'  		: $sortby = 'title';break;
+			case 'subtitle'  	: $sortby = 'subtitle';break;
+			case 'sitename' 	: $sortby = 'websiteid';break;
+			default 			: $sortby = 'insertdate';break;
+		}
+		
+		//Ordering Data
+		$this->db->order_by($sortby,$orderby);
 		
 		if( $limit != '' && $offset == 0)
 		{ $this->db->limit($limit); }
@@ -265,6 +275,40 @@ Class Pressreleases extends CI_Model
 		}
  	}
 	
+	function searchpr($keyword,$id,$limit ='',$offset='',$sortby,$orderby)
+	{		
+		//Ordering Data
+		//$this->db->order_by($sortby,$orderby);
+		
+	  	//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+		
+		//Executing Query
+		$this->db->select('*');
+		$this->db->from('pressrelease');
+		$this->db->or_like('title',$keyword,'after');
+	    $this->db->or_like('subtitle',$keyword,'after');
+	    $this->db->or_like('sortdesc',$keyword,'after');
+	    $this->db->or_like('metakeywords',$keyword,'after');
+	    $this->db->or_like('metadescription',$keyword,'after');
+	    $this->db->or_like('presscontent',$keyword,'after');
 
+	    
+		$this->db->where('companyid', $id);
+		$query = $this->db->get();
+	
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	
+	}
 }
 ?>

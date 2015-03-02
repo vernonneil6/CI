@@ -43,7 +43,53 @@
 <!-- /box -->
 
 <?php } 
-else { ?>
+
+
+else if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'edit' ) ) { ?>
+
+<?php echo $heading; ?> 
+<div id="content"> 
+  
+  <div class="breadcrumbs">
+    <ul>
+      <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
+      <li><a href="<?php echo site_url('couponcomment');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
+      <li><a href="<?php echo site_url('couponcomment/edit');?>" title="<?php echo 'Edit Comment'; ?>"><?php echo 'Edit Comment'; ?></a></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <div class="headlines">
+      <h2><span>Edit Comment</span></h2>
+    </div>
+    <div class="box-content"> 
+	  <?php echo form_open('couponcomment/update',array('class'=>'formBox')); ?>
+      <fieldset>
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 20% !important;">
+                <label for="title">Title <span class="errorsign">*</span></label>
+              </div>
+              <div class="con" style="width: 77% !important; float:left">
+                <input type = "text" value="<?php echo $edit[0]['comment']; ?>" class="input" name="title" required>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <input type = "hidden" value=<?php echo $id; ?> name='id'>
+      <input type = "submit" value="Update" class='button'>
+      <?php echo form_close(); ?> 
+    </div>
+  </div>
+
+</div>
+<?php include('leftmenu.php'); ?>
+<?php echo $footer; ?>
+
+
+<?php } else { ?>
 <?php echo $heading; ?> 
 <!-- #content -->
 <div id="content"> 
@@ -254,26 +300,28 @@ function submitfrm()
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
         <th width="7%"><input type="checkbox" id="selectall" name="maincheck"/></th>
-        <th width="60%">Title</th>
-        <th width="20%">Submitted by</th>
+        <th width="30%"><a class="sorttitle" href="<?php echo base_url('couponcomment/index/title'); ?>">Title</a></th>
+        <th width="15%"><a class="sorttitle" href="<?php echo base_url('couponcomment/index/coupon'); ?>">Coupon</a></th>
+        <th width="20%"><a class="sorttitle" href="<?php echo base_url('couponcomment/index/user'); ?>">Submitted by</a></th>
+        <th width="10%"><a class="sorttitle" href="<?php echo base_url('couponcomment/index'); ?>">Comment Date</a></th>
         <th width="7%">status</th>
-        <th width="7%">View</th>
+        <th width="12%">View</th>
       </tr>
       <?php for($i=0;$i<count($couponcomments);$i++) { ?>
       <?php $user=$this->users->get_user_byid($couponcomments[$i]['commentby'])?>
       <tr>
         <td><input type="checkbox" class="case" name="foo[]" value="<?php echo $couponcomments[$i]['id'];?>" /></td>
         <td><?php echo nl2br(stripslashes(substr($couponcomments[$i]['comment'],0,100))).'...'; ?></td>
-        <td><?php if(count($user)>0) {?>
-          <div class="task-photo"> <img width="60" height="40" src="<?php if( $user[0]['avatarbig'] ){ echo $this->settings->get_setting_value('2').substr($this->config->item('user_thumb_upload_path'),3);?><?php echo stripslashes($user[0]['avatarbig']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('user_thumb_upload_path'),3)."/no_image.png"; } ?>" alt="<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']);?>" title="<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']);?>"/> </div>
-          <?php } else { echo "Anonymous"; } ?></td>
+        <td><?php $coupon = $this->couponcomments->get_coupon_byid($couponcomments[$i]['couponid']); echo $coupon['title']; ?></td>
+        <td><?php $user = $this->couponcomments->get_user_bysingleid($couponcomments[$i]['commentby']); echo $user['username'];?></td>
+        <td><?php echo date('m-d-Y',strtotime($couponcomments[$i]['commentdate']));?></td>
         <td><?php if( stripslashes($couponcomments[$i]['status']) == 'Enable' ) { ?>
           <a href="<?php echo site_url('couponcomment/disable/'.$couponcomments[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this complaint?');"><span>Enable</span></a>
           <?php } ?>
           <?php if( stripslashes($couponcomments[$i]['status']) == 'Disable' ) { ?>
           <a href="<?php echo site_url('couponcomment/enable/'.$couponcomments[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this complaint?');"><span>Disable</span></a>
           <?php } ?></td>
-        <td><a href="<?php echo site_url('couponcomment/view/'.$couponcomments[$i]['id']); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
+        <td><a href="<?php echo site_url('couponcomment/edit/'.$couponcomments[$i]['id']); ?>" title="Edit" class="ico ico-edit">Edit</a><a href="<?php echo site_url('couponcomment/view/'.$couponcomments[$i]['id']); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
       </tr>
       <?php } ?>
     </table>
