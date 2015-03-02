@@ -585,7 +585,7 @@ class Complaints extends CI_Model
 		}
 	}
 	
-	function insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,$paypalid,$logo,$category,$aboutus,$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype)
+	function insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,$paypalid,$logo,$category,$aboutus,$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype,$notes,$actype)
 	{
 		
 		$date = date_default_timezone_set('Asia/Kolkata');
@@ -618,6 +618,8 @@ class Complaints extends CI_Model
 					   'mainbrokerid'	=> $mainbrokerid,
 					   'subbrokerid'	=> $subbrokerid,
 					   'marketerid'		=> $marketerid,
+					   'notes'			=> $notes,
+					   'acquisitiontype'=> $actype,
 					   'brokertype'		=> $brokertype
  					   ); 
  		
