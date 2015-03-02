@@ -959,7 +959,7 @@ public function eliteSubscribe($formpost,$companyid) {
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
 					$this->email->from($email,$company[0]['company']);
-					$this->email->to($site_mail);	
+					$this->email->to('sales@yougotrated.com');	
 					$this->email->subject('Payment Received for Business Claim.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
@@ -998,7 +998,8 @@ public function eliteSubscribe($formpost,$companyid) {
 					$subject = $mail[0]['subject'];
 					$mailformat = $mail[0]['mailformat'];
 					
-					$this->email->from($site_mail,$site_name);
+					$this->email->from('sales@yougotrated.com',$site_name);
+					$this->email->bcc('sales@yougotrated.com'); 
 					$this->email->to($email);	
 					$this->email->subject($subject);
 					$companyname=$company[0]['company'];
@@ -1142,7 +1143,7 @@ public function cron()
 				
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
-					$this->email->from($site_mail,$site_name);
+					$this->email->from('terminations@yougotrated.com',$site_name);
 					$this->email->to($cronemail['contactemail']);	
 					$this->email->subject('Your EliteMembership Subscription has been Expired.Please Renew');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">

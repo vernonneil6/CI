@@ -1723,9 +1723,7 @@ class Complaints extends CI_Model
 							->get()
 							->result_array();
 		
-		//echo $this->db->last_query();
-		//echo '<pre>';print_r($query);die('1122');
-						
+					
 		foreach($query as $q){
 		
 		    $split=explode('-',$q['ccexpiredate']);
