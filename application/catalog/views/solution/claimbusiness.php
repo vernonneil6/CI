@@ -171,12 +171,49 @@
 					</span>
 					<span class="form-col-2">
 						<div class="reg_fld">CONTACT EMAIL: </div>
-						<input type="text" class="reg_txt_box" placeholder="CONTACT EMAIL" id="cemail" name="cemail" maxlength="200" value="<?php echo $showdata['contactemail']; ?>" /><div id="cemailerror" class="error">Enter valid Emailid.</div>
-              
+						<input type="text" class="reg_txt_box" placeholder="CONTACT EMAIL" id="cemail" name="cemail" maxlength="200" value="<?php echo $showdata['contactemail']; ?>" /><div id="cemailerror" class="error">Enter valid Emailid.</div>             
 					</span>
 				</div>
             
           </div>
+          
+          <?php
+          $url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];         
+		  if (strpos($url,'affid') !== false) 
+		  {
+		  ?>
+		  <div class="reg-row" style="margin-top:10px !important;">
+				 <div>
+					<span class="form-col-1">
+						&nbsp;
+					</span>
+					<span class="form-col-2">
+						 <div class="reg_fld">ACQUISITION TYPE</div>
+						   <select id="actype" name="actype">
+							 <option value="select">Select</option>
+							 <option value="phone">Phone</option>
+							 <option value="internet">Internet</option>
+							<option value="facetoface">Face to face</option>
+						  </select>
+						</div>
+					</span>
+				</div>
+		  </div>	
+		  <div class="reg-row" style="margin-top:10px !important;">
+				<div>
+					<span class="form-col-1">
+						&nbsp;
+					</span>
+					<span class="form-col-2">
+					  <div class="reg_fld">NOTES</div>
+					  <input type="text" class="reg_txt_box" placeholder="NOTES" id="notes" name="notes" maxlength="50" />
+					</span>
+				</div>
+          </div>
+		  <?php
+		  } 
+          ?>
+          
           <!-- payment details -->
           <div class="reg-row" style="margin-top:55px;">
 				<div>

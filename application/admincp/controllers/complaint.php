@@ -78,21 +78,54 @@ class Complaint extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	public function index($sortby)
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
+			
 			$limit = $this->paging['per_page'];
-			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+			
+			if($sortby=='against')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("complaint/index/against");
+				$orderby = 'asc';
+				$url = 4;
+				
+			}
+			else if($sortby=='by')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("complaint/index/by");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else if($sortby=='complaint')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("complaint/index/complaint");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else
+			{
+				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+				$base = site_url("complaint/index");
+				$orderby = 'desc';
+				$url = 3;
+			}
+			
+				
+
 			$siteid = $this->session->userdata('siteid');
 			//Addingg Setting Result to variable
-			$this->data['complaints'] = $this->complaints->get_all_complaints($siteid,$limit,$offset);
+			$this->data['complaints'] = $this->complaints->get_all_complaints($siteid,$limit,$offset,$sortby,$orderby);
 			/*echo "<pre>";
 			print_r($this->data['complaints']);
 			die();*/
 			
-			$this->paging['base_url'] = site_url("complaint/index");
-			$this->paging['uri_segment'] = 3;
+			$this->paging['base_url'] = $base;
+			$this->paging['uri_segment'] = $url;
 			$this->paging['total_rows'] = count($this->complaints->get_all_complaints($siteid));
 			$this->pagination->initialize($this->paging);
 			//echo "<pre>";
@@ -416,6 +449,55 @@ class Complaint extends CI_Controller {
 		}
 		
 	}
+	
+	public function csv($keyword)
+    {
+        if( $this->session->userdata['youg_admin'] )
+        {
+				$siteid = $this->session->userdata('siteid');
+				if($keyword!='') 
+				{
+					$file = 'Report-of-search-complaint.csv';				
+					$complaint = $this->complaints->search_complaint($keyword,$siteid);
+				}
+				else
+				{
+					$file = 'Report-of-all-complaint.csv';
+					$complaint = $this->complaints->get_all_complaints($siteid);
+				}
+				ob_start();
+				echo "Complaint,Against,By,Date"."\n";
+				
+				   for($i=0;$i<count($complaint);$i++) { 
+					
+						echo stripslashes(ucwords($complaint[$i]['detail'])).',';
+						$user=$this->complaints->get_user_bysingleid($complaint[$i]['userid']);
+						echo stripslashes(ucwords($user['username'])).',';
+						$company=$this->complaints->get_company_bysingleid($complaint[$i]['companyid']);
+						echo stripslashes(ucwords($company['company'])).',';
+						echo date("m-d-Y",strtotime($complaint[$i]['complaindate'])); 
+						echo "\n";							
+					}
+			
+					$content = ob_get_contents();
+					ob_end_clean();
+					header("Expires: 0");
+					header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+					header("Cache-Control: no-store, no-cache, must-revalidate");
+					header("Cache-Control: post-check=0, pre-check=0", false);
+					header("Pragma: no-cache");  header("Content-type: application/csv;charset:UTF-8");
+					header('Content-length: '.strlen($content));
+					header('Content-disposition: attachment; filename='.basename($file));
+					echo $content;
+					exit;
+							
+						
+		}
+		else
+		{
+			redirect('adminlogin','refresh');
+		}
+    }
 }
 
 /* End of file page.php */

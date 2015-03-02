@@ -94,6 +94,8 @@ function FormatCreditCard($cc)
 <input type = "hidden" value = "<?php echo $register_data['expirationdatem']; ?>" name = "expirationdatem">
 <input type = "hidden" value = "<?php echo $register_data['cvv']; ?>" name = "cvv">
 <input type = "hidden" value = "<?php echo $register_data['expirationdatey']; ?>" name = "expirationdatey">
+<input type = "hidden" value = "<?php if($register_data['actype']==''){ echo "";} else { echo $register_data['actype']; } ?>" name = "actype">
+<input type = "hidden" value = "<?php if($register_data['notes']==''){ echo "";} else { echo $register_data['notes']; } ?>" name = "notes">
 <?php if(!empty($broker_info)){ ?>
 <input type = "hidden" value = "<?php if($broker_info['id']==''){ echo "0"; }else{ echo $broker_info['id']; }?>" name = "brokerid">
 <input type = "hidden" value = "<?php if($broker_info['mainbrokerid']==''){ echo "0"; }else{ echo $broker_info['mainbrokerid']; } ?>" name = "mainbrokerid">
@@ -134,6 +136,13 @@ function FormatCreditCard($cc)
 				<tr><td>Contact Name</td><td class = "receipt_data"><?php echo $register_data['cname']; ?></td></tr>
 				<tr><td>Contact Phone</td><td class = "receipt_data"><?php echo $register_data['cphone']; ?></td></tr>
 				<tr><td>Contact Email</td><td class = "receipt_data"><?php echo $register_data['cemail']; ?></td></tr>
+				<?php if($register_data['actype']!='' && $register_data['notes']!='')
+				{ 
+				?>
+				<tr><td>Acquisition Type</td><td class = "receipt_data"><?php echo $register_data['actype']; ?></td></tr>
+				<tr><td>Notes</td><td class = "receipt_data"><?php echo $register_data['notes']; ?></td></tr>
+				<?php
+				} ?>
 			</table>
 		</div>
 		

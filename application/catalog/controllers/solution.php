@@ -255,6 +255,8 @@ class Solution extends CI_Controller {
 					'discount-code-type' => $this->input->post('discount-code-type'),
 					'discounted-price' => $this->input->post('discounted-price'),
 					'subscriptionprice' => $this->input->post('subscriptionprice'),
+					'actype' => $this->input->post('actype'),
+					'notes' => $this->input->post('notes')
 		);
 		return $data;
 		
@@ -342,6 +344,8 @@ class Solution extends CI_Controller {
 			$subbrokerid = $this->input->post('subbrokerid');
 			$marketerid = $this->input->post('marketerid');
 			$brokertype = $this->input->post('brokertype');
+			$notes = $this->input->post('notes');
+			$actype = $this->input->post('actype');
 			
 			$company = $this->complaints->get_company_by_emailid($email);
 				if(count($company)>0)
@@ -372,7 +376,7 @@ class Solution extends CI_Controller {
 					if($email1=='new' && $name1=='new')
 					{
 							//Inserting Record
-							if( $this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'',$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype ))
+							if( $this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'',$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype,$notes,$actype ))
 							{
 								
 								$companyid = $this->db->insert_id();							
@@ -431,7 +435,7 @@ class Solution extends CI_Controller {
 									
 									$this->email->message($mail_body);
 									$this->email->send();
-									
+																		
 									$this->session->set_flashdata('success', 'Your business has successfully been registered');
 									///redirect('solution/claim/'.$companyid, 'refresh');
 									redirect('solution', 'refresh');

@@ -1,8 +1,17 @@
 <?php
 class Reviews extends CI_Model
 {
-	function get_all_reviews($companyid,$siteid,$limit ='',$offset='',$sortby = 'reviewdate',$orderby = 'DESC')
+	function get_all_reviews($companyid,$siteid,$limit ='',$offset='',$sortby ,$orderby)
  	{
+		switch($sortby)
+		{
+			case 'title'  	: $sortby = 'reviewtitle';break;
+			case 'review'  	: $sortby = 'comment';break;
+			case 'user' 	: $sortby = 'reviewby';break;
+			case 'rating' 	: $sortby = 'rate';break;
+			default 		: $sortby = 'reviewdate';break;
+		}
+		
 		//Ordering Data
 		$this->db->order_by($sortby,$orderby);
 		
@@ -402,6 +411,35 @@ class Reviews extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	
+ 	function searchrev($keyword,$id,$limit ='',$offset='')
+	{		
+	
+	  	//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+		
+		//Executing Query
+		$this->db->select('*');
+		$this->db->from('reviews');
+		$this->db->or_like('reviewtitle',$keyword,'after');
+	    $this->db->or_like('comment',$keyword,'after');
+	    
+		$query = $this->db->get();
+	
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	
+	}
  	
  	
 }

@@ -1,8 +1,15 @@
 <?php
 class Couponcomments extends CI_Model
 {
-	function get_all_couponcomments($limit ='',$offset='',$sortby = 'commentdate',$orderby = 'DESC')
+	function get_all_couponcomments($limit ='',$offset='',$sortby, $orderby)
  	{
+		switch($sortby)
+		{
+			case 'coupon'   : $sortby = 'couponid';break;
+			case 'user'  	: $sortby = 'commentby';break;
+			case 'title' 	: $sortby = 'comment';break;
+			default 		: $sortby = 'commentdate';break;
+		}
 		//Ordering Data
 		$this->db->order_by($sortby,$orderby);
 		
@@ -160,6 +167,46 @@ class Couponcomments extends CI_Model
 			return false;
 		}
 	}
+	}
+	
+	function updatecomment($title, $id)
+	{
+		if($this->db->where('id', $id)->update('couponcomments',array('comment'=>$title)))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	function get_coupon_byid($id)
+ 	{
+		$query = $this->db->get_where('coupon', array('id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+ 	
+ 	function get_user_bysingleid($id)
+ 	{	
+		$query = $this->db->get_where('user', array('id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
 	}
 }
 

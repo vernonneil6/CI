@@ -57,4 +57,10 @@
 </div>
 </section>
 
+<script> 
+	$(document).ready(function(){
+		eraseCookie('affiliateId');
+	});
+</script>
+
 <?php echo $footer;?>

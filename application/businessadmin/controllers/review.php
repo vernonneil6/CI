@@ -45,7 +45,7 @@ class Review extends CI_Controller
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	public function index($sortby)
 	{
 		
 		if( !$this->session->userdata('youg_admin'))
@@ -56,15 +56,50 @@ class Review extends CI_Controller
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			$limit = $this->paging['per_page'];
-			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+			if($sortby=='title')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("review/index/title");
+				$orderby = 'asc';
+				$url = 4;
+				
+			}
+			else if($sortby=='review')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("review/index/review");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else if($sortby=='user')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("review/index/user");
+				$orderby = 'asc';
+				$url = 4;
+			}
+			else if($sortby=='rating')
+			{
+				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
+				$base = site_url("review/index/rating");
+				$orderby = 'desc';
+				$url = 4;
+			}
+			else
+			{
+				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+				$base = site_url("review/index");
+				$orderby = 'desc';
+				$url = 3;
+			}
 			
 			$companyid = $this->session->userdata['youg_admin']['id'];
 			$siteid = $this->session->userdata['siteid'];
 
-			$this->data['reviews'] = $this->reviews->get_all_reviews($companyid,$siteid,$limit,$offset);
+			$this->data['reviews'] = $this->reviews->get_all_reviews($companyid,$siteid,$limit,$offset,$sortby,$orderby);
 
-			$this->paging['base_url'] = site_url("review/index/");
-			$this->paging['uri_segment'] = 3;
+			$this->paging['base_url'] = $base;
+			$this->paging['uri_segment'] = $url;
 			$this->paging['total_rows'] = count($this->reviews->get_all_reviews($companyid,$siteid));
 			$this->pagination->initialize($this->paging);
 
@@ -691,6 +726,47 @@ public function request($reviewid='',$userid='')
 					redirect('review', 'refresh');
 				}
 		  }
+		}
+		
+		
+		function searchrevs()
+		{
+			if($this->input->post('btnsearch'))
+			{
+				$keyword = $this->input->post('keysearch');
+				redirect('review/searchresult/'.$keyword,'refresh');				
+			}
+			else
+			{
+				redirect('review','refresh');
+			}
+		}
+		
+		function searchresult($keyword)
+		{
+			
+			if( !$this->session->userdata('youg_admin'))
+			{
+				redirect('adminlogin', 'refresh');
+			}
+			
+			if( $this->session->userdata['youg_admin'] )
+			{
+				$limit = $this->paging['per_page'];
+				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+				
+				$companyid = $this->session->userdata['youg_admin']['id'];
+				$siteid = $this->session->userdata['siteid'];
+
+				$this->data['reviews'] = $this->reviews->searchrev($keyword,$companyid,$limit,$offset);
+
+				$this->paging['base_url'] = site_url("review/searchresult/".$keyword);
+				$this->paging['uri_segment'] = 3;
+				$this->paging['total_rows'] = count($this->reviews->searchrev($keyword,$companyid));
+				$this->pagination->initialize($this->paging);
+
+				$this->load->view('review',$this->data);
+			}
 		}
 }
 
