@@ -397,8 +397,9 @@ class Solution extends CI_Controller {
 									$mailformat = $mail[0]['mailformat'];
 									
 									$this->load->library('email');
-									$this->email->from($site_email,$site_name);
+									$this->email->from('sales@yougotrated.com',$site_name);
 									$this->email->to($to);
+									$this->email->bcc('sales@yougotrated.com');
 									$this->email->subject($subject);
 									
 									$com = $this->complaints->get_company_byid($companyid);
@@ -428,10 +429,9 @@ class Solution extends CI_Controller {
 									
 									$this->load->library('email');
 									$this->email->from('sales@yougotrated.com',$site_name);
-									
 									$this->email->to($to);
 									$this->email->bcc('sales@yougotrated.com');
-                                                                        $this->email->subject($subject);
+                                    $this->email->subject($subject);
 								
 									$mail_body = str_replace("%name%",ucfirst($name),str_replace("%email%",$email,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat))))));
 									
@@ -616,8 +616,8 @@ class Solution extends CI_Controller {
 									
 									$this->load->library('email');
 									$this->email->from('sales@yougotrated.com',$site_name);
-									$this->email->bcc('sales@yougotrated.com');
 									$this->email->to($to);
+									$this->email->bcc('sales@yougotrated.com');
 									$this->email->subject($subject);
 								
 									$mail_body = str_replace("%name%",ucfirst($name),str_replace("%email%",$email,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat))))));
@@ -1004,7 +1004,7 @@ public function eliteSubscribe($formpost,$companyid) {
 					$this->email->from('sales@yougotrated.com',$site_name);
 					$this->email->to($email);	
 					$this->email->bcc('sales@yougotrated.com'); 
-                                        $this->email->subject($subject);
+                    $this->email->subject($subject);
 					$companyname=$company[0]['company'];
 					$eliteemail=$company[0]['email'];
 					$companyid=$company[0]['id'];
@@ -1248,8 +1248,8 @@ public function cc_alerted()
 				        $companydetails=$this->complaints->get_company_byid($company_id); 
 			           	$this->email->clear();
 						$this->email->from('memberships@yougotrated.com',$site_name);
-						$this->email->bcc('memberships@yougotrated.com'); 
 						$this->email->to($companydetails[0]['contactemail']);	
+						$this->email->bcc('memberships@yougotrated.com');
 						$this->email->subject('Your EliteMembership Subscription credit card will expire in 15 days.');
 						$this->email->message('<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
@@ -1779,8 +1779,8 @@ public function renew_update($id)
 					//For sending mail to user
 					$emailto=$cronemail['contactemail'];
 					$this->email->from('memberships@yougotrated.com',$site_name);
-					$this->email->bcc('memberships@yougotrated.com');
-					$this->email->to($emailto);	
+					$this->email->to($emailto);
+					$this->email->bcc('memberships@yougotrated.com');	
 					$this->email->subject('Your Elite Membership has been renewed.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 											  <tr>
@@ -2191,8 +2191,8 @@ public function upgrades($companyid)
 					$mailformat = $mail[0]['mailformat'];
 					
 					$this->email->from('sales@yougotrated.com',$site_name);
-					$this->email->bcc('sales@yougotrated.com');
-					$this->email->to($email);	
+					$this->email->to($email);
+					$this->email->bcc('sales@yougotrated.com');	
 					$this->email->subject($subject);
 					$companyname=$company[0]['company'];
 					$eliteemail=$company[0]['email'];

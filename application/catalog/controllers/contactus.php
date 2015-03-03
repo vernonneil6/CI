@@ -160,8 +160,8 @@ class Contactus extends CI_Controller {
 						
 						
 						$this->email->from($from,$site_name);
-						$this->email->bcc($from);
 						$this->email->to($to);
+						$this->email->bcc($from);
 						$this->email->subject($subject);
 					
 						$mail_body = "Thanks for your feedback.<br/>

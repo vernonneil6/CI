@@ -129,7 +129,7 @@
 					<div>
 					  <input type="text" class="reg_txt_box-md" placeholder="XXX-XXX-XXXX" name="phone" maxlength="12" id="phone" value="<?php echo $showdata['phone']; ?>">
 					  <div id="phoneerror" class="error">Phone is required.</div>
-					  <div id="phoneverror" class="error">Enter valid format - i.e. XXX-XXX-XXXX</div>
+					  <div id="phoneverror" class="error">Enter valid Phone number.</div>
 					</div>
 					</span>
 				</div>

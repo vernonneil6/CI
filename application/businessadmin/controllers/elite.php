@@ -208,8 +208,8 @@ class Elite extends CI_Controller {
 									//$this->email->initialize($this->cnfemail);
 									$this->email->initialize($config);
 									$this->email->from('terminations@yougotrated.com',$site_name);
-									$this->email->bcc('terminations@yougotrated.com'); 
-									$this->email->to($elite_email['email']);	
+									$this->email->to($elite_email['email']);
+									$this->email->bcc('terminations@yougotrated.com');	
 									$this->email->subject('YGR Account Cancellation');
 												$this->email->message('<table cellpadding="0" cellspacing="0" width="100%" border="0">
 																				<tr>
@@ -569,8 +569,8 @@ class Elite extends CI_Controller {
 											
 							//For sending mail to user
 							$this->email->from('memberships@yougotrated.com',$site_name);
-							$this->email->bcc('memberships@yougotrated.com');
-							$this->email->to($email);	
+							$this->email->to($email);
+							$this->email->bcc('memberships@yougotrated.com');	
 							$this->email->subject('Your Elite Membership credit card has been updated.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 													  <tr>
