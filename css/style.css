@@ -403,6 +403,11 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
 {
 	display: block;
 }
+.table_hme
+{
+	display: table;
+	margin-bottom: 30px;
+}
 .map_wrap{width:510px; height:214px;float:left; padding-bottom:15px; background: url(../images/map_shadow.png) bottom center no-repeat; position: absolute;left:35%;}
 .Flexible-container {   position: relative; padding-bottom:12.8%; padding-top: 30px;  height: 0;  overflow: hidden;}
 .Flexible-container iframe,   

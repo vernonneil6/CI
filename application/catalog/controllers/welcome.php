@@ -98,7 +98,7 @@ sure they respond back. Submit your review and rate your experience
 		
 		$this->data['homesliding']=$this->sliders->homepageslider();
 		
-		$limit=5;
+		$limit=6;
 		$this->data['complaints'] = $this->reviews->get_all_reviews($limit);
 		
 		
