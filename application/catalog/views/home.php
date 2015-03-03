@@ -29,7 +29,7 @@
   
 <section class="container" >
   <section class="main_contentarea">    
-    <div class="container" >      
+    <div class="container table_hme" >      
 	
 	<div class="hm_rght_panel">
 	 <div class="hm_live_menus"></div>
@@ -154,7 +154,7 @@ $(document).ready(function(){
 	});
 	var height = $(".hm_lft_panel").height();
 	var portion = Math.round(height)-81;
-	var singleheight = Math.round(portion/5);
+	var singleheight = Math.round(portion/6);
 	var m_1 = Math.round(height/90);//8
 	var m_2 = Math.round(height/74);//10
 	var m_3 = Math.round(height/144);//5
