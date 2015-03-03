@@ -440,7 +440,12 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
     float:left;
     width: 20px;}
 
-.fadeout{background:#F5F5F5;padding: 10px 0;}
+.fadeout{background:#F5F5F5;}
+.table_block{display:table;}
+.review_blocks {display:table-cell;vertical-align:middle;}
+.review_right{display:table-cell;width:555px;}
+.review_left{display:table-cell;width:50px;padding-right:10px;padding-left:10px;vertical-align:top;} 
+
 
 /*=======================Right_panel ==============================*/
 .right_panel{width:510px; float:left; height:auto; padding-left:5px;}

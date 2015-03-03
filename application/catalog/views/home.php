@@ -50,19 +50,18 @@
 			$avgstar = $this->common->get_avg_ratings_bycmid($complaints[$i]['companyid']);
 			$avgstar = round($avgstar);						
           ?>
-          <div class="review_block <?php if($i%2==1)   {echo "fadeout";   }?>">
-            <div class="review_lft">
-              <div class="user_img">
+          <div class="table_block">
+          <div class="review_blocks <?php if($i%2==1)   {echo "fadeout";}?>">
+            <div class="review_left">             
 				  <?php if($user['id']==$complaints[$i]['reviewby']) { ?>
 					  <img title="User image" alt="User image" src="uploads/user/thumb/<?php echo $user['avatarthum']; ?>" style="width:50px;height:50px">
 				  <?php } else { ?>
 					  <img title="User image" alt="User image" src="images/default_user.png" style="width:50px;height:50px">
-				  <?php } ?>             
-              </div>            
+				  <?php } ?>                      
             </div>
        
-			<div class="review_rgt">
-              <div class="review_ratng_wrp">  	              
+			<div class="review_right">
+                         
                 <div class="rat_title">  
 
 					<div class="reptitle">
@@ -89,11 +88,11 @@
 				    <?php } ?>  
 					<div class="reviewspace_new"><a href="<?php echo site_url('review/browse/'.$complaints[$i]['seokeyword']); ?>" title="view Review Detail"><?php echo ucfirst(substr(stripslashes($complaints[$i]['comment']),0,212)."..."); ?></a></div>
                  </div>              
-              </div>
+
               
             </div>
           </div>
-          
+          </div>
           <?php } } ?>
         </div>
       </div>
@@ -154,17 +153,15 @@ $(document).ready(function(){
 		$(this) .find('.hovertxt').css('color','black');
 	});
 	var height = $(".hm_lft_panel").height();
-	var portion = Math.round(height)-81;
+	var portion = Math.round(height)-83;
 	var singleheight = Math.round(portion/6);
 	var m_1 = Math.round(height/90);//8
-	var m_2 = Math.round(height/74);//10
-	var m_3 = Math.round(height/144);//5
+	var m_2 = Math.round(height/144);//5
 	
-	$(".reviewspace_new").css({'margin-top': m_3,'margin-bottom':'0'});
-	$(".review_block ").css({'height': singleheight, 'padding-top': '0', 'padding-bottom':'0', 'margin-bottom':'0'});
-	$(".home_mar_line").css({'margin-top': m_3,'margin-bottom':m_1 });
+	$(".reviewspace_new").css({'margin-top': m_2,'margin-bottom':'0'});	
+	$(".home_mar_line").css({'margin-top': m_2,'margin-bottom':m_1 });
 	$(".reptitle h2").css({'padding':'0','line-height':'unset'});
-	$(".review_lft").css({'padding-top':m_2});
-	$(".review_rgt").css({'padding-top':m_2});
+	$(".review_blocks ").css({'height': singleheight});
+
 });
 </script>	
