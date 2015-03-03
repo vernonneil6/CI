@@ -391,15 +391,16 @@ class Elite extends CI_Controller {
 			$trialAmount = 0;
 			$cardNumber =$_POST["ccnumber"];
 			
-			if(strlen($_POST["expirationdatem"]==1))
+			if(strlen($_POST["expirationdatem"])==1)
 			{
-				 $expirationDate = $_POST["expirationdatey"].'-0'.$_POST["expirationdatem"];
+				$expirationDate = $_POST["expirationdatey"].'-0'.$_POST["expirationdatem"];
 			}
 			else
 			{
-				 $expirationDate = $_POST["expirationdatey"].'-'.$_POST["expirationdatem"];
+				$expirationDate = $_POST["expirationdatey"].'-'.$_POST["expirationdatem"];
 			}
-					
+                       			
+		
 			$email = $this->input->post('email');
 			$sid=$id;
 		    $sub_id=$this->settings->get_subscriptionid($sid);
@@ -551,6 +552,11 @@ class Elite extends CI_Controller {
 																				<td>:</td>
 																				<td>'.$subscriptionId.'</td>
 																			</tr>
+<tr>
+																		<td>Transacion ID</td>
+																		<td>:</td>
+																		<td><b>'.$transactionkey.'</b></td>
+																	</tr>
 																		</table>
 																		<tr>
 																		<td><br/>
@@ -602,7 +608,11 @@ class Elite extends CI_Controller {
 															<tr>
 															  <td colspan="3">&nbsp;</td>
 															</tr>
-															
+															<tr>
+																		<td>Transacion ID</td>
+																		<td>:</td>
+																		<td><b>'.$transactionkey.'</b></td>
+																	</tr>
 														  </table></td>
 													  </tr>
 													  <tr>
