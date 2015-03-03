@@ -552,11 +552,12 @@ class Elite extends CI_Controller {
 																				<td>:</td>
 																				<td>'.$subscriptionId.'</td>
 																			</tr>
-<tr>
-																		<td>Transacion ID</td>
-																		<td>:</td>
-																		<td><b>'.$transactionkey.'</b></td>
-																	</tr>
+                                                                        <tr>
+																			<td>Transacion ID</td>
+																			<td>:</td>
+																			<td><b>'.$transactionkey.'</b></td>
+																	    </tr>
+																	    
 																		</table>
 																		<tr>
 																		<td><br/>
@@ -602,17 +603,17 @@ class Elite extends CI_Controller {
 																<td>:</td>
 															<td>'.$subscriptionId.'</td>
 															</tr>
-															
+															<tr>
+																<td>Transacion ID</td>
+																<td>:</td>
+																<td><b>'.$transactionkey.'</b></td>
+															</tr>
 															<td colspan="3">&nbsp;</td>
 															</tr>
 															<tr>
 															  <td colspan="3">&nbsp;</td>
 															</tr>
-															<tr>
-																		<td>Transacion ID</td>
-																		<td>:</td>
-																		<td><b>'.$transactionkey.'</b></td>
-																	</tr>
+														
 														  </table></td>
 													  </tr>
 													  <tr>
