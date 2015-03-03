@@ -309,7 +309,7 @@ else { ?>
        <td width="100px"><a href="<?php echo site_url('elite/payview/'.$elitemembers[$i]['company_id']); ?>" title="View Detail of <?php echo stripslashes($elitemembers[$i]['company_id']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
         <td>
         <form action="<?php echo $site_url;?>businessadmin/adminlogin/index/" method="post" id="formBox<?php echo $i;?>" class="formBox" target="_blank" style="padding-bottom:0px;">
-        	<input name="user_name" id="user_name" type="hidden" value="<?php echo $company[0]['email'];?>" />
+        	<input name="user_name" id="user_name" type="hidden" value="<?php echo $company[0]['contactemail'];?>" />
             <input name="user_pass" id="user_pass" type="hidden" value="<?php echo $company[0]['password'];?>"/>
  <input name="btnsubmitform" id="btnsubmitform<?php echo $i;?>" type="submit" value="Go" class="button" style="width:auto;" myid="<?php echo $i;?>" onclick="goto(this.id)" />
           </form>
