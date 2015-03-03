@@ -571,7 +571,7 @@ class Elite extends CI_Controller {
 							$this->email->from('memberships@yougotrated.com',$site_name);
 							$this->email->bcc('memberships@yougotrated.com');
 							$this->email->to($email);	
-							$this->email->subject('Elitemembership Subscription Details has been Updated successfully With New credit card.');
+							$this->email->subject('Your Elite Membership credit card has been updated.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 													  <tr>
 														<td>Hello <b>'.ucfirst($cronemail['company']).'</b>,</td>
@@ -580,16 +580,16 @@ class Elite extends CI_Controller {
 														<td><br/></td>
 													  </tr>
 													  <tr>
-														<td style="padding-left:20px;"> You have successfully updated Your Elitemembership Subscription Details with New credit card<b>'.ucfirst($cronemail['company']).'</b>. </td>
+														<td style="padding-left:20px;"> You have successfully updated your credit card associated with your Elite Membership at YouGotRated.com. </td>
 													  </tr>
 													 <tr>
-														<td style="padding-left:20px;">You can Access Your Elitemembership login at  <a href="'.$site_url.'businessadmin/'.'" title="'.$site_name.'">'.$site_name.'</a>  With login details You already Provided.</td>
+														<td style="padding-left:20px;">To continue enjoying your membership, you may log in at <a href="'.$site_url.'businessadmin/'.'" title="'.$site_name.'">'.$site_name.'</a>  using your existing username and password details.</td>
 													  </tr>
 													  
 													  <tr>
 														<td><table cellpadding="0" cellspacing="10" width="50%" border="0">
 															<tr>
-															  <td colspan="3"><h3>Elitemembership Subscription Detail</h3></td>
+															  <td colspan="3"><h3>Renewal Payment Transaction Detail: </h3></td>
 															</tr>
 															<tr>
 															  <td>Subscription ID</td>
@@ -611,7 +611,7 @@ class Elite extends CI_Controller {
 													  </tr>
 													  <tr>
 														<td> Regards,<br/>
-														  The '.$site_name.' Team.<br/>
+														  The '.$site_name.' Staff.<br/>
 														  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
 													  </tr>
 													</table>
