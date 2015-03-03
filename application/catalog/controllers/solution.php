@@ -428,9 +428,10 @@ class Solution extends CI_Controller {
 									
 									$this->load->library('email');
 									$this->email->from('sales@yougotrated.com',$site_name);
-									$this->email->bcc('sales@yougotrated.com');
+									
 									$this->email->to($to);
-									$this->email->subject($subject);
+									$this->email->bcc('sales@yougotrated.com');
+                                                                        $this->email->subject($subject);
 								
 									$mail_body = str_replace("%name%",ucfirst($name),str_replace("%email%",$email,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat))))));
 									
@@ -1001,9 +1002,9 @@ public function eliteSubscribe($formpost,$companyid) {
 					$mailformat = $mail[0]['mailformat'];
 					
 					$this->email->from('sales@yougotrated.com',$site_name);
-					$this->email->bcc('sales@yougotrated.com'); 
 					$this->email->to($email);	
-					$this->email->subject($subject);
+					$this->email->bcc('sales@yougotrated.com'); 
+                                        $this->email->subject($subject);
 					$companyname=$company[0]['company'];
 					$eliteemail=$company[0]['email'];
 					$companyid=$company[0]['id'];
