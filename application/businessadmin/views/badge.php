@@ -25,7 +25,7 @@
 				<a id="badge-seals"  oncontextmenu="disableRightClick(); return false;" target = "_blank" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/company/'.urlencode($company['companyseokeyword']).'/reviews/coupons/complaints';?>"  class="disablerightclick" >
 					<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/badge.png'; ?>" class="tooltip"  title="<?php echo ucfirst($company['company']); ?> is a verified merchant.">
 				</a>
-				<script type="text/javascript" src="<?php echo base_url(); ?>js/badge.js"></script>				
+				<script type="text/javascript" src="<?php echo base_url(); ?>js/buyer-badge.js"></script>				
 			</textarea>
 			
 			</td>
