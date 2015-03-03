@@ -254,9 +254,7 @@ class Solution extends CI_Controller {
 					'discountcode' => $this->input->post('discountcode'),
 					'discount-code-type' => $this->input->post('discount-code-type'),
 					'discounted-price' => $this->input->post('discounted-price'),
-					'subscriptionprice' => $this->input->post('subscriptionprice'),
-					'actype' => $this->input->post('actype'),
-					'notes' => $this->input->post('notes')
+					'subscriptionprice' => $this->input->post('subscriptionprice')
 		);
 		return $data;
 		
@@ -343,9 +341,8 @@ class Solution extends CI_Controller {
 			$subbrokerid = $this->input->post('subbrokerid');
 			$marketerid = $this->input->post('marketerid');
 			$brokertype = $this->input->post('brokertype');
-			$notes = $this->input->post('notes');
-			$actype = $this->input->post('actype');
 			
+
 			//$company=$this->complaints->get_companyelite_by_emailid($email);
 			$names=$this->complaints->find_company_for_check($name);	
                        
@@ -355,9 +352,9 @@ class Solution extends CI_Controller {
 			    $name1 = $this->complaints->chkfield1(0,'company',$name);
 			
 			//Inserting Record
-                      if( $this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'',$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype,$notes,$actype ))
+                if($this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'',$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype))
         		{
-								
+							
 								$companyid = $this->db->insert_id();							
 														
 								$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
@@ -2353,3 +2350,4 @@ public function upgrades($companyid)
 /* End of file dashboard.php */
 /* Location: ./application/controllers/dashboard.php */
 }
+
