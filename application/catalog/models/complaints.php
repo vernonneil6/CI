@@ -1715,7 +1715,7 @@ class Complaints extends CI_Model
 	}
 	function ccexpire_email()
 	{
-		$ccexpiredate=date('Y-n',strtotime("+1 Month"));
+		$ccexpiredate=date('Y-m',strtotime("+1 Month"));
 		$query=$this->db->select('*')
 							->from('youg_subscription')
 							->where(array('transactionstatus'=>'0','paymentmethod'=>'authorize','subscr_id !='=>'','emailflag'=>'0'))
