@@ -59,16 +59,17 @@
               <div class="review_ratng_wrp">  	              
                 <div class="rat_title">  
 					
-					<?php $companyname = $this->users->get_company_bysingleid($complaints[$i]['companyid']); ?>
-					<div class="reptitle browse_ptag">
-						<h2><a href="<?php echo site_url('company/'.$companyname['companyseokeyword'].'/reviews/coupons/complaints');?>" class="reviewname home_mar_title" title="view Review Detail"><?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?></a></h2>
-					</div>  
-                    <span class="datehome"><?php echo date('m/d/Y',strtotime($complaints[$i]['reviewdate']));?></span>
-                    <div class="clear"></div>
-                    <?php 
+					<?php 
+						$companyname = $this->users->get_company_bysingleid($complaints[$i]['companyid']); 
 						$avgstar = $this->common->get_avg_ratings_bycmid($complaints[$i]['companyid']);
-						$avgstar = round($avgstar);
-					?>			 
+						$avgstar = round($avgstar);					
+					?>
+					<div class="reptitle">
+						<h2><a href="<?php echo site_url('company/'.$companyname['companyseokeyword'].'/reviews/coupons/complaints');?>" class="reviewname home_mar_title" title="view Review Detail"><?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?></a></h2>
+						<span class="datehome"><?php echo date('m/d/Y',strtotime($complaints[$i]['reviewdate']));?></span>
+						<div class="clear"></div>
+					</div>      
+			 
 				    <div class="home_mar_line">
 						<?php for($r=0;$r<($avgstar);$r++){?>
 						<i class="vry_rat_icn"></i>
@@ -79,21 +80,20 @@
 						<div class="clear"></div>
 				    </div>
 					  
-					<label><a class="home_cap"><?php echo $complaints[$i]['reviewtitle'];?></a></label>
+					<div><a class="home_cap"><?php echo $complaints[$i]['reviewtitle'];?></a></div>
 					<?php if($complaints[$i]['reviewby']==$user['id']){ ?>
 				  	<div><a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby']); ?>" class="home_cap1" title="view profile"><?php echo ucfirst($user['username']);?></a></div>
 				    <?php } else{ ?>
 					<div><a class="home_cap1"><?php echo ucfirst($complaints[$i]['reviewby']);?></a></div>
-				    <?php } ?>
-                 
-                 </div>
+				    <?php } ?>  
+					<p class="reviewspace_new"><a href="<?php echo site_url('review/browse/'.$complaints[$i]['seokeyword']); ?>" title="view Review Detail"><?php echo ucfirst(substr(stripslashes($complaints[$i]['comment']),0,212)."..."); ?></a></p>
+                 </div>              
               </div>
-              <p class="reviewspace_new"><a href="<?php echo site_url('review/browse/'.$complaints[$i]['seokeyword']); ?>" title="view Review Detail"><?php echo ucfirst(substr(stripslashes($complaints[$i]['comment']),0,212)."..."); ?></a></p>
+              
             </div>
           </div>
           
-          <?php } ?>
-          <?php } ?>
+          <?php } } ?>
         </div>
       </div>
 
