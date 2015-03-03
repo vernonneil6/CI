@@ -140,7 +140,7 @@ class Contactus extends CI_Controller {
 						$mailformat = $mail[0]['mailformat'];
 						
 						$this->email->from($from);
-						$this->email->to($to);
+						$this->email->to('customerservice@yougotrated.com');
 						$this->email->subject($subject.' : '.$subjectname);
 					
 						$mail_body = str_replace("%subjectname%",$subjectname,str_replace("%username%",$name,str_replace("%email%",$email,str_replace("%subject%",$subject,str_replace("%message%",$message,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%sitemail%",$site_email,stripslashes($mailformat)))))))));
@@ -153,13 +153,14 @@ class Contactus extends CI_Controller {
 							
 							//user mail
 						$to = $email;
-						$from = $site_email;
+						$from = 'customerservice@yougotrated.com';
 						
 						//Get Email Format for Company
 						$subject = $site_name."Thank you for contacting us";
 						
 						
-						$this->email->from($from);
+						$this->email->from($from,$site_name);
+						$this->email->bcc($from);
 						$this->email->to($to);
 						$this->email->subject($subject);
 					

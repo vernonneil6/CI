@@ -427,7 +427,8 @@ class Solution extends CI_Controller {
 									$mailformat = $mail[0]['mailformat'];
 									
 									$this->load->library('email');
-									$this->email->from($site_email,$site_name);
+									$this->email->from('sales@yougotrated.com',$site_name);
+									$this->email->bcc('sales@yougotrated.com');
 									$this->email->to($to);
 									$this->email->subject($subject);
 								
@@ -613,7 +614,8 @@ class Solution extends CI_Controller {
 									$mailformat = $mail[0]['mailformat'];
 									
 									$this->load->library('email');
-									$this->email->from($site_email,$site_name);
+									$this->email->from('sales@yougotrated.com',$site_name);
+									$this->email->bcc('sales@yougotrated.com');
 									$this->email->to($to);
 									$this->email->subject($subject);
 								
@@ -1140,7 +1142,8 @@ public function cron()
 										
 				//CHANGE THE RECEPTIENT AND URL LINK AFTER CHECKING
 				
-				
+				   if($transactionresponse!=""){ $authresponse="or&nbsp;".$transactionresponse;} else { $authresponse=""; }
+				 
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
 					$this->email->from('terminations@yougotrated.com',$site_name);
@@ -1153,7 +1156,7 @@ public function cron()
 															<tr><td><br/></td></tr>
 															<tr>
 																<td style="padding-left:20px;">
-																Your subscription to Elitemembership has been deactivated due to payment failure or card expiration '.$transactionresponse.' . Details are as follows.
+																 Your subscription for an Elitemembership with YouGotRated has been deactivated due to credit card payment failure '.$authresponse.'.
 																</td>
 															</tr>
 															<tr>
@@ -1429,7 +1432,7 @@ public function adminreport()
 				   $this->email->initialize($config);     
                     $todaysdate=date('Y-m-d');
 					$this->email->from($site_mail,$site_name);
-					$this->email->to($site_mail);	
+					$this->email->to('memberships@yougotrated.com');	
 					$this->email->subject('Todays Report On Success and Failed Payments On Date  '.$todaysdate.'');
 					$this->email->message('<table cellpadding="0" cellspacing="10" width="100%" border="0">
 															<tr>
@@ -1739,7 +1742,7 @@ public function renew_update($id)
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
 					$this->email->from($cronemail['contactemail'],$cronemail['company']);
-					$this->email->to($site_mail);	
+					$this->email->to('memberships@yougotrated.com');	
 					$this->email->subject('Payment Received for Elitemembership Renewal.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
@@ -1774,7 +1777,8 @@ public function renew_update($id)
 									
 					//For sending mail to user
 					$emailto=$cronemail['contactemail'];
-					$this->email->from($site_mail,$site_name);
+					$this->email->from('memberships@yougotrated.com',$site_name);
+					$this->email->bcc('memberships@yougotrated.com');
 					$this->email->to($emailto);	
 					$this->email->subject('Elitemembership has been Renewed successfully.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
@@ -2147,7 +2151,7 @@ public function upgrades($companyid)
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
 					$this->email->from($email,$company[0]['company']);
-					$this->email->to($site_mail);	
+					$this->email->to('sales@yougotrated.com');	
 					$this->email->subject('Payment Received for Business Claim.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
@@ -2185,7 +2189,8 @@ public function upgrades($companyid)
 					$subject = $mail[0]['subject'];
 					$mailformat = $mail[0]['mailformat'];
 					
-					$this->email->from($site_mail,$site_name);
+					$this->email->from('sales@yougotrated.com',$site_name);
+					$this->email->bcc('sales@yougotrated.com');
 					$this->email->to($email);	
 					$this->email->subject($subject);
 					$companyname=$company[0]['company'];

@@ -207,7 +207,8 @@ class Elite extends CI_Controller {
 														
 									//$this->email->initialize($this->cnfemail);
 									$this->email->initialize($config);
-									$this->email->from($site_email,$site_name);
+									$this->email->from('terminations@yougotrated.com',$site_name);
+									$this->email->bcc('terminations@yougotrated.com'); 
 									$this->email->to($elite_email['email']);	
 									$this->email->subject('YGR Account Cancellation');
 												$this->email->message('<table cellpadding="0" cellspacing="0" width="100%" border="0">
@@ -528,8 +529,8 @@ class Elite extends CI_Controller {
 												
 							
 							$this->email->initialize($config);
-							$this->email->from($site_mail,$site_name);
-							$this->email->to($site_mail);	
+							$this->email->from('memberships@yougotrated.com',$site_name);
+							$this->email->to('memberships@yougotrated.com');	
 							$this->email->subject('Elitemembership Subscription For User '.ucfirst($cronemail['company']).' Updated With  New credit card Details.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 																	<tr>
@@ -567,7 +568,8 @@ class Elite extends CI_Controller {
 							$this->email->send();
 											
 							//For sending mail to user
-							$this->email->from($site_mail,$site_name);
+							$this->email->from('memberships@yougotrated.com',$site_name);
+							$this->email->bcc('memberships@yougotrated.com');
 							$this->email->to($email);	
 							$this->email->subject('Elitemembership Subscription Details has been Updated successfully With New credit card.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
