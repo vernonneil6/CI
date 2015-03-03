@@ -1148,7 +1148,7 @@ public function cron()
 					$this->email->initialize($config);
 					$this->email->from('terminations@yougotrated.com',$site_name);
 					$this->email->to($cronemail['contactemail']);	
-					$this->email->subject('Your EliteMembership Subscription has been Expired.Please Renew');
+					$this->email->subject('Your Elite Membership has expired. Please renew');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
 																<td>Hello '.ucfirst($cronemail['company']).',</td>
@@ -1184,8 +1184,8 @@ public function cron()
 																	</tr>
 																	<tr>
 																		<td style="padding-top:20px;">
-																		 Please Renew Your Elitemembership Subscription at Following link. <a href="'.$site_urls.'" title="'.$site_name.'">'.$site_urls.'</a>. <br>
-																		 Till then Your Elite account will be in deactive.
+																		 To renew, and reactivate your Elitemembership Subscription- Please click the following link:
+																		 <a href="'.$site_urls.'" title="'.$site_name.'">'.$site_urls.'</a>. <br>
 																		</td>
 																	</tr>	
 																	</table>
@@ -1196,7 +1196,7 @@ public function cron()
 											  </tr>
 											  <tr>
 												<td> Regards,<br/>
-												  The '.$site_name.' Team.<br/>
+												  The '.$site_name.' Staff.<br/>
 												  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
 											   </tr>
 											</table>');
@@ -1780,7 +1780,7 @@ public function renew_update($id)
 					$this->email->from('memberships@yougotrated.com',$site_name);
 					$this->email->bcc('memberships@yougotrated.com');
 					$this->email->to($emailto);	
-					$this->email->subject('Elitemembership has been Renewed successfully.');
+					$this->email->subject('Your Elite Membership has been renewed.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 											  <tr>
 												<td>Hello <b>'.ucfirst($cronemail['company']).'</b>,</td>
@@ -1789,18 +1789,18 @@ public function renew_update($id)
 												<td><br/></td>
 											  </tr>
 											  <tr>
-												<td style="padding-left:20px;"> You have successfully Renewed Your Elitemembership Subscription <b>'.ucfirst($cronemail['company']).'</b>. </td>
+												<td style="padding-left:20px;"> You have successfully renewed your Elite Membership </td>
 											  </tr>
 											 <tr>
-												<td style="padding-left:20px;">Continue Enjoying your Elitemembership login at  <a href="'.$site_url.'businessadmin/'.'" title="'.$site_name.'">'.$site_name.'</a>  With login details You already Provided.</td>
+												<td style="padding-left:20px;">To Continue Enjoying your Elitemembership login at  <a href="'.$site_url.'businessadmin/'.'" title="'.$site_name.'">'.$site_name.'</a>  using your existing username and password details.</td>
 											  </tr>
 											  <tr>
-												<td style="padding-left:20px;"> Your Transaction Details are as follows. </td>
+												<td style="padding-left:20px;"> The details of your renewal are as follows. </td>
 											  </tr>
 											  <tr>
 												<td><table cellpadding="0" cellspacing="0" width="50%" border="0">
 													<tr>
-													  <td colspan="3"><h3>Renewal Payment Detail</h3></td>
+													  <td colspan="3"><h3>Renewal Payment Transaction Detail</h3></td>
 													</tr>
 													<tr>
 													  <td>Payment Amount</td>
@@ -1826,7 +1826,7 @@ public function renew_update($id)
 											  </tr>
 											  <tr>
 												<td> Regards,<br/>
-												  The '.$site_name.' Team.<br/>
+												  The '.$site_name.' Staff.<br/>
 												  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
 											  </tr>
 											</table>
