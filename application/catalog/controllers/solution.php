@@ -295,7 +295,6 @@ class Solution extends CI_Controller {
 	{   
             if($this->input->post('email'))
 		{
-			
 						
 			$name = $this->input->post('name');
 			
@@ -347,37 +346,17 @@ class Solution extends CI_Controller {
 			$notes = $this->input->post('notes');
 			$actype = $this->input->post('actype');
 			
-			$company = $this->complaints->get_company_by_emailid($email);
-				if(count($company)>0)
-				{ 
-					/*$id = $company[0]['id'];
-							
-					if($discountcode!='')
-					{
-						redirect('solution/claimdisc/'.$id.'/'.$discountcode, 'refresh');
-						
-					}
-					else
-					{
-						
-						redirect('solution/claim/'.$id, 'refresh');
-						
-					}*/
-
-					$this->session->set_flashdata('error','This company email address is already exists. Try later!');
-					redirect('solution/claimbusiness', 'refresh');
-					
-				}
-				else
-				{ 
-					 $email1 = $this->complaints->chkfield1(0,'email',$email);
-					 $name1 = $this->complaints->chkfield1(0,'company',$name);
-					
-					if($email1=='new' && $name1=='new')
-					{
-							//Inserting Record
-							if( $this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'',$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype,$notes,$actype ))
-							{
+			//$company=$this->complaints->get_companyelite_by_emailid($email);
+			$names=$this->complaints->find_company_for_check($name);	
+                       
+                        if(count($names)==0)
+			{ 
+			    $email1 = $this->complaints->chkfield1(0,'email',$email);
+			    $name1 = $this->complaints->chkfield1(0,'company',$name);
+			
+			//Inserting Record
+                      if( $this->complaints->insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'',$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype,$notes,$actype ))
+        		{
 								
 								$companyid = $this->db->insert_id();							
 														
@@ -454,25 +433,16 @@ class Solution extends CI_Controller {
 									$this->session->set_flashdata('error', 'There is error in adding Business. Try later!');
 									redirect('solution/claimbusiness', 'refresh');
 							}
-						
-						
-						
+
 						redirect('solution/claimbusiness', 'refresh');
-					}
-					else
-					{
-						if($email1=='old')
-						{
-							$this->session->set_flashdata('error', 'This company email address is already exists. Try later!');
-							redirect('solution/claimbusiness', 'refresh');	
-						}
-						if($name1=='old')
-						{
-							$this->session->set_flashdata('error', 'This company name is already exists. Try later!');
-							redirect('solution/claimbusiness', 'refresh');
-						}
-					}
 				}
+				if(count($names)>0){
+                                       
+                                        $companyid=$names['id'];
+					$formpost=$_POST;
+					$this->eliteSubscribe($formpost,$companyid); // for authorise
+				}
+                          	
 		}
 	}
 	public function businessadd()
@@ -2341,7 +2311,7 @@ public function upgrades($companyid)
 			if( $this->input->is_ajax_request() && ( $this->input->post('email') ) ){
 				$email=$this->input->post('email');
 				$emailStatus = array();
-				$company = $this->complaints->get_companyemail_by_emailid($email);
+				$company = $this->complaints->get_companyelite_by_emailid($email);
 				if(count($company)>0)
 				{
 					$emailStatus['status'] = "error";
@@ -2360,7 +2330,7 @@ public function upgrades($companyid)
 			if( $this->input->is_ajax_request() && ( $this->input->post('name'))){
 				$company=$this->input->post('name');
 				$nameStatus = array();
-				$companyname = $this->complaints->find_company_for_check($company);
+				$companyname = $this->complaints->find_elitecompany_for_check($company);
 				if(count($companyname)>0)
 				{
 					$nameStatus['status'] = "error";

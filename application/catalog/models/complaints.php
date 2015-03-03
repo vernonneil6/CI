@@ -1011,6 +1011,33 @@ class Complaints extends CI_Model
 			return array();
 		}
  	}
+	function find_elitecompany_for_check($company)
+ 	{
+		//Executing Query
+		$this->db->select('id,company');
+		$this->db->from('company');
+		$this->db->where('company',$company);
+	
+		$query = $this->db->get();
+                        
+                $this->db->select('company_id');
+                $this->db->from('elite');
+                $elitecheck=$query->row_array();
+	       $eliteid="";	
+               if(count($elitecheck) > 0)
+                 { $eliteid=$elitecheck['id']; }
+                 $this->db->where('company_id',$eliteid);
+                $name=$this->db->get();
+                              
+		if ($name->num_rows() > 0)
+		{
+			return $name->row_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	function find_company_for_check($company)
  	{
 		//Executing Query
@@ -1019,17 +1046,16 @@ class Complaints extends CI_Model
 		$this->db->where('company',$company);
 	
 		$query = $this->db->get();
-	        
+                                             
 		if ($query->num_rows() > 0)
 		{
-			return $query->result_array();
+			return $query->row_array();
 		}
 		else
 		{
 			return array();
 		}
  	}
-	
 	function find_company_by_email($email)
  	{
 		//Executing Query
@@ -1141,6 +1167,34 @@ class Complaints extends CI_Model
 			return array();
 		}
  	}
+        function get_companyelite_by_emailid($email)
+ 	{
+            
+		//Executing Query
+		$this->db->select('id,email');
+		$this->db->from('company');
+		$this->db->where('email',$email);
+	
+		$query = $this->db->get();
+	          
+                $this->db->select('company_id');
+                $this->db->from('elite');
+                $elitecheck=$query->row_array();
+	        $eliteid="";	
+                if(count($elitecheck) > 0)
+                 { $eliteid=$elitecheck['id']; }
+                 $this->db->where('company_id',$eliteid);
+                 $email=$this->db->get();
+                             
+		if ($email->num_rows() > 0)
+		{
+			return $email->row_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	} 
 	function insert_contactdetails($companyid,$cname,$cphone,$cemail)
 	{
 		$this->db->where('id', $companyid);
