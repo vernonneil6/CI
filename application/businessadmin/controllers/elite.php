@@ -363,7 +363,7 @@ class Elite extends CI_Controller {
 			$cid=$this->input->post('country');
 			$c_code=$this->settings->get_country_by_countryid($cid);
 			$country=$c_code['name'];	
-			 
+			$cemail=$_POST["cemail"]; 
 						
 			$path = "/xml/v1/request.api";
 			
@@ -569,7 +569,7 @@ class Elite extends CI_Controller {
 											
 							//For sending mail to user
 							$this->email->from('memberships@yougotrated.com',$site_name);
-							$this->email->to($email);
+							$this->email->to($cemail);
 							$this->email->bcc('memberships@yougotrated.com');	
 							$this->email->subject('Your Elite Membership credit card has been updated.');
 							$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
