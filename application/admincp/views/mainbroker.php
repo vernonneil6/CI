@@ -1,4 +1,5 @@
 <?php echo $header; ?>
+<script type="text/javascript" src="js/brokerform.js"></script>
 <div id="content">
   <div class="breadcrumbs">
     <ul>
@@ -28,7 +29,7 @@
       <h2><span><?php echo "Add Subbroker" ?></span></h2>
     </div>
     <div class="box-content"> 
-    	<?php echo form_open('mainbroker/add',array('class'=>'formBox broker')); ?>
+    	<?php echo form_open('mainbroker/add',array('class'=>'formBox broker','id'=>'frmbrokeradd')); ?>
 	 <fieldset>
         <div class="clearfix">
           <div class="lab">
@@ -48,8 +49,11 @@
             <label for="name">Subbroker Name<div style="font-size:10px;">(Also the username)</div></label><?php echo $data;?>
           </div>
           <div class="con">
-         <input type="text" class="input" name="username" value="" required>
+		 <input type="hidden" class="input" name="usercheck" id="usercheck" value="" >
+		 <input type="hidden" class="input" name="brokertype" id="brokertype" value="subbroker" >	  
+         <input type="text" class="input" name="username" id="username" required>
           </div>
+          <div id="nameexisterror" class="error">Subbrokername already Exist.</div> 
         </div>
      <div class="clearfix">
           <div class="lab">
@@ -123,7 +127,7 @@
 		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'id')); ?>
 		</div>
     </div>
-        <?php echo form_input(array('name'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+        <?php echo form_input(array('name'=>'submitbroker','id'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
       </fieldset>
        <?php echo form_close(); ?>
     </div>
@@ -360,7 +364,7 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'marketerad
       <h2><span><?php echo "Add Marketer" ?></span></h2>
     </div>
     <div class="box-content"> 
-    	<?php echo form_open('mainbroker/marketeradd',array('class'=>'formBox broker')); ?>
+    	<?php echo form_open('mainbroker/marketeradd',array('class'=>'formBox broker','id'=>'frmbrokeradd')); ?>
 	 <fieldset>
 		 <div class="clearfix">
           <div class="lab">
@@ -380,8 +384,11 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'marketerad
             <label for="name">Marketer Name<div style="font-size:10px;">(Also the username)</div></label><?php echo $data;?>
           </div>
           <div class="con">
-         <input type="text" class="input" name="username" value="" required>
+		 <input type="hidden" class="input" name="usercheck" id="usercheck" value="" >
+		 <input type="hidden" class="input" name="brokertype" id="brokertype" value="marketer" >	  
+         <input type="text" class="input" name="username" id="username" required>
           </div>
+          <div id="nameexisterror" class="error">Marketername already Exist.</div> 
         </div>
      <div class="clearfix">
           <div class="lab">
@@ -440,7 +447,7 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'marketerad
 		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'id')); ?>
 		</div>
     </div>
-        <?php echo form_input(array('name'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+        <?php echo form_input(array('name'=>'submitbroker','id'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
       </fieldset>
        <?php echo form_close(); ?>
     </div>
@@ -457,7 +464,7 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'agentadd')
       <h2><span><?php echo "Add Agent" ?></span></h2>
     </div>
     <div class="box-content"> 
-    	<?php echo form_open('mainbroker/agentadd',array('class'=>'formBox broker')); ?>
+    	<?php echo form_open('mainbroker/agentadd',array('class'=>'formBox broker','id'=>'frmbrokeradd')); ?>
 	 <fieldset>
 		  <div class="clearfix">
           <div class="lab">
@@ -477,8 +484,11 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'agentadd')
             <label for="name">Agent Name<div style="font-size:10px;">(Also the username)</div></label><?php echo $data;?>
           </div>
           <div class="con">
-         <input type="text" class="input" name="username" value="" required>
+         <input type="text" class="input" name="username" id="username" required>
+         <input type="hidden" class="input" name="usercheck" id="usercheck" value="" >
+         <input type="hidden" class="input" name="brokertype" id="brokertype" value="agent" >
           </div>
+          <div id="nameexisterror" class="error">Agent already Exist.</div> 
         </div>
      <div class="clearfix">
           <div class="lab">
@@ -537,7 +547,7 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'agentadd')
 		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'id')); ?>
 		</div>
     </div>
-        <?php echo form_input(array('name'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+        <?php echo form_input(array('name'=>'submitbroker','id'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
       </fieldset>
        <?php echo form_close(); ?>
     </div>
@@ -548,20 +558,24 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'agentadd')
 if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'brokeradd')
 {
 ?>
+
 <div class="box">
     <div class="headlines">
       <h2><span><?php echo "Add Broker" ?></span></h2>
     </div>
     <div class="box-content"> 
-    	<?php echo form_open('mainbroker/brokeradd',array('class'=>'formBox broker')); ?>
+    	<?php echo form_open('mainbroker/brokeradd',array('class'=>'formBox broker','id'=>'frmbrokeradd')); ?>
 	 <fieldset>
         <div class="clearfix">
           <div class="lab">
             <label for="name">Broker Name<div style="font-size:10px;">(Also the username)</div></label><?php echo $data;?>
           </div>
           <div class="con">
-         <input type="text" class="input" name="username" value="" required>
+		    <input type="text" class="input" name="username" id="username" required>
+            <input type="hidden" class="input" name="usercheck" id="usercheck" value="" >
+            <input type="hidden" class="input" name="brokertype" id="brokertype" value="broker" >
           </div>
+        <div id="nameexisterror" class="error">Brokername already Exist.</div>  
         </div>
      <div class="clearfix">
           <div class="lab">
@@ -642,13 +656,52 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'brokeradd'
 		  <?php echo form_input(array('type'=>'text','class'=>'input','name'=>'id')); ?>
 		</div>
     </div>
-        <?php echo form_input(array('name'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
+        <?php echo form_input(array('name'=>'submitbroker','id'=>'submitbroker','class'=>'button','type'=>'submit','value'=>'Submit')); ?>
       </fieldset>
        <?php echo form_close(); ?>
     </div>
 </div>
 <?php }?>
 </div>
+<script>
+$(document).ready(function() {
+	
+	//brokername check
+                  $("#username").blur(function() {
+				  var brokername=$('#username').val();
+				  if(brokername != "")
+					  {
+						 var requestData = {
+								type: 'checkBrokername',
+								username: $("#username").val(),
+								btype: $("#brokertype").val()
+							  };
+						  $.ajax({
+						   type: "POST",
+						   url: "index.php/mainbroker/ajaxRequest",
+						   data: requestData,
+						   dataType:"json",
+						   success: function(data){
+							if(data.status=="success")
+							{
+							  $('#nameexisterror').hide();
+							  $('#usercheck').val(data.checkname); 
+							  return true;
+							}
+							else
+							{
+							  $('#nameexisterror').show();
+							  $('#usercheck').val(data.checkname);
+							  $("#username").focus();
+							  return false;
+							}
+						   }
+						  });
+					  }
+                  });
+              });
+
+</script>
 <?php include('leftmenu.php'); ?>
 <?php echo $footer; ?>
 

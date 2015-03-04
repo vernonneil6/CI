@@ -294,6 +294,10 @@ Class Mainbrokers extends CI_Model
 		return $query;
 
 	}
+	function broker_nameavail_check($name,$btype)
+	{
+		return $this->db->get_where('youg_broker', array('name' => $name,'type'=>$btype))->row_array();
+	}
 	
 }
 ?>

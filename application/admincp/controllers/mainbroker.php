@@ -86,11 +86,11 @@ class Mainbroker extends CI_Controller
 			'signup'=>date("Y-m-d H:i:s")
 			);	
 			
-			if($this->mainbrokers->subbroker_name_check($request->post('username')))
+			/*if($this->mainbrokers->subbroker_name_check($request->post('username')))
 			{
 				$this->session->set_flashdata('error', 'Username already exists');
 				redirect('mainbroker/add', 'refresh');
-			}
+			}*/
 					
 			if($this->mainbrokers->allbroker($data)){
 				$this->session->set_flashdata('success', 'Record Added Successfully');
@@ -126,11 +126,11 @@ class Mainbroker extends CI_Controller
 			'signup'=>date("Y-m-d H:i:s")
 			);	
 			
-			if($this->mainbrokers->broker_name_check($request->post('username')))
+			/*if($this->mainbrokers->broker_name_check($request->post('username')))
 			{
 				$this->session->set_flashdata('error', 'Username already exists');
 				redirect('mainbroker/brokeradd', 'refresh');
-			}
+			}*/
 					
 			if($this->mainbrokers->allbroker($data)){
 				$this->session->set_flashdata('success', 'Record Added Successfully');
@@ -169,11 +169,11 @@ class Mainbroker extends CI_Controller
 			'signup'=>date("Y-m-d H:i:s")
 			);	
 			
-			if($this->mainbrokers->marketer_name_check($request->post('username')))
+			/*if($this->mainbrokers->marketer_name_check($request->post('username')))
 			{
 				$this->session->set_flashdata('error', 'Username already exists');
 				redirect('mainbroker/marketeradd', 'refresh');
-			}
+			}*/
 			
 					
 			if($this->mainbrokers->allbroker($data)){
@@ -215,11 +215,11 @@ class Mainbroker extends CI_Controller
 			'signup'=>date("Y-m-d H:i:s")
 			);	
 			
-			if($this->mainbrokers->agent_name_check($request->post('username')))
+			/*if($this->mainbrokers->agent_name_check($request->post('username')))
 			{
 				$this->session->set_flashdata('error', 'Username already exists');
 				redirect('mainbroker/agentadd', 'refresh');
-			}
+			}*/
 					
 			if($this->mainbrokers->allbroker($data)){
 				$this->session->set_flashdata('success', 'Record Added Successfully');
@@ -581,6 +581,32 @@ class Mainbroker extends CI_Controller
 	
 	} 
 			
+	}
+	function ajaxRequest(){
+		
+		/*check checkBrokername*/
+		if($this->input->post('type')=='checkBrokername'){
+			if( $this->input->is_ajax_request() && ( $this->input->post('username'))){
+				$username=$this->input->post('username');
+				$btype=$this->input->post('btype');
+				$nameStatus = array();
+				$brokername = $this->mainbrokers->broker_nameavail_check($username,$btype);
+				if(count($brokername)>0)
+				{
+					$nameStatus['status'] = "error";
+					$nameStatus['nameError'] = "This Brokername already exists. Try later!";
+					$nameStatus['checkname']="0";
+                    echo json_encode($nameStatus);
+				}else{
+					$nameStatus['status'] = "success";
+                    $nameStatus['checkname']="1"; 
+					echo json_encode($nameStatus);
+					return true;
+				}
+			}				
+		}		
+		
+		
 	}
 	
 }
