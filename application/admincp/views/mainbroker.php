@@ -36,13 +36,14 @@
             <label for="name">Add under Broker</label><?php echo $data;?>
           </div>
           <div class="con">
-        <select name="mainbrokerid" id="mainbrokerid" class="select" required>
+        <select name="mainbrokerid" id="mainbrokerid" class="select" >
 			  <option value="0">Select Broker</option>
 			  <?php for($i=0;$i<count($brokertype);$i++) {?>
 				<option value="<?php echo $brokertype[$i]['id'];?>"><?php echo ucfirst($brokertype[$i]['name']);?></option>
 			  <?php } ?>		  
 		   </select>
           </div>
+          <div id="selecterror" class="error">Please choose an option</div> 
         </div>
         <div class="clearfix">
           <div class="lab">
@@ -378,6 +379,7 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'marketerad
 			  <?php } ?>		  
 		   </select>
           </div>
+           <div id="selecterror" class="error">Please choose an option</div> 
         </div>
         <div class="clearfix">
           <div class="lab">
@@ -478,6 +480,7 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'agentadd')
 			  <?php } ?>		  
 		   </select>
           </div>
+           <div id="selecterror" class="error">Please choose an option</div> 
         </div>
         <div class="clearfix">
           <div class="lab">

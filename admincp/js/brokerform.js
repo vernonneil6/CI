@@ -6,6 +6,22 @@
 					 {
 						 return false;
 					 }
+					 
+					 if($('#mainbrokerid').val()==0){
+					   
+					   $('#selecterror').show();
+					   return false;
+					}
+					 if($('#subbrokerid').val()==0){
+					   
+					   $('#selecterror').show();
+					   return false;
+					}
+					 if($('#marketerid').val()==0){
+					   
+					   $('#selecterror').show();
+					   return false;
+					}
 				 		  
 					  $("#frmbrokeradd").submit();
                   });
