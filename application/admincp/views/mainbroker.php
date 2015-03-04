@@ -692,7 +692,6 @@ $(document).ready(function() {
 							{
 							  $('#nameexisterror').show();
 							  $('#usercheck').val(data.checkname);
-							  $("#username").focus();
 							  return false;
 							}
 						   }
