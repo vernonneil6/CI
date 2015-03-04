@@ -9,18 +9,26 @@
 					 
 					 if($('#mainbrokerid').val()==0){
 					   
-					   $('#selecterror').show();
-					   return false;
+					    $('#selecterror').show();
+					    return false;
+					 } else {
+						$('#selecterror').hide();
 					}
-					 if($('#subbrokerid').val()==0){
+					  
+					if($('#subbrokerid').val()==0){
+					   
+					    $('#selecterror').show();
+					    return false;
+					} else {
+						$('#selecterror').hide();
+					}
+					
+					if($('#marketerid').val()==0){
 					   
 					   $('#selecterror').show();
 					   return false;
-					}
-					 if($('#marketerid').val()==0){
-					   
-					   $('#selecterror').show();
-					   return false;
+					} else {
+						$('#selecterror').hide();
 					}
 				 		  
 					  $("#frmbrokeradd").submit();
