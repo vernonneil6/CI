@@ -85,12 +85,6 @@ class Mainbroker extends CI_Controller
 			'id#'=>$request->post('id'),
 			'signup'=>date("Y-m-d H:i:s")
 			);	
-			
-			/*if($this->mainbrokers->subbroker_name_check($request->post('username')))
-			{
-				$this->session->set_flashdata('error', 'Username already exists');
-				redirect('mainbroker/add', 'refresh');
-			}*/
 					
 			if($this->mainbrokers->allbroker($data)){
 				$this->session->set_flashdata('success', 'Record Added Successfully');
@@ -126,12 +120,7 @@ class Mainbroker extends CI_Controller
 			'signup'=>date("Y-m-d H:i:s")
 			);	
 			
-			/*if($this->mainbrokers->broker_name_check($request->post('username')))
-			{
-				$this->session->set_flashdata('error', 'Username already exists');
-				redirect('mainbroker/brokeradd', 'refresh');
-			}*/
-					
+								
 			if($this->mainbrokers->allbroker($data)){
 				$this->session->set_flashdata('success', 'Record Added Successfully');
 				redirect('mainbroker', 'refresh');
@@ -169,13 +158,7 @@ class Mainbroker extends CI_Controller
 			'signup'=>date("Y-m-d H:i:s")
 			);	
 			
-			/*if($this->mainbrokers->marketer_name_check($request->post('username')))
-			{
-				$this->session->set_flashdata('error', 'Username already exists');
-				redirect('mainbroker/marketeradd', 'refresh');
-			}*/
-			
-					
+							
 			if($this->mainbrokers->allbroker($data)){
 				$this->session->set_flashdata('success', 'Record Added Successfully');
 				redirect('mainbroker/marketer', 'refresh');
@@ -215,12 +198,7 @@ class Mainbroker extends CI_Controller
 			'signup'=>date("Y-m-d H:i:s")
 			);	
 			
-			/*if($this->mainbrokers->agent_name_check($request->post('username')))
-			{
-				$this->session->set_flashdata('error', 'Username already exists');
-				redirect('mainbroker/agentadd', 'refresh');
-			}*/
-					
+							
 			if($this->mainbrokers->allbroker($data)){
 				$this->session->set_flashdata('success', 'Record Added Successfully');
 				redirect('mainbroker/agent', 'refresh');
