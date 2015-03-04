@@ -1050,7 +1050,7 @@ public function cron()
 	    $path = "/xml/v1/request.api";
 	    include('authorize/authnetfunction.php');
     
-    foreach($crons as $con)	{
+         foreach($crons as $con){
 	  
 	  	$subscriptionId=$con['subscr_id'];
 		$subscription_amount=$con['amount'];
@@ -1091,96 +1091,96 @@ public function cron()
 					 " Response Reason Code: $code<br>";
 					 " Response Text: $text<br>";
 					 " Subscription Id: $subscriptionId <br><br>";
-					
-					}
 		
-		if($resultCode=='Ok')
-		{
-		   $site_mail = $this->common->get_setting_value(5);      
-           //Loading E-mail library
-					$config = Array(
-					'protocol' => 'smtp',
-					'smtp_host' => 'smtp.mandrillapp.com',
-					'smtp_port' => 587,
-					'smtp_user' => 'alankenn@grossmaninteractive.com',
-					'smtp_pass' => 'vPVq6nWolBWIKNp1LaWNFw',
-					'mailtype'  => 'html', 
-					'charset'   => 'iso-8859-1'
-				);	
-					$this->load->library('email');
-					$this->email->set_newline("\r\n");				
-					//Loading E-mail config file
-					$this->config->load('email',TRUE);
-					$this->cnfemail = $this->config->item('email');
+			if($code=='Ok')
+			{
+			   $site_mail = $this->common->get_setting_value(5);      
+		   //Loading E-mail library
+						$config = Array(
+						'protocol' => 'smtp',
+						'smtp_host' => 'smtp.mandrillapp.com',
+						'smtp_port' => 587,
+						'smtp_user' => 'alankenn@grossmaninteractive.com',
+						'smtp_pass' => 'vPVq6nWolBWIKNp1LaWNFw',
+						'mailtype'  => 'html', 
+						'charset'   => 'iso-8859-1'
+					);	
+						$this->load->library('email');
+						$this->email->set_newline("\r\n");				
+						//Loading E-mail config file
+						$this->config->load('email',TRUE);
+						$this->cnfemail = $this->config->item('email');
 										
-				//CHANGE THE RECEPTIENT AND URL LINK AFTER CHECKING
+					//CHANGE THE RECEPTIENT AND URL LINK AFTER CHECKING
 				
-				   if($transactionresponse!=""){ $authresponse="or&nbsp;".$transactionresponse;} else { $authresponse=""; }
-				 
-					//$this->email->initialize($this->cnfemail);
-					$this->email->initialize($config);
-					$this->email->from('terminations@yougotrated.com',$site_name);
-					$this->email->to($cronemail['contactemail']);	
-					$this->email->subject('Your Elite Membership has expired. Please renew');
-					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
-															<tr>
-																<td>Hello '.ucfirst($cronemail['company']).',</td>
-															</tr>
-															<tr><td><br/></td></tr>
-															<tr>
-																<td style="padding-left:20px;">
-																 Your subscription for an Elitemembership with YouGotRated has been deactivated due to credit card payment failure '.$authresponse.'.
-																</td>
-															</tr>
-															<tr>
-																<table cellpadding="0" cellspacing="0" width="50%" border="0">
-																	<tr><td colspan="3"><h3>Payment Transaction Detail</h3></td></tr>
-																	<tr>
-																		<td>Subscription ID</td>
-																		<td>:</td>
-																		<td>'.$subscriptionId.'</td>
-																	</tr>
-																	<tr>
-																		<td>Subscription Amount</td>
-																		<td>:</td>
-																		<td>USD '.$subscription_amount.'</td>
-																	</tr>
-																	<tr>
-																		<td>Transacion ID</td>
-																		<td>:</td>
-																		<td><b>'.$last_transaction.'</b></td>
-																	</tr>
-																	<tr>
-																		<td>Payment Failed Date</td>
-																		<td>:</td>
-																		<td><b>'.$paymentfailed_date.'</b></td>
-																	</tr>
-																	<tr>
-																		<td style="padding-top:20px;">
-																		 To renew, and reactivate your Elitemembership Subscription- Please click the following link:
-																		 <a href="'.$site_urls.'" title="'.$site_name.'">'.$site_urls.'</a>. <br>
-																		</td>
-																	</tr>	
-																	</table>
+					   if($transactionresponse!=""){ $authresponse="or&nbsp;".$transactionresponse;} else { $authresponse=""; }
+					 
+						//$this->email->initialize($this->cnfemail);
+						$this->email->initialize($config);
+						$this->email->from('terminations@yougotrated.com',$site_name);
+						$this->email->to($cronemail['contactemail']);	
+						$this->email->subject('Your Elite Membership has expired. Please renew');
+						$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
+																<tr>
+																	<td>Hello '.ucfirst($cronemail['company']).',</td>
 																</tr>
-															<tr>
-												<td><br/>
-												  <br/></td>
-											  </tr>
-											  <tr>
-												<td> Regards,<br/>
-												  The '.$site_name.' Staff.<br/>
-												  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
-											   </tr>
-											</table>');
+																<tr><td><br/></td></tr>
+																<tr>
+																	<td style="padding-left:20px;">
+																	 Your subscription for an Elitemembership with YouGotRated has been deactivated due to credit card payment failure '.$authresponse.'.
+																	</td>
+																</tr>
+																<tr>
+																	<table cellpadding="0" cellspacing="0" width="50%" border="0">
+																		<tr><td colspan="3"><h3>Payment Transaction Detail</h3></td></tr>
+																		<tr>
+																			<td>Subscription ID</td>
+																			<td>:</td>
+																			<td>'.$con['subscr_id'].'</td>
+																		</tr>
+																		<tr>
+																			<td>Subscription Amount</td>
+																			<td>:</td>
+																			<td>USD '.$subscription_amount.'</td>
+																		</tr>
+																		<tr>
+																			<td>Transacion ID</td>
+																			<td>:</td>
+																			<td><b>'.$last_transaction.'</b></td>
+																		</tr>
+																		<tr>
+																			<td>Payment Failed Date</td>
+																			<td>:</td>
+																			<td><b>'.$paymentfailed_date.'</b></td>
+																		</tr>
+																		<tr>
+																			<td style="padding-top:20px;">
+																			 To renew, and reactivate your Elitemembership Subscription- Please click the following link:
+																			 <a href="'.$site_urls.'" title="'.$site_name.'">'.$site_urls.'</a>. <br>
+																			</td>
+																		</tr>	
+																		</table>
+																	</tr>
+																<tr>
+													<td><br/>
+													  <br/></td>
+												  </tr>
+												  <tr>
+													<td> Regards,<br/>
+													  The '.$site_name.' Staff.<br/>
+													  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
+												   </tr>
+												</table>');
 											
 											
-					//Sending mail to admin
-					$this->email->send();
-					$this->adminreport();
-					$this->cc_alerted();
-		}			
-					
+						//Sending mail to admin
+						$this->email->send();
+						
+			}
+ 
+           }			
+		$this->adminreport();
+		$this->cc_alerted();			
 		
 	}
 	

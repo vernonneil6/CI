@@ -1784,8 +1784,8 @@ class Complaints extends CI_Model
 			$from_unix_time = mktime(0, 0, 0,$month, 0, $year);
 			$day_before = strtotime("-15 days", $from_unix_time);
 			$fifteendays_days_ago =date('Y-m-d', $day_before);
-            //$date1 		= strtotime(date("Y-m-d"));
-            $date1 		= strtotime(date("2015-03-16"));
+                           $date1= strtotime(date("Y-m-d"));
+                           //$date1= strtotime(date("2015-03-16"));
 			$date2  	= strtotime($fifteendays_days_ago);
 			if($date1 == $date2){
 				return $query;
