@@ -2150,5 +2150,19 @@ class Complaints extends CI_Model
 
 		}
 	}
+	
+	function companystreetvalid1($company, $street)
+	{
+		$query = $this->db->get_where('youg_company', array('company'=>$company, 'companystreet'=>$street));
+		if($query->num_rows() > 0)
+		{
+			return '1';
+		}
+		else
+		{
+			return '0';
+
+		}
+	}
 }
 ?>

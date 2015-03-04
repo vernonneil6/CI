@@ -443,7 +443,7 @@ $(function(){
 				if(a.status=='1')
 				{
 					$('#emailcheck').show();
-					$('#emailcheck').append(a.email);
+					$('#emailcheck').html(a.email);
 					return false;
 					
 				}
@@ -468,7 +468,7 @@ $(function(){
 				if(a.status=='1')
 				{
 					$('#namechecks').show();
-					$('#namechecks').append(a.name);
+					$('#namechecks').html(a.name);
 					return false;
 					
 				}
