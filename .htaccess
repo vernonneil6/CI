@@ -6,12 +6,12 @@
 
 	# force HTTPS
 	RewriteCond %{HTTPS} =off
-	RewriteCond %{REQUEST_URI} (solution\/claimbusiness|solution\/ajaxRequest|solution\/receipt|solution\/update|solution\/upgrades|solution\/register\_data|solution\/renew|signuppage\/affid)
+	RewriteCond %{REQUEST_URI} (solution\/claimbusiness|solution\/ajaxRequest|solution\/companystreetcheck|solution\/receipt|solution\/update|solution\/upgrades|solution\/register\_data|solution\/renew|solution\/renew_update|signuppage\/affid|signuppage\/update|test\/|GMI_scripts\/addressverifier.php)
 	RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 	# force HTTP
 	RewriteCond %{HTTPS} =on
-	RewriteCond %{REQUEST_URI} !(solution\/claimbusiness|solution\/ajaxRequest|solution\/receipt|solution\/update|solution\/upgrades|solution\/register\_data|solution\/renew|signuppage\/affid|css|img|js|font|images)
+	RewriteCond %{REQUEST_URI} !(solution\/claimbusiness|solution\/ajaxRequest|solution\/companystreetcheck|solution\/receipt|solution\/update|solution\/upgrades|solution\/register\_data|solution\/renew|solution\/renew_update|signuppage\/affid|signuppage\/update|css|img|js|font|images|test\/|GMI_scripts\/addressverifier.php)
 	RewriteRule .* http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 	RewriteCond %{REQUEST_FILENAME} !-f
