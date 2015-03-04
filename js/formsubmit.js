@@ -371,7 +371,75 @@ $(document).ready(function() {
                return false; 
           } 
 	  }
-	  $("#frmaddcompany").submit();
+
+	var exp_year = $('#expirationdatey').val().toString().substr(2,2);	
+	var exp_dates = $('#expirationdatem').val() + exp_year;
+
+
+	if($('#expirationdatem').val().length == 1){
+		exp_dates = '0'+$('#expirationdatem').val() + exp_year;
+	}
+var requestData = {
+		firstname: $('#fname').val(),
+		lastname: $('#lname').val(),
+		streetaddress: $('#streetaddress').val(),
+		country: $('#countryname').val(),
+		state: $('#state').val(),
+		city: $('#city').val(),
+		zip: $('#zip').val(),
+		ccnumber: $('#ccnumber').val(),
+		cvv: $('#cvv').val(),
+		exp_date: exp_dates		
+	  };
+						
+
+		$("#frmaddcompany").submit(function(e) {
+						// this code prevents form from actually being submitted
+						e.preventDefault();
+						    e.returnValue = false;
+
+						var $form = $(this);
+						e.preventDefault();
+						var formURL = $("#frmaddcompany").attr( 'action' );
+						$.ajax({
+						type: "POST",
+						 url: "/GMI_scripts/addressverifier.php",
+ 	    					context: $form,
+						 data: requestData,
+						success: function(data){
+							//console.log(data);
+						 	if(data == 'n'){
+							$("#ccnumber").focus();
+		$('#ccnumber').after('<p style="color:red;">This transaction has been declined.  Please contact the card-issuing bank for further details.</p>');
+								
+							}
+							if(data == 'y'){
+								 this.off('submit');
+								this.submit();
+											
+							}
+						},
+						error: function(data){
+							//console.log(data);
+						},
+						complete: function(data) {
+							//console.log(data); 
+					                // make sure that you are no longer handling the submit event; clear handler
+						/*	if(data == 'y'){
+					                	// actually submit the form
+					                	this.submit();
+							} */
+					           }
+
+
+					});
+					
+
+						
+					
+				});	  
+
+
   });
 });
 /*get All States*/        
