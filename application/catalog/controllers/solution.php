@@ -436,6 +436,11 @@ class Solution extends CI_Controller {
 				if(count($names)>0){
                                        
                                         $companyid=$names['id'];
+                                       $update_businessadata=$this->complaints->update_business($companyid,$name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'',$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype); 
+                                       if($update_businessadata){
+                                        $contact_details=$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
+                                        $companyseo=$this->complaints->insert_companyseo($companyid,$name);  
+                                       }
 					$formpost=$_POST;
 					$this->eliteSubscribe($formpost,$companyid); // for authorise
 				}

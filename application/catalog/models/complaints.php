@@ -2061,5 +2061,52 @@ class Complaints extends CI_Model
 			return false;
 		}
 	}
+        function update_business($companyid,$name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,$paypalid,$logo,$category,$aboutus,$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype)
+	{
+		
+		$date = date_default_timezone_set('Asia/Kolkata');
+		$date = date('Y-m-d H:i:s');
+		
+		$varipaddress = $_SERVER['REMOTE_ADDR'];
+		
+		$data = array( 'company' 		=> $name ,
+					   'streetaddress'	=> $streetaddress,
+					   'city'			=> $city,
+					   'state'			=> $state,
+					   'country'		=> $country,
+					   'zip'			=> $zip,
+					   'companystreet'	=> $streetaddress1,
+					   'companycity'	=> $city1,
+					   'companystate'	=> $state1,
+					   'companycountry'	=> $country1,
+					   'companyzip'		=> $zip1,
+					   'phone'			=> $phone,
+					   'email'			=> $email,
+					   'siteurl'		=> $website,
+					   'paypalid'		=> $paypalid,
+					   'logo'			=> $logo,
+					   'categoryid'		=> $category,
+					   'status'			=> 'Enable',
+					   'registerip' 	=> $varipaddress,
+					   'registerdate'	=> $date,
+					   'aboutus'		=> $aboutus,
+					   'brokerid'		=> $brokerid,
+					   'mainbrokerid'	=> $mainbrokerid,
+					   'subbrokerid'	=> $subbrokerid,
+					   'marketerid'		=> $marketerid,
+					   'brokertype'		=> $brokertype
+ 					   ); 
+ 		
+		$updations=$this->db->where('id', $companyid)
+                                   ->update('company',$data);
+		if ($updations)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 ?>
