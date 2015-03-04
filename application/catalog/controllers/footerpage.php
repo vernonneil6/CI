@@ -103,7 +103,7 @@ class Footerpage extends CI_Controller {
 						$site_url = $this->common->get_setting_value(2);
 						$site_email = $this->common->get_setting_value(5);
 						
-						$to = $site_email;
+						//$to = $site_email;
 						$from = $email;
 						
 						//Get Email Format for Company
@@ -112,7 +112,7 @@ class Footerpage extends CI_Controller {
 						$mailformat = $mail[0]['mailformat'];
 						
 						$this->email->from($from);
-						$this->email->to($to);
+						$this->email->to('CustomerService@YouGotRated.com');
 						$this->email->subject($subject.' : '.$subjectname);
 					
 						$mail_body = str_replace("%subjectname%",$subjectname,str_replace("%username%",$name,str_replace("%email%",$email,str_replace("%subject%",$subject,str_replace("%message%",$message,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%sitemail%",$site_email,stripslashes($mailformat)))))))));
@@ -132,8 +132,9 @@ class Footerpage extends CI_Controller {
 						$subject = $site_name."Thank you for contacting us";
 						
 						
-						$this->email->from($from);
-						$this->email->to($to,$company);
+						$this->email->from($company);
+						$this->email->to($to);
+                                                $this->email->bcc($company); 
 						$this->email->subject($subject);
 					
 						$mail_body = "Thanks for your feedback.<br/>
