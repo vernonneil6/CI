@@ -2350,6 +2350,23 @@ public function upgrades($companyid)
 		
 		
 	}
+	
+	function companystreetcheck()
+	{
+		$data = $this->complaints->companystreetvalid($this->input->post('company'),$this->input->post('streetaddress'));
+		$comstr = array();
+		if($data == 1)
+		{
+			$comstr['status'] = "1";
+			$comstr['txt'] = "The company with same name and address already exists.";
+            
+		}
+		else
+		{
+			$comstr['status'] = "0";
+		}
+		echo json_encode($comstr);
+	}
 
 
 /* End of file dashboard.php */

@@ -119,6 +119,7 @@
 					<?php /*?><input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" /><?php */?>
 					  
 					<input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip1" name="zip1" maxlength="10" />
+					<div id="comstrcheck" class="error"></div>
 					<div id="streetaddresserror" class="error">Street Address is required.</div>
 					<div id="cityerror" class="error">City is required.</div>
 					<div id="stateerror" class="error">State is required.</div>
@@ -130,6 +131,7 @@
 					  <input type="text" class="reg_txt_box-md" placeholder="XXX-XXX-XXXX" name="phone" maxlength="12" id="phone" value="<?php echo $showdata['phone']; ?>">
 					  <div id="phoneerror" class="error">Phone is required.</div>
 					  <div id="phoneverror" class="error">Enter valid Phone number.</div>
+					  
 					</div>
 					</span>
 				</div>
@@ -411,7 +413,7 @@ $(document).ready(function(){
 		
 	}
 	
-	
+
  $("#applydisc").click(function(){
   if($("#discountcode").val().length >= 4)
   {
@@ -452,7 +454,32 @@ $(document).ready(function(){
  
  });
 
-
+ $('#streetaddress').blur(function(){
+		var company = $('#name').val();
+		var streetaddress = $('#streetaddress').val();
+		$.ajax({			
+			url : '/solution/companystreetcheck',
+			type : 'POST',
+			data : {company : company,streetaddress:streetaddress},
+			dataType:"json",
+			success : function(a)
+			{
+				if(a.status=='1')
+				{
+					$('#comstrcheck').show();
+					$('#comstrcheck').append(a.txt);
+					return false;
+					
+				}
+				else
+				{
+					$('#comstrcheck').hide();
+					return true;
+				}
+			}
+		});
+	});
+	
 
  $("#name").blur(function(){
  var elitememflag=$('#elitemem').val();
