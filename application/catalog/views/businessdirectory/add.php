@@ -256,79 +256,140 @@
       </div>
     </div>
     <div class="container">
-      <div class="reg_step_edit_add"></div>
-      <div class="reg_frm_wrap">
+      <div>
         <form class="reg_frm" action="businessdirectory/add" id="frmaddcompany" method="post" enctype="multipart/form-data"> 
+          
           <div class="reg-row">
-            <label>BUSINESS' NAME</label>           
-            <input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30">
-            <div id="nameerror" class="error">Name is required.</div>
-            <div id="nametknerror" class="error">This compnay name is already exists.</div>
+			<div>
+				<span class="form-col-1">
+					<span class="form-circle">1</span>
+				</span>
+				<span class="form-col-2">
+					<label>BUSINESS' NAME</label>           
+					<input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30">
+					<div id="nameerror" class="error">Name is required.</div>
+					<div id="nametknerror" class="error">This company name is already exists.</div>
+					<div id="namechecks" class="error"></div>					
+				</span>
+			</div> 
           </div>
+          
+          
           <div class="reg-row" style="margin-top:10px;">
-            <div class="reg_fld">BUSINESS'S WEBSITE?</div>
-            <input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150">
-            <div id="websiteerror" class="error">Website is required.</div>
+			<div>
+				<span class="form-col-1">
+					&nbsp;
+				</span>
+				<span class="form-col-2">
+					<div class="reg_fld">BUSINESS'S WEBSITE?</div>
+					<input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150" onchange="chkwebsite(this.value);">
+					<div id="websiteerror" class="error">Website is required.</div>
+					<div id="weberror" class="error"></div>
+				</span>
+			</div> 
           </div>
+          
+          
+          
           <div class="reg-row" style="margin-top:10px;">
-            <div class="reg_fld">CATEGORY</div>
-            <div id="" style="overflow-y: scroll; height:180px;border: 1px solid #D9D9D9;width:100%;">
-				<?php for($i=0;$i<count($categories);$i++) { ?>
-                <?php  $option = array( 'name'=>'cat[]', 'id'=>'cat-'.$categories[$i]['id'], 'value'=>$categories[$i]['id'],'class'=>'checkboxLabel' );
-        	    echo form_checkbox( $option ); ?>
-                &nbsp; <span style="color: #999999;font-family: "nimbus-sans-condensed";"> <?php echo stripslashes($categories[$i]['category'])."<br/>";?> </span>
-                <?php } ?>
-              </div>
-            <div id="websiteerror" class="error">Website is required.</div>
+			<div>
+				<span class="form-col-1">
+					&nbsp;
+				</span>
+				<span class="form-col-2">
+					<div class="reg_fld">CATEGORY</div>
+					<div id="" style="overflow-y: scroll; height:180px;border: 1px solid #D9D9D9;width:100%;">
+						<?php for($i=0;$i<count($categories);$i++) { ?>
+						<?php  $option = array( 'name'=>'cat[]', 'id'=>'cat-'.$categories[$i]['id'], 'value'=>$categories[$i]['id'],'class'=>'checkboxLabel' );
+						echo form_checkbox( $option ); ?>
+						&nbsp; <span style="color: #999999;"> <?php echo stripslashes($categories[$i]['category'])."<br/>";?> </span>
+						<?php } ?>
+					  </div>
+					<div id="websiteerror" class="error">Website is required.</div>				
+				</span>
+			</div> 
           </div>
+          
           <div class="reg-row">
-            <label>BUSINESS EMAIL ADDRESS</label>            
-            <input type="email" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" onchange="chkmail(this.value);">
-            <div id="emailerror" class="error">Enter valid Emailid.</div>
-            <div id="emailtknerror" class="error">This Emailid already taken.</div>
+			<div>
+				<span class="form-col-1">
+					<span class="form-circle">2</span>
+				</span>
+				<span class="form-col-2">
+					<label>BUSINESS EMAIL ADDRESS</label>            
+					<input type="email" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" onchange="chkmail(this.value);">
+					<div id="emailerror" class="error">Enter valid Emailid.</div>
+					<div id="emailcheck" class="error"></div>
+					<div id="emailtknerror" class="error">This Emailid already taken.</div>
+				</span>
+			</div> 
           </div>
+          
+          
           <div class="reg-row">
-            <label>BUSINESS ADDRESS</label>            
-            <input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50">
-            <input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
-            <input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" />
-            <input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" />
-            <input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
-            <div id="streetaddresserror" class="error">Street Address is required.</div>
-            <div id="cityerror" class="error">City is required.</div>
-            <div id="stateerror" class="error">State is required.</div>
-            <div id="countryerror" class="error">Country is required.</div>
-            <div id="ziperror" class="error">Zip Code is required.</div>
-            <div id="zipverror" class="error">Enter digits only valid format 123456</div>
-            <div style="margin-top:36px;" class="reg_fld">BUSINESS PHONE NUMBER</div>
-            <div>
-              <input type="text" class="reg_txt_box-md" placeholder="(XXX) XXX - XXXX" name="phone" maxlength="12" id="phone">
-              <div id="phoneerror" class="error">Phone is required.</div>
-              <div id="phoneverror" class="error">Enter Valid format.0741852963</div>
-            </div>
-            <div id="streeterror" class="error">Street Address is required.</div>
-            <div id="cityerror" class="error">City is required.</div>
-            <div id="stateerror" class="error">State is required.</div>
-            <div id="streeterror" class="error">Street Address is required.</div>
-            <div id="zipcodeerror" class="error">Enter digits only.</div>
+			<div>
+				<span class="form-col-1">
+					<span class="form-circle">3</span>
+				</span>
+				<span class="form-col-2">
+					<label>BUSINESS ADDRESS</label>            
+					<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50">
+					<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
+					<input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" />
+					<input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" />
+					<input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
+					<div id="streetaddresserror" class="error">Street Address is required.</div>
+					<div id="cityerror" class="error">City is required.</div>
+					<div id="stateerror" class="error">State is required.</div>
+					<div id="countryerror" class="error">Country is required.</div>
+					<div id="ziperror" class="error">Zip Code is required.</div>
+					<div id="zipverror" class="error">Enter digits only valid format 123456</div>
+					<div style="margin-top:36px;" class="reg_fld">BUSINESS PHONE NUMBER</div>
+					<div>
+					  <input type="text" class="reg_txt_box-md" placeholder="(XXX) XXX - XXXX" name="phone" maxlength="12" id="phone">
+					  <div id="phoneerror" class="error">Phone is required.</div>
+					  <div id="phoneverror" class="error">Enter Valid format.0741852963</div>
+					</div>
+					<div id="streeterror" class="error">Street Address is required.</div>
+					<div id="cityerror" class="error">City is required.</div>
+					<div id="stateerror" class="error">State is required.</div>
+					<div id="streeterror" class="error">Street Address is required.</div>
+					<div id="zipcodeerror" class="error">Enter digits only.</div>
+				</span>
+			</div>
           </div>
           <div id="phonenoerror" class="error">Enter Phone number.</div>
           
+          
           <div class="reg-row" style="margin-top:10px !important;">
-            <div class="reg_fld">ABOUT US</div>
-            <textarea class="txt_box" placeholder="TELL US ABOUT YOUR BUSINESS" id="aboutcompany" name="aboutcompany" style="height:100px;"></textarea>
+			<div>
+				<span class="form-col-1">
+					&nbsp;
+				</span>
+				<span class="form-col-2">
+					<div class="reg_fld">ABOUT US</div>
+					<textarea class="txt_box" placeholder="TELL US ABOUT YOUR BUSINESS" id="aboutcompany" name="aboutcompany" style="height:100px;"></textarea>
+				</span>
+			</div>
               
           </div>
           
           
-          <div class="reg-row" style="margin-top:27px;">        
-            <div style='clear:both'>
-				
-			<div class="g-recaptcha" data-sitekey="6Lcj5QETAAAAAGjqfr2_v-jKUhz6CGVVJG-QlpOb"></div>
-            <div id="recaptcha_error" class="error">Recaptcha is required</div>
+          <div class="reg-row" style="margin-top:27px;">  
+			<div>
+				<span class="form-col-1">
+					&nbsp;
+				</span>
+				<span class="form-col-2">      
+					<div style='clear:both'>
+						
+					<div class="g-recaptcha" data-sitekey="6Lcj5QETAAAAAGjqfr2_v-jKUhz6CGVVJG-QlpOb"></div>
+					<div id="recaptcha_error" class="error">Recaptcha is required</div>
 
-            </div>
-            <button type="submit" class="lgn_btn" style="margin-top:32px;" title="SUBMIT BUSINESS" id="btnaddcompany" name="btnaddcompany">Submit Business</button>
+					</div>
+					<button type="submit" class="lgn_btn" style="margin-top:32px;" title="SUBMIT BUSINESS" id="btnaddcompany" name="btnaddcompany">Submit Business</button>
+				</span>
+			</div>
           </div>
           
           
@@ -352,3 +413,74 @@ if(isset($post_data)){ foreach($post_data as $k => $v){ if($k == 'cat') { foreac
 } } }
 ?>
 </script> 
+<script>
+function chkwebsite(website){
+	var filter  = /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3})(?!127(?:\.\d{1,3}){3})(?!169\.254(?:\.\d{1,3}){2})(?!192\.168(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?$/;
+	if(!filter.test(trim(website)))
+	{
+		$("#weberror").show();
+		$("#weberror").append('Please enter a valid URL. For example http://www.example.com or https://www.example.com');
+		$("#website").focus();
+		return false;
+	}
+	else
+	{
+		$("#weberror").hide();
+		return true;
+	}
+}
+
+$(function(){
+	$('#email').blur(function(){
+		var email = $('#email').val();
+		$.ajax({			
+			url : '/businessdirectory/emailcheck',
+			type : 'POST',
+			data : {email : email},
+			dataType:"json",
+			success : function(a)
+			{
+				if(a.status=='1')
+				{
+					$('#emailcheck').show();
+					$('#emailcheck').append(a.email);
+					return false;
+					
+				}
+				else
+				{
+					$('#emailcheck').hide();
+					return true;
+				}
+			}
+		});
+	});
+	
+	$('#name').blur(function(){
+		var name = $('#name').val();
+		$.ajax({			
+			url : '/businessdirectory/namecheck',
+			type : 'POST',
+			data : {name : name},
+			dataType:"json",
+			success : function(a)
+			{
+				if(a.status=='1')
+				{
+					$('#namechecks').show();
+					$('#namechecks').append(a.name);
+					return false;
+					
+				}
+				else
+				{
+					$('#namechecks').hide();
+					return true;
+				}
+			}
+		});
+	});
+	
+});
+
+</script>

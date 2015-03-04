@@ -2061,5 +2061,31 @@ class Complaints extends CI_Model
 			return false;
 		}
 	}
+	
+	function emailvalid($email)
+	{
+		$query = $this->db->get_where('youg_user', array('email'=>$email));
+		if($query->num_rows() > 0)
+		{
+			return '1';
+		}
+		else
+		{
+			return '0';
+		}
+	}
+	
+	function namevalid($name)
+	{
+		$query = $this->db->get_where('youg_user', array('username'=>$name));
+		if($query->num_rows() > 0)
+		{
+			return '1';
+		}
+		else
+		{
+			return '0';
+		}
+	}
 }
 ?>
