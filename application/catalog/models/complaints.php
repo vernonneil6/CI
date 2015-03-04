@@ -2061,6 +2061,7 @@ class Complaints extends CI_Model
 			return false;
 		}
 	}
+
         function update_business($companyid,$name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,$paypalid,$logo,$category,$aboutus,$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype)
 	{
 		
@@ -2106,6 +2107,33 @@ class Complaints extends CI_Model
 		else
 		{
 			return false;
+                 }
+
+	}
+	function emailvalid($email)
+	{
+		$query = $this->db->get_where('youg_user', array('email'=>$email));
+		if($query->num_rows() > 0)
+		{
+			return '1';
+		}
+		else
+		{
+			return '0';
+		}
+	}
+	
+	function namevalid($name)
+	{
+		$query = $this->db->get_where('youg_user', array('username'=>$name));
+		if($query->num_rows() > 0)
+		{
+			return '1';
+		}
+		else
+		{
+			return '0';
+
 		}
 	}
 }

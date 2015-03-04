@@ -134,7 +134,7 @@ class Businessdirectory extends CI_Controller {
 				$company = $this->complaints->get_company_by_emailid($email);
 				if(count($company)>0){
 					$this->session->set_flashdata('error','This company email address is already exists. Try later!');
-					redirect('solution', 'refresh');
+					redirect('businessdirectory/add', 'refresh');
 				}else{
 					$email1 = $this->complaints->chkfield1(0,'email',$email);
 					$name1 = $this->complaints->chkfield1(0,'company',$name);
@@ -202,21 +202,21 @@ class Businessdirectory extends CI_Controller {
 									
 								}else{
 									$this->session->set_flashdata('error', 'There is error in adding Business. Try later!');
-									redirect('solution', 'refresh');
+									redirect('businessdirectory/add', 'refresh');
 								}
 							}else{
 									$this->session->set_flashdata('error', 'There is error in adding Business. Try later!');
-									redirect('solution', 'refresh');
+									redirect('businessdirectory/add', 'refresh');
 							}						
-							redirect('solution', 'refresh');
+							redirect('businessdirectory/add', 'refresh');
 					}else{
 						if($email1=='old'){
 							$this->session->set_flashdata('error', 'This company email address is already exists. Try later!');
-							redirect('solution', 'refresh');	
+							redirect('businessdirectory/add', 'refresh');	
 						}
 						if($name1=='old'){
 							$this->session->set_flashdata('error', 'This company name is already exists. Try later!');
-							redirect('solution', 'refresh');
+							redirect('businessdirectory/add', 'refresh');
 						}
 					}
 				} 
@@ -497,6 +497,40 @@ class Businessdirectory extends CI_Controller {
 			$this->data['address']=$address;
 			$this->load->view('businessdirectory/map',$this->data);
 			
+	}
+	
+	function emailcheck()
+	{
+		$data = $this->complaints->emailvalid($this->input->post('email'));
+		$email = array();
+		if($data == 1)
+		{
+			$email['status'] = "1";
+			$email['email'] = "This company email address is already exists.";
+            
+		}
+		else
+		{
+			$email['status'] = "0";
+		}
+		echo json_encode($email);
+	}
+	
+	function namecheck()
+	{
+		$data = $this->complaints->namevalid($this->input->post('name'));
+		$name = array();
+		if($data == 1)
+		{
+			$name['status'] = "1";
+			$name['name'] = "This company name is already exists.";
+            
+		}
+		else
+		{
+			$name['status'] = "0";
+		}
+		echo json_encode($name);
 	}
 }
 
