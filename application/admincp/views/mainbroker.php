@@ -36,7 +36,7 @@
             <label for="name">Add under Broker</label><?php echo $data;?>
           </div>
           <div class="con">
-        <select name="mainbrokerid" id="mainbrokerid" class="select">
+        <select name="mainbrokerid" id="mainbrokerid" class="select" required>
 			  <option value="0">Select Broker</option>
 			  <?php for($i=0;$i<count($brokertype);$i++) {?>
 				<option value="<?php echo $brokertype[$i]['id'];?>"><?php echo ucfirst($brokertype[$i]['name']);?></option>
@@ -371,7 +371,7 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'marketerad
             <label for="name">Add under Subbroker</label><?php echo $data;?>
           </div>
           <div class="con">
-        <select name="subbrokerid" id="subbrokerid" class="select">
+        <select name="subbrokerid" id="subbrokerid" class="select" required>
 			  <option value="0">Select Subbroker</option>
 			  <?php for($i=0;$i<count($subbrokertype);$i++) {?>
 				<option value="<?php echo $subbrokertype[$i]['id'];?>"><?php echo ucfirst($subbrokertype[$i]['name']);?></option>
@@ -471,7 +471,7 @@ if($this->uri->segment(1)=='mainbroker' && $this->uri->segment(2) == 'agentadd')
             <label for="name">Add under Marketer</label><?php echo $data;?>
           </div>
           <div class="con">
-        <select name="marketerid" id="marketerid" class="select">
+        <select name="marketerid" id="marketerid" class="select" required>
 			  <option value="0">Select Marketer</option>
 			  <?php for($i=0;$i<count($marketertype);$i++) {?>
 				<option value="<?php echo $marketertype[$i]['id'];?>"><?php echo ucfirst($marketertype[$i]['name']);?></option>
