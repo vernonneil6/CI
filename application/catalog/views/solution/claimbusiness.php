@@ -119,7 +119,8 @@
 					<?php /*?><input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" /><?php */?>
 					  
 					<input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip1" name="zip1" maxlength="10" />
-					<div id="comstrcheck" class="error"></div>
+					<div id="comstrcheck1" class="error"></div>
+					<input type="hidden" id="substreetaddress1">
 					<div id="streetaddresserror" class="error">Street Address is required.</div>
 					<div id="cityerror" class="error">City is required.</div>
 					<div id="stateerror" class="error">State is required.</div>
@@ -229,6 +230,8 @@
 					  <br/>
 						<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
 						<input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
+						<div id="comstrcheck" class="error"></div>
+						<input type="hidden" id="substreetaddress">
 						<div id="b_streetaddresserror" class="error">Street Address is required.</div>
 						<div id="b_cityerror" class="error">City is required.</div>
 						<div id="b_stateerror" class="error">State is required.</div>
@@ -467,13 +470,43 @@ $(document).ready(function(){
 				if(a.status=='1')
 				{
 					$('#comstrcheck').show();
-					$('#comstrcheck').append(a.txt);
+					$('#comstrcheck').html(a.txt);
+					$('#substreetaddress').val(a.vals);
 					return false;
 					
 				}
 				else
 				{
 					$('#comstrcheck').hide();
+					$('#substreetaddress').val(a.vals);
+					return true;
+				}
+			}
+		});
+	});
+	
+ $('#streetaddress1').blur(function(){
+		var company = $('#name').val();
+		var streetaddress1 = $('#streetaddress1').val();
+		$.ajax({			
+			url : '/solution/companystreetcheck',
+			type : 'POST',
+			data : {company : company,streetaddress1:streetaddress1},
+			dataType:"json",
+			success : function(a)
+			{
+				if(a.status=='1')
+				{
+					$('#comstrcheck1').show();
+					$('#comstrcheck1').html(a.txt);
+					$('#substreetaddress1').val(a.vals);
+					return false;
+					
+				}
+				else
+				{
+					$('#comstrcheck1').hide();
+					$('#substreetaddress1').val(a.vals);
 					return true;
 				}
 			}

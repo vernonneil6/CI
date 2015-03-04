@@ -360,6 +360,14 @@ $(document).ready(function() {
 	  {
 		return false;  
 	  }
+	  if($('#substreetaddress').val()==1)
+	  {
+		  return false;
+	  }
+	  if($('#substreetaddress1').val()==1)
+	  {
+		  return false;
+	  }
           var elitememflag=$('#elitemem').val();
           if(elitememflag==''){ 
           if($("#namecheck").val()==0)
