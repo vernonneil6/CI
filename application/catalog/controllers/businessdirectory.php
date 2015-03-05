@@ -159,8 +159,9 @@ class Businessdirectory extends CI_Controller {
 									$mailformat = $mail[0]['mailformat'];
 									
 									$this->load->library('email');
-									$this->email->from($site_email,$site_name);
+									$this->email->from('sales@yougotrated.com',$site_name);
 									$this->email->to($to);
+									$this->email->cc('sales@yougotrated.com');
 									$this->email->subject($subject);
 									
 									$com = $this->complaints->get_company_byid($companyid);
