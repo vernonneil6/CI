@@ -161,7 +161,7 @@ class Contactus extends CI_Controller {
 						
 						$this->email->from($from,$site_name);
 						$this->email->to($to);
-						$this->email->bcc($from);
+						$this->email->cc($from);
 						$this->email->subject($subject);
 					
 						$mail_body = "Thanks for your feedback.<br/>

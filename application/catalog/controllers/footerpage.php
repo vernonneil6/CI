@@ -134,7 +134,7 @@ class Footerpage extends CI_Controller {
 						
 						$this->email->from($company);
 						$this->email->to($to);
-                                                $this->email->bcc($company); 
+                        $this->email->cc($company); 
 						$this->email->subject($subject);
 					
 						$mail_body = "Thanks for your feedback.<br/>
