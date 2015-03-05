@@ -132,7 +132,7 @@ class Footerpage extends CI_Controller {
 						$subject = $site_name."Thank you for contacting us";
 						
 						
-						$this->email->from($company);
+						$this->email->from($company,$site_name);
 						$this->email->to($to);
                         $this->email->cc($company); 
 						$this->email->subject($subject);
