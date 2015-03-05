@@ -13,11 +13,15 @@
 
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.4.2.min.js"></script>  
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.2.js"></script>
+<link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';?>css/fancybox.css" type="text/css">
+<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';?>js/fancybox.js"></script>
 <script type="text/javascript" language="javascript">
 	function trim(stringToTrim) {
 		return stringToTrim.replace(/^\s+|\s+$/g,"");
 	}
 	$(document).ready(function() {
+		
+		
 		
 		$("#btnsubmit").click(function () {
 			
@@ -56,6 +60,11 @@
 		});
 	
 	});
+	
+function popup()
+{
+	$.fancybox.open('#popup_box');
+}
 </script>
 <script type="text/javascript">
 	$(function(){
@@ -65,6 +74,26 @@
 	});
 </script>
 </head>
+
+<?php if($this->uri->segment(3) == 'popup')
+{
+?> 
+	<script type='text/javascript'> 
+		$(document).ready(function()
+		{  
+			popup(); 
+		}); 
+	</script>
+<?php	
+} ?>
+<div id = "popup_box" style = "display : none; height: 15px; padding: 20px; width: 555px;  margin: 0 auto;">
+	<div>
+		<?php 
+		$url =  'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/solution/renew/'.$this->uri->segment(4);
+		echo 'Your account is currently disabled. Please <a href='.$url.' style="text-decoration:none;">CLICK HERE</a> to make a payment to re-enable your account.'; 
+		?>
+	</div>
+</div>
 
 <body>
 <div id="main">
@@ -113,6 +142,7 @@
 		<?php echo form_input(array('name'=> 'btnsubmit','id'=>'btnsubmit','class'=> 'submit','type'=>'submit','value'=>'Login')); ?> 
         </div>
         
+        
       </fieldset>
       
       <?php echo form_close();?>
@@ -125,3 +155,18 @@
 
 </body>
 </html>
+<style>
+.fancybox-overlay
+{
+	background: rgba(0, 0, 0, 0.5);
+}
+.fancybox-inner
+{
+	height:auto!important;
+	width:auto!important;
+}
+.fancybox-skin
+{
+	padding:unset!important;
+}
+</style>

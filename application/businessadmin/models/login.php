@@ -63,7 +63,7 @@ Class Login extends CI_Model
 		{	
 			$company = $query->result_array();
 			$id = $company[0]['id'];
-			$query1 = $this->db->get_where('elite',  array( 'company_id' => $id,'status'=>'Disable'));
+			$query1 = $this->db->get_where('elite',  array( 'company_id' => $id,'status'=>'Disable','cancel_flag' => '2'));
 			
 			if ($query1->num_rows() > 0)
 			{

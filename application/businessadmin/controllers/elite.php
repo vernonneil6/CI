@@ -81,14 +81,14 @@ class Elite extends CI_Controller {
 	//Function For Change Status to "Disable"
 	public function disable($id='',$companyid='')
 	{
-		if($this->session->userdata['youg_admin'])
+	  if($this->session->userdata['youg_admin'])
 	  {
 			if($id!='' && $id!=0 && $companyid!='' && $companyid!=0)
 			{
 					if( $this->settings->cancel_elitemembership_bycompnayid($id,$companyid) )
 					{
-							$this->session->set_flashdata('success', 'Membership status disabled successfully.');
-							redirect('dashboard/logout', 'refresh');
+							$this->session->set_flashdata('success', 'Your account has been Disabled Successfully.');						
+							redirect('elite', 'refresh');
 					}
 					else
 					{
@@ -101,6 +101,58 @@ class Elite extends CI_Controller {
 				redirect('elite', 'refresh');
 			}
  		}
+	}
+	
+	function enable($id='',$companyid='')
+	{
+	  if($this->session->userdata['youg_admin'])
+	  {
+			if($id!='' && $id!=0 && $companyid!='' && $companyid!=0)
+			{
+					if( $this->settings->enable_elitemembership_bycompanyid($id,$companyid) )
+					{
+							$this->session->set_flashdata('success', 'Your account has been Enabled Successfully.');						
+							redirect('elite', 'refresh');
+					}
+					else
+					{
+						$this->session->set_flashdata('error', 'There is error in updating Membership status. Try later!');
+						redirect('elite', 'refresh');
+					}
+			}
+		else
+			{
+				redirect('elite', 'refresh');
+			}
+ 		}
+	}
+	
+	function cancel_elite_subscribe($companyid)
+	{
+
+		$data   = $this->settings->subscribe_elite($companyid);
+		$diff 	= abs(strtotime($data['cancel']) - strtotime($data['payment']));
+		$years  = floor($diff / (365*60*60*24));
+		$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+		$days 	= floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+		
+		if($days==15)
+		{
+			if($this->settings->disable_elitemembership($companyid))
+			{
+				redirect('adminlogin','refresh');
+			}
+		}	
+	}
+	
+	function elite_subscribe_cron()
+	{
+		$result = $this->settings->get_all_company();
+		foreach($result as $subscribe)
+		{
+			$this->cancel_elite_subscribe($subscribe['company_id']);
+		}
+		die;
 	}
 	
 	public function cancel_subscribtion()
@@ -134,15 +186,15 @@ class Elite extends CI_Controller {
 				
 				
 				
-			   /*sandbox test mode
+			   /*sandbox test mode*/
 			   $loginname="9um8JTf3W";
 			   $transactionkey="9q24FTz678hQ9mAD";
-			   $host = "apitest.authorize.net";*/
+			   $host = "apitest.authorize.net";
 			   
-			   /*live*/
+			   /*live
 				$loginname="5h7G7Sbr";
 				$transactionkey="94KU7Sznk72Kj3HK";
-				$host = "api.authorize.net";
+				$host = "api.authorize.net";*/
 				   
 			   $path = "/xml/v1/request.api";
 			   include('authorize/authnetfunction.php');
@@ -208,7 +260,7 @@ class Elite extends CI_Controller {
 									//$this->email->initialize($this->cnfemail);
 									$this->email->initialize($config);
 									$this->email->from('terminations@yougotrated.com',$site_name);
-									$this->email->to($elite_email['email']);
+									$this->email->to($elite_email['contactemail']);
 									$this->email->bcc('terminations@yougotrated.com');	
 									$this->email->subject('YGR Account Cancellation');
 												$this->email->message('<table cellpadding="0" cellspacing="0" width="100%" border="0">

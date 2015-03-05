@@ -169,9 +169,15 @@ Class Settings extends CI_Model
 		return $query;	
 			
 	}
+	
+	function get_all_company()
+	{
+		return $this->db->get('youg_elite')->result_array();
+	}
+	
 	function cancel_elitemembership_bycompnayid($id,$companyid)
  	{
-		$data = array('status' =>'Disable' );
+		$data = array('cancel_date' => date('Y-m-d'),'cancel_flag' => '1','status' => 'Disable' );
 		
 		$this->db->where('id', $id);
 		$this->db->where('company_id', $companyid);
@@ -184,9 +190,60 @@ Class Settings extends CI_Model
 			return false;
 		}
  	}
+ 	
+ 	
+ 	function disable_elitemembership($companyid)
+ 	{
+		$data = array('cancel_flag' => '2');
+		
+		$this->db->where('company_id', $companyid);
+		if ($this->db->update('elite',$data))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+ 	}
+ 	
+ 	function enable_elitemembership_bycompanyid($id,$companyid)
+ 	{
+		$data = array('cancel_flag' => '0','status' => 'Enable' );
+		
+		$this->db->where('id', $id);
+		$this->db->where('company_id', $companyid);
+		if ($this->db->update('elite',$data))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+ 	
+ 	function subscribe_elite($companyid)
+ 	{
+		$query = $this->db->select('s.company_id,s.payment_date payment,e.cancel_date cancel')
+						  ->from('youg_elite as e')
+				          ->join('youg_subscription as s', 's.company_id = e.company_id','left')
+				          ->where(array('s.company_id'=>$companyid, 'e.company_id'=>$companyid,'e.cancel_flag'=>'1','e.status' => 'Disable'))
+						  ->get();
+						  
+		if($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
  	function get_elitecancel_email_byid($companyid)
  	{
-		$query = $this->db->select('id, company, email')
+		$query = $this->db->select('id, company, email, contactemail')
 						  ->from('company')
 						  ->where('id',$companyid)
     					  ->get();
@@ -448,6 +505,8 @@ Class Settings extends CI_Model
 		}                
 		                  
 	}
+	
+	
 	
 	
 
