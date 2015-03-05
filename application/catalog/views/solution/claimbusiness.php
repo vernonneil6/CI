@@ -281,7 +281,9 @@
 					</span>
 					<span class="form-col-2">
 						<div class="reg_fld">CREDIT CARD NUMBER:</div>
-						<input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20"  onblur="cc_number_saved = this.value; this.value = this.value.replace(/[^\d]/g, ''); return checkcard();" onfocus="if(this.value != cc_number_saved) this.value = cc_number_saved;  " /><div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+						<input type="text" class="reg_txt_box" placeholder="CREDIT CARD NUMBER" id="ccnumber" name="ccnumber" maxlength="20"  onblur="cc_number_saved = this.value; this.value = this.value.replace(/[^\d]/g, ''); return checkcard();" onfocus="if(this.value != cc_number_saved) this.value = cc_number_saved;  " /><div id="ccnumbererror" class="error">Credit Card Number is required.</div>                                   <div id="transactionerror" class="error"></div>
+                                                 <input type="hidden" id="transactionid" name="transactionid">
+                                                  <input type="hidden" id="auth_type" name="auth_type"> 
 						<div id="carderror" class="carderror"></div>
 						<div id="cardsuccess" class="cardsuccess"></div>
 					</span>
@@ -334,6 +336,7 @@
 						  </select>
 						  <div id="ccnumbererror" class="error">Credit Card Number is required.</div><div id="expirationdateerror" class="error">Select Expiration Date.</div>
 						  <div id="ccnumbererror" class="error">Credit Card Number is required.</div>
+                                                
 					</span>
 				</div>
             
@@ -355,7 +358,8 @@
 						<div id="discnorerror" class="error">Its is not Available</div>
 						<div id="discallrerror" class="error">please enter code</div>
 						<input type="hidden" id="discount-code-type" name="discount-code-type" />
-                                                <input type="hidden" id="discounted-price" name="discounted-price" />  
+                                                <input type="hidden" id="discounted-price" name="discounted-price" />
+                                             
 
 
 					</span>
@@ -368,7 +372,7 @@
 					</span>
 					<span class="form-col-2">
 						<div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
-            <div class="reg_fld">MONTHLY COST: <span id="discprice">$<?php echo $defaultprice=$this->common->get_setting_value(19);?>.00</span></div>
+            <div class="reg_fld">MONTHLY COST: <span id="discprice">$<?php echo $defaultprice=$this->common->get_setting_value(19);?>.00</span></div>                                    <input type="hidden" id="finalamount" name="finalamount" value="<?php echo $defaultprice=$this->common->get_setting_value(19);?>"/>     
             <button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CONTINUE TO CHECKOUT</button>
 					</span>
 				</div>
@@ -435,6 +439,7 @@ $(document).ready(function(){
      $("#discsuccess").show();
      $("#discsuccess").html('Your code was successfully applied! Updated monthly fee:'+data.monthlycost);
      $("#discprice").html(data.monthlycost);
+     $("#finalamount").val(data.monthlyprice);
      $("#discpricebanner").html(data.monthlycost);
      $("#discount-code-type").val(data.discountcodetype);
      $("#discounted-price").val(data.monthlyprice);
@@ -447,6 +452,7 @@ $(document).ready(function(){
      $("#discnorerror").show();
      $("#discnorerror").html('Your code was invalid. Please contact YouGotRated if you believe this is incorrect, or try your code again');
      $("#discprice").html(data.subscriptionprice);
+     $("#finalamount").val(data.subscriptionprice);
      $("#discpricebanner").html(data.subscriptionprice);
      $("#discsuccess").hide();
      $("#discallrerror").hide();

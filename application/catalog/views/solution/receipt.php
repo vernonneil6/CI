@@ -94,6 +94,8 @@ function FormatCreditCard($cc)
 <input type = "hidden" value = "<?php echo $register_data['expirationdatem']; ?>" name = "expirationdatem">
 <input type = "hidden" value = "<?php echo $register_data['cvv']; ?>" name = "cvv">
 <input type = "hidden" value = "<?php echo $register_data['expirationdatey']; ?>" name = "expirationdatey">
+<input type="hidden"  name="transactionid" value = "<?php echo $register_data['transactionid']; ?>">
+<input type="hidden"  name="auth_type" value = "<?php echo $register_data['auth_type']; ?>"> 
 <?php if(!empty($broker_info)){ ?>
 <input type = "hidden" value = "<?php if($broker_info['id']==''){ echo "0"; }else{ echo $broker_info['id']; }?>" name = "brokerid">
 <input type = "hidden" value = "<?php if($broker_info['mainbrokerid']==''){ echo "0"; }else{ echo $broker_info['mainbrokerid']; } ?>" name = "mainbrokerid">

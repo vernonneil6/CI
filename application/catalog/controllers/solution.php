@@ -254,7 +254,9 @@ class Solution extends CI_Controller {
 					'discountcode' => $this->input->post('discountcode'),
 					'discount-code-type' => $this->input->post('discount-code-type'),
 					'discounted-price' => $this->input->post('discounted-price'),
-					'subscriptionprice' => $this->input->post('subscriptionprice')
+					'subscriptionprice' => $this->input->post('subscriptionprice'),
+                                        'transactionid'=>$this->input->post('transactionid'),
+                                        'auth_type'=>$this->input->post('auth_type')
 		);
 		return $data;
 		
@@ -680,8 +682,8 @@ public function eliteSubscribe($formpost,$companyid) {
 	
 	/*sandbox test mode
 	
-	  $loginname="9um8JTf3W";
-	   $transactionkey="9q24FTz678hQ9mAD";
+	  $loginname="83EK7S4R8qy3";
+	   $transactionkey="5Rx8Mn8PAS5s77gr";
 	   $host = "apitest.authorize.net";*/
 	
 	/*live*/
@@ -699,8 +701,11 @@ public function eliteSubscribe($formpost,$companyid) {
 	
 	$disccode_user=$this->input->post('discountcode');
 	$discountmethod=$this->complaints->get_discount_method($disccode_user);
-	$startDate = date("Y-m-d");
-	$amount = $subscriptionprice;
+	//$startDate = date("Y-m-d");
+	$startDate=date('Y-m-d', strtotime("+30 days"));
+        $auth_type=$_POST["auth_type"];
+        $auth_transaction_id=$_POST["transactionid"];
+        $amount = $subscriptionprice;
 	$discid="";
 	$disc="";
 	$disccode_type="";
@@ -711,7 +716,7 @@ public function eliteSubscribe($formpost,$companyid) {
 		
 		    if($discountmethod['discountcodetype']=="30-days-free-trial"){
 			        
-			        $startDate=date('Y-m-d', strtotime("+30 days"));
+			        $startDate=date('Y-m-d', strtotime("+60 days"));
 					$discid=$discountmethod['id'];
 					$disc=$discountmethod['code'];
 					$disccode_type=$discountmethod['discountcodetype']; 
@@ -860,7 +865,7 @@ public function eliteSubscribe($formpost,$companyid) {
 			$fname=$firstName;
 			$lname=$lastName;
 			//if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
-			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cvv,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId,$disc,$disccode_type,$disccode_price,$disccode_use))
+			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cvv,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId,$auth_transaction_id,$auth_type,$disc,$disccode_type,$disccode_price,$disccode_use))
 			{
 				$company = $this->complaints->get_company_byid($companyid);
 				
@@ -1903,7 +1908,9 @@ public function upgrades($companyid)
 	$trialAmount = 0;
 	$cardNumber = $_POST["ccnumber"];
 	$cvv=$this->input->post('cvv');
-		
+	$auth_type=$_POST["auth_type"];
+        $auth_transaction_id=$_POST["transactionid"];
+	
 	if(strlen($_POST["expirationdatem"])==1)
 	{
 		$expirationDate = $_POST["expirationdatey"].'-0'.$_POST["expirationdatem"];
@@ -2043,7 +2050,7 @@ public function upgrades($companyid)
 			$fname=$firstName;
 			$lname=$lastName;
 			//if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId))
-			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cvv,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId,$disc,$disccode_type,$disccode_price,$disccode_use))
+			if($this->complaints->insert_subscription($companyid,$amt,$ccnumber,$cvv,$cardexpire,$fname,$lname,$tx,$expires,$sig,$payer_id,$paymentmethod,$subscriptionId,$auth_transaction_id,$auth_type,$disc,$disccode_type,$disccode_price,$disccode_use))
                             {
 				$company = $this->complaints->get_company_byid($companyid);
                 

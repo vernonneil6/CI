@@ -9,7 +9,8 @@ $(document).ready(function() {
 			return false;
 		}
 	});
-  $("#btnaddcompany").click(function () {
+  $("#btnaddcompany").click(function (e) {
+          e.preventDefault();
 	  
 	  if( trim($("#name").val()) == "" )
 	  {
@@ -397,58 +398,48 @@ var requestData = {
 		zip: $('#zip').val(),
 		ccnumber: $('#ccnumber').val(),
 		cvv: $('#cvv').val(),
+                finalamount:$('#finalamount').val(),
+                discount_code_type:$('#discount-code-type').val(),
 		exp_date: exp_dates		
 	  };
-						
-
-		$("#frmaddcompany").submit(function(e) {
-						// this code prevents form from actually being submitted
-						e.preventDefault();
-						    e.returnValue = false;
-
-						var $form = $(this);
-						e.preventDefault();
-						var formURL = $("#frmaddcompany").attr( 'action' );
+                                                  
 						$.ajax({
 						type: "POST",
-						 url: "/GMI_scripts/addressverifier.php",
- 	    					context: $form,
-						 data: requestData,
+						url: "/GMI_scripts/addressverifier.php",
+ 	    					data: requestData,
+						dataType:"json",
 						success: function(data){
-							//console.log(data);
-						 	if(data == 'n'){
-							$("#ccnumber").focus();
-		$('#ccnumber').after('<p style="color:red;">This transaction has been declined.  Please contact the card-issuing bank for further details.</p>');
-								
-							}
-							if(data == 'y'){
-								 this.off('submit');
-								this.submit();
+							
+							console.log(data);
+						 	
+
+							if(data.status == "y"){
+								 $('#transactionerror').hide();
+								$('#transactionid').val(data.trans_id);
+                                                                  $('#auth_type').val(data.auth_type);
+								 $("#frmaddcompany").submit();
+                                                                 
 											
+							}else{
+                                                        $('#transactionerror').show();
+							$("#ccnumber").focus();
+		       $('#transactionerror').html("This transaction has been declined.  Please contact the card-issuing bank for further details.");
+                                                        $('#transactionid').val(data.trans_id);
+                                                        $('#auth_type').val(data.auth_type);
 							}
 						},
 						error: function(data){
 							//console.log(data);
-						},
-						complete: function(data) {
-							//console.log(data); 
-					                // make sure that you are no longer handling the submit event; clear handler
-						/*	if(data == 'y'){
-					                	// actually submit the form
-					                	this.submit();
-							} */
-					           }
-
-
-					});
-					
-
+						}
 						
-					
-				});	  
 
+
+					});						
+
+		
 
   });
+
 });
 /*get All States*/        
 function getstates(id,state,where) {	//alert(id);
