@@ -933,7 +933,7 @@ public function eliteSubscribe($formpost,$companyid) {
 										
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
-					$this->email->from($email,$company[0]['company']);
+					$this->email->from($cemail,$company[0]['company']);
 					$this->email->to('sales@yougotrated.com');	
 					$this->email->subject('Payment Received for Business Claim.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
@@ -974,11 +974,11 @@ public function eliteSubscribe($formpost,$companyid) {
 					$mailformat = $mail[0]['mailformat'];
 					
 					$this->email->from('sales@yougotrated.com',$site_name);
-					$this->email->to($email);	
+					$this->email->to($cemail);	
 					$this->email->cc('sales@yougotrated.com'); 
-                    $this->email->subject($subject);
+                                        $this->email->subject($subject);
 					$companyname=$company[0]['company'];
-					$eliteemail=$company[0]['contactemail'];
+					$eliteemail=$cemail;
 					$companyid=$company[0]['id'];
 					$companyseo=$company[0]['companyseokeyword'];
 					$url=site_url("widget/business/".$companyid);
@@ -2124,7 +2124,7 @@ public function upgrades($companyid)
 										
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
-					$this->email->from($email,$company[0]['company']);
+					$this->email->from($cemail,$company[0]['company']);
 					$this->email->to('sales@yougotrated.com');	
 					$this->email->subject('Payment Received for Business Claim.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
@@ -2164,11 +2164,11 @@ public function upgrades($companyid)
 					$mailformat = $mail[0]['mailformat'];
 					
 					$this->email->from('sales@yougotrated.com',$site_name);
-					$this->email->to($email);
+					$this->email->to($cemail);
 					$this->email->cc('sales@yougotrated.com');	
 					$this->email->subject($subject);
 					$companyname=$company[0]['company'];
-					$eliteemail=$company[0]['contactemail'];
+					$eliteemail=$cemail;
 					$companyid=$company[0]['id'];
 					$companyseo=$company[0]['companyseokeyword'];
 					$url=site_url("widget/business/".$companyid);
