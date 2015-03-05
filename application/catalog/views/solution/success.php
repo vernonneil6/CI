@@ -2,7 +2,7 @@
 
 <section class="container">
 <div class = "success_receipt">	
-<h2>Your Elite Membership purchase was successful!</h2>
+<h2>Your payment has successfully been processed and your business has been claimed.</h2>
 
 <table>
 <tr>
