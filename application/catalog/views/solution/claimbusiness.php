@@ -5,7 +5,7 @@
     <div class="banner_wrp"> <img class="containerimg" src="images/YouGotRated_HeaderGraphics_SignUpPage.png" alt="Register" title="Register"> </div>
     <div class="regr_lnk">
       <div class="innr_wrap">
-        <div class="new_usr"> Elite Member Registration: <a title="New Business">New Business Monthly Cost:<span id="discpricebanner">$<?php echo $defaultprice=$this->common->get_setting_value(19);?>.00</span> </a> </div>
+        <div class="new_usr"> Elite Member Registration: <a title="New Business">New Business Monthly Cost : <span id="discpricebanner">$<?php echo $defaultprice=$this->common->get_setting_value(19);?></span> </a> </div>
         
       </div>
     </div>
@@ -146,6 +146,7 @@
 					</span>
 					<span class="form-col-2">
 						<label>BUSINESS CONTACT INFORMATION: </label>
+						<div class="reg_fld" id="copycontactinformation">Copy from above</div>
 						<div class="reg_fld"><?php echo strtoupper('The following information will not be published on YouGotRated and is used for administration purposes only. &#160;&#160;This information is where you will receive emails, and receipts from YouGotRated.com');?></div>
 						<div class="reg_fld">CONTACT NAME:</div>
 						
@@ -188,7 +189,7 @@
 					</span>
 					<span class="form-col-2">
 						<label>BUSINESS PAYMENT INFORMATION</label>
-            
+            <div class="reg_fld" id="copypaymentinformation">Copy from above</div>
             <div class="reg_fld">FIRST NAME: </div>
             
             <input type="text" class="reg_txt_box" placeholder="FIRST NAME" id="fname" name="fname" maxlength="30" /><div id="fnameerror" class="error">First Name is required.</div>
@@ -519,7 +520,26 @@ $(document).ready(function(){
 		});
 	});
 	
+ $('#copycontactinformation').click(function(){
+ 
+	$('#cname').val($('#name').val());
+	$('#cphone').val($('#phone').val());
+	$('#cemail').val($('#email').val());
+ 
+ });
+ 
+ $('#copypaymentinformation').click(function(){
+	 
+	var country = $('#country1').val();
+	getstates(country,"state","#selstatediv");
+	$('#streetaddress').val($('#streetaddress1').val());
+	$('#country').val(country);
+	$('#state').val($('#state1').val());
+	$('#city').val($('#city1').val());
+	$('#zip').val($('#zip1').val());
 
+ });
+ 
  $("#name").blur(function(){
  var elitememflag=$('#elitemem').val();
   if(elitememflag==''){

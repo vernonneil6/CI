@@ -531,3 +531,7 @@ padding-top: 8px;
 	color: #052b4d;
     text-decoration: none!important;
 }
+.disable_status
+{
+	padding: 20px;
+}

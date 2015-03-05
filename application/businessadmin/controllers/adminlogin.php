@@ -87,9 +87,7 @@ class AdminLogin extends CI_Controller {
 				}
 				if($result1)
 				{
-					$id = $result1['id'];
-					$url =  'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/solution/renew/'.$id;
-					redirect($url,'refresh');
+					redirect('adminlogin/index/popup/'.$result1['id'], 'refresh');				
 				}
 				
 				else

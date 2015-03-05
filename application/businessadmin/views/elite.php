@@ -41,8 +41,7 @@
       <tr>
           <td><?php echo date("M d Y",strtotime($elite[$i]['payment_date'])); ?></td>
           <td>
-          <a href="<?php echo site_url('elite/cancel/'.$elite[$i]['subscr_id'].'/'.$elite[$i]['company_id']);?>" title="Click to Cancel Membership" class="btn btn-small btn-success" onClick="return confirm('Are you sure to cancel elite membership,after cancellation of membership you will not any access to your business admin account ?');"><span>Enable</span></a>
-          
+          <a href="<?php echo site_url('elite/cancel/'.$elite[$i]['subscr_id'].'/'.$elite[$i]['company_id']);?>" title="Click to Cancel Membership" class="btn btn-small btn-success" onClick="return confirm('Are you sure to cancel elite membership');"><span>Enable</span></a>          
           </td>
         
       </tr>
@@ -61,6 +60,7 @@
   }
   else
   {
+  $data = 0;
   ?>
   <div class="box">
     <div class="headlines">
@@ -93,8 +93,10 @@
       <tr>
           <td><?php echo date("M d Y",strtotime($elite[$i]['payment_date'])); ?></td>
           <td><?php if( stripslashes($elite[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('elite/disable/'.$elite[$i]['id'].'/'.$elite[$i]['company_id']);?>" title="Click to Cancel Membership" class="btn btn-small btn-success" onClick="return confirm('Are you sure You want to cancel Your elite membership? After cancellation of Your membership - You will not have any access to your business admin account !');"><span>Enable</span></a>
-          <?php } ?>
+          <a href="<?php echo site_url('elite/disable/'.$elite[$i]['id'].'/'.$elite[$i]['company_id']);?>" title="Click to Cancel Membership" class="btn btn-small btn-success" onClick="return confirm('Are you sure You want to cancel Your elite membership?');"><span>Enable</span></a>
+          <?php } if( stripslashes($elite[$i]['status']) == 'Disable' ) { $data=1;?>
+		  <a href="<?php echo site_url('elite/enable/'.$elite[$i]['id'].'/'.$elite[$i]['company_id']);?>" title="Click to Enable Membership" class="btn btn-small btn-success" onClick="return confirm('Are you sure You want to enable Your elite membership?');"><span>Disable</span></a>
+		  <?php } ?>	  
           <td><?php echo date('M d Y',strtotime($elitepayment['expires'])); ?></td>
           <td><?php echo "$ ".$elitepayment['sub_amt']; ?></td>
           </td>
@@ -102,7 +104,18 @@
       </tr>
       <?php } ?>
     </table>
-    <?php } 
+    
+		<?php 
+		if( $data==1 ) 
+		{
+		?>
+		<div class="disable_status">
+			<?php echo "Your account has been cancelled. You will continue to be able to use this account until your monthly/pay period is over. Please note that all data will be saved, and you can re enable the account again in the future."; ?>
+		</div>
+		<?php
+		}
+		
+		} 
 	else { ?>
     <!-- Warning form message -->
     <div class="form-message warning">

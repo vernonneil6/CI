@@ -1888,6 +1888,7 @@ class Complaints extends CI_Model
 							'payment_ip'		=> $varipaddress,
 							'renew_emailflag'   => $emailflag,
 							'status'			=> 'Enable',
+							'cancel_flag'		=> '0',
 							'dateofrenew'		=>$date
 						);
 		$this->db->where('company_id',$companyid);				
