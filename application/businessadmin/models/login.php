@@ -10,8 +10,10 @@ Class Login extends CI_Model
 		{	
 			$company = $query->result_array();
 			$id = $company[0]['id'];
-			$query1 = $this->db->get_where('elite',  array( 'company_id' => $id,'status'=>'Enable'));
-			
+			$this->db->select('*');
+			$this->db->where("(company_id = '$id' AND status = 'Enable' OR company_id = '$id' AND status = 'Disable' AND cancel_flag = '1')");
+			$query1 = $this->db->get('elite');
+						
 			if ($query1->num_rows() > 0)
 			{
 				$result = array( 'id' => $id,'username' => $username,'companyname'=>$company[0]['company']);
@@ -37,7 +39,9 @@ Class Login extends CI_Model
 		{	
 			$company = $query->result_array();
 			$id = $company[0]['id'];
-			$query1 = $this->db->get_where('elite',  array( 'company_id' => $id,'status'=>'Enable'));
+			$this->db->select('*');
+			$this->db->where("(company_id = '$id' AND status = 'Enable' OR company_id = '$id' AND status = 'Disable' AND cancel_flag = '1')");
+			$query1 = $this->db->get('elite');
 			
 			if ($query1->num_rows() > 0)
 			{
