@@ -223,23 +223,6 @@ Class Settings extends CI_Model
 		}
 	}
  	
- 	function subscribe_elite($companyid)
- 	{
-		$query = $this->db->select('s.company_id,s.payment_date payment,e.cancel_date cancel')
-						  ->from('youg_elite as e')
-				          ->join('youg_subscription as s', 's.company_id = e.company_id','left')
-				          ->where(array('s.company_id'=>$companyid, 'e.company_id'=>$companyid,'e.cancel_flag'=>'1','e.status' => 'Disable'))
-						  ->get();
-						  
-		if($query->num_rows() > 0)
-		{
-			return $query->row_array();
-		}
-		else
-		{
-			return false;
-		}
-	}
 	
  	function get_elitecancel_email_byid($companyid)
  	{

@@ -146,7 +146,7 @@
 					</span>
 					<span class="form-col-2">
 						<label>BUSINESS CONTACT INFORMATION: </label>
-						<div class="reg_fld" id="copycontactinformation">Copy from above</div>
+						<div class="reg_fld"><input type="checkbox" id="copycontactinformation">Copy from above text</div>
 						<div class="reg_fld"><?php echo strtoupper('The following information will not be published on YouGotRated and is used for administration purposes only. &#160;&#160;This information is where you will receive emails, and receipts from YouGotRated.com');?></div>
 						<div class="reg_fld">CONTACT NAME:</div>
 						
@@ -189,7 +189,7 @@
 					</span>
 					<span class="form-col-2">
 						<label>BUSINESS PAYMENT INFORMATION</label>
-            <div class="reg_fld" id="copypaymentinformation">Copy from above</div>
+            <div class="reg_fld"><input type="checkbox" id="copypaymentinformation"> Copy from above text</div>
             <div class="reg_fld">FIRST NAME: </div>
             
             <input type="text" class="reg_txt_box" placeholder="FIRST NAME" id="fname" name="fname" maxlength="30" /><div id="fnameerror" class="error">First Name is required.</div>
@@ -519,17 +519,27 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
- $('#copycontactinformation').click(function(){
+
+ $('#copycontactinformation').click(function(){	
+ if($('#copycontactinformation').is(':checked'))
+ {
  
 	$('#cname').val($('#name').val());
 	$('#cphone').val($('#phone').val());
 	$('#cemail').val($('#email').val());
  
+ }
+ //else
+ //{
+	//$('#cname').val('');
+	//$('#cphone').val('');
+	//$('#cemail').val('');
+// }
  });
  
  $('#copypaymentinformation').click(function(){
-	 
+ if($('#copypaymentinformation').is(':checked'))
+ { 
 	var country = $('#country1').val();
 	getstates(country,"state","#selstatediv");
 	$('#streetaddress').val($('#streetaddress1').val());
@@ -538,6 +548,15 @@ $(document).ready(function(){
 	$('#city').val($('#city1').val());
 	$('#zip').val($('#zip1').val());
 
+ }
+ //else
+ //{
+	//$('#streetaddress').val($('');
+	//$('#country').val('');
+	//$('#state').val('');
+	//$('#city').val('');
+	//$('#zip').val('');
+ //}
  });
  
  $("#name").blur(function(){

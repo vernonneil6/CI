@@ -1038,6 +1038,99 @@ public function success($companyid)
 	$this->data['company'] = $this->complaints->get_company_bysingleid($companyid);
 	$this->load->view('solution/success', $this->data);
 }
+function expires()
+{
+	$expirecron = $this->complaints->expirecrons();
+	foreach($expirecron as $expire)
+	{
+		
+		echo $company_id=$expire['company_id'];	
+		$subscriptionId=$expire['subscr_id'];
+		$subscription_amount=$expire['amount'];
+		$paymentfailed_date=$expire['expires'];	
+		$last_transaction=$expire['txn_id'];
+		$cronemail=$this->complaints->get_elitesubscription_detailsbycompanyid($company_id);	
+  
+	    
+	    
+		$site_name = $this->common->get_setting_value(1);
+	 	$site_url = $this->common->get_setting_value(2);
+		$site_mail = $this->common->get_setting_value(5);      
+
+						$config = Array(
+						'protocol' => 'smtp',
+						'smtp_host' => 'smtp.mandrillapp.com',
+						'smtp_port' => 587,
+						'smtp_user' => 'alankenn@grossmaninteractive.com',
+						'smtp_pass' => 'vPVq6nWolBWIKNp1LaWNFw',
+						'mailtype'  => 'html', 
+						'charset'   => 'iso-8859-1'
+					);	
+						$this->load->library('email');
+						$this->email->set_newline("\r\n");				
+						$this->config->load('email',TRUE);
+						$this->cnfemail = $this->config->item('email');
+										
+						$this->email->initialize($config);
+						$this->email->from('terminations@yougotrated.com',$site_name);
+						$this->email->to($cronemail['contactemail']);
+						$this->email->cc('terminations@yougotrated.com');
+						$this->email->subject('Your Elite Membership has expired. Please renew');
+						$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
+																<tr>
+																	<td>Hello '.ucfirst($cronemail['company']).',</td>
+																</tr>
+																<tr><td><br/></td></tr>
+																<tr>
+																	<td style="padding-left:20px;">
+																	 Your credit card payment is failed. Your account will be active for 24 hours and you can update your credit card information in your elite admin.
+																	</td>
+																</tr>
+																<tr>
+																	<table cellpadding="0" cellspacing="0" width="50%" border="0">
+																		<tr><td colspan="3"><h3>Payment Transaction Detail</h3></td></tr>
+																		<tr>
+																			<td>Subscription ID</td>
+																			<td>:</td>
+																			<td>'.$subscriptionId.'</td>
+																		</tr>
+																		<tr>
+																			<td>Subscription Amount</td>
+																			<td>:</td>
+																			<td>USD '.$subscription_amount.'</td>
+																		</tr>
+																		<tr>
+																			<td>Transacion ID</td>
+																			<td>:</td>
+																			<td><b>'.$last_transaction.'</b></td>
+																		</tr>
+																		<tr>
+																			<td>Payment Failed Date</td>
+																			<td>:</td>
+																			<td><b>'.$paymentfailed_date.'</b></td>
+																		</tr>
+																		</table>
+																	</tr>
+																<tr>
+													<td><br/>
+													  <br/></td>
+												  </tr>
+												  <tr>
+													<td> Regards,<br/>
+													  The '.$site_name.' Staff.<br/>
+													  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
+												   </tr>
+												</table>');
+											
+											
+						//Sending mail to admin
+						if($this->email->send())
+						{
+							$this->complaints->expirecronupdate($expire['company_id']);
+						}
+	}
+}
+
 public function cron()
 {	
 	$crons=$this->complaints->elitecrondetails();
@@ -1067,6 +1160,7 @@ public function cron()
 	    $transactionresponse=$con['transactionresponse'];   
         
         $disable_elite=$this->complaints->disable_elitemembership($company_id);
+        $disable_cancelflag=$this->complaints->disable_cancelflag($company_id);
         $site_name = $this->common->get_setting_value(1);
 	 	$site_renewurl=$site_name.'solution/renew/'.$company_id;
 	 	$site_base_url=base_url().'solution/renew/'.$company_id;
@@ -1088,8 +1182,10 @@ public function cron()
 					//send the xml via curl
 					$response = send_request_via_curl($host,$path,$content);
 					//if the connection and send worked $response holds the return from Authorize.net
+					print_r($response);
 					if ($response)
 					{ 
+						
 						list ($resultCode, $code, $text, $subscriptionId) =parse_return($response);
 					
 					 " Response Code: $resultCode <br>";
@@ -1177,8 +1273,7 @@ public function cron()
 													  <a href="'.$site_url.'" title="'.$site_name.'">'.$site_name.'</a></td>
 												   </tr>
 												</table>');
-											
-											
+												
 						//Sending mail to admin
 						$this->email->send();
 						

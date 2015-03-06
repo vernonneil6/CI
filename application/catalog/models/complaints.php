@@ -1758,8 +1758,24 @@ class Complaints extends CI_Model
 	{
 		$checkdate=date('Y-m-d');
 		$query=$this->db->select('*')
+						->from('youg_subscription as s')
+						->join('youg_elite as e','e.company_id = s.company_id','left')
+						->where("(`s`.`transactionstatus` = '0' and `s`.`paymentmethod` = 'authorize' and `s`.`subscr_id` != '' and `s`.`emailflag` = '0' and `s`.`expireflag` = '2') OR 
+						(`e`.`cancel_flag`='1' and `e`.`status`='Disable')")
+						->like('s.expires',$checkdate)
+						->get()
+			            ->result_array();
+		//echo $this->db->last_query();	
+		return $query;
+		
+	}
+	
+	function expirecrons()
+	{
+		$checkdate=date('Y-m-d');
+		$query=$this->db->select('*')
 						->from('youg_subscription')
-						->where(array('transactionstatus'=>'0','paymentmethod'=>'authorize','subscr_id !='=>'','emailflag'=>'0'))
+						->where(array('transactionstatus'=>'0','paymentmethod'=>'authorize','subscr_id !='=>'','emailflag'=>'0','expireflag'=>'1'))
 						->like('expires',$checkdate)
 						->get()
 			            ->result_array();
@@ -1768,6 +1784,16 @@ class Complaints extends CI_Model
 		return $query;
 		
 	}
+	
+	function expirecronupdate($companyid)
+	{
+		$query = $this->db->where('company_id',$companyid)->update('youg_subscription',array('expireflag'=>'2'));
+	}
+	function disable_cancelflag($companyid)
+	{
+		$query = $this->db->where(array('company_id'=>$companyid,'cancel_flag'=>'1'))->update('youg_elite',array('cancel_flag'=>'2'));
+	}
+	
 	function ccexpire_email()
 	{
 		$ccexpiredate=date('Y-m',strtotime("+1 Month"));

@@ -24,13 +24,7 @@ class Elite extends CI_Controller {
 	public function __construct()
   	{
   	parent::__construct();
-		// Your own constructor code
-		if( !$this->session->userdata('youg_admin'))
-	  	{
-		   	//If no session, redirect to login page
-			//echo site_url();die();
-	  	  	redirect('adminlogin', 'refresh');
-		}
+		
 		
 		//Loading Helper File
 	  	$this->load->helper('form');
@@ -126,25 +120,7 @@ class Elite extends CI_Controller {
 			}
  		}
 	}
-	
-	function cancel_elite_subscribe($companyid)
-	{
-
-		$data   = $this->settings->subscribe_elite($companyid);
-		$diff 	= abs(strtotime($data['cancel']) - strtotime($data['payment']));
-		$years  = floor($diff / (365*60*60*24));
-		$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-		$days 	= floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
 		
-		if($days==15)
-		{
-			if($this->settings->disable_elitemembership($companyid))
-			{
-				redirect('adminlogin','refresh');
-			}
-		}	
-	}
-	
 	function elite_subscribe_cron()
 	{
 		$result = $this->settings->get_all_company();

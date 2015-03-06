@@ -47,7 +47,7 @@ if($sql!='')
 	 $query="UPDATE youg_subscription SET `payment_date`='$date',`expires`='$expires',`datereturn`='$date' , `transactionstatus`='$tn_status' , `transactionresponse`='$transaction_status' WHERE subscr_id='$sub_id'";
  } else {
 	 $tn_status=0;
-	 $query="UPDATE youg_subscription SET `expires`='$date',`datereturn`='$date' , `transactionstatus`='$tn_status' ,`transactionresponse`='$transaction_status' WHERE subscr_id='$sub_id'";	  
+	 $query="UPDATE youg_subscription SET `expires`='$date',`expireflag`='1',`datereturn`='$date' , `transactionstatus`='$tn_status' ,`transactionresponse`='$transaction_status' WHERE subscr_id='$sub_id'";	  
    }
 }
 
