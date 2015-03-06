@@ -52,9 +52,14 @@
           ?>
           <div class="table_block">
           <div class="review_blocks <?php if($i%2==1)   {echo "fadeout";}?>">
-            <div class="review_left">             
+            <div class="review_left">
+                                     
 				  <?php if($user['id']==$complaints[$i]['reviewby']) { ?>
-					  <img title="User image" alt="User image" src="uploads/user/thumb/<?php echo $user['avatarthum']; ?>" style="width:50px;height:50px">
+                                       <?php if($user['avatarthum']!="") { ?>					  
+              <img title="User image" alt="User image" src="uploads/user/thumb/<?php echo $user['avatarthum']; ?>" style="width:50px;height:50px">
+      <?php } else { ?>
+              <img title="User image" alt="User image" src="images/default_user.png" style="width:50px;height:50px">
+      <?php } ?>
 				  <?php } else { ?>
 					  <img title="User image" alt="User image" src="images/default_user.png" style="width:50px;height:50px">
 				  <?php } ?>                      
