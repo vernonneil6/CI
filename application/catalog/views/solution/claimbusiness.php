@@ -56,7 +56,7 @@
 						<input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150" value="<?php echo $showdata['siteurl']; ?>" onchange="chkwebsite(this.value);">            
 						<div id="websiteerror" class="error">Website is required.</div>
 						<div id="websitevaliderror" class="error">Enter valid Website.</div> 
-						<div id="websitevalidsuccess" class="cardsuccess" style="display:none">Its a valid website.</div> 
+						<div id="websitevalidsuccess" class="cardsuccess" style="display:none">This is a valid URL format.</div> 
 					</span>
           </div>
           <div class="reg-row" style="margin-top:10px;">

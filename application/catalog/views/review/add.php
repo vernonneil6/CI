@@ -80,6 +80,17 @@
 					  $("#posterror").hide();
 					}
 					
+					
+				  if (!$("#terms-conditions").is(":checked")) {
+						$('#terms-error').show();
+						return false;
+					}
+					else
+					{
+						$('#terms-error').hide();
+						return true;
+					}
+					
 				  $("#form4").submit();
                    
               });
@@ -104,6 +115,8 @@
 				$('#autopost').val("");
 			});
 			
+			
+			
            });
       </script> 
       <?php echo form_open('review/update',array('class'=>'','id'=>'form4'));?>
@@ -118,8 +131,14 @@
 		<input type = "hidden" value = "" name = "autopost" id = "autopost">
         <input class="txt_box" id="reviewtitle" name="reviewtitle" maxlength="80" placeholder="review title"/>
         <textarea class="txrareawrp" id="review" name="review" maxlength="500"></textarea>
+        <div id="termscondn">
+			<input type="checkbox" id="terms-conditions" />
+			<label>I understand that by posting this review that my name and email address will be shared with the merchant.</label>
+			<div><label id="terms-error" style='display:none;color:#ff0000;'>Please indicate that you accept the Terms and Conditions</label></div>
+		</div>
+        <button type="submit" title="Submit" class="rev_sbt_btn " id="btnsubmit" name="btnsubmit">Submit</button><?php echo form_hidden( array( 'companyid' => $this->encrypt->encode($companyid) ) ); ?>
       </div>
-      <button type="submit" title="Submit" class="submt_btn" id="btnsubmit" name="btnsubmit">Submit</button><?php echo form_hidden( array( 'companyid' => $this->encrypt->encode($companyid) ) ); ?>
+      
       <?php echo form_close();?> </div>
            <div class="lgn_btnlogo" > <a href="<?php echo base_url();?>">
                         <img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a></div>

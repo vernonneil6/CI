@@ -1003,7 +1003,7 @@ public function eliteSubscribe($formpost,$companyid) {
 									
 					//Sending mail user
 					$this->email->send();
-					$this->session->set_flashdata('success','Payment is made and your business is claimed successfully.');
+					$this->session->set_flashdata('success','Your payment has successfully been processed and your business has been claimed.');
 					redirect('solution/success/'.$companyid,'refresh');
 					
 					
@@ -2195,7 +2195,7 @@ public function upgrades($companyid)
 									
 					//Sending mail user
 					$this->email->send();
-					$this->session->set_flashdata('success','Payment is made and your business is claimed successfully.');
+					$this->session->set_flashdata('success','Your payment has successfully been processed and your business has been claimed.');
 					redirect('solution/success/'.$companyid,'refresh');
 					
 					//redirect('complaint', 'refresh');

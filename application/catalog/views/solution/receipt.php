@@ -174,7 +174,7 @@ function FormatCreditCard($cc)
 				<tr><td colspan='2'>
 					<div id="termscondn">
 						<input type="checkbox" id="terms-conditions" />
-				I agree to the Terms and Conditions and the recuring monthly membership
+				<label>I am authorized to act on behalf of the above named company and agree to the Terms and Conditions of use and that this membership will be automatically renewed monthly until cancelled.</label>
 					<p id="terms-error" style='display:none;color:#ff0000;'>Please indicate that you accept the Terms and Conditions</p>
 				</div>
 				</td></tr>

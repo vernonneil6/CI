@@ -182,7 +182,7 @@ function readCookie(name) {
         </div>
 		<div class="footerbottomlink">
 			<span>© Copyright <?php echo date("Y");?>  <?php echo $site_name;?></span>
-			<span>All Right Reserved.</span>
+			<span>All Rights Reserved</span>
 			<span>
 				<?php 
 				
