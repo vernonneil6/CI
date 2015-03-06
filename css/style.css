@@ -1844,6 +1844,7 @@ padding-left: 18px;
 	border: 1px solid;
 	width: 387px;
 	border-radius: 4px;
+	padding: 8px 15px;
 }
 .ygr_receipt div div table th
 {
@@ -1857,8 +1858,15 @@ padding-left: 18px;
 }
 .ygr_receipt div div table tr .receipt_data
 {
-	padding: 15px 0 15px 25px;
+	padding: 7px 0 7px 45px;
 	font-family : myriadpro-regular;
+}
+.receiptterms
+{
+	color :#2b6998;
+	cursor:pointer;
+	text-decoration:none;
+	font-family: myriadpro-boldcond;
 }
 .receipt_tab_1
 {
@@ -1871,7 +1879,7 @@ padding-left: 18px;
 }
 .receipt_tab_1_2,.receipt_tab_2_2
 {
-	margin : 20px 0 0 0;
+	margin : 10px 0 0 0;
 }
 .receipt_button
 {
