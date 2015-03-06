@@ -180,6 +180,9 @@
 									 return false;
             		          	}
 								else{}
+								
+								
+								
 		            	        
 									$("#frmcompany").submit();
 									return false;
@@ -288,12 +291,13 @@
           <input type="checkbox" style="display:block;" name="readterms" value="Yes" id="am_2" class="">
           <label for="am_2">I HAVE READ AND AGREE TO THE YOUGOTRATED <a target="_blank" title="TERMS AND CONDITIONS" href="terms">TERMS AND CONDITIONS</a>.</label>
         </div>
-        <div dir="seltdterms" class="term_tag chechbox_custom">
+        <div dir="seltdterms" class="term_tag chechbox_custom ckbox_hgt">
           <input type="checkbox" style="display:block;" name="terms" value="Yes" id="am_1" class="">
-          <label for="am_1">I AGREE TO THE YOUGOTRATED TERMS AND CONDITIONS.</label>
+          <label for="am_1">I understand that by posting this complaint that my name and email address will be shared with the merchant.</label>
         </div>
         <div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
       </div>
+     
       <button name="btncompany" id="btncompany" title="Submit" style="margin-top:32px;" class="lgn_btn" type="submit">SUBMIT</button>
 
     </form>

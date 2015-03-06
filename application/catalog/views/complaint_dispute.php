@@ -4,6 +4,19 @@
 <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script type="text/javascript">
+	$(document).ready(function(){
+	$('#submit').click(function(){
+	if (!$("#terms-conditions").is(":checked")) {
+				$('#terms-error').show();
+				return false;
+			}
+			else
+			{
+				$('#terms-error').hide();
+				return true;
+			}
+		});
+	});
 	function searchcompany(company)
 	{
 		//alert(company);
@@ -149,7 +162,12 @@ if( $this->session->userdata('youg_user') )
 			<?php $date=date('Y-m-d : H:i:s'); ?>
 			<?php echo form_input(array('name'=>'ondate','type'=>'hidden','class'=>'reg_txt_box','value'=>$date)); ?>
 		   
-			<input type="submit" name="mysubmit" value="submit" class="lgn_btn">
+			<div id="termscondn" class="font_myraid">
+				<input type="checkbox" id="terms-conditions" />
+				<label>I understand that by posting this complaint that my name and email address will be shared with the merchant.</label>
+				<div><label id="terms-error" style='display:none;color:#ff0000;'>Please indicate that you accept the Terms and Conditions</label></div>
+				</div>
+			<input type="submit" name="mysubmit" value="submit" class="lgn_btn" id="submit">
 			<?php echo form_close(); ?>
 <?php
  }
