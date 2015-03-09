@@ -79,7 +79,7 @@ class Elite extends CI_Controller {
 	  {
 			if($id!='' && $id!=0 && $companyid!='' && $companyid!=0)
 			{
-				/*$disablesubscription=$this->settings->get_subscriptionid($companyid);
+				$disablesubscription=$this->settings->get_subscriptionid($companyid);
 				//print_r($disablesubscription);die;
 				
 				$subscriptionId=$disablesubscription['subscr_id'];	
@@ -93,7 +93,7 @@ class Elite extends CI_Controller {
 				   $host = "apitest.authorize.net";*/
 				   
 				   /*live*/
-					/*$loginname="5h7G7Sbr";
+					$loginname="5h7G7Sbr";
 					$transactionkey="94KU7Sznk72Kj3HK";
 					$host = "api.authorize.net";
 					   
@@ -125,9 +125,9 @@ class Elite extends CI_Controller {
 						 " Response Text: $text<br>";
 						 " Subscription Id: $subscriptionId <br><br>";
 						
-						}
+						
 					   if($code=='Ok')
-				       {*/
+				       {
 				
 							if( $this->settings->cancel_elitemembership_bycompnayid($id,$companyid) )
 							{
@@ -139,7 +139,8 @@ class Elite extends CI_Controller {
 								$this->session->set_flashdata('error', 'There is error in updating Membership status. Try later!');
 								redirect('elite', 'refresh');
 							}
-					    //}
+					    }
+					    }
 			}
 		else
 			{
@@ -188,7 +189,7 @@ class Elite extends CI_Controller {
 	  if( $this->session->userdata['youg_admin'] )
 	  	{
 			$id = $this->session->userdata['youg_admin']['id'];
-			$this->data['elite'] = $this->settings->get_subscribtion_bycompanyid($id);
+			$this->data['elite'] = $this->settings->disable($id);
 			
 			//Loading View File
 			$this->load->view('elite',$this->data);

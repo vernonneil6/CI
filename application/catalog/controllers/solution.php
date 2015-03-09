@@ -1044,7 +1044,7 @@ function expires()
 	foreach($expirecron as $expire)
 	{
 		
-		echo $company_id=$expire['company_id'];	
+		$company_id=$expire['company_id'];	
 		$subscriptionId=$expire['subscr_id'];
 		$subscription_amount=$expire['amount'];
 		$paymentfailed_date=$expire['expires'];	
@@ -1158,9 +1158,9 @@ public function cron()
 		$emailcompany=$company_id;
 		$cronemail=$this->complaints->get_elitesubscription_detailsbycompanyid($emailcompany);	
 	    $transactionresponse=$con['transactionresponse'];   
-        
+       
         $disable_elite=$this->complaints->disable_elitemembership($company_id);
-        $disable_cancelflag=$this->complaints->disable_cancelflag($company_id);
+        
         $site_name = $this->common->get_setting_value(1);
 	 	$site_renewurl=$site_name.'solution/renew/'.$company_id;
 	 	$site_base_url=base_url().'solution/renew/'.$company_id;

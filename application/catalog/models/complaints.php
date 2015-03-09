@@ -1761,7 +1761,7 @@ class Complaints extends CI_Model
 						->from('youg_subscription as s')
 						->join('youg_elite as e','e.company_id = s.company_id','left')
 						->where("(`s`.`transactionstatus` = '0' and `s`.`paymentmethod` = 'authorize' and `s`.`subscr_id` != '' and `s`.`emailflag` = '0' and `s`.`expireflag` = '2') OR 
-						(`e`.`cancel_flag`='1' and `e`.`status`='Disable')")
+						(`e`.`cancel_flag`='1')")
 						->like('s.expires',$checkdate)
 						->get()
 			            ->result_array();
@@ -1779,8 +1779,6 @@ class Complaints extends CI_Model
 						->like('expires',$checkdate)
 						->get()
 			            ->result_array();
-		//echo $this->db->last_query();	
-		//print_r($query);
 		return $query;
 		
 	}
@@ -1824,7 +1822,8 @@ class Complaints extends CI_Model
 	function disable_elitemembership($company_id)
 	{
 		$data=array(
-		        'status' =>'Disable'
+		        'status' =>'Disable',
+		        'cancel_flag'=>'2'
 		);
 		$query=$this->db->where('company_id',$company_id) 
 		               ->update('youg_elite',$data);

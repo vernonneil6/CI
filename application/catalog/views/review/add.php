@@ -129,9 +129,9 @@
         <h3>HOW WOULD YOU REVIEW THIS COMPANY? <i class="fa fa-thumbs-up thumb" id = "thumb-up"></i><i class="fa fa-thumbs-down thumb" id = "thumb-down"></i></h3>
         <h3>WHAT DO YOU HAVE TO SAY ABOUT THIS COMPANY?</h3>
 		<input type = "hidden" value = "" name = "autopost" id = "autopost">
-        <input class="txt_box" id="reviewtitle" name="reviewtitle" maxlength="80" placeholder="review title"/>
+        <input class="txt_box review_txt_box" id="reviewtitle" name="reviewtitle" maxlength="80" placeholder="review title"/>
         <textarea class="txrareawrp" id="review" name="review" maxlength="500"></textarea>
-        <div id="termscondn">
+        <div id="termscondn" class="review_txt_box">
 			<input type="checkbox" id="terms-conditions" />
 			<label>I understand that by posting this review that my name and email address will be shared with the merchant.</label>
 			<div><label id="terms-error" style='display:none;color:#ff0000;'>Please indicate that you accept the Terms and Conditions</label></div>

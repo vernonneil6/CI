@@ -177,25 +177,9 @@ Class Settings extends CI_Model
 	
 	function cancel_elitemembership_bycompnayid($id,$companyid)
  	{
-		$data = array('cancel_date' => date('Y-m-d'),'cancel_flag' => '1','status' => 'Disable' );
+		$data = array('cancel_date' => date('Y-m-d'),'cancel_flag' => '1');
 		
 		$this->db->where('id', $id);
-		$this->db->where('company_id', $companyid);
-		if ($this->db->update('elite',$data))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
- 	}
- 	
- 	
- 	function disable_elitemembership($companyid)
- 	{
-		$data = array('cancel_flag' => '2');
-		
 		$this->db->where('company_id', $companyid);
 		if ($this->db->update('elite',$data))
 		{
@@ -209,7 +193,7 @@ Class Settings extends CI_Model
  	
  	function enable_elitemembership_bycompanyid($id,$companyid)
  	{
-		$data = array('cancel_flag' => '0','status' => 'Enable' );
+		$data = array('cancel_flag' => '0');
 		
 		$this->db->where('id', $id);
 		$this->db->where('company_id', $companyid);
@@ -223,7 +207,6 @@ Class Settings extends CI_Model
 		}
 	}
  	
-	
  	function get_elitecancel_email_byid($companyid)
  	{
 		$query = $this->db->select('id, company, email, contactemail')

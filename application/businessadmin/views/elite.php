@@ -92,10 +92,10 @@
       <?php for($i=0;$i<count($elite);$i++) { ?>
       <tr>
           <td><?php echo date("M d Y",strtotime($elite[$i]['payment_date'])); ?></td>
-          <td><?php if( stripslashes($elite[$i]['status']) == 'Enable' ) { ?>
+          <td><?php if( stripslashes($elite[$i]['cancel_flag']) == '0' ) { ?>
           <a href="<?php echo site_url('elite/disable/'.$elite[$i]['id'].'/'.$elite[$i]['company_id']);?>" title="Click to Cancel Membership" class="btn btn-small btn-success" onClick="return confirm('Are you sure You want to cancel Your elite membership?');"><span>Enable</span></a>
-          <?php } if( stripslashes($elite[$i]['status']) == 'Disable' ) { $data=1;?>
-		  <a href="<?php echo site_url('elite/enable/'.$elite[$i]['id'].'/'.$elite[$i]['company_id']);?>" title="Click to Enable Membership" class="btn btn-small btn-success" onClick="return confirm('Are you sure You want to enable Your elite membership?');"><span>Disable</span></a>
+          <?php } if( stripslashes($elite[$i]['cancel_flag']) == '1' ) { $data=1;?>
+		  <a class="btn btn-small btn-success"><span>Disable</span></a>
 		  <?php } ?>	  
           <td><?php echo date('M d Y',strtotime($elitepayment['expires'])); ?></td>
           <td><?php echo "$ ".$elitepayment['sub_amt']; ?></td>
