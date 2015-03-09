@@ -405,7 +405,7 @@
 							<p id="terms-error" style='display:none;color:#ff0000;'>Please indicate that you accept the Terms and Conditions</p>
 						</div>
 						<input type="hidden" id="finalamount" name="finalamount" value="<?php echo $defaultprice=$this->common->get_setting_value(19);?>"/>     
-						<button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CONTINUE TO CHECKOUT</button>
+						<button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CHECKOUT</button>
 					</span>
 				</div>
 			</div>
