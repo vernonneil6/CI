@@ -20,10 +20,23 @@
 			     $showdata=null;
 			} 
 		?>
-		<form class="reg_frm" action="index.php/solution/receipt" id="frmaddcompany" method="post" enctype="multipart/form-data">
+		<?php  
+		$url = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+		if(strpos($url,'elitemem')!== false) {
+		$id = explode('/',$_SERVER['REQUEST_URI'])	
+		?>
+			<form action="index.php/solution/upgrades/<?php echo $id[4];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
+			
+		<?php } else if(strpos($url,'renewid')!== false) { ?>
+			
+			   <form action="index.php/solution/renew_update/<?php echo $id[4];?>" id="frmaddcompany" method="post" enctype="multipart/form-data">
+			
+		<?php } else { ?>
+			<form action="solution/update" id="frmaddcompany" method="post" enctype="multipart/form-data">
+		<?php } ?>
+		
 
-
-			<input type="hidden" name="affiliatedId" id="affiliatedId"/>
+		<input type="hidden" name="affiliatedId" id="affiliatedId"/>
 		  <div class="reg-row">
 				<div>
 					<span class="form-col-1">
@@ -373,12 +386,29 @@
 					</span>
 					<span class="form-col-2">
 						<div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
-            <div class="reg_fld">MONTHLY COST: <span id="discprice">$<?php echo $defaultprice=$this->common->get_setting_value(19);?>.00</span></div>                                    <input type="hidden" id="finalamount" name="finalamount" value="<?php echo $defaultprice=$this->common->get_setting_value(19);?>"/>     
-            <button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CONTINUE TO CHECKOUT</button>
-					</span>
-				</div>
+            <div class="reg_fld">MONTHLY COST: <span id="discprice">$<?php echo $defaultprice=$this->common->get_setting_value(19);?>.00</span></div>   
+				</span>
+			</div>
+			
+					
             
           </div>
+          <div style="margin-top:27px; display:inline-block;font-family: myriadpro-regular;">   
+				<div>
+					<span class="form-col-1">
+						&nbsp;
+					</span>
+					<span class="form-col-2">
+						<div id="termscondn">
+							<input type="checkbox" id="terms-conditions" />
+							<span>I am authorized to act on behalf of the above named company and agree to the <a target="_blank" href="<?php echo site_url('footerpage/index/2');?>" class="receiptterms">Terms and Conditions</a> of use and agree that this membership will be automatically renewed monthly until cancelled.</span>
+							<p id="terms-error" style='display:none;color:#ff0000;'>Please indicate that you accept the Terms and Conditions</p>
+						</div>
+						<input type="hidden" id="finalamount" name="finalamount" value="<?php echo $defaultprice=$this->common->get_setting_value(19);?>"/>     
+						<button type="submit" class="lgn_btn" style="margin-top:32px;" title="CONTINUE TO CHECKOUT" id="btnaddcompany" name="btnaddcompany">CONTINUE TO CHECKOUT</button>
+					</span>
+				</div>
+			</div>
         </form>
         <div class="lgn_btnlogo" > <a href="<?php echo base_url();?>" title="<?php echo $site_name;?>" ><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
       </div>
@@ -402,8 +432,16 @@ function chkwebsite(website){
 	}
 }
 $(document).ready(function(){
+	var action = "<?php echo $this->uri->segment('3');  ?>";
 	
-	var affid = "<?php echo $this->uri->segment('4');  ?>";
+	if(action=='affid')
+	{
+		var affid = "<?php echo $this->uri->segment('4');  ?>";
+	}
+	else
+	{
+		var affid = "";
+	}
 	
 	
 	if(affid !='')

@@ -44,6 +44,20 @@ class Complaints extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	function get_country_byidss($id)
+ 	{
+		$query = $this->db->get_where('country',array('country_id'=>$id));
+	
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 	//Inserting Record
 	function insert($companyid,$detail,$username,$emailid,$statusdisable,$city,$state,$zip,$company ,$reasondispute,$merchantresolution,$streetaddress,$phone,$caseid,$transactionid,$transaction_date,$transactionamt,$complaintdate,$siteurl,$companyemail,$complaintdate,$image)
@@ -176,6 +190,19 @@ class Complaints extends CI_Model
 			return array();
 		}
  	}
+	
+	function get_company_bysubscriptionid($companyid)
+	{
+		$query = $this->db->get_where('youg_subscription',array('company_id'=>$companyid));
+		if($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 	function get_complaint_byseokeyword($word)
  	{

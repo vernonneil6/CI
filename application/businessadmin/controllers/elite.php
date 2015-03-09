@@ -80,14 +80,8 @@ class Elite extends CI_Controller {
 			if($id!='' && $id!=0 && $companyid!='' && $companyid!=0)
 			{
 				$disablesubscription=$this->settings->get_subscriptionid($companyid);
-				//print_r($disablesubscription);die;
-				
-				$subscriptionId=$disablesubscription['subscr_id'];	
-				$disablecompany=$disablesubscription['company_id'];
-				$companydetails=$this->settings->get_company_byid($disablecompany);
-				//print_r($companydetails[0]['contactemail']); 	die;
-					
-					/*sandbox test mode
+				//echo '<pre>';print_r($disablesubscription);
+				/*sandbox test mode
 				   $loginname="83EK7S4R8qy3";
 				   $transactionkey="5Rx8Mn8PAS5s77gr";
 				   $host = "apitest.authorize.net";*/
@@ -101,6 +95,96 @@ class Elite extends CI_Controller {
 				   include('authorize/authnetfunction.php');
 		
 					//subscriptionId = $subscriptionId;
+			
+				if(($disablesubscription['auth_type']=="auth_only") && ($disablesubscription['transactionstatus']==0))
+				{
+					echo "auth_only";
+					$refId = uniqid();
+					$Type="voidTransaction";
+					$voidtransactionID=$disablesubscription['auth_transreponse_key'];
+					//build xml to post
+					$content =   "<?xml version=\"1.0\" encoding=\"utf-8\"?>".
+								 "<createTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">".
+								  "<merchantAuthentication>".
+								  "<name>" .$loginname ."</name>".
+								  "<transactionKey>" .$transactionkey . "</transactionKey>".
+								  "</merchantAuthentication>".
+								  "<refId>". $refId. "</refId>".
+								  "<transactionRequest>".
+								  "<transactionType>" .$Type. "</transactionType>".
+								  "<refTransId>". $voidtransactionID ."</refTransId>".
+								  "</transactionRequest>".
+								  "</createTransactionRequest>";
+							  
+				//send the xml via curl
+						$response = send_request_via_curl($host,$path,$content);
+						//if the connection and send worked $response holds the return from Authorize.net
+						//echo '<pre>';print_r($response);
+						if ($response)
+						{ 
+							list ($resultCode, $code, $text, $subscriptionId) =parse_return($response);
+						
+						 " Response Code: $resultCode <br>";
+						 " Response Reason Code: $code<br>";
+						 " Response Text: $text<br>";
+						 " Subscription Id: $subscriptionId <br><br>";
+					    }
+					    /*echo "<br>";
+					    echo "Result_code/--".$resultCode."<br>";
+					    echo "Code/--".$code;*/
+					 
+					$subscriptionId=$disablesubscription['subscr_id'];	
+					$disablecompany=$disablesubscription['company_id'];
+					$companydetails=$this->settings->get_company_byid($disablecompany);
+					//build xml to post
+						$content =
+								"<?xml version=\"1.0\" encoding=\"utf-8\"?>".
+								"<ARBCancelSubscriptionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">".
+								"<merchantAuthentication>".
+								"<name>" . $loginname . "</name>".
+								"<transactionKey>" . $transactionkey . "</transactionKey>".
+								"</merchantAuthentication>" .
+								"<subscriptionId>" . $subscriptionId . "</subscriptionId>".
+								"</ARBCancelSubscriptionRequest>";
+
+						//send the xml via curl
+						$response = send_request_via_curl($host,$path,$content);
+						//if the connection and send worked $response holds the return from Authorize.net
+						echo '<pre>';print_r($response);
+						if ($response)
+						{ 
+							list ($resultCode, $code, $text, $subscriptionId) =parse_return($response);
+						
+						 " Response Code: $resultCode <br>";
+						 " Response Reason Code: $code<br>";
+						 " Response Text: $text<br>";
+						 " Subscription Id: $subscriptionId <br><br>";
+						
+						
+						   if($code=='Ok')
+						   {
+				
+							if( $this->settings->cancel_elitemembership_bycompnayid($id,$companyid) )
+							{
+									$this->session->set_flashdata('success', 'Your account has been Disabled Successfully.');						
+									redirect('elite', 'refresh');
+							}
+							else
+							{
+								$this->session->set_flashdata('error', 'There is error in updating Membership status. Try later!');
+								redirect('elite', 'refresh');
+							}
+					      }
+					    }
+				
+			
+					
+				}
+				else 
+				{
+				    $subscriptionId=$disablesubscription['subscr_id'];	
+					$disablecompany=$disablesubscription['company_id'];
+					$companydetails=$this->settings->get_company_byid($disablecompany);
 					//build xml to post
 						$content =
 								"<?xml version=\"1.0\" encoding=\"utf-8\"?>".
@@ -140,7 +224,8 @@ class Elite extends CI_Controller {
 								redirect('elite', 'refresh');
 							}
 					    }
-					    }
+					}
+				}	
 			}
 		else
 			{

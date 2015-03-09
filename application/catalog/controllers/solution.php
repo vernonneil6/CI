@@ -290,12 +290,15 @@ class Solution extends CI_Controller {
 		$this->data['register_data'] = $this->register_data();
 		$this->load->view('solution/receipt', $this->data);
 	}
+	
 		
 	public function update()
 	{   
             if($this->input->post('email'))
 		{
-						
+			
+            $renewid= $this->input->post('renewid');		
+			$elitemem = $this->input->post('elitemem');
 			$name = $this->input->post('name');
 			
 			//Billing address
@@ -303,7 +306,7 @@ class Solution extends CI_Controller {
 			$city = $this->input->post('city');
 			$state = $this->input->post('state');
 			$country = $this->input->post('country');
-			
+			$catlist = $this->input->post('categorylist');
 			
 			//company address 
 			
@@ -336,14 +339,23 @@ class Solution extends CI_Controller {
 			$cemail = $this->input->post('cemail');
 			$discountcode = $this->input->post('discountcode');
 			
-			
-			
-			$brokerid = $this->input->post('brokerid');
-			$mainbrokerid = $this->input->post('mainbrokerid');
-			$subbrokerid = $this->input->post('subbrokerid');
-			$marketerid = $this->input->post('marketerid');
-			$brokertype = $this->input->post('brokertype');
-			
+			$brokerid = $this->input->post('affiliatedId');
+			if($brokerid!=''){
+				$brokerdata = $this->complaints->get_broker_by_id($brokerid);
+				$brokerid = $brokerdata['id'];
+				$mainbrokerid = $brokerdata['mainbrokerid'];
+				$subbrokerid = $brokerdata['subbrokerid'];
+				$marketerid = $brokerdata['marketerid'];
+				$brokertype = $brokerdata['type'];
+			}
+			else
+			{
+				$brokerid = '';
+				$mainbrokerid = '';
+				$subbrokerid = '';
+				$marketerid = '';
+				$brokertype = '';
+			}		
 
 			//$company=$this->complaints->get_companyelite_by_emailid($email);
 			$names=$this->complaints->find_company_for_check($name);	
@@ -418,7 +430,7 @@ class Solution extends CI_Controller {
 																		
 									$this->session->set_flashdata('success', 'Your business has successfully been registered');
 									///redirect('solution/claim/'.$companyid, 'refresh');
-									redirect('solution', 'refresh');
+									redirect('solution/claimbusiness', 'refresh');
 									
 								}
 								else
@@ -674,7 +686,6 @@ public function eliteSubscribe($formpost,$companyid) {
 	//$transactionkey = $this->common->get_setting_value(23);
 	
 	
-	
 	/*test mode*/
 	  /* $loginname="2sRT3yAsr3tA";
 	   $transactionkey="38UzuaL2c6y5BQ88";
@@ -736,7 +747,8 @@ public function eliteSubscribe($formpost,$companyid) {
 			}  
     }
 	$refId = uniqid();
-	$name = "elite membership";
+	$name = "YouGotRated Membership";
+	$Description="YouGotRated Membership";
 	$length = 1;
 	$unit = "months";
 	//$totalOccurrences = 999;
@@ -798,6 +810,9 @@ public function eliteSubscribe($formpost,$companyid) {
 			"<cardCode>". $cvv . "</cardCode>".
 			"</creditCard>".
 			"</payment>".
+			"<order>".
+			"<description>" . $Description. "</description>".
+			"</order>". 
 			"<customer>".
 			"<email>".$cemail."</email>".
 			"</customer>".
@@ -1036,6 +1051,7 @@ public function eliteSubscribe($formpost,$companyid) {
 public function success($companyid)
 {
 	$this->data['company'] = $this->complaints->get_company_bysingleid($companyid);
+	$this->data['subscription'] = $this->complaints->get_company_bysubscriptionid($companyid);
 	$this->load->view('solution/success', $this->data);
 }
 function expires()

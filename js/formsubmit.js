@@ -3,12 +3,6 @@ function trim(stringToTrim) {
 }
 $(document).ready(function() {
 	
-	$("#submitorder").click(function(){
-		if(!$("#terms-conditions").prop('checked')){
-			$("#terms-error").show().delay(5000).fadeOut();				
-			return false;
-		}
-	});
   $("#btnaddcompany").click(function (e) {
           e.preventDefault();
 	  
@@ -380,7 +374,14 @@ $(document).ready(function() {
                return false; 
           } 
 	  }
-
+	  
+	if(!$("#terms-conditions").is(':checked'))
+	{
+		$("#terms-error").show().delay(5000).fadeOut();				
+		return false;
+	}
+	
+			
 	var exp_year = $('#expirationdatey').val().toString().substr(2,2);	
 	var exp_dates = $('#expirationdatem').val() + exp_year;
 
