@@ -1944,6 +1944,10 @@ padding-left: 18px;
 {
 	border : none!important;
 }
+.nopadding
+{
+	padding : 0!important;
+}
 .margin_top_1
 {
 	margin : 5px 0  0;
@@ -2140,4 +2144,21 @@ margin-top: 5px;
 .review_txt_box
 {
 	margin : 10px 0;
+}
+.form_left
+{
+	float:left;
+	width : 777px;
+}
+.dis_width
+{
+	width : 967px;
+}
+.inline_block
+{
+	display: inline-block;
+}
+.align_center
+{
+	text-align:center;
 }
