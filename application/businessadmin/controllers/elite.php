@@ -79,16 +79,67 @@ class Elite extends CI_Controller {
 	  {
 			if($id!='' && $id!=0 && $companyid!='' && $companyid!=0)
 			{
-					if( $this->settings->cancel_elitemembership_bycompnayid($id,$companyid) )
-					{
-							$this->session->set_flashdata('success', 'Your account has been Disabled Successfully.');						
-							redirect('elite', 'refresh');
-					}
-					else
-					{
-						$this->session->set_flashdata('error', 'There is error in updating Membership status. Try later!');
-						redirect('elite', 'refresh');
-					}
+				$disablesubscription=$this->settings->get_subscriptionid($companyid);
+				//print_r($disablesubscription);die;
+				
+				$subscriptionId=$disablesubscription['subscr_id'];	
+				$disablecompany=$disablesubscription['company_id'];
+				$companydetails=$this->settings->get_company_byid($disablecompany);
+				//print_r($companydetails[0]['contactemail']); 	die;
+					
+					/*sandbox test mode
+				   $loginname="9um8JTf3W";
+				   $transactionkey="9q24FTz678hQ9mAD";
+				   $host = "apitest.authorize.net";*/
+				   
+				   /*live*/
+					$loginname="5h7G7Sbr";
+					$transactionkey="94KU7Sznk72Kj3HK";
+					$host = "api.authorize.net";
+					   
+				   $path = "/xml/v1/request.api";
+				   include('authorize/authnetfunction.php');
+		
+					//subscriptionId = $subscriptionId;
+					//build xml to post
+						$content =
+								"<?xml version=\"1.0\" encoding=\"utf-8\"?>".
+								"<ARBCancelSubscriptionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">".
+								"<merchantAuthentication>".
+								"<name>" . $loginname . "</name>".
+								"<transactionKey>" . $transactionkey . "</transactionKey>".
+								"</merchantAuthentication>" .
+								"<subscriptionId>" . $subscriptionId . "</subscriptionId>".
+								"</ARBCancelSubscriptionRequest>";
+
+						//send the xml via curl
+						$response = send_request_via_curl($host,$path,$content);
+						//if the connection and send worked $response holds the return from Authorize.net
+						echo '<pre>';print_r($response);
+						if ($response)
+						{ 
+							list ($resultCode, $code, $text, $subscriptionId) =parse_return($response);
+						
+						 " Response Code: $resultCode <br>";
+						 " Response Reason Code: $code<br>";
+						 " Response Text: $text<br>";
+						 " Subscription Id: $subscriptionId <br><br>";
+						
+						}
+					   if($code=='Ok')
+				       {
+				
+							if( $this->settings->cancel_elitemembership_bycompnayid($id,$companyid) )
+							{
+									$this->session->set_flashdata('success', 'Your account has been Disabled Successfully.');						
+									redirect('elite', 'refresh');
+							}
+							else
+							{
+								$this->session->set_flashdata('error', 'There is error in updating Membership status. Try later!');
+								redirect('elite', 'refresh');
+							}
+					    }
 			}
 		else
 			{
