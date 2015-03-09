@@ -593,9 +593,7 @@ Class Common extends CI_Model
 	
 	function get_eliteship_bycompanyid($companyid)
  	{
-		$this->db->select('*');
-		$this->db->where("(company_id = '$companyid' AND status = 'Enable' OR company_id = '$companyid' AND status = 'Disable' AND cancel_flag = '1')");
-		$query = $this->db->get('elite');
+		$query = $this->db->get_where('youg_elite',array('company_id' => $companyid, 'status' => 'Enable'));
 		
 		if ($query->num_rows() > 0)
 		{

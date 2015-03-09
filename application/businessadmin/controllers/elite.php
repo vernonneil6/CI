@@ -88,8 +88,8 @@ class Elite extends CI_Controller {
 				//print_r($companydetails[0]['contactemail']); 	die;
 					
 					/*sandbox test mode
-				   $loginname="9um8JTf3W";
-				   $transactionkey="9q24FTz678hQ9mAD";
+				   $loginname="83EK7S4R8qy3";
+				   $transactionkey="5Rx8Mn8PAS5s77gr";
 				   $host = "apitest.authorize.net";*/
 				   
 				   /*live*/
