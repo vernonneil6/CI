@@ -339,23 +339,13 @@ class Solution extends CI_Controller {
 			$cemail = $this->input->post('cemail');
 			$discountcode = $this->input->post('discountcode');
 			
-			$brokerid = $this->input->post('affiliatedId');
-			if($brokerid!=''){
-				$brokerdata = $this->complaints->get_broker_by_id($brokerid);
-				$brokerid = $brokerdata['id'];
-				$mainbrokerid = $brokerdata['mainbrokerid'];
-				$subbrokerid = $brokerdata['subbrokerid'];
-				$marketerid = $brokerdata['marketerid'];
-				$brokertype = $brokerdata['type'];
-			}
-			else
-			{
+			
 				$brokerid = '';
 				$mainbrokerid = '';
 				$subbrokerid = '';
 				$marketerid = '';
 				$brokertype = '';
-			}		
+					
 
 			//$company=$this->complaints->get_companyelite_by_emailid($email);
 			$names=$this->complaints->find_company_for_check($name);	
