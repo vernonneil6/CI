@@ -77,56 +77,88 @@
 if( $this->session->userdata('youg_user') ) 
 {
 ?>
-  <div class="submit_dispute"></div>
-     <div class="reg_frm_wrap">
-     <div class="reg-row dispute"><label class="names">Dispute form</label><br><div class="reg_fld">PLEASE PROVIDE ALL DETAILS OF YOUR DISPUTE HERE.</div><br></div>
+ 
+     <div class="reg_frm_wrap dis_width">
+     <div class="reg-row dispute">
+		 <div>
+			<span class="form-col-1">
+				<span class="form-circle">1</span>
+			</span>
+			<span class="form_left">
+				<label class="names">Dispute form</label><br><div class="reg_fld">PLEASE PROVIDE ALL DETAILS OF YOUR DISPUTE HERE.</div><br>
+			</span>
+		</div>  
+	</div>
            
 			<?php echo form_open('complaint/dispute_insert'); ?>
 			
-			<div class="reg-row company"><label class="names">companyname</label></div><br>
-			<?php echo form_input(array('name'=>'companyname','type'=>'text','class'=>'reg_txt_box','value'=>$companys))."<br>"; ?>
+			<div class="reg-row company">
+				 <div>
+					<span class="form-col-1">
+						<span class="form-circle">2</span>
+					</span>
+					<span class="form_left">
+						<label class="names">companyname</label>
+						<div>
+							<?php echo form_input(array('name'=>'companyname','type'=>'text','class'=>'reg_txt_box','value'=>$companys))."<br>"; ?>
+					
 		
-			<?php $company_id = $this->uri->segment(3, 0);?>
-			
-			
-			<?php echo form_input(array('name'=>'companyid','type'=>'hidden','class'=>'reg_txt_box','value'=>$company_id)); ?>
-			
-				
-			<?php echo form_input(array('name'=>'companyemail','type'=>'hidden','class'=>'reg_txt_box','value'=>$emails)); ?>
-			
-			
-            <?php $data=$this->session->userdata('youg_user'); ?>	
-			 
-				
-			<?php 
-			
-			if(!empty($data['userid'])){
-				echo form_input(array('name'=>'userid','type'=>'hidden','class'=>'reg_txt_box','value'=>$data['userid'])); 
-			}
-			
-			?>
-			
-			<div class="reg-row username"><label class="names">username</label></div><br>		
-			<?php 
-			if(!empty($data['name'])){
-				echo form_input(array('name'=>'username','type'=>'text','class'=>'reg_txt_box','value'=>$data['name']))."<br>";  
-			
-			}			
-			?>
-			
-				
-			<?php 
-			
-			if(!empty($data['emailid'])){
-				echo form_input(array('name'=>'useremail','type'=>'hidden','class'=>'reg_txt_box','value'=>$data['emailid'])); 
-			}
-			
-			?> 
-		
-			<?php /*<div class="reg-row disputenote"><label>dispute</label></div><br>		
-			<?php echo form_textarea(array('name'=>'dispute','class'=>'disputenotes','required' => 'required'))."<br>"; ?>*/?>
-			
-			<div class="reg-row transaction"><label class="names">REASON FOR DISPUTE</label></div><br>
+							<?php $company_id = $this->uri->segment(3, 0);?>
+							
+							
+							<?php echo form_input(array('name'=>'companyid','type'=>'hidden','class'=>'reg_txt_box','value'=>$company_id)); ?>
+							
+								
+							<?php echo form_input(array('name'=>'companyemail','type'=>'hidden','class'=>'reg_txt_box','value'=>$emails)); ?>
+							
+							
+							<?php $data=$this->session->userdata('youg_user'); ?>	
+							 
+								
+							<?php 
+							
+							if(!empty($data['userid'])){
+								echo form_input(array('name'=>'userid','type'=>'hidden','class'=>'reg_txt_box','value'=>$data['userid'])); 
+							}
+							
+							?>			
+						</div>
+					</span>
+				 </div> 
+			</div> 
+				 
+				 
+			<div class="reg-row">
+				 <div>
+					<span class="form-col-1">
+						<span class="form-circle">3</span>
+					</span>
+					<span class="form_left">
+						<label class="names">username</label>	
+						<div>
+							<?php 
+							if(!empty($data['name'])){
+								echo form_input(array('name'=>'username','type'=>'text','class'=>'reg_txt_box','value'=>$data['name']))."<br>";  
+							
+							}			
+
+							if(!empty($data['emailid'])){
+								echo form_input(array('name'=>'useremail','type'=>'hidden','class'=>'reg_txt_box','value'=>$data['emailid'])); 
+							}
+							
+							?> 
+						</div>		
+					</span>
+				 </div> 
+			</div>	
+			<div class="reg-row transaction">
+				<div>
+					<span class="form-col-1">
+						<span class="form-circle">4</span>
+					</span>
+					<span class="form_left">
+						<label class="names">REASON FOR DISPUTE</label>
+						<div>
 			               <select class="reg_txt_box fix_height" name="reasondispute" id="reasondispute">
 							  <option>Select option</option>
 							  <option value="Item Not Received">Item Not Received</option>
@@ -136,38 +168,80 @@ if( $this->session->userdata('youg_user') )
 							  <option value="Not Satisfied with Purchase would like a Refund">Not Satisfied with Purchase, would like a Refund (Buyer Pays for Shipping)</option>
 							  <option value="Seller Not Willing to Honor the Return Policy">Seller Not Willing to Honor the Return Policy</option>
 						   </select>
-						   
-			<div class="reg-row transaction"><label class="names">WHAT RESOLUTION DO YOU EXPECT FROM MERCHANT</label></div><br>
-						<select class="reg_txt_box fix_height" name="merchantresolution" id="merchantresolution">
-							  <option >Select option</option>
-							  <option value="Ship the Item and/or Provide Proof of Shipping">Ship the Item and/or Provide Proof of Shipping</option>
-							  <option value="Would like a Full Refund">Would like a Full Refund</option>
-							  <option value="Would like a Replacement item">Would like a Replacement item</option>
-						      <option value="Would like the missing items to be shipped immediately">Would like the missing items to be shipped immediately</option>
-						      <option value="Would like a Partial Refund for the missing items">Would like a Partial Refund for the missing items</option>
-					   </select>			 
-					     <br><br>
-			<div class="reg-row transaction"><label class="names">Transaction Details</label></div><br>
-			<small class="reg_fld">This is the ID provided by the business, that helps us ensure you have actually purchased from this business.</small>
-			<?php echo form_input(array('name'=>'transactionid','type'=>'text','class'=>'reg_txt_box','value'=>'','placeholder'=>'Please enter Transaction ID'))."<br>"; ?>
-			<?php echo form_input(array('name'=>'transactionamt','type'=>'text','class'=>'reg_txt_box','value'=>'','placeholder'=>'Please enter Transaction Amount'))."<br>"; ?>
-			<?php echo form_input(array('name'=>'transactiondate','type'=>'text','class'=>'reg_txt_box','value'=>'','placeholder'=>'Please enter Transaction Date'))."<br>"; ?>
+						</div>
+					</span>
+				 </div> 
+			</div>			   
+			<div class="reg-row transaction">
+				<div>
+					<span class="form-col-1">
+						<span class="form-circle">5</span>
+					</span>
+					<span class="form_left">
+						<label class="names">WHAT RESOLUTION DO YOU EXPECT FROM MERCHANT</label>
+						<div>
+							<select class="reg_txt_box fix_height" name="merchantresolution" id="merchantresolution">
+								  <option >Select option</option>
+								  <option value="Ship the Item and/or Provide Proof of Shipping">Ship the Item and/or Provide Proof of Shipping</option>
+								  <option value="Would like a Full Refund">Would like a Full Refund</option>
+								  <option value="Would like a Replacement item">Would like a Replacement item</option>
+								  <option value="Would like the missing items to be shipped immediately">Would like the missing items to be shipped immediately</option>
+								  <option value="Would like a Partial Refund for the missing items">Would like a Partial Refund for the missing items</option>
+						   </select>
+					   </div>			 
+					</span>
+				 </div> 
+			</div>
+			<div class="reg-row transaction">
+				<div>
+					<span class="form-col-1">
+						<span class="form-circle">6</span>
+					</span>
+					<span class="form_left">
+						<label class="names">Transaction Details</label>
+						<div>
+							<small class="reg_fld">This is the ID provided by the business, that helps us ensure you have actually purchased from this business.</small>
+							<?php echo form_input(array('name'=>'transactionid','type'=>'text','class'=>'reg_txt_box','value'=>'','placeholder'=>'Please enter Transaction ID'))."<br>"; ?>
+							<?php echo form_input(array('name'=>'transactionamt','type'=>'text','class'=>'reg_txt_box','value'=>'','placeholder'=>'Please enter Transaction Amount'))."<br>"; ?>
+							<?php echo form_input(array('name'=>'transactiondate','type'=>'text','class'=>'reg_txt_box','value'=>'','placeholder'=>'Please enter Transaction Date'))."<br>"; ?>
+							
+							
+							<?php echo form_input(array('name'=>'status','type'=>'hidden','class'=>'reg_txt_box','value'=>'open')); ?>
+							
+							<?php $rand=rand(0,999999); ?>
+							<?php echo form_input(array('name'=>'msglink','type'=>'hidden','class'=>'reg_txt_box','value'=>$rand)); ?>
+							
+							<?php $date=date('Y-m-d : H:i:s'); ?>
+							<?php echo form_input(array('name'=>'ondate','type'=>'hidden','class'=>'reg_txt_box','value'=>$date)); ?>
+						</div>
+					</span>
+				 </div> 
+			</div>
+			<div class="review_txt_box inline_block">
+				 <div>
+					<span class="form-col-1">
+						&nbsp;
+					</span>
+					<span class="form_left">
+						<div id="termscondn" class="font_myraid">
+							<input type="checkbox" id="terms-conditions" />
+							<label>I understand that by posting this complaint, my name and email address will be shared with the merchant.</label>
+							<div><label id="terms-error" style='display:none;color:#ff0000;'>Please indicate that you accept the Terms and Conditions</label></div>
+						</div>
+					</span>
+				 </div>
+			</div>
 			
-			
-			<?php echo form_input(array('name'=>'status','type'=>'hidden','class'=>'reg_txt_box','value'=>'open')); ?>
-			
-			<?php $rand=rand(0,999999); ?>
-			<?php echo form_input(array('name'=>'msglink','type'=>'hidden','class'=>'reg_txt_box','value'=>$rand)); ?>
-			
-			<?php $date=date('Y-m-d : H:i:s'); ?>
-			<?php echo form_input(array('name'=>'ondate','type'=>'hidden','class'=>'reg_txt_box','value'=>$date)); ?>
-		   
-			<div id="termscondn" class="font_myraid">
-				<input type="checkbox" id="terms-conditions" />
-				<label>I understand that by posting this complaint that my name and email address will be shared with the merchant.</label>
-				<div><label id="terms-error" style='display:none;color:#ff0000;'>Please indicate that you accept the Terms and Conditions</label></div>
-				</div>
-			<input type="submit" name="mysubmit" value="submit" class="lgn_btn" id="submit">
+			<div>
+				 <div>
+					<span class="form-col-1">
+						&nbsp;
+					</span>
+					<span class="form_left">	
+						<input type="submit" name="mysubmit" value="submit" class="lgn_btn" id="submit">
+					</span>
+				 </div>
+			</div>
 			<?php echo form_close(); ?>
 <?php
  }

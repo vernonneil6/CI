@@ -194,111 +194,155 @@
 <section class="container">
 <section class="main_contentarea">
 <div class="container">
-  <div class="submit_complaint"></div>
-  <div class="reg_frm_wrap">
+  <div>
     <form class="reg_frm" action="welcome/updates/<?php echo $cmpyid;?>" id="frmcompany" method="post" enctype="multipart/form-data">
+	
+	<div class="align_center">
+		<small>This business is not a Verified Member and their transactions are not eligible for the Yougotrated Buyer's Protection Program.</small>
+	</div>
+	
 
-<small>This company is not a YouGotRated Elite Member, and their customers are not eligable for the Buyer's Protection Program.   You may submit a review posative or negative by clicking HERE. </small>
 	 <div class="reg-row">
-	        <label>YOUR INFORMATION</label>
-		<div class="reg_fld"></div>
-		 <input type="text" class="reg_txt_box-lg" placeholder="Full Name" id="username" name="username"  maxlength="15">
-		<div id="usernameerror" class="error">Enter Username.</div>
-	        <input type="text" class="reg_txt_box-lg" placeholder="E-mail Address" id="mailaddress" name="mailaddress">
-		<div id="mailaddresserror" class="error">Enter Email.</div>
-	        <input type="text" class="reg_txt_box-lg" placeholder="YouGotRated Case ID" id="caseid" name="caseid" maxlength="30">
-		<div id="caseiderror" class="error">Enter Caseid.</div>
-	 </div>
+		 <div>
+			<span class="form-col-1">
+				<span class="form-circle">1</span>
+			</span>
+			<span class="form_left">
+					<label>YOUR INFORMATION</label>
+					<div class="reg_fld"></div>
+					 <input type="text" class="reg_txt_box-lg" placeholder="Full Name" id="username" name="username"  maxlength="15">
+					<div id="usernameerror" class="error">Enter Username.</div>
+						<input type="text" class="reg_txt_box-lg" placeholder="E-mail Address" id="mailaddress" name="mailaddress">
+					<div id="mailaddresserror" class="error">Enter Email.</div>
+						<input type="text" class="reg_txt_box-lg" placeholder="YouGotRated Case ID" id="caseid" name="caseid" maxlength="30">
+					<div id="caseiderror" class="error">Enter Caseid.</div>
+				 </div>
+			</span>
+		</div>  
+	</div>  
 	<div class="reg-row">
-	        <label>TRANSACTION DETAILS</label>
-	        
-		<div class="reg_fld"></div>
-		<div class = "id_prov_business">This is the ID provided by the business, that helps us ensure you have actually purchased from this business.</div>
-		 <input type="text" class="reg_txt_box-lg" placeholder="Merchant Transaction ID" id="transid" value = "<?php if($cmpyid!=null){ echo $cmpyid; } else { echo '';} ?>" name="transid"  maxlength="15" readonly>
-		<div id="transiderror" class="error">Enter Transaction id.</div>
-	        <input type="text" class="reg_txt_box-lg" placeholder="Transaction Amount" id="transamt" name="transamt">
-		<div id="transamterror" class="error">Enter Transaction Amount.</div>
-	        <input type="text" class="reg_txt_box-lg" placeholder="Transaction Date" id="transdate" name="transdate" maxlength="30" >
-		<div id="transdateerror" class="error">Enter Transaction Date.</div>
- 	</div>
+		<div>
+			<span class="form-col-1">
+				<span class="form-circle">2</span>
+			</span>
+			<span class="form_left">
+				<label>TRANSACTION DETAILS</label>
+				
+				<div class="reg_fld"></div>
+				<div class = "id_prov_business">This is the ID provided by the business, that helps us ensure you have actually purchased from this business.</div>
+				 <input type="text" class="reg_txt_box-lg" placeholder="Merchant Transaction ID" id="transid" value = "<?php if($cmpyid!=null){ echo $cmpyid; } else { echo '';} ?>" name="transid"  maxlength="15" readonly>
+				<div id="transiderror" class="error">Enter Transaction id.</div>
+					<input type="text" class="reg_txt_box-lg" placeholder="Transaction Amount" id="transamt" name="transamt">
+				<div id="transamterror" class="error">Enter Transaction Amount.</div>
+					<input type="text" class="reg_txt_box-lg" placeholder="Transaction Date" id="transdate" name="transdate" maxlength="30" >
+				<div id="transdateerror" class="error">Enter Transaction Date.</div>
+			</span>
+		</div>  
+	</div>  
 
 
-<div class="reg-row">
-        <label>COMPLAINT DETAILS</label>
-<?php if(empty($cmpyid)){ ?>
-	<div class="reg_fld">Company Name</div>
-	<div>		
-		<div class="input_container">
-		<input type="text" id="company_name" class="reg_txt_box-lg" name="company_name"  onkeyup="autocomplet()">
-		<input type="hidden" id="company_id" class="reg_txt_box-lg" name="company_id">
-                    <ul id="country_list_id"></ul>
-		</div>		
-	</div>
-<?php } ?>
+
+	<div class="reg-row">
+		<div>
+			<span class="form-col-1">
+				<span class="form-circle">3</span>
+			</span>
+			<span class="form_left">
+				<label>COMPLAINT DETAILS</label>
+				<?php if(empty($cmpyid)){ ?>
+					<div class="reg_fld">Company Name</div>
+					<div>		
+						<div class="input_container">
+						<input type="text" id="company_name" class="reg_txt_box-lg" name="company_name"  onkeyup="autocomplet()">
+						<input type="hidden" id="company_id" class="reg_txt_box-lg" name="company_id">
+									<ul id="country_list_id"></ul>
+						</div>		
+					</div>
+				<?php } ?>
+
+				<div class="reg_fld">DATE OF COMPLAINT</div>
+				<div>
+					<input type="text" class="reg_txt_box-lg" name="complaintdate" id="datecompany" readonly="readonly">
+				</div>
+
+				<div class="reg_fld">REASON FOR COMPLAINT</div>
+				<div>
+				<select class="reg_txt_box fix_height" name="reasondispute" id="reasondispute">
+					  <option value="Item Not Received">Item Not Received</option>
+					  <option value="Item Not as Described (Merchant Pays for Shipping)">Item Not as Described (Merchant Pays for Shipping)</option>
+					  <option value="Item Received Damaged (Merchant Pays for Shipping)">Item Received Damaged (Merchant Pays for Shipping)</option>
+				  <option value="Items Missing from the Order">Items Missing from the Order</option>
+				  <option value="Not Satisfied with Purchase, would like a Refund (Buyer Pays for Shipping)">Not Satisfied with Purchase, would like a Refund (Buyer Pays for Shipping)</option>
+				  <option value="Seller Not Willing to Honor the Return Policy">Seller Not Willing to Honor the Return Policy</option>
+				  <option value="other">Other</option>
+					</select>
+				</div>
+				
+					<div class="reg_fld">WHAT RESOLUTION DO YOU EXPECT FROM MERCHANT</div>
+				<div>
+				<select class="reg_txt_box fix_height" name="merchantresolution" id="merchantresolution">
+					  <option value="Ship the Item and/or Provide Proof of Shipping">Ship the Item and/or Provide Proof of Shipping</option>
+					  <option value="Would like a Full Refund">Would like a Full Refund</option>
+					  <option value="Would like a Replacement item">Would like a Replacement item</option>
+				  <option value="Would like the missing items to be shipped immediately">Would like the missing items to be shipped immediately</option>
+				  <option value="Would like a Partial Refund for the missing items">Would like a Partial Refund for the missing items</option>
+				  <option value="other">Other</option>
+					</select>
+				</div>
+
+					<div class="reg_fld">PLEASE PROVIDE A DETAILED DESCRIPTION OF YOUR COMPLAINT.</div>
+
+				  <textarea style="height:160px;" class="txt_box_complaint" placeholder="Details" id="detail" name="detail" maxlength="400"></textarea>
+
+				  <div id="dateerror" class="error">Date is required. </div>
+				<div id="detailerror" class="error"> Minimum 20 characters required.</div>
+				
+
+				<div class="reg_fld">File or Photo Upload(s)</div>
+				<div>
+					<input type="file" name="multipleupload[]">
+					<input type="file" name="multipleupload[]">
+					<input type="file" name="multipleupload[]">
+					<input type="file" name="multipleupload[]">
+				</div>
 
 
-	<div class="reg_fld">DATE OF COMPLAINT</div>
-	<div>
-		<input type="text" class="reg_txt_box-lg" name="complaintdate" id="datecompany" readonly="readonly">
-	</div>
-
-	<div class="reg_fld">REASON FOR DISPUTE</div>
-	<div>
-	<select class="reg_txt_box fix_height" name="reasondispute" id="reasondispute">
-          <option value="Item Not Received">Item Not Received</option>
-          <option value="Item Not as Described (Merchant Pays for Shipping)">Item Not as Described (Merchant Pays for Shipping)</option>
-          <option value="Item Received Damaged (Merchant Pays for Shipping)">Item Received Damaged (Merchant Pays for Shipping)</option>
-	  <option value="Items Missing from the Order">Items Missing from the Order</option>
-  	  <option value="Not Satisfied with Purchase, would like a Refund (Buyer Pays for Shipping)">Not Satisfied with Purchase, would like a Refund (Buyer Pays for Shipping)</option>
-	  <option value="Seller Not Willing to Honor the Return Policy">Seller Not Willing to Honor the Return Policy</option>
-        </select>
-	</div>
-	
-        <div class="reg_fld">WHAT RESOLUTION DO YOU EXPECT FROM MERCHANT</div>
-	<div>
-	<select class="reg_txt_box fix_height" name="merchantresolution" id="merchantresolution">
-          <option value="Ship the Item and/or Provide Proof of Shipping">Ship the Item and/or Provide Proof of Shipping</option>
-          <option value="Would like a Full Refund">Would like a Full Refund</option>
-          <option value="Would like a Replacement item">Would like a Replacement item</option>
-	  <option value="Would like the missing items to be shipped immediately">Would like the missing items to be shipped immediately</option>
-  	  <option value="Would like a Partial Refund for the missing items">Would like a Partial Refund for the missing items</option>
-        </select>
-	</div>
-
-        <div class="reg_fld">PLEASE PROVIDE A DETAILED DESCRIPTION OF YOUR COMPLAINT IN ORDER FOR US TO ASSIST IN RESOLVING YOUR ISSUE.</div>
-
-      <textarea style="height:160px;" class="txt_box_complaint" placeholder="Details" id="detail" name="detail" maxlength="400"></textarea>
-
-      <div id="dateerror" class="error">Date is required. </div>
-	<div id="detailerror" class="error"> Minimum 20 characters required.</div>
-	
-
-	<div class="reg_fld">File or Photo Upload(s)</div>
-	<div>
-		<input type="file" name="multipleupload[]">
-		<input type="file" name="multipleupload[]">
-		<input type="file" name="multipleupload[]">
-		<input type="file" name="multipleupload[]">
-	</div>
-
-
- </div>
-
+				</div>
+			</span>
+		</div>  
+	</div>  
       <div class="reg-row">
-        <label>TERMS AND CONDITIONS</label>
-        <div class="reg_fld">PLEASE COMPLETE THESE FINAL STEPS TO SUBMIT YOUR COMPLAINT.</div>
-        <div dir="seltdterms" class="term_tag chechbox_custom">
-          <input type="checkbox" style="display:block;" name="readterms" value="Yes" id="am_2" class="">
-          <label for="am_2">I HAVE READ AND AGREE TO THE YOUGOTRATED <a target="_blank" title="TERMS AND CONDITIONS" href="terms">TERMS AND CONDITIONS</a>.</label>
-        </div>
-        <div dir="seltdterms" class="term_tag chechbox_custom ckbox_hgt">
-          <input type="checkbox" style="display:block;" name="terms" value="Yes" id="am_1" class="">
-          <label for="am_1">I understand that by posting this complaint that my name and email address will be shared with the merchant.</label>
-        </div>
-        <div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
-      </div>
-     
-      <button name="btncompany" id="btncompany" title="Submit" style="margin-top:32px;" class="lgn_btn" type="submit">SUBMIT</button>
+		<div>
+			<span class="form-col-1">
+				<span class="form-circle">4</span>
+			</span>
+			<span class="form_left">
+				<label>TERMS AND CONDITIONS</label>
+				<div class="reg_fld">PLEASE COMPLETE THESE FINAL STEPS TO SUBMIT YOUR COMPLAINT.</div>
+				<div dir="seltdterms" class="term_tag chechbox_custom noborder nopadding">
+				  <input type="checkbox" style="display:block;" name="readterms" value="Yes" id="am_2" class="">
+				  <label for="am_2">I HAVE READ AND AGREE TO THE YOUGOTRATED <a target="_blank" title="TERMS AND CONDITIONS" href="terms">TERMS AND CONDITIONS</a>.</label>
+				</div>
+				<div dir="seltdterms" class="term_tag chechbox_custom ckbox_hgt noborder nopadding">
+				  <input type="checkbox" style="display:block;" name="terms" value="Yes" id="am_1" class="">
+				  <label for="am_1">I understand that by posting this complaint that my name and email address will be shared with the merchant.</label>
+				</div>
+				<div class="reg_fld">PLEASE VERIFY THAT ALL INFORMATION ENTERED ABOVE IS CORRECT.</div>
+			  </div>   			  
+			</span>
+		</div>  
+	</div>  
+	
+	<div>
+		 <div>
+			<span class="form-col-1">
+				&nbsp;
+			</span>
+			<span class="form_left">	
+				<button name="btncompany" id="btncompany" title="Submit" style="margin-top:32px;" class="lgn_btn" type="submit">SUBMIT</button>
+			</span>
+		 </div>
+	</div>
 
     </form>
     <div class="lgn_btnlogo" > <a href="#"><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
