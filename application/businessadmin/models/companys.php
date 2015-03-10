@@ -60,7 +60,7 @@ Class Companys extends CI_Model
 		}
  	}*/
 	
-	function update_noimage($id,$company,$streetaddress,$city,$state,$country,$zip,$companystreet,$companycity,$companystate,$companycountry,$companyzip,$email,$siteurl,$phone,$about,$creditcard1,$creditcard2,$category,$contactname,$contactemail,$contactphonenumber,$price_range,$accept_credit_cards,$accept_paypal)
+	function update_noimage($id,$company,$streetaddress,$city,$state,$country,$zip,$companystreet,$companycity,$companystate,$companycountry,$companyzip,$email,$siteurl,$phone,$about,$creditcard1,$creditcard2,$category,$contactname,$ctitle,$contactemail,$contactphonenumber,$price_range,$accept_credit_cards,$accept_paypal)
  	{
 		
 		$date = date('Y-m-d H:i:s');
@@ -88,6 +88,7 @@ Class Companys extends CI_Model
 							'editip' 			=> $varipaddress,
 							'editdate'			=> $date,
 							'contactname'		=>$contactname,
+							'title'		        =>$ctitle,
 							'contactemail'	    =>$contactemail,
 							'contactphonenumber'=>$contactphonenumber,
 							'price_range'		=> $price_range,

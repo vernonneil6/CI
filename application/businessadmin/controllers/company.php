@@ -159,6 +159,7 @@ class Company extends CI_Controller {
 					$accept_paypal = ($this->input->post('accept_paypal'));
 								
 					$contactname=$this->input->post('contactname');
+					$ctitle=$this->input->post('ctitle');
 					$companystreet=$this->input->post('companystreet');
 					$companycity=$this->input->post('companycity');
 					$companystate=$this->input->post('companystate');
@@ -282,7 +283,7 @@ class Company extends CI_Controller {
 							{
 								//Updating Record Without Image
 								//if( $this->companys->update_noimage($id,$company,$streetaddress,$city,$state,$country,$zip,$email,$cemail,$siteurl,$phone,$about,$category,$creditcard1,$creditcard2,$price_range,$accept_credit_cards,$accept_paypal) )
-								if($this->companys->update_noimage($id,$company,$streetaddress,$city,$state,$country,$zip,$companystreet,$companycity,$companystate,$companycountry,$companyzip,$email,$siteurl,$phone,$about,$creditcard1,$creditcard2,$category,$contactname,$contactemail,$contactphonenumber,$price_range,$accept_credit_cards,$accept_paypal))
+								if($this->companys->update_noimage($id,$company,$streetaddress,$city,$state,$country,$zip,$companystreet,$companycity,$companystate,$companycountry,$companyzip,$email,$siteurl,$phone,$about,$creditcard1,$creditcard2,$category,$contactname,$ctitle,$contactemail,$contactphonenumber,$price_range,$accept_credit_cards,$accept_paypal))
 								{
 									$this->session->set_flashdata('success', 'company profile updated successfully.');
 									redirect('company/edit', 'refresh');

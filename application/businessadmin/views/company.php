@@ -379,6 +379,21 @@
           </div> 
           <div id="contactnameerror" class="error">Contact Name is required.</div>       
         </div>
+        <div class="form-cols">
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+				  <label>Title / Position <span class="errorsign">*</span></label>
+              </div>          
+              <div class="con">
+				<?php if($this->uri->segment(2) == 'edit') { ?>
+				<?php echo form_input( array( 'name'=>'ctitle','id'=>'ctitle','class'=>'input','type'=>'text','value'=>($company[0]['title'])) ); ?>
+				<?php } ?>
+              </div>
+            </div>
+          </div> 
+          <div id="titleerror" class="error">Title / Position is required.</div>       
+        </div>
         
         
         <div class="form-cols">
