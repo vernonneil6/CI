@@ -92,7 +92,7 @@
                 <li><span>WEBSITE</span> <a href="<?php echo (strpos($companies[$i]['siteurl'],'http') !== false) ? '' :'//'; echo ($companies[$i]['siteurl']);?>" title="company website"><?php echo ($companies[$i]['siteurl']);?></a></li>
                 <li><span>E-MAIL</span> <a href="mailto:<?php echo ($companies[$i]['email']);?>" title="mail us"><?php echo ($companies[$i]['email']);?></a></li>
                 <li><span>Total Reviews</span><a>  <?php echo $this->complaints->get_to_reviews_cid($companies[$i]['id']); ?></a></li> 
-                <li><a>Some Reviews may have originated from other review platforms and have been aggregated.</a></li> 
+                <li><a style="font-size: 11px;">Some Reviews may have originated from other review platforms and have been aggregated.</a></li> 
               </ul>
             </div>
           </div>
