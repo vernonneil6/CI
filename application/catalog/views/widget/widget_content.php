@@ -24,7 +24,7 @@
 	
 	<div class = "review_tab_top">
 		<div class="widget_title">
-			<label >THESE ARE REAL REVIEWS <br> PUBLISHED ON YOUGOTRATED</label>
+			<label >THESE ARE REVIEWS CURRENTLY <br> PUBLISHED ON YOUGOTRATED</label>
 		</div>
 		<div class="widget_img">
 			<a target="_blank" href="<?php echo base_url(); ?>" title = "<?php echo base_url(); ?>">
@@ -100,7 +100,7 @@
 											echo ucfirst($reviews[$i]['reviewby']); 									
 										}
 									?>
-									 <span class = "tool" >				
+									 <?php /*<span class = "tool" >				
 										<?php if(count($elitemem_status)==0) { ?>
 											Not Verified Review  
 										<?php }else{  ?>
@@ -111,7 +111,7 @@
 										<div class='tooltip_text'>
 											<div>This review has been authenticated by <span class="tooltip_heading_color"><?php echo strtoupper($companyname); ?> </span></div>
 											<div>and has been posted on YouGotRated by a real shopper.</div>
-										</div>	 
+										</div>*/?>	 
 								 </div>
 								 <div class = "review_date_tab"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></div>
 								 <div class="review_rating_tab">
