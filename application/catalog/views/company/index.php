@@ -97,8 +97,33 @@
 
       <div class="contct_dtl">
           <ul itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-            <li><a><span itemprop="streetAddress" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></span></a></li>
-            <li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',		'.$company[0]['country'])); ?></span></a></li>
+			  <?php if(count($elitemem_status) > 0) { ?>
+			         <?php if($company[0]['companystreet']=="" || $company[0]['companystreet']!="" ) { ?>
+              
+					   <?php if($company[0]['companystreet']==""){ ?>
+							<li><a><span itemprop="streetAddress" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></span></a></li>
+							<li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',		'.$company[0]['country'])); ?></span></a></li>
+					   
+					   <?php }  if($company[0]['companystreet']!="") { ?>
+						
+								<li><a><span itemprop="streetAddress" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companystreet'])); ?></span></a></li>
+							   <li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companycity'].',     '.$company[0]['companycity'].',     '.$company[0]['companyzip'].',		'.$company[0]['companycountry'])); ?></span></a></li>
+				     <?php } } ?>
+				
+		    <?php } else { ?>
+			  
+			 <?php if($company[0]['companystreet']=="" || $company[0]['companystreet']!="" ) { ?>
+              
+					   <?php if($company[0]['companystreet']==""){?>
+							<li><a><span itemprop="streetAddress" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></span></a></li>
+							<li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',		'.$company[0]['country'])); ?></span></a></li>
+					   
+					   <?php }  if($company[0]['companystreet']!="") {?>
+						
+								<li><a><span itemprop="streetAddress" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companystreet'])); ?></span></a></li>
+							   <li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companycity'].',     '.$company[0]['companycity'].',     '.$company[0]['companyzip'].',		'.$company[0]['companycountry'])); ?></span></a></li>
+				     <?php } } ?>
+			  <?php } ?>
             <li class = "singletimings">
 				<?php 
 				if(count($elitemem_status)!=0)
@@ -235,7 +260,7 @@
             <ul>
               <li><span>TOTAL REVIEWS </span><my class="fontcolors";><?php echo $to_reviews;?></my></li>
               <li><span>TOTAL COMPLAINTS </span><my  class="fontcolors";> <?php echo $to_complaints;?></my></li>
-              <li><span>TOTAL DAMAGES </span><my  class="fontcolors";> $  <?php if($to_damages!=''){ echo round($to_damages);}else{echo "0";}?>  </my></li>
+              <?php /*<li><span>TOTAL DAMAGES </span><my  class="fontcolors";> $  <?php if($to_damages!=''){ echo round($to_damages);}else{echo "0";}?>  </my></li>*/?>
 			  <?php if($company[0]['price_range']!='') { ?>
 				<li><span>PRICE RANGE </span><my  class="fontcolors";> <?php echo $company[0]['price_range'];?></my></li>
               <?php } ?>
