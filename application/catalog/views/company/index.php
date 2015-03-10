@@ -258,7 +258,9 @@
         <div class="review_wrp">
           <div class="contct_dtl">
             <ul>
+              
               <li><span>TOTAL REVIEWS </span><my class="fontcolors";><?php echo $to_reviews;?></my></li>
+              <li><a>Some Reviews may have originated from other review platforms and have been aggregated. </a></li>
               <li><span>TOTAL COMPLAINTS </span><my  class="fontcolors";> <?php echo $to_complaints;?></my></li>
               <?php /*<li><span>TOTAL DAMAGES </span><my  class="fontcolors";> $  <?php if($to_damages!=''){ echo round($to_damages);}else{echo "0";}?>  </my></li>*/?>
 			  <?php if($company[0]['price_range']!='') { ?>

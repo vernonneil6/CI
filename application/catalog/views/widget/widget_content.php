@@ -46,6 +46,7 @@
 			<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
 			<?php } ?>
 			<label class = "single_review"><?php echo $total."  Reviews"; ?></label>
+			<p style="font-size: 11px;color: #A2A2A2;">Some Reviews may have originated from other review platforms and have been aggregated.</p>
 		  </div>	
 		  <div class = "clear"></div>			  
 	</div>
