@@ -1657,7 +1657,8 @@ public function renew_update($id)
 	//define variables to send
 	
 	$refId = uniqid();
-	$name = "elite membership";
+	$name = "YouGotRated Membership";
+	$Description="YouGotRated Membership";
 	$length = 1;
 	$unit = "months";
 	$startDate = date("Y-m-d");
@@ -1711,6 +1712,9 @@ public function renew_update($id)
 			"<cardCode>". $cvv . "</cardCode>".
 			"</creditCard>".
 			"</payment>".
+			"<order>".
+			"<description>" . $Description. "</description>".
+			"</order>".
 			"<customer>".
 			"<email>".$customeremail."</email>".
 			"</customer>".
@@ -1999,7 +2003,8 @@ public function upgrades($companyid)
     }	   
 	//define variables to send
 	$refId = uniqid();
-	$name = "elite membership";
+	$name = "YouGotRated Membership";
+	$Description="YouGotRated Membership";
 	$length = 1;
 	$unit = "months";
 	$startDate = date("Y-m-d");
@@ -2078,6 +2083,9 @@ public function upgrades($companyid)
 			"<amount>". $amount ."</amount>".
 			"<trialAmount>" . $trialAmount . "</trialAmount>".
 			"<payment>".
+			"<order>".
+			"<description>" . $Description. "</description>".
+			"</order>".
 			"<creditCard>".
 			"<cardNumber>" . $cardNumber . "</cardNumber>".
 			"<expirationDate>" . $expirationDate . "</expirationDate>".
