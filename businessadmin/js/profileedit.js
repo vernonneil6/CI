@@ -172,6 +172,18 @@ $(document).ready(function() {
 			{
 				$("#contactnameerror").hide();
 			}
+			if( trim($("#ctitle").val()) == "" )
+			{
+				
+				$("#error").attr('style','display:block;');
+				$("#titleerror").show();
+				$("#ctitle").val('').focus();
+				return false;
+			}
+			else
+			{
+				$("#titleerror").hide();
+			}
 			
 			if( trim($("#companystreet").val()) == "" )
 			{
