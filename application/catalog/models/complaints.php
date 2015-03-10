@@ -60,10 +60,9 @@ class Complaints extends CI_Model
  	}
 	
 	//Inserting Record
-	function insert($companyid,$detail,$username,$emailid,$statusdisable,$city,$state,$zip,$company ,$reasondispute,$merchantresolution,$streetaddress,$phone,$caseid,$transactionid,$transaction_date,$transactionamt,$complaintdate,$siteurl,$companyemail,$complaintdate,$image)
+	function insert($companyid,$detail,$username,$emailid,$statusdisable,$city,$state,$zip,$company ,$reasondispute,$merchantresolution,$streetaddress,$phone,$caseid,$transactionid,$transaction_date,$transactionamt,$complaintdate,$userid,$companyemail,$complaintdate,$image)
 	{
 		$siteid = $this->session->userdata('siteid');
-		$date = date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d H:i:s');
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
 		if(array_key_exists('youg_user',$this->session->userdata) )
@@ -80,29 +79,30 @@ class Complaints extends CI_Model
 		$data = array(
 							
 							'companyid' 	=> $companyid,
-					    		'detail'		=> $detail,
+					    	'detail'		=> $detail,
 							'username'		=> $username,
 							'emailid'		=> $emailid,
 							'status' 		=> 'Disable',
 							'complaindate'	=> $date,
 							'complainip'	=> $varipaddress,
 							'websiteid'		=> $siteid,
-							'city'=>$city,
-							'state'=>$state,
-							'zip'=>$zip,
-							'phone'=>$phone,
-							'address'=>$streetaddress,
-							'reasondispute'=>$reasondispute,
+							'city'          =>$city,
+							'state'         =>$state,
+							'zip'           =>$zip,
+							'phone'         =>$phone,
+							'address'       =>$streetaddress,
+							'reasondispute' =>$reasondispute,
 							'merchantresolution'=>$merchantresolution,
-							'caseid'=>$caseid,
-							'transactionid'=>$transactionid,
+							'caseid'        =>$caseid,
+							'transactionid' =>$transactionid,
 							'transaction_date'=>$transaction_date,
 							'transaction_amt'=>$transactionamt,
-							'complaindate'=>$complaintdate,
-							'userid'=>$userid,
-							'companyemail'=>$companyemail,
-							'complaindate'=>$complaintdate,
-							'image'=>$image
+							'whendate'       =>$date,
+							'complaindate'   =>$complaintdate,
+							'userid'         =>$userid,
+							'companyemail'   =>$companyemail,
+							'complaindate'   =>$complaintdate,
+							'image'          =>$image
 
 						);
 		}
@@ -110,29 +110,30 @@ class Complaints extends CI_Model
 		{
 			$data = array(
 							'companyid' 	=> $companyid,
-					    		'detail'		=> $detail,
+					    	'detail'		=> $detail,
 							'username'		=> $username,
 							'emailid'		=> $emailid,
 							'status' 		=> 'Enable',
 							'complaindate'	=> $date,
 							'complainip'	=> $varipaddress,
 							'websiteid'		=> $siteid,
-							'city'=>$city,
-							'state'=>$state,
-							'zip'=>$zip,
-							'phone'=>$phone,
-							'address'=>$streetaddress,
-							'reasondispute'=>$reasondispute,
+							'city'          =>$city,
+							'state'         =>$state,
+							'zip'           =>$zip,
+							'phone'         =>$phone,
+							'address'       =>$streetaddress,
+							'reasondispute' =>$reasondispute,
 							'merchantresolution'=>$merchantresolution,
-							'caseid'=>$caseid,
-							'transactionid'=>$transactionid,
+							'caseid'        =>$caseid,
+							'transactionid' =>$transactionid,
 							'transaction_date'=>$transaction_date,
 							'transaction_amt'=>$transactionamt,
-							'complaindate'=>$complaintdate,
-							'userid'=>$userid,
-							'companyemail'=>$companyemail,
-							'complaindate'=>$complaintdate,
-							'image'=>$image
+							'whendate'      =>$date,
+							'complaindate'  =>$complaintdate,
+							'userid'        =>$userid,
+							'companyemail'  =>$companyemail,
+							'complaindate'  =>$complaintdate,
+							'image'         =>$image
 						);
 		
 		}

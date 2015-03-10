@@ -110,7 +110,7 @@ sure they respond back. Submit your review and rate your experience
 
 
 
-public function updates($id)
+public function updates()
 	{
 
 		if(empty($id) && $this->input->post('company_id')){ 
@@ -217,7 +217,7 @@ public function updates($id)
 
 							$multi_image=$this->multiuploadimg($_FILES['multipleupload']['name']);
 
-							if($this->complaints->insert($companyid,$detail,$username,$emailid,$statusdisable='yes',$city,$state,$zip,$company ,$reasondispute,$merchantresolution,$streetaddress,$phone,$caseid,$transactionid,$transaction_date,$transactionamt,$complaintdate,$userid,$companyemail,$complaintdate,$multi_image))
+							if($this->complaints->insert($companyid,$detail,$username,$emailid,$statusdisable='yes',$city,$state,$zip,$company,$reasondispute,$merchantresolution,$streetaddress,$phone,$caseid,$transactionid,$transaction_date,$transactionamt,$complaintdate,$userid,$companyemail,$complaintdate,$multi_image))
 								{
 									$this->session->set_flashdata('success', 'Complaint submitted successfully.');
 									redirect('user', 'refresh');
@@ -234,7 +234,7 @@ public function updates($id)
 						$multi_image=$this->multiuploadimg($_FILES['multipleupload']['name']);
 
 
-						if($updated = $this->complaints->insert($companyid,$detail,$username,$emailid,'yes',$city,$state,$zip,$company ,$reasondispute,$merchantresolution,$streetaddress,$phone,$caseid,$transactionid,$transaction_date,$transactionamt,$complaintdate,$userid,$companyemail,$complaintdate,$multi_image))
+						if($updated = $this->complaints->insert($companyid,$detail,$username,$emailid,'yes',$city,$state,$zip,$company,$reasondispute,$merchantresolution,$streetaddress,$phone,$caseid,$transactionid,$transaction_date,$transactionamt,$complaintdate,$userid,$companyemail,$complaintdate,$multi_image))
 						{	
 					$com = $this->complaints->get_company_byid($companyid);
 					
@@ -351,7 +351,7 @@ public function updates($id)
 					
 							if($this->email->send())
 							{
-								$this->session->set_flashdata('success', 'Complaint submitted successfully.');
+								$this->session->set_flashdata('success', 'Complaintss submitted successfully.');
 								
 								redirect(site_url(), 'refresh');
 							}
@@ -369,14 +369,10 @@ public function updates($id)
 			}
 			else
 			{
-
-
-
-
 				$multi_image=$this->multiuploadimg($_FILES['multipleupload']['name']);
 
-				if($updated = $this->complaints->insert($companyid,$detail,$username,$emailid,'no',$city,$state,$zip,$company ,$reasondispute,$merchantresolution,$streetaddress,$phone,$caseid,$transactionid,$transaction_date,$transactionamt,$complaintdate,$userid,$companyemail,$complaintdate,$multi_image))
-				{	
+				if($updated = $this->complaints->insert($companyid,$detail,$username,$emailid,'no',$city,$state,$zip,$company,$reasondispute,$merchantresolution,$streetaddress,$phone,$caseid,$transactionid,$transaction_date,$transactionamt,$complaintdate,$userid,$companyemail,$complaintdate,$multi_image))
+				{
 				$com = $this->complaints->get_company_byid($companyid);
 					
 					if(count($com)>0)

@@ -195,8 +195,7 @@
 <section class="main_contentarea">
 <div class="container">
   <div>
-    <form class="reg_frm" action="welcome/updates/<?php echo $cmpyid;?>" id="frmcompany" method="post" enctype="multipart/form-data">
-	
+    <form class="reg_frm" action="welcome/updates" id="frmcompany" method="post" enctype="multipart/form-data">
 	<div class="align_center">
 		<small>This business is not a Verified Member and their transactions are not eligible for the Yougotrated Buyer's Protection Program.</small>
 	</div>
