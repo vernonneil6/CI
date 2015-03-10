@@ -337,6 +337,7 @@ class Solution extends CI_Controller {
 			$cname = $this->input->post('cname');
 			$cphone = $this->input->post('cphone');
 			$cemail = $this->input->post('cemail');
+			$ctitle=$this->input->post('ctitle');
 			$discountcode = $this->input->post('discountcode');
 			
 			
@@ -361,7 +362,7 @@ class Solution extends CI_Controller {
 							
 								$companyid = $this->db->insert_id();							
 														
-								$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
+								$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail,$ctitle);
 								if($this->complaints->insert_companyseo($companyid,$name))
 								{
 									$site_name = $this->common->get_setting_value(1);
@@ -442,7 +443,7 @@ class Solution extends CI_Controller {
                                         $companyid=$names['id'];
                                        $update_businessadata=$this->complaints->update_business($companyid,$name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,'','',$category,'',$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype); 
                                        if($update_businessadata){
-                                        $contact_details=$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
+                                        $contact_details=$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail,$ctitle);
                                         $companyseo=$this->complaints->insert_companyseo($companyid,$name);  
                                        }
 					$formpost=$_POST;
@@ -674,7 +675,6 @@ public function eliteSubscribe($formpost,$companyid) {
 	//data.php start
 	//$loginname = $this->common->get_setting_value(22);
 	//$transactionkey = $this->common->get_setting_value(23);
-	
 	
 	/*test mode*/
 	  /* $loginname="2sRT3yAsr3tA";
@@ -2041,6 +2041,7 @@ public function upgrades($companyid)
 	$cname=$_POST["cname"];
 	$cemail=$_POST["cemail"];
 	$cphone=$_POST["cphone"];
+	$ctitle=$_POST["ctitle"];
 	
 	
 	//billing address
@@ -2170,7 +2171,7 @@ public function upgrades($companyid)
                 $update_business=$this->complaints->update_businessdetails($companyid,$name, $address,$city,$state,$country,$zip,
 									 $address1,$city1,$state1,$country1,$zip1,$phone,$email,
 									 $website,$category);                           
-                $this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);                
+                $this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail,$ctitle);                
 				if( count($company)>0 )
 				{
 					$password = uniqid();

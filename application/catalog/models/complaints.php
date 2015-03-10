@@ -1224,12 +1224,13 @@ class Complaints extends CI_Model
 			return array();
 		}
  	} 
-	function insert_contactdetails($companyid,$cname,$cphone,$cemail)
+	function insert_contactdetails($companyid,$cname,$cphone,$cemail,$ctitle)
 	{
 		$this->db->where('id', $companyid);
 		if( $this->db->update('company',array('contactname' 		=> $cname,
 											  'contactphonenumber' 	=> $cphone,
-											  'contactemail' 		=> $cemail)))
+											  'contactemail' 		=> $cemail,
+											  'title' 		        => $ctitle)))
 		{
 			return true;
 		}

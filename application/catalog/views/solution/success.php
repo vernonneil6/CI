@@ -127,6 +127,7 @@ function FormatCreditCard($cc)
 				<tr><td>Contact Name</td><td class = "receipt_data"><?php echo $company['contactname']; ?></td></tr>
 				<tr><td>Contact Phone</td><td class = "receipt_data"><?php echo $company['contactphonenumber']; ?></td></tr>
 				<tr><td>Contact Email</td><td class = "receipt_data"><?php echo $company['contactemail']; ?></td></tr>
+				<tr><td>Title / Position</td><td class = "receipt_data"><?php echo $company['title']; ?></td></tr>
 			</table>
 		</div>
 		

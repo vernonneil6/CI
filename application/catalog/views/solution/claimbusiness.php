@@ -168,6 +168,19 @@
 				</div>
             
           </div>
+           <div class="reg-row" style="margin-top:10px !important;">
+				<div>
+					<span class="form-col-1">
+						&nbsp;
+					</span>
+					<span class="form-col-2">
+						<div class="reg_fld">TITLE / POSITION : </div>
+						<input type="text" class="reg_txt_box" placeholder="TITLE / POSITION IN BUSINESS" id="ctitle" name="ctitle" maxlength="40" value="" />
+						<div id="ctitleerror" class="error">Title / Position is required.</div>
+					</span>
+				</div>
+            
+          </div>
           <div class="reg-row" style="margin-top:10px !important;">
 				<div>
 					<span class="form-col-1">

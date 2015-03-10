@@ -298,6 +298,16 @@ $(document).ready(function() {
 	  {
 		  $("#cnameerror").hide();
 	  }
+	  if( trim($("#ctitle").val()) == "" )
+	  {
+		  $("#ctitleerror").show();
+		  $("#ctitle").focus();
+		  return false;
+	  }
+	  else
+	  {
+		  $("#ctitleerror").hide();
+	  }
 	  
 	  if( trim($("#cphone").val()) == "" )
 	  {
