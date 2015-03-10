@@ -202,7 +202,15 @@ else { ?>
 					}	
 				}
 			
-			
+			if (!$("#terms-conditions").is(":checked")) {
+						$('#terms-error').show();
+						return false;
+					}
+					else
+					{
+						$('#terms-error').hide();
+						return true;
+					}
 			
 			
 			if( $("#frmcoupon").submit() )
@@ -336,6 +344,11 @@ else { ?>
           <div id="urlerror" class="error" align="right">enter valid URL example(http://xyz.com)</div>
 
     </div>
+     <div id="termscondn" class="review_txt_box">
+			<input type="checkbox" id="terms-conditions" />
+			<label>I am Authorized to act on behalf of the Company and agree to the <a href="http://yougotrated.com/footerpage/index/2" target="_blank">Terms and Conditions</a> of use.</label>
+			<div><label id="terms-error" style='display:none;color:#ff0000;'>Please indicate that you accept the Terms and Conditions</label></div>
+		</div>
     <div class="btn-submit">
         <!-- Submit form -->
         <?php if($this->uri->segment(2) == 'add') { ?>
