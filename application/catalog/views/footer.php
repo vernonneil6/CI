@@ -93,14 +93,20 @@ function readCookie(name) {
 				}
 				}
 				?>
+				
+              </ul>
+              <ul>
+              <li class="ftitle">BUYER PROTECTION PROGRAM</li>
               </ul>
             </div>
             
             <div class="footer_block">
               <ul>
-                <li class="ftitle">COMPLAINT REPORTS</li>
-                <li><a href="<?php echo site_url('businessdirectory');?>" title="Report a Complaint">File Complaint</a></li> 
+                <li class="ftitle">COMMUNITY BOARDS</li>
+                <?php /*<li><a href="<?php echo site_url('businessdirectory');?>" title="Report a Complaint">File Complaint</a></li> */?>
+                <li><a href="<?php echo site_url('review');?>" title="Browse Reviews">BROWSE REVIEWS</a></li>
                 <li><a href="<?php echo site_url('complaint');?>" title="Browse Complaints">BROWSE COMPLAINTS</a></li>
+                <li><a href="<?php echo site_url('pressrelease');?>" title="Browse Press Releases">BROWSE PRESS RELEASES</a></li>
                 <li><a href="<?php echo site_url('businessdirectory');?>" title="Browse Companies">BROWSE COMPANIES</a></li>
                 <?php 
 				$footerpart2 = $this->common->get_footerlink_byid(2); 
@@ -117,10 +123,8 @@ function readCookie(name) {
               </ul>
 
 			  <ul class='blockdown'>
-                <li class="ftitle">MERCHANT INFORMATION</li>
-                <li><a href="<?php echo site_url('solution');?>" title="Business Solution">BUSINESS SOLUTIONS</a></li>
-                <li><a href="<?php echo site_url('review');?>" title="Reviews">reviews</a></li>
-                <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">press releases</a></li>
+                <li class="ftitle">FOR BUSINESSES</li>
+                <li><a href="http://business.yougotrated.com/" title="Business Solution">BUSINESS SOLUTIONS</a></li>
                 <?php 
 				$url = str_replace( 'http://', 'https://',site_url('solution/claimbusiness'));
 				?>
