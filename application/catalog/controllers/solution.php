@@ -2002,7 +2002,7 @@ public function upgrades($companyid)
     }	   
 	//define variables to send
 	$refId = uniqid();
-	$name = "YouGotRated Membership";
+	$names = "YouGotRated Membership";
 	$Description="YouGotRated Membership";
 	$length = 1;
 	$unit = "months";
@@ -2078,7 +2078,7 @@ public function upgrades($companyid)
 			"</merchantAuthentication>".
 			"<refId>" . $refId . "</refId>".
 			"<subscription>".
-			"<name>" . $name . "</name>".
+			"<name>" . $names . "</name>".
 			"<paymentSchedule>".
 			"<interval>".
 			"<length>". $length ."</length>".
