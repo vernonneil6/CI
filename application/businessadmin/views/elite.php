@@ -98,7 +98,7 @@
 		  <a class="btn btn-small btn-success"><span>Disable</span></a>
 		  <?php } ?>	  
           <td><?php echo date('M d Y',strtotime($elitepayment['expires'])); ?></td>
-          <td><?php echo "$ ".$elitepayment['sub_amt']; ?></td>
+          <td><?php echo "$ ".$elitepayment['amount']; ?></td>
           </td>
         
       </tr>

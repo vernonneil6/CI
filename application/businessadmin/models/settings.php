@@ -151,21 +151,10 @@ Class Settings extends CI_Model
 		$subscription_amount = $this->db->get_where('setting', array('id' => '19'))->row_array();
 		if(trim($enablecheck['status'])=='Enable')
 		 {
-		   $sub_id=$this->db->get_where('subscription', array('company_id' => $id))->row_array();
-		   $query= $this->db->select('*')
-							->from('subscription sb')
-							->join('silent si', 'sb.subscr_id = si.subscription_id', 'left')
-							->where(array('sb.subscr_id'=>$sub_id['subscr_id'],'sb.company_id'=>$id))
-							->get()
-							->row_array();
-		 }
-	    $eid=$query['subscr_id'];
-		$individual= $this->db->query('select count(subscription_paynumber) as count from youg_silent where subscription_id="'.$eid.'" and subscription_paynumber=1')->row_array();
-		$startdate=$this->db->get_where('company', array('id' => $id))->result_array();
-		$query['startdate']=$startdate['registerdate'];
-		$query['sub_amt']=$subscription_amount['value'];
-		$query['totalpayment']=$individual['count'];
-		
+		   $query=$this->db->select('company_id,amount,payment_date,expires,subscr_id')
+		                ->get_where('subscription', array('company_id' => $id))->row_array();
+	     }
+	
 		return $query;	
 			
 	}
