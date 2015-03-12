@@ -177,8 +177,10 @@ class Solution extends CI_Controller {
 	}
 	function claimbusiness()
 	{   
+		
+		$upgradefn=$this->uri->segment(3); 
 		$upgradeid=$this->uri->segment(4); 
- 		if(isset($upgradeid)){
+ 		if(isset($upgradeid) && isset($upgradefn=='upgrades')){
 		    $eid=$upgradeid;
 		}else{
 		    $eid="";
