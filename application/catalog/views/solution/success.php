@@ -105,7 +105,7 @@ function FormatCreditCard($cc)
 				<tr><td>Company Name</td><td class = "receipt_data"><?php echo $company['company']; ?></td></tr>
 				<tr><td>Website</td><td class = "receipt_data"><?php echo $company['siteurl']; ?></td></tr>
 				<tr><td>Category</td><td class = "receipt_data"><?php $cat = $this->complaints->get_categories_byid($company['categoryid']); echo $cat[0]['categoryname']; ?></td></tr>
-				<tr><td>E-Mail</td><td class = "receipt_data"><?php echo $company['contactemail']; ?></td></tr>
+				<tr><td>E-Mail</td><td class = "receipt_data"><?php echo $company['email']; ?></td></tr>
 				<tr><td>Address</td><td class = "receipt_data"><?php echo $company['companystreet']; ?></td></tr>
 				<tr><td>Country</td><td class = "receipt_data"><?php $country = $this->complaints->get_country_byidss($company['companycountry']); echo $country['name']; ?></td></tr>
 				<tr><td>State</td><td class = "receipt_data"><?php echo $company['companystate']; ?></td></tr>
@@ -142,7 +142,7 @@ function FormatCreditCard($cc)
 				<tr><td>First Name</td><td class = "receipt_data"><?php echo $subscription['firstname']; ?></td></tr>
 				<tr><td>Last Name</td><td class = "receipt_data"><?php echo $subscription['lastname']; ?></td></tr>
 				<tr><td>Category</td><td class = "receipt_data"><?php $cat = $this->complaints->get_categories_byid($company['categoryid']); echo $cat[0]['categoryname']; ?></td></tr>
-				<tr><td>E-Mail</td><td class = "receipt_data"><?php echo $company['email']; ?></td></tr>
+				<tr><td>E-Mail</td><td class = "receipt_data"><?php echo $company['contactemail']; ?></td></tr>
 				<tr><td>Address</td><td class = "receipt_data"><?php echo $company['streetaddress']; ?></td></tr>
 				<tr><td>Country</td><td class = "receipt_data"><?php $country = $this->complaints->get_country_byidss($company['country']); echo $country['name']; ?></td></tr>
 				<tr><td>State</td><td class = "receipt_data"><?php echo $company['state']; ?></td></tr>
