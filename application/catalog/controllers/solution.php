@@ -176,9 +176,10 @@ class Solution extends CI_Controller {
 	  
 	}
 	function claimbusiness()
-	{
-		if(isset($_GET['elitemem'])){
-		    $eid=$_GET['elitemem'];
+	{   
+		$upgradeid=$this->uri->segment(4); 
+ 		if(isset($upgradeid)){
+		    $eid=$upgradeid;
 		}else{
 		    $eid="";
 		}
@@ -1712,9 +1713,6 @@ public function renew_update($id)
 			"<cardCode>". $cvv . "</cardCode>".
 			"</creditCard>".
 			"</payment>".
-			"<order>".
-			"<description>" . $Description. "</description>".
-			"</order>".
 			"<customer>".
 			"<email>".$customeremail."</email>".
 			"</customer>".
@@ -1952,8 +1950,9 @@ public function upgrades($companyid)
 	   $host = "apitest.authorize.net"; */
 	
 	/*sandbox test mode
-	  $loginname="9um8JTf3W";
-	   $transactionkey="9q24FTz678hQ9mAD";
+	
+	  $loginname="83EK7S4R8qy3";
+	   $transactionkey="5Rx8Mn8PAS5s77gr";
 	   $host = "apitest.authorize.net";*/
 	
 	
@@ -2034,7 +2033,16 @@ public function upgrades($companyid)
 	$name=$_POST["name"];
 	$phone=$_POST["phone"];
 	$website=$_POST["website"];
-	$category=$_POST["category"];
+	$cat = $this->input->post('cat');
+					if($cat!='')
+					{
+						$category1=implode(',',$cat);
+					}
+					else
+					{
+						$category1='1';
+					}
+	$category=$category1;				
 	$email = $this->input->post('email');		
 	
 	//contact information
@@ -2042,7 +2050,6 @@ public function upgrades($companyid)
 	$cemail=$_POST["cemail"];
 	$cphone=$_POST["cphone"];
 	$ctitle=$_POST["ctitle"];
-	
 	
 	//billing address
 	$address=$_POST["streetaddress"];
@@ -2084,9 +2091,6 @@ public function upgrades($companyid)
 			"<amount>". $amount ."</amount>".
 			"<trialAmount>" . $trialAmount . "</trialAmount>".
 			"<payment>".
-			"<order>".
-			"<description>" . $Description. "</description>".
-			"</order>".
 			"<creditCard>".
 			"<cardNumber>" . $cardNumber . "</cardNumber>".
 			"<expirationDate>" . $expirationDate . "</expirationDate>".
@@ -2111,6 +2115,7 @@ public function upgrades($companyid)
 
 	//send the xml via curl
 	$response = send_request_via_curl($host,$path,$content);
+	print_r($response);
 	//if the connection and send worked $response holds the return from Authorize.net
 	if ($response)
 	{
@@ -2145,6 +2150,9 @@ public function upgrades($companyid)
 		$content;
 		"<br \>";
 		"<br \>";
+		
+		echo $resultCode."<br>";
+		echo $code;
 		if($resultCode=='Ok')
 		{
 			$tx  = $transactionkey;

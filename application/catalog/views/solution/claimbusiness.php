@@ -1,5 +1,5 @@
 <?php echo $header;?>
-<script type="text/javascript" src="js/formsubmit.js"></script>
+<script type="text/javascript" src="/js/formsubmit.js"></script>
 <section class="container">
   <section class="main_contentarea">
     <div class="banner_wrp"> <img class="containerimg" src="images/YouGotRated_HeaderGraphics_SignUpPage.png" alt="Register" title="Register"> </div>
@@ -13,8 +13,7 @@
       <div class="reg_step_edit_claim1"></div>
       <div class="reg_frm_wrap" style="width:100%;">
 		<?php 
-		 
-		    if(isset($company_avail)){
+	    if(isset($company_avail)){
 				$showdata=$company_avail;
 			} else { 
 			     $showdata=null;
@@ -86,7 +85,8 @@
 							&nbsp; <span style="color:#666666;"> <?php echo stripslashes($categories[$i]['category'])."<br/>";?> </span>
 							<?php } ?>
 						  </div>
-							<input type="hidden" name="categorylist" id="categorylist"/> 						
+							<input type="hidden" name="categorylist" id="categorylist"/> 		
+							<div id="categoryerror" class="error">Check any option in category.</div>				
 					</span>
 				</div>                  
           </div>

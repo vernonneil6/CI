@@ -16,15 +16,7 @@ $(document).ready(function() {
 	  {						  
 		  $("#nameerror").hide();
 		
-	  }
-	  
-	  var checkedCategory = [];
-	$('.checkboxLabel:checked').each(function(){
-         checkedCategory.push($(this).next("span").text());         
-    });
-    $("#categorylist").val(checkedCategory);
-    
-	  
+	  }	  
 	  
 	   if( trim($("#website").val()) == "" )
 	  {
@@ -36,6 +28,31 @@ $(document).ready(function() {
 	  {
 		  $("#websiteerror").hide();
 	  }
+	  
+	  var checkedCategory = [];
+	  $('.checkboxLabel:checked').each(function(){
+         checkedCategory.push($(this).next("span").text());         
+		});
+      $("#categorylist").val(checkedCategory);
+      
+      
+	  
+	  $('.checkboxLabel').each(function()
+	  {
+		  if(!$(this).is(':checked'))
+		  {
+			  $('#categoryerror').show();
+			  return false;
+		  }
+		  else
+		  {
+			  $('#categoryerror').hide();
+		  }
+	  });
+	  
+    
+    
+    
 	  
 	   var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	  if( trim($("#email").val()) == "" )
