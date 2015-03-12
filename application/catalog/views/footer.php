@@ -78,7 +78,7 @@ function readCookie(name) {
       <div class="innr_wrap">
         <div class="main_footer">
           <div class="main_footer_block">
-            <div class="footer_block" id="first">
+            <div class="footer_block foot_bar" id="first">
               <ul>
                 <li class="ftitle">YOU GOT RATED GUIDE</li>
                 <?php 
@@ -95,13 +95,8 @@ function readCookie(name) {
 				?>
 				
               </ul>
-              <ul>
-              <li class="ftitle">BUYER PROTECTION PROGRAM</li>
-              </ul>
-            </div>
-            
-            <div class="footer_block">
-              <ul>
+              
+              <ul class="foot_mid_bar">
                 <li class="ftitle">COMMUNITY BOARDS</li>
                 <?php /*<li><a href="<?php echo site_url('businessdirectory');?>" title="Report a Complaint">File Complaint</a></li> */?>
                 <li><a href="<?php echo site_url('review');?>" title="Browse Reviews">BROWSE REVIEWS</a></li>
@@ -121,8 +116,57 @@ function readCookie(name) {
 				}
 				?>
               </ul>
-
-			  <ul class='blockdown'>
+              
+              <ul>
+				<li class="ftitle foot_title_bar">JOIN THE CONVERSATION</li>
+				<div class="foot_social_img">
+					<li class="twitter"><a href="<?php echo $tw;?>" title="Twitter"><img src="../images/img/socialicon/twitter.jpg" /></a></li>
+					<li class="facebook"><a href="<?php echo $fb;?>" title="Facebook"><img src="../images/img/socialicon/facebook.jpg" /></a></li>
+					<li class="google"><a href="<?php echo $go;?>" title="Google"><img src="../images/img/socialicon/googleplus.jpg" /></a></li>
+					<li class="pinterest"><a href="<?php echo $pi;?>" title="Pinterest"><img src="../images/img/socialicon/pinterest.jpg" /></a></li>
+					<li class="linkedin"><a href="<?php echo $li;?>" title="linkedin"><img src="../images/img/socialicon/LinkedIn_icon.jpg" /></a></li>
+				</div>
+			  </ul>
+			    
+			  <ul class="foot_last_bar">
+			    <?php if($this->uri->segment(1)!='login'){?>
+               <?php if( !array_key_exists('youg_user',$this->session->userdata) ) { ?>
+               <li class="ftitle">User LOGIN</li>
+               <li>
+                  <div class="user_login">
+                  <form action="login" id="userflogin" name="" method="post">
+					  <input type="email" class="usr_txtbox" placeholder="Username" name="loginemail" id="loginemail" required>
+					  <input type="password" class="usr_txtbox" placeholder="Password" name="loginpassword" id="loginpassword" required>
+					  <span><button type="button" title="Login" onclick="userlogin();">login</button></span> 
+                  </form>
+                  </div>
+                </li>
+                <?php } } ?>
+               </ul>
+			  
+              
+            </div>
+            
+            <div class="footer_block"  id="first">
+				
+			  <ul>
+              <li class="ftitle">BUYER PROTECTION PROGRAM</li>
+              <?php 
+				$footerpart5 = $this->common->get_footerlink_byid(5); 
+				if($footerpart5 != '')
+				{
+				foreach($footerpart5 as $part5) 
+				{ 
+				?>
+					<li><a  target="_blank" href="<?php echo 'footerpage/index/'.$part5['intid'];?>" title="<?php echo $part5['title'];?>"><?php echo $part5['title'];?></a></li>
+				<?php 
+				}
+				}
+				?>
+              </ul>
+              
+                         
+			  <ul class="forbusiness_footer">
                 <li class="ftitle">FOR BUSINESSES</li>
                 <li><a href="http://business.yougotrated.com/" title="Business Solution">BUSINESS SOLUTIONS</a></li>
                 <?php 
@@ -142,34 +186,8 @@ function readCookie(name) {
 				}
 				?>
               </ul>
-            </div>
-          
-			<div class="footerblock">	
-			  <ul>
-				<li class="ftitle">JOIN THE CONVERSATION</li>
-				<li class="twitter"><a href="<?php echo $tw;?>" title="Twitter"><img src="../images/img/socialicon/twitter.jpg" /></a></li>
-				<li class="facebook"><a href="<?php echo $fb;?>" title="Facebook"><img src="../images/img/socialicon/facebook.jpg" /></a></li>
-				<li class="google"><a href="<?php echo $go;?>" title="Google"><img src="../images/img/socialicon/googleplus.jpg" /></a></li>
-				<li class="pinterest"><a href="<?php echo $pi;?>" title="Pinterest"><img src="../images/img/socialicon/pinterest.jpg" /></a></li>
-				<li class="linkedin"><a href="<?php echo $li;?>" title="linkedin"><img src="../images/img/socialicon/LinkedIn_icon.jpg" /></a></li>
-			  </ul>
-			</div>
-			
-            <div class="footer_block">
-              <ul>
-               <?php if($this->uri->segment(1)!='login'){?>
-               <?php if( !array_key_exists('youg_user',$this->session->userdata) ) { ?>
-               <li class="ftitle">User LOGIN</li>
-               <li>
-                  <div class="user_login">
-                  <form action="login" id="userflogin" name="" method="post">
-					  <input type="email" class="usr_txtbox" placeholder="Username" name="loginemail" id="loginemail" required>
-					  <input type="password" class="usr_txtbox" placeholder="Password" name="loginpassword" id="loginpassword" required>
-					  <span><button type="button" title="Login" onclick="userlogin();">login</button></span> 
-                  </form>
-                  </div>
-                </li>
-                <?php } } ?>
+              
+              <ul  class="foot_last_bar">              
                 <li class="ftitle">MERCHANT LOGIN</li>
                 <li>
                   <form action="<?php echo base_url();?>businessadmin/adminlogin" id="elitelogin" method="post">
@@ -180,10 +198,13 @@ function readCookie(name) {
                     </form>
                 </li>
               </ul>
+              
+              
             </div>
-          
+                    
           </div>
         </div>
+        
 		<div class="footerbottomlink">
 			<span>© Copyright <?php echo date("Y");?>  <?php echo $site_name;?></span>
 			<span>All Rights Reserved</span>
@@ -203,6 +224,7 @@ function readCookie(name) {
 				?>
 		    </span>
 		</div>
+		
 	</div>   
   </div>
 </div>

@@ -88,8 +88,126 @@ img{border:none;}
     text-align: center;
 	color:#fff;
 }
-/*============font-face==============================*/
+.account
+{
+	text-align : center;
+	width : 967px;
+	margin: 0 auto;
+}
+.account h3
+{
+	font-family: myriadpro-regular;
+    font-size: 25px;
+    letter-spacing: 1px;
+}
 
+.account_option
+{
+	margin: 0 0 35px;
+}
+.account_option .option
+{
+	display : inline-block;	
+	margin: 0 0 0 15px;
+    padding: 8px 10px;
+	border-radius: 5px;
+	color: white;
+	font-family: myriadpro-regular;
+	cursor : pointer;
+}
+.logincolor
+{
+	background-color: #4f6796;
+	background-image: -webkit-linear-gradient(#556ea2,#4f6796);
+	box-shadow: 0 2px 0 #1b3059;
+}
+.emailcolor
+{
+	background : #9a9a9a;
+	background-image: -webkit-linear-gradient(#bdbdbd,#9a9a9a);
+	box-shadow: 0 3px 0 #666;
+}
+.facebookcolor
+{
+	background-color: #4f6796;
+	background-image: -webkit-linear-gradient(#556ea2,#4f6796);
+	box-shadow: 0 2px 0 #1b3059;
+}
+.account_option .option i
+{
+	font-size: 16px !important;
+    margin: 2px 8px;
+    padding: 0 12px 0 0;
+}
+.loginboder
+{
+	border-right: 1px solid #2f4f85;
+}
+.emailboder
+{
+	border-right: 1px solid #666;
+}
+.facebookboder
+{
+	border-right: 1px solid #2f4f85;
+}
+.account_login
+{
+	
+}
+.account_container
+{
+	margin: 0px auto; 
+	width: 310px;
+}
+.textboxs
+{
+	font-family: "myriadpro-regular";
+    font-size: 14px;
+    height: 28px;
+    margin: 0 0 10px;
+    padding: 0 0 0 10px;
+    width: 275px;
+    display: block;
+}
+.login_link
+{
+	display: block;
+	color : #428bca;
+	text-align: left;
+	margin: 0 0 3px;
+}
+.login_link:hover
+{
+	text-decoration : underline;
+	cursor:pointer;
+}
+.login_buttons
+{
+	box-shadow: 0 2px 1px -1px #999;
+	color: #ddd;
+	background-color: #212121;
+	border-color: #0a0a0a;
+	border-radius: 5px;
+	margin: 20px 0 15px;
+	font-size:15px;
+	padding: 6px;
+	border:none;
+}
+.account_text_center
+{
+	text-align : center!important;
+}
+.register_terms
+{
+	font-family: "myriadpro-regular";
+}
+.register_terms a
+{
+	color: #286a9a;
+    display: block;
+    font-family: MyriadPro-BoldCond;
+}
 
 /*========================logo=================================*/
 .main-logo{width:100%; margin:0 auto;}
@@ -589,7 +707,7 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 .main_footer{width:967px; margin:0px auto 25px 4px; height:auto; float:left;border-radius:7px 7px 0 0;}
 .main_footer_block{width:auto; float:left; height:auto;}
 .footer_block{float:left; height:auto;padding: 0 0 0 56px; width: 205px;}
-.footer_block#first{width:205px; float:left; height:auto; padding: 0;}
+.footer_block#first{width:967px; display: inline-block; height:auto; padding: 0;}
 .user_login{width:163px; display:inline-block;}
 .user_login span{/*color:#666; float:right; text-align:right;*/}
 .user_login span a{font-family:"myriadpro-regular"; text-transform:uppercase;}
@@ -606,7 +724,20 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
     text-transform: uppercase;
     width: 192px;
 }
-
+.foot_social_img li {display:inline-block;}
+.foot_bar{margin: 0 0 20px;}
+.foot_title_bar{margin-left: 20px;}
+.foot_last_bar
+{
+	padding: 0 0 0 36px!important;
+    width: 205px!important;
+}
+.foot_mid_bar
+{
+	padding: 0 0 0 22px!important;
+    width: 218px!important;
+}
+.forbusiness_footer{width:461px!important;padding: 0 0 0 22px!important; }
 .ft_social_wrp{width:100%; float:left; text-align:center; background:#262626; padding-top:20px; padding-bottom:10px;}
 .ft_social_wrp ul{margin:0 -2% 0 auto; padding:0; display:inline-block;}
 .ft_social_wrp ul li{list-style:none; float:left; margin-right:30px;}
@@ -617,7 +748,7 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 .ft_social_wrp ul li.twitter{width:40px; height:40px; float:left; background:url(../images/icons.png) -140px -71px no-repeat;}
 
 
-.footer_block ul{margin:0; padding:0;}
+.footer_block ul{margin:0; padding:0;width: 241px;float: left;}
 .footer_block ul li{width:auto; height:auto;list-style:none; line-height:25px; float:none !important; }
 .footer_block ul li a{width:auto; height:auto;list-style:none; font-family:"MyriadPro-Regular"; font-style:normal; color:white; font-size:12px; text-transform:uppercase; float:none;}
 .footer_block ul li a:hover{}
@@ -636,11 +767,7 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 .blockdown{margin-top:30px!important;}
 .footerbottomlink{text-align:center;font-family:"myriadpro-regular";}
 .footerbottomlink a,.footerbottomlink span{color:white;font-family:"MyriadPro-Regular"; margin-right: 15px;}
-.twitter{ margin: 0 10px;}
-.facebook{margin-right: 10px;}
-.google{margin-right: 10px;}
-.pinterest{margin-right: 10px;}
-.linkedin{margin-right: 10px;}
+
 
 .footerblock{float:left; height:auto; padding: 0 0 0 30px; width: 205px;}
 .footerblock ul{margin:0; padding:0;}
