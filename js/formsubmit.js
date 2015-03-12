@@ -4,8 +4,10 @@ function trim(stringToTrim) {
 $(document).ready(function() {
 	
   $("#btnaddcompany").click(function (e) {
-          e.preventDefault();
-          console.log('test');
+          e.preventDefault();   
+          console.log('test');   
+	    
+	 
 	  
 	  if( trim($("#name").val()) == "" )
 	  {
@@ -38,18 +40,15 @@ $(document).ready(function() {
       
       
 	  
-	  /*$('.checkboxLabel').each(function()
+	  var checkisfalse = $('input[name="cat[]"]:checked').length;
+
+	  if (checkisfalse==0) 
 	  {
-		  if(!$(this).is(':checked'))
-		  {
-			  $('#categoryerror').show();
-			  return false;
-		  }
-		  else
-		  {
-			  $('#categoryerror').hide();
-		  }
-	  });*/
+		   $('#categoryerror').show();
+		   $('#categoryerror').focus();
+		   return false;
+	  } 
+	  $('#categoryerror').hide();
 	  
     
     console.log('test1');
