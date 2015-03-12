@@ -5,6 +5,7 @@ $(document).ready(function() {
 	
   $("#btnaddcompany").click(function (e) {
           e.preventDefault();
+          console.log('test');
 	  
 	  if( trim($("#name").val()) == "" )
 	  {
@@ -37,7 +38,7 @@ $(document).ready(function() {
       
       
 	  
-	  $('.checkboxLabel').each(function()
+	  /*$('.checkboxLabel').each(function()
 	  {
 		  if(!$(this).is(':checked'))
 		  {
@@ -48,10 +49,10 @@ $(document).ready(function() {
 		  {
 			  $('#categoryerror').hide();
 		  }
-	  });
+	  });*/
 	  
     
-    
+    console.log('test1');
     
 	  
 	   var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -411,7 +412,7 @@ $(document).ready(function() {
 			
 	var exp_year = $('#expirationdatey').val().toString().substr(2,2);	
 	var exp_dates = $('#expirationdatem').val() + exp_year;
-
+console.log('test2');
 
 	if($('#expirationdatem').val().length == 1){
 		exp_dates = '0'+$('#expirationdatem').val() + exp_year;
