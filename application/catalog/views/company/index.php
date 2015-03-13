@@ -97,17 +97,20 @@
 
       <div class="contct_dtl">
           <ul itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+			  <?php $country = $this->complaints->get_country_byidss($company[0]['country']); if($country){  $elitecountry=$country['name']; } else { $elitecountry=$company[0]['country'];}
+			        $companycountry= $this->complaints->get_country_byidss($company[0]['companycountry']); if($companycountry){ $nonelitecountry=$companycountry['name']; } else { $nonelitecountry=$company[0]['companycountry'];}?>
 			  <?php if(count($elitemem_status) > 0) { ?>
+			         
 			         <?php if($company[0]['companystreet']=="" || $company[0]['companystreet']!="" ) { ?>
-              
+                        
 					   <?php if($company[0]['companystreet']==""){ ?>
 							<li><a><span itemprop="streetAddress" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></span></a></li>
-							<li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',		'.$company[0]['country'])); ?></span></a></li>
+							<li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',		'.$elitecountry)); ?></span></a></li>
 					   
 					   <?php }  if($company[0]['companystreet']!="") { ?>
 						
 								<li><a><span itemprop="streetAddress" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companystreet'])); ?></span></a></li>
-							   <li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companycity'].',     '.$company[0]['companycity'].',     '.$company[0]['companyzip'].',		'.$company[0]['companycountry'])); ?></span></a></li>
+							   <li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companycity'].',     '.$company[0]['companycity'].',     '.$company[0]['companyzip'].',		'.$nonelitecountry)); ?></span></a></li>
 				     <?php } } ?>
 				
 		    <?php } else { ?>
@@ -116,12 +119,12 @@
               
 					   <?php if($company[0]['companystreet']==""){?>
 							<li><a><span itemprop="streetAddress" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['streetaddress'])); ?></span></a></li>
-							<li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',		'.$company[0]['country'])); ?></span></a></li>
+							<li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['city'].',     '.$company[0]['state'].',     '.$company[0]['zip'].',		'.$elitecountry)); ?></span></a></li>
 					   
 					   <?php }  if($company[0]['companystreet']!="") {?>
 						
 								<li><a><span itemprop="streetAddress" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companystreet'])); ?></span></a></li>
-							   <li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companycity'].',     '.$company[0]['companycity'].',     '.$company[0]['companyzip'].',		'.$company[0]['companycountry'])); ?></span></a></li>
+							   <li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companycity'].',     '.$company[0]['companycity'].',     '.$company[0]['companyzip'].',		'.$nonelitecountry)); ?></span></a></li>
 				     <?php } } ?>
 			  <?php } ?>
             <li class = "singletimings">
