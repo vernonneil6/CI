@@ -342,19 +342,61 @@ class Solution extends CI_Controller {
 			$cemail = $this->input->post('cemail');
 			$ctitle=$this->input->post('ctitle');
 			$discountcode = $this->input->post('discountcode');
+			$affid = $this->input->post('affiliatedId');
 			
+			   
+			$brokerid = '';
+			$mainbrokerid = '';
+			$subbrokerid = '';
+			$marketerid = '';
+			$brokertype = '';
 			
-				$brokerid = '';
-				$mainbrokerid = '';
-				$subbrokerid = '';
-				$marketerid = '';
-				$brokertype = '';
+		    if($affid != null)
+		    {
+			  $broker_avail = $this->complaints->get_broker_by_id($affid);
+			  if($broker_avail['type']=='broker')
+					{	
+						$brokerid = $broker_avail['id'];
+						$mainbrokerid =$broker_avail['id'];
+						$subbrokerid = '';
+						$marketerid = '';
+						$brokertype = $broker_avail['type'];
+				    } 
+				    else if($broker_avail['type']=='subbroker')
+					{
+						$brokerid = $broker_avail['id'];
+						$mainbrokerid =$broker_avail['mainbrokerid'];
+						$subbrokerid = '';
+						$marketerid = '';
+						$brokertype = $broker_avail['type'];  
+												  
+					}
+				    else if($broker_avail['type']=='marketer')
+					{
+						$brokerid = $broker_avail['id'];
+						$mainbrokerid =$broker_avail['mainbrokerid'];
+						$subbrokerid = $broker_avail['subbrokerid'];
+						$marketerid ='';
+						$brokertype = $broker_avail['type'];  
+												  
+					}
+					else if($broker_avail['type']=='agent')
+					{
+						$brokerid = $broker_avail['id'];
+						$mainbrokerid =$broker_avail['mainbrokerid'];
+						$subbrokerid = $broker_avail['subbrokerid'];
+						$marketerid =$broker_avail['marketerid'];
+						$brokertype = $broker_avail['type']; 
 					
-
+					}				   
+				
+		     }
+			  
+		
 			//$company=$this->complaints->get_companyelite_by_emailid($email);
 			$names=$this->complaints->find_company_for_check($name);	
                        
-                        if(count($names)==0)
+            if(count($names)==0)
 			{ 
 			    $email1 = $this->complaints->chkfield1(0,'email',$email);
 			    $name1 = $this->complaints->chkfield1(0,'company',$name);
