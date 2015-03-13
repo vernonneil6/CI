@@ -470,15 +470,23 @@ var requestData = {
 
 });
 /*get All States*/        
-function getstates(id,state,where) {	//alert(id);
+function getstates(id,state,where,stateval) {	//alert(id);
 	if(id !='') {
 		if(state == 'state1'){
 			$('#countryname1').val($("#country1 :selected").text());
 		}else{
 			$('#countryname').val($("#country :selected").text());
 		}
-		var requestData = { 'type' : 'getAllStates', 'cid' : id , 'state':state };
-		
+		if(stateval==undefined || stateval==null)
+		{
+			var staticdrop = ''; 
+		}
+		else
+		{
+			var staticdrop = stateval;
+		}
+		var requestData = { 'type' : 'getAllStates', 'cid' : id , 'state':state, 'stateval':staticdrop };
+				
 		$.ajax({
 			type 				: "POST",
 			url 				: "index.php/solution/ajaxRequest",
@@ -570,3 +578,16 @@ function checkcard(){
 
 } 
 
+
+function dropdownss() 
+{
+	$('#statedropmenu').val($('#state1').val());
+	//var no = $('#state1').val();
+	//$('select[name^="state1"] option[value=""]').attr("selected",null);
+	//$('select[name^="state1"] option[value="'+no+'"]').attr("selected","selected");
+}
+
+function dropcheck(a)
+{
+	$('#state').val(a);
+}

@@ -36,6 +36,7 @@
 		
 
 		<input type="hidden" name="affiliatedId" id="affiliatedId"/>
+		<input type="hidden" name="statedropmenu" id="statedropmenu"/>
 		  <div class="reg-row">
 				<div>
 					<span class="form-col-1">
@@ -118,7 +119,7 @@
 					<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress1" id="streetaddress1" maxlength="50" />
 					<br/>           
 				  <div style="float:left;">
-				   <?php echo form_dropdown('country1',$selcon,'','id="country1" class="seldrop" onchange=getstates(this.value,"state1","#selstatediv1");');?>
+				   <?php echo form_dropdown('country1',$selcon,'','id="country1" class="seldrop" onchange=getstates(this.value,"state1","#selstatediv1","");');?>
 				   <input type="hidden" name="countryname1" id="countryname1"/>
 				   </div>
 				   <?php 
@@ -246,7 +247,7 @@
 						<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50" />
 						<br/>            
 					  <div style="float:left;">
-					   <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
+					   <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv","");');?>
 					   <input type="hidden" name="countryname" id="countryname"/>
 					   </div>
 					   <?php 
@@ -592,7 +593,7 @@ $(document).ready(function(){
  if($('#copypaymentinformation').is(':checked'))
  { 
 	var country = $('#country1').val();
-	getstates(country,"state","#selstatediv");
+	getstates(country,"state","#selstatediv",$('#statedropmenu').val());
 	$('#streetaddress').val($('#streetaddress1').val());
 	$('#country').val(country);
 	$('#state').val($('#state1').val());

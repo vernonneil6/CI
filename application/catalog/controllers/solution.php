@@ -392,7 +392,11 @@ class Solution extends CI_Controller {
 				
 		     }
 			  
-		
+				
+				
+				
+					
+
 			//$company=$this->complaints->get_companyelite_by_emailid($email);
 			$names=$this->complaints->find_company_for_check($name);	
                        
@@ -726,16 +730,16 @@ public function eliteSubscribe($formpost,$companyid) {
 	   $transactionkey="38UzuaL2c6y5BQ88";
 	   $host = "apitest.authorize.net"; */
 	
-	/*sandbox test mode
+	/*sandbox test mode*/
 	
 	  $loginname="83EK7S4R8qy3";
 	   $transactionkey="5Rx8Mn8PAS5s77gr";
-	   $host = "apitest.authorize.net";*/
+	   $host = "apitest.authorize.net";
 	
-	/*live*/
+	/*live
 	    $loginname="5h7G7Sbr";
 		$transactionkey="94KU7Sznk72Kj3HK";
-		$host = "api.authorize.net";
+		$host = "api.authorize.net";*/
 	
 	
 	$path = "/xml/v1/request.api";
@@ -2394,6 +2398,7 @@ public function upgrades($companyid)
 			{
 				$selcatid = (($this->input->post('cid')));
 				$state = (($this->input->post('state')));
+				$stateval = (($this->input->post('stateval')));
 				$state = ($state!='') ? $state : 'state' ;
 				if( $selcatid!='' || $selcatid!='0' )
 				{
@@ -2402,14 +2407,35 @@ public function upgrades($companyid)
 					//print_r($subcats);
 					if( count($subcats) > 0 )
 						{
-							$this->data['selstates'][''] = '--Select--';
+						
+								if($stateval=='')
+								{
+									$this->data['selstates'][''] = '--Select--';
+								
+									for($c=0;$c<count($subcats);$c++)
+									{
+									
+										$this->data['selstates'][($subcats[$c]['name'])] = ucfirst($subcats[$c]['name']);
+									
+									}
+								}
+								else
+								{
+									for($c=0;$c<count($subcats);$c++)
+									{
+										if($stateval==$subcats[$c]['name'])
+										{
+											echo "<script>dropcheck('".$subcats[$c]['name']."')</script>";
+										}
+										
+										$this->data['selstates'][''] = '--Select--';
+										$this->data['selstates'][($subcats[$c]['name'])] = ucfirst($subcats[$c]['name']);
+									
+									}
+								}
+								
 							
-							for($c=0;$c<count($subcats);$c++)
-							{
 							
-								$this->data['selstates'][($subcats[$c]['name'])] = ucfirst($subcats[$c]['name']);
-							
-							}
 						}
 						else
 						{
@@ -2419,7 +2445,7 @@ public function upgrades($companyid)
 						//echo "<pre>";
 						//print_r($this->data['selstates']);
 						//die();
-						$js="id='".$state."' class='seldrop'";
+						$js="onchange='dropdownss()' id='".$state."' class='seldrop'";
 						$data='';
 						$data="";
 						echo form_dropdown($state,$this->data['selstates'],'',$js);
