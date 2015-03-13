@@ -123,7 +123,7 @@
               <div class="con">
                 <?php if($this->uri->segment(2) == 'edit') { 
 					if(empty($company[0]['companystreet'])) { $contactaddress=$company[0]['streetaddress']; } else { $contactaddress=$company[0]['companystreet']; }?>
-                <?php echo form_input( array( 'name'=>'streetaddress','id'=>'streetaddress','class'=>'input','type'=>'text','value'=>$contactaddress ) ); ?>
+                <?php echo form_input( array( 'name'=>'companystreet','id'=>'companystreet','class'=>'input','type'=>'text','value'=>$contactaddress ) ); ?>
                 <?php } ?>
               </div>
             </div>
@@ -405,7 +405,7 @@
               </div>          
               <div class="con">
 				<?php ?>
-				<?php echo form_input( array( 'name'=>'companystreet','id'=>'companystreet','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['streetaddress'])));?>
+				<?php echo form_input( array( 'name'=>'streetaddress','id'=>'streetaddress','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['streetaddress'])));?>
               </div>
             </div>
           </div>   
