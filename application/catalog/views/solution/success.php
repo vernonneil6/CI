@@ -107,7 +107,7 @@ function FormatCreditCard($cc)
 				<tr><td>Category</td><td class = "receipt_data"><?php $cat = $this->complaints->get_categories_byid($company['categoryid']); echo $cat[0]['categoryname']; ?></td></tr>
 				<tr><td>E-Mail</td><td class = "receipt_data"><?php echo $company['email']; ?></td></tr>
 				<tr><td>Address</td><td class = "receipt_data"><?php echo $company['companystreet']; ?></td></tr>
-				<tr><td>Country</td><td class = "receipt_data"><?php $country = $this->complaints->get_country_byidss($company['companycountry']); echo $country['name']; ?></td></tr>
+				<tr><td>Country</td><td class = "receipt_data"><?php $country = $this->complaints->get_country_byidss($company['companycountry']); if($country){echo $country['name']; } else { echo $company['companycountry'];}  ?></td></tr>
 				<tr><td>State</td><td class = "receipt_data"><?php echo $company['companystate']; ?></td></tr>
 				<tr><td>City</td><td class = "receipt_data"><?php echo $company['companycity']; ?></td></tr>
 				<tr><td>Zip Code</td><td class = "receipt_data"><?php echo $company['companyzip']; ?></td></tr>
@@ -144,7 +144,7 @@ function FormatCreditCard($cc)
 				<tr><td>Category</td><td class = "receipt_data"><?php $cat = $this->complaints->get_categories_byid($company['categoryid']); echo $cat[0]['categoryname']; ?></td></tr>
 				<tr><td>E-Mail</td><td class = "receipt_data"><?php echo $company['contactemail']; ?></td></tr>
 				<tr><td>Address</td><td class = "receipt_data"><?php echo $company['streetaddress']; ?></td></tr>
-				<tr><td>Country</td><td class = "receipt_data"><?php $country = $this->complaints->get_country_byidss($company['country']); echo $country['name']; ?></td></tr>
+				<tr><td>Country</td><td class = "receipt_data"><?php $country = $this->complaints->get_country_byidss($company['country']); if($country){echo $country['name']; } else { echo $company['country'];} ?></td></tr>
 				<tr><td>State</td><td class = "receipt_data"><?php echo $company['state']; ?></td></tr>
 				<tr><td>City</td><td class = "receipt_data"><?php echo $company['city']; ?></td></tr>
 				<tr><td>Zip Code</td><td class = "receipt_data"><?php echo $company['zip']; ?></td></tr>
