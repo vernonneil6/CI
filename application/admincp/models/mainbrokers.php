@@ -71,10 +71,10 @@ Class Mainbrokers extends CI_Model
 			->join('youg_company yc','yb.id = yc.brokerid and yc.brokertype = yb.type','left')
 			->where('yc.brokerid',$id)
 			->or_where('yc.mainbrokerid',$id)
-			->group_by('yb.id')
 			->order_by('yb.id',"desc")
 			->get()
 			->result_array();
+			
 		}
    	    if($query1[0]['type'] =='subbroker' and $query1[0]['id']==$id)
    	    {
@@ -128,8 +128,7 @@ Class Mainbrokers extends CI_Model
 					$totalelite = $query[$key]['totalelite'];
 				}
 			}	
-			
-			
+				
 		return $query;	
 		
 		

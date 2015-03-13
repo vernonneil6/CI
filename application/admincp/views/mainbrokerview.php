@@ -133,15 +133,17 @@ if($this->uri->segment(2) == 'brokerview')
 	<td width="20%">Individual Sales</td>
         <td width="20%">Total Sales</td>
       </tr>
+      <?php $i==0;?>
      <?php 	foreach($views as $broker) {  ?>
 	<tr>
 		  <td><?php echo ucfirst($broker['ybname']); ?></td>
 		  <td><?php echo $broker['ybtype']; ?></td>
 		  <td><?php echo ucfirst($broker['yccompany']); ?></td>
-		  <td style="padding-left: 8%;"><?php echo $broker['count']; ?></td>
-                  <td style="padding-left: 8%;"><?php echo $broker['totalelites']; ?></td>						  
+		  <td style="padding-left: 8%;"><?php if($i==0){ echo $broker['count'];$i++;  } ?></td>
+          <td style="padding-left: 8%;"><?php echo $broker['totalelites']; ?></td>						  
 	</tr>
-	<?php } ?> 
+	
+	<?php  } ?> 
    </table>
    </div>
 </div>	
