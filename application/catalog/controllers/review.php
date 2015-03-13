@@ -301,7 +301,7 @@ class Review extends CI_Controller
 										
 											<td>
 												<ul style='font-size : 13px; list-style : none; padding : 0; margin : 0;'>
-													<li style = 'margin : 0;'><img src='".$site_url."images/email.jpg'></li>
+													<li style = 'margin : 0;'><img src='".$site_url."images/reviewemail.jpg'></li>
 												</ul>
 												<ul style='font-size : 13px; list-style : none; margin : 0; background-color : #E7E5D3; width: 198px; padding : 6px 0; border-radius : 0 0 7px 7px; '>
 													<li style = 'font-size : 18px; color : #B32317; margin : 5px 0 10px; padding : 0  0 0 15px;'>Expert Tips</li>								
@@ -351,7 +351,7 @@ class Review extends CI_Controller
 										
 											<td>
 												<ul style='font-size : 13px; list-style : none; padding : 0; margin : 0;'>
-													<li style = 'margin : 0;'><img src='".$site_url."images/email.jpg'></li>
+													<li style = 'margin : 0;'><img src='".$site_url."images/reviewemail.jpg'></li>
 												</ul>
 												<ul style='font-size : 13px; list-style : none; margin : 0; background-color : #E7E5D3; width: 198px; padding : 6px 0; border-radius : 0 0 7px 7px; '>
 													<li style = 'font-size : 18px; color : #B32317; margin : 5px 0 10px; padding : 0  0 0 15px;'>Expert Tips</li>								

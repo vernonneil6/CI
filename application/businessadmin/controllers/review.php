@@ -572,7 +572,7 @@ public function request($reviewid='',$userid='')
 				</td>
 				<td style = 'display : block;'>
 					<ul style = 'list-style : none;'>
-						<li><img src='".$site_url."images/email.jpg'></li>
+						<li><img src='".$site_url."images/reviewemail.jpg'></li>
 					</ul>
 				</td>
 			</tr>
