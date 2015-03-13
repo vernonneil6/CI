@@ -308,7 +308,7 @@ class Solution extends CI_Controller {
 			$streetaddress = $this->input->post('streetaddress');
 			$city = $this->input->post('city');
 			$state = $this->input->post('state');
-			$country = $this->input->post('country');
+			$country = $this->input->post('countryname');
 			$catlist = $this->input->post('categorylist');
 			
 			//company address 
@@ -316,7 +316,7 @@ class Solution extends CI_Controller {
 			$streetaddress1 = $this->input->post('streetaddress1');
 			$city1 = $this->input->post('city1');
 			$state1 = $this->input->post('state1');
-			$country1 = $this->input->post('country1');
+			$country1 = $this->input->post('countryname1');
 			$zip1 = $this->input->post('zip1');
 			
 			//echo '<pre>';print_r($_POST);die('update_check');
@@ -770,7 +770,7 @@ public function eliteSubscribe($formpost,$companyid) {
 	$zip=$_POST["zip"];
 	$cid=$_POST["country"];
 	$c_code=$this->complaints->get_country_by_countryid($cid);
-	$country=$_POST["country"];
+	$country=$_POST["countryname"];
 		
 	
 	"Results <br><br>";
@@ -1191,7 +1191,6 @@ public function cron()
 					//send the xml via curl
 					$response = send_request_via_curl($host,$path,$content);
 					//if the connection and send worked $response holds the return from Authorize.net
-					print_r($response);
 					if ($response)
 					{ 
 						
@@ -1642,7 +1641,7 @@ public function renew_update($id)
 	$city=$_POST["city"];	
 	$state=$_POST["state"];
 	$zip=$_POST["zip"];
-	$country=$_POST["country"]; 
+	$country=$_POST["countryname"]; 
 	$cvv=$this->input->post('cvv');
 	$customeremail=$_POST["cemail"];
 	include('authorize/authnetfunction.php');
@@ -2058,14 +2057,14 @@ public function upgrades($companyid)
     $city=$_POST["city"];	
 	$state=$_POST["state"];
     $zip=$_POST["zip"];
-  	$country=$_POST["country"];
+  	$country=$_POST["countryname"];
 	
 	//business address	
 	$address1=$_POST["streetaddress1"];
     $city1=$_POST["city1"];	
 	$state1=$_POST["state1"];
     $zip1=$_POST["zip1"];
-  	$country1=$_POST["country1"];
+  	$country1=$_POST["countryname1"];
 	
 	
 	"Results <br><br>";
@@ -2117,7 +2116,6 @@ public function upgrades($companyid)
 
 	//send the xml via curl
 	$response = send_request_via_curl($host,$path,$content);
-	print_r($response);
 	//if the connection and send worked $response holds the return from Authorize.net
 	if ($response)
 	{
@@ -2152,9 +2150,7 @@ public function upgrades($companyid)
 		$content;
 		"<br \>";
 		"<br \>";
-		
-		echo $resultCode."<br>";
-		echo $code;
+	
 		if($resultCode=='Ok')
 		{
 			$tx  = $transactionkey;
