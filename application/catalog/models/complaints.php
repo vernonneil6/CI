@@ -2197,10 +2197,8 @@ class Complaints extends CI_Model
 	
 	function companystreetvalid($company, $street)
 	{
-		$query = $this->db->get_where('youg_company', array('company'=>$company, 'streetaddress'=>$street))->row_array();
-		$checkaselite=$query['id'];
-		$eliter=$this->db->get_where('youg_elite',array('company_id'=>$checkaselite, 'status'=>'Enable'));
-		if($eliter->num_rows() > 0)
+		$query = $this->db->get_where('youg_company', array('company'=>$company, 'streetaddress'=>$street));
+		if($query->num_rows() > 0)
 		{
 			return '1';
 		}
@@ -2213,10 +2211,8 @@ class Complaints extends CI_Model
 	
 	function companystreetvalid1($company, $street)
 	{
-		$query = $this->db->get_where('youg_company', array('company'=>$company, 'companystreet'=>$street))->row_array();
-		$checkaselite=$query['id'];
-		$eliter=$this->db->get_where('youg_elite',array('company_id'=>$checkaselite, 'status'=>'Enable'));
-		if($eliter->num_rows() > 0)
+		$query = $this->db->get_where('youg_company', array('company'=>$company, 'companystreet'=>$street));
+		if($query->num_rows() > 0)
 		{
 			return '1';
 		}
