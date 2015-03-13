@@ -1055,7 +1055,7 @@ class Complaints extends CI_Model
 	       $eliteid="";	
                if(count($elitecheck) > 0)
                  { $eliteid=$elitecheck['id']; }
-                 $this->db->where('company_id',$eliteid);
+                 $this->db->where(array('company_id'=>$eliteid,'status'=>'Enable'));
                 $name=$this->db->get();
                               
 		if ($name->num_rows() > 0)
@@ -2197,29 +2197,58 @@ class Complaints extends CI_Model
 	
 	function companystreetvalid($company, $street)
 	{
-		$query = $this->db->get_where('youg_company', array('company'=>$company, 'streetaddress'=>$street));
-		if($query->num_rows() > 0)
+		$query = $this->db->select('id,company,streetaddress')
+		                  ->get_where('youg_company', array('company'=>$company, 'streetaddress'=>$street))
+		                  ->row_array();
+		if(count($query) > 0)
 		{
-			return '1';
+		 $elitecheckerflag=$this->db->select('id,company_id,status')
+			                       ->get_where('youg_elite', array('company_id'=>$query['id'], 'status'=>'Enable'))
+			                       ->row_array(); 
+		
+				if(count($elitecheckerflag) > 0){
+					$elitecheckerflag=1;
+				}	                       
 		}
 		else
 		{
+			$elitecheckerflag=0;
+		}
+		
+			
+		if($elitecheckerflag == 1){
+			return '1';
+		} else {
 			return '0';
-
 		}
 	}
 	
 	function companystreetvalid1($company, $street)
 	{
-		$query = $this->db->get_where('youg_company', array('company'=>$company, 'companystreet'=>$street));
-		if($query->num_rows() > 0)
+		$query = $this->db->select('id,company,companystreet')
+		                  ->get_where('youg_company', array('company'=>$company, 'companystreet'=>$street))
+		                  ->row_array();
+      		                  
+		if(count($query) > 0)
 		{
-			return '1';
+		 $elitecheckerflag=$this->db->select('id,company_id,status')
+			                       ->get_where('youg_elite', array('company_id'=>$query['id'], 'status'=>'Enable'))
+			                       ->row_array(); 
+		
+				if(count($elitecheckerflag) > 0){
+					$elitecheckerflag=1;
+				}	                       
 		}
 		else
 		{
+			$elitecheckerflag=0;
+		}
+		
+			
+		if($elitecheckerflag == 1){
+			return '1';
+		} else {
 			return '0';
-
 		}
 	}
 }
