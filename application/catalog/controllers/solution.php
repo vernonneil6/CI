@@ -817,6 +817,7 @@ public function eliteSubscribe($formpost,$companyid) {
 	$cid=$_POST["country"];
 	$c_code=$this->complaints->get_country_by_countryid($cid);
 	$country=$_POST["countryname"];
+	$companyname=$_POST["name"];
 		
 	
 	"Results <br><br>";
@@ -858,6 +859,7 @@ public function eliteSubscribe($formpost,$companyid) {
 			"<billTo>".
 			"<firstName>". $firstName . "</firstName>".
 			"<lastName>" . $lastName . "</lastName>".
+			"<company>" . $companyname . "</company>".
 			"<address>" . $address . "</address>".
 			"<city>" . $city . "</city>".
 			"<state>" . $state . "</state>".
@@ -1715,7 +1717,7 @@ public function renew_update($id)
 	$trialOccurrences = 0;
 	$trialAmount = 0;
 	$cardNumber =$_POST["ccnumber"];
-			
+	$companyname=$_POST["name"];		
 	if(strlen($_POST["expirationdatem"]==1))
 	{
 		 $expirationDate = $_POST["expirationdatey"].'-0'.$_POST["expirationdatem"];
@@ -1760,12 +1762,16 @@ public function renew_update($id)
 			"<cardCode>". $cvv . "</cardCode>".
 			"</creditCard>".
 			"</payment>".
+			"<order>".
+			"<description>" . $Description. "</description>".
+			"</order>". 
 			"<customer>".
 			"<email>".$customeremail."</email>".
 			"</customer>".
 			"<billTo>".
 			"<firstName>". $firstName . "</firstName>".
 			"<lastName>" . $lastName . "</lastName>".
+			"<company>" . $companyname . "</company>".
 			"<address>" . $address . "</address>".
 			"<city>" . $city . "</city>".
 			"<state>" . $state . "</state>".
@@ -2061,7 +2067,7 @@ public function upgrades($companyid)
 	$cardNumber = $_POST["ccnumber"];
 	$cvv=$this->input->post('cvv');
 	$auth_type=$_POST["auth_type"];
-        $auth_transaction_id=$_POST["transactionid"];
+    $auth_transaction_id=$_POST["transactionid"];
 	
 	if(strlen($_POST["expirationdatem"])==1)
 	{
@@ -2072,7 +2078,8 @@ public function upgrades($companyid)
 		$expirationDate = $_POST["expirationdatey"].'-'.$_POST["expirationdatem"];
 	}
 	
-        
+    $deleteelite=$this->complaints->delete_previous_elite($companyid);    
+    $deletesubscription=$this->complaints->delete_previous_subscription($companyid);  
 	$firstName = $_POST["fname"];
 	$lastName = $_POST["lname"];	
 			
@@ -2111,7 +2118,7 @@ public function upgrades($companyid)
 	$state1=$_POST["state1"];
     $zip1=$_POST["zip1"];
   	$country1=$_POST["countryname1"];
-	
+	$companyname=$_POST["name"];
 	
 	"Results <br><br>";
 
@@ -2144,12 +2151,16 @@ public function upgrades($companyid)
             "<cardCode>". $cvv . "</cardCode>". 
 			"</creditCard>".
 			"</payment>".
+			"<order>".
+			"<description>" . $Description. "</description>".
+			"</order>". 
 			"<customer>".
 			"<email>".$cemail."</email>".
 			"</customer>".
 			"<billTo>".
 			"<firstName>". $firstName . "</firstName>".
 			"<lastName>" . $lastName . "</lastName>".
+			"<company>" . $companyname . "</company>".
 			"<address>" . $address . "</address>".
 			"<city>" . $city . "</city>".
 			"<state>" . $state . "</state>".

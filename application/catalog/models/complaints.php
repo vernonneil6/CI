@@ -2251,5 +2251,33 @@ class Complaints extends CI_Model
 			return '0';
 		}
 	}
+	function delete_previous_elite($companyid)
+	{
+	  
+	  $query=$this->db->delete('youg_elite', array('company_id' => $companyid)); 
+	  
+	  if($query)
+	  {
+		return true;  
+	  }
+	  else
+	  {
+		return false;  
+	  }
+	}
+	function delete_previous_subscription($companyid)
+	{
+	  
+	  $query=$this->db->delete('youg_subscription', array('company_id' => $companyid)); 
+	  
+	  if($query)
+	  {
+		return true;  
+	  }
+	  else
+	  {
+		return false;  
+	  }
+	}
 }
 ?>
