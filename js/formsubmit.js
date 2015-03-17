@@ -426,8 +426,8 @@ var requestData = {
 		zip: $('#zip').val(),
 		ccnumber: $('#ccnumber').val(),
 		cvv: $('#cvv').val(),
-                finalamount:$('#finalamount').val(),
-                discount_code_type:$('#discount-code-type').val(),
+        finalamount:$('#finalamount').val(),
+        discount_code_type:$('#discount-code-type').val(),
 		exp_date: exp_dates		
 	  };
                                                   
@@ -443,17 +443,17 @@ var requestData = {
 
 							if(data.status == "y"){
 								 $('#transactionerror').hide();
-								$('#transactionid').val(data.trans_id);
-                                                                  $('#auth_type').val(data.auth_type);
+								 $('#transactionid').val(data.trans_id);
+                                 $('#auth_type').val(data.auth_type);
 								 $("#frmaddcompany").submit();
                                                                  
 											
 							}else{
-                                                        $('#transactionerror').show();
-							$("#ccnumber").focus();
-		       $('#transactionerror').html("This transaction has been declined.  Please contact the card-issuing bank for further details.");
-                                                        $('#transactionid').val(data.trans_id);
-                                                        $('#auth_type').val(data.auth_type);
+                                 $('#transactionerror').show();
+							     $("#ccnumber").focus();
+		                         $('#transactionerror').html("Transaction declined due to an Address Verification (AVS) Mismatch.");
+								 $('#transactionid').val(data.trans_id);
+								 $('#auth_type').val(data.auth_type);
 							}
 						},
 						error: function(data){
