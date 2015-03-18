@@ -234,7 +234,7 @@ class Page extends CI_Controller {
 			
 				$data = array(	
 				'id' => $request->post('footercategory'),
-				'websiteid' => '1',
+				'websiteid' => $this->session->userdata('siteid'),
 				'title' => $request->post('title'),
 				'heading' => $request->post('heading'),
 				'metakeywords' => $request->post('metakeywords'),

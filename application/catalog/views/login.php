@@ -1,4 +1,21 @@
 <?php echo $header;?>
+<link rel="stylesheet" href = "<?php echo base_url().'css/font-awesome.css';?>">
+<style>
+	@font-face {
+	  font-family: 'FontAwesome';
+	  src: url('<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']; ?>/font/Font-Awesome/fontawesome-webfont.eot');
+	  src: url('<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']; ?>/font/Font-Awesome/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+		   url('<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']; ?>/font/Font-Awesome/fontawesome-webfont.woff') format('woff'),
+		   url('<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']; ?>/font/Font-Awesome/fontawesome-webfont.ttf') format('truetype');
+	  font-weight: normal;
+	  font-style: normal;
+	}
+	.error
+	{
+		margin: 0 0 5px;
+	}
+</style> 
+
  <?php if($this->uri->segment(1) == 'login' || $this->uri->segment(2) == 'forgot' || $this->uri->segment(2) == 'forgotusername'){?>
         
         <script type="text/javascript" language="javascript">
@@ -6,6 +23,12 @@
                     return stringToTrim.replace(/^\s+|\s+$/g,"");
                 }
                 $(document).ready(function() {
+					
+				$('#emailshow').click(function(e){
+					e.preventDefault();
+					$('.emailpage').slideToggle("slow");
+				
+				});
                             
                 <?php if( $this->uri->segment(1) == 'login' && $this->uri->segment(2) == '') { ?>
 			
@@ -15,7 +38,7 @@
                         if( trim($("#email").val()) == "" )
                         {
 							$("#emailerror").hide();
-                            $("#emailrqerror").show();
+                            $("#emailrqerror").css('display','table');
                             $("#email").val('').focus();
                             return false;
                         }
@@ -24,7 +47,7 @@
 							$("#emailrqerror").hide();
                             if( !filter.test(trim($("#email").val())) )
                             {
-                                $("#emailerror").show();
+                                $("#emailerror").css('display','table');
                                 $("#email").val('').focus();
                                 return false;
                             }
@@ -36,7 +59,7 @@
                         
                         if( trim($("#password").val()) == "" )
                         {
-                            $("#passerror").show();
+                            $("#passerror").css('display','table');
                             $("#password").val('').focus();
                             return false;
                         }
@@ -55,7 +78,7 @@
                         if( trim($("#email").val()) == "" )
                         {
 							$("#emailerror").hide();
-                            $("#emailrqerror").show();
+                            $("#emailrqerror").css('display','table');
                             $("#email").val('').focus();
                             return false;
                         }
@@ -64,7 +87,7 @@
 							$("#emailrqerror").hide();
                             if( !filter.test(trim($("#email").val())) )
                             {
-                                $("#emailerror").show();
+                                $("#emailerror").css('display','table');
                                 $("#email").val('').focus();
                                 return false;
                             }
@@ -82,64 +105,54 @@
                 });
             </script>
         <?php } ?>
-<section class="container">
-  <section class="main_contentarea">
-    <div class="innr_wrap">
-      <div class="login_head"><a><img src="images/LoginPage_Header.png" alt="Login" title="<?php echo $site_name;?> Login"></a></div>
-     <?php if( (!$this->uri->segment(2) && $this->uri->segment(2) == '')  || ($this->uri->segment(2) && $this->uri->segment(2) == 'index' ) ) { ?>
-     
-      
-      <form class="form_wrap" id="frmlogin" method="post" action="login">
-        
-        <div class="login_lft">
-          <div class="row">
-            <h2 class="user_lbl">Email</h2>
-            <input type="text" class="txt_box" placeholder="ENTER YOUR EMAIL" name="email" id="email" required maxlength="250">
-            <?php /*?><span>FORGOT YOUR USERNAME? <a href="#" title="Click Here">CLICK HERE</a></span><?php */?> </div>
-          <div class="row">
-            <h2 class="user_lbl">Password</h2>
-            <input type="password" class="txt_box" placeholder="ENTER YOUR PASSWORD" name="password" id="password" required maxlength="50">
-            <span>FORGOT YOUR PASSWORD? <a href="<?php echo site_url('login/forgot');?>" title="Click Here">CLICK HERE</a></span>
-            <span>FORGOT YOUR USERNAME? <a href="<?php echo site_url('login/forgotusername');?>" title="Click Here">CLICK HERE</a></span>
-             </div>
-          <div class="row">
-			<!--  
-            <button type="submit" class="lgn_btn" title="Login" id="btnsubmit" name="btnsubmit" style="font-size:24px !important;">Login</button>            
-            <button onclick="FBLogin();" title="Signin in with facebook" style="cursor:pointer;font-size:24px !important;" class="lgn_btn">LOGIN WITH FACEBOOK</button>
-            -->
-            <input type="button" class="lgn_btn" title="Login" id="btnsubmit" name="btnsubmit" style="font-size:24px !important;" value="Login" />
-            <input type="button" onclick="FBLogin();" value="LOGIN WITH FACEBOOK" title="Signin in with facebook" style="cursor:pointer;font-size:24px !important;" class="lgn_btn"/>
-          </div> 
-        </div>
-        <div class="lgn_rgt">
-          <div class="new_user">
-            <h1>NEW USER?</h1>
-            <a href="<?php echo site_url('go/register');?>" title="Click Here to Signup">CLICK HERE TO SIGN-UP</a></div>
-        </div>
-        <div class="lgn_btnlogo"> <a><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
-      </form>
-    <?php } 
-    else if($this->uri->segment(2) && $this->uri->segment(2) == 'forgot' ||  $this->uri->segment(2)=='forgotusername'){?>
-    <form class="form_wrap" id="frmforgot" method="post" action="login/update">
-        <div class="login_lft">
-          <div class="row">
-            <h2 class="user_lbl">Email</h2>
-            <input type="text" class="txt_box" placeholder="ENTER YOUR EMAIL" name="email" id="email" required maxlength="250">
-            <?php /*?><span>FORGOT YOUR USERNAME? <a href="#" title="Click Here">CLICK HERE</a></span><?php */?> </div>
-          
-          <div class="row">
-            <input type="hidden" name="forgottype" value="<?php echo $type;?>"/>
-            <button type="submit" class="lgn_btn" title="Submit" id="btnforgot" name="btnforgot">Submit</button>
-          </div>
-        </div>
-        <div class="lgn_rgt">
-          <div class="new_user">
-            <h1></h1>
-            <a href="<?php echo site_url('login');?>" title="Back to Login">BACK TO LOGIN</a></div>
-        </div>
-       <div class="lgn_btnlogo"> <a><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
-      </form>
-	<?php }?>
+
+<?php if( (!$this->uri->segment(2) && $this->uri->segment(2) == '')  || ($this->uri->segment(2) && $this->uri->segment(2) == 'index' ) ) { ?>
+<div class = "account">
+	<h3>Login to YouGotRated</h3>
+	<div class = "account_option">	
+		<div class="option facebookcolor" onclick="FBLogin();"><i class="fa fa-facebook facebookboder"></i><span>Login with Facebook</span></div>
+		<a href="<?php echo site_url('go/register');?>" id="emailshow" class="option emailcolor"><i class="fa fa-envelope-o emailboder"></i><span>Login with Email</span></a>
+	</div>
+	
+	<div class = "account_option">     
+		<div class="account_login">
+			<form class="emailpage" id="frmlogin" method="post" action="login" style="display:none;">     
+				<div class="account_container">
+					
+					<input type="text" class="textboxs" placeholder="ENTER YOUR EMAIL" name="email" id="email" required maxlength="250">
+					<span class="error" id="emailrqerror">E-mail is required</span>
+					<span class="error" id="emailerror">E-mail must be in correct format</span>
+					
+					<input type="password" class="textboxs" placeholder="ENTER YOUR PASSWORD" name="password" id="password" required maxlength="50">
+					<span class="error" id="passerror">Password is required</span>
+					
+					<a href="<?php echo site_url('login/forgot');?>" class = "login_link" id="forgotpass" title="Click Here">Forgot your password?</a>
+					<input type="button" class="login_buttons" title="Login" id="btnsubmit" name="btnsubmit" value="Log in" /> 
+							
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<?php } else if($this->uri->segment(2) && $this->uri->segment(2) == 'forgot' ||  $this->uri->segment(2)=='forgotusername'){?>
+<div class = "account">
+	<h3>Forgot Password</h3>
+
+	<div class="account_forgotpassword">
+	 <form class="form_wrap" id="frmforgot" method="post" action="login/update">
+		<div class="account_container">
+			<input type="text" class="textboxs" placeholder="ENTER YOUR EMAIL" name="email" id="email" required maxlength="250">
+			<span class="error" id="emailrqerror">E-mail is required</span>
+			<span class="error" id="emailerror">E-mail must be in correct format</span>
+			<input type="hidden" name="forgottype" value="<?php echo $type;?>"/>
+			<button type="submit" class="login_buttons" title="Submit" id="btnforgot" name="btnforgot">Send password</button>       
+			<a href="<?php echo site_url('login');?>" class = "login_link account_text_center"  title="Back to Login">Go to login</a>
+	   </div>
+	  </form>
+	</div>
+</div>
+<?php }?>
+	<div class="lgn_btnlogo"> <a><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
     </div>
   </section>
 </section>

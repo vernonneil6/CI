@@ -245,12 +245,24 @@ else { ?>
               </div>
               <div class="con" style="width: 77% !important; float:left">
                 <?php 
-                $option = array(
-                '1' => 'YOU GOT RATED GUIDE',
-                '2' => 'COMPLAINT REPORTS',
-                '3' => 'MERCHANT INFORMATION',
-                '4' => 'COPYRIGHTS',
-                );
+                if($this->session->userdata('siteid')==1)
+                {
+					$option = array(
+					'1' => 'YOU GOT RATED GUIDE',
+					'2' => 'COMPLAINT REPORTS',
+					'3' => 'MERCHANT INFORMATION',
+					'4' => 'COPYRIGHTS',
+					);
+				}
+				else
+				{
+					$option = array(
+					'1' => 'Column1',
+					'2' => 'Column2',
+					'3' => 'Column3',
+					'4' => 'Column4',
+					);
+				}
                 
                 $class = 'class = "input"';
 				echo form_dropdown( 'footercategory', $option, $page[0]['id'], $class ) ;
@@ -382,12 +394,24 @@ else { ?>
               </div>
               <div class="con" style="width: 77% !important; float:left">
                 <?php 
-                $option = array(
-                '1' => 'YOU GOT RATED GUIDE',
-                '2' => 'COMPLAINT REPORTS',
-                '3' => 'MERCHANT INFORMATION',
-                '4' => 'COPYRIGHTS',
-                );
+                if($this->session->userdata('siteid')==1)
+                {
+					$option = array(
+					'1' => 'YOU GOT RATED GUIDE',
+					'2' => 'COMPLAINT REPORTS',
+					'3' => 'MERCHANT INFORMATION',
+					'4' => 'COPYRIGHTS',
+					);
+				}
+				else
+				{
+					$option = array(
+					'1' => 'Column1',
+					'2' => 'Column2',
+					'3' => 'Column3',
+					'4' => 'Column4',
+					);
+				}
                 
                 $class = 'class = "input"';
 				echo form_dropdown( 'footercategory', $option, '1', $class ) ;
@@ -522,12 +546,24 @@ else { ?>
       <tr>
         <td>
 			<?php 
-			$option = array(
-                '1' => 'YOUGOTRATED GUIDE',
-                '2' => 'COMPLAINT REPORTS',
-                '3' => 'MERCHANT INFORMATION',
-                '4' => 'COPYRIGHTS'
-                );
+			if($this->session->userdata('siteid')==1)
+			{
+				$option = array(
+				'1' => 'YOU GOT RATED GUIDE',
+				'2' => 'COMPLAINT REPORTS',
+				'3' => 'MERCHANT INFORMATION',
+				'4' => 'COPYRIGHTS',
+				);
+			}
+			else
+			{
+				$option = array(
+				'1' => 'Column1',
+				'2' => 'Column2',
+				'3' => 'Column3',
+				'4' => 'Column4',
+				);
+			}
               foreach ($option as $key => $value) 
               {
 					if($pages[$i]['id'] == $key)

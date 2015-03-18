@@ -6,7 +6,7 @@ Class Common extends CI_Model
  	{
 		$siteid = $this->session->userdata('siteid');
 		
-		$query = $this->db->get_where('youg_setting', array('id' => $id,'websiteid' => $siteid));
+		$query = $this->db->get_where('youg_setting', array('id' => $id,'websiteid' => '1'));
 		if ($query->num_rows() > 0)
 		{
 			$result = $query->result_array();
@@ -1006,7 +1006,7 @@ Class Common extends CI_Model
 	
 	function get_footerlink_byid($id)
 	{
-		$query = $this->db->order_by("position", "asc")->get_where('youg_pages', array('id' => $id, 'status' => 'Enable'));
+		$query = $this->db->order_by("position", "asc")->get_where('youg_pages', array('id' => $id, 'status' => 'Enable','websiteid'=>'1'));
 		
 		if ($query->num_rows() > 0)
 		{			

@@ -74,8 +74,8 @@
  	</div>
         <?php } else{?>
         <div class="head_right_lnk">
-		<div class="headersignup"><a href="<?php echo site_url('go/register');?>" title="Signup">Signup</a></div>
-		<div class="headerlogin"><a href="<?php echo site_url('login');?>" title="Login">Login</a></div>
+		<div class="headersignup"><a href="<?php echo site_url('go/register');?>" title="Signup">Sign&nbsp;&nbsp;up</a></div>
+		<div class="headerlogin"><a href="<?php echo site_url('login');?>" title="Login">Log&nbsp;&nbsp;in</a></div>
 		<div class="headerbusiness"><a href="http://business.yougotrated.com" title="Become A Verified Business" style="cursor:pointer;" >Become A Verified Business</a></div>
 		<!--<div class="headerfb"><a onclick="FBLogin();" title="Login with facebook" style="cursor:pointer;" >Login WITH FACEBOOK</a></div>-->
 	</div>
@@ -109,7 +109,7 @@
         <li><a href="http://business.yougotrated.com" title="Business Solutions">Business Solutions</a></li>
       </ul>
     </div>
-   <?php if($this->uri->segment(1)!='businessdirectory' && $this->uri->segment(1)!='solution') { ?> 
+   <?php if($this->uri->segment(1)!='businessdirectory' && $this->uri->segment(1)!='solution' && $this->uri->segment(1)!='login' && $this->uri->segment(2)!='register') { ?> 
 	<div class='headersearch'>
 	  <?php echo form_open('businessdirectory/search',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
         <?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>

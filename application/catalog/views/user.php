@@ -698,7 +698,7 @@
               </td>
             </tr>
             <tr>
-              <td><div class="login_box_title" style="font-size:16px;"><?php echo $user[0]['username']; ?></div>
+              <td><div class="login_box_title" style="font-size:16px;"><?php echo ucfirst($user[0]['username']); ?></div>
                 <div class="user_view"><a href="<?php echo site_url('user/edit'); ?>" title="edit personal details">Edit Personal Details</a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/changepassword'); ?>" title="change password">Change Password</a></div>
                 <?php $totalcomplaints=$this->users->get_all_complaintsby_userid($user[0]['id']);?>
@@ -774,7 +774,7 @@
               </td>
             </tr>
             <tr>
-              <td><div class="login_box_title" style="font-size:16px;"><?php echo $user[0]['username']; ?></div>
+              <td><div class="login_box_title" style="font-size:16px;"><?php echo ucfirst($user[0]['username']); ?></div>
                 <div class="user_view"><a href="<?php echo site_url('user/edit'); ?>" title="edit personal details">Edit Personal Details</a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/changepassword'); ?>" title="change password">Change Password</a></div>
                 <?php $totalcomplaints=$this->users->get_all_complaintsby_userid($user[0]['id']);?>
@@ -843,7 +843,7 @@
               </td>
             </tr>
             <tr>
-              <td><div class="login_box_title" ><?php echo $user[0]['username']; ?></div>
+              <td><div class="login_box_title" ><?php echo ucfirst($user[0]['username']); ?></div>
                 <div class="user_view"><a href="<?php echo site_url('user/edit'); ?>" title="edit personal details">Edit Personal Details</a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/changepassword'); ?>" title="change password">Change Password</a></div>
                 <?php $totalcomplaints=$this->users->get_all_complaintsby_userid($user[0]['id']);?>
@@ -926,7 +926,7 @@
               </td>
             </tr>
             <tr>
-              <td><div class="login_box_title" ><?php echo $user[0]['username']; ?></div>
+              <td><div class="login_box_title" ><?php echo ucfirst($user[0]['username']); ?></div>
                 <div class="user_view"><a href="<?php echo site_url('user/edit'); ?>" title="edit personal details">Edit Personal Details</a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/changepassword'); ?>" title="change password">Change Password</a></div>
                 <?php $totalcomplaints=$this->users->get_all_complaintsby_userid($user[0]['id']);?>
@@ -1141,7 +1141,7 @@
               </td>
             </tr>
             <tr>
-              <td><div class="login_box_title" style="font-size:16px;"><?php echo $user[0]['username']; ?></div>
+              <td><div class="login_box_title" style="font-size:16px;"><?php echo ucfirst($user[0]['username']); ?></div>
                 <div class="user_view"><a href="<?php echo site_url('user/edit'); ?>" title="edit personal details">Edit Personal Details</a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/changepassword'); ?>" title="change password">Change Password</a></div>
                 <?php $totalcomplaints=$this->users->get_all_complaintsby_userid($user[0]['id']);?>

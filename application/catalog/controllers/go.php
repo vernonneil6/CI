@@ -98,6 +98,76 @@ class Go extends CI_Controller {
 			redirect('user','refresh');
 		}
 	}
+	
+	public function account()
+	{
+		$this->load->view('user/account',$this->data);
+	}
+	
+	public function update()
+	{
+		$uniqueid = uniqid();
+		$firstname = addslashes($this->input->post('firstname'));
+		$lastname = addslashes($this->input->post('lastname'));
+		$email = addslashes($this->input->post('email'));
+		$password = addslashes($this->input->post('password'));
+		$username = addslashes($this->input->post('username'));
+		
+		if($this->users->insert_register($firstname,$lastname,$email,$password,$username,$uniqueid))
+		{
+			$this->load->library('email');
+			
+			$site_name = $this->common->get_setting_value(1);
+			$site_url = $this->common->get_setting_value(2);
+			$site_email = $this->common->get_setting_value(5);			
+			
+			$mail = $this->common->get_email_byid(1);
+			$subject = $mail[0]['subject'];
+			$mailformat = $mail[0]['mailformat'];		
+			$newuniqueid = $uniqueid;
+			$to = $email;
+						
+			$this->email->from($site_email,$site_name);
+			$this->email->to($to);
+			$this->email->subject($subject);
+		
+			$activationlink = "<a href='".site_url('user/enable/'.$newuniqueid)."' title='Activate your Account' target='_blank'>".site_url('user/enable/'.$newuniqueid)."</a>";	
+			$mail_body = str_replace("%firstname%",ucfirst($firstname),str_replace("%lastname%",ucfirst($lastname),str_replace("%email%",$email,str_replace("%password%",$password,str_replace("%link%",$activationlink,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat)))))))));
+			
+			$this->email->message($mail_body);
+			
+			$this->email->send();
+			
+					
+			// Admin Mail
+			$to = $site_email;
+			$mail = $this->common->get_email_byid(3);
+	
+			$subject = $mail[0]['subject'];
+			$mailformat = $mail[0]['mailformat'];
+			
+			$this->load->library('email');
+			$this->email->from($site_email,$site_name);
+			$this->email->to($to);
+			$this->email->subject($subject);
+			
+			$mail_body = str_replace("%firstname%",$firstname,str_replace("%lastname%",$lastname,str_replace("%email%",$email,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_email,stripslashes($mailformat)))))));
+			
+			$this->email->message($mail_body);
+			$this->email->send();
+			
+					
+			$this->session->set_flashdata('success', 'Registration Successful. Activation link has been sent to your email. Activate your account to log in.');
+			redirect('login', 'refresh');
+
+		}
+		else
+		{
+
+			$this->session->set_flashdata('error', 'There is error in inserting user. Try later!');
+			redirect('login', 'refresh');
+		}
+	}
 }
 
 	

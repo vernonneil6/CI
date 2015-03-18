@@ -37,6 +37,33 @@
 		
 	}
 	
+	function insert_register($firstname,$lastname,$email,$password,$username, $uniqueid)
+	{
+		$date = date('Y-m-d H:i:s');
+		$varipaddress = $_SERVER['REMOTE_ADDR'];
+		$data = array(
+							'firstname' 	=> $firstname,
+							'lastname' 		=> $lastname,
+							'email' 		=> $email,
+							'password' 		=> $password,
+							'status' 		=> 'Disable',
+							'registerip' 	=> $varipaddress,
+							'registerdate'	=> $date,
+							'username'		=> $username,
+							'uniqueid'		=> $uniqueid
+						);
+
+		if( $this->db->insert('user', $data) )
+		{
+			return $this->db->insert_id();
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	
 	//Inserting Record
 	function insert_noimage($uniqueid,$firstname,$lastname,$email,$password,$gender,$street,$city,$state,$zipcode,$phoneno,$terms,$username)
 	{
