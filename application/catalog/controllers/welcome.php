@@ -110,7 +110,7 @@ sure they respond back. Submit your review and rate your experience
 
 
 
-public function updates()
+public function updates($id)
 	{
 
 		if(empty($id) && $this->input->post('company_id')){ 
