@@ -1,5 +1,6 @@
 uploads/*
 logs/*
+robots.txt
 application/cache/*
 application/logs/*
 application/catalog/config/database.php
