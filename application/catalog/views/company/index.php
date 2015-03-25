@@ -1,4 +1,4 @@
-<?php echo $header;?>
+c<?php echo $header;?>
 <?php $avgstar = $this->common->get_avg_ratings_bycmid($company[0]['id']);
 			$itemproaverage = $avgstar;
 			$avgstar = round($avgstar);
@@ -161,7 +161,7 @@
         </div>
         
         <div itemscope itemtype = "http://schema.org/AggregateRating" itemprop = "aggregateRating">
-			  <meta itemprop = "reviewCount" content = "<?php echo count($reviews); ?>" >
+			  <meta itemprop = "reviewCount" content = "<?php echo $to_reviews; ?>" >
 			  <meta itemprop = "ratingValue" content = "<?php echo $itemproaverage; ?>" >
 			  <meta itemprop = "bestRating" content = "<?php echo  '5'; ?>" >
 			  <meta itemprop = "worstRating" content = "<?php echo '0'; ?>" >	
