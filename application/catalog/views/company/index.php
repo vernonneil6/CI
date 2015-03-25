@@ -1,4 +1,4 @@
-c<?php echo $header;?>
+<?php echo $header;?>
 <?php $avgstar = $this->common->get_avg_ratings_bycmid($company[0]['id']);
 			$itemproaverage = $avgstar;
 			$avgstar = round($avgstar);
