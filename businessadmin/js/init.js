@@ -13,7 +13,6 @@ $(document).ready(function(){
 	   if($(this).attr('href') == address)
 	   {
 		   $(this).parent().parent().parent().addClass('active');
-		   $(this).parent().siblings().find(".submenu1").addClass('activated');		  
 		   $(this).parent().addClass('active');
 	   }
 	});
