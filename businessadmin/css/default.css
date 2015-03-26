@@ -176,6 +176,7 @@ ul.mainmenu li ul.submenu li    { margin: 0; padding: 5px 10px; border: none; ba
 ul.mainmenu li ul.submenu li a  { padding: 0; color: #404040; font-weight: normal; font-size: 1.083em; }
 ul.mainmenu li ul.submenu li.active a { color: #404040; font-weight: bold; }
 ul.mainmenu li ul.submenu li a:hover  { color: #404040; }
+.activated{display:none!important;}
 
 /*  Content
  *  -------

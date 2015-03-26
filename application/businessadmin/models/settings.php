@@ -420,6 +420,31 @@ Class Settings extends CI_Model
 		
 		
 	}
+	function list_all_faq()
+	{
+	  $siteid = $this->session->userdata('siteid');
+		if($siteid==''){
+		   $siteid=1;
+		}	
+	  $query = $this->db->get_where('youg_faq',array('status'=>'Enable','websiteid'=>$siteid));
+	  return $query->result_array();
+		
+		
+	}
+	//Getting value for editing
+	function get_faq_byid($id)
+ 	{
+		$query = $this->db->get_where('faq', array('id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 		function get_companyelite_byid($id)
 	{
 		$query = $this->db->select('payment_amount,discountcodetype,discountcode')
