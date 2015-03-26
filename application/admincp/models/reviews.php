@@ -52,6 +52,19 @@ class Reviews extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	function select_review_date($companyid, $userid, $reviewid)
+	{
+		$query = $this->db->get_where('youg_review_date',array('company_id'=>$companyid,'user_id'=>$userid, 'review_id'=>$reviewid));
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 	//Getting review value for editing
 	function get_comment_byid($id)
@@ -321,6 +334,20 @@ class Reviews extends CI_Model
 			return false;
 		}
 	}
+	}
+	
+	function removed_review()
+	{
+		$query = $this->db->get_where('reviews', array('status' => 'Disable'));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
 	}
 }
 

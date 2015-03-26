@@ -144,7 +144,8 @@ class Review extends CI_Controller {
 			$this->load->view('review',$this->data);
 	  	}
 	}
-
+	
+	
 	public function view($id='')
 	{
 		if($this->input->is_ajax_request())
@@ -487,6 +488,42 @@ class Review extends CI_Controller {
 			redirect('adminlogin','refresh');
 		}
     }
+    
+    public function removed()
+	{
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+		$this->data['reviewsremoved'] = $this->reviews->removed_review();
+		$this->load->view('review',$this->data);
+		}
+	}
+	
+	public function removeview($id,$companyid,$userid)
+	{
+		if( $this->input->is_ajax_request() )
+		{
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+					$this->data['reviewremove'] = $this->reviews->get_review_byid($id);
+					$this->data['review_date'] = $this->reviews->select_review_date($companyid, $userid, $id);
+					
+					if( count($this->data['reviewremove'])>0 )
+					{		
+						$this->load->view('review',$this->data);
+					}
+					else
+					{
+						$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
+						redirect('review', 'refresh');
+					}
+			
+	  		}
+			}
+		else
+		{
+			redirect('review','refresh');
+		}
+	}
     
 }
 

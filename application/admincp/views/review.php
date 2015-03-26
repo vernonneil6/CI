@@ -48,6 +48,128 @@
 <!-- /box -->
 
 <?php }
+else if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'removed' ) ) { ?>
+	
+
+<?php echo $heading; ?>	
+<?php echo link_tag('colorbox/colorbox.css'); ?> 
+<script language="javascript" type="text/javascript" src="<?php echo base_url();?>colorbox/jquery.colorbox.js"></script> 
+<script language="javascript" type="text/javascript">
+  $(document).ready(function(){
+		$('.colorbox').colorbox({'width':'55%','height':'80%'});
+  });
+</script> 
+
+<div id="content"> 
+  
+  <!-- breadcrumbs -->
+  <div class="breadcrumbs">
+    <ul>
+      <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
+      <li><a href="<?php echo site_url('review');?>" title="Business Reviews">Business Reviews</a></li>
+      <li><a href="<?php echo site_url('review/removed');?>" title="Removed Reviews">Removed Reviews</a></li>
+    </ul>
+  </div>
+  
+  
+<div class="box">
+    <div class="headlines">
+      <h2><span>Removed Reviews</span></h2>
+    </div>
+    <?php if(count($reviewsremoved) > 0 ) { ?>
+    <table class="tab tab-drag complaint">
+      <tr class="top nodrop nodrag">
+        <th width="40%">Review</th>
+	    <th>Review by</th>
+        <th>Review to</th>
+        <th>Review Date</th>
+        <th>Action</th>
+      </tr>
+      <?php for($i=0;$i<count($reviewsremoved);$i++) { ?>
+      <?php $company=$this->reviews->get_company_byid($reviewsremoved[$i]['companyid'])?>
+      <?php $user=$this->users->get_user_byid($reviewsremoved[$i]['reviewby'])?>
+      <tr>  
+        
+        <td>
+			<?php echo substr(stripslashes($reviewsremoved[$i]['comment']),0,150).'...'; ?>
+		</td>
+        <td>   
+			<?php if($user){ echo ucfirst($user[0]['username']); } else{ echo ucfirst($reviewsremoved[$i]['reviewby']); } ?>		
+        </td> 
+        <td>
+			<?php echo ucfirst($company[0]['company']);?>
+        </td>
+        <td><?php echo date('m-d-Y', strtotime($reviewsremoved[$i]['reviewdate'])); ?></td>
+        <td><a href="<?php echo site_url('review/removeview/'.$reviewsremoved[$i]['id'].'/'.$reviewsremoved[$i]['companyid'].'/'.$reviewsremoved[$i]['reviewby']); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
+      </tr>
+      <?php } ?>
+    </table>
+    <?php  if($this->pagination->create_links()) { ?>
+		<div class="pagination"><?php echo $this->pagination->create_links(); ?></div>
+    <?php } ?>
+    <?php } 
+	else { ?>
+    <div class="form-message warning">
+      <p>No records found.</p>
+    </div>
+    <?php } ?>
+</div>
+</div>
+<?php include('leftmenu.php'); ?>
+<?php echo $footer; ?>
+  
+<?php
+}
+else if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'removeview' ) ) { 
+?>
+<div class="box">
+    <div class="headlines">
+      <h2><span>Review Detail</span></h2>
+    </div>
+    <?php if(count($reviewremove) > 0 ) { ?>
+    <?php $company=$this->reviews->get_company_byid($reviewremove[0]['companyid'])?>
+    <?php $user=$this->users->get_user_byid($reviewremove[0]['reviewby'])?>
+    
+    <table class="tab tab-drag complaint">
+      <tr><td><b>Review</b></td><td><?php echo $reviewremove[0]['comment']; ?></td></tr>
+      <tr><td><b>Review by</b></td><td><?php if($user){ echo ucfirst($user[0]['username']); } else{ echo ucfirst($reviewremove[0]['reviewby']); } ?></td></tr>
+      <tr><td><b>Review to</b></td><td><?php echo ucfirst($company[0]['company']);?></td></tr>
+      <tr><td><b>Review Date</b></td><td><?php echo date('m-d-Y', strtotime($reviewremove[0]['reviewdate'])); ?></td></tr>
+    </table>
+    
+    <?php if( $review_date != '') { ?>
+    <table class="tab tab-drag complaint">
+      <tr class="top nodrop nodrag">
+        <th>Date</th>
+	    <th>Status</th>
+	   </tr>
+	  <?php foreach($review_date as $date) { ?>
+      <tr>
+        <td><?php echo date('m-d-Y', strtotime($date['date'])); ?></td>
+        <td>
+			<?php if($date['status'] == '0') { echo "Started review removal process";}?>
+			<?php if($date['status'] == '1') { echo "Email sent to customer requesting they agree to remove review";}?>
+			<?php if($date['status'] == '2') { echo "Customer submitted information about how to resolve";}?>
+			<?php if($date['status'] == '3') { echo "Email sent to customer with shipping information of merchant";}?>
+			<?php if($date['status'] == '4') { echo "Customer submitted shipping information of the product";}?>
+			<?php if($date['status'] == '5') { echo "Email sent to customer with proof of refund";}?>
+			<?php if($date['status'] == '6') { echo "Email sent to customer with shipping information";}?>
+			<?php if($date['status'] == '7') { echo "Email sent to customer with new shipping information";}?>
+			<?php if($date['status'] == '8') { echo "Waiting for customer to close the case";}?>
+		</td>
+      </tr>
+      <?php } ?>
+	</table>
+	<?php } ?>
+    <?php } 
+	else { ?>
+    <div class="form-message warning">
+      <p>No records found.</p>
+    </div>
+    <?php } ?>
+</div>
+<?php
+}
 else
 {
  if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'viewcomments')) {
