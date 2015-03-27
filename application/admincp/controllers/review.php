@@ -524,6 +524,15 @@ class Review extends CI_Controller {
 			redirect('review','refresh');
 		}
 	}
+	public function printhistory($reviewid,$companyid)
+	{
+		$this->data['review'] = $this->reviews->review_mail($reviewid, $companyid);
+		$this->data['review_status'] = $this->reviews->reviews_status($reviewid, $companyid);
+		$review_id = $this->reviews->get_review_bysingleid($reviewid);
+		$this->data['review_date'] = $this->reviews->select_review_date($companyid, $review_id['reviewby'], $reviewid);
+		$this->load->view('review', $this->data);
+	}
+	
     
 }
 

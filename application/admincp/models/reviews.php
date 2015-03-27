@@ -56,9 +56,23 @@ class Reviews extends CI_Model
  	function select_review_date($companyid, $userid, $reviewid)
 	{
 		$query = $this->db->get_where('youg_review_date',array('company_id'=>$companyid,'user_id'=>$userid, 'review_id'=>$reviewid));
+		
 		if ($query->num_rows() > 0)
 		{
 			return $query->result_array();
+		}
+		else
+		{
+			return false;
+		}
+	}
+    function select_removal_review_date($companyid, $userid, $reviewid)
+	{
+		$query = $this->db->order_by('id', 'DESC')->get_where('youg_review_date',array('company_id'=>$companyid,'user_id'=>$userid, 'review_id'=>$reviewid));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
 		}
 		else
 		{
@@ -348,6 +362,18 @@ class Reviews extends CI_Model
 		{
 			return array();
 		}
+	}
+	function review_mail($reviewid, $companyid)
+	{
+		return $this->db->get_where('youg_reviewmail',array('company_id' => $companyid, 'review_id' => $reviewid))->row_array();
+	}
+	function reviews_status($reviewid, $companyid)
+	{
+		return $this->db->get_where('youg_reviews',array('companyid' => $companyid, 'id' => $reviewid))->row_array();
+	}
+	function get_review_bysingleid($reviewid)
+ 	{
+		return $this->db->get_where('youg_reviews',array('id' => $reviewid))->row_array();
 	}
 }
 
