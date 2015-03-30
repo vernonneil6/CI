@@ -9,19 +9,25 @@ $(document).ready(function(){
 	
 	var address = window.location.href;
 
-	$('.mainmenu').find('a').each(function() {
+	$('.mainmenu').find('a.link').each(function() {
+		
 	   if($(this).attr('href') == address)
 	   {
-		   $(this).parent().parent().parent().addClass('active');
+		   //alert($(this).attr('href'));
+		   $(this).parent().parent().parent().parent().parent().addClass('active');		   	   
+		   $(this).parent().parent().parent().parent().addClass('activateblock');		   	   
+		   $(this).parent().parent().parent().addClass('active');		   
+		   $(this).parent().parent().addClass('activateblock');
 		   $(this).parent().addClass('active');
+		   $(this).addClass("activatelink");
 	   }
 	});
 	
 	// Sidebar Accordion Menu
 	$(".mainmenu li ul").hide();
-	$(".mainmenu li.active a").parent().find("ul").slideToggle("slow");
+	//$(".mainmenu li.active a").parent().find("ul").slideToggle("slow");
 	
-	$(".mainmenu a").click(function () {
+	/*$(".mainmenu a").click(function () {
 	    $(".mainmenu li").removeClass('active');
 	    $(this).parent().addClass('active');
 			$(this).parent().siblings().find("ul").slideUp("600");
@@ -29,7 +35,7 @@ $(document).ready(function(){
 			return false;
 		}
 	);
-
+	 
 	$(".mainmenu li .submenu a").click(function () {
 	    $(".mainmenu li").removeClass('active');
 	    $(this).parent().parent().parent().addClass('active');
@@ -37,8 +43,30 @@ $(document).ready(function(){
 			window.location.href=(this.href);
 			return false;
 		}
+	);*/
+	
+	$(".topmenu").click(function () {
+			$(".mainmenu li").removeClass('active');
+			$(this).removeClass('activatelink');
+			$(this).parent().addClass('active');		
+			$(this).parent().siblings().find(".submenu").removeClass('activateblock');
+			$(this).parent().siblings().find(".submenu").slideUp("600");
+			$(this).next().slideToggle("600");
+			return false;
+		}
 	);
-
+	
+	$(".childmenu").click(function () {
+			$(".submenu li").removeClass('active');
+			$(this).removeClass('activatelink');
+			$(this).parent().addClass('active');
+			$(this).parent().siblings().find(".child").removeClass('activateblock');
+			$(this).parent().siblings().find(".child").slideUp("600");
+			$(this).next().slideToggle("600");
+			return false;
+		}
+	);
+		
 	$(".mainmenu li a.link").click(function () {
 			window.location.href=(this.href);
 			return false;

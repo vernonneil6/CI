@@ -174,9 +174,10 @@ ul.mainmenu li a:hover  { color:#333; text-decoration:none; }
 ul.mainmenu li ul.submenu       { position: relative; top: 5px; margin: 0; padding: 0; }
 ul.mainmenu li ul.submenu li    { margin: 0; padding: 5px 10px; border: none; background: none !important; }
 ul.mainmenu li ul.submenu li a  { padding: 0; color: #404040; font-weight: normal; font-size: 1.083em; }
-ul.mainmenu li ul.submenu li.active a { color: #404040; font-weight: bold; }
+ul.mainmenu li ul.submenu li.active .childmenu, .activatelink{ color: #404040!important; font-weight: bold!important; }
 ul.mainmenu li ul.submenu li a:hover  { color: #404040; }
 .activated{display:none!important;}
+.activateblock{display:block!important;}
 
 /*  Content
  *  -------
