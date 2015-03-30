@@ -229,7 +229,7 @@ header{width:100%;	height: auto; position:relative;   margin:0 auto; display:inl
 .social_icn li a.pin{width:44px; height:38px; background:url(../images/icons.png) -88px 0 no-repeat; list-style:none; }
 .social_icn li a.pin span{text-align:left;}
 .social_icn li a.tweet{width:44px; height:38px; background:url(../images/icons.png) -132px 0 no-repeat; list-style:none; }
-
+.review_right div{width:550px;}
 .social_icn li a{width:38px; height:38px; display:block; font-family: "myriadpro-regular"; font-size:16px; color:#0080ff; text-transform:uppercase; line-height:normal;}
 .social_icn li a span{ display: block;  position: relative;  text-align: center;  top: 32px;}
 .main_searchbox{width:250px; height:32px; float:right; margin-top:3px;}
@@ -688,6 +688,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover, html ul.tabs li.active a
     font-weight: normal;
     padding: 5px 0;
 	color: black;
+	word-wrap: break-word;
 }
 .wrps
 {
@@ -940,8 +941,8 @@ h1 a{display:inline-block;}
 .revw_blck_cnt{display:inline-block; float:left;margin-bottom: 50px; width: 87%;}
 .revw_blck_cnt h2{font-family:"myriadpro-regular"; font-weight:bold; font-size:36px; margin: 0 0 10px; color:#0080ff; text-transform:uppercase;line-height:30px; height:30px;}
 .revw_blck_cnt h2 .rating{width:inherit; display:inline-block; float:none;}
-.revw_occupt{background:#333333; height:23px; float:left; width:100%; color:#fff; padding: 5px 0;}
-.revw_occupt span{font-family:"myriadpro-regular"; padding-left:10px; font-weight:bold; font-size:18px; color:#fff; text-transform:uppercase; padding-right:3px;}
+.revw_occupt{background:#333333; height:auto; float:left; width:100%; color:#fff; padding: 5px 3px 5px 10px;}
+.revw_occupt span{font-family:"myriadpro-regular"; font-weight:bold; font-size:18px; color:#fff; text-transform:uppercase; }
 .revw_occupt p{font-family:"myriadpro-regular"; text-indent:10px; font-weight:bold; font-size:14px; color:#0080ff; margin:0; display:inline; padding-left:3px;}
 .revw_date{font-size:16px; font-family:"myriadpro-regular"; font-weight:bold; color:#ccc; float:right; padding-right:10px; line-height:23px;}
 .revw_desc{display:inline-block; float:left; height:auto; overflow:hidden; font-family:"myriadpro-regular"; line-height:18px; font-size:16px; color:#333; margin-top:10px; padding-bottom:10px;border-bottom:1px solid #999;width:100%;}
@@ -1014,7 +1015,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .pr_detlwrp{width:100%; float:left; height:auto; display:inline-block; margin-top:83px;}
 .pr_rwrp{width:1050px; float:left; height:auto;}
 .titl_pr_rel{width:600px; margin:0 auto; display:block; border-bottom:1px solid #999; border-top:1px solid #999;}
-.titl_pr_rel h1{width:inherit; border-bottom:0; height:inherit; margin:0; padding:0; font-size:44px; font-family:"myriadpro-regular"; font-weight:bold;}
+.titl_pr_rel h1{word-wrap: break-word; width:inherit; border-bottom:0; height:inherit; margin:0; padding:0; font-size:44px; font-family:"myriadpro-regular"; font-weight:bold;}
 .titl_pr_rel p{ font-family:"myriadpro-regular"; font-size:16px; color:#666; text-align:center; margin:0;}
 .pre_rls_rating{display:table; margin:0 auto;}
 .pre_rls_rating ul{margin:0; padding:0;}

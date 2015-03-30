@@ -387,7 +387,7 @@
 			    if($users['id']==$reviews[$i]['reviewby'])
 			    {
 			?>
-					<a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><span itemprop = "author"><?php echo $users['username']; ?></span></a>
+					<a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><span itemprop = "author"><?php if($users['username']!=''){ echo $users['username']; } else { echo $users['firstname']; } ?></span></a>
 			<?php
 				}
 				else
