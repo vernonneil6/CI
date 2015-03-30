@@ -233,9 +233,9 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
                 <?php if($review[0]['type']=='csv' or $review[0]['type']=='ygr') { 
 					
 				?>
-                <h4><a title="<?php echo stripslashes($username['username']); ?>"> <?php echo stripslashes($username['username']); ?></a></h4>
+                <h4><a title="<?php echo stripslashes($username['username']); ?>"> <?php if($username['username']!='') { echo stripslashes($username['username']); } else  { echo stripslashes($username['firstname']); } ?></a></h4>
                 <?php } else { ?>
-                <h4><a href="<?php echo site_url('complaint/viewuser/'.$review[0]['companyid'].'/'.$review[0]['reviewby']);?>" title="view profile"> <?php echo stripslashes($review[0]['username']); ?></a></h4>
+                <h4><a href="<?php echo site_url('complaint/viewuser/'.$review[0]['companyid'].'/'.$review[0]['reviewby']);?>" title="view profile"> <?php if($review[0]['username']!='') { echo stripslashes($review[0]['username']); } else { echo stripslashes($username['firstname']); } ?></a></h4>
                 <?php } ?>
                 <span><?php echo $review[0]['state'];?></span> </div>
             </div>
