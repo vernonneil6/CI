@@ -2279,5 +2279,15 @@ class Complaints extends CI_Model
 		return false;  
 	  }
 	}
+	function get_aff_broker_details($affid)
+	{
+		$query=$this->db->select('name')
+		                ->from('youg_broker')
+		                ->where('id',$affid)
+		                ->get();
+		
+			return $query->row_array();
+
+	}
 }
 ?>
