@@ -308,7 +308,7 @@ class Solution extends CI_Controller {
 			$streetaddress = $this->input->post('streetaddress');
 			$city = $this->input->post('city');
 			$state = $this->input->post('state');
-			$country = $this->input->post('countryname');
+			$country = $this->input->post('country');
 			$catlist = $this->input->post('categorylist');
 			
 			//company address 
