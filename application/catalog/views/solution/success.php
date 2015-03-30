@@ -37,6 +37,16 @@ function FormatCreditCard($cc)
 	return $newCreditCard;
 }
 ?>
+<!--Jrox affliate integration code-->
+<?php
+if($company['brokerid']!="")
+{
+$aff_brokerid=$company['brokerid'];
+$brokername=$this->complaints->get_aff_broker_details($aff_brokerid);
+$aff_brokername=$brokername['name'];
+$get = file_get_contents('http://www.yougotrated.com/GMI_scripts/jrox_tracking_pixel.php?email='.urlencode($company['contactemail']).'&fname='.urlencode($aff_brokername).'&program_id=1&affiliate='.urlencode($aff_brokername).'&jrox_amount='.trim($subscription['amount']).'&jrox_transid='.trim($subscription['auth_transreponse_key']));
+}
+?>
 <section class="container">
 <div class = "success_receipt">	
 <h2>Your Elite Membership purchase was successful!</h2> 
