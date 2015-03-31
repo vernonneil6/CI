@@ -132,11 +132,11 @@ $(document).ready(function() {
 	  }
 	  else
 	  {
-		  if( isNaN(trim($("#zip").val())))
+		  if( isNaN(trim($("#zip1").val())))
 		  {
 			  $("#ziperror").hide();
 			  $("#zipverror").show();
-			  $("#zip").focus();
+			  $("#zip1").focus();
 			  return false;
 		  }
 		  else
