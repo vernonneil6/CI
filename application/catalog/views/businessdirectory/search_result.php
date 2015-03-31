@@ -87,7 +87,41 @@
             </div>
             <div class="contct_dtl cntdll">
               <ul>
-                <li><span>ADDRESS</span> <a> <?php echo ucfirst($companies[$i]['streetaddress']);?>&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['city']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['state']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['country']);?>,&nbsp;&nbsp;&nbsp;<?php echo ($companies[$i]['zip']);?> </a></li>
+                <li><span>ADDRESS</span>
+                <?php 
+                  $country = $this->complaints->get_country_byidss($companies[$i]['country']); if($country) { $elitecountry=$country['name']; } else { $elitecountry=$companies[$i]['country']; }
+			      $companycountry= $this->complaints->get_country_byidss($companies[$i]['companycountry']); if($companycountry){ $nonelitecountry=$companycountry['name']; } else { $nonelitecountry=$companies[$i]['companycountry']; }
+				?>
+				<?php if(count($elitemem_status) > 0) { ?>
+			         
+						    <?php if($companies[$i]['companystreet']=="" || $companies[$i]['companystreet']!="" ) { ?>
+								
+							    <?php if($companies[$i]['companystreet']==""){ ?>
+										<a>
+										   <?php echo ucfirst($companies[$i]['streetaddress']);?>&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['city']); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['state']); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($elitecountry); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['zip']); ?>
+										</a>
+						        <?php } if($companies[$i]['companystreet']!="") { ?>
+										<a>
+										  <?php echo ucfirst($companies[$i]['companystreet']);?>&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['companycity']); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['companystate']); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($nonelitecountry); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['companyzip']); ?>
+										</a>			   
+						    <?php } } ?>
+				
+		        <?php } else { ?>
+			  
+							<?php if($companies[$i]['companystreet']=="" || $companies[$i]['companystreet']!="" ) { ?>
+					  
+								<?php if($companies[$i]['companystreet']==""){?>
+											<a>
+											   <?php echo ucfirst($companies[$i]['streetaddress']);?>&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['city']); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['state']); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($elitecountry); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['zip']); ?>
+											</a>
+							   
+							    <?php } if($companies[$i]['companystreet']!="") {?>
+											<a>
+											  <?php echo ucfirst($companies[$i]['companystreet']);?>&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['companycity']); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['companystate']); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($nonelitecountry); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['companyzip']); ?>
+											</a>
+						    <?php } } ?>
+			    <?php } ?>
+				</li>
                 <li><span>PHONE</span> <a href="tel:<?php echo ($companies[$i]['phone']);?>" title="call us"><?php echo ($companies[$i]['phone']);?></a></li>
                 <li><span>WEBSITE</span> <a href="<?php echo (strpos($companies[$i]['siteurl'],'http') !== false) ? '' :'//'; echo ($companies[$i]['siteurl']);?>" title="company website"><?php echo ($companies[$i]['siteurl']);?></a></li>
                 <li><span>E-MAIL</span> <a href="mailto:<?php echo ($companies[$i]['email']);?>" title="mail us"><?php echo ($companies[$i]['email']);?></a></li>

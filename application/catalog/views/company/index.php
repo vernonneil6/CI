@@ -110,7 +110,7 @@
 					   <?php }  if($company[0]['companystreet']!="") { ?>
 						
 								<li><a><span itemprop="streetAddress" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companystreet'])); ?></span></a></li>
-							   <li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companycity'].',     '.$company[0]['companyzip'].',		'.$nonelitecountry)); ?></span></a></li>
+							   <li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companycity'].',  '.$company[0]['companystate'].',   '.$company[0]['companyzip'].',		'.$nonelitecountry)); ?></span></a></li>
 				     <?php } } ?>
 				
 		    <?php } else { ?>
@@ -124,7 +124,7 @@
 					   <?php }  if($company[0]['companystreet']!="") {?>
 						
 								<li><a><span itemprop="streetAddress" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companystreet'])); ?></span></a></li>
-							   <li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companycity'].',     '.$company[0]['companyzip'].',		'.$nonelitecountry)); ?></span></a></li>
+							   <li><a><span itemprop="addressLocality" style='font-family: "myriadpro-regular"; margin: 0px; color: #575757;'><?php echo strtoupper(stripslashes($company[0]['companycity'].',  '.$company[0]['companystate'].',   '.$company[0]['companyzip'].',		'.$nonelitecountry)); ?></span></a></li>
 				     <?php } } ?>
 			  <?php } ?>
             <li class = "singletimings">
