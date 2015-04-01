@@ -71,6 +71,20 @@ class Complaints extends CI_Model
 			return array();
 		}
  	}
+	//Getting Page value for editing
+	function get_historycomplaint_byid($id)
+ 	{
+		$query = $this->db->get_where('complaints', array('id' => $id,'status'=>'Disable'));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 	//Updating Record
 	function update($intid,$complainttype,$damagesinamt,$whendate,$location,$detail,$comseokeyword)

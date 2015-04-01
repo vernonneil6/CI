@@ -498,6 +498,14 @@ class Complaint extends CI_Controller {
 			redirect('adminlogin','refresh');
 		}
     }
+    public function printhistory($complaintid)
+    {
+		
+		
+		
+		$this->data['getcomplainthistory']=$this->complaints->get_historycomplaint_byid($complaintid);
+		$this->load->view('complaint',$this->data);
+	}
 }
 
 /* End of file page.php */
