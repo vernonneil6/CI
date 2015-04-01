@@ -448,63 +448,58 @@ else { ?>
       <h2><span>Removed Complaints</span></h2>
     </div>
         <?php if(count($removedcomplaints) > 0 ) { ?>
-    <!-- table -->
-    <table class="tab tab-drag complaint">
-      <tr class="top nodrop nodrag">
-        <th width="40%">Complaint</th>
-	    <th>Complaint By</th>
-        <th>Paid Amount</th>
-        <th>Paid Date</th>
-        <th>Paid By</th>
-        <th>Action</th>
-        <th>Print History</th>
-      </tr>
-      <?php 
-	$site = site_url();			
-	$url = explode("/admincp",$site);
-	$path = $url[0];
-	?>
-      <?php for($i=0;$i<count($removedcomplaints);$i++) { ?>
-      <?php $user = $this->users->get_user_byid($removedcomplaints[$i]['userid']);?>
-      <?php $company = $this->companys->get_company_byid($removedcomplaints[$i]['companyid']);?>
-     <tr>
-        <td><?php echo substr(stripslashes($removedcomplaints[$i]['detail']),0,40)."..."; ?></td>
-        <td><?php if(count($user)>0) { ?>
-          <img width="40" height="40" src="<?php if($user[0]['avatarbig']){ echo $this->settings->get_setting_value('2').substr($this->config->item('user_thumb_upload_path'),3);?><?php echo stripslashes($user[0]['avatarbig']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('user_thumb_upload_path'),3)."/no_image.png"; } ?>" alt="<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']); ?>" title="<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']); ?>"/>
-          <?php } else { ?>
-          <span title="Anonymous">Anonymous</span>
-          <?php } ?></td>
-        <td><?php echo stripslashes($removedcomplaints[$i]['cancel_amount']); ?></td>
-        <td><?php echo date('M d Y H:i:s',strtotime($removedcomplaints[$i]['transaction_date'])); ?></td>
-		<td><?php if(count($company)>0) { ?>
-          <img width="40" height="40" src="<?php if( $company[0]['logo']!='' ){ echo $this->settings->get_setting_value('2').substr($this->config->item('company_thumb_upload_path'),3);?><?php echo stripslashes($company[0]['logo']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('company_thumb_upload_path'),3)."/no_image.png"; } ?>" alt="<?php echo stripslashes($company[0]['company']); ?>" title="<?php echo stripslashes($company[0]['company']); ?>"/>
-          <?php } ?></td>
-       <td><a href="<?php echo site_url('complaint/view/'.$removedcomplaints[$i]['id']); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
-      <td><a href="<?php echo site_url('complaint/printhistory/'.$removedcomplaints[$i]['id']); ?>">Click here</a></td>
-     </tr>
-      <?php } ?>
+		<!-- table -->
+		<table class="tab tab-drag complaint">
+		  <tr class="top nodrop nodrag">
+			<th width="30%">Complaint</th>
+			<th>Complaint By</th>
+			<th>Complaint To</th>
+			<th>Complaint Date</th>
+			<th>Removal Date</th>
+			<th>Action</th>
+			<th>Print History</th>
+		  </tr>
+        <?php 
+		$site = site_url();			
+		$url = explode("/admincp",$site);
+		$path = $url[0];
+		?>
+		  <?php for($i=0;$i<count($removedcomplaints);$i++) { ?>
+		  <?php $user = $this->users->get_user_byid($removedcomplaints[$i]['userid']);?>
+		  <?php $company = $this->companys->get_company_byid($removedcomplaints[$i]['companyid']);?>
+		  <tr>
+			<td><?php echo substr(stripslashes($removedcomplaints[$i]['detail']),0,40)."..."; ?></td>
+			<td><?php if(count($user)>0) { ?>
+			  <span title="<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']); ?>"><?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']); ?></span>
+			  <?php } else { ?>
+			  <span title="Anonymous">Anonymous</span>
+			  <?php } ?></td>
+			<td><?php echo $company[0]['company'];?></td>
+			<td><?php echo date('m-d-Y',strtotime($removedcomplaints[$i]['whendate']));?></td>
+			<td><?php echo date('M d Y H:i:s',strtotime($removedcomplaints[$i]['transaction_date'])); ?></td>
+			<td><a href="<?php echo site_url('complaint/view/'.$removedcomplaints[$i]['id']); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
+		  <td><a href="<?php echo site_url('complaint/printhistory/'.$removedcomplaints[$i]['id']); ?>">Click here</a></td>
+		 </tr>
+		  <?php } ?>
       <!-- /pagination --> 
-      
-      <!-- /pagination -->
     </table>
     <!-- /table --> 
-    <!-- /pagination -->
-    <?php  if($this->pagination->create_links()) { ?>
-    <tr style="background:#ffffff">
-      <td></td>
-      <td></td>
-      <td></td>
-      <td style="padding:10px"><div class="pagination"><?php echo $this->pagination->create_links(); ?></div></td>
-    </tr>
-    <?php } ?>
-    <!-- /pagination -->
-    <?php } 
-	else { ?>
-    <!-- Warning form message -->
-    <div class="form-message warning">
-      <p>No records found.</p>
-    </div>
-    <?php } ?>
+			<!-- /pagination -->
+			<?php  if($this->pagination->create_links()) { ?>
+			<tr style="background:#ffffff">
+			  <td></td>
+			  <td></td>
+			  <td></td>
+			  <td style="padding:10px"><div class="pagination"><?php echo $this->pagination->create_links(); ?></div></td>
+			</tr>
+			<?php } ?>
+			<!-- /pagination -->
+			<?php } else { ?>
+			<!-- Warning form message -->
+			<div class="form-message warning">
+			  <p>No records found.</p>
+			</div>
+			<?php } ?>
 
   </div>
   <!-- /box-content -->
