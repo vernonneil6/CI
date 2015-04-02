@@ -3,7 +3,9 @@
 <base href="<?php echo base_url();?>"/>
 <head>
 <noscript>
-<meta HTTP-EQUIV="REFRESH" content="0; url=<?php echo base_url();?>noscript.php">
+ For full functionality of this site it is necessary to enable JavaScript.
+ Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+ instructions how to enable JavaScript in your web browser</a>.
 </noscript>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title><?php echo $title;?></title>
