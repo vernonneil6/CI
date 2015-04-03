@@ -2289,5 +2289,11 @@ class Complaints extends CI_Model
 			return $query->row_array();
 
 	}
+
+	function jamcodeupdate($companyid,$jamcode)
+	{
+		$query = $this->db->where('company_id',$companyid)->update('youg_subscription',array('jamcode'=>$jamcode));
+		return true;
+	}
 }
 ?>

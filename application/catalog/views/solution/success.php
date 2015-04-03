@@ -39,12 +39,9 @@ function FormatCreditCard($cc)
 ?>
 <!--Jrox affliate integration code-->
 <?php
-if($company['brokerid']!="")
-{
-$aff_brokerid=$company['brokerid'];
-$brokername=$this->complaints->get_aff_broker_details($aff_brokerid);
-$aff_brokername=$brokername['name'];
-$get = file_get_contents('http://www.yougotrated.com/GMI_scripts/jrox_tracking_pixel.php?email='.urlencode($company['contactemail']).'&fname='.urlencode($aff_brokername).'&program_id=1&affiliate='.urlencode($aff_brokername).'&jrox_amount='.trim($subscription['amount']).'&jrox_transid='.trim($subscription['auth_transreponse_key']));
+if(!empty($_COOKIE['jamcom'])){
+	$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($subscription['amount']) . '/trans_id/' . trim($subscription['auth_transreponse_key']) . '/tracking_code/' . $_COOKIE['jamcom']);
+	$update_jamcode = $this->complaints->jamcodeupdate($company['id'],$_COOKIE['jamcom']);
 }
 ?>
 <section class="container">
