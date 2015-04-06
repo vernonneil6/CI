@@ -1251,9 +1251,9 @@ public function cron()
 		
 			if($code=='Ok')
 			{
-				if(!empty($con['jamcom'])){
+				/*if(!empty($con['jamcom'])){
 					$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($con['amount']) . '/trans_id/' . trim($con['auth_transreponse_key']) . '/tracking_code/' . $con['jamcom']);
-				}		
+				}*/		
 			   $site_mail = $this->common->get_setting_value(5);      
 		   //Loading E-mail library
 						$config = Array(
