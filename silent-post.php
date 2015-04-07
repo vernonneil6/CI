@@ -1,5 +1,5 @@
 <?php 
-echo '<pre>';
+//echo '<pre>';
 //print_r($_POST);
 $captured=$_POST;
 $valuereturn=serialize($captured);
@@ -45,6 +45,13 @@ if($sql!='')
 	 $tn_status=1;
 	 $expires = date('Y-m-d H:i:s', strtotime("+$time Month"));
 	 $query="UPDATE youg_subscription SET `payment_date`='$date',`expires`='$expires',`datereturn`='$date' , `transactionstatus`='$tn_status' , `transactionresponse`='$transaction_status' WHERE subscr_id='$sub_id'";
+	 $jamcode_arr = array();
+	$check_jamcode = "SELECT * FROM `youg_subscription` WHERE `subscr_id` = '".$sub_id."'";
+	$result = mysql_query($check_jamcode,$con);
+	$jamcode_arr = mysql_fetch_assoc($result);
+	if(!empty($jamcode_arr['jamcode'])){
+		$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($sub_id.'_'.date("Ymd")) . '/tracking_code/' . $jamcode_arr['jamcode']);
+	}
  } else {
 	 $tn_status=0;
 	 $query="UPDATE youg_subscription SET `expires`='$date',`expireflag`='1',`datereturn`='$date' , `transactionstatus`='$tn_status' ,`transactionresponse`='$transaction_status' WHERE subscr_id='$sub_id'";	  

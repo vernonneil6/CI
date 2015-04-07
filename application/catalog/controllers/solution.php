@@ -1973,7 +1973,8 @@ public function renew_update($id)
 					//Sending mail user
 					$this->email->send();
 					$this->session->set_flashdata('success','Payment is made and your Elitemembership subscription is Renewed successfully.');
-					redirect('solution', 'refresh');
+					//redirect('solution', 'refresh');
+					redirect('solution/success/'.$companyid,'refresh');
 			}
 			else
 			{
