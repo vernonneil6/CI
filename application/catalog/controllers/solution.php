@@ -941,9 +941,9 @@ public function eliteSubscribe($formpost,$companyid) {
 						$this->complaints->set_sem($companyid,"Linkedin","http://www.linkedin.com","ab5b4de4c8fa16f822635c942aafdfb5.jpg","ab5b4de4c8fa16f822635c942aafdfb5.jpg","1","l");
 						$this->complaints->set_sem($companyid,"Google","http://www.google.com","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","1","g");
 						$this->complaints->set_sem($companyid,"pintrest","http://www.pintrest.com","1519f4062fa76260346bfc61665e579d.jpeg","1519f4062fa76260346bfc61665e579d.jpeg","1","p");
-						$this->complaints->set_sem($companyid,"amazon","http://www.amazon.in","","","1",'a');
-						$this->complaints->set_sem($companyid,"ebay","http://www.ebay.in","","","1",'e');
-						$this->complaints->set_sem($companyid,"youtube","http://www.youtube.com","","","1",'y');
+						$this->complaints->set_sem($companyid,"amazon","http://www.amazon.in","amazonsem20150129115242.png","amazonsem20150129115242.png","1",'a');
+						$this->complaints->set_sem($companyid,"ebay","http://www.ebay.in","ebaysem20150129115244.png","ebaysem20150129115244.png","1",'e');
+						$this->complaints->set_sem($companyid,"youtube","http://www.youtube.com","youtubesem201234354656.png","youtubesem201234354656.png","1",'y');
 												
 						$this->complaints->set_seo($companyid,"Google Analytic","Google Analytic","1");
 						$this->complaints->set_seo($companyid,"Google Webmaster","Google Webmaster","1");
@@ -2254,9 +2254,9 @@ public function upgrades($companyid)
 						$this->complaints->set_sem($companyid,"Linkedin","http://www.linkedin.com","ab5b4de4c8fa16f822635c942aafdfb5.jpg","ab5b4de4c8fa16f822635c942aafdfb5.jpg","1","l");
 						$this->complaints->set_sem($companyid,"Google","http://www.google.com","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","a7f9c768874a247ae8c6ba3c4e3f5d7e.jpg","1","g");
 						$this->complaints->set_sem($companyid,"pintrest","http://www.pintrest.com","1519f4062fa76260346bfc61665e579d.jpeg","1519f4062fa76260346bfc61665e579d.jpeg","1","p");
-						$this->complaints->set_sem($companyid,"amazon","http://www.amazon.in","","","1",'a');
-						$this->complaints->set_sem($companyid,"ebay","http://www.ebay.in","","","1",'e');
-						$this->complaints->set_sem($companyid,"youtube","http://www.youtube.com","","","1",'y');
+						$this->complaints->set_sem($companyid,"amazon","http://www.amazon.in","amazonsem20150129115242.png","amazonsem20150129115242.png","1",'a');
+						$this->complaints->set_sem($companyid,"ebay","http://www.ebay.in","ebaysem20150129115244.png","ebaysem20150129115244.png","1",'e');
+						$this->complaints->set_sem($companyid,"youtube","http://www.youtube.com","youtubesem201234354656.png","youtubesem201234354656.png","1",'y');
 												
 						$this->complaints->set_seo($companyid,"Google Analytic","Google Analytic","1");
 						$this->complaints->set_seo($companyid,"Google Webmaster","Google Webmaster","1");
