@@ -40,7 +40,7 @@ function FormatCreditCard($cc)
 <!--Jrox affliate integration code-->
 <?php
 if(!empty($_COOKIE['jamcom'])){
-	$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($subscription['amount']) . '/trans_id/' . trim($subscription['subscr_id']) . '/tracking_code/' . $_COOKIE['jamcom']);
+	$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($subscription['amount']) . '/trans_id/' . trim($subscription['subscr_id'].'_'.date("Ymd")) . '/tracking_code/' . $_COOKIE['jamcom']);
 	$update_jamcode = $this->complaints->jamcodeupdate($company['id'],$_COOKIE['jamcom']);
 }
 ?>
