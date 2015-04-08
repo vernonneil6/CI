@@ -258,19 +258,6 @@ class Company extends CI_Controller {
 										}
 									}
 								
-									/*//Updating Record With Image
-									//if($this->companys->update($id,$company,$streetaddress,$city,$state,$country,$zip,$email,$cemail,$siteurl,$paypalid,$imgdata['file_name'],$phone,$about,$category,$creditcard1,$creditcard2,$price_range,$accept_credit_cards,$accept_paypal) )
-									if($this->companys->update($id,$company,$streetaddress,$city,$state,$country,$zip,$email,$cemail,$siteurl,$paypalid,$imgdata['file_name'],$phone,$about,$category,$creditcard1,$creditcard2,$price_range,$accept_credit_cards,$accept_paypal,$contactname,$companystreet,$companycity,$companystate,$companycountry,$contactemail,$contactphonenumber) )
-									{
-										$this->session->set_flashdata('success', 'company updated successfully.');
-										redirect('company/edit', 'refresh');
-									}
-									else
-									{
-					
-										$this->session->set_flashdata('error', 'There is error in updating company. Try later!');
-										redirect('company/edit', 'refresh');
-									}*/
 								}
 								else
 								{
@@ -282,7 +269,6 @@ class Company extends CI_Controller {
 							else
 							{
 								//Updating Record Without Image
-								//if( $this->companys->update_noimage($id,$company,$streetaddress,$city,$state,$country,$zip,$email,$cemail,$siteurl,$phone,$about,$category,$creditcard1,$creditcard2,$price_range,$accept_credit_cards,$accept_paypal) )
 								if($this->companys->update_noimage($id,$company,$streetaddress,$city,$state,$country,$zip,$companystreet,$companycity,$companystate,$companycountry,$companyzip,$email,$siteurl,$phone,$about,$creditcard1,$creditcard2,$category,$contactname,$ctitle,$contactemail,$contactphonenumber,$price_range,$accept_credit_cards,$accept_paypal))
 								{
 									$this->session->set_flashdata('success', 'company profile updated successfully.');
@@ -302,15 +288,13 @@ class Company extends CI_Controller {
 			  	{			
 					//Getting intid
 					$id = $this->session->userdata['youg_admin']['id'];
-			
-					//Getting value
-					
-					
-			
+				
 					
 					//Getting detail for displaying in form
 					$company = $this->companys->get_company_byid($id);
-					
+					$oldpassword=$this->input->post('oldpassword');
+					$newpassword=$this->input->post('newpassword');
+			
 			if(count($company)>0)
 			{
 				$companyoldpassword = $company[0]['password'];
