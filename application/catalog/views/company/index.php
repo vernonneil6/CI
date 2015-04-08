@@ -635,7 +635,7 @@
 			  	$d = count($videos);
 			  }?>
             <?php for($i=0; $i<$d; $i++) { ?>
-            <div class="noblock review_block <?php if($i%2==0){echo "fadeout";}?>">
+            <div class="noblock review_block">
               <div class="company_content_title contenttag"><?php echo $videos[$i]['title'];?></div>
               <br />
               <div>
