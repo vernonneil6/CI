@@ -69,7 +69,7 @@ margin-left: 10px;
             <label for="title">Title </label>
           </div>
           <div class="con slider_text">
-            <?php echo form_input( array('name'=>'title','class'=>'input','type'=>'text','placeholder'=>'Enter Title here') ); ?>
+            <?php echo form_input( array('name'=>'title','class'=>'input','type'=>'text','placeholder'=>'Enter Title here','required'=>'required') ); ?>
           </div>
     </div>
     <div class="clearfix" id="videos" style="display:none">
