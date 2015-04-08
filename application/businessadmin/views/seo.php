@@ -66,7 +66,7 @@
             <?php } ?>
           </div>
           <div id="txtvalueerror" class="error" style="width:auto"><?php echo $seo[0]['fieldname']; ?> field is required.</div>
-          <div class = "general_keywords">Seperate keywords with a comma (ex : pet foot, bird seed, parakeets)</div>
+         <?php /* <div class = "general_keywords">Seperate keywords with a comma (ex : pet foot, bird seed, parakeets)</div>*/?>
         </div>
         <div class="btn-submit btn_area"> 
           <!-- Submit form --> 

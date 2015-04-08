@@ -36,7 +36,8 @@
 			else
 			{
 				$("#videourlerror").hide();
-				var matches = $("#videourl").val().match(/http:\/\/(?:www\.)?youtube.*watch\?v=([a-zA-Z0-9\-_]+)/);
+				//var matches = $("#videourl").val().match(/http:\/\/(?:www\.)?youtube.*watch\?v=([a-zA-Z0-9\-_]+)/);
+				var matches = $("#videourl").val().match(/^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/);
 				if (matches) 
 				{
 			    } 

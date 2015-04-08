@@ -115,7 +115,7 @@ class Video extends CI_Controller {
 				
 						//Getting value
 						$title = addslashes($this->input->post('title'));
-						$videourl = $this->input->post('addvideourl');
+						$videourl = $this->input->post('videourl');
 						
 
 						$videono = addslashes($this->input->post('videono'));
