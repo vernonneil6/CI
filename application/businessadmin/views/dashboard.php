@@ -142,6 +142,7 @@ function closepopup()
 {
 	$('.popupclose').css("display","none");
 	$('.black_overlay').css("display","none");
+	window.location = "<?php echo site_url('dashboard');?>";
 }
 </script>
 
