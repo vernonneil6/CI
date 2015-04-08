@@ -50,7 +50,7 @@ if($sql!='')
 	$result = mysql_query($check_jamcode,$con);
 	$jamcode_arr = mysql_fetch_assoc($result);
 	if(!empty($jamcode_arr['jamcode'])){
-		$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode']);
+		$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode'].'/program_id/2');
 	}
  } else {
 	 $tn_status=0;
