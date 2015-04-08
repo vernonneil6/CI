@@ -26,7 +26,17 @@ $('#filetype').change(function(){
 });
 });
 </script>
- 	  
+<style>
+.formBox #con {
+width: 21%;
+float: left;
+margin-left: 10px;
+}
+.formBox .file .upload-file
+{
+	margin-left: -9px;
+}	  
+</style>
   
   <div class="box">
     <div class="headlines">
@@ -39,7 +49,7 @@ $('#filetype').change(function(){
           <div class="lab">
             <label for="zone">File Type <span class="errorsign">*</span></label>
           </div>
-          <div class="con">
+          <div class="con" id="con">
             <?php $types = array(''=>'Select','pdf'=>'PDF','image'=>'Image','doc'=>'Doc','video'=>'Video');?>
 			<?php if($this->uri->segment(2) == 'add') { ?>
 
@@ -82,7 +92,6 @@ $('#filetype').change(function(){
   </div>
   
   <?php } elseif( $this->uri->segment(2) && $this->uri->segment(2) == 'edit' ) { ?>
-
   <div class="box">
     <div class="headlines">
       <h2><span>Update Elite Admin tutorial</span></h2>
@@ -94,7 +103,7 @@ $('#filetype').change(function(){
           <div class="lab">
             <label for="title">Title </label>
           </div>
-          <div class="con">
+          <div class="con" id="con">
             <?php echo form_input( array( 'name'=>'title','class'=>'input','type'=>'text' ,'value'=> $title)); ?>
             <?php echo form_input( array( 'name'=>'filetype','class'=>'input','type'=>'hidden','value'=> $type)); ?>
           </div>
@@ -183,7 +192,7 @@ else { ?>
 		<?php $title = str_replace(' ','', $sliders->title);?>
 		<?php if($sliders->setdefault==1) {?>
 		
-		<td><?php if($sliders->type=="video") { ?><a href="<?php echo site_url('tutorial/setdefault/'.$sliders->id.'/'.$title);?>" title="Set as Default">Unset default</a><?php } ?></td>
+		<td><?php if($sliders->type=="video") { ?><a href="<?php echo site_url('tutorial/setdefault/'.$sliders->id.'/'.$title);?>" title="Unset default">Unset default</a><?php } ?></td>
 			
 		<?php } else { ?>	
 		<td><?php if($sliders->type=="video") { ?><a href="<?php echo site_url('tutorial/setdefault/'.$sliders->id.'/'.$title);?>" title="Set as Default">Set default</a><?php } ?></td>
