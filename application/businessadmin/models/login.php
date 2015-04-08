@@ -32,7 +32,7 @@ Class Login extends CI_Model
 	
 	function get_eliteuser($username)
  	{
-   	   	$query = $this->db->get_where('company',  array( 'email' => $username));
+   	   	$query = $this->db->get_where('company',  array( 'contactemail' => $username));
 	    
 		
 		if ($query->num_rows() > 0)
@@ -45,7 +45,7 @@ Class Login extends CI_Model
 			
 			if ($query1->num_rows() > 0)
 			{
-				$result = array( 'company'=>$company[0]['company'],'id' => $id,'username' => $username,'password'=>$company[0]['password']);
+				$result = array( 'company'=>$company[0]['company'],'id' => $id,'username' => $company[0]['contactemail'],'password'=>$company[0]['password']);
 				return $result;
 			}
 			else
