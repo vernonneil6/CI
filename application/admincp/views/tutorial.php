@@ -150,6 +150,7 @@ else { ?>
         <th>Type</th>
         <th>File</th>
         <th>status</th>
+        <th>Default video</th>
         <th class="action">Action</th>
       </tr>
       <?php foreach($tutorial as $sliders){ ?>
@@ -178,6 +179,17 @@ else { ?>
 			<a href="<?php echo site_url('tutorial/enable/'.$sliders->id);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this tutorial?');"><span>Disable</span></a>
 			<?php } ?>	
 		</td>
+		
+		<?php $title = str_replace(' ','', $sliders->title);?>
+		<?php if($sliders->setdefault==1) {?>
+		
+		<td><?php if($sliders->type=="video") { ?><a href="<?php echo site_url('tutorial/setdefault/'.$sliders->id.'/'.$title);?>" title="Set as Default">Unset default</a><?php } ?></td>
+			
+		<?php } else { ?>	
+		<td><?php if($sliders->type=="video") { ?><a href="<?php echo site_url('tutorial/setdefault/'.$sliders->id.'/'.$title);?>" title="Set as Default">Set default</a><?php } ?></td>
+		
+		<?php } ?>
+		
 		<td class="action">		  
 			<a href="<?php echo site_url('tutorial/delete/'.$sliders->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this tutorial file?');">Delete</a>
 			<a href="<?php echo site_url('tutorial/edit/'.$sliders->id); ?>" title="Edit" class="ico ico-edit">Edit</a>

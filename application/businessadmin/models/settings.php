@@ -485,6 +485,52 @@ Class Settings extends CI_Model
 		}                
 		                  
 	}
+	function get_tutorialvideolink_byid($id)
+	{
+		$query = $this->db->get_where('youg_tutorial', array('id' => $id,'type'=>'video'));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+		
+	}
+	function get_login_welcome_status($id)
+	{
+		$query = $this->db->get_where('youg_elite', array('company_id' => $id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+		
+	}
+	function show_welcome_video()
+	{
+		
+		$query = $this->db->get_where('youg_tutorial', array('type' =>'video','setdefault'=>1));
+
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+		
+		
+	}
 	
 	
 	

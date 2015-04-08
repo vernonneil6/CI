@@ -207,6 +207,19 @@ class Tutorial extends CI_Controller
 			}
 	  }
 	}
+	function setdefault($id,$title)
+	{
+		$alreadysetdefault=$this->tutorials->check_setdefault();
+		
+		if($id !=$alreadysetdefault['id'])
+		{
+		 $setdefault=$this->tutorials->setdefault_welcomevideo($id);
+		 $unsetdefault=$this->tutorials->unset_othervideos($id);
+		}
+		//Loading View File
+		redirect('tutorial', 'refresh');		
+	}
+	
 
 	
 }

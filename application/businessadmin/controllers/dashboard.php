@@ -109,6 +109,18 @@ class Dashboard extends CI_Controller {
 			redirect('user', 'refresh');
 		}
 	}
+	function popupclicked()
+	{
+		$this->data['show_welcome_video']=$this->settings->show_welcome_video();
+		$this->load->view('dashboard',$this->data);   
+	}
+	function get_loginstatus()
+	{
+		$wid=$this->session->userdata['youg_admin']['id'];
+		$this->data['get_loginstatus']=$this->settings->get_login_welcome_status($wid);
+		$this->load->view('dashboard',$this->data);
+		
+	}
 }
 
 /* End of file dashboard.php */

@@ -1,6 +1,15 @@
-<?php echo $heading; ?>
+<?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
+	 
+	 <?php $ytarray=explode("/", $tutorialvideo[0]['file']);
+			$ytendstring=end($ytarray);
+			$ytendarray=explode("?v=", $ytendstring);
+			$ytendstring=end($ytendarray);
+			$ytendarray=explode("&", $ytendstring);
+			$ytcode=$ytendarray[0];
+	 ?>
+	 <div class="tutorialytvideo"><iframe id="video" width="420" height="315" src="//www.youtube.com/embed/<?php echo $ytcode;?>?rel=0" frameborder="0" allowfullscreen></iframe></div>
+<?php } else { echo $heading; ?>
 <!-- #content -->
-
 <div id="content">
   <div class="breadcrumbs">
     <ul>
@@ -29,6 +38,13 @@
     
     <?php if( count($tutorials) > 0 ) { ?>
     <!-- table -->
+    <?php echo link_tag('colorbox/colorbox.css'); ?>
+<script language="javascript" type="text/javascript" src="<?php echo base_url();?>colorbox/jquery.colorbox.js"></script> 
+<script language="javascript" type="text/javascript">
+  $(document).ready(function(){
+		$('.colorbox').colorbox({'width':'55%','height':'60%'});
+  });
+</script>
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
         <th>Title</th>
@@ -46,7 +62,9 @@
         <?php } else if($tutorials[$i]['type'] =='video') { ?>
         
          <td>
-		  <a href="<?php echo $tutorials[$i]['file'];?>" title="<?php echo $tutorials[$i]['file'];?>" TARGET="_blank"><?php echo $tutorials[$i]['file'];?>
+		  <?php /*<a href="<?php echo $tutorials[$i]['file'];?>" title="<?php echo $tutorials[$i]['file'];?>" TARGET="_blank"><?php echo $tutorials[$i]['file'];?>
+		  <a href="<?php echo $tutorials[$i]['file'];?>">Click to View Video</a>*/?>
+          <a href="<?php echo site_url('tutorial/view/'.$tutorials[$i]['id']); ?>" title="View Video" class="colorbox">Click to View Video</a></td>
          </td>
         
         <?php } else { ?>
@@ -76,3 +94,4 @@
 <!-- /#sidebar --> 
 <!-- #footer --> 
 <?php echo $footer; ?> 
+<?php } ?>

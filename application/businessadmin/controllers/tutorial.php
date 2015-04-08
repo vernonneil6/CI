@@ -68,6 +68,39 @@ class Tutorial extends CI_Controller {
 			$this->load->view('tutorial',$this->data);
 	  	}
 	}
+	public function view($id='')
+	{
+		if( $this->input->is_ajax_request() )
+		{
+			if( $this->session->userdata['youg_admin'] )
+			{
+				if(!$id)
+				{
+					redirect('tutorial', 'refresh');
+				}
+				
+				//Getting detail for displaying in form
+				$this->data['tutorialvideo'] = $this->settings->get_tutorialvideolink_byid($id);
+				/*echo "<pre>";
+				print_r($this->data['tutorialvideo']);
+				die();*/
+				if( count($this->data['tutorialvideo'])>0 )
+				{			
+					//Loading View File
+					$this->load->view('tutorial',$this->data);
+				}
+				else
+				{
+					$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
+					redirect('tutorial', 'refresh');
+				}
+			}
+		}
+		else
+		{
+			redirect('tutorial', 'refresh');
+		}
+	}
 }
 /* End of file dashboard.php */
 /* Location: ./application/controllers/dashboard.php */

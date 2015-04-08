@@ -110,5 +110,41 @@ Class Tutorials extends CI_Model
         {
                return $this->db->get_where('youg_tutorial',array('id'=>$id))->row_array();
         }
+        function setdefault_welcomevideo($id)
+        {
+			$editdate=date('Y-m-d H:i:s'); 
+			$data = array(	
+					'setdefault'=> 1,
+					'editdate'  => $editdate		
+					 );
+			$this->db->where('id',$id)->update('youg_tutorial',$data);
+		
+		}
+        function unset_othervideos($id)
+        {
+			$editdate=date('Y-m-d H:i:s'); 
+			$data = array(	
+					'setdefault'=> 0,
+					'editdate'  => $editdate		
+					 );
+			$this->db->where(array('id !='=>$id,'type'=>'video'))->update('youg_tutorial',$data);
+		
+		}
+        function check_setdefault()
+        {
+			 $checkdefault=$this->db->get_where('youg_tutorial',array('type'=>'video','setdefault'=>'1'));
+			 
+			 if($checkdefault->num_rows() > 0 )
+			 {
+				return $checkdefault->row_array(); 
+				 
+			 } 
+			 else
+			 {
+				 return false;
+				 
+			 }
+				
+		}
 }
 ?>
