@@ -73,6 +73,12 @@
 						<li><a href="<?php echo site_url('coupon'); ?>" class="link" title="List All Coupons">List All Coupons</a></li>
 					</ul>
 			    </li>
+			    <li><a class="childmenu" href="<?php echo site_url('reviewpromo'); ?>" title="Review Promo Code">Review Promo Code</a>
+					<ul class="child">
+						<li><a href="<?php echo site_url('reviewpromo/add'); ?>" class="link" title="Add A Review Promo Code">Add A Review Promo Code</a></li>
+						<li><a href="<?php echo site_url('reviewpromo'); ?>" class="link" title="List All Coupons">List All Review Promo Code</a></li>
+					</ul>
+			    </li>
 			</ul>
 		</li>
     
