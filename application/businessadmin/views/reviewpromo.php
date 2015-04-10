@@ -32,7 +32,7 @@
     	<td width="120"><b>reviewpromo Image</b></td>
         <td><b>:</b></td>
         <td>
-        <img style="margin-left:0px;" width="50" height="50" src="<?php if( $reviewpromo[0]['image'] ){ echo $this->settings->get_setting_value('2').substr($this->config->item('reviewpromo_thumb_upload_path'),3);?><?php echo stripslashes($reviewpromo[0]['image']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('reviewpromo_thumb_upload_path'),3)."/no-image.gif"; } ?>" /> 
+        <img style="margin-left:0px;" width="50" height="50" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/'.stripslashes($reviewpromo[0]['image']); ?>" /> 
           
         </td>
     </tr>
@@ -243,7 +243,7 @@ float: left;
             <?php echo form_input( array( 'name'=>'title','id'=>'title','class'=>'input','type'=>'text' ) ); ?>
             <?php } ?>
             <?php if($this->uri->segment(2) == 'edit') { ?>
-            <?php echo form_input( array( 'name'=>'title','id'=>'title','class'=>'input','type'=>'text','value'=>stripslashes($reviewpromo[0]['title']) )); ?>
+            <?php echo form_input( array( 'name'=>'title','id'=>'title','class'=>'input','type'=>'text','value'=>stripslashes($reviewpromo[0]['name']) )); ?>
             <?php } ?>
           </div>
           <div id="titleerror" class="error" align="right">Title is required.</div>
@@ -344,7 +344,7 @@ float: left;
           <div class="con" style="width:50%; float:left"> <?php echo form_input( array( 'name'=>'image','id'=>'image','class'=>'input file upload-file','type'=>'file') ); ?> 
           
           <?php if($this->uri->segment(2) == 'edit') { ?>
-          <img style="margin-left:120px;" width="50" height="50" src="<?php if( $reviewpromo[0]['image'] ){ echo $this->settings->get_setting_value('2').substr($this->config->item('reviewpromo_thumb_upload_path'),3);?><?php echo stripslashes($reviewpromo[0]['image']); } else{echo $this->settings->get_setting_value('2').substr($this->config->item('reviewpromo_thumb_upload_path'),3)."/no-image.gif"; } ?>" /> 
+          <img style="margin-left:120px;" width="50" height="50" src="<?php if( $reviewpromo[0]['image'] ){ echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/'.stripslashes($reviewpromo[0]['image']);  } else{echo $this->settings->get_setting_value('2').substr($this->config->item('reviewpromo_thumb_upload_path'),3)."/no-image.gif"; } ?>" /> 
           <?php echo form_input( array( 'name'=>'reviewpromohiddenimage','value'=>$reviewpromo[0]['image'],'type'=>'hidden' ) ); ?>
           <?php } ?>
           </div>

@@ -1307,6 +1307,107 @@ class Review extends CI_Controller
 	 {
 		 $this->load->view('review/feedback');
 	 }
+	 public function ajaxRequest()
+	 {
+		/*check checkPromocode*/
+		if($this->input->post('type')=='checkPromocode'){
+			if( $this->input->is_ajax_request() && ( $this->input->post('reviewpromo'))){
+				$promo=$this->input->post('reviewpromo');
+				$nameStatus = array();
+				$promocodevalid = $this->reviews->find_reviewpromocode($promo);
+			    if(!empty($promocodevalid))
+				{
+					$nameStatus['rpromoid'] = $promocodevalid['id'];
+					$nameStatus['promomsg'] = "Successfully Used";
+					$nameStatus['title'] = $promocodevalid['name'];
+					$nameStatus['sums'] = $promocodevalid['text'];
+					$nameStatus['image'] = $promocodevalid['image'];
+                    $nameStatus['checkname']="1";
+                	echo json_encode($nameStatus);
+				
+				} else {
+						$nameStatus['rpromoid'] = "0";
+						$nameStatus['promomsg'] = "if the customer enters a wrong code the error shoudl appear: The code entered appears to be invalid. Please contact this business to determine if this is still a valid offer.";
+					    $nameStatus['checkname']="0";
+                        echo json_encode($nameStatus);
+				}
+			}				
+		} 
+	 }
+	 public function emailmepromo($companyid,$prid)
+	 {
+		$id = $this->session->userdata['youg_user']['userid'];
+		$getuser=$this->reviews->get_email_details($id);
+		$promodetail=$this->reviews->find_reviewpromocodeid($prid);
+		$site_name = $this->common->get_setting_value(1);
+		$site_url = $this->common->get_setting_value(2);
+		$site_email = $this->common->get_setting_value(5);
+		$couponurl='http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/';
+		//Company Email Address
+													
+					//Loading E-mail library
+					$config = Array(
+					'protocol' => 'smtp',
+					'smtp_host' => 'smtp.mandrillapp.com',
+					'smtp_port' => 587,
+					'smtp_user' => 'alankenn@grossmaninteractive.com',
+					'smtp_pass' => 'vPVq6nWolBWIKNp1LaWNFw',
+					'mailtype'  => 'html', 
+					'charset'   => 'iso-8859-1'
+				);	
+					
+					$this->load->library('email');
+					$this->email->set_newline("\r\n");				
+					//Loading E-mail config file
+					$this->config->load('email',TRUE);
+					$this->cnfemail = $this->config->item('email');
+										
+					//$this->email->initialize($this->cnfemail);
+					$this->email->initialize($config);
+					$this->email->from('sales@yougotrated.com');
+					$this->email->to($getuser['email']);	
+					$this->email->cc('sales@yougotrated.com');	
+					$this->email->subject('Congrats Received a Review Promocode.');
+					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
+															<tr>
+																<td>Hello '.ucfirst($getuser['firstname']).',</td>
+															</tr>
+															<tr><td><br/></td></tr>
+															<tr>
+																<td style="padding-left:20px;">
+																 Thanks For Posting the Review. We provide you with the Gift review promo code. Details as follows.
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<table cellpadding="0" cellspacing="0" width="100%" border="0">
+																	<tr><td colspan="3"><h3>Promocode Detail</h3></td></tr>
+																	<tr>
+																		<td width: 10%>Title</td>
+																		<td>:</td>
+																		<td style="padding-left: 5%;">'.$promodetail['name'].'</td>
+																	</tr>
+																	<tr>
+																		<td width: 10%>Summary</td>
+																		<td>:</td>
+																		<td style="padding-left: 5%;">'.$promodetail['text'].'</td>
+																	</tr>
+																	<tr>
+																		<td width: 10%>Coupon link</td>
+																		<td>:</td>
+																		<td style="padding-left: 5%;"><b>'.$couponurl.'/'.$promodetail['image'].'</b></td>
+																	</tr>
+																	</table>
+																</td>
+															</tr>
+															</table>');
+		//Sending mail to admin
+		$this->email->send();
+		$this->session->set_flashdata('success', 'Promotion code details has been sent to your email successfully.');
+		redirect('review', 'refresh');
+	   
+	    
+	 }
 }
 /* End of file dashboard.php */
 /* Location: ./application/controllers/dashboard.php */

@@ -131,6 +131,91 @@
 		<input type = "hidden" value = "" name = "autopost" id = "autopost">
         <input class="txt_box review_txt_box" id="reviewtitle" name="reviewtitle" placeholder="review title"/>
         <textarea class="txrareawrp" id="review" name="review"></textarea>
+        
+        <!--Review Promo-->
+       <?php /* <input class="txt_box review_txt_box" id="reviewpromo" name="reviewpromo" placeholder="Please enter reviewpromo code here"/> <input type="button" id="applypromo" value="Apply code"> 
+        
+        
+        <div class = "profile_about_us">
+		    <div class = "profile_about_data">
+					<a href = "#readmore" class = "readmore font_color_1" id="applypromo1" style='display:none;'>Apply promo</a>
+					
+					<input type="hidden" id="reviewvalid" name="reviewvalid" >
+					<div id="promomessage" class="error" style="margin-left: -20px;"></div><div id="emailmediv" style="margin-top: -18px;margin-left: 12%;display:none">
+						<input type="hidden" id="promoid" name="promoid" >	
+						<a TARGET="_blank" href="<?php echo site_url('review/emailmepromo/'.$this->uri->segment(3).'');?>" id="emailme" name="emailme">Email me this promotion</a>
+					</div>
+		  </div>
+		</div>
+		
+		<div id="readmore" style="width:500px;display:none">
+			<div class = "profile_about_company">
+				<h3>Review Promo code</h3>
+			</div>
+			<div class = "profile_about_data">
+				<p>Promo code details:</p>
+				<table>
+				  <tr><td width="20%">Title</td><td><div id="texter" name="texter"></div></td></tr>
+                  <tr><td width="20%">Summary</td><td><div id="sums" name="sums"></div></td></tr>
+                  <tr><td width="20%">Coupon Link</td><td><a id="linker" TARGET="_blank">Click here</a></td></tr>
+				</table> 
+			
+			</div>
+		</div>
+<link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
+<script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
+<script type="text/javascript" language="javascript">	
+$(document).ready(function() 
+{
+	
+ $("#applypromo").click(function(){
+	 
+	 
+	  var requestData = {
+			type: 'checkPromocode',
+			reviewpromo: $("#reviewpromo").val()
+		  };
+	  $.ajax({
+	   type: "POST",
+	   url: "/review/ajaxRequest",
+	   data: requestData,
+	   dataType:"json",
+	   success: function(data){
+		if(data.checkname=="1")
+	    {
+	      $('#reviewvalid').val(data.checkname);
+	      $('#promoid').val(data.rpromoid);
+	      $('#texter').html(data.title);
+	      $('#sums').html(data.sums);
+	      $("#linker").attr("href","<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/';?>"+data.image);
+	      $('#promomessage').show();
+	      $('#emailmediv').show();
+	      $('#promomessage').html(data.promomsg);
+	      $('#applypromo1').trigger('click');
+	      var emailpromoid=$('#promoid').val();
+	      var emailhref = $('#emailme').attr("href");
+	      $('#emailme').attr("href",emailhref+'/'+emailpromoid);
+	    }
+	    else
+	    {
+	      $('#reviewvalid').val(data.checkname);
+	      $('#promoid').val(data.rpromoid);
+	      $('#promomessage').show();
+	      $('#promomessage').html(data.promomsg);
+	    }
+	   }
+	  });
+	  
+   
+	 $('.readmore').fancybox();
+ 
+});
+
+});
+
+</script>*/?>
+	 <!--Review Promo-->
+        
         <div id="termscondn" class="review_txt_box">
 			<input type="checkbox" id="terms-conditions" />
 			<label>I understand that by posting this review that my name and email address will be shared with the merchant.</label>

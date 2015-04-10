@@ -929,6 +929,50 @@ class Reviews extends CI_Model
 			return false;
 		}	
 	}
+	function find_reviewpromocode($promo)
+	{
+		$query = $this->db->get_where('youg_reviewpromo',array('code'=>$promo,'status'=>'Enable'));
+	    
+	    if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	function find_reviewpromocodeid($promo)
+	{
+		$query = $this->db->get_where('youg_reviewpromo',array('id'=>$promo,'status'=>'Enable'));
+	    
+	    if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	
+	function get_email_details($id)
+	{
+		$query = $this->db->get_where('youg_user',array('id'=>$id,'status'=>'Enable'));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	
 	
 }
 ?>
