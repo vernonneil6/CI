@@ -141,7 +141,7 @@ else { ?>
 				$("#titleerror").hide();
 			}
 			
-			if( trim($("#reviewpromocode").val()) == "" )
+			/*if( trim($("#reviewpromocode").val()) == "" )
 			{
 				$("#error").attr('style','display:block;');
 				$("#reviewpromocodeerror").show();
@@ -151,7 +151,7 @@ else { ?>
 			else
 			{
 				$("#reviewpromocodeerror").hide();
-			}
+			}*/
 			
 			if( trim($("#datecreated").val()) == "" )
 			{
@@ -253,7 +253,7 @@ float: left;
     <div class="clearfix">
     	  <div class="col1">
           <div class="lab">
-            <label for="reviewpromocode">reviewpromo Code <span class="errorsign">*</span></label>
+            <label for="reviewpromocode">Promotion Code <!-- <span class="errorsign">*</span> --></label>
           </div>
           <div class="con">
             <?php if($this->uri->segment(2) == 'add') { ?>
