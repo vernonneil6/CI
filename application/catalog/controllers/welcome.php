@@ -25,11 +25,11 @@ class Welcome extends CI_Controller {
   	{
   	parent::__construct();
 		
-		$url = 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+		$url = 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']; 
   		$pieces = parse_url($url);
 		$domain = isset($pieces['host']) ? $pieces['host'] : '';
 		
-		if (preg_match("/\writerbin\b/i", $domain, $regs)) 
+		/*if (preg_match("/\writerbin\b/i", $domain, $regs)) 
 		{
 			$site = 'yougotrated.writerbin.com';
 			$this->data['title'] = 'Have a Complaint? Report It and Get It Resolved! - '.$site;
@@ -38,17 +38,25 @@ class Welcome extends CI_Controller {
 		{
 			$site = $regs['domain'];
 			$this->data['title'] = 'Have a Complaint? Report It and Get It Resolved! - '.$site;
-		}
-		 
+		}*/
+		
+		preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs);
+		$site = $regs['domain'];
+		
 		$website = $this->common->get_site_by_domain_name($site);
+		if(count($website)>0){
+			$siteid = $website[0]['id'];
+		}
+		$this->session->set_userdata('siteid',$siteid);
+		$siteid = $this->session->userdata('siteid');
+		
+		if($this->router->fetch_class() == 'welcome' && $this->router->fetch_method() == 'index'){
+			$this->data['title'] = $this->common->get_homesetting_value(8);
+		} else {
+			$this->data['title'] = 'Have a Complaint? Report It and Get It Resolved! - '.$site;
+		} 
 		 
-		 if(count($website)>0)
-		 {
-		 	$siteid = $website[0]['id'];
-		 }
-		 $this->session->set_userdata('siteid',$siteid);
-		 
-		 $siteid = $this->session->userdata('siteid');
+		
 		
 		$this->data['site_name'] = $this->common->get_sitename_byid($siteid);
 		$this->data['site_url'] = $this->common->get_siteurl_byid($siteid);

@@ -133,7 +133,7 @@
         <textarea class="txrareawrp" id="review" name="review"></textarea>
         
         <!--Review Promo-->
-       <?php /* <input class="txt_box review_txt_box" id="reviewpromo" name="reviewpromo" placeholder="Please enter reviewpromo code here"/> <input type="button" id="applypromo" value="Apply code"> 
+       <input class="txt_box review_txt_box" id="reviewpromo" name="reviewpromo" placeholder="Please enter reviewpromo code here"/> <input type="button" id="applypromo" value="Apply code"> 
         
         
         <div class = "profile_about_us">
@@ -213,7 +213,7 @@ $(document).ready(function()
 
 });
 
-</script>*/?>
+</script>
 	 <!--Review Promo-->
         
         <div id="termscondn" class="review_txt_box">
