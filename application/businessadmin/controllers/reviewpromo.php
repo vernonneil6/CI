@@ -233,7 +233,7 @@ class Reviewpromo extends CI_Controller {
 							$imgdata = $this->upload->data();
 							$imgerror = $this->upload->display_errors();
 							
-							if( $imgerror == '' )
+							/*if( $imgerror == '' )
 							{
 								//Configuring Thumbnail 
 								$myconfig['image_library'] = 'gd2';
@@ -254,12 +254,12 @@ class Reviewpromo extends CI_Controller {
 							else
 							{
 								$thumberror= '';
-							}
+							}*/
 								
-							if( $imgerror != '' || $thumberror != '' )
+							if( $imgerror != '')
 							{
 								$error[0] = $imgerror;
-								$error[1] = $thumberror;
+								//$error[1] = $thumberror;
 							}
 							else
 							{
