@@ -421,7 +421,7 @@ float: left;
 <!-- box -->
 <div class="box">
     <div class="headlines">
-	    <h2><span><?php echo 'reviewpromosDeals & Steals'; ?></span></h2>
+	    <h2><span><?php echo 'Review Promo Code'; ?></span></h2>
     </div>
     <div class="box-content"> <?php echo form_open('reviewpromo/searchresult',array('class'=>'formBox','id'=>'frmsearch')); ?>
       <fieldset>
