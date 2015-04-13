@@ -2,7 +2,7 @@
 <!-- box -->
 <div class="box">
 <div class="headlines">
-    <h2><span>reviewpromo Detail</span></h2>
+    <h2><span>Review Promo Code Detail</span></h2>
   </div>
     <!-- table -->
     <table align="center" width="100%" cellspacing="10" cellpadding="0" border="0">
@@ -32,8 +32,9 @@
     	<td width="120"><b>reviewpromo Image</b></td>
         <td><b>:</b></td>
         <td>
-        <img style="margin-left:0px;" width="50" height="50" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/'.stripslashes($reviewpromo[0]['image']); ?>" /> 
-          
+          <?php if( $reviewpromo[0]['image'] ){ ?> 
+          <a style="margin-left: 120px;" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/'.stripslashes($reviewpromo[0]['image']); ?>" TARGET="_blank">Click to view image/file</a>
+          <?php } ?>
         </td>
     </tr>
     <tr>
@@ -207,7 +208,7 @@ else { ?>
 <ul>
    <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
    <li><a href="<?php echo site_url('reviewpromo');?>" title="<?php echo $section_title; ?>"><?php echo $section_title; ?></a></li>
-   <li><?php if($this->uri->segment(2) == 'add'){echo 'Add reviewpromo';} else if($this->uri->segment(2) == 'edit') {echo 'Edit reviewpromo'; }?></li>
+   <li><?php if($this->uri->segment(2) == 'add'){echo 'Add Review Promo Code';} else if($this->uri->segment(2) == 'edit') {echo 'Edit Review Promo Code'; }?></li>
 </ul>
 </div>
 <!-- /breadcrumbs -->
@@ -225,8 +226,8 @@ float: left;
     
     <div class="headlines">
     	<h2><span>
-		<?php if($this->uri->segment(2) == 'add') {echo "Add reviewpromo"; } ?>
-        <?php if($this->uri->segment(2) == 'edit') { echo "Edit reviewpromo"; } ?>
+		<?php if($this->uri->segment(2) == 'add') {echo "Add Review Promo Code"; } ?>
+        <?php if($this->uri->segment(2) == 'edit') { echo "Edit Review Promo Code"; } ?>
         </span></h2>
 	</div>
     <div class="box-content">
@@ -349,6 +350,7 @@ float: left;
           <?php } ?>
           <?php echo form_input( array( 'name'=>'reviewpromohiddenimage','value'=>$reviewpromo[0]['image'],'type'=>'hidden' ) ); ?>
           <?php } ?>
+	<div style="clear: both; font-size: 11px; width: 100%;">Allowed files:  JPG, PNG, GIF, BMP, PDF </div>
           </div>
           <div id="imageerror" class="error" style="width:auto">Photo required.</div>
         </div>
