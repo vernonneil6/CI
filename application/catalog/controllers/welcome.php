@@ -29,20 +29,15 @@ class Welcome extends CI_Controller {
   		$pieces = parse_url($url);
 		$domain = isset($pieces['host']) ? $pieces['host'] : '';
 		
-		/*if (preg_match("/\writerbin\b/i", $domain, $regs)) 
+		if (preg_match("/\writerbin\b/i", $domain, $regs)) 
 		{
 			$site = 'yougotrated.writerbin.com';
-			$this->data['title'] = 'Have a Complaint? Report It and Get It Resolved! - '.$site;
 		}
 		else if(preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs))
 		{
 			$site = $regs['domain'];
-			$this->data['title'] = 'Have a Complaint? Report It and Get It Resolved! - '.$site;
-		}*/
-		
-		preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs);
-		$site = $regs['domain'];
-		
+		}
+				
 		$website = $this->common->get_site_by_domain_name($site);
 		if(count($website)>0){
 			$siteid = $website[0]['id'];

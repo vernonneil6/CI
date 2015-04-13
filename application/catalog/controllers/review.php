@@ -1327,7 +1327,7 @@ class Review extends CI_Controller
 				
 				} else {
 						$nameStatus['rpromoid'] = "0";
-						$nameStatus['promomsg'] = "if the customer enters a wrong code the error shoudl appear: The code entered appears to be invalid. Please contact this business to determine if this is still a valid offer.";
+						$nameStatus['promomsg'] = "The code entered appears to be invalid. Please contact this business to determine if this is still a valid offer.";
 					    $nameStatus['checkname']="0";
                         echo json_encode($nameStatus);
 				}
