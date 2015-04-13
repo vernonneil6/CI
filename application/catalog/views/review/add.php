@@ -173,6 +173,7 @@ $(document).ready(function()
 	 
 	  var requestData = {
 			type: 'checkPromocode',
+			companyid: $('#companyid_submit').val(),
 			reviewpromo: $("#reviewpromo").val()
 		  };
 	  $.ajax({
@@ -221,7 +222,9 @@ $(document).ready(function()
 			<label>I understand that by posting this review that my name and email address will be shared with the merchant.</label>
 			<div><label id="terms-error" style='display:none;color:#ff0000;'>Please indicate that you accept the Terms and Conditions</label></div>
 		</div>
-        <button type="submit" title="Submit" class="rev_sbt_btn " id="btnsubmit" name="btnsubmit">Submit</button><?php echo form_hidden( array( 'companyid' => $this->encrypt->encode($companyid) ) ); ?>
+        <button type="submit" title="Submit" class="rev_sbt_btn " id="btnsubmit" name="btnsubmit">Submit</button>
+        <?php //echo form_hidden( array( 'companyid' => $this->encrypt->encode($companyid) ) ); ?>
+        <input type="hidden" name="companyid" id="companyid_submit" value=<?php echo $this->encrypt->encode($companyid); ?> />
       </div>
       
       <?php echo form_close();?> </div>

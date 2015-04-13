@@ -1310,11 +1310,12 @@ class Review extends CI_Controller
 	 public function ajaxRequest()
 	 {
 		/*check checkPromocode*/
-		if($this->input->post('type')=='checkPromocode'){
+		if($this->input->post('type')=='checkPromocode'){ 
 			if( $this->input->is_ajax_request() && ( $this->input->post('reviewpromo'))){
 				$promo=$this->input->post('reviewpromo');
+				$companyid = $this->encrypt->decode($this->input->post('companyid'));
 				$nameStatus = array();
-				$promocodevalid = $this->reviews->find_reviewpromocode($promo);
+				$promocodevalid = $this->reviews->find_reviewpromocode_company($promo,$companyid);
 			    if(!empty($promocodevalid))
 				{
 					$nameStatus['rpromoid'] = $promocodevalid['id'];
@@ -1332,7 +1333,7 @@ class Review extends CI_Controller
                         echo json_encode($nameStatus);
 				}
 			}				
-		} 
+		} die;
 	 }
 	 public function emailmepromo($companyid,$prid)
 	 {

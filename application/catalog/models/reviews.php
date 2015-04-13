@@ -943,6 +943,21 @@ class Reviews extends CI_Model
 		}
 		
 	}
+	
+	function find_reviewpromocode_company($promo,$companyid)
+	{
+		$query = $this->db->get_where('youg_reviewpromo',array('code'=>$promo,'status'=>'Enable','companyid'=>$companyid));
+	    
+	    if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
 	function find_reviewpromocodeid($promo)
 	{
 		$query = $this->db->get_where('youg_reviewpromo',array('id'=>$promo,'status'=>'Enable'));
