@@ -344,7 +344,9 @@ float: left;
           <div class="con" style="width:50%; float:left"> <?php echo form_input( array( 'name'=>'image','id'=>'image','class'=>'input file upload-file','type'=>'file') ); ?> 
           
           <?php if($this->uri->segment(2) == 'edit') { ?>
-          <img style="margin-left:120px;" width="50" height="50" src="<?php if( $reviewpromo[0]['image'] ){ echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/'.stripslashes($reviewpromo[0]['image']);  } else{echo $this->settings->get_setting_value('2').substr($this->config->item('reviewpromo_thumb_upload_path'),3)."/no-image.gif"; } ?>" /> 
+			<?php if( $reviewpromo[0]['image'] ){ ?> 
+          <a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/'.stripslashes($reviewpromo[0]['image']); ?>" TARGET="_blank">Click to view image/file</a>
+          <?php } ?>
           <?php echo form_input( array( 'name'=>'reviewpromohiddenimage','value'=>$reviewpromo[0]['image'],'type'=>'hidden' ) ); ?>
           <?php } ?>
           </div>
