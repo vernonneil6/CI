@@ -345,7 +345,7 @@ float: left;
           
           <?php if($this->uri->segment(2) == 'edit') { ?>
 			<?php if( $reviewpromo[0]['image'] ){ ?> 
-          <a href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/'.stripslashes($reviewpromo[0]['image']); ?>" TARGET="_blank">Click to view image/file</a>
+          <a style="margin-left: 120px;" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/'.stripslashes($reviewpromo[0]['image']); ?>" TARGET="_blank">Click to view image/file</a>
           <?php } ?>
           <?php echo form_input( array( 'name'=>'reviewpromohiddenimage','value'=>$reviewpromo[0]['image'],'type'=>'hidden' ) ); ?>
           <?php } ?>
