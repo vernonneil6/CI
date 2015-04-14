@@ -223,3 +223,31 @@
   </section>
 </section>
 <?php echo $footer;?>
+<?php if(!empty($promo)){?>
+<a href = "#readmore" class = "readmore font_color_1" id="applypromo1" style='display:none;'>Apply promo</a>
+<div id="readmore" style="width:500px;display:none">
+	<div class = "profile_about_company">
+		<h3>Review Promo code</h3>
+	</div>
+	<div class = "profile_about_data">
+		<p>Promo code details:</p>
+		<table cellpadding="0" cellspacing="0">
+		  <tr><td style="padding-bottom: 10px; padding-top: 10px;" width="40%">Title</td><td style="padding-bottom: 10px; padding-top: 10px;"><div id="texter" name="texter"><?php echo $promo['name']; ?></div></td></tr>
+		  <tr><td style="padding-bottom: 10px; padding-top: 10px;" width="40%">Summary</td><td style="padding-bottom: 10px; padding-top: 10px;"><div id="sums" name="sums"><?php echo $promo['text']; ?></div></td></tr>
+		  <tr><td style="padding-bottom: 10px; padding-top: 10px;" width="40%">Coupon Link</td><td style="padding-bottom: 10px; padding-top: 10px;"><a id="linker" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/'.$promo['image']; ?>" TARGET="_blank">Click here</a></td></tr>
+		</table> 
+
+		<div id="emailmediv" style="margin-top: 5px;">
+			<a TARGET="_blank" href="<?php echo site_url('review/emailmepromo/'.$companyid.'/'.$promo['id']);?>" id="emailme" name="emailme">Email me this promotion</a>
+		</div>
+	</div>
+</div>
+<link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
+<script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
+<script type="text/javascript">
+$(window).load(function(){ 
+	$('.readmore').fancybox();
+	$('#applypromo1').trigger('click');
+});
+</script>
+<?php } ?>

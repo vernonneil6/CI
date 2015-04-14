@@ -83,20 +83,35 @@ class Review extends CI_Controller
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	public function index($companyid = NULL,$promosuccess = NULL)
 	{
+		if (strpos($promosuccess,'ygrsuccess') !== false && array_key_exists('youg_user',$this->session->userdata)) {
+			$promoid = trim(str_replace('ygrsuccess','',$promosuccess));
+			$promocodevalid = '';
+			$promocodevalid = $this->reviews->find_reviewpromocodeid($promoid);
+			$this->data['promo'] = $promocodevalid;
+			$this->data['companyid'] = $companyid;
+		} else {
+			$this->data['promo'] = '';
+			$this->data['companyid'] = '';
+		}
 		$this->load->library('pagination');
-		
 		$limit = $this->paging['per_page'];
-  		$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
 		
+		if(!empty($companyid) && strpos($promosuccess,'ygrsuccess') !== false){
+			$offset = 0;
+			$this->paging['uri_segment'] = 5;
+		} else {
+			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+			$this->paging['uri_segment'] = 3;
+		}
+
 	    $this->data['reviews'] = $this->reviews->get_all_reviews($limit,$offset);
 		
 	  $this->paging['base_url'] = site_url("review/index");
-  	  $this->paging['uri_segment'] = 3;
+  	  //$this->paging['uri_segment'] = 3;
 	  $this->paging['total_rows'] = count($this->reviews->get_all_reviews());
 	  $this->pagination->initialize($this->paging);
-		
 		//Loading View File
 		$this->load->view('review/index',$this->data);
 	}
@@ -425,6 +440,245 @@ class Review extends CI_Controller
 				redirect('review', 'refresh');
 			}
 		}
+	}
+	
+	public function addreview(){
+		$companyid = $this->encrypt->decode($this->input->post('companyid'));
+		$userid = $this->session->userdata['youg_user']['userid'];
+		$rating = $this->input->post('score');
+		$review = strip_tags($this->input->post('review'));
+		$reviewtitle = $this->input->post('reviewtitle');
+		$autopost = $this->input->post('autopost');	
+		$reviewpromo = $this->input->post('reviewpromo');	
+		$reviewvalid = $this->input->post('reviewvalid');	
+		$promoid = $this->input->post('promoid');	
+		$encode_promoid = '';
+		if(!empty($promoid) && $promoid != 0)
+			$encode_promoid = $this->encrypt->encode($promoid);
+		
+		$promocodevalid = '';
+		$promocodevalid = $this->reviews->find_reviewpromocodeid($promoid);
+		if($promoid != 0 && empty($promocodevalid)){
+			$this->session->set_flashdata('error', 'There is error in inserting review. Try later!');
+			redirect(site_url('review'), 'refresh');
+		}
+		
+		if($promoid != 0)
+			$redirect_url = 'review/index/'.$companyid.'/'.$promoid.'ygrsuccess';
+		else
+			$redirect_url = 'review';
+
+		if($review != '')
+		{
+
+			$company=$this->reviews->get_company_byid($companyid);
+			$user=$this->users->get_user_byid($userid);
+
+			if($rating!='' && $rating!=0)
+			{
+				$elite=$this->reviews->elitemship($companyid);
+
+				if(count($elite)>0)
+				{
+					$relation = $this->common->get_relation_byciduid($companyid,$userid);
+
+					$site_name = $this->common->get_setting_value(1);
+					$site_url = $this->common->get_setting_value(2);
+					$site_mail = $this->common->get_setting_value(5);
+
+					if(count($relation)>0)
+					{
+						if( $lastid = $this->reviews->insert_elite_review($companyid,$userid,$rating,$review,$reviewtitle,$autopost))
+						{
+							$this->load->library('email');
+							$this->config->load('email',TRUE);
+
+							$mail = $this->common->get_email_byid(7);
+							$subject = $mail[0]['subject'];
+							$mailformat = $mail[0]['mailformat'];
+							$to = $company[0]['contactemail'];
+
+							$this->email->from($site_mail,$site_name);
+							$this->email->to($to);
+							$this->email->subject($subject);
+							$review123 = $this->reviews->get_review1_byid($lastid);
+							$seo = $review123[0]['seokeyword'];
+
+							$link = "<a href='".site_url('review/browse/'.$seo)."' title='see review' target='_blank'>".site_url('review/browse/'.$seo)."</a>";							
+							$mail_body = str_replace("%company%",ucfirst($company[0]['company']),str_replace("%emailid%",$to,str_replace("%link%",$link,str_replace("%sitename%",$site_name,str_replace("%siteurl%",$site_url,str_replace("%siteemail%",$site_mail,stripslashes($mailformat)))))));
+
+							$this->email->message($mail_body);
+							$this->email->send();
+
+							$this->session->set_flashdata('success', 'Review submitted successfully!');
+							redirect($redirect_url, 'refresh');
+						}
+						else
+						{
+							$this->session->set_flashdata('error', 'There is error in inserting review. Try later!');
+							redirect('review', 'refresh');
+						}
+					}
+					else
+					{
+						if($this->reviews->insert1($companyid,$userid,$rating,$review,$reviewtitle,$autopost))
+						{
+							if(count($company)>0)
+							{
+								$companyemailaddress = $company[0]['contactemail'];
+							}
+
+							$to = $companyemailaddress;
+
+							$this->load->library('email');
+							$this->email->from($site_mail,$site_name);
+							$this->email->to($to);
+							
+							if($autopost == 1)
+							{
+								$this->email->subject('A Positive Review about you company has been posted on YouGotRated.');
+
+								$this->email->message("
+								<table>
+									<tr>
+										<td>
+											<ul style='font-size: 13px; list-style: none; padding : 0;'>
+												<li style='margin: 20px 0;  padding : 0;'>Hello ".$company[0]['company'].",</li>
+												<li style='margin: 8px 0; padding : 0 0 0 15px;'>One of your customers has posted a review about your business.</li>
+												<li style='margin: 8px 0; padding : 0 0 0 15px;'>• If you received a positive review, congratulations for a job well done.</li>
+												<li style='margin: 8px 0; padding : 0 0 0 15px;'>• If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.</li>
+												<li style='margin: 11px 0; padding : 0 0 0 15px;'>• By being pro-active and working with your customer you can avoid having a bad reputation online which can affect your business</li>
+												<li style='margin: 8px 0; padding : 0 0 0 15px;'>• Customers are more likely to arrive at a mutually beneficial solution when contacted immediately</li>
+												<li style='margin: 8px 0; padding : 0 0 0 15px;'>• You will save time, money and most importantly, you will continue to enjoy a good online reputation</li>
+											</ul>
+										</td>
+									
+										<td>
+											<ul style='font-size : 13px; list-style : none; padding : 0; margin : 0;'>
+												<li style = 'margin : 0;'><img src='".$site_url."images/reviewemail.jpg'></li>
+											</ul>
+											<ul style='font-size : 13px; list-style : none; margin : 0; background-color : #E7E5D3; width: 198px; padding : 6px 0; border-radius : 0 0 7px 7px; '>
+												<li style = 'font-size : 18px; color : #B32317; margin : 5px 0 10px; padding : 0  0 0 15px;'>Expert Tips</li>								
+												<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Respond to negative reviews.</li>								
+												<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Encourage customers to post reviews.</li>
+											</ul>	
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											<ul style='font-size : 15px; list-style : none; padding : 10px 0; margin : 0;'>
+												<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>Here are the Transaction Details</li>
+												<li style='font-size : 13px'>Buyer's name: ".ucfirst($user[0]['firstname']." ".$user[0]['lastname'])."</li>
+												<li style='font-size : 13px'>Buyer's email: ".$user[0]['email']."</li>					
+												<li style='font-size : 13px'>Buyer's Phone Number: ".$user[0]['phoneno']."</li>
+												<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>What To Do Next</li>									
+												<li>To view the posted review <a href='".base_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints')."'>CLICK HERE</a></li>
+												<li>You also have the ability to remove a negative or any review if you so choose using our </li>
+												<li>Negative Review removal tool that you can initiate by clicking the link when logged into your account.</li>
+												<li style='font-size : 13px; margin : 20px 0 5px 15px;'>Sincerely,</li>
+												<li style='font-size : 13px; margin : 0 0 20px 15px;'>YouGotRated</li>
+										  	</ul>
+										</td>
+									</tr>
+								</table>
+								");
+							}
+							else
+							{
+								$this->email->subject('A Negative Review about you company has been posted on YouGotRated.');
+
+								$this->email->message("
+								<table>
+									<tr>
+										<td>
+											<ul style='font-size: 13px; list-style: none; padding : 0;'>
+												<li style='margin: 20px 0;  padding : 0;'>Hello ".$company[0]['company'].",</li>
+												<li style='margin: 8px 0; padding : 0 0 0 15px;'>One of your customers has posted a review about your business.</li>
+												<li style='margin: 8px 0; padding : 0 0 0 15px;'>• If you received a positive review, congratulations for a job well done.</li>
+												<li style='margin: 8px 0; padding : 0 0 0 15px;'>• If you received a Negative Review, please remember that you can have it removed if you agree to work with your customer to provide them with a solution to their complaint.</li>
+												<li style='margin: 11px 0; padding : 0 0 0 15px;'>• By being pro-active and working with your customer you can avoid having a bad reputation online which can affect your business</li>
+												<li style='margin: 8px 0; padding : 0 0 0 15px;'>• Customers are more likely to arrive at a mutually beneficial solution when contacted immediately</li>
+												<li style='margin: 8px 0; padding : 0 0 0 15px;'>• You will save time, money and most importantly, you will continue to enjoy a good online reputation</li>
+											</ul>
+										</td>
+									
+										<td>
+											<ul style='font-size : 13px; list-style : none; padding : 0; margin : 0;'>
+												<li style = 'margin : 0;'><img src='".$site_url."images/reviewemail.jpg'></li>
+											</ul>
+											<ul style='font-size : 13px; list-style : none; margin : 0; background-color : #E7E5D3; width: 198px; padding : 6px 0; border-radius : 0 0 7px 7px; '>
+												<li style = 'font-size : 18px; color : #B32317; margin : 5px 0 10px; padding : 0  0 0 15px;'>Expert Tips</li>								
+												<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Respond to negative reviews.</li>								
+												<li style = 'margin: 7px 0; padding : 0  0 0 15px; '>Encourage customers to post reviews.</li>
+											</ul>	
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											<ul style='font-size : 15px; list-style : none; padding : 10px 0; margin : 0;'>
+												<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>Here are the Transaction Details</li>
+												<li style='font-size : 13px'>Buyer's name: ".ucfirst($user[0]['firstname']." ".$user[0]['lastname'])."</li>
+												<li style='font-size : 13px'>Buyer's email: ".$user[0]['email']."</li>					
+												<li style='font-size : 13px'>Buyer's Phone Number: ".$user[0]['phoneno']."</li>
+												<li style='font-size : 18px; padding : 15px 0; font-weight : bold;'>What To Do Next</li>									
+												<li>To view the posted review <a href='".base_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints')."'>CLICK HERE</a></li>
+												<li>You also have the ability to remove a negative or any review if you so choose using our </li>
+												<li>Negative Review removal tool that you can initiate by clicking the link when logged into your account.</li>
+												<li style='font-size : 13px; margin : 20px 0 5px 15px;'>Sincerely,</li>
+												<li style='font-size : 13px; margin : 0 0 20px 15px;'>YouGotRated</li>
+										  	</ul>
+										</td>
+									</tr>
+								</table>
+								");
+							}
+
+							if($this->email->send())
+							{
+								$this->session->set_flashdata('success', 'Review submitted successfully!');
+								redirect($redirect_url, 'refresh');
+							}
+							else
+							{
+								redirect($redirect_url, 'refresh');
+							}
+						}
+						else
+						{
+							$this->session->set_flashdata('error', 'There is error in inserting review. Try later!');	
+							redirect('review', 'refresh');
+						}
+					}
+				}
+				else
+				{	
+					$updated = $this->reviews->insert($companyid,$userid,$rating,$review,$reviewtitle,$autopost);
+					if( $updated = 'added')
+					{	
+						$id = $this->db->insert_id();
+						$this->session->set_flashdata('success', 'Review submitted successfully!');
+						redirect($redirect_url, 'refresh');
+					}
+					else
+					{
+						$this->session->set_flashdata('error', 'There is error in inserting review. Try later!');
+						redirect('review', 'refresh');
+					}	
+				}
+			}
+			else
+			{
+				$this->session->set_flashdata('error', 'Rating must not be empty. Try later!');
+				redirect('review/add/'.$companyid, 'refresh');
+			}
+		}
+		else
+		{
+			redirect('review', 'refresh');
+		}
+			
 	}
 	
 	public function resolution_options($reviewid)
