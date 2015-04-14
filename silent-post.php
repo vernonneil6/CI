@@ -41,7 +41,7 @@ echo "1 record added";
 
 if($sql!='')
 {
- if($tn_status==1){
+ if($tn_status==1 && $sub_id != ''){
 	 $tn_status=1;
 	 $expires = date('Y-m-d H:i:s', strtotime("+$time Month"));
 	 $query="UPDATE youg_subscription SET `payment_date`='$date',`expires`='$expires',`datereturn`='$date' , `transactionstatus`='$tn_status' , `transactionresponse`='$transaction_status' WHERE subscr_id='$sub_id'";
