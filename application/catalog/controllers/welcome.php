@@ -77,9 +77,7 @@ class Welcome extends CI_Controller {
 		
 		//Meta Keywords and Description
 		$this->data['keywords'] = $this->common->get_seosetting_value(4);
-		$this->data['description'] = "Do you have an issue against a company? Register your complaint and we will make
-sure they respond back. Submit your review and rate your experience
-";
+		$this->data['description'] = $this->common->get_seosetting_value(5);
 		$total= $this->common->get_all_complaints_totaldamage($siteid);
 		
 		if(count($total)>0)
