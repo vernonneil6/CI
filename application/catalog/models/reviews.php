@@ -800,7 +800,7 @@ class Reviews extends CI_Model
 			$this->db->where('id', $id);
 			$this->db->update('reviews',array('link'=>$link,'seokeyword'=>$seokeyword));
 			
-			return $this->db->insert_id();
+			return $id;
 		}
 		else
 		{
