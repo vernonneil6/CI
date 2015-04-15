@@ -39,7 +39,7 @@ function FormatCreditCard($cc)
 ?>
 <!--Jrox affliate integration code-->
 <?php
-if(!empty($_COOKIE['jamcom']) && !empty($subscription['auth_transreponse_key'])){
+if(!empty($_COOKIE['jamcom']) && !empty($subscription['auth_transreponse_key']) && $subscription['discountcodetype'] != '30-days-free-trial'){
 	$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($subscription['amount']) . '/trans_id/' . trim($subscription['auth_transreponse_key']) . '/tracking_code/' . $_COOKIE['jamcom'] .'/program_id/1');
 	$update_jamcode = $this->complaints->jamcodeupdate($company['id'],$_COOKIE['jamcom']);
 }
