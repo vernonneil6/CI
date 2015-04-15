@@ -1573,7 +1573,7 @@ class Review extends CI_Controller
 			    if(!empty($promocodevalid))
 				{
 					$nameStatus['rpromoid'] = $promocodevalid['id'];
-					$nameStatus['promomsg'] = "You have entered a valid promo code and will get your promotion detail in the success page.";
+					$nameStatus['promomsg'] = "Promo code validated!  The promotion details will appear after submitting this review.";
 					$nameStatus['title'] = $promocodevalid['name'];
 					$nameStatus['sums'] = $promocodevalid['text'];
 					$nameStatus['image'] = $promocodevalid['image'];
