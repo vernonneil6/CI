@@ -49,8 +49,10 @@ if($sql!='')
 	$check_jamcode = "SELECT * FROM `youg_subscription` WHERE `subscr_id` = '".$sub_id."'";
 	$result = mysql_query($check_jamcode,$con);
 	$jamcode_arr = mysql_fetch_assoc($result);
-	if(!empty($jamcode_arr['jamcode'])){
+	if(!empty($jamcode_arr['jamcode']) && $paynumber > 1 && $paynumber != ''){
 		$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode'].'/program_id/2');
+	} elseif(!empty($jamcode_arr['jamcode']) && $paynumber <= 1 && $paynumber != ''){
+		$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode'].'/program_id/1');
 	}
  } else {
 	 $tn_status=0;
