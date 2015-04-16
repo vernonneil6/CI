@@ -333,7 +333,7 @@ class Complaints extends CI_Model
 	//Inserting Record
 	function insert_company($company,$city,$country,$state,$zip,$email,$siteurl,$phone,$category,$streetaddress='')
 	{
-		$date = date_default_timezone_set('Asia/Kolkata');
+		//$date = date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d H:i:s');
 		
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
@@ -616,7 +616,7 @@ class Complaints extends CI_Model
 	function insert_business($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,$paypalid,$logo,$category,$aboutus,$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype)
 	{
 		
-		$date = date_default_timezone_set('Asia/Kolkata');
+		//$date = date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d H:i:s');
 		
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
@@ -661,7 +661,7 @@ class Complaints extends CI_Model
 	function insert_businesses($name,$streetaddress,$city,$state,$country,$zip,$phone,$email,$website,$paypalid,$logo,$category,$aboutus)
 	{
 		
-		$date = date_default_timezone_set('Asia/Kolkata');
+		//$date = date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d H:i:s');
 		
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
@@ -701,7 +701,7 @@ class Complaints extends CI_Model
 	function insert_business_broker($name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,$paypalid,$logo,$category,$aboutus,$brokerid,$brokertype,$marketerid,$subbrokerid,$mainbrokerid,$actype,$notes)
 	{
 		
-		$date = date_default_timezone_set('Asia/Kolkata');
+		//$date = date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d H:i:s');
 		
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
@@ -2082,7 +2082,7 @@ class Complaints extends CI_Model
     function update_businessdetails($companyid,$name, $address,$city,$state,$country,$zip,$address1,$city1,$state1,$country1,$zip1,$phone,$email,$website,$category)
 	{
 		
-		$date = date_default_timezone_set('Asia/Kolkata');
+		//$date = date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d H:i:s');
 		
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
@@ -2123,7 +2123,7 @@ class Complaints extends CI_Model
         function update_business($companyid,$name,$streetaddress,$city,$state,$country,$zip,$streetaddress1,$city1,$state1,$country1,$zip1,$phone,$email,$website,$paypalid,$logo,$category,$aboutus,$brokerid,$mainbrokerid,$subbrokerid,$marketerid,$brokertype)
 	{
 		
-		$date = date_default_timezone_set('Asia/Kolkata');
+		//$date = date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d H:i:s');
 		
 		$varipaddress = $_SERVER['REMOTE_ADDR'];

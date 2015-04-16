@@ -58,7 +58,7 @@ class Reviews extends CI_Model
 	function insert($companyid,$userid,$rating,$review,$reviewtitle,$autopost)
 	{
 		$siteid = $this->session->userdata('siteid');
-		$date = date_default_timezone_set('Asia/Kolkata');
+		//$date = date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d H:i:s');
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
 		$data = array(
@@ -116,7 +116,7 @@ class Reviews extends CI_Model
 	function insert1($companyid,$userid,$rating,$review,$reviewtitle,$autopost)
 	{
 		$siteid = $this->session->userdata('siteid');
-		$date = date_default_timezone_set('Asia/Kolkata');
+		//$date = date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d H:i:s');
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
 		$data = array(
@@ -627,7 +627,7 @@ class Reviews extends CI_Model
 	function insert_comment($reviewid,$userid,$comment,$statusdisable,$rating)
 	{
 		$siteid = $this->session->userdata('siteid');
-		$date = date_default_timezone_set('Asia/Kolkata');
+		//$date = date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d H:i:s');
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
 
@@ -671,7 +671,7 @@ class Reviews extends CI_Model
 	//Updating Record
 	function update_comment($id,$reviewid,$userid,$comment,$rating)
  	{
-		$date = date_default_timezone_set('Asia/Kolkata');
+		//$date = date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d H:i:s');
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
 
@@ -754,7 +754,7 @@ class Reviews extends CI_Model
 	function insert_elite_review($companyid,$userid,$rating,$review,$reviewtitle,$autopost)
 	{
 		$siteid = $this->session->userdata('siteid');
-		$date = date_default_timezone_set('Asia/Kolkata');
+		//$date = date_default_timezone_set('Asia/Kolkata');
 		$date = date('Y-m-d H:i:s');
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
 		$data = array(
