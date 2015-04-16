@@ -674,6 +674,45 @@
 		<a href="<?php echo site_url();?>" title="YOUGOTRATED"><img class="logo_btm" src="images/ygr_logos.png" alt="YOUGOTRATED" title="YOUGOTRATED"> </a> 
 	</div>
     </div>
+    
+	<ol itemscope itemtype="http://schema.org/BreadcrumbList" style="display: none;">
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a itemprop="item" href="<?php echo site_url();?>"><span itemprop="name">Home</span></a>
+			<meta itemprop="position" content="1" />
+		</li>
+		<?php $ex = explode(',',$company[0]['categoryid']); $cat_breadcrumb = ''; ?>
+		<?php 
+		if(!empty($ex)){
+			for($a=0;$a<count($ex);$a++)
+			{
+
+				$cat = $this->complaints->get_category_byid($ex[$a]);
+				if(count($cat)>0) 
+				{
+					$cat_breadcrumb .= $cat[0]['category'].' | ';
+				  
+				}
+			}
+			
+		}
+		?>
+		<?php if(!empty($cat_breadcrumb)) { ?>
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a itemprop="item" href="<?php echo site_url();?>"><span itemprop="name"><?php echo substr($cat_breadcrumb,0,-3); ?></span></a>
+			<meta itemprop="position" content="2" />
+		</li>
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a itemprop="item" href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>"><span itemprop="name"><?php echo $company[0]['company']; ?></span></a>
+			<meta itemprop="position" content="3" />
+		</li>
+		<?php } else { ?>
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a itemprop="item" href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>"><span itemprop="name"><?php echo $company[0]['company']; ?></span></a>
+			<meta itemprop="position" content="2" />
+		</li>
+		<?php } ?>
+		
+	</ol>
   </section>
 </section>
 
