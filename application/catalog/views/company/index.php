@@ -30,8 +30,8 @@
 <section class="container">
   <section class="main_contentarea">
    
-    <div class="innr_wrap wrapborder">
-      <div class="left_panel  leftpanelwidth" itemscope itemtype="http://schema.org/localBusiness">
+    <div class="innr_wrap wrapborder" itemscope itemtype="http://schema.org/localBusiness">
+      <div class="left_panel  leftpanelwidth">
 
 
 		<div>
