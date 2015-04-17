@@ -199,6 +199,11 @@ class Pressrelease extends CI_Controller {
 					
 					if( $presscontent!='')
 						{
+							$check_status = $this->pressreleases->check_pressrelease($companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$siteid);
+							if($check_status == 'fail'){
+								$this->session->set_flashdata('error', 'The same pressrelease content cannot be posted to more than one site!');
+								redirect('pressrelease/add', 'refresh');
+							}
 							//Inserting Record
 							if( $this->pressreleases->insert($companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$siteid))
 									{

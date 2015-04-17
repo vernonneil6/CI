@@ -43,6 +43,26 @@ Class Pressreleases extends CI_Model
 		}
  	}
 	
+	function check_pressrelease($companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$siteid){
+		$query = $this->db->query("SELECT * FROM `youg_pressrelease` WHERE `companyid` = ".$companyid." AND `presscontent` LIKE '%".mysql_escape_string($presscontent)."%'");
+		if ($query->num_rows() > 0){
+			return 'fail';
+		} else {
+			$count =strlen($presscontent);
+			$strsplit = str_split($presscontent,round($count/3));
+			$flag = 0;
+			foreach($strsplit as $content){
+				$query = $this->db->query("SELECT * FROM `youg_pressrelease` WHERE `companyid` = ".$companyid." AND `presscontent` LIKE '%".mysql_escape_string($content)."%'");
+				if ($query->num_rows() > 0){
+					$flag++;
+				}
+			}
+			if($flag == 3){
+				return 'fail';
+			}
+		}
+		return 'success';
+	}
 	//Inserting Record
 	function insert($companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$siteid)
 	{
