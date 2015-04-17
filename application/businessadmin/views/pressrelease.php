@@ -242,6 +242,18 @@ echo $header; ?>
         <?php if($this->uri->segment(2) == 'edit') { echo "Edit  Press Release"; } ?>
         </span></h2>
     </div>
+    <!-- Correct form message -->
+    <?php if( $this->session->flashdata('success') ) { ?>
+    <div class="form-message correct">
+      <p><?php echo $this->session->flashdata('success'); ?></p>
+    </div>
+    <?php } ?>
+    <!-- Error form message -->
+    <?php if( $this->session->flashdata('error') ) { ?>
+    <div class="form-message error1">
+      <p><?php echo $this->session->flashdata('error'); ?></p>
+    </div>
+    <?php } ?>
     <div class="box-content"> <?php echo form_open_multipart('pressrelease/update',array('class'=>'formBox','id'=>'frmpressrelease')); ?>
       <fieldset>
 		<div class="form-cols"><!-- two form cols -->
