@@ -50,9 +50,33 @@ if($sql!='')
 	$result = mysql_query($check_jamcode,$con);
 	$jamcode_arr = mysql_fetch_assoc($result);
 	if(!empty($jamcode_arr['jamcode']) && $paynumber > 1 && $paynumber != ''){
-		$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode'].'/program_id/2');
+		$jamcode = $jamcode_arr['jamcode'];
+		$explode_result = explode('-',$jamcode);
+		if(!empty($explode_result[2])){
+			$query_result = '';
+			$query = mysql_query("SELECT `member_id` FROM `jam_members` WHERE `username` = '".$explode_result[2]."' LIMIT 1",$con);
+			$query_result = mysql_fetch_assoc($query);
+
+			if(!empty($query_result)){
+				$group_query_result = '';
+				$groupid = '';
+				$group_query = mysql_query("SELECT * FROM `jam_members_groups` WHERE `member_id` = '".$query_result['member_id']."' LIMIT 1",$con);
+				$group_query_result = mysql_fetch_assoc($group_query);
+				
+				if(!empty($group_query_result)){
+					$groupid = $group_query_result['group_id'] + 1;
+					$update_group_query = mysql_query("UPDATE `jam_members_groups` SET `group_id` = '".$groupid."' WHERE `member_id` = '".$query_result['member_id']."'",$con);
+
+					$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode']);
+					
+					$groupid = $groupid - 1;
+					$update_group_query = mysql_query("UPDATE `jam_members_groups` SET `group_id` = '".$groupid."' WHERE `member_id` = '".$query_result['member_id']."'",$con);
+				}
+			}
+
+		}		
 	} elseif(!empty($jamcode_arr['jamcode']) && $paynumber <= 1 && $paynumber != ''){
-		$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode'].'/program_id/1');
+		$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode']);
 	}
  } else {
 	 $tn_status=0;
