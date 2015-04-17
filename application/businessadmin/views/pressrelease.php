@@ -311,10 +311,10 @@ echo $header; ?>
               <div class="con" style="width: 59% !important; float:left">
                 <?php if($this->uri->segment(2) == 'add') { ?>
                 <input name="addpress" type="hidden" value="addpress" />
-                <?php echo form_input( array( 'name'=>'title','id'=>'title','class'=>'input','type'=>'text','maxlength'=>'20','onchange'=>'chktitle(this.value)' ) ); ?>
+                <?php echo form_input( array( 'name'=>'title','id'=>'title','class'=>'input','type'=>'text','onchange'=>'chktitle(this.value)' ) ); ?>
                 <?php } ?>
                 <?php if($this->uri->segment(2) == 'edit') { ?>
-                <?php echo form_input( array( 'name'=>'title','id'=>'title','class'=>'input','type'=>'text','value'=>ucfirst(stripslashes($pressrelease[0]['title'])),'maxlength'=>'20','onchange'=>'chktitle(this.value)' ) ); ?>
+                <?php echo form_input( array( 'name'=>'title','id'=>'title','class'=>'input','type'=>'text','value'=>ucfirst(stripslashes($pressrelease[0]['title'])),'onchange'=>'chktitle(this.value)' ) ); ?>
                 <?php } ?>
               </div>
               <div id="titleerror" class="error" style="width:95px">Title is required.</div>
