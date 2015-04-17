@@ -49,12 +49,14 @@ Class Pressreleases extends CI_Model
 			return 'fail';
 		} else {
 			$count =strlen($presscontent);
-			$strsplit = str_split($presscontent,round($count/3));
 			$flag = 0;
-			foreach($strsplit as $content){
-				$query = $this->db->query("SELECT * FROM `youg_pressrelease` WHERE `companyid` = ".$companyid." AND `presscontent` LIKE '%".mysql_escape_string($content)."%'");
-				if ($query->num_rows() > 0){
-					$flag++;
+			if($count > 120){
+				$strsplit = str_split($presscontent,round($count/3));				
+				foreach($strsplit as $content){
+					$query = $this->db->query("SELECT * FROM `youg_pressrelease` WHERE `companyid` = ".$companyid." AND `presscontent` LIKE '%".mysql_escape_string($content)."%'");
+					if ($query->num_rows() > 0){
+						$flag++;
+					}
 				}
 			}
 			if($flag == 3){
