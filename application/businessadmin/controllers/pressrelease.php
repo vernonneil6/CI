@@ -168,6 +168,10 @@ class Pressrelease extends CI_Controller {
 									'toolbar'	=>	"Full",     //Using the Full toolbar
 									'width'   =>  "auto",    //a custom width
 									'height'  =>  "300px",    //a custom height
+									'filebrowserImageBrowseUrl' => '',
+									'filebrowserBrowseUrl' => '',
+									'filebrowserFlashBrowseUrl' => '',
+									
 								),
 						);
 				//Loading View File
