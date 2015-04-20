@@ -24,7 +24,7 @@
         <?php
 				  } ?>
           <?php 
-                        $date = date_default_timezone_set('Asia/Kolkata');                             
+                        //$date = date_default_timezone_set('Asia/Kolkata');                             
                         $dbdate = date('Y-m-d',strtotime($complaints[$i]['whendate']));
                         $complaindate = date('m/d/Y',strtotime($complaints[$i]['complaindate']));
                         $today = date('m/d/Y');

@@ -147,8 +147,7 @@
                 <?php
 					    $reviewdate = date('m/d/Y',strtotime($reviews[$i]['reviewdate']));
                         $today = date('m/d/Y'); 
-					  	$date = date_default_timezone_set('Asia/Kolkata');
-					    $d1 = strtotime(date('Y-m-d H:i:s'));
+					  	$d1 = strtotime(date('Y-m-d H:i:s'));
                         $d2 = strtotime($reviews[$i]['reviewdate']);
                         $newdate =round(($d1-$d2)/60);
                         if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{
