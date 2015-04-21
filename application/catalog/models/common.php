@@ -588,7 +588,7 @@ Class Common extends CI_Model
 		
 		$a = $query1->result_array();
 		$c = ($a[0]['rate']);
-		return number_format($c,1,'.','');
+		return number_format($c,2,'.','');
 	}
 	
 	function get_eliteship_bycompanyid($companyid)
