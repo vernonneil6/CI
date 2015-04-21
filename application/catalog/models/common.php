@@ -591,7 +591,10 @@ Class Common extends CI_Model
 		
 		if(!empty($c)){
 			$parts=explode(".",$c);
-			$newnumber=$parts[0]. "." . $parts[1][0];
+			if(!empty($parts[1][0]))
+				$newnumber=$parts[0]. "." . $parts[1][0];
+			else
+				$newnumber=$parts[0]. ".0";
 		} else {
 			$newnumber = '0.0';
 		}
