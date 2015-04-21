@@ -43,7 +43,7 @@
 <style type="text/css">
 	span.stars, span.stars span {
 		display: block;
-		background: url(http://localyougotrated.com/images/YGR_star_span.png) 0 -22px repeat-x;
+		background: url(/images/YGR_star_span.png) 0 -22px repeat-x;
 		width: 115px;
 		height: 22px;
 	}
