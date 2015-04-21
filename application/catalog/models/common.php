@@ -587,8 +587,15 @@ Class Common extends CI_Model
 		$query1 = $this->db->get('reviews');	
 		
 		$a = $query1->result_array();
-		$c = ($a[0]['rate']);
-		return number_format($c,2,'.','');
+		$c = ($a[0]['rate']);  
+		
+		if(!empty($c)){
+			$parts=explode(".",$c);
+			$newnumber=$parts[0]. "." . $parts[1][0];
+		} else {
+			$newnumber = '0.0';
+		}
+		return $newnumber;
 	}
 	
 	function get_eliteship_bycompanyid($companyid)
