@@ -435,7 +435,7 @@
                     <h2><?php echo stripslashes($reviews[$i]['reviewtitle']);?></h2>
                     </div>
                 </div>
-                <p><span itemprop ="reviewbody"><?php echo $reviews[$i]['comment'];?></span></p>
+                <p><span itemprop ="reviewbody"><?php echo stripslashes($reviews[$i]['comment']);?></span></p>
                 <div class="cmnt_wrp wrps"> <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add comment">  +  Add comment </a> </div>
               </div>
             <div itemscope itemtype = "http://schema.org/Rating" itemprop = "reviewRating">

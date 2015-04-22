@@ -266,7 +266,7 @@
 				</span>
 				<span class="form-col-2">
 					<label>BUSINESS' NAME</label>           
-					<input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30">
+					<input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name" >
 					<div id="nameerror" class="error">Name is required.</div>
 					<div id="nametknerror" class="error">This company name is already exists.</div>
 					<div id="namechecks" class="error"></div>					
@@ -333,7 +333,7 @@
 				</span>
 				<span class="form-col-2">
 					<label>BUSINESS ADDRESS</label>            
-					<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50">
+					<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="150">
 					<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
 					<input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" />
 					<input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" />
