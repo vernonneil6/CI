@@ -322,7 +322,7 @@
 		<?php if($company[0]['aboutus']){ ?>
 			<div class = "profile_about_company"><h3>About <?php echo $company[0]['company']; ?></h3></div>
 			<div class = "profile_about_data">
-				<?php echo substr($company[0]['aboutus'], 0, 480); 
+				<?php echo stripslashes(substr($company[0]['aboutus'], 0, 480)); 
 				if(strlen($company[0]['aboutus']) > 480)
 				{ 
 				?>
