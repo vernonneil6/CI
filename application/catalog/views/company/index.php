@@ -338,7 +338,7 @@
 			<h3>About <?php echo $company[0]['company']; ?></h3>
 		</div>
 		<div class = "profile_about_data">
-			<?php echo $company[0]['aboutus']; ?>
+			<?php echo stripslashes($company[0]['aboutus']); ?>
 		</div>
 	</div>
 	
@@ -432,7 +432,7 @@
                     <?php } ?>
                   </div>
                   <div class="rat_title reptitle">
-                    <h2><?php echo $reviews[$i]['reviewtitle'];?></h2>
+                    <h2><?php echo stripslashes($reviews[$i]['reviewtitle']);?></h2>
                     </div>
                 </div>
                 <p><span itemprop ="reviewbody"><?php echo $reviews[$i]['comment'];?></span></p>
