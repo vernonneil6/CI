@@ -1,4 +1,30 @@
 <?php echo $header;?>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$( ".stars" ).each(function() { 
+			// Get the value
+			var val = $(this).data("rating");
+			// Make sure that the value is in 0 - 5 range, multiply to get width
+			var size = Math.max(0, (Math.min(5, val))) * 23;
+			// Create stars holder
+			var $span = $('<span />').width(size);
+			// Replace the numerical value with stars
+			$(this).html($span);
+		});
+	});
+</script>
+<style type="text/css">
+	span.stars, span.stars span {
+		display: block;
+		background: url(/images/YGR_star_span.png) 0 -22px repeat-x;
+		width: 115px;
+		height: 22px;
+	}
+
+	span.stars span {
+		background-position: 0 0;
+	}
+</style>
 <script type="text/javascript" language="javascript">
               $(document).ready(function() {
 				  $('#divcouponshare').hide();
@@ -12,6 +38,7 @@
 <section class="container">
   <section class="main_contentarea">
     <?php  	$avgstar = $this->common->get_avg_ratings_bycmid($coupons[0]['companyid']);
+			$itemproaverage = $avgstar;
 			$avgstar = round($avgstar);
 			$elitemem_status = $this->common->get_eliteship_bycompanyid($coupons[0]['companyid']);
 			?>
@@ -38,16 +65,11 @@
           <h1><?php echo $coupons[0]['company'];?></h1>
           <?php 
 
-		$avgstar = $this->common->get_avg_ratings_bycmid($coupons[0]['companyid']);
-		$avgstar = round($avgstar);
-		;?>
+		//$avgstar = $this->common->get_avg_ratings_bycmid($coupons[0]['companyid']);
+		//$avgstar = round($avgstar);
+		?>
           <div class="vry_rating ratess">
-            <?php for($r=0;$r<($avgstar);$r++){?>
-            <i class="vry_rat_icn"></i>
-            <?php } ?>
-            <?php for($p=0;$p<(5-($avgstar));$p++){?>
-            <img src="images/no_star.png" alt="no_star" title="no_star" />
-            <?php } ?>
+            <span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
           </div>
         </div>
         <div class="vry_btn"><a href="<?php echo base_url('review/add/'.$coupons[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add');?>" title="File Complaint">FILE COMPLAINT</a></div>

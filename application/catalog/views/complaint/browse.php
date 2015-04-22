@@ -1,7 +1,32 @@
 <?php echo $header;
 $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['companyid']);
 ?>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$( ".stars" ).each(function() { 
+			// Get the value
+			var val = $(this).data("rating");
+			// Make sure that the value is in 0 - 5 range, multiply to get width
+			var size = Math.max(0, (Math.min(5, val))) * 23;
+			// Create stars holder
+			var $span = $('<span />').width(size);
+			// Replace the numerical value with stars
+			$(this).html($span);
+		});
+	});
+</script>
+<style type="text/css">
+	span.stars, span.stars span {
+		display: block;
+		background: url(/images/YGR_star_span.png) 0 -22px repeat-x;
+		width: 115px;
+		height: 22px;
+	}
 
+	span.stars span {
+		background-position: 0 0;
+	}
+</style>
 <section class="container">
   <section class="main_contentarea">
     <div class="verified_wrp pr_rwrp">
@@ -33,15 +58,11 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
           <?php 
 		//get avg star by cmpyid
 		$avgstar = $this->common->get_avg_ratings_bycmid($complaints[0]['companyid']);
+		$itemproaverage = $avgstar;
 		$avgstar = round($avgstar);
 		;?>
           <div class="vry_rating comprates">
-            <?php for($r=0;$r<($avgstar);$r++){?>
-            <i class="vry_rat_icn"></i>
-            <?php } ?>
-            <?php for($p=0;$p<(5-($avgstar));$p++){?>
-            <img src="images/no_star.png" alt="no_star" title="no_star" />
-            <?php } ?>
+            <span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
           </div>
         <div class="vry_btn compbtn"><a href="<?php echo site_url('review/add/'.$complaints[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$complaints[0]['companyid']);?>" title="File Complaint">FILE COMPLAINT</a></div>
       </div>
