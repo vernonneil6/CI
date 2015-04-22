@@ -558,16 +558,16 @@ echo recaptcha_get_html($publickey, $error);
 	   <form action="/go/update" id="frmuser" method="post" enctype="multipart/form-data" class="emailpage" style="display:none">
         <div class="account_container">
 			
-			<input type="text" class="textboxs" placeholder="FIRST NAME" id="firstname" name="firstname"  maxlength="30">
+			<input type="text" class="textboxs" placeholder="FIRST NAME" id="firstname" name="firstname"  maxlength="50">
 			<div id="fnameerror" class="error">First Name is required.</div>
             <div id="fnameverror" class="error">Enter Valid First Name(Only characters).</div>
 			
-            <input type="text" class="textboxs" placeholder="LAST NAME" id="lastname" name="lastname" maxlength="30">
+            <input type="text" class="textboxs" placeholder="LAST NAME" id="lastname" name="lastname" maxlength="50">
             <div id="lnameerror" class="error">Last Name is required.</div>
             <div id="lnameverror" class="error">Enter Valid Last Name(Only characters).</div>
             
             
-            <input type="text" class="textboxs" placeholder="USERNAME" id="username" name="username" maxlength="30" onchange="chkuser(this.value);" /> 
+            <input type="text" class="textboxs" placeholder="USERNAME" id="username" name="username" maxlength="50" onchange="chkuser(this.value);" /> 
             <div id="unameerror" class="error">User Name is required.</div>
             <div id="unameverror" class="error">Enter Valid User Name(Only characters and numbers).</div>
             <div id="utknerror" class="error">This Username is already taken.</div>

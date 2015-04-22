@@ -51,7 +51,7 @@
 						<div class="reg_fld">WHAT IS YOUR COMPANY NAME?</div>
 						
 						
-						<input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  maxlength="30" value="<?php echo $showdata['company']; ?>">
+						<input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name"  value="<?php echo $showdata['company']; ?>">
 						<div id="nameerror" class="error">Name is required.</div>
 						<div id="nametknerror" class="error">This company name is already exists.</div>
                                                 <input id="namecheck" type="hidden">
@@ -66,7 +66,7 @@
 					</span>
 					<span class="form-col-2">
 						<div class="reg_fld">WHAT IS YOUR COMPANY WEBSITE?</div>
-						<input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150" value="<?php echo $showdata['siteurl']; ?>" onchange="chkwebsite(this.value);">            
+						<input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="200" value="<?php echo $showdata['siteurl']; ?>" onchange="chkwebsite(this.value);">            
 						<div id="websiteerror" class="error">Website is required.</div>
 						<div id="websitevaliderror" class="error">Enter valid Website.</div> 
 						<div id="websitevalidsuccess" class="cardsuccess" style="display:none">This is a valid URL format.</div> 
@@ -116,7 +116,7 @@
 					<span class="form-col-2">
 						<label>BUSINESS ADDRESS INFORMATION: </label>
 					<div class="reg_fld">WHAT IS YOUR COMPANY ADDRESS?</div>
-					<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress1" id="streetaddress1" maxlength="50" />
+					<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress1" id="streetaddress1" maxlength="200" />
 					<br/>           
 				  <div style="float:left;">
 				   <?php echo form_dropdown('country1',$selcon,'','id="country1" class="seldrop" onchange=getstates(this.value,"state1","#selstatediv1","");');?>
@@ -164,7 +164,7 @@
 						<div class="reg_fld"><?php echo strtoupper('The following information will not be published on YouGotRated and is used for administration purposes only. &#160;&#160;This information is where you will receive emails, and receipts from YouGotRated.com');?></div>
 						<div class="reg_fld">CONTACT NAME:</div>
 						
-						<input type="text" class="reg_txt_box" placeholder="CONTACT NAME" id="cname" name="cname" maxlength="30" value="<?php echo $showdata['contactname']; ?>" /><div id="cnameerror" class="error">contact name is required.</div>
+						<input type="text" class="reg_txt_box" placeholder="CONTACT NAME" id="cname" name="cname" maxlength="50" value="<?php echo $showdata['contactname']; ?>" /><div id="cnameerror" class="error">contact name is required.</div>
 					</span>
 				</div>
             
@@ -176,7 +176,7 @@
 					</span>
 					<span class="form-col-2">
 						<div class="reg_fld">TITLE / POSITION : </div>
-						<input type="text" class="reg_txt_box" placeholder="TITLE / POSITION IN BUSINESS" id="ctitle" name="ctitle" maxlength="40" value="" />
+						<input type="text" class="reg_txt_box" placeholder="TITLE / POSITION IN BUSINESS" id="ctitle" name="ctitle" maxlength="50" value="" />
 						<div id="ctitleerror" class="error">Title / Position is required.</div>
 					</span>
 				</div>
@@ -219,7 +219,7 @@
             <div class="reg_fld"><input type="checkbox" id="copypaymentinformation"> Copy from above text</div>
             <div class="reg_fld">FIRST NAME: </div>
             
-            <input type="text" class="reg_txt_box" placeholder="FIRST NAME" id="fname" name="fname" maxlength="30" /><div id="fnameerror" class="error">First Name is required.</div>
+            <input type="text" class="reg_txt_box" placeholder="FIRST NAME" id="fname" name="fname" maxlength="50" /><div id="fnameerror" class="error">First Name is required.</div>
 					</span>
 				</div>
             
@@ -231,7 +231,7 @@
 					</span>
 					<span class="form-col-2">
 						<div class="reg_fld">LAST NAME: </div>
-						<input type="text" class="reg_txt_box" placeholder="LAST NAME" id="lname" name="lname" maxlength="30" /><div id="lnameerror" class="error">Last Name is required.</div>
+						<input type="text" class="reg_txt_box" placeholder="LAST NAME" id="lname" name="lname" maxlength="50" /><div id="lnameerror" class="error">Last Name is required.</div>
 					</span>
 				</div>
             
@@ -244,7 +244,7 @@
 					</span>
 					<span class="form-col-2">
 						<div class="reg_fld">WHAT IS YOUR BILLING ADDRESS?</div>
-						<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="50" />
+						<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="200" />
 						<br/>            
 					  <div style="float:left;">
 					   <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv","");');?>
