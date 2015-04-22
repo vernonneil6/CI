@@ -16,7 +16,32 @@
 	<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/jquery-1.7.min.js'; ?>" ></script>
 	<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/noconflict.js'; ?>" ></script>
 	<script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/js/jquery.raty.min.js'; ?>"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$( ".stars" ).each(function() { 
+			// Get the value
+			var val = $(this).data("rating");
+			// Make sure that the value is in 0 - 5 range, multiply to get width
+			var size = Math.max(0, (Math.min(5, val))) * 23;
+			// Create stars holder
+			var $span = $('<span />').width(size);
+			// Replace the numerical value with stars
+			$(this).html($span);
+		});
+	});
+</script>
+<style type="text/css">
+	span.stars, span.stars span {
+		display: block;
+		background: url(http://yougotrated.com/images/YGR_star_span.png) 0 -22px repeat-x;
+		width: 115px;
+		height: 22px;
+	}
 
+	span.stars span {
+		background-position: 0 0;
+	}
+</style>
 </head>
 <body>
 <div class = "pop_width">
