@@ -79,7 +79,7 @@
           
 		  <div class="compny_name" style="margin-top:-12px;">
 			<div class="vry_rating">
-			  <span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>>
+			  <span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
 			</div>
 		  </div>
 		  
