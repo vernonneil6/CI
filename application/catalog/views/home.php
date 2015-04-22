@@ -76,10 +76,10 @@
 					</div>      
 			 
 				    <div class="home_mar_line">
-						<?php for($r=0;$r<($avgstar);$r++){?>
+						<?php for($r=0;$r<($complaints[$i]['rate']);$r++){?>
 						<i class="vry_rat_icn"></i>
 						<?php } ?>
-						<?php for($p=0;$p<(5-($avgstar));$p++){?>
+						<?php for($p=0;$p<(5-($complaints[$i]['rate']));$p++){?>
 						<img src="images/no_star.png" alt="no_star" title="no_star" />
 						<?php } ?>
 						<div class="clear"></div>

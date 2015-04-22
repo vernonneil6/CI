@@ -20,15 +20,15 @@ class Reviews extends CI_Model
 		{ $this->db->limit($limit); }
 		else if( $limit != '' && $offset != 0)
 		{	$this->db->limit($limit, $offset);	}
-		
+		$this->db->order_by($sortby, $orderby);
 		//Executing Query
 		if($siteid!='all')
 		{
-			$query = $this->db->get_where('reviews',array('companyid' => $companyid,'websiteid' => $siteid,'type'=>'csv'));
+			$query = $this->db->get_where('reviews',array('companyid' => $companyid,'websiteid' => $siteid)); // ,'type'=>'csv'
 		}
 		else
 		{
-			$query = $this->db->get_where('reviews',array('companyid' => $companyid,'type'=>'csv'));
+			$query = $this->db->get_where('reviews',array('companyid' => $companyid)); // ,'type'=>'csv'
 		}
 		if ($query->num_rows() > 0)
 		{
