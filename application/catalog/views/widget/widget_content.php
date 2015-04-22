@@ -39,12 +39,7 @@
 	<div class = "review_tab_middle">
 		 <div><label class = "widget_company_name"><a target="_blank" href = "<?php echo base_url().'company/'.$companyseo.'/reviews/coupons/complaints'; ?>"><?php echo ucfirst($companyname); ?></a></label></div>
 		 <div class="vry_rating vryrating">
-			<?php for($r=0;$r<round($averagerating);$r++){?>
-			<i class="vry_rat_icn"></i>
-			<?php } ?>
-			<?php for($p=0;$p<(5-round($averagerating));$p++){?>
-			<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/'; ?>images/no_star.png" alt="no_star" title="no_star" />
-			<?php } ?>
+			<span class="stars" data-rating="<?php echo $averagerating; ?>"></span>
 			<label class = "single_review"><?php echo $total."  Reviews"; ?></label>
 			<p style="color: #A2A2A2; font-size: 9px; margin-bottom: -6px;margin-top: 3px;">Some Reviews may have originated from other review platforms and have been aggregated.</p>
 		  </div>	

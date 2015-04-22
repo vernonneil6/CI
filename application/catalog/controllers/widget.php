@@ -66,11 +66,12 @@ class Widget extends CI_Controller {
 			{
 				
 				$this->data['total'] = $this->widgets->get_total_review($companyid);
-				$this->data['averagerating'] = $this->widgets->get_average_review($companyid);
+				$this->data['averagerating'] = $this->common->get_avg_ratings_bycmid($companyid); //$this->widgets->get_average_review($companyid);
 			}
 			else
 			{
 				$this->data['total'] = 0;
+				$this->data['averagerating'] = '0.0';
 			}
 		}
 
