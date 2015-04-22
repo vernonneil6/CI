@@ -1,4 +1,30 @@
 <?php echo $header;?>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$( ".stars" ).each(function() { 
+			// Get the value
+			var val = $(this).data("rating");
+			// Make sure that the value is in 0 - 5 range, multiply to get width
+			var size = Math.max(0, (Math.min(5, val))) * 23;
+			// Create stars holder
+			var $span = $('<span />').width(size);
+			// Replace the numerical value with stars
+			$(this).html($span);
+		});
+	});
+</script>
+<style type="text/css">
+	span.stars, span.stars span {
+		display: block;
+		background: url(/images/YGR_star_span.png) 0 -22px repeat-x;
+		width: 115px;
+		height: 22px;
+	}
+
+	span.stars span {
+		background-position: 0 0;
+	}
+</style>
 <section class="container">
   <section class="main_contentarea">
     <div class="innr_wrap">
@@ -26,6 +52,7 @@
        
           <?php 
 			$avgstar = $this->common->get_avg_ratings_bycmid($pressreleases[$i]['companyid']);
+			$itemproaverage = $avgstar;
 			$avgstar = round($avgstar);
 			$elitemem_status = $this->common->get_eliteship_bycompanyid($pressreleases[$i]['companyid']);
 		  ?>
@@ -58,12 +85,7 @@
 				
 				  <div class="rating float_left prof_rating">
 					
-					<?php for($r=0;$r<$avgstar;$r++){?>
-						<i class="vry_rat_icn"></i>
-					<?php } ?>
-					<?php for($p=0;$p<(5-$avgstar);$p++){?>
-						<img src="images/no_star.png" alt="no_star" title="no_star" />
-					<?php } ?>
+					<span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
 					
 				  </div>
 				</h2>
