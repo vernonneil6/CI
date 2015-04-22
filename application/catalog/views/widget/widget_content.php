@@ -33,7 +33,7 @@
 <style type="text/css">
 	span.stars, span.stars span {
 		display: block;
-		background: url(http://yougotrated.com/images/YGR_star_span.png) 0 -22px repeat-x;
+		background: url('<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']; ?>/images/YGR_star_span.png') 0 -22px repeat-x;
 		width: 115px;
 		height: 22px;
 	}
