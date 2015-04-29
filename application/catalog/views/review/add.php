@@ -119,10 +119,7 @@
 					   }
 					  });
 				   } else { $("#form4").submit(); }
-				  
-				  
-				  
-                   
+                  
               });
   
 			$('#thumb-up').toggle(function(){
@@ -163,7 +160,7 @@
         <textarea class="txrareawrp" id="review" name="review"></textarea>
         
         <!--Review Promo-->
-       <input class="txt_box review_txt_box" id="reviewpromo" name="reviewpromo" placeholder="Please enter reviewpromo code here"/>  <input type="button" id="applypromo" value="Apply code"> 
+       <input class="txt_box review_txt_box" id="reviewpromo" name="reviewpromo" placeholder="Please enter reviewpromo code here"/>  <!--<input type="button" id="applypromo" value="Apply code">--> 
         
         
         <div class = "profile_about_us">
@@ -194,60 +191,7 @@
 		</div>
 <link rel="stylesheet" href="<?php echo base_url();?>css/fancybox.css" type="text/css">
 <script type="text/javascript" src="<?php echo base_url();?>js/fancybox.js"></script>
-<script type="text/javascript" language="javascript">	
-$(document).ready(function() 
-{
-	
- $("#applypromo").click(function(){
-	 
-	 if($("#reviewpromo").val() != ''){
-		var requestData = {
-			type: 'checkPromocode',
-			companyid: $('#companyid_submit').val(),
-			reviewpromo: $("#reviewpromo").val()
-		  };
-		$.ajax({
-		type: "POST",
-		url: "/review/ajaxRequest",
-		data: requestData,
-		dataType:"json",
-		success: function(data){
-		if(data.checkname=="1")
-		{
-		  $('#reviewvalid').val(data.checkname);
-		  $('#promoid').val(data.rpromoid);
-		  /*$('#texter').html(data.title);
-		  $('#sums').html(data.sums);
-		  $("#linker").attr("href","<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/';?>"+data.image);*/
-		  $('#promomessage').show();
-		  //$('#emailmediv').show();
-		  $('#promomessage').html(data.promomsg);
-		  /*$('#applypromo1').trigger('click');
-		  var emailpromoid=$('#promoid').val();
-		  var emailhref = $('#emailme').attr("href");
-		  $('#emailme').attr("href",emailhref+'/'+emailpromoid);*/
-		}
-		else
-		{
-		  $('#reviewvalid').val(data.checkname);
-		  $('#promoid').val(data.rpromoid);
-		  $('#promomessage').show();
-		  $('#promomessage').html(data.promomsg);
-		}
-		}
-		});
-	  
-	} else {
-		$('#promomessage').show();
-		$('#promomessage').html('Enter the valid code');
-	}
-	// $('.readmore').fancybox();
- 
-});
 
-});
-
-</script>
 	 <!--Review Promo-->
         
         <div id="termscondn" class="review_txt_box">

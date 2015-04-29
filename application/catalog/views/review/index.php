@@ -233,7 +233,20 @@
 		<table cellpadding="0" cellspacing="0">
 		  <tr><td style="padding-bottom: 10px; padding-top: 10px;" width="40%">Title</td><td style="padding-bottom: 10px; padding-top: 10px;"><div id="texter" name="texter"><?php echo $promo['name']; ?></div></td></tr>
 		  <tr><td style="padding-bottom: 10px; padding-top: 10px;" width="40%">Summary</td><td style="padding-bottom: 10px; padding-top: 10px;"><div id="sums" name="sums"><?php echo $promo['text']; ?></div></td></tr>
-		  <tr><td style="padding-bottom: 10px; padding-top: 10px;" width="40%">Coupon Link</td><td style="padding-bottom: 10px; padding-top: 10px;"><a id="linker" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/'.$promo['image']; ?>" TARGET="_blank">Click here</a></td></tr>
+		  <tr>  <?php $coupon_type = explode('.',$promo['image']);
+					   if($coupon_type[1] == 'pdf'){
+				  ?>
+				<td style="padding-bottom: 10px; padding-top: 10px;" width="40%">Coupon Link</td>
+				<td style="padding-bottom: 10px; padding-top: 10px;">
+				  <a id="linker" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/'.$promo['image']; ?>" TARGET="_blank">Click here</a>
+				</td> 
+				<?php } else { ?>
+				<td style="padding-bottom: 10px; padding-top: 10px;" width="40%"></td>
+				<td style="padding-bottom: 10px; padding-top: 10px;">	  
+					<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/'.$promo['image']; ?>" alt="Promo Image" />		
+				</td>
+				<?php } ?>
+		  </tr>
 		</table> 
 
 		<div id="emailmediv" style="margin-top: 5px;">

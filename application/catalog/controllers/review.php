@@ -1582,7 +1582,7 @@ class Review extends CI_Controller
 				
 				} else {
 						$nameStatus['rpromoid'] = "0";
-						$nameStatus['promomsg'] = "The code entered appears to be invalid. Please contact this business to determine if this is still a valid offer.";
+						$nameStatus['promomsg'] = "Please enter a valid Promo Code, and try again, or remove the promo code to submit the review.";
 					    $nameStatus['checkname']="0";
                         echo json_encode($nameStatus);
 				}
@@ -1619,9 +1619,9 @@ class Review extends CI_Controller
 										
 					//$this->email->initialize($this->cnfemail);
 					$this->email->initialize($config);
-					$this->email->from('sales@yougotrated.com');
+					$this->email->from('reviews@yougotrated.com');
 					$this->email->to($getuser['email']);	
-					$this->email->cc('sales@yougotrated.com');	
+					$this->email->cc('reviews@yougotrated.com');	
 					$this->email->subject('Congrats Received a Review Promocode.');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
