@@ -80,7 +80,7 @@
       </h1>     
     <div class="pr_detlwrp">
       <div class="titl_pr_rel">
-        <h1>"<?php echo stripslashes(ucfirst($pressrelease[0]['title'])); ?>"</h1>
+        <h1>"<?php echo stripslashes(str_replace("-"," ",ucfirst($pressrelease[0]['title']))); ?>"</h1>
         <p> - <?php echo date("m/d/Y",strtotime($pressrelease[0]['insertdate']));?> -</p>
       </div>
       <div class="pr_testmnl_wrp">
