@@ -68,7 +68,7 @@ function readCookie(name) {
 
 <div align="center">
 	<?php if(isset($bottomads) && count($bottomads)){ ?>       
-	<div class="ad_bottom"><a href="<?php echo $bottomads[0]['url'];?>" title="Adverstiment" target="_blank" rel="nofollow"><img src="<?php if( $bottomads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($bottomads[0]['image']); } ?>" alt="Adverstiment" width="940" height="180" class="adimg"/></a> </div>
+	<div class="ad_bottom"><a href="<?php echo $bottomads[0]['url'];?>" title="Adverstiment"  rel="nofollow"><img src="<?php if( $bottomads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($bottomads[0]['image']); } ?>" alt="Adverstiment" width="940" height="180" class="adimg"/></a> </div>
 	<?php } ?>
 </div>
 
@@ -88,7 +88,7 @@ function readCookie(name) {
 				foreach($footerpart1 as $part1) 
 				{ 
 				?>
-					<li><a  target="_blank" href="<?php echo 'footerpage/index/'.$part1['intid'];?>" title="<?php echo $part1['title'];?>"><?php echo $part1['title'];?></a></li>
+					<li><a href="<?php echo 'footerpage/index/'.$part1['intid'];?>" title="<?php echo $part1['title'];?>"><?php echo $part1['title'];?></a></li>
 				<?php 
 				}
 				}
@@ -110,7 +110,7 @@ function readCookie(name) {
 				foreach($footerpart2 as $part2) 
 				{ 
 				?>
-					<li><a target="_blank" href="<?php echo 'footerpage/index/'.$part2['intid'];?>" title="<?php echo $part2['title'];?>"><?php echo $part2['title'];?></a></li>
+					<li><a href="<?php echo 'footerpage/index/'.$part2['intid'];?>" title="<?php echo $part2['title'];?>"><?php echo $part2['title'];?></a></li>
 				<?php 
 				}
 				}
@@ -158,7 +158,7 @@ function readCookie(name) {
 				foreach($footerpart5 as $part5) 
 				{ 
 				?>
-					<li><a  target="_blank" href="<?php echo 'footerpage/index/'.$part5['intid'];?>" title="<?php echo $part5['title'];?>"><?php echo $part5['title'];?></a></li>
+					<li><a href="<?php echo 'footerpage/index/'.$part5['intid'];?>" title="<?php echo $part5['title'];?>"><?php echo $part5['title'];?></a></li>
 				<?php 
 				}
 				}
@@ -180,7 +180,7 @@ function readCookie(name) {
 				foreach($footerpart3 as $part3) 
 				{ 
 				?>
-					<li><a target="_blank" href="<?php echo 'footerpage/index/'.$part3['intid'];?>" title="<?php echo $part3['title'];?>"><?php echo $part3['title'];?></a></li>
+					<li><a href="<?php echo 'footerpage/index/'.$part3['intid'];?>" title="<?php echo $part3['title'];?>"><?php echo $part3['title'];?></a></li>
 				<?php 
 				}
 				}
@@ -217,7 +217,7 @@ function readCookie(name) {
 				foreach($footerpart4 as $part4) 
 				{ 
 				?>
-					<a target="_blank" href="<?php echo 'footerpage/index/'.$part4['intid'];?>" title="<?php echo $part4['title'];?>"><?php echo $part4['title'];?></a>
+					<a href="<?php echo 'footerpage/index/'.$part4['intid'];?>" title="<?php echo $part4['title'];?>"><?php echo $part4['title'];?></a>
 				<?php 
 				}
 				}
