@@ -704,11 +704,11 @@
                 <?php $totalcomplaints=$this->users->get_all_complaintsby_userid($user[0]['id']);?>
                 <?php $totalcomments=$this->users->get_all_commentsby_userid($user[0]['id']);?>
                 <?php $totaldisputes=$this->users->get_all_disputesby_userid($user[0]['id']);?>
-                <?php $totalrating = $this->users->get_all_rating($user[0]['id']);?>
+                <?php $totalrating =$this->users->get_all_rating($user[0]['id']);?>
                 <div class="user_view"><a href="<?php echo site_url('user/complaints'); ?>" title="Complaints"><span class="colorcode">Complaints ( <?php echo count($totalcomplaints);?> )</span></a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/comments'); ?>" title="Comments">Comments ( <?php echo count($totalcomments);?> )</a></div>
-                <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes">Disputes ( <?php echo count($totaldisputes);?> )</a></div>
-                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Ratings"><span class="colorcode">My Ratings ( <?php echo count($totalrating);?> )</span></a></div>
+                <!--<div class="user_view"><a href="<?php //echo site_url('user/disputes'); ?>" title="Disputes">Disputes ( <?php //echo count($totaldisputes);?> )</a></div>-->
+                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Reviews"><span class="colorcode">My Reviews ( <?php echo count($totalrating);?> )</span></a></div>
               </td>              
             </tr>
           </table>
