@@ -783,8 +783,8 @@
                 <?php $totalrating = $this->users->get_all_rating($user[0]['id']);?>
                 <div class="user_view"><a href="<?php echo site_url('user/complaints'); ?>" title="Complaints">Complaints ( <?php echo count($totalcomplaints);?> )</a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/comments'); ?>" title="Comments"><span class="colorcode">Comments ( <?php echo count($totalcomments);?> )</span></a></div>
-                <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes">Disputes ( <?php echo count($totaldisputes);?> )</a></div>
-                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Ratings"><span class="colorcode">My Ratings ( <?php echo count($totalrating);?> )</span></a></div>
+                <!--<div class="user_view"><a href="<?php //echo site_url('user/disputes'); ?>" title="Disputes">Disputes ( <?php //echo count($totaldisputes);?> )</a></div>-->
+                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Reviews"><span class="colorcode">My Reviews ( <?php echo count($totalrating);?> )</span></a></div>
               </td>
             </tr>
           </table>
@@ -852,8 +852,8 @@
                 <?php $totalrating = $this->users->get_all_rating($user[0]['id']);?>
                 <div class="user_view"><a href="<?php echo site_url('user/complaints'); ?>" title="Complaints">Complaints ( <?php echo count($totalcomplaints);?> )</a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/comments'); ?>" title="Comments">Comments ( <?php echo count($totalcomments);?> )</a></div>
-                <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes"><span class="colorcode">Disputes ( <?php echo count($totaldisputes);?> )</span></a></div>
-                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Ratings"><span class="colorcode">My Ratings ( <?php echo count($totalrating);?> )</span></a></div>
+                <!--<div class="user_view"><a href="<?php //echo site_url('user/disputes'); ?>" title="Disputes"><span class="colorcode">Disputes ( <?php// echo count($totaldisputes);?> )</span></a></div>-->
+                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Reviews"><span class="colorcode">My Reviews ( <?php echo count($totalrating);?> )</span></a></div>
               </td>
             </tr>
           </table>
@@ -936,8 +936,8 @@
                 
                 <div class="user_view"><a href="<?php echo site_url('user/complaints'); ?>" title="Complaints">Complaints ( <?php echo count($totalcomplaints);?> )</a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/comments'); ?>" title="Comments">Comments ( <?php echo count($totalcomments);?> )</a></div>
-                <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes"><span class="colorcode">Disputes ( <?php echo count($totaldisputes);?> )</span></a></div>
-                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Ratings"><span class="colorcode">My Ratings ( <?php echo count($totalrating);?> )</span></a></div>
+                <!--<div class="user_view"><a href="<?php //echo site_url('user/disputes'); ?>" title="Disputes"><span class="colorcode">Disputes ( <?php //echo count($totaldisputes);?> )</span></a></div>-->
+                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Reviews"><span class="colorcode">My Reviews ( <?php echo count($totalrating);?> )</span></a></div>
               </td>
             </tr>
           </table>
@@ -1150,8 +1150,8 @@
                 <?php $totalrating = $this->users->get_all_rating($user[0]['id']);?>
                 <div class="user_view"><a href="<?php echo site_url('user/complaints'); ?>" title="Complaints">Complaints ( <?php echo count($totalcomplaints);?> )</a></div>
                 <div class="user_view"><a href="<?php echo site_url('user/comments'); ?>" title="Comments">Comments ( <?php echo count($totalcomments);?> )</a></div>
-                <div class="user_view"><a href="<?php echo site_url('user/disputes'); ?>" title="Disputes"><span class="colorcode">Disputes ( <?php echo count($totaldisputes);?> )</span></a></div>
-                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Ratings"><span class="colorcode">My Ratings ( <?php echo count($totalrating);?> )</span></a></div>
+                <!--<div class="user_view"><a href="<?php //echo site_url('user/disputes'); ?>" title="Disputes"><span class="colorcode">Disputes ( <?php //echo count($totaldisputes);?> )</span></a></div>-->
+                <div class="user_view"><a href="<?php echo site_url('user/myratings'); ?>" title="My Reviews"><span class="colorcode">My Reviews ( <?php echo count($totalrating);?> )</span></a></div>
               </td>
             </tr>
           </table>
