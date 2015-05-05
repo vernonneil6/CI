@@ -92,7 +92,7 @@
 				
 				<div class="revw_occupt"> 
 					<span>
-						<a class = "font_color_white" href="<?php echo site_url('pressrelease/browse/'.$pressreleases[$i]['seokeyword']); ?>" title="view <?php echo stripslashes(str_replace("-"," ",ucfirst($pressreleases[$i]['title']))); ?>'s detail">"<?php echo substr(stripslashes(ucfirst($pressreleases[$i]['title'])),0,50)."..."; ?>"</a>
+						<a class = "font_color_white" href="<?php echo site_url('pressrelease/browse/'.$pressreleases[$i]['seokeyword']); ?>" title="view <?php echo stripslashes(str_replace("-"," ",ucfirst($pressreleases[$i]['title']))); ?>'s detail">"<?php echo substr(stripslashes(str_replace("-"," ",ucfirst($pressreleases[$i]['title']))),0,50)."..."; ?>"</a>
 					</span>
 				</div>
 				
