@@ -38,6 +38,19 @@
 			
 			}
 </script>
+
+<script type="text/javascript">
+var lhnAccountN = "24594";
+var lhnInviteEnabled = 1;
+var lhnWindowN = 0;
+var lhnDepartmentN = 0;
+var lhnHPChatButton = false;
+var lhnHPKnowledgeBase = false;
+var lhnTheme = 'blue';
+var lhnHPMoreOptions = false;
+</script>
+<script src="//www.livehelpnow.net/lhn/widgets/helpouttab/lhnhelpouttab-current.min.js" type="text/javascript" id="lhnscriptho"></script>
+
 </head>
 
 <body>
