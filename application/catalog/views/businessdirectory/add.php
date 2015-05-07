@@ -264,7 +264,7 @@
 				<span class="form-col-1">
 					<span class="form-circle">1</span>
 				</span>
-				<span class="form-col-2">
+				<span class="form-col-2" style="width:300px;">
 					<label>BUSINESS' NAME</label>           
 					<input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name" >
 					<div id="nameerror" class="error">Name is required.</div>
@@ -274,13 +274,27 @@
 			</div> 
           </div>
           
+          <div class="reg-row business-callout">
+			<div >
+				<span class="form-col-2" style="width:450px;">
+					<a href="/solution/claimbusiness"><h3 >YouGotRated Elite Membership:</h3></a>
+					<h4 >Becoming a YGR Elite member gives you the following benefits:</h4>        
+					<p>- Negative review removal tool</p>
+					<p>- Verified Seal</p>
+					<p>- Press Releases</p>				
+					<p>- Photo Gallery</p>
+					<p>- Review Promo Tools</p>
+					<p style="margin-bottom:5px;">Much more! <a href="/solution/claimbusiness">CLICK HERE</a> to UPGRADE!</p>
+				</span>
+			</div> 
+          </div>
           
           <div class="reg-row" style="margin-top:10px;">
 			<div>
 				<span class="form-col-1">
 					&nbsp;
 				</span>
-				<span class="form-col-2">
+				<span class="form-col-2" style="width:300px;">
 					<div class="reg_fld">BUSINESS'S WEBSITE?</div>
 					<input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150" onchange="chkwebsite(this.value);">
 					<div id="websiteerror" class="error">Website is required.</div>
