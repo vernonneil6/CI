@@ -3,7 +3,7 @@
 {
 	background: url("../images/widget.png") no-repeat;
     position: fixed;
-    top: 43%;
+    top: 50%;
     cursor : pointer;
     right : 0;
     width: 45px;
@@ -376,3 +376,6 @@ body {
 	font-family: myriadpro-regular;
 	}
 a {color:#666;font-family: MyriadPro-Regular; outline:none; text-decoration:none;word-wrap: break-word;}
+
+.lhn_help_btn{ top: 175px !important; } 
+.lhn_help_container{ top: 160px !important; }

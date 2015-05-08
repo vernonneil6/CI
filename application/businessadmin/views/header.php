@@ -38,7 +38,10 @@
 			
 			}
 </script>
-
+<style type="text/css"> 
+	.lhn_help_btn{ top: 175px !important; } 
+	.lhn_help_container{ top: 160px !important; }
+</style>
 <script type="text/javascript">
 var lhnAccountN = "24594";
 var lhnInviteEnabled = 1;
