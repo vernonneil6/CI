@@ -144,7 +144,12 @@ class Businessdirectory extends CI_Controller {
 								
 								$companyid = $this->db->insert_id();							
 														
-								$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
+								//$this->complaints->insert_contactdetails($companyid,$cname,$cphone,$cemail);
+								$this->db->where('id', $companyid);
+								$this->db->update('company',array('contactname' 		=> $cname,
+																	  'contactphonenumber' 	=> $cphone,
+																	  'contactemail' 		=> $cemail));
+								
 								if($this->complaints->insert_companyseo($companyid,$name))
 								{
 									$site_name = $this->common->get_setting_value(1);
