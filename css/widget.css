@@ -16,6 +16,10 @@
 {
 	font-family: myriadpro-regular;
 	display: block;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform:translateX(-50%) translateY(-50%);
+	-o-transform:translateX(-50%) translateY(-50%);
 }
 .review_cover{
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
