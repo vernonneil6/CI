@@ -103,11 +103,11 @@
     <div class="menu">
       <ul>
         <!--<li><a href="<?php echo base_url();?>" title="Home">Home<span><span></a> </li>-->
-        <li><a href="<?php echo site_url('businessdirectory');?>" title="Business Directory">Business Directory<span><span></a></li>
-        <li><a href="<?php echo site_url('review');?>" title="Business Review">Business Reviews<span><span></a></li>
-        <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">Press Releases<span><span></a></li>
-        <li><a href="<?php echo site_url('complaint');?>" title="Complaints">Business Complaints<span><span></a></li>
-        <li><a href="<?php echo site_url('coupon');?>" title="Coupons deals & Steals">Coupons deals & Steals<span><span></a></li>
+        <li><a href="<?php echo site_url('businessdirectory');?>" title="Business Directory">Business Directory</a></li>
+        <li><a href="<?php echo site_url('review');?>" title="Business Review">Business Reviews</a></li>
+        <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">Press Releases</a></li>
+        <li><a href="<?php echo site_url('complaint');?>" title="Complaints">Business Complaints</a></li>
+        <li><a href="<?php echo site_url('coupon');?>" title="Coupons deals & Steals">Coupons deals & Steals</a></li>
         <li><a href="http://business.yougotrated.com" title="Business Solutions">Business Solutions</a></li>
       </ul>
     </div>
