@@ -89,7 +89,7 @@ h1, h2, h3 { color: #201917; }
 
 /* -- logo -- */
 #logo       { position: absolute; top: -172px; left: -25px; display: block; width: 600px; height: 190px; background: 0 0 no-repeat; z-index: 10; }
-#logo span  { position: absolute; bottom: 20px; left: 196px; width: 179px; height: 35px; display: block; color: #fff; text-align: center; font-size:30px; color:silver;
+#logo span  { position: absolute; bottom: 20px; left: 196px; height: 35px; display: block; color: #fff; text-align: center; font-size:30px; color:silver;
 
     
     
@@ -129,3 +129,4 @@ h1, h2, h3 { color: #201917; }
 .error-box   {display:none;  border:1px solid #CD0B1C; }
 .close-red{cursor: pointer; float: left;padding-right: 5px; }
  
+.business_yougot_logo{bottom: 15em;left: 5em;position: relative;}

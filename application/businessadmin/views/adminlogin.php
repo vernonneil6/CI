@@ -96,10 +96,14 @@ function popup()
 </div>
 
 <body>
+
 <div id="main">
+	<div class="business_yougot_logo">
+	<a href="<?php echo base_url();?>" title="<?php echo $site_name;?>"><img src="/images/YGR_whiteLogo.png" alt="<?php echo $site_name;?>" title="<?php echo $site_name;?>"></a>
+</div>
   <div id="content">
     <div id="login">
-      <div id="logo"><span>Business Admin</span></div>
+      <div id="logo"><span>Elite Member Login</span></div>
      
       <!-- Error form message -->
       <?php if( $this->session->flashdata('error') ) { ?>    
