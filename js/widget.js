@@ -9,7 +9,7 @@ function popupwindow(w, h) {
 }
 
 function showPopup(){
- popupwindow('500','560');
+ popupwindow('500','565');
  document.body.style.overflow = "hidden";
  document.getElementById('review_cover').style.display = 'block';
  document.getElementById('review_cover').style.visibility = 'visible';
