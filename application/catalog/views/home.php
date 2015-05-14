@@ -1,4 +1,5 @@
 <?php echo $header;?>
+<div class="container">
 <div class="slider">
     <div class="flexslider carousel">
         <ul class="slides">
@@ -24,8 +25,8 @@
 		?>
 		</ul>
 	</div>
+ </div>
 </div>
-
   
 <section class="container" >
   <section class="main_contentarea">    
@@ -151,7 +152,7 @@ $(document).ready(function(){
 	$('.browses').hover(function(){
 		$(this) .find('.hoverimg').css('display','block');
 		$(this) .find('#browseimg').css('display','none');
-		$(this) .find('.hovertxt').css('color','#FF8300');
+		$(this) .find('.hovertxt').css('color','#AE9D05');
 	},function(){
 		$(this) .find('.hoverimg').css('display','none');
 		$(this) .find('#browseimg').css('display','block');
