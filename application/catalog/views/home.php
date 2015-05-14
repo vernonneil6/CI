@@ -151,7 +151,7 @@ $(document).ready(function(){
 	$('.browses').hover(function(){
 		$(this) .find('.hoverimg').css('display','block');
 		$(this) .find('#browseimg').css('display','none');
-		$(this) .find('.hovertxt').css('color','#AE9D05');
+		$(this) .find('.hovertxt').css('color','#FF8300');
 	},function(){
 		$(this) .find('.hoverimg').css('display','none');
 		$(this) .find('#browseimg').css('display','block');
