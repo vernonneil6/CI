@@ -879,7 +879,7 @@
 							?>
                       <div class="search_content_date user_view" style="margin-bottom:15px;">
 						  <div class="post_content_dscr user_view"></div><br>
-						  <div class="treding_title">Against company <b> <?php echo nl2br(stripslashes($disputes[$i]['companyname'])); ?> </b>&nbsp;&nbsp;<b>CASEID-#<?php echo $disputes[$i]['id'];?></b></div>
+						  <div class="treding_title"><b> <?php echo nl2br(stripslashes($disputes[$i]['companyname'])); ?> </b>&nbsp;&nbsp;<b>CASEID-#<?php echo $disputes[$i]['id'];?></b></div>
 						  <div class="post_content_dscr user_view"><?php echo nl2br(stripslashes($disputes[$i]['dispute'])); ?> </div><br>
 						  <div class="post_content_dscr user_view">
 						  <a href='/dispute/message/<?php echo $disputes[$i]['msglink'];?>' style="color:#0080FF">Send & Check the Messages here</a><br>
@@ -946,7 +946,7 @@
             <tr>
               <td>
 				  <div class="right_content_panel" >
-                  <div class="treding_title" >My Ratings</div>
+                  <div class="treding_title" >My Reviews</div>
                   <?php if(count($myratings)>0){ ?>
                   <?php for($i=0; $i<count($myratings); $i++) { ?>
 				  <?php $cmyname = $this->users->get_company_bysingleid($myratings[$i]['companyid']); ?>
@@ -954,12 +954,12 @@
                   <div class="main_livepost negative_review_user">
                   <div class="post_maincontent">
                       <div class="search_content_date user_view">
-						  <div class = "treding_title">Against company <b> <?php echo $cmyname['company']; ?> </b></div>
+						  <div class = "treding_title"><b> <?php echo $cmyname['company']; ?> </b></div>
 					  </div>
 					  <table class = "mg_btm">
 						  
-						<tr><td>Review title</td><td>:</td><td><b><?php echo $myratings[$i]['reviewtitle']; ?></b></td></tr>
-						<tr><td>Review comment</td><td>:</td><td><b><?php echo $myratings[$i]['comment']; ?></b></td></tr>
+						<tr><td style="width:115px;">Review title</td><td>:</td><td><b><?php echo $myratings[$i]['reviewtitle']; ?></b></td></tr>
+						<tr><td style="width:115px;">Review comment</td><td>:</td><td><b><?php echo $myratings[$i]['comment']; ?></b></td></tr>
 						
 						<?php if($myratings[$i]['flag'] == '1') { ?>
 							<tr><td>Status</td><td>:</td><td><b>Merchant request to remove negative review.Click below link to remove review.</b></td></tr>
