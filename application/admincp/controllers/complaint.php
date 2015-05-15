@@ -27,6 +27,15 @@ class Complaint extends CI_Controller {
 		// Your own constructor code
 		if( $this->session->userdata('youg_admin'))
 	  	{
+			
+			/*last url status - start*/
+			$currenturl = $this->uri->uri_string;		
+			$this->session->set_userdata('last_url',$this->session->userdata('current_url'));
+			$this->session->set_userdata('current_url',$currenturl);		
+			$this->load->model('reviews');
+			$this->load->model('companys');
+			/*last url status - end*/
+			
 		    //If no session, redirect to login page
 			//echo site_url();die();
 	      	if(!array_key_exists('type',$this->session->userdata['youg_admin']))
@@ -209,19 +218,25 @@ class Complaint extends CI_Controller {
 	  	{
 			if(!$id)
 			{
-				redirect('complaint', 'refresh');
+				//redirect('complaint', 'refresh');
 			}
 			
 			//Deleting Record
 			if( $this->complaints->delete_complaint_byid($id) )
 			{
 				$this->session->set_flashdata('success', 'Complaint deleted successfully.');
-				redirect('complaint', 'refresh');
+				//redirect('complaint', 'refresh');
 			}
 			else
 			{
 				$this->session->set_flashdata('error', 'There is error in deleting Complaint. Try later!');
-				redirect('complaint', 'refresh');
+				//redirect('complaint', 'refresh');
+			}
+			
+			if($this->session->userdata('last_url')){
+				redirect($this->session->userdata('last_url'),'refresh');
+			}else{
+				redirect('complaint','refresh');
 			}
 	  }
 	}
@@ -272,18 +287,25 @@ class Complaint extends CI_Controller {
 					if( $this->complaints->disable_complaint_byid($id) )
 					{
 							$this->session->set_flashdata('success', 'Complaint status disabled successfully.');
-							redirect('complaint', 'refresh');
+							//redirect('complaint', 'refresh');
 					}
 				else
 					{
 						$this->session->set_flashdata('error', 'There is error in updating Complaint status. Try later!');
-						redirect('complaint', 'refresh');
+						//redirect('complaint', 'refresh');
 					}
 			}
 		else
 			{
 				redirect('complaint', 'refresh');
 			}
+			
+			if($this->session->userdata('last_url')){
+				redirect($this->session->userdata('last_url'),'refresh');
+			}else{
+				redirect('complaint','refresh');
+			}
+			
  		}}
 	
 	//Function For Change Status to "Enable"
@@ -296,18 +318,25 @@ class Complaint extends CI_Controller {
 				if( $this->complaints->enable_complaint_byid($id) )
 				{
 					$this->session->set_flashdata('success', 'Complaint status enabled successfully.');
-					redirect('complaint', 'refresh');
+					//redirect('complaint', 'refresh');
 				}
 				else
 				{
 					$this->session->set_flashdata('error', 'There is error in updating Complaint status. Try later!');
-					redirect('complaint', 'refresh');
+					//redirect('complaint', 'refresh');
 				}
 			}
 			else
 			{
-				redirect('complaint', 'refresh');
+				//redirect('complaint', 'refresh');
 			}
+			
+			if($this->session->userdata('last_url')){
+				redirect($this->session->userdata('last_url'),'refresh');
+			}else{
+				redirect('complaint','refresh');
+			}
+			
 	  }
 	}
 	

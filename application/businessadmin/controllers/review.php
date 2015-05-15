@@ -11,10 +11,14 @@ class Review extends CI_Controller
   	parent::__construct();
 		
 	  	$this->load->helper('form');
-			
+	  	
+	  	/*last url status - start*/
+		$currenturl = $this->uri->uri_string;		
+		$this->session->set_userdata('last_url',$this->session->userdata('current_url'));
+		$this->session->set_userdata('current_url',$currenturl);		
 	 	$this->load->model('reviews');
 		$this->load->model('companys');
-		
+		/*last url status - end*/
 
 		$this->config->load('paging',TRUE);
 		$this->paging = $this->config->item('paging');
@@ -673,12 +677,16 @@ public function request($reviewid='',$userid='')
 		{
 			if($this->reviews->delete_review_byid($id))
 			{
-				$this->session->set_flashdata('success', 'Review deleted successfully');
-				redirect('review','refresh');
+				$this->session->set_flashdata('success', 'Review deleted successfully');				
 			}
 			else
 			{
-				$this->session->set_flashdata('error', 'There is error in deleting review. Try later!');
+				$this->session->set_flashdata('error', 'There is error in deleting review. Try later!');				
+			}
+			
+			if($this->session->userdata('last_url')){
+				redirect($this->session->userdata('last_url'),'refresh');
+			}else{
 				redirect('review','refresh');
 			}
 		}
@@ -690,18 +698,24 @@ public function request($reviewid='',$userid='')
 			  {
 					if(!$id)
 					{
-						redirect('review', 'refresh');
+						//redirect('review', 'refresh');
 					}
 					
 					if( $this->reviews->enable_review_byid($id) )
 					{
 						$this->session->set_flashdata('success', 'Review status enabled successfully.');
-						redirect('review', 'refresh');
+						//redirect('review', 'refresh');
 					}
 					else
 					{
 						$this->session->set_flashdata('error', 'There is error in updating review status. Try later!');
-						redirect('review', 'refresh');
+						//redirect('review', 'refresh');
+					}
+					
+					if($this->session->userdata('last_url')){
+						redirect($this->session->userdata('last_url'),'refresh');
+					}else{
+						redirect('review','refresh');
 					}
 			  }
 		}
@@ -712,18 +726,23 @@ public function request($reviewid='',$userid='')
 			{
 				if(!$id)
 				{
-					redirect('review', 'refresh');
+					//redirect('review', 'refresh');
 				}
 					
 				if( $this->reviews->disable_review_byid($id) )
 				{
 					$this->session->set_flashdata('success', 'Review status disabled successfully.');
-					redirect('review', 'refresh');
+					//redirect('review', 'refresh');
 				}
 				else
 				{
 					$this->session->set_flashdata('error', 'There is error in updating review status. Try later!');
-					redirect('review', 'refresh');
+					//redirect('review', 'refresh');
+				}
+				if($this->session->userdata('last_url')){
+					redirect($this->session->userdata('last_url'),'refresh');
+				}else{
+					redirect('review','refresh');
 				}
 		  }
 		}

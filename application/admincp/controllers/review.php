@@ -24,8 +24,17 @@ class Review extends CI_Controller {
 	public function __construct()
   	{
   	parent::__construct();
+		
 		if( $this->session->userdata('youg_admin'))
 	  	{
+			/*last url status - start*/
+			$currenturl = $this->uri->uri_string;		
+			$this->session->set_userdata('last_url',$this->session->userdata('current_url'));
+			$this->session->set_userdata('current_url',$currenturl);		
+			$this->load->model('reviews');
+			$this->load->model('companys');
+			/*last url status - end*/
+			
 		    //If no session, redirect to login page
 			//echo site_url();die();
 	      	if(!array_key_exists('type',$this->session->userdata['youg_admin']))

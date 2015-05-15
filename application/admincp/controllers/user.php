@@ -27,6 +27,14 @@ class User extends CI_Controller {
 		// Your own constructor code
 		if( $this->session->userdata('youg_admin'))
 	  	{
+			/*last url status - start*/
+			$currenturl = $this->uri->uri_string;		
+			$this->session->set_userdata('last_url',$this->session->userdata('current_url'));
+			$this->session->set_userdata('current_url',$currenturl);		
+			$this->load->model('reviews');
+			$this->load->model('companys');
+			/*last url status - end*/
+			
 		    //If no session, redirect to login page
 			//echo site_url();die();
 	      	if(!array_key_exists('type',$this->session->userdata['youg_admin']))
@@ -462,40 +470,47 @@ class User extends CI_Controller {
 	  	{
 			if(!$id)
 			{
-				redirect('user', 'refresh');
-			}
+				//redirect('user', 'refresh');
+			}else{
 			
-			//Unlink Old Images
-			$media = $this->users->get_user_byid($id);
-			if( count($media)>0 )
-			{
-				if( $media[0]['avatarbig']!='' )
+				//Unlink Old Images
+				$media = $this->users->get_user_byid($id);
+				if( count($media)>0 )
 				{
-					//Deleting main file
-					if( file_exists($this->config->item('user_main_upload_path').$media[0]['avatarbig']) )
-					{											
-						unlink($this->config->item('user_main_upload_path').$media[0]['avatarbig']);
-					}
-					//Deleting thumbnail
-					if( file_exists($this->config->item('user_thumb_upload_path').$media[0]['avatarbig']) )
-					{											
-						unlink($this->config->item('user_thumb_upload_path').$media[0]['avatarbig']);
+					if( $media[0]['avatarbig']!='' )
+					{
+						//Deleting main file
+						if( file_exists($this->config->item('user_main_upload_path').$media[0]['avatarbig']) )
+						{											
+							unlink($this->config->item('user_main_upload_path').$media[0]['avatarbig']);
+						}
+						//Deleting thumbnail
+						if( file_exists($this->config->item('user_thumb_upload_path').$media[0]['avatarbig']) )
+						{											
+							unlink($this->config->item('user_thumb_upload_path').$media[0]['avatarbig']);
+						}
 					}
 				}
-			}
-			
-			//Deleting Record
-			if( $this->users->delete_user_byid($id) )
-			{
-				$this->session->set_flashdata('success', 'user deleted successfully.');
-				redirect('user', 'refresh');
-			}
-			else
-			{
-				$this->session->set_flashdata('error', 'There is error in deleting user. Try later!');
-				redirect('user', 'refresh');
+				
+				//Deleting Record
+				if( $this->users->delete_user_byid($id) )
+				{
+					$this->session->set_flashdata('success', 'user deleted successfully.');
+					//redirect('user', 'refresh');
+				}
+				else
+				{
+					$this->session->set_flashdata('error', 'There is error in deleting user. Try later!');
+					//redirect('user', 'refresh');
+				}
 			}
 	  	}
+	  	
+	  	if($this->session->userdata('last_url')){
+			redirect($this->session->userdata('last_url'),'refresh');
+		}else{
+			redirect('user','refresh');
+		}
 	}
 	
 	//Function For Change Status to "Disable"
@@ -505,18 +520,24 @@ class User extends CI_Controller {
 	  	{
 			if(!$id)
 			{
-				redirect('user', 'refresh');
+				//redirect('user', 'refresh');
 			}
 				
 			if( $this->users->disable_user_byid($id) )
 			{
 				$this->session->set_flashdata('success', 'user status disabled successfully.');
-				redirect('user', 'refresh');
+				//redirect('user', 'refresh');
 			}
 			else
 			{
 				$this->session->set_flashdata('error', 'There is error in updating user status. Try later!');
-				redirect('user', 'refresh');
+				//redirect('user', 'refresh');
+			}
+			
+			if($this->session->userdata('last_url')){
+				redirect($this->session->userdata('last_url'),'refresh');
+			}else{
+				redirect('user','refresh');
 			}
 	  }
 	}
@@ -528,18 +549,24 @@ class User extends CI_Controller {
 	  {
 			if(!$id)
 			{
-				redirect('user', 'refresh');
+				//redirect('user', 'refresh');
 			}
 			
 			if( $this->users->enable_user_byid($id) )
 			{
 				$this->session->set_flashdata('success', 'user status enabled successfully.');
-				redirect('user', 'refresh');
+				//redirect('user', 'refresh');
 			}
 			else
 			{
 				$this->session->set_flashdata('error', 'There is error in updating user status. Try later!');
-				redirect('user', 'refresh');
+				//redirect('user', 'refresh');
+			}
+			
+			if($this->session->userdata('last_url')){
+				redirect($this->session->userdata('last_url'),'refresh');
+			}else{
+				redirect('user','refresh');
 			}
 	  }
 	}
