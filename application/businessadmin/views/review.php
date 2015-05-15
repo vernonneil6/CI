@@ -20,7 +20,14 @@
   <!-- box -->
   <div class="box">
     <div class="headlines">
-      <h2><span> Reviews</span></h2>
+		<h2><span> Reviews</span></h2>
+		<h2>
+		   <span>
+				<a href="<?php echo site_url('review/export_csv/'.$keyword); ?>" title="Export as CSV file">
+					<img src="<?php echo base_url(); ?>images/export_csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
+				</a>
+			</span>
+		</h2>
     </div>          
      <?php $id = $this->session->userdata('siteid');?>
       <?php $url1 = $this->reviews->get_url_byid($id);?>

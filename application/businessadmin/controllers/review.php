@@ -764,10 +764,61 @@ public function request($reviewid='',$userid='')
 				$this->paging['uri_segment'] = 3;
 				$this->paging['total_rows'] = count($this->reviews->searchrev($keyword,$companyid));
 				$this->pagination->initialize($this->paging);
-
+				$this->data['keyword'] = $keyword; 
 				$this->load->view('review',$this->data);
 			}
 		}
+	public function export_csv($keyword)
+    {		
+        if( $this->session->userdata['youg_admin'] )
+        {				
+				$companyid = $this->session->userdata['youg_admin']['id'];
+				$siteid = $this->session->userdata['siteid'];
+				
+				if($keyword!='') 
+				{					
+					$file = 'Report-of-search-reviews.csv';					
+					$review = $this->reviews->searchrev($keyword,$companyid,$limit,$offset);
+					
+				}
+				else
+				{					
+					$file = 'Report-of-all-reviews.csv';
+					$review = $this->reviews->get_all_reviews($companyid,$siteid,$limit,$offset,$sortby,$orderby);
+				}
+				ob_start();
+				echo "Review,Review to,Review by,IP,Date Reviewed,Status"."\n";
+				
+				   for($i=0;$i<count($review);$i++) { 
+					
+						echo stripslashes(ucwords($review[$i]['comment'])).',';
+						echo stripslashes(ucwords($review[$i]['company'])).',';
+						echo ucfirst($reviews[$i]['firstname'].' '.$reviews[$i]['lastname']).',';
+						echo stripslashes(ucwords($review[$i]['reviewip'])).',';
+						echo stripslashes($review[$i]['reviewdate']).',';
+						echo stripslashes(ucwords($review[$i]['status'])); 
+						echo "\n";							
+					}
+			
+					$content = ob_get_contents();
+					ob_end_clean();
+					header("Expires: 0");
+					header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+					header("Cache-Control: no-store, no-cache, must-revalidate");
+					header("Cache-Control: post-check=0, pre-check=0", false);
+					header("Pragma: no-cache");  header("Content-type: application/csv;charset:UTF-8");
+					header('Content-length: '.strlen($content));
+					header('Content-disposition: attachment; filename='.basename($file));
+					echo $content;
+					exit;
+							
+						
+		}
+		else
+		{
+			redirect('adminlogin','refresh');
+		}
+    }
 }
 
 /* End of file page.php */
