@@ -87,44 +87,13 @@ class Complaint extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sortby)
+	public function index($sortby,$orderby='asc')
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			
 			$limit = $this->paging['per_page'];
-			
-			if($sortby=='against')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("complaint/index/against");
-				$orderby = 'asc';
-				$url = 4;
-				
-			}
-			else if($sortby=='by')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("complaint/index/by");
-				$orderby = 'asc';
-				$url = 4;
-			}
-			else if($sortby=='complaint')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("complaint/index/complaint");
-				$orderby = 'asc';
-				$url = 4;
-			}
-			else
-			{
-				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
-				$base = site_url("complaint/index");
-				$orderby = 'desc';
-				$url = 3;
-			}
-			
-				
+						
 
 			$siteid = $this->session->userdata('siteid');
 			//Addingg Setting Result to variable

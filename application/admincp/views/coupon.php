@@ -572,12 +572,18 @@ else { ?>
 		padding: 8px 10px;
 	}
 	</style>
+	<?php 				  
+	  $order_seg = $this->uri->segment(4,"asc"); 
+	  if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+	 ?>                       
+	
+	
 	<table class="tab tab-drag">
     <tr class="top nodrop nodrag">
-        <th><a class="sorttitle" href="<?php echo base_url('coupon/index/company'); ?>">Company</th>
-        <th><a class="sorttitle" href="<?php echo base_url('coupon/index'); ?>">Title</th>
-        <th width="10%"><a class="sorttitle" href="<?php echo base_url('coupon/index/promocode'); ?>">Promocode</th>
-        <th width="10%"><a class="sorttitle" href="<?php echo base_url('coupon/index/enddate'); ?>">Enddate</th>
+        <th><a class="sorttitle" href="<?php echo base_url('coupon/index/company');?>/<?=$orderby?>">Company</th>
+        <th><a class="sorttitle" href="<?php echo base_url('coupon/index/title');?>/<?=$orderby?>">Title</th>
+        <th width="10%"><a class="sorttitle" href="<?php echo base_url('coupon/index/promocode');?>/<?=$orderby?>">Promocode</th>
+        <th width="10%"><a class="sorttitle" href="<?php echo base_url('coupon/index/enddate');?>/<?=$orderby ?>">Enddate</th>
         <th width="10%">Status</th>
         <th width="10%">Action</th>
     </tr>

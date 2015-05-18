@@ -76,43 +76,12 @@ class Coupon extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sortby)
+	public function index($sortby,$orderby='asc')
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			$limit = $this->paging['per_page'];
-			
-			if($sortby=='enddate')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("coupon/index/enddate");
-				$orderby = 'desc';
-				$url = 4;
-				
-			}
-			else if($sortby=='promocode')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("coupon/index/promocode");
-				$orderby = 'asc';
-				$url = 4;
-			}
-			else if($sortby=='company')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("coupon/index/company");
-				$orderby = 'asc';
-				$url = 4;
-			}
-			else
-			{
-				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
-				$base = site_url("coupon/index");
-				$orderby = 'asc';
-				$url = 3;
-			}
-			
-			
+					
 			$siteid = $this->session->userdata('siteid');
 			//Addingg Setting Result to variable
 			$this->data['coupons'] = $this->coupons->get_all_coupons($siteid,$limit,$offset,$sortby,$orderby);

@@ -480,7 +480,10 @@
     
     
     
-    <?php if( count($reviews) > 0 ) { ?>
+    <?php if( count($reviews) > 0 ) { 
+	  $order_seg = $this->uri->segment(4,"asc"); 
+	  if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+	?>
 		<script language="javascript">
 		
 		
@@ -540,11 +543,11 @@ function submitfrm()
     </table>
     <table class="tab tab-drag">
       <th width="7%"><input type="checkbox" id="selectall" name="maincheck"/></th>
-        <th width="51%"><a class="sorttitle" href="<?php echo base_url('review/index/review'); ?>">Review</a></th>
-        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/to'); ?>">Review to</a></th>
-        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/by'); ?>">Review by</a></th>
-        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/ip'); ?>">IP</a></th>
-        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index'); ?>">Date Reviewed</a></th>
+        <th width="51%"><a class="sorttitle" href="<?php echo base_url('review/index/review');?>/<?=$orderby?>">Review</a></th>
+        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/to');?>/<?=$orderby?>">Review to</a></th>
+        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/by');?>/<?=$orderby?>">Review by</a></th>
+        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/ip');?>/<?=$orderby?>">IP</a></th>
+        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index');?>/<?=$orderby?>">Date Reviewed</a></th>
         <th width="7%">status</th>
         <th width="7%">&nbsp;View&nbsp;</th>
       </tr>

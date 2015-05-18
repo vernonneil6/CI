@@ -85,6 +85,8 @@ class Elites extends CI_Model
 	    $this->db->or_like('c.country',$keyword,'after');
 	    $this->db->or_like('c.zip',$keyword,'after');
 	    $this->db->or_like('c.company',strtolower($keyword),'after');
+	    $this->db->or_like('c.email',$keyword,'after');
+	    $this->db->or_like('c.contactname',$keyword,'after');
 	    $this->db->or_like('c.companyseokeyword',$keyword,'after');
 		
 		$query = $this->db->get();

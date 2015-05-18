@@ -188,7 +188,7 @@ class Coupons extends CI_Model
  		{
 		
 		//Ordering Data
-		$this->db->order_by($sortby,$orderby);
+		//$this->db->order_by($sortby,$orderby);
 		
 	  	//Setting Limit for Paging
 		if( $limit != '' && $offset == 0)
@@ -202,7 +202,7 @@ class Coupons extends CI_Model
 		$this->db->join('company as c','com.companyid=c.id');
 		$this->db->where('com.websiteid',$siteid);
 		$this->db->where('type','admin');
-		$this->db->where('(company LIKE \'%'.$keyword.'%\' OR streetaddress LIKE \'%'.$keyword.'%\' OR email LIKE \'%'.$keyword.'%\' OR siteurl LIKE \'%'.$keyword.'%\' OR aboutus LIKE \'%'.$keyword.'%\' OR title LIKE \'%'.$keyword.'%\' OR promocode LIKE \'%'.$keyword.'%\')', NULL, FALSE);
+		$this->db->where('(c.company LIKE \'%'.$keyword.'%\' OR com.title LIKE \'%'.$keyword.'%\' OR com.promocode LIKE \'%'.$keyword.'%\')', NULL, FALSE);
 		$query = $this->db->get();
 	
 		if ($query->num_rows() > 0)

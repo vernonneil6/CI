@@ -676,7 +676,11 @@ else { ?>
       <?php echo form_close(); ?> </div>
 
 
-    <?php if( count($complaints) > 0 ) { ?><script language="javascript">
+    <?php if( count($complaints) > 0 ) { 
+		$order_seg = $this->uri->segment(4,"asc"); 
+	  if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+		
+		?><script language="javascript">
 $(function(){
  
     // add multiple select / deselect functionality
@@ -730,10 +734,10 @@ function submitfrm()
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
         <th><input type="checkbox" id="selectall" name="maincheck"/></th>
-        <th width="40%"><a class="sorttitle" href="<?php echo base_url('complaint/index/complaint'); ?>">Complaint</a></th>
-        <th width="15%"><a class="sorttitle" href="<?php echo base_url('complaint/index/against'); ?>">Against</a></th>
-        <th width="15%"><a class="sorttitle" href="<?php echo base_url('complaint/index/by'); ?>">By</a></th>
-        <th width="10%"><a class="sorttitle" href="<?php echo base_url('complaint/index'); ?>">Date</a></th>
+        <th width="40%"><a class="sorttitle" href="<?php echo base_url('complaint/index/complaint');?>/<?=$orderby?>">Complaint</a></th>
+        <th width="15%"><a class="sorttitle" href="<?php echo base_url('complaint/index/against');?>/<?=$orderby?>">Against</a></th>
+        <th width="15%"><a class="sorttitle" href="<?php echo base_url('complaint/index/by');?>/<?=$orderby?>">By</a></th>
+        <th width="10%"><a class="sorttitle" href="<?php echo base_url('complaint/index/date');?>/<?=$orderby?>">Date</a></th>
         <th width="10%">Status</th>
         <th width="10%">&nbsp;&nbsp;Action&nbsp;&nbsp;</th>
       </tr>
