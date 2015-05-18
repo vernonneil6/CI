@@ -276,15 +276,17 @@
           
           <div class="reg-row business-callout">
 			<div >
-				<span class="form-col-2" style="width:450px;">
+				<span class="form-col-2" style="width:400px;">
 					<a href="/solution/claimbusiness"><h3 >YouGotRated Elite Membership:</h3></a>
 					<h4 >Becoming a YGR Elite member gives you the following benefits:</h4>        
-					<p>- Negative review removal tool</p>
-					<p>- Verified Seal</p>
-					<p>- Press Releases</p>				
-					<p>- Photo Gallery</p>
-					<p>- Review Promo Tools</p>
-					<p style="margin-bottom:5px;">Much more! <a href="/solution/claimbusiness">CLICK HERE</a> to UPGRADE!</p>
+					<ul>
+					<li><p>Negative review removal tool</p></li>
+					<li><p>Verified Seal</p></li>
+					<li><p>Press Releases</p></li>				
+					<li><p>Photo Gallery</p></li>
+					<li><p>Review Promo Tools</p></li>
+					<li style="margin-bottom:5px;"><p>Much more! <a href="/solution/claimbusiness"><b style="color:#000;">CLICK HERE</b></a> to UPGRADE!</p></li>
+					</ul>
 				</span>
 			</div> 
           </div>
