@@ -66,7 +66,7 @@ class Coupon extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	public function index($sortby,$orderby='asc')
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
@@ -74,7 +74,7 @@ class Coupon extends CI_Controller {
 			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
 			$siteid = $this->session->userdata('siteid');
 			//Addingg Setting Result to variable
-			$this->data['coupons'] = $this->coupons->get_all_coupons($siteid,$limit,$offset);
+			$this->data['coupons'] = $this->coupons->get_all_coupons($siteid,$limit,$offset,$sortby,$orderby);
 			/*echo "<pre>";
 			print_r($this->data['coupons']);
 			die();*/

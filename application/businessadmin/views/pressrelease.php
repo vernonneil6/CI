@@ -491,14 +491,17 @@ else { ?>
       
     
     
-    <?php if( count($pressreleases) > 0 ) { ?>
+    <?php if( count($pressreleases) > 0 ) {
+		$order_seg = $this->uri->segment(4,"asc"); 
+		if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+	 ?>
     <!-- table -->
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-        <th><a class="sorttitle" href="<?php echo base_url('pressrelease/index/sitename'); ?>">Site Name</a></th>
-        <th><a class="sorttitle" href="<?php echo base_url('pressrelease/index/title'); ?>">Title</a></th>
-		<th><a class="sorttitle" href="<?php echo base_url('pressrelease/index/subtitle'); ?>">Subtitle</a></th>
-        <th><a class="sorttitle" href="<?php echo base_url('pressrelease/index'); ?>">Release Date</a></th>
+        <th><a class="sorttitle" href="<?php echo base_url('pressrelease/index/sitename');?>/<?=$orderby?>">Site Name</a></th>
+        <th><a class="sorttitle" href="<?php echo base_url('pressrelease/index/title');?>/<?=$orderby?>">Title</a></th>
+		<th><a class="sorttitle" href="<?php echo base_url('pressrelease/index/subtitle');?>/<?=$orderby?>">Subtitle</a></th>
+        <th><a class="sorttitle" href="<?php echo base_url('pressrelease/index');?>/<?=$orderby?>">Release Date</a></th>
         <th>Status</th>
         <th>Action</th>
         <th>Share On</th>

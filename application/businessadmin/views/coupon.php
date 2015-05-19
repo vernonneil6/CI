@@ -460,7 +460,10 @@ else { ?>
     </div>
     <?php } ?>
     
-	<?php if( count($coupons) > 0 ) { ?>
+	<?php if( count($coupons) > 0 ) { 
+	  $order_seg = $this->uri->segment(4,"asc"); 
+	  if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+		?>
 	<!-- table -->
     <style>
 	.tab td {
@@ -473,9 +476,9 @@ else { ?>
 	<table class="tab tab-drag">
     <tr class="top nodrop nodrag">
         
-        <th>Title</th>
-        <th width="10%">Promocode</th>
-        <th width="10%">Enddate</th>
+        <th><a class="sorttitle" href="<?php echo base_url('coupon/index/title');?>/<?=$orderby?>">Title</th>
+        <th width="10%"><a class="sorttitle" href="<?php echo base_url('coupon/index/promocode');?>/<?=$orderby?>">Promocode</th>
+        <th width="10%"><a class="sorttitle" href="<?php echo base_url('coupon/index/enddate');?>/<?=$orderby?>">Enddate</th>
         <th width="10%">Status</th>
         <th width="10%">Action</th>
     </tr>

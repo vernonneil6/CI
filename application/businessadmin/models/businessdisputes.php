@@ -2,8 +2,16 @@
 Class Businessdisputes extends CI_Model
 {
 	
-	function listdispute($limit ='',$offset='')
+	function listdispute($limit ='',$offset='',$sortby,$orderby='asc')
  	{
+		
+		switch($sortby)
+		{
+			case 	'complaints' : $sortby = 'dispute';break;
+			default 	   		 : $sortby = 'username';break;
+		}
+		
+		$this->db->order_by($sortby,$orderby);
 		
 		//Setting Limit for Paging
 		if( $limit != '' && $offset == 0)

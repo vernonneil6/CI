@@ -53,7 +53,7 @@ class Businessdispute extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	public function index($sortby,$orderby='asc')
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
@@ -65,7 +65,7 @@ class Businessdispute extends CI_Controller {
 			$limit = $this->paging['per_page'];
 			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
 			//Addingg Setting Result to variable
-			$this->data['companydispute'] = $this->businessdisputes->listdispute($limit,$offset);
+			$this->data['companydispute'] = $this->businessdisputes->listdispute($limit,$offset,$sortby,$orderby='asc');
 			
 			$this->paging['base_url'] = site_url("businessdispute/index");
 			$this->paging['uri_segment'] = 3;

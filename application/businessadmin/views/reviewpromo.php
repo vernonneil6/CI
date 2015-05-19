@@ -471,7 +471,10 @@ float: left;
     </div>
     <?php } ?>
     
-	<?php if( count($reviewpromos) > 0 ) { ?>
+	<?php if( count($reviewpromos) > 0 ) { 
+		$order_seg = $this->uri->segment(4,"asc"); 
+		if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+		?>
 	<!-- table -->
     <style>
 	.tab td {
@@ -484,9 +487,9 @@ float: left;
 	<table class="tab tab-drag">
     <tr class="top nodrop nodrag">
         
-        <th>Title</th>
-        <th width="10%">Promocode</th>
-        <th width="10%">Enddate</th>
+        <th><a class="sorttitle" href="<?php echo base_url('reviewpromo/index/name');?>/<?=$orderby?>">Title</th>
+        <th width="10%"><a class="sorttitle" href="<?php echo base_url('reviewpromo/index/code');?>/<?=$orderby?>">Promocode</th>
+        <th width="10%"><a class="sorttitle" href="<?php echo base_url('reviewpromo/index/date');?>/<?=$orderby?>">Enddate</th>
         <th width="10%">Status</th>
         <th width="10%">Action</th>
     </tr>
