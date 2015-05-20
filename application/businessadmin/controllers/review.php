@@ -814,6 +814,7 @@ public function request($reviewid='',$userid='')
 				   for($i=0;$i<count($review);$i++) { 
 						$comment = str_replace('"','',$review[$i]['comment']);
 						$comment = str_replace("'",'',$comment);
+						$comment = str_replace(".",'',$comment);
 						echo stripslashes(ucwords($comment)).',';
 						echo stripslashes(ucwords($review[$i]['company'])).',';
 						echo ucfirst($reviews[$i]['firstname'].' '.$reviews[$i]['lastname']).',';
