@@ -98,6 +98,7 @@ class Review extends CI_Controller
 			}
 			
 			$companyid = $this->session->userdata['youg_admin']['id'];
+			
 			$siteid = $this->session->userdata['siteid'];
 
 			$this->data['reviews'] = $this->reviews->get_all_reviews($companyid,$siteid,$limit,$offset,$sortby,$orderby);
@@ -792,6 +793,7 @@ public function request($reviewid='',$userid='')
         if( $this->session->userdata['youg_admin'] )
         {				
 				$companyid = $this->session->userdata['youg_admin']['id'];
+				
 				$siteid = $this->session->userdata['siteid'];
 				
 				if($keyword!='') 
@@ -805,18 +807,21 @@ public function request($reviewid='',$userid='')
 					$file = 'Report-of-all-reviews.csv';
 					$review = $this->reviews->get_all_reviews($companyid,$siteid,$limit,$offset,$sortby,$orderby);
 				}
+				
 				ob_start();
 				echo "Review,Review to,Review by,IP,Date Reviewed,Status"."\n";
 				
 				   for($i=0;$i<count($review);$i++) { 
-					
-						echo stripslashes(ucwords($review[$i]['comment'])).',';
+						$comment = str_replace('"','',$review[$i]['comment']);
+						$comment = str_replace("'",'',$comment);
+						echo stripslashes(ucwords($comment)).',';
 						echo stripslashes(ucwords($review[$i]['company'])).',';
 						echo ucfirst($reviews[$i]['firstname'].' '.$reviews[$i]['lastname']).',';
 						echo stripslashes(ucwords($review[$i]['reviewip'])).',';
 						echo stripslashes($review[$i]['reviewdate']).',';
 						echo stripslashes(ucwords($review[$i]['status'])); 
 						echo "\n";							
+						//break;
 					}
 			
 					$content = ob_get_contents();
