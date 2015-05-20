@@ -93,22 +93,18 @@ class Complaint extends CI_Controller {
 	  	{
 			
 			$limit = $this->paging['per_page'];
-						
+			if($this->uri->segment(3)){ $offset = ($this->uri->segment(3));}
+			else { $offset = 1;	}			
 
 			$siteid = $this->session->userdata('siteid');
 			//Addingg Setting Result to variable
 			$this->data['complaints'] = $this->complaints->get_all_complaints($siteid,$limit,$offset,$sortby,$orderby);
-			/*echo "<pre>";
-			print_r($this->data['complaints']);
-			die();*/
-			
-			$this->paging['base_url'] = $base;
-			$this->paging['uri_segment'] = $url;
+					
+			$this->paging['base_url'] = 'complaint/index';
+			//$this->paging['uri_segment'] = $url;
 			$this->paging['total_rows'] = count($this->complaints->get_all_complaints($siteid));
 			$this->pagination->initialize($this->paging);
-			//echo "<pre>";
-			//print_r($this->paging);
-			//die();
+	
 			//Loading View File
 			$this->load->view('complaint',$this->data);
 	  	}
@@ -389,7 +385,7 @@ class Complaint extends CI_Controller {
 		
 		$this->load->view('complaint',$this->data);
 	}
-	public function removed()
+	public function removed($sortby,$orderby='asc')
 	{
 	
 		if( $this->session->userdata['youg_admin'] )
@@ -398,18 +394,13 @@ class Complaint extends CI_Controller {
 			$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
 			$siteid = $this->session->userdata('siteid');
 			//Addingg Setting Result to variable
-			$this->data['removedcomplaints'] = $this->complaints->get_all_removedcomplaints($siteid,$limit,$offset);
-			/*echo "<pre>";
-			print_r($this->data['removedcomplaints']);
-			die();*/
-			
+			$this->data['removedcomplaints'] = $this->complaints->get_all_removedcomplaints($siteid,$limit,$offset,$sortby,$orderby);
+						
 			$this->paging['base_url'] = site_url("complaint/removed/index");
 			$this->paging['uri_segment'] = 4;
 			$this->paging['total_rows'] = count($this->complaints->get_all_removedcomplaints($siteid));
 			$this->pagination->initialize($this->paging);
-			//echo "<pre>";
-			//print_r($this->paging);
-			//die();
+			
 			//Loading View File
 			$this->load->view('complaint',$this->data);
 	  	}
@@ -496,6 +487,58 @@ class Complaint extends CI_Controller {
 			redirect('adminlogin','refresh');
 		}
     }
+    
+    
+    public function removedcomplaintcsv()
+    {
+        if( $this->session->userdata['youg_admin'] )
+        {
+				$siteid = $this->session->userdata('siteid');
+				$file = 'Report-of-Removed-complaint.csv';
+				$complaint = $this->complaints->get_all_removedcomplaints($siteid);
+				
+				ob_start();
+				echo "Complaint,Complaint By,Company,Complaint Date,Removal Date"."\n";
+				
+				   for($i=0;$i<count($complaint);$i++) { 
+					
+						echo stripslashes(ucwords(str_replace(',', '',$complaint[$i]['detail']))).',';
+						$user=$this->complaints->get_user_bysingleid($complaint[$i]['userid']);
+						echo stripslashes(ucwords($user['firstname'].' '.$user['lastname'])).',';
+						$company=$this->complaints->get_company_bysingleid($complaint[$i]['companyid']);
+						echo stripslashes(ucwords($company['company'])).',';
+						echo date("m-d-Y",strtotime($complaint[$i]['whendate'])).','; 
+						echo date("m-d-Y",strtotime($complaint[$i]['transaction_date'])); 
+						echo "\n";							
+					}
+			
+					$content = ob_get_contents();
+					ob_end_clean();
+					header("Expires: 0");
+					header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+					header("Cache-Control: no-store, no-cache, must-revalidate");
+					header("Cache-Control: post-check=0, pre-check=0", false);
+					header("Pragma: no-cache");  header("Content-type: application/csv;charset:UTF-8");
+					header('Content-length: '.strlen($content));
+					header('Content-disposition: attachment; filename='.basename($file));
+					echo $content;
+					exit;
+							
+						
+		}
+		else
+		{
+			redirect('adminlogin','refresh');
+		}
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     public function printhistory($complaintid)
     {
 		
