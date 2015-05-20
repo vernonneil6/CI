@@ -506,8 +506,8 @@ class Complaint extends CI_Controller {
 						$user=$this->complaints->get_user_bysingleid($complaint[$i]['userid']);
 						echo stripslashes(ucwords($user['firstname'].' '.$user['lastname'])).',';
 						$company=$this->complaints->get_company_bysingleid($complaint[$i]['companyid']);
-						echo stripslashes(ucwords($company['company']));
-						echo date("m-d-Y",strtotime($complaint[$i]['complaindate'])); 
+						echo stripslashes(ucwords($company['company'])).',';
+						echo date("m-d-Y",strtotime($complaint[$i]['whendate'])).','; 
 						echo date("m-d-Y",strtotime($complaint[$i]['transaction_date'])); 
 						echo "\n";							
 					}
