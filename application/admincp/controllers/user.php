@@ -92,13 +92,14 @@ class User extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sortby)
+	public function index($sortby,$orderby='asc')
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			$limit = $this->paging['per_page'];
-			
-			if($sortby=='email')
+			if($this->uri->segment(3)){ $offset = ($this->uri->segment(3));}
+			else { $offset = 1;	}	
+			/*if($sortby=='email')
 			{
 				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
 				$base = site_url("user/index/email");
@@ -119,24 +120,17 @@ class User extends CI_Controller {
 				$base = site_url("user/index");
 				$orderby = 'asc';
 				$url = 3;
-			}
+			}*/
 			
 			
 			//Addingg Setting Result to variable
 			$this->data['users'] = $this->users->get_all_users($limit,$offset,$sortby,$orderby);
-			/*echo "<pre>";
-			print_r($this->data['users']);
-			die();*/
-			
-			
-			
-			$this->paging['base_url'] = $base;
-			$this->paging['uri_segment'] = $url;
+					
+			$this->paging['base_url'] = 'user/index';
+			//$this->paging['uri_segment'] = $url;
 			$this->paging['total_rows'] = count($this->users->get_all_users());
 			$this->pagination->initialize($this->paging);
-			//echo "<pre>";
-			//print_r($this->paging);
-			//die();
+			
 			
 			//Loading View File
 			$this->load->view('user',$this->data);

@@ -5,9 +5,10 @@ Class Users extends CI_Model
  	{
 		switch($sortby)
 		{
+			case 'name' 		: $sortby = 'firstname';break;
 			case 'email' 		: $sortby = 'email';break;
 			case 'date' 		: $sortby = 'registerdate';break;
-			default 			: $sortby = 'firstname';break;
+			default 			: $sortby = 'status';break;
 		}
 		
 		//Ordering Data
@@ -246,7 +247,7 @@ Class Users extends CI_Model
 	 	
 	  $this->db->select('*');
 	  $this->db->from('user');
-	  $this->db->or_like(array('firstname'=> $keyword , 'lastname'=> $keyword , 'email'=> $keyword) );
+	  $this->db->or_like(array('firstname'=> $keyword , 'lastname'=> $keyword , 'email'=> $keyword , 'phoneno'=> $keyword , 'street'=> $keyword , 'city'=> $keyword , 'state'=> $keyword , 'zipcode'=> $keyword) );
 
 	  $query = $this->db->get();
 		//echo $this->db->last_query();
