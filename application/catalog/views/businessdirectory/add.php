@@ -357,7 +357,7 @@
 				   <!--<input type="hidden" name="country" id="countryname1"/>-->
 					<!--<input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" />-->
 					<span id="selstatediv1"><?php $selstate=array(''=>'--Select State--'); ?>
-					<?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?></span>
+					<?php echo form_dropdown('state',$selstate,'','id="state1" class="seldrop"');?></span>
 					<input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
 					<div id="streetaddresserror" class="error">Street Address is required.</div>
 					<div id="cityerror" class="error">City is required.</div>
