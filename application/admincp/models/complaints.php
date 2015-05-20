@@ -33,8 +33,16 @@ class Complaints extends CI_Model
 		}
  	}
 	
-	function get_all_removedcomplaints($siteid,$limit ='',$offset='',$sortby = 'id',$orderby = 'ASC')
+	function get_all_removedcomplaints($siteid,$limit ='',$offset='',$sortby,$orderby)
  	{
+		switch($sortby)
+		{
+			case 'against' 			: $sortby = 'companyid';break;
+			case 'complaint' 		: $sortby = 'detail';break;
+			case 'complaintdate' 	: $sortby = 'whendate';break;
+			case 'removaldate'		: $sortby = 'transaction_date';break;
+			default					: $sortby = 'companyid';break;
+		}
 		//Ordering Data
 		$this->db->order_by($sortby,$orderby);
 		
