@@ -9,7 +9,8 @@ class Reviews extends CI_Model
 			case 'by' 			: $sortby = 'firstname';break;
 			case 'to' 			: $sortby = 'company';break;
 			case 'review' 		: $sortby = 'comment';break;
-			default 			: $sortby = 'reviewdate';break;
+			case 'reviewdate' 	: $sortby = 'reviewdate';break;
+			default 			: $sortby = 'company';break;
 		}
 		//Ordering Data
 		$this->db->order_by($sortby,$orderby);
@@ -66,9 +67,9 @@ class Reviews extends CI_Model
 			return false;
 		}
 	}
-    function select_removal_review_date($companyid, $userid, $reviewid)
+    function select_removal_review_date($companyid, $userid, $reviewid,$orderby)
 	{
-		$query = $this->db->order_by('id', 'DESC')->get_where('youg_review_date',array('company_id'=>$companyid,'user_id'=>$userid, 'review_id'=>$reviewid));
+		$query = $this->db->order_by('id', $orderby)->get_where('youg_review_date',array('company_id'=>$companyid,'user_id'=>$userid, 'review_id'=>$reviewid));
 		
 		if ($query->num_rows() > 0)
 		{
@@ -350,9 +351,24 @@ class Reviews extends CI_Model
 	}
 	}
 	
-	function removed_review()
+	function removed_review($sortby,$orderby)
 	{
-		$query = $this->db->get_where('reviews', array('status' => 'Disable'));
+		switch($sortby)
+		{
+			case 'title' 			: $sortby = 'comment';break;
+			case 'reviewby' 		: $sortby = 'reviewby';break;
+			case 'reviewdate' 		: $sortby = 'reviewdate';break;
+			default 			: $sortby = 'comment';break;
+		}
+		//Ordering Data
+		$this->db->order_by($sortby,$orderby);
+		$this->db->select('r.*,u.firstname,u.lastname');
+		$this->db->from('reviews as r');
+		//$this->db->join('company as c','r.companyid=c.id');
+		$this->db->join('user as u','r.reviewby=u.id');
+		$this->db->where('r.status','Disable');
+			
+		$query = $this->db->get();
 		
 		if ($query->num_rows() > 0)
 		{

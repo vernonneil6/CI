@@ -97,58 +97,15 @@ class Review extends CI_Controller {
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			$limit = $this->paging['per_page'];
+			if($this->uri->segment(3)){ $offset = ($this->uri->segment(3));}
+			else { $offset = 1;	}
 			
-			/*if($sortby=='review')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("review/index/review");
-				$orderby = 'asc';
-				$url = 4;
-				
-			}
-			else if($sortby=='to')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("review/index/to");
-				$orderby = 'asc';
-				$url = 4;
-			}
-			else if($sortby=='by')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("review/index/by");
-				$orderby = 'asc';
-				$url = 4;
-			}
-			else if($sortby=='ip')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("review/index/ip");
-				$orderby = 'asc';
-				$url = 4;
-			}
-			else
-			{
-				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
-				$base = site_url("review/index");
-				$orderby = 'asc';
-				$url = 3;
-			}*/
-			
-			//Addingg Setting Result to variable
-			$this->data['reviews'] = $this->reviews->get_all_reviews($limit,$offset,$sortby, $orderby);
-			/*echo "<pre>";
-			print_r($this->data['reviews']);
-			die();*/
-			
-			$this->paging['base_url'] = $base;
-			$this->paging['uri_segment'] = $url;
+			$this->paging['base_url'] = 'review/index';
+			//$this->paging['uri_segment'] = $offset;
 			$this->paging['total_rows'] = count($this->reviews->get_all_reviews());
 			$this->pagination->initialize($this->paging);
-			//echo "<pre>";
-			//print_r($this->paging);
-			//die();
-			
+			$this->data['reviews'] = $this->reviews->get_all_reviews($limit,$offset,$sortby, $orderby);
+				
 			//Loading View File
 			$this->load->view('review',$this->data);
 	  	}
@@ -498,11 +455,11 @@ class Review extends CI_Controller {
 		}
     }
     
-    public function removed()
+    public function removed($sortby,$orderby='asc')
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
-		$this->data['reviewsremoved'] = $this->reviews->removed_review();
+		$this->data['reviewsremoved'] = $this->reviews->removed_review($sortby,$orderby);
 		$this->load->view('review',$this->data);
 		}
 	}

@@ -7,7 +7,8 @@ class Comments extends CI_Model
 		{
 			case 'commentby' 	: $sortby = 'commentby';break;
 			case 'comment' 		: $sortby = 'comment';break;
-			default 			: $sortby = 'commentdate';break;
+			case 'commentdate' 	: $sortby = 'commentdate';break;
+			default 			: $sortby = 'commentby';break;
 		}
 		
 		//Ordering Data
