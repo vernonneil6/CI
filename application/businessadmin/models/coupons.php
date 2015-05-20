@@ -1,12 +1,14 @@
 <?php
 class Coupons extends CI_Model
 {
-	function get_all_coupons($siteid,$limit ='',$offset='',$sortby = 'title',$orderby = 'ASC')
+	function get_all_coupons($siteid,$limit ='',$offset='',$sortby,$orderby)
  	{
 		switch($sortby)
 		{
-			case 'title': $sortby = 'title';break;
-			default 	     : $sortby = 'title';break;
+			case 	'enddate'    : $sortby = 'enddate';break;
+			case 	'promocode'  : $sortby = 'promocode';break;
+			case 	'company'	 : $sortby = 'companyid';break;
+			default 	   		 : $sortby = 'title';break;
 		}
 		$companyid = $this->session->userdata['youg_admin']['id'];
 		//Ordering Data
@@ -304,7 +306,7 @@ class Coupons extends CI_Model
 		}
 	}
 	
-		function search_coupon($keyword,$limit ='',$offset='',$sortby = 'title',$orderby = 'ASC')
+		function search_coupon($keyword,$limit ='',$offset='',$sortby = 'company',$orderby = 'ASC')
  		{
 		
 		//Ordering Data
@@ -325,8 +327,8 @@ class Coupons extends CI_Model
 			if($siteid!='all'){
 			$this->db->where('websiteid',$siteid);
 			}
-			$this->db->where('companyid',$companyid);
-			$this->db->where('(company LIKE \'%'.$keyword.'%\' OR streetaddress LIKE \'%'.$keyword.'%\' OR email LIKE \'%'.$keyword.'%\' OR siteurl LIKE \'%'.$keyword.'%\' OR aboutus LIKE \'%'.$keyword.'%\' OR title LIKE \'%'.$keyword.'%\' OR promocode LIKE \'%'.$keyword.'%\')', NULL, FALSE);
+			$this->db->where('com.companyid',$companyid);
+			$this->db->where('(c.company LIKE \'%'.$keyword.'%\' OR com.title LIKE \'%'.$keyword.'%\' OR com.promocode LIKE \'%'.$keyword.'%\')', NULL, FALSE);
 			
 		$query = $this->db->get();
 	

@@ -69,7 +69,7 @@ class Pressrelease extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sortby)
+	public function index($sortby,$orderby='asc')
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
@@ -77,7 +77,7 @@ class Pressrelease extends CI_Controller {
 			$siteid = $this->session->userdata['siteid'];
 			$limit = $this->paging['per_page'];
 			
-			if($sortby=='sitename')
+			/*if($sortby=='sitename')
 			{
 				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
 				$base = site_url("pressrelease/index/sitename");
@@ -105,13 +105,13 @@ class Pressrelease extends CI_Controller {
 				$base = site_url("pressrelease/index");
 				$orderby = 'asc';
 				$url = 3;
-			}
+			}*/
 			
 			
 			//Addingg Setting Result to variable
 			$this->data['pressreleases'] = $this->pressreleases->get_all_pressreleases($companyid,$siteid,$limit,$offset,$sortby,$orderby);
 			$this->paging['base_url'] = $base;
-			$this->paging['uri_segment'] = $url;
+			$this->paging['uri_segment'] = 3;
 			$this->paging['total_rows'] = count($this->pressreleases->get_all_pressreleases($companyid,$siteid));
 			$this->pagination->initialize($this->paging);
 						

@@ -1,12 +1,13 @@
 <?php
 class Reviewpromos extends CI_Model
 {
-	function get_all_reviewpromos($siteid,$limit ='',$offset='',$sortby = 'name',$orderby = 'ASC')
+	function get_all_reviewpromos($siteid,$limit ='',$offset='',$sortby,$orderby)
  	{
 		switch($sortby)
 		{
-			case 'name': $sortby = 'name';break;
-			default 	     : $sortby = 'name';break;
+			case 'date'	: $sortby = 'datecreated';break;
+			case 'code'	: $sortby = 'code';break;
+			default 	    : $sortby = 'name';break;
 		}
 		$companyid = $this->session->userdata['youg_admin']['id'];
 		//Ordering Data
@@ -303,11 +304,11 @@ class Reviewpromos extends CI_Model
 		}
 	}
 	
-		function search_reviewpromo($keyword,$limit ='',$offset='',$sortby = 'title',$orderby = 'ASC')
+		function search_reviewpromo($keyword,$limit ='',$offset='',$sortby = 'name',$orderby = 'ASC')
  		{
 		
 		//Ordering Data
-		$this->db->order_by($sortby,$orderby);
+		//$this->db->order_by($sortby,$orderby);
 		
 	  	//Setting Limit for Paging
 		if( $limit != '' && $offset == 0)
@@ -325,7 +326,7 @@ class Reviewpromos extends CI_Model
 			$this->db->where('websiteid',$siteid);
 			}
 			$this->db->where('companyid',$companyid);
-			$this->db->where('(company LIKE \'%'.$keyword.'%\' OR streetaddress LIKE \'%'.$keyword.'%\' OR email LIKE \'%'.$keyword.'%\' OR siteurl LIKE \'%'.$keyword.'%\' OR aboutus LIKE \'%'.$keyword.'%\' OR title LIKE \'%'.$keyword.'%\' OR promocode LIKE \'%'.$keyword.'%\')', NULL, FALSE);
+			$this->db->where('(c.company LIKE \'%'.$keyword.'%\' OR c.streetaddress LIKE \'%'.$keyword.'%\' OR c.email LIKE \'%'.$keyword.'%\' OR c.siteurl LIKE \'%'.$keyword.'%\' OR c.aboutus LIKE \'%'.$keyword.'%\' OR com.name LIKE \'%'.$keyword.'%\' OR com.code LIKE \'%'.$keyword.'%\')', NULL, FALSE);
 			
 		$query = $this->db->get();
 	

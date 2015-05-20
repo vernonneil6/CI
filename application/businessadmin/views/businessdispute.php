@@ -10,7 +10,11 @@
     </ul>
   </div>
 
+<?php
+  $order_seg = $this->uri->segment(4,"asc"); 
+  if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
 
+ ?>
 <div class="box">
     <div class="headlines">
       <h2><span><?php echo $section_title; ?></span></h2>
@@ -18,8 +22,8 @@
     
     <table class="tab tab-drag">
         <tr class="top nodrop nodrag">
-			<th>Username</th>
-			<th>Complaints</th>
+			<th><a class="sorttitle" href="<?php echo base_url('businessdispute/index/username');?>/<?=$orderby?>">Username</th>
+			<th><a class="sorttitle" href="<?php echo base_url('businessdispute/index/complaints');?>/<?=$orderby?>">Complaints</th>
 			<th>Case-status</th>
 			<th>Resolution-page</th>
 			<th>Message</th>
