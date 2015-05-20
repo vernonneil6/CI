@@ -808,13 +808,17 @@ else { ?>
       </fieldset>
       <?php echo form_close(); ?> </div>
   
-    <?php if( count($users) > 0 ) { ?>
+    <?php if( count($users) > 0 ) { 
+			 $order_seg = $this->uri->segment(4,"asc"); 
+			if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+		
+		?>
     <!-- table -->
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-        <th><a class="sorttitle" href="<?php echo base_url('user/index'); ?>">Name</a></th>
-        <th><a class="sorttitle" href="<?php echo base_url('user/index/email'); ?>">Email</a></th>        
-        <th><a class="sorttitle" href="<?php echo base_url('user/index/date'); ?>">Date Created</a></th>
+        <th><a class="sorttitle" href="<?php echo base_url('user/index/name');?>/<?=$orderby?>">Name</a></th>
+        <th><a class="sorttitle" href="<?php echo base_url('user/index/email');?>/<?=$orderby?>">Email</a></th>        
+        <th><a class="sorttitle" href="<?php echo base_url('user/index/date');?>/<?=$orderby?>">Date Created</a></th>
         <th>Status</th> 
         <th>Action</th>
       </tr>
