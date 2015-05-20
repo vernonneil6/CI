@@ -446,16 +446,26 @@ else { ?>
    <div class="box">
     <div class="headlines">
       <h2><span>Removed Complaints</span></h2>
+      <h2>
+		   <span>
+				<a href="<?php if($this->uri->segment(2)=='searchresult'){ echo site_url('complaint/removedcomplaintcsv/'.$this->uri->segment(3)); } else { echo site_url('complaint/removedcomplaintcsv'); } ?>" title="Export as CSV file">
+					<img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
+				</a>
+			</span>
+		</h2>
     </div>
-        <?php if(count($removedcomplaints) > 0 ) { ?>
+        <?php if(count($removedcomplaints) > 0 ) { 
+			 $order_seg = $this->uri->segment(4,"asc"); 
+			if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+			?>
 		<!-- table -->
 		<table class="tab tab-drag complaint">
 		  <tr class="top nodrop nodrag">
-			<th width="30%">Complaint</th>
-			<th>Complaint By</th>
-			<th>Complaint To</th>
-			<th>Complaint Date</th>
-			<th>Removal Date</th>
+			<th width="30%"><a class="sorttitle" href="<?php echo base_url('complaint/removed/complaint');?>/<?=$orderby?>">Complaint</th>
+			<th><a class="sorttitle" href="<?php echo base_url('complaint/removed/by');?>/<?=$orderby?>">Complaint By</th>
+			<th><a class="sorttitle" href="<?php echo base_url('complaint/removed/against');?>/<?=$orderby?>">Complaint To</th>
+			<th><a class="sorttitle" href="<?php echo base_url('complaint/removed/complaintdate');?>/<?=$orderby?>">Complaint Date</th>
+			<th><a class="sorttitle" href="<?php echo base_url('complaint/removed/removaldate');?>/<?=$orderby?>">Removal Date</th>
 			<th>Action</th>
 			<th>Print History</th>
 		  </tr>
