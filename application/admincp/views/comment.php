@@ -201,7 +201,10 @@ else { ?>
       </fieldset>
       <?php echo form_close(); ?> </div>
     <?php }?>
-    <?php if( count($comments) > 0 ) { ?><script language="javascript">
+    <?php if( count($comments) > 0 ) { 
+	  $order_seg = $this->uri->segment(4,"asc"); 
+	  if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }?>
+	  <script language="javascript">
 $(function(){
  
     // add multiple select / deselect functionality
@@ -253,9 +256,9 @@ function submitfrm()
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
       <th width="7%"><input type="checkbox" id="selectall" name="maincheck"/></th>
-        <th width="50%"><a class="sorttitle" href="<?php echo base_url('comment/index/comment'); ?>">Title</a></th> 
-        <th width="20%"><a class="sorttitle" href="<?php echo base_url('comment/index/commentby'); ?>">Submitted by</a></th>
-        <th width="20%"><a class="sorttitle" href="<?php echo base_url('comment/index'); ?>">Date</a></th>
+        <th width="50%"><a class="sorttitle" href="<?php echo base_url('comment/index/comment');?>/<?=$orderby?>">Title</a></th> 
+        <th width="20%"><a class="sorttitle" href="<?php echo base_url('comment/index/commentby');?>/<?=$orderby?>">Submitted by</a></th>
+        <th width="20%"><a class="sorttitle" href="<?php echo base_url('comment/index/commentdate');?>/<?=$orderby?>">Date</a></th>
         <th width="10%">status</th>
         <th width="10%">View</th>
       </tr>

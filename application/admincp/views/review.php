@@ -76,14 +76,18 @@
     <div class="headlines">
       <h2><span>Removed Reviews</span></h2>
     </div>
-    <?php if(count($reviewsremoved) > 0 ) { ?>
+    <?php if(count($reviewsremoved) > 0 ) { 
+		$order_seg = $this->uri->segment(4,"asc"); 
+		if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+		
+		?>
     <table class="tab tab-drag complaint">
       <tr class="top nodrop nodrag">
-        <th width="40%">Review</th>
-	    <th>Review by</th>
-        <th>Review to</th>
-        <th>Review Date</th>
-        <th>Removal Date</th>
+        <th width="40%"><a class="sorttitle" href="<?php echo base_url('review/removed/title');?>/<?=$orderby?>">Review</th>
+	    <th><a class="sorttitle" href="<?php echo base_url('review/removed/reviewby');?>/<?=$orderby?>">Review by</th>
+        <!--<th>Review to</th>-->
+        <th><a class="sorttitle" href="<?php echo base_url('review/removed/reviewdate');?>/<?=$orderby?>">Review Date</th>
+        <th><a class="sorttitle" href="<?php echo base_url('review/removed/removaldate');?>/<?=$orderby?>">Removal Date</th>
         <th>Action</th>
         <th>Print History</th>
       </tr>
@@ -91,7 +95,7 @@
       <?php for($i=0;$i<count($reviewsremoved);$i++) { ?>
       <?php $company=$this->reviews->get_company_byid($reviewsremoved[$i]['companyid'])?>
       <?php $user=$this->users->get_user_byid($reviewsremoved[$i]['reviewby'])?>
-      <?php $reviewremovedate=$this->reviews->select_removal_review_date($reviewsremoved[$i]['companyid'],$reviewsremoved[$i]['reviewby'],$reviewsremoved[$i]['id']);?>
+      <?php $reviewremovedate=$this->reviews->select_removal_review_date($reviewsremoved[$i]['companyid'],$reviewsremoved[$i]['reviewby'],$reviewsremoved[$i]['id'],$orderby);?>
 
        <tr>  
         <td>
@@ -100,9 +104,9 @@
         <td>   
 			<?php if($user){ echo ucfirst($user[0]['username']); } else{ echo ucfirst($reviewsremoved[$i]['reviewby']); } ?>		
         </td> 
-        <td>
-			<?php echo ucfirst($company[0]['company']);?>
-        </td>
+        <!--<td>
+			<?php //echo ucfirst($company[0]['company']);?>
+        </td>-->
         <td><?php echo date('m-d-Y', strtotime($reviewsremoved[$i]['reviewdate'])); ?></td>
         <td><?php echo date('m-d-Y', strtotime($reviewremovedate['date'])); ?></td>
         <td><a href="<?php echo site_url('review/removeview/'.$reviewsremoved[$i]['id'].'/'.$reviewsremoved[$i]['companyid'].'/'.$reviewsremoved[$i]['reviewby']); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
@@ -547,7 +551,7 @@ function submitfrm()
         <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/to');?>/<?=$orderby?>">Review to</a></th>
         <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/by');?>/<?=$orderby?>">Review by</a></th>
         <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/ip');?>/<?=$orderby?>">IP</a></th>
-        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index');?>/<?=$orderby?>">Date Reviewed</a></th>
+        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/reviewdate');?>/<?=$orderby?>">Date Reviewed</a></th>
         <th width="7%">status</th>
         <th width="7%">&nbsp;View&nbsp;</th>
       </tr>
