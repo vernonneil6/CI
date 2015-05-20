@@ -12,7 +12,11 @@
 <script type="text/javascript" language="javascript">
 
               function trim(stringToTrim) {
-                  return stringToTrim.replace(/^\s+|\s+$/g,"");
+                  if(stringToTrim){
+						return stringToTrim.replace(/^\s+|\s+$/g,"");
+					}else{
+						return stringToTrim;	
+					}
               }
               $(document).ready(function() {
                   $("#btnaddcompany").click(function () {
