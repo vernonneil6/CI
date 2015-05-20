@@ -229,6 +229,17 @@ class Businessdirectory extends CI_Controller {
 			
 		}
 		
+		$countrylist = $this->common->get_all_countrys();
+		
+		if( count($countrylist) > 0 ){
+			$this->data['selcon'][''] = '--Select Country--';			
+			for($c=0;$c<count($countrylist);$c++){
+				$this->data['selcon'][($countrylist[$c]['country_id'])] = ucfirst($countrylist[$c]['name']);
+			}
+		}else{
+			$this->data['selcon'][''] = '--Select Country--';
+		}
+		
 		$siteid = $this->session->userdata('siteid');
 		$this->data['categories'] = $this->common->get_all_categorys($siteid);
 		$this->load->view('businessdirectory/add',$this->data);
