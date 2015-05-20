@@ -549,6 +549,79 @@ class Businessdirectory extends CI_Controller {
 		}
 		echo json_encode($name);
 	}
+	
+	function ajaxRequest(){
+		
+		/*get All States*/
+		
+		if($this->input->post('type')=='getAllStates')  {
+		
+			if( $this->input->is_ajax_request() && ( $this->input->post('cid') ) )
+			{
+				$selcatid = (($this->input->post('cid')));
+				$state = (($this->input->post('state')));
+				$stateval = (($this->input->post('stateval')));
+				$state = ($state!='') ? $state : 'state' ;
+				if( $selcatid!='' || $selcatid!='0' )
+				{
+					$subcats = $this->common->get_all_states_by_cid($selcatid);
+					//echo "<pre>";
+					//print_r($subcats);
+					if( count($subcats) > 0 )
+						{
+						
+								if($stateval=='')
+								{
+									$this->data['selstates'][''] = '--Select--';
+								
+									for($c=0;$c<count($subcats);$c++)
+									{
+									
+										$this->data['selstates'][($subcats[$c]['name'])] = ucfirst($subcats[$c]['name']);
+									
+									}
+								}
+								else
+								{
+									for($c=0;$c<count($subcats);$c++)
+									{
+										if($stateval==$subcats[$c]['name'])
+										{
+											echo "<script>dropcheck('".$subcats[$c]['name']."')</script>";
+										}
+										
+										$this->data['selstates'][''] = '--Select--';
+										$this->data['selstates'][($subcats[$c]['name'])] = ucfirst($subcats[$c]['name']);
+									
+									}
+								}
+								
+							
+							
+						}
+						else
+						{
+							$this->data['selstates'][''] = '--Select--';
+						}
+						
+						//echo "<pre>";
+						//print_r($this->data['selstates']);
+						//die();
+						$js="onchange='dropdownss()' id='".$state."' class='seldrop'";
+						$data='';
+						$data="";
+						echo form_dropdown($state,$this->data['selstates'],'',$js);
+						$data="";
+						echo $data;   
+						return $data;
+				}
+			}
+			else
+			{ 
+				redirect('solution', 'refresh');
+			}
+		}		
+	}
 }
 
 /* End of file dashboard.php */

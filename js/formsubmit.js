@@ -469,7 +469,39 @@ var requestData = {
   });
 
 });
-/*get All States*/        
+/*get All States*/  
+function getbusinessstates(id,state,where,stateval) {	//alert(id);
+	if(id !='') {
+		if(state == 'state1'){
+			$('#countryname1').val($("#country1 :selected").text());
+		}else{
+			$('#countryname').val($("#country :selected").text());
+		}
+		if(stateval==undefined || stateval==null)
+		{
+			var staticdrop = ''; 
+		}
+		else
+		{
+			var staticdrop = stateval;
+		}
+		var requestData = { 'type' : 'getAllStates', 'cid' : id , 'state':state, 'stateval':staticdrop };
+				
+		$.ajax({
+			type 				: "POST",
+			url 				: "index.php/businessdirectory/ajaxRequest",
+			data				: requestData,
+			dataType 			: "html",
+			cache				: false,
+			success				: function(data){
+							//console.log(data);
+									//alert(data);
+								$(where).empty();
+								$(where).append(data);
+							}
+		});
+	}
+}      
 function getstates(id,state,where,stateval) {	//alert(id);
 	if(id !='') {
 		if(state == 'state1'){

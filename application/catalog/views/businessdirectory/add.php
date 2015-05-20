@@ -353,7 +353,7 @@
 					<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="150">
 					<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />					
 					<!--<input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" />-->
-					<?php echo form_dropdown('country',$selcon,'','id="country1" class="seldrop" onchange=getstates(this.value,"state","#selstatediv1","");');?>
+					<?php echo form_dropdown('country',$selcon,'','id="country1" class="seldrop" onchange=getbusinessstates(this.value,"state","#selstatediv1","");');?>
 				   <!--<input type="hidden" name="country" id="countryname1"/>-->
 					<!--<input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" />-->
 					<span id="selstatediv1"><?php $selstate=array(''=>'--Select State--'); ?></span>
