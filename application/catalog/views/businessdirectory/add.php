@@ -1,4 +1,5 @@
 <?php echo $header;?>
+<script type="text/javascript" src="/js/formsubmit.js"></script>
 <script src="http://www.google.com/recaptcha/api.js" async defer></script>
 <script type="text/javascript">
       var onloadCallback = function() {
@@ -350,9 +351,13 @@
 				<span class="form-col-2">
 					<label>BUSINESS ADDRESS</label>            
 					<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="150">
-					<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
-					<input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" />
-					<input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" />
+					<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />					
+					<!--<input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" />-->
+					<?php echo form_dropdown('country',$selcon,'','id="country1" class="seldrop" onchange=getstates(this.value,"state","#selstatediv1","");');?>
+				   <!--<input type="hidden" name="country" id="countryname1"/>-->
+					<!--<input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" />-->
+					<span id="selstatediv1"><?php $selstate=array(''=>'--Select State--'); ?></span>
+					<?php echo form_dropdown('state',$selstate,'','id="state1" class="seldrop"');?>
 					<input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
 					<div id="streetaddresserror" class="error">Street Address is required.</div>
 					<div id="cityerror" class="error">City is required.</div>
