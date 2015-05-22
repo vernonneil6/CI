@@ -288,7 +288,7 @@
  	{
 		//Executing Query
 		$siteid = $this->session->userdata('siteid');
-		$query = $this->db->get_where('comments',array('status'=>'Enable','commentby'=>$id,'websiteid'=>$siteid));
+		$query = $this->db->get_where('comments',array('status'=>'Enable','commentby'=>$id,'websiteid'=>1));
 		
 		if ($query->num_rows() > 0)
 		{
@@ -330,6 +330,22 @@
 			return array();
 		}
  	}
+ 	
+ 	function get_reviewby_id($id)
+ 	{
+		//Executing Query
+		$siteid = $this->session->userdata('siteid');
+		$query = $this->db->get_where('youg_reviews',array('id'=>$id));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+	}
  	
  	function get_single_rating($userid, $companyid)
  	{

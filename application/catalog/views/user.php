@@ -794,8 +794,13 @@
               <td><div class="right_content_panel" >
                   <div class="treding_title">Comments</div>
                   <?php if(count($comments)>0){ ?>
-                  <?php //echo '<pre>'; print_r($complaints); die();?>
-                  <?php for($i=0; $i<count($comments); $i++) { ?>
+                  <?php //echo '<pre>'; print_r($comments); die();?>
+                  <?php for($i=0; $i<count($comments); $i++) {
+					  $getreview = $this->users->get_reviewby_id($comments[$i]['reviewid']);
+					   if(!empty($getreview)){
+						 $getcompany = $this->users->get_company_byid($getreview[0]['companyid']); 
+						 
+					   ?>
                   <div class="main_livepost">
                     <div class="post_maincontent">
                       <?php 
@@ -809,10 +814,27 @@
 							if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
 							?>
                       <div class="search_content_date user_view" style="margin-bottom:15px;"> <?php echo ($commentdate==$today)?$diff:date('m/d/Y',strtotime($comments[$i]['commentdate'])); ?>&nbsp;&nbsp;<a href="<?php echo site_url('review/deletecomment/'.$comments[$i]['id']);?>" style="float:right;text-decoration:underline;" onclick="return confirm('Are you sure to delete this comment?');" title="delete comment">delete</a> <span style="float:right">&nbsp;or&nbsp;</span> <a href="<?php echo site_url('review/editcomment/'.$comments[$i]['id']);?>" style="float:right;text-decoration:underline;" title="edit comment">edit</a> </div>
-                      <div class="post_content_dscr user_view"> <?php echo nl2br(stripslashes($comments[$i]['comment'])); ?> </div>
+                      <table class="mg_btm">
+						<tbody>
+							<tr>
+								<td style="width:115px;">Company Name</td><td>:</td>
+								<td><b><?php echo $getcompany[0]['company'] ?></b></td>
+							</tr>
+							<tr>
+								<td style="width:115px;">Review title</td><td>:</td>
+								<td><b><?php echo $getreview[0]['reviewtitle'] ?></b></td>
+							</tr>
+							<tr>
+								<td style="width:115px;vertical-align:top;">Review comment</td><td>:</td>
+								<td><b><?php echo nl2br(stripslashes($comments[$i]['comment'])); ?> </b></td>
+							</tr>
+						 </tbody>
+					  </table>
+                      
+                      <!--<div class="post_content_dscr user_view"> <?php //echo nl2br(stripslashes($comments[$i]['comment'])); ?> </div>-->
                     </div>
                   </div>
-                  <?php } ?>
+                  <?php } }?>
                   <?php } else { ?>
                   <div class="main_livepost">
                     <div class="post_maincontent">
@@ -959,7 +981,7 @@
 					  <table class = "mg_btm">
 						  
 						<tr><td style="width:115px;">Review title</td><td>:</td><td><b><?php echo $myratings[$i]['reviewtitle']; ?></b></td></tr>
-						<tr><td style="width:115px;">Review comment</td><td>:</td><td><b><?php echo $myratings[$i]['comment']; ?></b></td></tr>
+						<tr><td style="width:115px;vertical-align:top;">Review comment</td><td>:</td><td><b><?php echo $myratings[$i]['comment']; ?></b></td></tr>
 						
 						<?php if($myratings[$i]['flag'] == '1') { ?>
 							<tr><td>Status</td><td>:</td><td><b>Merchant request to remove negative review.Click below link to remove review.</b></td></tr>
