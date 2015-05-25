@@ -345,6 +345,46 @@ class Complaint extends CI_Controller {
 	  	}
 	}
 	
+	public function removedsearchcomplaint()
+	{
+		if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
+		{
+			$keyword = addslashes($this->input->post('keysearch'));
+			$keyword = htmlspecialchars(str_replace('%20', ' ', $keyword));
+			$keyword = preg_replace('/[^a-zA-Z0-9\']/', '',$keyword);
+			$keyword = str_replace(' ','-', $keyword);
+		
+			redirect('complaint/removedsearchresult/'.$keyword,'refresh');	
+		}
+		else
+		{
+			redirect('complaint','refresh');
+		}
+	}
+	public function removedsearchresult($keyword='')
+	{
+		$keyword = str_replace('-',' ', $keyword);
+	
+		$limit = $this->paging['per_page'];
+		$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
+		$siteid = $this->session->userdata('siteid');
+		$this->data['complaints'] = $this->complaints->search_removedcomplaint($keyword,$siteid,$limit,$offset);
+		//echo "<pre>";
+		//print_r($this->data['complaints']);
+		//die();
+		//Addingg Setting Result to variable
+					
+		$this->paging['base_url'] = site_url("complaint/removedsearchresult/".$keyword."/index");
+		$this->paging['uri_segment'] = 5;
+		$this->paging['total_rows'] = count($this->complaints->search_complaint($keyword,$siteid));
+		$this->pagination->initialize($this->paging);
+		//echo "<pre>";
+		//print_r($this->paging);
+		//die();
+		
+		$this->load->view('complaint',$this->data);
+	}
+	
 	public function searchcomplaint()
 	{
 		if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
@@ -487,6 +527,8 @@ class Complaint extends CI_Controller {
 			redirect('adminlogin','refresh');
 		}
     }
+    
+    
     
     
     public function removedcomplaintcsv()

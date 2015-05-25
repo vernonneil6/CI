@@ -32,7 +32,39 @@ class Complaints extends CI_Model
 			return array();
 		}
  	}
-	
+	function search_removedcomplaint($keyword,$siteid,$limit ='',$offset='',$sortby = 'id',$orderby = 'DESC')
+ 	{
+		
+		//Ordering Data
+		$this->db->order_by($sortby,$orderby);
+		
+	  	//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+		
+			$this->db->select('c.*, cm.company,cm.logo,cm.companyseokeyword,u.firstname,u.lastname,u.avatarbig,u.gender');
+			$this->db->from('complaints as c');
+			$this->db->join('company as cm','c.companyid=cm.id');
+			$this->db->join('user as u','c.userid=u.id');
+			$this->db->where('c.websiteid',$siteid);
+			$this->db->where('c.status','Disable');
+			$this->db->where('(c.detail LIKE \'%'.$keyword.'%\' OR c.location LIKE \'%'.$keyword.'%\' OR c.username LIKE \'%'.$keyword.'%\' OR cm.company LIKE \'%'.$keyword.'%\' OR c.damagesinamt LIKE \'%'.$keyword.'%\' OR c.comseokeyword LIKE \'%'.$keyword.'%\' OR cm.companyseokeyword LIKE \'%'.$keyword.'%\')', NULL, FALSE);
+			$query = $this->db->get();
+			//echo "<pre>";
+			//echo $this->db->last_query();
+			//die();
+
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	function get_all_removedcomplaints($siteid,$limit ='',$offset='',$sortby,$orderby)
  	{
 		switch($sortby)
