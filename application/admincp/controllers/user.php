@@ -107,8 +107,10 @@ class User extends CI_Controller {
 			);
 			
 			$this->load->model('users');
-			
-			$results = $this->users->usersSearch($limit, $offset, $sort_by, $sort_order);
+			if($this->input->get('s')){				
+				$decodeKeyword = urldecode($this->input->get('s'));
+			}
+			$results = $this->users->usersSearch($decodeKeyword, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['users'] = $results['rows'];
 			$this->data['num_results'] = $results['num_rows'];
@@ -127,6 +129,39 @@ class User extends CI_Controller {
 		}
 	}
 	
+	public function searchuser()
+	{
+		if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
+		{
+			$keyword = urlencode($this->input->post('keysearch'));				
+			redirect('user/index/?s='.$keyword);	
+		}
+		else
+		{
+			redirect('user','refresh');
+		}
+	}
+	
+	public function searchresult($keyword='')
+	{
+		$keyword = str_replace('-',' ', $keyword);
+				
+		$limit = $this->paging['per_page'];
+		$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
+					
+		$this->data['users'] = $this->users->search_user($keyword,$limit,$offset);
+		//echo "<pre>";
+		//print_r($this->data['users']);
+		//die();
+		$this->paging['base_url'] = site_url("user/searchresult/".$keyword."/index");
+		$this->paging['uri_segment'] = 5;
+		$this->paging['total_rows'] = count($this->users->search_user($keyword));
+		$this->pagination->initialize($this->paging);
+		//echo "<pre>";
+		//print_r($this->paging);
+		//die();
+		$this->load->view('user',$this->data);
+	}
 	
 	public function add()
 	{
@@ -601,43 +636,8 @@ class User extends CI_Controller {
 	  	}
 	}
 	
-	public function searchuser()
-	{
-		if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
-		{
-			$keyword = addslashes($this->input->post('keysearch'));
-			$keyword = htmlspecialchars(str_replace('%20', ' ', $keyword));
-			$keyword = preg_replace('/[^a-zA-Z0-9\']/', '',$keyword);
-			$keyword = str_replace(' ','-', $keyword);
-		
-			redirect('user/searchresult/'.$keyword,'refresh');	
-		}
-		else
-		{
-			redirect('user','refresh');
-		}
-	}
 	
-	public function searchresult($keyword='')
-	{
-		$keyword = str_replace('-',' ', $keyword);
-				
-		$limit = $this->paging['per_page'];
-		$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
-					
-		$this->data['users'] = $this->users->search_user($keyword,$limit,$offset);
-		//echo "<pre>";
-		//print_r($this->data['users']);
-		//die();
-		$this->paging['base_url'] = site_url("user/searchresult/".$keyword."/index");
-		$this->paging['uri_segment'] = 5;
-		$this->paging['total_rows'] = count($this->users->search_user($keyword));
-		$this->pagination->initialize($this->paging);
-		//echo "<pre>";
-		//print_r($this->paging);
-		//die();
-		$this->load->view('user',$this->data);
-	}
+
 	
 	public function csv($keyword)
     {
@@ -646,7 +646,9 @@ class User extends CI_Controller {
 				if($keyword!='') 
 				{
 					$file = 'Report-of-search-user.csv';
-					$users = $this->users->search_user($keyword);
+					$searchKey = urldecode($keyword);
+					$users = $this->users->search_user($searchKey);
+					
 				}
 				else
 				{
