@@ -87,7 +87,7 @@ class Complaint extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sortby,$orderby='asc')
+	/*public function index($sortby,$orderby='asc')
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
@@ -108,6 +108,46 @@ class Complaint extends CI_Controller {
 			//Loading View File
 			$this->load->view('complaint',$this->data);
 	  	}
+	}
+	*/
+	
+	public function index($sort_by = 'complaindate', $sort_order = 'asc', $offset = 0) {
+		
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+			$limit = 15;
+			
+			$this->data['fields'] = array(
+				'id' => 'Complaint ID',								
+				'detail' => 'Complaint',
+				'companyid' => 'Against',
+				'userid' => 'By',				
+				'complaindate' => 'Date',
+				'status' => 'Status'			
+			);
+			
+			$this->load->model('complaints');
+			
+			$siteid = $this->session->userdata('siteid');
+			
+			$results = $this->complaints->complaintsSearch($siteid, $limit, $offset, $sort_by, $sort_order);
+			
+			$this->data['complaints'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
+			
+			
+			// pagination				
+			$this->paging['base_url'] = site_url("complaint/index/$sort_by/$sort_order");
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;
+			$this->paging['uri_segment'] = 5;
+			$this->pagination->initialize($this->paging);									
+			
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('complaint', $this->data);
+		}
 	}
 
 	public function edit($id='')

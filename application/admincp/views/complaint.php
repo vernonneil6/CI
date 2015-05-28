@@ -765,53 +765,92 @@ function submitfrm()
     </tr>
     </table>
 <?php } ?>
-    <table class="tab tab-drag">
-      <tr class="top nodrop nodrag">
-		  <?php if($this->uri->segment(2)!='removedsearchresult'){ ?>
-        <th><input type="checkbox" id="selectall" name="maincheck"/></th>
-			<?php } ?>
-        <th width="40%"><a class="sorttitle" href="<?php echo base_url('complaint/index/complaint');?>/<?=$orderby?>">Complaint</a></th>
-        <th width="15%"><a class="sorttitle" href="<?php echo base_url('complaint/index/against');?>/<?=$orderby?>">Against</a></th>
-        <th width="15%"><a class="sorttitle" href="<?php echo base_url('complaint/index/by');?>/<?=$orderby?>">By</a></th>
-        <th width="10%"><a class="sorttitle" href="<?php echo base_url('complaint/index/date');?>/<?=$orderby?>">Date</a></th>
-        <th width="10%">Status</th>
-        <th width="10%">&nbsp;&nbsp;Action&nbsp;&nbsp;</th>
-      </tr>
-      <?php 
-	$site = site_url();			
-	$url = explode("/admincp",$site);
-	$path = $url[0];
-	?>
-      <?php for($i=0;$i<count($complaints);$i++) { ?>
-      <?php $user = $this->users->get_user_byid($complaints[$i]['userid']);?>
-      <?php $company = $this->companys->get_company_byid($complaints[$i]['companyid']);?>
-      <tr>
-		  <?php if($this->uri->segment(2)!='removedsearchresult'){ ?>
-        <td>
-		<input type="checkbox" class="case" name="foo[]" value="<?php echo $complaints[$i]['id'];?>" /></td><?php } ?> <td>
-		<?php echo substr(stripslashes($complaints[$i]['detail']),0,45)."..."; ?></td>
-        <td><?php if(count($company)>0) { ?>
-          <?php echo ucfirst($company[0]['company']); ?>
-          <?php } ?></td>
-        <td><?php if(count($user)>0) { ?>		
-			<?php echo ucfirst($user[0]['firstname'].' '.$user[0]['lastname']); ?>
-          <?php } else { ?>
-          <span title="Anonymous">Anonymous</span>
-          <?php } ?></td>
-        <td><?php echo date('m-d-Y', strtotime($complaints[$i]['complaindate'])); ?></td>
-        <td><?php if( stripslashes($complaints[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('complaint/disable/'.$complaints[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span>Enable</span></a>
-          <?php } ?>
-          <?php if( stripslashes($complaints[$i]['status']) == 'Disable' ) { ?>
-          <a href="<?php echo site_url('complaint/enable/'.$complaints[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this user?');"><span>Disable</span></a>
-          <?php } ?></td>
-        <td><a href="<?php echo site_url('complaint/edit/'.$complaints[$i]['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> <a href="<?php echo site_url('complaint/view/'.$complaints[$i]['id']); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> <a href="<?php echo site_url('complaint/delete/'.$complaints[$i]['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this complaint?');">Delete</a></td>
-      </tr>
-      <?php } ?>
-      <!-- /pagination --> 
-      
-      <!-- /pagination -->
-    </table>
+  
+  <table class="tab tab-drag complaints">
+		<thead>
+			<tr class="top nodrop nodrag">
+			<?php 
+			
+			
+			foreach($fields as $field_name => $field_display): ?>
+				<?php if($field_name == 'id') {					
+						if($this->uri->segment(2)!='removedsearchresult'){  ?>
+							<th><input type="checkbox" id="selectall" name="maincheck"/></th>
+					<?php }
+					}else{ ?>
+				<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php echo anchor("complaint/index/$field_name/" .
+					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+					$field_display,array('class' => 'sorttitle')); ?>
+				</th>
+				<?php } ?>			
+			<?php endforeach; ?>
+				<th>Action</th>
+			
+			</tr>
+		</thead>
+		
+		<tbody>
+			<?php foreach($complaints as $complaint): 
+			
+			?>
+			<tr>
+				<?php foreach($fields as $field_name => $field_display): ?>
+				
+				
+				<td>
+					<?php if($field_name == 'id'){ ?>
+						
+						<input type="checkbox" class="case" name="foo[]" value="<?php echo $complaint->id;?>" />
+				 <?php					
+					}elseif($field_name == 'detail'){
+						echo (strlen($complaint->$field_name) > 50) ? substr($complaint->$field_name,0,50).'...' : $complaint->$field_name;
+					}elseif ($field_name == 'companyid'){
+						$company = $this->companys->get_company_byid($complaint->companyid);
+						if(count($company)>0) { 
+							echo ucfirst($company[0]['company']); 
+						}
+					}elseif ($field_name == 'userid'){
+						$user = $this->users->get_user_byid($complaint->userid); 						
+						if(count($user)>0) { 
+							echo ucfirst($user[0]['firstname'].' '.$user[0]['lastname']);
+						}else { ?>
+							<span title="Anonymous">Anonymous</span>
+					<?php }						
+					}
+					elseif ($field_name == 'status' ) { ?>
+							<?php
+							if( $complaint->$field_name == 'Enable' ){ ?>
+								<a href="<?php echo site_url('complaint/disable/'.$complaint->id);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span><?php echo $complaint->$field_name; ?></span></a>
+								
+							<?php 
+							}else{ ?>
+								
+							<a href="<?php echo site_url('complaint/enable/'.$complaint->id);?>" title="Click to Enable" class="btn btn-small btn-success" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this user?');"><span><?php echo $complaint->$field_name; ?></span></a>
+						 <?php
+							}
+					}elseif($field_name == 'complaindate'){
+						echo date('m-d-Y', strtotime($complaint->complaindate));
+					}					
+					else{
+						echo $complaint->$field_name; 
+					 }
+					?>	
+					
+				</td>			
+				<?php endforeach; ?>
+				<td style='padding: 8px 4px;'>
+					<a href="<?php echo site_url('complaint/edit/'.$complaint->id); ?>" title="Edit" class="ico ico-edit">Edit</a>
+					<a href="<?php echo site_url('complaint/delete/'.$complaint->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this Coupon?');">Delete</a>
+					<a href="<?php echo site_url('complaint/view/'.$complaint->id); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a>
+				</td>			
+			</tr>
+			<?php endforeach; ?>			
+		</tbody>
+		
+	</table> 
+  
+  
     </form>
     <!-- /table --> 
     <!-- /pagination -->

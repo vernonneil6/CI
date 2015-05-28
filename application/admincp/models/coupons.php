@@ -34,6 +34,34 @@ class Coupons extends CI_Model
 		}
  	}
 	
+	function couponsSearch($limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('companyid', 'promocode','enddate','status');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'title';
+		
+		// results query
+		$q = $this->db->select('*')
+				->from('coupon')
+				->where('type','admin')
+				->limit($limit, $offset)
+				->order_by($sort_by, $sort_order);
+		
+		$ret['rows'] = $q->get()->result();
+		
+		
+		// count query
+		$q = $this->db->select('COUNT(*) as count', FALSE)	 
+				->from('coupon')
+				->where('type','admin');			
+				
+		
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		
+		return $ret;
+	}
 	
 	
 	//Getting value for editing

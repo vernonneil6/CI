@@ -32,6 +32,35 @@ class Complaints extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	function complaintsSearch($siteid, $limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('detail', 'companyid','userid','status');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'complaindate';
+		
+		// results query
+		$q = $this->db->select('*')
+				->from('complaints')
+				->where('websiteid',$siteid)			
+				->limit($limit, $offset)
+				->order_by($sort_by, $sort_order);
+		
+		$ret['rows'] = $q->get()->result();
+		
+		
+		// count query
+		$q = $this->db->select('COUNT(*) as count', FALSE)	 
+				->from('couponcomments')						
+				->where('websiteid',$siteid);
+		
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		
+		return $ret;
+	}
+ 	
 	function search_removedcomplaint($keyword,$siteid,$limit ='',$offset='',$sortby = 'id',$orderby = 'DESC')
  	{
 		

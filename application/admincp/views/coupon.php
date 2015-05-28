@@ -564,48 +564,77 @@ else { ?>
     
 	<?php if( count($coupons) > 0 ) { ?>
 	<!-- table -->
-    <style>
-	.tab td {
-		padding: 8px 10px;
-	}
-    .tab th {
-		padding: 8px 10px;
-	}
-	</style>
-	<?php 				  
-	  $order_seg = $this->uri->segment(4,"asc"); 
-	  if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
-	 ?>                       
+
 	
+	<table class="tab tab-drag coupons">
+		<thead>
+			<tr class="top nodrop nodrag">
+			<?php 
+			
+			
+			foreach($fields as $field_name => $field_display): ?>
+			
+			<th width="30%" <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php echo anchor("coupon/index/$field_name/" .
+					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+					$field_display,array('class' => 'sorttitle')); ?>
+			</th>
 	
-	<table class="tab tab-drag">
-    <tr class="top nodrop nodrag">
-        <th><a class="sorttitle" href="<?php echo base_url('coupon/index/company');?>/<?=$orderby?>">Company</th>
-        <th><a class="sorttitle" href="<?php echo base_url('coupon/index/title');?>/<?=$orderby?>">Title</th>
-        <th width="10%"><a class="sorttitle" href="<?php echo base_url('coupon/index/promocode');?>/<?=$orderby?>">Promocode</th>
-        <th width="10%"><a class="sorttitle" href="<?php echo base_url('coupon/index/enddate');?>/<?=$orderby ?>">Enddate</th>
-        <th width="10%">Status</th>
-        <th width="10%">Action</th>
-    </tr>
-    <?php for($i=0;$i<count($coupons);$i++) { ?>
-    <?php $company = $this->companys->get_company_byid($coupons[$i]['companyid']);?>
-    <tr>
-	  <td><?php if(count($company)>0) { echo ucfirst(stripslashes($company[0]['company'])); } else { echo "---"; } ?></td>
-      <td><?php echo substr(stripslashes($coupons[$i]['title']),0,100).'...'; ?></td>
-      <td><?php echo stripslashes($coupons[$i]['promocode']); ?></td>
-      <td><?php echo date("m-d-Y",strtotime($coupons[$i]['enddate'])); ?></td>
-      <td><?php if( stripslashes($coupons[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('coupon/disable/'.$coupons[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this Coupon?');" style="cursor:pointer">Enable</a>
-          <?php } ?>
-          <?php if( stripslashes($coupons[$i]['status']) == 'Disable' ) { ?>
-          <a href="<?php echo site_url('coupon/enable/'.$coupons[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:pointer" onClick="return confirm('Are you sure to Enable this Coupon?');"><span style="color: #CD0B1C;">Disable</span></a>
-          <?php } ?></td>
-  	<td style="padding: 8px 4px;"><a href="<?php echo site_url('coupon/edit/'.$coupons[$i]['id']); ?>" title="Edit" class="ico ico-edit">Edit</a>
-        <a href="<?php echo site_url('coupon/delete/'.$coupons[$i]['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this Coupon?');">Delete</a>
-        <a href="<?php echo site_url('coupon/view/'.$coupons[$i]['id']); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
-    </tr>
-    <?php } ?>
-    </table>
+			
+			<?php endforeach; ?>
+			<th>Actions</th>			
+			</tr>
+		</thead>
+		
+		<tbody>
+			<?php foreach($coupons as $coupon): 
+			
+			?>
+			<tr>
+				<?php foreach($fields as $field_name => $field_display): ?>
+				
+				<?php $company=$this->companys->get_company_byid($coupon->companyid)?>
+				<td>
+					<?php if($field_name == 'companyid'){ 
+												
+							if(count($company)>0) { 
+								echo ucfirst(stripslashes($company[0]['company'])); 
+							} else { 
+								echo "---"; 
+							} 				 				
+						}
+						elseif($field_name == 'enddate'){
+						echo date('m-d-Y', strtotime($coupon->enddate));
+						}
+						elseif ($field_name == 'status' ) { ?>
+							<?php
+							if( $coupon->$field_name == 'Enable' ){ ?>
+								<a href="<?php echo site_url('coupon/disable/'.$coupon->id);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span><?php echo $coupon->$field_name; ?></span></a>
+								
+							<?php 
+							}else{ ?>
+								
+							<a href="<?php echo site_url('coupon/enable/'.$coupon->id);?>" title="Click to Enable" class="btn btn-small btn-success" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this user?');"><span><?php echo $coupon->$field_name; ?></span></a>
+						 <?php
+							}
+					}
+					else{
+						echo $coupon->$field_name; 
+					 }
+					?>	
+					
+				</td>			
+				<?php endforeach; ?>
+				<td style='padding: 8px 4px;'>
+					<a href="<?php echo site_url('coupon/edit/'.$coupon->id); ?>" title="Edit" class="ico ico-edit">Edit</a>
+					<a href="<?php echo site_url('coupon/delete/'.$coupon->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this Coupon?');">Delete</a>
+					<a href="<?php echo site_url('coupon/view/'.$coupon->id); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a>
+				</td>			
+			</tr>
+			<?php endforeach; ?>			
+		</tbody>
+		
+	</table>  	
     <!-- /table -->
 	<!-- /pagination -->
 	<?php  if($this->pagination->create_links()) { ?>
