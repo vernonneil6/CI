@@ -75,84 +75,45 @@ class Elite extends CI_Controller {
 		$this->data['heading'] = $this->load->view('header',$this->data,true);
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
+
 	
-	public function index($sortby)
-	{
+	public function index($sort_by = 'company', $sort_order = 'asc', $offset = 0) {
+		
 		if( $this->session->userdata['youg_admin'] )
 	  	{
-			//Loading Model File
-	    			
-			$limit = $this->paging['per_page'];
+			$limit = 15;
+			$this->data['fields'] = array(
+				'id' => 'Elite ID',
+				'company' => 'Company',
+				'contactname' => 'Name',
+				'email' => 'Public E-mail',
+				'contactemail' => 'Private E-mail',
+				'payment_amount' => 'Payment Amount',
+				'status' => 'Status',
+				'registerdate' => 'Date Created',				
+				'payment_date' => 'Payment Date',				
+			);
+			
+			$this->load->model('elites');
+			
+			$results = $this->elites->elitesSearch($limit, $offset, $sort_by, $sort_order);
+			
+			$this->data['elites'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
 			
 			
-			if($sortby=='paymentdate')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("elite/index/paymentdate");
-				$orderby = 'desc';
-				$url = 4;
-				
-			}
-			else if($sortby=='createddate')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("elite/index/createddate");
-				$orderby = 'desc';
-				$url = 4;
-			}
-			else if($sortby=='paymentamt')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("elite/index/paymentamt");
-				$orderby = 'desc';
-				$url = 4;
-			}
-			else if($sortby=='privateemail')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("elite/index/privateemail");
-				$orderby = 'asc';
-				$url = 4;
-			}
-			else if($sortby=='publicemail')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("elite/index/publicemail");
-				$orderby = 'asc';
-				$url = 4;
-			}
-			else if($sortby=='name')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("elite/index/name");
-				$orderby = 'asc';
-				$url = 4;
-			}
-			else
-			{
-				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
-				$base = site_url("elite/index");
-				$orderby = 'asc';
-				$url = 3;
-			}
+			// pagination				
+			$this->paging['base_url'] = site_url("elite/index/$sort_by/$sort_order");
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;
+			$this->paging['uri_segment'] = 5;
+			$this->pagination->initialize($this->paging);									
 			
-			//Addingg Setting Result to variable
-			$this->data['elitemembers'] = $this->elites->get_all_elitememberss($limit,$offset,$sortby,$orderby);
-			/*echo "<pre>";
-			print_r($this->data['complaints']);
-			die();*/
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
 			
-			$this->paging['base_url'] = $base;
-			$this->paging['uri_segment'] = $url;
-			$this->paging['total_rows'] = count($this->elites->get_all_elitememberss());
-			$this->pagination->initialize($this->paging);
-			//echo "<pre>";
-			//print_r($this->paging);
-			//die();
-			
-			//Loading View File
-			$this->load->view('elite',$this->data);
-	  	}
+			$this->load->view('elite', $this->data);
+		}
 	}
 	
 	public function search()

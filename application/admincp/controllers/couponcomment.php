@@ -78,53 +78,43 @@ class Couponcomment extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
-	{
+	public function index($sort_by = 'commentdate', $sort_order = 'asc', $offset = 0) {
+		
 		if( $this->session->userdata['youg_admin'] )
 	  	{
-			$limit = $this->paging['per_page'];
+			$limit = 15;
 			
-			if($sortby=='coupon')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("couponcomment/index/coupon");
-				$orderby = 'asc';
-				$url = 4;
-				
-			}
-			else if($sortby=='user')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("couponcomment/index/user");
-				$orderby = 'asc';
-				$url = 4;
-			}
-			else if($sortby=='title')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("couponcomment/index/title");
-				$orderby = 'asc';
-				$url = 4;
-			}
-			else
-			{
-				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
-				$base = site_url("couponcomment/index");
-				$orderby = 'asc';
-				$url = 3;
-			}
+			$this->data['fields'] = array(
+				'id' => 'CouponComment ID',								
+				'comment' => 'Title',
+				'couponid' => 'Coupon',
+				'commentby' => 'Submitted By',				
+				'commentdate' => 'Comment Date',
+				'status' => 'Status'			
+			);
+			
+			$this->load->model('couponcomments');
+			
+			$results = $this->couponcomments->couponcommentsSearch($limit, $offset, $sort_by, $sort_order);
+			
+			$this->data['couponcomments'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
 			
 			
-			//Addingg Setting Result to variable
-			$this->data['couponcomments'] = $this->couponcomments->get_all_couponcomments($limit,$offset, $sortby, $orderby);			
-			$this->paging['base_url'] = $base;
-			$this->paging['uri_segment'] = $url;
-			$this->paging['total_rows'] = count($this->couponcomments->get_all_couponcomments());
-			$this->pagination->initialize($this->paging);
-			//Loading View File
-			$this->load->view('couponcomment',$this->data);
-	  	}
+			// pagination				
+			$this->paging['base_url'] = site_url("couponcomment/index/$sort_by/$sort_order");
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;
+			$this->paging['uri_segment'] = 5;
+			$this->pagination->initialize($this->paging);									
+			
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('couponcomment', $this->data);
+		}
 	}
+	
 	
 	public function view($id='')
 	{

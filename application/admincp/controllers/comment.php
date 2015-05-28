@@ -78,25 +78,41 @@ class Comment extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sortby,$orderby='asc')
-	{
+	public function index($sort_by = 'commentby', $sort_order = 'asc', $offset = 0) {
+		
 		if( $this->session->userdata['youg_admin'] )
 	  	{
-			$limit = $this->paging['per_page'];
-			if($this->uri->segment(3)){ $offset = ($this->uri->segment(3));}
-			else { $offset = 1;	}	
-					
-			$this->paging['base_url'] = 'comment/index';
-			//$this->paging['uri_segment'] = $url;
-			$this->paging['total_rows'] = count($this->comments->get_all_comments());
-			$this->pagination->initialize($this->paging);
+			$limit = 15;
+			$this->data['fields'] = array(
+				'id' => 'Comment ID',
+				'comment' => 'Title',
+				'commentby' => 'Submitted By',								
+				'commentdate' => 'Date',
+				'status' => 'Status'
+			);
 			
-			//Addingg Setting Result to variable
-			$this->data['comments'] = $this->comments->get_all_comments($limit,$offset,$sortby,$orderby);
-			//Loading View File
-			$this->load->view('comment',$this->data);
-	  	}
+			$this->load->model('comments');
+			
+			$results = $this->comments->commentsSearch($limit, $offset, $sort_by, $sort_order);
+			
+			$this->data['comments'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
+			//echo $this->data['num_results'];die;
+			
+			// pagination				
+			$this->paging['base_url'] = site_url("comment/index/$sort_by/$sort_order");
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;
+			$this->paging['uri_segment'] = 5;
+			$this->pagination->initialize($this->paging);									
+			
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('comment', $this->data);
+		}
 	}
+	
 	
 	public function view($id='')
 	{

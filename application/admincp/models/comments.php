@@ -33,6 +33,33 @@ class Comments extends CI_Model
 		}
  	}
 	
+	function commentsSearch($limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('commentby', 'comment','commentdate');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'commentby';
+		
+		// results query
+		$q = $this->db->select('*')
+			->from('comments')			
+			->limit($limit, $offset)
+			->order_by($sort_by, $sort_order);
+		
+		$ret['rows'] = $q->get()->result();
+		
+		
+		// count query
+		$q = $this->db->select('COUNT(*) as count', FALSE)	 
+			->from('comments');			
+		
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		
+		return $ret;
+	}
+	
+	
 	//Getting Page value for editing
 	function get_comment_byid($id)
  	{

@@ -297,34 +297,84 @@ function submitfrm()
               </td> <td><a onclick="submitfrm();" title="Submit" style="cursor:pointer;">Submit</a></td>
     </tr>
     </table>
-    <table class="tab tab-drag">
-      <tr class="top nodrop nodrag">
-        <th width="7%"><input type="checkbox" id="selectall" name="maincheck"/></th>
-        <th width="30%"><a class="sorttitle" href="<?php echo base_url('couponcomment/index/title'); ?>">Title</a></th>
-        <th width="15%"><a class="sorttitle" href="<?php echo base_url('couponcomment/index/coupon'); ?>">Coupon</a></th>
-        <th width="20%"><a class="sorttitle" href="<?php echo base_url('couponcomment/index/user'); ?>">Submitted by</a></th>
-        <th width="10%"><a class="sorttitle" href="<?php echo base_url('couponcomment/index'); ?>">Comment Date</a></th>
-        <th width="7%">status</th>
-        <th width="12%">View</th>
-      </tr>
-      <?php for($i=0;$i<count($couponcomments);$i++) { ?>
-      <?php $user=$this->users->get_user_byid($couponcomments[$i]['commentby'])?>
-      <tr>
-        <td><input type="checkbox" class="case" name="foo[]" value="<?php echo $couponcomments[$i]['id'];?>" /></td>
-        <td><?php echo nl2br(stripslashes(substr($couponcomments[$i]['comment'],0,100))).'...'; ?></td>
-        <td><?php $coupon = $this->couponcomments->get_coupon_byid($couponcomments[$i]['couponid']); echo $coupon['title']; ?></td>
-        <td><?php $user = $this->couponcomments->get_user_bysingleid($couponcomments[$i]['commentby']); echo $user['username'];?></td>
-        <td><?php echo date('m-d-Y',strtotime($couponcomments[$i]['commentdate']));?></td>
-        <td><?php if( stripslashes($couponcomments[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('couponcomment/disable/'.$couponcomments[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this complaint?');"><span>Enable</span></a>
-          <?php } ?>
-          <?php if( stripslashes($couponcomments[$i]['status']) == 'Disable' ) { ?>
-          <a href="<?php echo site_url('couponcomment/enable/'.$couponcomments[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this complaint?');"><span>Disable</span></a>
-          <?php } ?></td>
-        <td><a href="<?php echo site_url('couponcomment/edit/'.$couponcomments[$i]['id']); ?>" title="Edit" class="ico ico-edit">Edit</a><a href="<?php echo site_url('couponcomment/view/'.$couponcomments[$i]['id']); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
-      </tr>
-      <?php } ?>
-    </table>
+    
+    
+    <table class="tab tab-drag couponcomments">
+		<thead>
+			<tr class="top nodrop nodrag">
+			<?php 
+			
+			
+			foreach($fields as $field_name => $field_display): ?>
+				<?php if($field_name == 'id') { ?>
+				<th><input type="checkbox" id="selectall" name="maincheck"/></th>
+			<?php }else{ ?>
+			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php echo anchor("couponcomment/index/$field_name/" .
+					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+					$field_display,array('class' => 'sorttitle')); ?>
+			</th>
+			<?php } ?>
+			
+			<?php endforeach; ?>
+			<th>Action</th>
+			
+			</tr>
+		</thead>
+		
+		<tbody>
+			<?php foreach($couponcomments as $couponcomment): 
+			
+			?>
+			<tr>
+				<?php foreach($fields as $field_name => $field_display): ?>
+				
+				
+				<td>
+					<?php if($field_name == 'id'){ ?>
+						
+						<input type="checkbox" class="case" name="foo[]" value="<?php echo $couponcomment->id;?>" />
+				 <?php					
+					}elseif ($field_name == 'couponid'){
+						$coupon = $this->couponcomments->get_coupon_byid($couponcomment->couponid); 
+						echo $coupon['title'];
+					}elseif ($field_name == 'commentby'){
+						$user = $this->couponcomments->get_user_bysingleid($couponcomment->commentby); 
+						echo $user['username'];
+					}
+					elseif ($field_name == 'status' ) { ?>
+							<?php
+							if( $couponcomment->$field_name == 'Enable' ){ ?>
+								<a href="<?php echo site_url('couponcomment/disable/'.$couponcomment->id);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span><?php echo $couponcomment->$field_name; ?></span></a>
+								
+							<?php 
+							}else{ ?>
+								
+							<a href="<?php echo site_url('couponcomment/enable/'.$couponcomment->id);?>" title="Click to Enable" class="btn btn-small btn-success" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this user?');"><span><?php echo $couponcomment->$field_name; ?></span></a>
+						 <?php
+							}
+					}elseif($field_name == 'commentdate'){
+						echo date('m-d-Y', strtotime($couponcomment->commentdate));
+					}					
+					else{
+						echo $couponcomment->$field_name; 
+					 }
+					?>	
+					
+				</td>			
+				<?php endforeach; ?>
+				<td style='padding: 8px 4px;'>
+					<a href="<?php echo site_url('couponcomment/edit/'.$couponcomment->id); ?>" title="Edit" class="ico ico-edit">Edit</a>
+					<a href="<?php echo site_url('couponcomment/delete/'.$couponcomment->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this Coupon?');">Delete</a>
+					<a href="<?php echo site_url('couponcomment/view/'.$couponcomment->id); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a>
+				</td>			
+			</tr>
+			<?php endforeach; ?>			
+		</tbody>
+		
+	</table> 
+    </form>
+    
     <!-- /table --> 
     <!-- /pagination -->
     <?php  if($this->pagination->create_links()) { ?>

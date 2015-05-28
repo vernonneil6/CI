@@ -92,25 +92,6 @@ class Review extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	/*public function index($sortby,$orderby='asc')
-	{
-		if( $this->session->userdata['youg_admin'] )
-	  	{
-			$limit = $this->paging['per_page'];
-			if($this->uri->segment(3)){ $offset = ($this->uri->segment(3));}
-			else { $offset = 1;	}
-			
-			$this->paging['base_url'] = 'review/index';
-			//$this->paging['uri_segment'] = $offset;
-			$this->paging['total_rows'] = count($this->reviews->get_all_reviews());
-			$this->pagination->initialize($this->paging);
-			$this->data['reviews'] = $this->reviews->get_all_reviews($limit,$offset,$sortby, $orderby);
-				
-			//Loading View File
-			$this->load->view('review',$this->data);
-	  	}
-	}*/
-	
 	public function index($sort_by = 'company', $sort_order = 'asc', $offset = 0) {
 		
 		if( $this->session->userdata['youg_admin'] )

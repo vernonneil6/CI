@@ -253,41 +253,86 @@ function submitfrm()
               </td> <td><a onclick="submitfrm();" title="Submit" style="cursor:pointer;">Submit</a></td>
     </tr>
     </table>
-    <table class="tab tab-drag">
-      <tr class="top nodrop nodrag">
-      <th width="7%"><input type="checkbox" id="selectall" name="maincheck"/></th>
-        <th width="50%"><a class="sorttitle" href="<?php echo base_url('comment/index/comment');?>/<?=$orderby?>">Title</a></th> 
-        <th width="20%"><a class="sorttitle" href="<?php echo base_url('comment/index/commentby');?>/<?=$orderby?>">Submitted by</a></th>
-        <th width="20%"><a class="sorttitle" href="<?php echo base_url('comment/index/commentdate');?>/<?=$orderby?>">Date</a></th>
-        <th width="10%">status</th>
-        <th width="10%">View</th>
-      </tr>
-      <?php for($i=0;$i<count($comments);$i++) { ?>
-      <?php $user=$this->users->get_user_byid($comments[$i]['commentby'])?>
-      <tr>
-        <td><input type="checkbox" class="case" name="foo[]" value="<?php echo $comments[$i]['id'];?>" /></td>
-        <td><?php echo nl2br(substr($comments[$i]['comment'],0,100)).'...'; ?></td>
-        <td><?php $username = $this->comments->get_user_bysingleid($comments[$i]['commentby']); echo $username['username'];?></td>
-        <td><?php echo date('m-d-Y',strtotime($comments[$i]['commentdate'])); ?></td>
-        <td><?php if( stripslashes($comments[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('comment/disable/'.$comments[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this complaint?');"><span>Enable</span></a>
-          <?php } ?>
-          <?php if( stripslashes($comments[$i]['status']) == 'Disable' ) { ?>
-          <a href="<?php echo site_url('comment/enable/'.$comments[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this complaint?');"><span>Disable</span></a>
-          <?php } ?></td>
-        <td>
-        <?php if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult') { ?>
-	    <a href="<?php echo site_url('comment/view/'.$comments[$i]['cid']); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view">
-        </a>
-        <?php } else { ?>
-		<a href="<?php echo site_url('comment/view/'.$comments[$i]['id']); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view">
-        </a>
-		<?php } ?>
-        
-        </td>
-      </tr>
-      <?php } ?>
-    </table>
+    
+        <table class="tab tab-drag">
+		<thead>
+			<tr class="top nodrop nodrag">
+			<?php 
+			
+			
+			foreach($fields as $field_name => $field_display): ?>
+				<?php if($field_name == 'id') { ?>
+				<th><input type="checkbox" id="selectall" name="maincheck"/></th>
+			<?php }else{ ?>
+			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php echo anchor("comment/index/$field_name/" .
+					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+					$field_display,array('class' => 'sorttitle')); ?>
+			</th>
+			<?php } ?>
+			
+			<?php endforeach; ?>
+			<th>View</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<?php foreach($comments as $comment): 
+			
+			?>
+			<tr>
+				<?php foreach($fields as $field_name => $field_display): ?>
+				<td>
+					<?php if($field_name == 'id'){ ?>
+						
+						<input type="checkbox" class="case" name="foo[]" value="<?php echo $comment->id;?>" />
+				 <?php					
+					}elseif ($field_name == 'comment'){
+						echo nl2br(substr($comment->comment,0,100)).'...';
+					}
+					elseif($field_name == 'commentby'){
+						
+						 $username = $this->comments->get_user_bysingleid($comment->commentby); 
+						 echo $username['username'];
+						
+									
+					}elseif($field_name == 'commentdate'){
+						echo date('m-d-Y', strtotime($comment->commentdate));
+					}					
+					elseif ($field_name == 'status' ) { ?>
+							<?php
+							if( $comment->$field_name == 'Enable' ){ ?>
+								<a href="<?php echo site_url('comment/disable/'.$comment->id);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span><?php echo $comment->$field_name; ?></span></a>
+								
+							<?php 
+							}else{ ?>
+								
+							<a href="<?php echo site_url('comment/enable/'.$comment->id);?>" title="Click to Enable" class="btn btn-small btn-success" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this user?');"><span><?php echo $comment->$field_name; ?></span></a>
+						 <?php
+							}
+					}
+					else{
+						echo $comment->$field_name; 
+					 }
+					?>	
+					
+				</td>			
+				<?php endforeach; ?>
+				 <td>
+					<?php if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult') { ?>
+						<a href="<?php echo site_url('comment/view/'.$comment->cid); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view">
+						</a>
+					<?php } else { ?>
+						<a href="<?php echo site_url('comment/view/'.$comment->id); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view">
+						</a>
+					<?php } ?>
+				</td>
+			</tr>
+			<?php endforeach; ?>			
+		</tbody>
+		
+	</table>  
+    
     </form>
     <!-- /table --> 
     <!-- /pagination -->

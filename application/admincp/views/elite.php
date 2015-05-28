@@ -225,7 +225,7 @@ else { ?>
 		  
     
     
-    <?php if( count($elitemembers) > 0 ) { ?>
+    <?php if( count($elites) > 0 ) { ?>
     <script language="javascript">
 		$(function(){
 		 
@@ -278,45 +278,86 @@ else { ?>
     </table>
     </form>
     <table class="tab tab-drag elites elites1">
-      <tr class="top nodrop nodrag">
-        <th><input type="checkbox" id="selectall" name="maincheck"/></th>
-        <th><a class="sorttitle" href="<?php echo base_url('elite/index'); ?>">Company</a></th>
-        <th><a class="sorttitle" href="<?php echo base_url('elite/index/name'); ?>">Name</a></th>
-        <th><a class="sorttitle" href="<?php echo base_url('elite/index/publicemail'); ?>">Public <br>E-mail</a></th>
-        <th><a class="sorttitle" href="<?php echo base_url('elite/index/privateemail'); ?>">Private <br>E-mail</a></th>
-        <th><a class="sorttitle" href="<?php echo base_url('elite/index/paymentamt'); ?>">Payment <br>Amount</a></th>
-        <th>Status</th>
-        <th><a class="sorttitle" href="<?php echo base_url('elite/index/createddate'); ?>">Date <br>Created</a></th>       
-        <th><a class="sorttitle" href="<?php echo base_url('elite/index/paymentdate'); ?>">Payment <br>Date</a></th>
-        <th>Payment <br>Details</th>
-        <th>Business <br>Admin</th>
-      </tr>
-      <?php for($i=0;$i<count($elitemembers);$i++) { ?>
-      <?php $company=$this->settings->get_company_byid($elitemembers[$i]['company_id'])?>
-      <tr>
-        <td><input type="checkbox" class="case" name="foo[]" value="<?php echo $elitemembers[$i]['company_id'];?>" /></td>
-        <td><?php if(count($company)>0) {?>
-          <div class="task-photo"><?php echo stripslashes($company[0]['company']); ?></div>
-          <?php } ?></td>
-        <td><?php echo stripslashes($elitemembers[$i]['contactname']);?></td>
-        <td><?php echo stripslashes($elitemembers[$i]['email']);?></td>
-        <td><?php echo stripslashes($elitemembers[$i]['contactemail']);?></td>
-        <td><?php echo stripslashes($elitemembers[$i]['payment_currency']).' '.$elitemembers[$i]['payment_amount'];?></td>        
-        <td><?php echo stripslashes($elitemembers[$i]['status']);?></td>
-        <td><?php echo date('m-d-Y',strtotime($elitemembers[$i]['registerdate'])); ?></td>
-        <td><?php echo date('m-d-Y',strtotime($elitemembers[$i]['payment_date']));?></td>
-       
-       <td width="100px"><a href="<?php echo site_url('elite/payview/'.$elitemembers[$i]['company_id']); ?>" title="View Detail of <?php echo stripslashes($elitemembers[$i]['company_id']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
-        <td>
-        <form action="<?php echo $site_url;?>businessadmin/adminlogin/index/" method="post" id="formBox<?php echo $i;?>" class="formBox" target="_blank" style="padding-bottom:0px;">
-        	<input name="user_name" id="user_name" type="hidden" value="<?php echo $company[0]['contactemail'];?>" />
-            <input name="user_pass" id="user_pass" type="hidden" value="<?php echo $company[0]['password'];?>"/>
- <input name="btnsubmitform" id="btnsubmitform<?php echo $i;?>" type="submit" value="Go" class="button" style="width:auto;" myid="<?php echo $i;?>" onclick="goto(this.id)" />
-          </form>
-        </td>
-      </tr>
-      <?php } ?>
-    </table>
+		<thead>
+			<tr class="top nodrop nodrag">
+			<?php 
+			
+			
+			foreach($fields as $field_name => $field_display): ?>
+				<?php if($field_name == 'id') { ?>
+				<th><input type="checkbox" id="selectall" name="maincheck"/></th>
+			<?php }else{ ?>
+			<th width="30%" <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php echo anchor("elite/index/$field_name/" .
+					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+					$field_display,array('class' => 'sorttitle')); ?>
+			</th>
+			<?php } ?>
+			
+			<?php endforeach; ?>
+			<th>Payment Details</th>
+			<th>Business Admin</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<?php foreach($elites as $elite): 
+			
+			?>
+			<tr>
+				<?php foreach($fields as $field_name => $field_display): ?>
+				
+				<?php $company=$this->settings->get_company_byid($elite->company_id)?>
+				<td>
+					<?php if($field_name == 'id'){ ?>
+						
+						<input type="checkbox" class="case" name="foo[]" value="<?php echo $elite->id;?>" />
+				 <?php					
+					}elseif ($field_name == 'company'){ ?>
+					 <div class="task-photo"><?php echo stripslashes($company[0]['company']); ?></div>
+				<?php
+					}elseif( $field_name == 'payment_amount'){
+						echo stripslashes($elite->payment_currency).' '.$elite->payment_amount;
+					}
+					elseif ($field_name == 'status' ) { ?>
+							<?php
+							if( $elite->$field_name == 'Enable' ){ ?>
+								<a href="<?php echo site_url('elite/disable/'.$elite->id);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span><?php echo $elite->$field_name; ?></span></a>
+								
+							<?php 
+							}else{ ?>
+								
+							<a href="<?php echo site_url('elite/enable/'.$elite->id);?>" title="Click to Enable" class="btn btn-small btn-success" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this user?');"><span><?php echo $elite->$field_name; ?></span></a>
+						 <?php
+							}
+					}elseif($field_name == 'registerdate'){
+						echo date('m-d-Y', strtotime($elite->registerdate));
+					}
+					elseif($field_name == 'payment_date'){
+						echo date('m-d-Y', strtotime($elite->payment_date));
+					}
+					else{
+						echo $elite->$field_name; 
+					 }
+					?>	
+					
+				</td>			
+				<?php endforeach; ?>
+				<td>
+					<a href="<?php echo site_url('elite/payview/'.$elite->company_id); ?>" title="View Detail of <?php echo stripslashes($elitemembers[$i]['company_id']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a>
+				</td>
+				<td>
+					<form action="<?php echo $site_url;?>businessadmin/adminlogin/index/" method="post" id="formBox<?php echo $i;?>" class="formBox" target="_blank" style="padding-bottom:0px;">
+						<input name="user_name" id="user_name" type="hidden" value="<?php echo $company[0]['contactemail'];?>" />
+						<input name="user_pass" id="user_pass" type="hidden" value="<?php echo $company[0]['password'];?>"/>
+						<input name="btnsubmitform" id="btnsubmitform<?php echo $elite->id;?>" type="submit" value="Go" class="button" style="width:auto;" myid="<?php echo $elite->id;?>" onclick="goto(this.id)" />
+					</form>
+				</td>				
+			</tr>
+			<?php endforeach; ?>			
+		</tbody>
+		
+	</table>    
     
     <!-- /table --> 
     <!-- /pagination -->

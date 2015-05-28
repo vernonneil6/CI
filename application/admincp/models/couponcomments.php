@@ -32,6 +32,34 @@ class Couponcomments extends CI_Model
 		}
  	}
 	
+	function couponcommentsSearch($limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('comment', 'couponid','commentby','status');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'commentdate';
+		
+		// results query
+		$q = $this->db->select('*')
+				->from('couponcomments')				
+				->limit($limit, $offset)
+				->order_by($sort_by, $sort_order);
+		
+		$ret['rows'] = $q->get()->result();
+		
+		
+		// count query
+		$q = $this->db->select('COUNT(*) as count', FALSE)	 
+				->from('couponcomments');							
+				
+		
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		
+		return $ret;
+	}
+	
+	
 	//Getting Page value for editing
 	function get_couponcomment_byid($id)
  	{

@@ -62,6 +62,35 @@ class Elites extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	function elitesSearch($limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('contactname', 'email','contactemail','payment_amount','status','registerdate','payment_date');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'company';
+		
+		// results query
+		$q = $this->db->select('e.*, c.*')
+				->from('elite as e')
+				->join('company as c','e.company_id=c.id')				
+				->limit($limit, $offset)
+				->order_by($sort_by, $sort_order);
+		
+		$ret['rows'] = $q->get()->result();
+		
+		
+		// count query
+		$q = $this->db->select('COUNT(*) as count', FALSE)	 
+			->from('elite as e')
+			->join('company as c','e.company_id=c.id');			
+				
+		
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		
+		return $ret;
+	}
 	
 	function search_elitemember($keyword,$limit ='',$offset='',$sortby = 'company',$orderby = 'ASC')
  	{

@@ -76,31 +76,42 @@ class Coupon extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sortby,$orderby='asc')
-	{
+	public function index($sort_by = 'title', $sort_order = 'asc', $offset = 0) {
+		
 		if( $this->session->userdata['youg_admin'] )
 	  	{
-			$limit = $this->paging['per_page'];
-					
-			$siteid = $this->session->userdata('siteid');
-			//Addingg Setting Result to variable
-			$this->data['coupons'] = $this->coupons->get_all_coupons($siteid,$limit,$offset,$sortby,$orderby);
-			/*echo "<pre>";
-			print_r($this->data['coupons']);
-			die();*/
+			$limit = 15;
 			
-			$this->paging['base_url'] = $base;
-			$this->paging['uri_segment'] = $url;
-			$this->paging['total_rows'] = count($this->coupons->get_all_coupons($siteid));
-			$this->pagination->initialize($this->paging);
-			//echo "<pre>";
-			//print_r($this->paging);
-			//die();
-
-			//Loading View File
-			$this->load->view('coupon',$this->data);
-	  	}
+			$this->data['fields'] = array(				
+				'companyid' => 'Company',
+				'title' => 'Title',
+				'promocode' => 'Promocode',
+				'enddate' => 'End date',				
+				'status' => 'Status',			
+			);
+			
+			$this->load->model('coupons');
+			
+			$results = $this->coupons->couponsSearch($limit, $offset, $sort_by, $sort_order);
+			
+			$this->data['coupons'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
+			
+			
+			// pagination				
+			$this->paging['base_url'] = site_url("coupon/index/$sort_by/$sort_order");
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;
+			$this->paging['uri_segment'] = 5;
+			$this->pagination->initialize($this->paging);									
+			
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('coupon', $this->data);
+		}
 	}
+	
 	
 	public function add()
 	{
