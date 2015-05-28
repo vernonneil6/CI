@@ -1785,8 +1785,8 @@ class Complaints extends CI_Model
 	}
 	function elitecrondetails()
 	{
-		//$checkdate=date('Y-m-d');
-		$checkdate=date('Y-m-d', strtotime($date .' -1 day'));
+		$checkdate=date('Y-m-d');
+		//$checkdate=date('Y-m-d', strtotime($date .' -1 day'));
 		$query=$this->db->select('*')
 						->from('youg_subscription as s')
 						->join('youg_elite as e','e.company_id = s.company_id','left')
