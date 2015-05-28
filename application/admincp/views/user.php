@@ -741,7 +741,7 @@ else { ?>
        
         <h2><span>
 
-        <a href="<?php if($this->uri->segment(2)=='searchresult'){ echo site_url('user/csv/'.$this->uri->segment(3)); } else { echo site_url('user/csv'); } ?>" title="Export as CSV file">
+        <a href="<?php if(!empty($_GET['s'])){ echo site_url('user/csv/'.$_GET['s']); } else { echo site_url('user/csv'); } ?>" title="Export as CSV file">
        <img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV </a>
         </span></h2>
     </div>
