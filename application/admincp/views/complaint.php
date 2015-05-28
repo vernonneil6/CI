@@ -444,8 +444,10 @@ else { ?>
   elseif( $this->uri->segment(2) && ( $this->uri->segment(2) == 'removed' ) ) { ?>
   <!-- box -->
    <div class="box">
+	   
     <div class="headlines">
       <h2><span>Removed Complaints</span></h2>
+      
       <h2>
 		   <span>
 				<a href="<?php if($this->uri->segment(2)=='searchresult'){ echo site_url('complaint/removedcomplaintcsv/'.$this->uri->segment(3)); } else { echo site_url('complaint/removedcomplaintcsv'); } ?>" title="Export as CSV file">
@@ -453,7 +455,27 @@ else { ?>
 				</a>
 			</span>
 		</h2>
+		
     </div>
+        <div class="box-content"> <?php echo form_open('complaint/removedsearchcomplaint',array('class'=>'formBox','id'=>'frmsearch')); ?>
+      <fieldset>
+        <!-- Error form message -->
+        <div class="form-cols"><!-- two form cols -->
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+                <label for="keysearch">Keyword<span>*</span></label>
+              </div>
+              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search complaint by user or company or keyword','value'=>$this->uri->segment(3))); ?> </div>
+            </div>
+          </div>
+          <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
+        </div>
+        <div class="btn-submit"> 
+          <!-- Submit form --> 
+          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('complaint');?>" class="Cancel">Cancel</a> </div>
+      </fieldset>
+      <?php echo form_close(); ?> </div>
         <?php if(count($removedcomplaints) > 0 ) { 
 			 $order_seg = $this->uri->segment(4,"asc"); 
 			if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
@@ -606,7 +628,7 @@ else { ?>
   <div class="box">
     <div class="headlines">
       <h2><span>
-        <?php if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult')
+        <?php if($this->uri->segment(2) && ($this->uri->segment(2)=='searchresult' || $this->uri->segment(2)=='removedsearchresult'))
 	   {
 	   	?>
         search results for '<?php echo $this->uri->segment(3);?>'
@@ -615,7 +637,7 @@ else { ?>
         </span></h2>
         <h2>
 		   <span>
-				<a href="<?php if($this->uri->segment(2)=='searchresult'){ echo site_url('complaint/csv/'.$this->uri->segment(3)); } else { echo site_url('complaint/csv'); } ?>" title="Export as CSV file">
+				<a href="<?php if($this->uri->segment(2)=='searchresult'){ echo site_url('complaint/csv/'.$this->uri->segment(3)); }elseif($this->uri->segment(2)=='removedsearchresult'){ echo site_url('complaint/csv/'.$this->uri->segment(3));  }else { echo site_url('complaint/csv'); } ?>" title="Export as CSV file">
 					<img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
 				</a>
 			</span>
@@ -725,6 +747,7 @@ function submitfrm()
 	$('#get_id').submit();
 }
 </script>
+<?php if($this->uri->segment(2)!='removedsearchresult'){ ?>
     <!-- table --><form action="complaint/foo" id="get_id" method="post" class="formBox">
    <table class="">
       <tr class="">
@@ -741,9 +764,12 @@ function submitfrm()
               </td> <td><a onclick="submitfrm();" title="Submit" style="cursor:pointer;">Submit</a></td>
     </tr>
     </table>
+<?php } ?>
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
+		  <?php if($this->uri->segment(2)!='removedsearchresult'){ ?>
         <th><input type="checkbox" id="selectall" name="maincheck"/></th>
+			<?php } ?>
         <th width="40%"><a class="sorttitle" href="<?php echo base_url('complaint/index/complaint');?>/<?=$orderby?>">Complaint</a></th>
         <th width="15%"><a class="sorttitle" href="<?php echo base_url('complaint/index/against');?>/<?=$orderby?>">Against</a></th>
         <th width="15%"><a class="sorttitle" href="<?php echo base_url('complaint/index/by');?>/<?=$orderby?>">By</a></th>
@@ -760,8 +786,9 @@ function submitfrm()
       <?php $user = $this->users->get_user_byid($complaints[$i]['userid']);?>
       <?php $company = $this->companys->get_company_byid($complaints[$i]['companyid']);?>
       <tr>
+		  <?php if($this->uri->segment(2)!='removedsearchresult'){ ?>
         <td>
-		<input type="checkbox" class="case" name="foo[]" value="<?php echo $complaints[$i]['id'];?>" /></td><td>
+		<input type="checkbox" class="case" name="foo[]" value="<?php echo $complaints[$i]['id'];?>" /></td><?php } ?> <td>
 		<?php echo substr(stripslashes($complaints[$i]['detail']),0,45)."..."; ?></td>
         <td><?php if(count($company)>0) { ?>
           <?php echo ucfirst($company[0]['company']); ?>
