@@ -51,7 +51,7 @@ class Complaints extends CI_Model
 		
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)	 
-				->from('couponcomments')						
+				->from('complaints')						
 				->where('websiteid',$siteid);
 		
 		$tmp = $q->get()->result();
