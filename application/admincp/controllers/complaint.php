@@ -87,30 +87,6 @@ class Complaint extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	/*public function index($sortby,$orderby='asc')
-	{
-		if( $this->session->userdata['youg_admin'] )
-	  	{
-			
-			$limit = $this->paging['per_page'];
-			if($this->uri->segment(3)){ $offset = ($this->uri->segment(3));}
-			else { $offset = 1;	}			
-
-			$siteid = $this->session->userdata('siteid');
-			//Addingg Setting Result to variable
-			$this->data['complaints'] = $this->complaints->get_all_complaints($siteid,$limit,$offset,$sortby,$orderby);
-					
-			$this->paging['base_url'] = 'complaint/index';
-			//$this->paging['uri_segment'] = $url;
-			$this->paging['total_rows'] = count($this->complaints->get_all_complaints($siteid));
-			$this->pagination->initialize($this->paging);
-	
-			//Loading View File
-			$this->load->view('complaint',$this->data);
-	  	}
-	}
-	*/
-	
 	public function index($sort_by = 'complaindate', $sort_order = 'asc', $offset = 0) {
 		
 		if( $this->session->userdata['youg_admin'] )
