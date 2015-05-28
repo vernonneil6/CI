@@ -92,50 +92,41 @@ class User extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sortby,$orderby='asc')
-	{
+	
+	
+	public function index($sort_by = 'firstname', $sort_order = 'asc', $offset = 0) {
+		
 		if( $this->session->userdata['youg_admin'] )
 	  	{
-			$limit = $this->paging['per_page'];
-			if($this->uri->segment(3)){ $offset = ($this->uri->segment(3));}
-			else { $offset = 1;	}	
-			/*if($sortby=='email')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("user/index/email");
-				$orderby = 'asc';
-				$url = 4;
-				
-			}
-			else if($sortby=='date')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("user/index/date");
-				$orderby = 'desc';
-				$url = 4;
-			}
-			else
-			{
-				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
-				$base = site_url("user/index");
-				$orderby = 'asc';
-				$url = 3;
-			}*/
+			$limit = 15;
+			$this->data['fields'] = array(
+				'firstname' => 'Name',
+				'email' => 'Email',
+				'registerdate' => 'Date Created',
+				'status' => 'Status'
+			);
 			
+			$this->load->model('users');
 			
-			//Addingg Setting Result to variable
-			$this->data['users'] = $this->users->get_all_users($limit,$offset,$sortby,$orderby);
-					
-			$this->paging['base_url'] = 'user/index';
-			//$this->paging['uri_segment'] = $url;
-			$this->paging['total_rows'] = count($this->users->get_all_users());
-			$this->pagination->initialize($this->paging);
+			$results = $this->users->usersSearch($limit, $offset, $sort_by, $sort_order);
 			
+			$this->data['users'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
 			
-			//Loading View File
-			$this->load->view('user',$this->data);
-	  	}
+			// pagination				
+			$this->paging['base_url'] = site_url("user/index/$sort_by/$sort_order");
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;
+			$this->paging['uri_segment'] = 5;
+			$this->pagination->initialize($this->paging);									
+			
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('user', $this->data);
+		}
 	}
+	
 	
 	public function add()
 	{

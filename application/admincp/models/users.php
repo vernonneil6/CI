@@ -3,6 +3,7 @@ Class Users extends CI_Model
 {
 	function get_all_users($limit ='',$offset='',$sortby, $orderby)
  	{
+		//echo $sortby;echo $orderby;die;
 		switch($sortby)
 		{
 			case 'name' 		: $sortby = 'firstname';break;
@@ -23,15 +24,48 @@ Class Users extends CI_Model
 		//Executing Query
 		$query = $this->db->get('user');
 		
-		if ($query->num_rows() > 0)
+		$lastquery = $this->db->last_query();
+		
+		$userQuery = $this->db->query("SELECT * FROM ( $lastquery ) AS T1 ORDER BY $sortby $orderby");
+		
+	
+		//print_r($userQuery->result_array());		die;
+		if ($userQuery->num_rows() > 0)
 		{
-			return $query->result_array();
+			return $userQuery->result_array();
 		}
 		else
 		{
 			return array();
 		}
  	}
+	
+	
+	function usersSearch($limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('email', 'status','date');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'firstname';
+		
+		// results query
+		$q = $this->db->select('*')
+			->from('user')
+			->limit($limit, $offset)
+			->order_by($sort_by, $sort_order);
+		
+		$ret['rows'] = $q->get()->result();
+		
+		// count query
+		$q = $this->db->select('COUNT(*) as count', FALSE)
+			->from('user');
+		
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		
+		return $ret;
+	}
+	
 	
 	//Inserting Record 
 	function insert($firstname,$lastname,$email,$password,$gender,$street,$city,$state,$zipcode,$phoneno,$avatarthum,$avatarbig)
@@ -246,11 +280,11 @@ Class Users extends CI_Model
 		{	$this->db->limit($limit, $offset);	}
 	 	
 	  $this->db->select('*');
-	  $this->db->from('user');
+	  $this->db->from('user');	  
 	  $this->db->or_like(array('firstname'=> $keyword , 'lastname'=> $keyword , 'email'=> $keyword , 'phoneno'=> $keyword , 'street'=> $keyword , 'city'=> $keyword , 'state'=> $keyword , 'zipcode'=> $keyword) );
 
 	  $query = $this->db->get();
-		//echo $this->db->last_query();
+	//echo $this->db->last_query();die;
 
 		if ($query->num_rows() > 0)
 		{

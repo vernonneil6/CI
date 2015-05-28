@@ -545,53 +545,90 @@ function submitfrm()
               </td> <td><a onclick="submitfrm();" title="Submit" style="cursor:pointer;">Submit</a></td>
     </tr>
     </table>
+    
     <table class="tab tab-drag">
-      <th width="7%"><input type="checkbox" id="selectall" name="maincheck"/></th>
-        <th width="51%"><a class="sorttitle" href="<?php echo base_url('review/index/review');?>/<?=$orderby?>">Review</a></th>
-        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/to');?>/<?=$orderby?>">Review to</a></th>
-        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/by');?>/<?=$orderby?>">Review by</a></th>
-        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/ip');?>/<?=$orderby?>">IP</a></th>
-        <th width="7%"><a class="sorttitle" href="<?php echo base_url('review/index/reviewdate');?>/<?=$orderby?>">Date Reviewed</a></th>
-        <th width="7%">status</th>
-        <th width="7%">&nbsp;View&nbsp;</th>
-      </tr>
-      <?php for($i=0;$i<count($reviews);$i++) { ?>
-      <?php // $company=$this->reviews->get_company_byid($reviews[$i]['companyid'])?>
-      <?php //$user=$this->users->get_user_byid($reviews[$i]['reviewby'])?>
-      <tr>
-		  
-        
-        <td><input type="checkbox" class="case" name="foo[]" value="<?php echo $reviews[$i]['id'];?>" /></td>
-        <td>
+		<thead>
+			<tr class="top nodrop nodrag">
+			<?php 
+			
+			
+			foreach($fields as $field_name => $field_display): ?>
+				<?php if($field_name == 'id') { ?>
+				<th><input type="checkbox" id="selectall" name="maincheck"/></th>
+			<?php }else{ ?>
+			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php echo anchor("review/index/$field_name/" .
+					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+					$field_display,array('class' => 'sorttitle')); ?>
+			</th>
+			<?php } ?>
+			
+			<?php endforeach; ?>
+			<th>View</th>
+			</tr>
+		</thead>
 		
-		<?php echo substr(stripslashes($reviews[$i]['comment']),0,150).'...'; ?></td>
-        <td>
-			<?php echo ucfirst($reviews[$i]['company']);?>
-        </td>
-        <td>
-        <?php if(strlen($reviews[$i]['avatarbig'])>5){?>
-			<?php echo ucfirst($reviews[$i]['firstname'].' '.$reviews[$i]['lastname']);?>
-		<?php } else { echo $reviews[$i]['reviewby'];} ?>
-          </td>
-        <td><?php echo $reviews[$i]['reviewip']; ?></td>
-        <td><?php echo date('m-d-Y', strtotime($reviews[$i]['reviewdate'])); ?></td>
-        <td><?php if( stripslashes($reviews[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('review/disable/'.$reviews[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this review?');"><span>Enable</span></a>
-          <?php } ?>
-          <?php if( stripslashes($reviews[$i]['status']) == 'Disable' ) { ?>
-          <a href="<?php echo site_url('review/enable/'.$reviews[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this review?');"><span>Disable</span></a>
-          <?php } ?></td>
-        <td><a href="<?php echo site_url('review/view/'.$reviews[$i]['id']); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view" ></a><br />
-          <?php $total=$this->reviews->get_all_comments($reviews[$i]['id']); ?>
-          <?php if(count($total)>0) { ?>
-          <a href="<?php echo site_url('review/viewcomments/'.$reviews[$i]['id']); ?>" title="View Comments"> Comments(<?php echo count($total);?>)</a>
-          <?php } else { ?>
-          Comments(<?php echo count($total);?>)
-          <?php } ?></td>
-      </tr>
-      <?php } ?>
-    </table>
+		<tbody>
+			<?php foreach($reviews as $review): 
+			
+			?>
+			<tr>
+				<?php foreach($fields as $field_name => $field_display): ?>
+				<td>
+					<?php if($field_name == 'id'){ ?>
+						
+						<input type="checkbox" class="case" name="foo[]" value="<?php echo $review->id;?>" />
+				 <?php					
+					}elseif ($field_name == 'comment'){
+						echo $review->comment;
+					}
+					elseif($field_name == 'reviewby'){
+						 if(strlen($review->avatarbig) > 5){
+							echo ucfirst($review->firstname.' '.$review->lastname);
+						 } else { 
+							 echo $review->reviewby;
+						 } 				
+					}elseif($field_name == 'reviewdate'){
+						echo date('m-d-Y', strtotime($review->reviewdate));
+					}					
+					elseif ($field_name == 'status' ) { ?>
+							<?php
+							if( $review->$field_name == 'Enable' ){ ?>
+								<a href="<?php echo site_url('review/disable/'.$review->id);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span><?php echo $review->$field_name; ?></span></a>
+								
+							<?php 
+							}else{ ?>
+								
+							<a href="<?php echo site_url('review/enable/'.$review->id);?>" title="Click to Enable" class="btn btn-small btn-success" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this user?');"><span><?php echo $review->$field_name; ?></span></a>
+						 <?php
+							}
+					}
+					else{
+						echo $review->$field_name; 
+					 }
+					?>	
+					
+				</td>			
+				<?php endforeach; ?>
+				 <td>
+					 <a href="<?php echo site_url('review/view/'.$review->id); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view" ></a>
+					 <br />
+					<?php $total=$this->reviews->get_all_comments($review->id); ?>
+					<?php if(count($total)>0) { ?>
+						<a href="<?php echo site_url('review/viewcomments/'.$review->id); ?>" title="View Comments"> Comments(<?php echo count($total);?>)</a>
+					<?php } else { ?>
+					Comments(<?php echo count($total);?>)
+					<?php } ?>
+				</td>
+			</tr>
+			<?php endforeach; ?>			
+		</tbody>
+		
+	</table>
+    
+    
     <!-- /table --> 
+    <div style="clear:both"></div>
     <!-- /pagination -->
     <?php  if($this->pagination->create_links()) { ?>
     <div class="pagination"> <?php echo $this->pagination->create_links(); ?> </div>

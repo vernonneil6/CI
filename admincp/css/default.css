@@ -395,7 +395,12 @@ a:hover.ico   { background-position: 0 0; }
 	color: #052b4d;
     text-decoration: none!important;
 }
-
+.sort_asc:after {
+	content: "▲";
+}
+.sort_desc:after {
+	content: "▼";
+}
 table.elites1 td, table.elites1 th
 {
 	padding : 8px 6px!important;

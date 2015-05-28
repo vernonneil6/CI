@@ -38,6 +38,37 @@ class Reviews extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	function reviewsSearch($limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('reviewip', 'firstname','company','comment','reviewdate');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'company';
+		
+		// results query
+		$q = $this->db->select('r.*,c.company,c.logo,u.avatarbig,u.firstname,u.lastname')
+			->from('reviews as r')
+			->join('company as c','r.companyid=c.id')
+			->join('user as u','r.reviewby=u.id','left')
+			->limit($limit, $offset)
+			->order_by($sort_by, $sort_order);
+		
+		$ret['rows'] = $q->get()->result();
+		
+		
+		// count query
+		$q = $this->db->select('COUNT(*) as count', FALSE)	 
+			->from('reviews as r')
+			->join('company as c','r.companyid=c.id')
+			->join('user as u','r.reviewby=u.id','left');	
+		
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		
+		return $ret;
+	}
+ 	
 	
 	//Getting review value for editing
 	function get_review_byid($id)

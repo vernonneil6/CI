@@ -92,7 +92,7 @@ class Review extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sortby,$orderby='asc')
+	/*public function index($sortby,$orderby='asc')
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
@@ -109,6 +109,43 @@ class Review extends CI_Controller {
 			//Loading View File
 			$this->load->view('review',$this->data);
 	  	}
+	}*/
+	
+	public function index($sort_by = 'company', $sort_order = 'asc', $offset = 0) {
+		
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+			$limit = 15;
+			$this->data['fields'] = array(
+				'id' => 'Review',
+				'comment' => 'Review',
+				'company' => 'Review to',
+				'reviewby' => 'Review by',
+				'reviewip' => 'IP',
+				'reviewdate' => 'Date Reviewed',
+				'status' => 'Status',
+			);
+			
+			$this->load->model('reviews');
+			
+			$results = $this->reviews->reviewsSearch($limit, $offset, $sort_by, $sort_order);
+			
+			$this->data['reviews'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
+			//echo $this->data['num_results'];die;
+			
+			// pagination				
+			$this->paging['base_url'] = site_url("review/index/$sort_by/$sort_order");
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;
+			$this->paging['uri_segment'] = 5;
+			$this->pagination->initialize($this->paging);									
+			
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('review', $this->data);
+		}
 	}
 	
 	

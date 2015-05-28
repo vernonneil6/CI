@@ -797,7 +797,7 @@ else { ?>
               <div class="lab">
                 <label for="keysearch">Keyword<span>*</span></label>
               </div>
-              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search user by name or email','value'=>$this->uri->segment(3))); ?> </div>
+              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search user by name or email','value'=>'')); ?> </div>
             </div>
           </div>
           <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
@@ -808,50 +808,76 @@ else { ?>
       </fieldset>
       <?php echo form_close(); ?> </div>
   
-    <?php if( count($users) > 0 ) { 
-			 $order_seg = $this->uri->segment(4,"asc"); 
-			if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+    <?php if( count($users) > 0 ) {  ?>
+		<table class="tab tab-drag">
+		<thead>
+			<tr class="top nodrop nodrag">
+			<?php foreach($fields as $field_name => $field_display): ?>
+			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php echo anchor("user/index/$field_name/" .
+					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+					$field_display,array('class' => 'sorttitle')); ?>
+			</th>
+			
+			
+			<?php endforeach; ?>
+			<th>Action</th>
+			</tr>
+		</thead>
 		
-		?>
-    <!-- table -->
-    <table class="tab tab-drag">
-      <tr class="top nodrop nodrag">
-        <th><a class="sorttitle" href="<?php echo base_url('user/index/name');?>/<?=$orderby?>">Name</a></th>
-        <th><a class="sorttitle" href="<?php echo base_url('user/index/email');?>/<?=$orderby?>">Email</a></th>        
-        <th><a class="sorttitle" href="<?php echo base_url('user/index/date');?>/<?=$orderby?>">Date Created</a></th>
-        <th>Status</th> 
-        <th>Action</th>
-      </tr>
-      <?php 
-	$site = site_url();			
-	$url = explode("/admincp",$site);
-	$path = $url[0];
-	?>
-      <?php for($i=0;$i<count($users);$i++) { ?>
-      <tr>
-        <td><a href="<?php echo site_url('user/view/'.$users[$i]['id']); ?>" title="View Detail of <?php echo stripslashes($users[$i]['firstname']).' '.stripslashes($users[$i]['lastname']); ?>" class="colorbox" style="color: #404040;"><?php echo stripslashes($users[$i]['firstname']).' '.stripslashes($users[$i]['lastname']); ?></a></td>
-        <td><?php echo stripslashes($users[$i]['email']); ?></td>
-        <td><?php echo date('m-d-Y',strtotime($users[$i]['registerdate'])); ?></td>
-        <td><?php if( stripslashes($users[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('user/disable/'.$users[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span>Enable</span></a>
-          <?php } ?>
-          <?php if( stripslashes($users[$i]['status']) == 'Disable' ) { ?>
-          <a href="<?php echo site_url('user/enable/'.$users[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this user?');"><span>Disable</span></a>
-          <?php } ?></td>        
-        <td><a href="<?php echo site_url('user/edit/'.$users[$i]['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> <a href="<?php echo site_url('user/view/'.$users[$i]['id']); ?>" title="View Detail of <?php echo stripslashes($users[$i]['firstname']).' '.stripslashes($users[$i]['lastname']); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> <a href="<?php echo site_url('user/delete/'.$users[$i]['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this user?');">Delete</a></td>
-      </tr>
-      <?php } ?>
-      
-    </table>
-    <!-- /pagination -->
-      <?php if($this->pagination->create_links()){?>
-	<div class="pagination"><?php echo $this->pagination->create_links(); ?></div>
-
-      <?php } ?>
-      <!-- /pagination -->
-    <!-- /table -->
-    <?php } 
-	else { ?>
+		<tbody>
+			<?php foreach($users as $user): ?>
+			<tr>
+				<?php foreach($fields as $field_name => $field_display): ?>
+				<td>
+					<?php if( $field_name == 'firstname' ){ ?>
+						<a style="color: #404040;" class="colorbox cboxElement" title="View Detail of chirag suthar" href="<?php echo site_url('user/view/'.$user->id); ?>">
+							<?php echo $user->firstname .' '. $user->lastname;  ?>
+						</a>	
+					<?php 
+						  }else if ($field_name == 'registerdate' ) {
+							echo date('m-d-Y',strtotime($user->registerdate));
+						  
+						  }else if ($field_name == 'status' ) { ?>
+							<?php
+							if( $user->$field_name == 'Enable' ){ ?>
+								<a href="<?php echo site_url('user/disable/'.$user->id);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span><?php echo $user->$field_name; ?></span></a>
+								
+							<?php 
+							}else{ ?>
+								
+							<a href="<?php echo site_url('user/enable/'.$user->id);?>" title="Click to Enable" class="btn btn-small btn-success" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this user?');"><span><?php echo $user->$field_name; ?></span></a>
+						 <?php
+							}
+						  
+						  }else{						
+							echo $user->$field_name; 
+						  }
+					?>	
+					
+				</td>			
+				<?php endforeach; ?>
+				<td>
+					<a href="<?php echo site_url('user/edit/'.$user->id); ?>" title="Edit" class="ico ico-edit">Edit</a> 
+					<a href="<?php echo site_url('user/view/'.$user->id); ?>" title="View Detail of <?php echo stripslashes($user->firstname).' '.stripslashes($user->lastname); ?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a> 
+					<a href="<?php echo site_url('user/delete/'.$user->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this user?');">Delete</a>
+				</td>
+			</tr>
+			<?php endforeach; ?>			
+		</tbody>
+		
+	</table>
+	
+	<?php if ($this->pagination->create_links()): ?>
+	<div class="pagination">
+		 <?php echo $this->pagination->create_links(); ?>
+	</div>
+	<?php endif; ?>
+		
+		
+	<?php
+		
+	}else { ?>
     <!-- Warning form message -->
     <div class="form-message warning">
       <p>No records found.</p>
