@@ -1785,13 +1785,13 @@ class Complaints extends CI_Model
 	}
 	function elitecrondetails()
 	{
-		$checkdate=date('Y-m-d');
-		//$checkdate=date('Y-m-d', strtotime($date .' -1 day'));
+		//$checkdate=date('Y-m-d');
+		$checkdate=date('Y-m-d', time() - 60 * 60 * 24);
 		$query=$this->db->select('*')
 						->from('youg_subscription as s')
 						->join('youg_elite as e','e.company_id = s.company_id','left')
-						->where("(`s`.`transactionstatus` = '0' and `s`.`paymentmethod` = 'authorize' and `s`.`subscr_id` != '' and `s`.`emailflag` = '0' and `s`.`expireflag` = '2') OR 
-						(`e`.`cancel_flag`='1')")
+						->where("((`s`.`transactionstatus` = '0' and `s`.`paymentmethod` = 'authorize' and `s`.`subscr_id` != '' and `s`.`emailflag` = '0' and `s`.`expireflag` = '2') OR 
+						(`e`.`cancel_flag`='1'))")
 						->like('s.expires',$checkdate)
 						->get()
 			            ->result_array();
