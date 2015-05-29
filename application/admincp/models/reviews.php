@@ -39,7 +39,7 @@ class Reviews extends CI_Model
 		}
  	}
  	
- 	function reviewsSearch($limit, $offset, $sort_by, $sort_order) {
+ 	function reviewsSearch($keyword, $limit, $offset = 0, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
 		$sort_columns = array('reviewip', 'firstname','company','comment','reviewdate');
@@ -49,18 +49,30 @@ class Reviews extends CI_Model
 		$q = $this->db->select('r.*,c.company,c.logo,u.avatarbig,u.firstname,u.lastname')
 			->from('reviews as r')
 			->join('company as c','r.companyid=c.id')
-			->join('user as u','r.reviewby=u.id','left')
-			->limit($limit, $offset)
-			->order_by($sort_by, $sort_order);
+			->join('user as u','r.reviewby=u.id','left');
+			
+		if(!empty($limit)){	
+			$q->limit($limit, $offset);
+			$q->order_by($sort_by, $sort_order);
+		}
+		
+		if (strlen($keyword)) {							
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'r.comment' => $keyword , 'c.company'=> $keyword , 'c.streetaddress' => $keyword , 'c.aboutus' => $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );							
+		}
+		
 		
 		$ret['rows'] = $q->get()->result();
-		
-		
+			
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)	 
 			->from('reviews as r')
 			->join('company as c','r.companyid=c.id')
 			->join('user as u','r.reviewby=u.id','left');	
+		
+		if (strlen($keyword)) {							
+			
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'r.comment' => $keyword , 'c.company'=> $keyword , 'c.streetaddress' => $keyword , 'c.aboutus' => $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
+		}
 		
 		$tmp = $q->get()->result();
 		
@@ -69,6 +81,41 @@ class Reviews extends CI_Model
 		return $ret;
 	}
  	
+ 	
+ 	//search user
+	function search_review($keyword,$limit='',$offset='',$sortby = 'reviewdate',$orderby = 'ASC')
+ 	{
+		//Ordering Data
+		$this->db->order_by($sortby,$orderby);
+		//$siteid = $this->session->userdata('siteid');
+		//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+				
+		$this->db->select('r.*,c.company,c.logo,u.avatarbig,u.firstname,u.lastname');
+		$this->db->from('reviews as r');
+		$this->db->join('company as c','r.companyid=c.id');
+		$this->db->join('user as u','r.reviewby=u.id','left');
+		//$this->db->where('r.websiteid',$siteid);
+		$this->db->where('(r.comment LIKE \'%'.$keyword.'%\' OR u.firstname LIKE \'%'.$keyword.'%\' OR u.lastname LIKE \'%'.$keyword.'%\' OR c.company LIKE \'%'.$keyword.'%\' OR c.streetaddress LIKE \'%'.$keyword.'%\' OR c.aboutus LIKE \'%'.$keyword.'%\')', NULL, FALSE);
+		//$this->db->where('(email LIKE \'%'.$email.'%\')', NULL, FALSE);
+		$query = $this->db->get();
+		
+		$query->result_array();
+		//echo "<pre>";
+		//print_r($query->result_array());
+		//die();
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 	//Getting review value for editing
 	function get_review_byid($id)
@@ -229,72 +276,6 @@ class Reviews extends CI_Model
 		}
 	}
 	
-	/*function search_review($keyword,$limit ='',$offset='',$sortby = 'reviewdate',$orderby = 'ASC')
- 	{
-		$siteid = $this->session->userdata('siteid');
-		$keyword = str_replace('_',' ', $keyword);
-		$this->db->order_by($sortby,$orderby);
-		//Setting Limit for Paging
-		if( $limit != '' && $offset == 0)
-		{ $this->db->limit($limit); }
-		else if( $limit != '' && $offset != 0)
-		{	$this->db->limit($limit, $offset);	}
-		
-		//Executing Query
-		$this->db->select('r.*, c.*,u.*,');
-		$this->db->from('reviews as r');
-		$this->db->join('company as c','r.companyid=c.id');
-		$this->db->join('user as u','r.reviewby=u.id');
-		$this->db->where('r.websiteid',$siteid);
-		$this->db->where('(r.comment LIKE \'%'.$keyword.'%\' OR u.firstname LIKE \'%'.$keyword.'%\' OR u.lastname LIKE \'%'.$keyword.'%\' OR c.company LIKE \'%'.$keyword.'%\' OR c.streetaddress LIKE \'%'.$keyword.'%\' OR c.aboutus LIKE \'%'.$keyword.'%\')', NULL, FALSE);
-		
-		$query = $this->db->get();
-	
-		if ($query->num_rows() > 0)
-		{
-			return $query->result_array();
-		}
-		else
-		{
-			return array();
-		}
- 	}
-	*/
-	//search user
-	function search_review($keyword,$limit='',$offset='',$sortby = 'reviewdate',$orderby = 'ASC')
- 	{
-		//Ordering Data
-		$this->db->order_by($sortby,$orderby);
-		//$siteid = $this->session->userdata('siteid');
-		//Setting Limit for Paging
-		if( $limit != '' && $offset == 0)
-		{ $this->db->limit($limit); }
-		else if( $limit != '' && $offset != 0)
-		{	$this->db->limit($limit, $offset);	}
-				
-		$this->db->select('r.*,c.company,c.logo,u.avatarbig,u.firstname,u.lastname');
-		$this->db->from('reviews as r');
-		$this->db->join('company as c','r.companyid=c.id');
-		$this->db->join('user as u','r.reviewby=u.id','left');
-		//$this->db->where('r.websiteid',$siteid);
-		$this->db->where('(r.comment LIKE \'%'.$keyword.'%\' OR u.firstname LIKE \'%'.$keyword.'%\' OR u.lastname LIKE \'%'.$keyword.'%\' OR c.company LIKE \'%'.$keyword.'%\' OR c.streetaddress LIKE \'%'.$keyword.'%\' OR c.aboutus LIKE \'%'.$keyword.'%\')', NULL, FALSE);
-		//$this->db->where('(email LIKE \'%'.$email.'%\')', NULL, FALSE);
-		$query = $this->db->get();
-		
-		$query->result_array();
-		//echo "<pre>";
-		//print_r($query->result_array());
-		//die();
-		if ($query->num_rows() > 0)
-		{
-			return $query->result_array();
-		}
-		else
-		{
-			return array();
-		}
- 	}
-	
 	//search user count
 	function search_review_count($keyword)
  	{
@@ -410,6 +391,40 @@ class Reviews extends CI_Model
 			return array();
 		}
 	}
+	function removedReviewsSearch($limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('reviewby','reviewdate','reviewremoveddate');
+		if($sort_by == 'reviewby'){
+			$sort_by = 'u.username';
+		}else{	
+			$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'comment';
+		}
+		
+		// results query
+		$q = $this->db->select('r.*,u.firstname,u.lastname')
+			->from('reviews as r')
+			->join('user as u','r.reviewby=u.id')
+			->where('r.status','Disable')			
+			->limit($limit, $offset)
+			->order_by($sort_by, $sort_order);
+		//print_r($q);die;
+		$ret['rows'] = $q->get()->result();
+		
+		
+		// count query
+		$q = $this->db->select('COUNT(*) as count', FALSE)	 
+			->from('reviews as r')
+			->join('user as u','r.reviewby=u.id')
+			->where('r.status','Disable');		
+		
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		
+		return $ret;
+	}
+	
 	function review_mail($reviewid, $companyid)
 	{
 		return $this->db->get_where('youg_reviewmail',array('company_id' => $companyid, 'review_id' => $reviewid))->row_array();

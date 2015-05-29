@@ -46,6 +46,17 @@
 else { ?>
 <?php echo $heading; ?> 
 <!-- #content -->
+<?php echo link_tag('colorbox/colorbox.css'); ?> 
+  <script language="javascript" type="text/javascript" src="<?php echo base_url();?>colorbox/jquery.colorbox.js"></script> 
+  <script language="javascript" type="text/javascript">
+  $(document).ready(function(){
+		
+		$('.colorbox').colorbox({'width':'55%','height':'60%'});
+
+ });
+</script> 
+
+
 <div id="content"> 
   
   <!-- breadcrumbs -->
@@ -56,7 +67,7 @@ else { ?>
     </ul>
   </div>
   <!-- /breadcrumbs -->
-  <?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'search' ) ) { ?>
+  <?php //if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'search' ) ) { ?>
   <script type="text/javascript" language="javascript">
 	function trim(stringToTrim) {
 		return stringToTrim.replace(/^\s+|\s+$/g,"");
@@ -84,123 +95,45 @@ else { ?>
 	
 	});
 </script> 
-  <!-- box -->
   <div class="box">
-    <div class="headlines">
-      <h2><span>Search Comments</span></h2>
-    </div>
-    <div class="box-content"> <?php echo form_open('comment/searchcomment',array('class'=>'formBox','id'=>'frmsearch')); ?>
+    <div class="headlines">		
+			<h2><span> Comments on review: </span></h2>
+       
+        <h2><span>
+
+        <a href="<?php if(!empty($_GET['s'])){ echo site_url('comment/csv/'.$_GET['s']); } else { echo site_url('comment/csv'); } ?>" title="Export as CSV file">
+       <img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV </a>
+        </span></h2>
+	</div>
+     <div class="box-content"> <?php echo form_open('comment/searchcomment',array('class'=>'formBox','id'=>'frmsearch')); ?>
       <fieldset>
-        
         <!-- Error form message -->
-        
         <div class="form-cols"><!-- two form cols -->
           <div class="col1">
             <div class="clearfix">
               <div class="lab">
                 <label for="keysearch">Keyword<span>*</span></label>
               </div>
-              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'search comment by user or keyword')); ?> </div>
+              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search comments by title or username','value'=>"")); ?> </div>
             </div>
           </div>
           <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
         </div>
         <div class="btn-submit"> 
           <!-- Submit form --> 
-          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('comment');?>" class="Cancel">Cancel</a> </div>
-      </fieldset>
-      <?php echo form_close(); ?> </div>
-  </div>
-  <!-- /box-content -->
-  <?php } else { ?>
-  <!-- box -->
-  <div class="box">
-    <div class="headlines">
-      <h2><span>
-        <?php if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult')
-	   {
-	   	?>
-        search results for '<?php echo $this->uri->segment(3);?>'
-        <?php
-	   } else { ?>
-        <?php echo "Comments on Reviews"; } ?></span></h2>
-    </div>
-    
-    <!-- Correct form message -->
-    <?php if( $this->session->flashdata('success') ) { ?>
-    <div class="form-message correct">
-      <p><?php echo $this->session->flashdata('success'); ?></p>
-    </div>
-    <?php } ?>
-    <!-- Error form message -->
-    <?php if( $this->session->flashdata('error') ) { ?>
-    <div class="form-message error1">
-      <p><?php echo $this->session->flashdata('error'); ?></p>
-    </div>
-    <?php } ?>
-    <?php echo link_tag('colorbox/colorbox.css'); ?> 
-    <script language="javascript" type="text/javascript" src="<?php echo base_url();?>colorbox/jquery.colorbox.js"></script> 
-    <script language="javascript" type="text/javascript">
-  $(document).ready(function(){
-		
-		$('.colorbox').colorbox({'width':'55%','height':'75%'});
-		
-  });
-</script>
-    <?php if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult')
-	   {
-	   	?>
-    <script type="text/javascript" language="javascript">
-	function trim(stringToTrim) {
-		return stringToTrim.replace(/^\s+|\s+$/g,"");
-	}
-	$(document).ready(function() {
-		$("#btnsearch").click(function () {
-	
-			if( trim($("#keysearch").val()) == "" )
-			{
-				$("#error").attr('style','display:block;');
-				$("#keysearcherror").show();
-				$("#keysearch").val('').focus();
-				return false;
-			}
-			else
-			{
-				$("#keysearcherror").hide();
+          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('user');?>" class="Cancel">Cancel</a> </div>
+          
+          <?php if(!empty($_GET['s']))
+			{	   
+				echo "<div style='margin-top:1em;'> Search results for <span style='color:#1a2e4d'>' ". $_GET['s'] . " ' </span> </div>";
 			}
 			
-			if( $("#frmsearch").submit() )
-			{
-				$("#error").attr('style','display:none;');
-			}
-    	});
-	
-	});
-</script> 
-    <!-- box -->
-    
-    <div class="box-content"> <?php echo form_open('comment/searchcomment',array('class'=>'formBox','id'=>'frmsearch')); ?>
-      <fieldset>
-        
-        <!-- Error form message -->
-        
-        <div class="form-cols"><!-- two form cols -->
-          <div class="col1">
-            <div class="clearfix">
-              <div class="lab">
-                <label for="keysearch">Keyword<span>*</span></label>
-              </div>
-              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'search comment by user or keyword','value'=>$this->uri->segment(3))); ?> </div>
-            </div>
-          </div>
-          <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
-        </div>
-        <div class="btn-submit"> 
-          <!-- Submit form --> 
-          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('comment');?>" class="Cancel">Cancel</a> </div>
+		?>
+         
       </fieldset>
       <?php echo form_close(); ?> </div>
-    <?php }?>
+      
+    
     <?php if( count($comments) > 0 ) { 
 	  $order_seg = $this->uri->segment(4,"asc"); 
 	  if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }?>
@@ -238,7 +171,9 @@ function submitfrm()
 	
 	$('#get_id').submit();
 }
-</script><form action="comment/foo" id="get_id" method="post" class="formBox">
+</script>
+
+<form action="comment/foo" id="get_id" method="post" class="formBox">
     <!-- table --><table class="">
       <tr class="">
       <td>
@@ -257,17 +192,24 @@ function submitfrm()
         <table class="tab tab-drag">
 		<thead>
 			<tr class="top nodrop nodrag">
-			<?php 
-			
+			<?php 			
 			
 			foreach($fields as $field_name => $field_display): ?>
 				<?php if($field_name == 'id') { ?>
 				<th><input type="checkbox" id="selectall" name="maincheck"/></th>
 			<?php }else{ ?>
 			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
-				<?php echo anchor("comment/index/$field_name/" .
+				<?php
+				
+				if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult'){
+					 echo anchor("comment/searchresult/$field_name/" .
+						(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+						$field_display,array('class' => 'sorttitle'));
+				}else{ 					
+					 echo anchor("comment/index/$field_name/" .
 					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
-					$field_display,array('class' => 'sorttitle')); ?>
+					$field_display,array('class' => 'sorttitle')); 
+				} ?>	
 			</th>
 			<?php } ?>
 			
@@ -349,7 +291,7 @@ function submitfrm()
     <?php } ?>
   </div>
   <!-- /box -->
-  <?php } ?>
+  <?php //} ?>
 </div>
 <!-- /#content --> 
 

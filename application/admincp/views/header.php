@@ -27,6 +27,8 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>js/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
 <!-- Fancy box JS and CSS-->
 
+
+
 <!-- // File upload // -->
 <script src="<?php echo base_url();?>js/jquery.filestyle.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -52,6 +54,7 @@
 			});
 			
 </script>
+
 </head>
 
 <body>

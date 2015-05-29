@@ -36,21 +36,23 @@ class Comments extends CI_Model
 	function commentsSearch($limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('commentby', 'comment','commentdate');
-		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'commentby';
+		$sort_columns = array('comment','commentdate');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'u.username';
 		
 		// results query
 		$q = $this->db->select('*')
-			->from('comments')			
+			->from('comments as c')
+			->join('user as u','c.commentby=u.id','left')			
 			->limit($limit, $offset)
 			->order_by($sort_by, $sort_order);
-		
+			
 		$ret['rows'] = $q->get()->result();
 		
 		
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)	 
-			->from('comments');			
+			->from('comments as c')
+			->join('user as u','c.commentby=u.id','left');			
 		
 		$tmp = $q->get()->result();
 		
@@ -58,6 +60,79 @@ class Comments extends CI_Model
 		
 		return $ret;
 	}
+	
+	function commentsSearchResults($keyword, $limit, $offset, $sort_by, $sort_order) {
+		
+		$siteid = $this->session->userdata('siteid');
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('comment','commentdate');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'u.username';
+		
+		// results query
+		$q = $this->db->select('c.*, r.*,u.*, c.id as cid')
+				->from('comments as c')
+				->join('reviews as r','c.reviewid=r.id')
+				->join('user as u','c.commentby=u.id')
+				->where('r.websiteid',$siteid);			
+				
+		if (strlen($keyword)) {				
+			
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );			
+		}	
+		
+		
+		$ret['rows'] = $q->get()->result();
+		
+		
+		// count query
+		$q = $this->db->select('COUNT(*) as count', FALSE)	 
+				->from('comments as c')
+				->join('reviews as r','c.reviewid=r.id')
+				->join('user as u','c.commentby=u.id')
+				->where('r.websiteid',$siteid);			
+		
+		if (strlen($keyword)) {
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );			
+		}	
+		
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		
+		return $ret;
+	}
+	
+	function search_comment($keyword, $limit ='',$offset='',$sortby = 'commentdate',$orderby = 'DESC')
+ 	{
+	  $siteid = $this->session->userdata('siteid');
+	  	//Ordering Data
+		$this->db->order_by($sortby,$orderby);
+		
+	  	//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+	  
+		//Executing Query
+		$this->db->select('c.*, r.*,u.*, c.id as cid');
+		$this->db->from('comments as c');
+		$this->db->join('reviews as r','c.reviewid=r.id');
+		$this->db->join('user as u','c.commentby=u.id');
+		$this->db->where('r.websiteid',$siteid);
+		$this->db->where('(c.comment LIKE \'%'.$keyword.'%\' OR u.firstname LIKE \'%'.$keyword.'%\' OR u.lastname LIKE \'%'.$keyword.'%\')', NULL, FALSE);
+		$query = $this->db->get();
+	
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 	
 	//Getting Page value for editing
@@ -113,36 +188,7 @@ class Comments extends CI_Model
 		}
 	}
 	
-	function search_comment($keyword,$limit ='',$offset='',$sortby = 'commentdate',$orderby = 'DESC')
- 	{
-	  $siteid = $this->session->userdata('siteid');
-	  	//Ordering Data
-		$this->db->order_by($sortby,$orderby);
-		
-	  	//Setting Limit for Paging
-		if( $limit != '' && $offset == 0)
-		{ $this->db->limit($limit); }
-		else if( $limit != '' && $offset != 0)
-		{	$this->db->limit($limit, $offset);	}
-	  
-		//Executing Query
-		$this->db->select('c.*, r.*,u.*, c.id as cid');
-		$this->db->from('comments as c');
-		$this->db->join('reviews as r','c.reviewid=r.id');
-		$this->db->join('user as u','c.commentby=u.id');
-		$this->db->where('r.websiteid',$siteid);
-		$this->db->where('(c.comment LIKE \'%'.$keyword.'%\' OR u.firstname LIKE \'%'.$keyword.'%\' OR u.lastname LIKE \'%'.$keyword.'%\')', NULL, FALSE);
-		$query = $this->db->get();
 	
-		if ($query->num_rows() > 0)
-		{
-			return $query->result_array();
-		}
-		else
-		{
-			return array();
-		}
- 	}
 	
 	function multiple_function($type,$foo)
 	{

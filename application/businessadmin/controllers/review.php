@@ -49,8 +49,7 @@ class Review extends CI_Controller
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sortby)
-	{
+	public function index($sort_by = 'reviewdate', $sort_order = 'asc', $offset = 0) {
 		
 		if( !$this->session->userdata('youg_admin'))
 	  	{
@@ -59,58 +58,53 @@ class Review extends CI_Controller
 		
 		if( $this->session->userdata['youg_admin'] )
 	  	{
-			$limit = $this->paging['per_page'];
-			if($sortby=='title')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("review/index/title");
-				$orderby = 'asc';
-				$url = 4;
-				
-			}
-			else if($sortby=='review')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("review/index/review");
-				$orderby = 'asc';
-				$url = 4;
-			}
-			else if($sortby=='user')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("review/index/user");
-				$orderby = 'asc';
-				$url = 4;
-			}
-			else if($sortby=='rating')
-			{
-				$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-				$base = site_url("review/index/rating");
-				$orderby = 'desc';
-				$url = 4;
-			}
-			else
-			{
-				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
-				$base = site_url("review/index");
-				$orderby = 'desc';
-				$url = 3;
+			$limit = 15;
+			$this->data['fields'] = array(
+				'reviewtitle' => 'Title',
+				'comment' => 'Review',
+				'reviewby' => 'User',
+				'rate' => 'Rating',
+				'reviewdate' => 'Review Date',			
+				'status' => 'Status'
+			);
+			
+			$this->load->model('reviews');
+			
+			if($this->input->get('s')){				
+				$decodeKeyword = urldecode($this->input->get('s'));
 			}
 			
 			$companyid = $this->session->userdata['youg_admin']['id'];
 			
 			$siteid = $this->session->userdata['siteid'];
-
-			$this->data['reviews'] = $this->reviews->get_all_reviews($companyid,$siteid,$limit,$offset,$sortby,$orderby);
-
-			$this->paging['base_url'] = $base;
-			$this->paging['uri_segment'] = $url;
-			$this->paging['total_rows'] = count($this->reviews->get_all_reviews($companyid,$siteid));
-			$this->pagination->initialize($this->paging);
-
-			$this->load->view('review',$this->data);
-	  	}
+			
+			
+			$results = $this->reviews->reviewsSearch($decodeKeyword, $companyid, $siteid, $limit, $offset, $sort_by, $sort_order);
+			
+			$this->data['reviews'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
+			//echo $this->data['num_results'];die;
+			
+			// pagination				
+			$this->paging['base_url'] = site_url("review/index/$sort_by/$sort_order");
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;
+			$this->paging['uri_segment'] = 5;
+			
+			if(!empty($_GET)){
+				$this->paging['suffix'] = '?'.http_build_query($_GET, '', "&");
+				$this->paging['first_url'] = $this->paging['base_url'] . $this->paging['suffix'];
+			}
+						
+			$this->pagination->initialize($this->paging);									
+			
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('review', $this->data);
+		}
 	}
+	
 
 	public function import_csv()
 	{

@@ -93,62 +93,101 @@
     <?php echo form_close();?>
     <?php if( count($reviews) > 0 ) { ?>
     <!-- table -->
-    <table class="tab tab-drag">
-      <tr class="top nodrop nodrag">
-        <th width="10%"><a class="sorttitle" href="<?php echo base_url('review/index/title'); ?>">Title</a></th>
-        <th width="30%"><a class="sorttitle" href="<?php echo base_url('review/index/review'); ?>">Review</a></th>
-        <th width="8%"><a class="sorttitle" href="<?php echo base_url('review/index/user'); ?>">User</a></th>
-        <th width="8%"><a class="sorttitle" href="<?php echo base_url('review/index/rating'); ?>">Rating</a></th>
-        <th width="20%"><a class="sorttitle" href="<?php echo base_url('review/index'); ?>">Review Date</a></th>
-        <th width="10%">Status</th>
-        <th width="10%">Action</th>
-        <th width="15%">Share On</th>
-        
-      </tr>
-
-      <?php for($i=0;$i<count($reviews);$i++) { ?>
-      <tr>
-        <td><?php echo (stripslashes($reviews[$i]['reviewtitle'])); ?></td>
-        <td><?php echo nl2br(stripslashes($reviews[$i]['comment'])); ?></td>
-        <td>
-		<?php
-			 $username = $this->reviews->get_user_bysingleid($reviews[$i]['reviewby']);
-			 if($username)
-			 {
-				echo ucwords(stripslashes($username['firstname']." ".$username['lastname']));
-			 }
-			 else
-			 {
-				 echo $reviews[$i]['reviewby'];
-			 }
-		?>
-		</td>
-        <td><img src="images/stars/<?php echo stripslashes($reviews[$i]['rate']); ?>.png" title="<?php echo stripslashes($reviews[$i]['rate']); ?> Stars" /></td>
-        <td><?php echo date("m-d-Y",strtotime($reviews[$i]['reviewdate'])); ?></td>
-        <td>
-		  <?php if( stripslashes($reviews[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('review/disable/'.$reviews[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this review?');"><span>Enable</span></a>
-          <?php } ?>
-          <?php if( stripslashes($reviews[$i]['status']) == 'Disable' ) { ?>
-          <a href="<?php echo site_url('review/enable/'.$reviews[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this review?');"><span>Disable</span></a>
-          <?php } ?>
-        </td>
-        <td><a href="<?php echo site_url('review/delete/'.$reviews[$i]['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this review ?');">Delete</a></td>
-        <td>  <?php $title=urlencode('My post');
-                $url=urlencode($pageurl.$reviews[$i]['seokeyword']);
-                $image=urlencode('http://livemarketnews.com/dressfinity/skin/frontend/default/default/images/logo.jpg');
-                ?>
+    
+     <table class="tab tab-drag">
+		<thead>
+			<tr class="top nodrop nodrag">
+			<?php 
+			
+			
+			foreach($fields as $field_name => $field_display): ?>
+		
+			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php echo anchor("review/index/$field_name/" .
+					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+					$field_display,array('class' => 'sorttitle')); ?>
+			</th>			
+			
+			<?php endforeach; ?>			 
+			<th width="10%">Action</th>
+			<th width="15%">Share On</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<?php foreach($reviews as $review): 
+			
+			?>
+			<tr>
+				<?php foreach($fields as $field_name => $field_display): ?>
+				<td>
+					<?php 
+					
+					if ($field_name == 'comment'){
+						echo $review->comment;
+					}
+					elseif($field_name == 'reviewby'){
+						$username = $this->reviews->get_user_bysingleid($review->reviewby);
+						if($username)
+						{
+							echo ucwords(stripslashes($username['firstname']." ".$username['lastname']));
+						}
+						else
+						{
+							echo $review->reviewby;
+						} 				
+					}elseif($field_name == 'reviewdate'){
+						echo date('m-d-Y', strtotime($review->reviewdate));
+					}elseif($field_name == 'rate'){ ?>
+					
+					<img src="images/stars/<?php echo stripslashes($review->rate); ?>.png" title="<?php echo stripslashes($review->rate); ?> Stars" />					
+					<?php
+					}
+					elseif ($field_name == 'status' ) { ?>
+							<?php
+							if( $review->$field_name == 'Enable' ){ ?>
+								<a href="<?php echo site_url('review/disable/'.$review->id);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span><?php echo $review->$field_name; ?></span></a>
+								
+							<?php 
+							}else{ ?>
+								
+							<a href="<?php echo site_url('review/enable/'.$review->id);?>" title="Click to Enable" class="btn btn-small btn-success" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this user?');"><span><?php echo $review->$field_name; ?></span></a>
+						 <?php
+							}
+					}
+					else{
+						echo $review->$field_name; 
+					 }
+					?>	
+					
+				</td>			
+				<?php endforeach; ?>
+				<td><a href="<?php echo site_url('review/delete/'.$review->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this review ?');">Delete</a></td> 
+				<td>  
+					<?php 				 
+						$title=urlencode('My post');
+						$url=urlencode($pageurl.$review->seokeyword);
+						$image=urlencode('http://livemarketnews.com/dressfinity/skin/frontend/default/default/images/logo.jpg');
+					?>
                 <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $title;?>&amp;p[url]=<?php echo $url; ?>&amp;&p[images][0]=<?php echo $image;?>', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)" title="Facebook">
                     <img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
                 </a>
-                <a href="https://plus.google.com/share?url=<?php echo urlencode($pageurl.$reviews[$i]['seokeyword']);?>" title="Google+"><img width="16" height="17" border="0" src="images/go.jpg" alt="googleshare"></a>
-          		<a href="https://twitter.com/share" class="twitter-share-button" data-url="google.com" data-text="<?php echo $pageurl.$reviews[$i]['id'];?>" data-count="none">Tweet</a>
+                <a href="https://plus.google.com/share?url=<?php echo urlencode($pageurl.$review->seokeyword);?>" title="Google+"><img width="16" height="17" border="0" src="images/go.jpg" alt="googleshare"></a>
+          		<a href="https://twitter.com/share" class="twitter-share-button" data-url="google.com" data-text="<?php echo $pageurl.$review->id;?>" data-count="none">Tweet</a>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>        
-		</td>
+				</td>
+				
+			</tr>
+			<?php endforeach; ?>			
+		</tbody>
 		
-      </tr>
-      <?php } ?>
-    </table>
+	</table>
+    
+    
+    
+    
+    
+   
     <!-- /table --> 
     <!-- /pagination -->
     <?php  if($this->pagination->create_links()) { ?>

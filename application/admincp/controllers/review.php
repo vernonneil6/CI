@@ -109,7 +109,11 @@ class Review extends CI_Controller {
 			
 			$this->load->model('reviews');
 			
-			$results = $this->reviews->reviewsSearch($limit, $offset, $sort_by, $sort_order);
+			if($this->input->get('s')){				
+				$decodeKeyword = urldecode($this->input->get('s'));
+			}
+			
+			$results = $this->reviews->reviewsSearch($decodeKeyword, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['reviews'] = $results['rows'];
 			$this->data['num_results'] = $results['num_rows'];
@@ -120,6 +124,12 @@ class Review extends CI_Controller {
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
 			$this->paging['uri_segment'] = 5;
+			
+			if(!empty($_GET)){
+				$this->paging['suffix'] = '?'.http_build_query($_GET, '', "&");
+				$this->paging['first_url'] = $this->paging['base_url'] . $this->paging['suffix'];
+			}
+						
 			$this->pagination->initialize($this->paging);									
 			
 			$this->data['sort_by'] = $sort_by;
@@ -328,70 +338,20 @@ class Review extends CI_Controller {
 	{
 		if( $this->session->userdata['youg_admin'] )
  		{
-			$keyword=$this->input->post('keysearch');
-					
-			if(!$this->uri->segment(3))
+			
+			if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
 			{
-				$keyword=trim($this->input->post('keysearch'));
+				$keyword = urlencode($this->input->post('keysearch'));				
+				redirect('review/index/?s='.$keyword);	
 			}
 			else
 			{
-				$searchuri = $this->uri->segment(3);
-				$uri= base64_decode($searchuri);
-				$uri= explode('/',$uri);
-				$keyword=$uri[0];
-			}
-			
-			$this->data['keyword']=$keyword;
-			$limit = $this->paging['per_page'];
-			$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-			
-			//Addingg Setting Result to variable
-			$this->data['reviews'] = $this->reviews->search_review($keyword,$limit,$offset);
-			
-			//echo "<pre>";
-			//print_r($this->data['reviews']);
-			//die();
-			//$uri=	$keyword;
-			//echo $uri;
-			$uri= base64_encode($keyword);
-			$this->paging['base_url'] = site_url("review/searchreview/".$uri);
-			$this->paging['uri_segment'] = 4;
-			$this->paging['total_rows'] = $this->reviews->search_review_count($keyword);
-			$this->pagination->initialize($this->paging);
-			
-			$this->load->view('review',$this->data);
-			
-			}
-			else
-			{
-				redirect('adminlogin','refresh');
-			}
+				redirect('review','refresh');
+			}		
 		}
 	
+	}
 	
-	public function searchresult($keyword='')
-	{/*
-		$keyword = str_replace('_',' ', $keyword);
-					
-		$limit = $this->paging['per_page'];
-		$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
-		
-		$this->data['reviews'] = $this->reviews->search_review($keyword,$limit,$offset);
-		//echo "<pre>";
-		//print_r($this->data['reviews']);
-		//die();
-		
-		$this->paging['base_url'] = site_url("review/searchresult/".$keyword."/index");
-		$this->paging['uri_segment'] = 5;
-		$this->paging['total_rows'] = count($this->reviews->search_review($keyword));
-		$this->pagination->initialize($this->paging);
-		//echo "<pre>";
-		//print_r($this->paging);
-		//die();
-		
-		$this->load->view('review',$this->data);
-	*/}
 	
 	function foo()
 	{
@@ -431,18 +391,40 @@ class Review extends CI_Controller {
         {
 				if($keyword!='') 
 				{
-					$file = 'Report-of-search-reviews.csv';					
-					$review = $this->reviews->search_review($keyword);
+					$searchKey = urldecode($keyword);		
+					
+					$file = 'Report-of-search-reviews.csv';									
+					$review_results = $this->reviews->reviewsSearch($keyword);
 				}
 				else
 				{
 					$file = 'Report-of-all-reviews.csv';
-					$review = $this->reviews->get_all_reviews();
+					$review_results = $this->reviews->reviewsSearch();
 				}
+				
 				ob_start();
 				echo "Review,Review to,Review by,IP,Date Reviewed,Status"."\n";
 				
-				   for($i=0;$i<count($review);$i++) { 
+				
+				foreach($review_results as $review_result): 
+					foreach($review_result as $reviews): 	
+					
+						echo "\"".$reviews->comment."\"";
+						echo ",";								
+						echo "\"".$reviews->company."\"";
+						echo ",";
+						echo $reviews->firstname.' '.$reviews->lastname;
+						echo ",";
+						echo $reviews->reviewip;
+						echo ",";
+						echo date('m-d-Y', strtotime($reviews->reviewdate));
+						echo ",";						
+						echo $reviews->status;
+						echo "\n";									
+					endforeach;
+				endforeach;
+				
+				   /*for($i=0;$i<count($review);$i++) { 
 					
 						echo stripslashes(ucwords($review[$i]['comment'])).',';
 						echo stripslashes(ucwords($review[$i]['company'])).',';
@@ -451,7 +433,7 @@ class Review extends CI_Controller {
 						echo stripslashes($review[$i]['reviewdate']).',';
 						echo stripslashes(ucwords($review[$i]['status'])); 
 						echo "\n";							
-					}
+					}*/
 			
 					$content = ob_get_contents();
 					ob_end_clean();
@@ -473,14 +455,50 @@ class Review extends CI_Controller {
 		}
     }
     
-    public function removed($sortby,$orderby='asc')
+    /*public function removed($sortby,$orderby='asc')
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 		$this->data['reviewsremoved'] = $this->reviews->removed_review($sortby,$orderby);
 		$this->load->view('review',$this->data);
 		}
+	}*/
+	
+	
+	public function removed($sort_by = 'comment', $sort_order = 'asc', $offset = 0) {
+		
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+			$limit = 15;
+			$this->data['fields'] = array(				
+				'comment' => 'Review',				
+				'reviewby' => 'Review by',				
+				'reviewdate' => 'Review Date',
+				'reviewremoveddate' => 'Removal Date',				
+			);
+			
+			$this->load->model('reviews');
+			
+			$results = $this->reviews->removedReviewsSearch($limit, $offset, $sort_by, $sort_order);
+			
+			$this->data['reviewsremoved'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
+			//echo $this->data['num_results'];die;
+			
+			// pagination				
+			$this->paging['base_url'] = site_url("review/removed/$sort_by/$sort_order");
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;
+			$this->paging['uri_segment'] = 6;
+			$this->pagination->initialize($this->paging);									
+			
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('review', $this->data);
+		}
 	}
+	
 	
 	public function removeview($id,$companyid,$userid)
 	{

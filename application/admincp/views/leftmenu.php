@@ -205,10 +205,7 @@
 			</li>
 			<li>
 				<a href="<?php echo site_url('comment'); ?>" title="List All Comments">List All Comments on Reviews</a>
-			</li>
-			<li>
-				<a href="<?php echo site_url('comment/search'); ?>" title="Search Comment">Search Comment on Reviews</a>
-			</li>
+			</li>			
 
 		</ul>
     </li>

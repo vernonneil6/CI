@@ -77,43 +77,73 @@
       <h2><span>Removed Reviews</span></h2>
     </div>
     <?php if(count($reviewsremoved) > 0 ) { 
-		$order_seg = $this->uri->segment(4,"asc"); 
-		if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+		
 		
 		?>
-    <table class="tab tab-drag complaint">
-      <tr class="top nodrop nodrag">
-        <th width="40%"><a class="sorttitle" href="<?php echo base_url('review/removed/title');?>/<?=$orderby?>">Review</th>
-	    <th><a class="sorttitle" href="<?php echo base_url('review/removed/reviewby');?>/<?=$orderby?>">Review by</th>
-        <!--<th>Review to</th>-->
-        <th><a class="sorttitle" href="<?php echo base_url('review/removed/reviewdate');?>/<?=$orderby?>">Review Date</th>
-        <th><a class="sorttitle" href="<?php echo base_url('review/removed/removaldate');?>/<?=$orderby?>">Removal Date</th>
-        <th>Action</th>
-        <th>Print History</th>
-      </tr>
-   
-      <?php for($i=0;$i<count($reviewsremoved);$i++) { ?>
-      <?php $company=$this->reviews->get_company_byid($reviewsremoved[$i]['companyid'])?>
-      <?php $user=$this->users->get_user_byid($reviewsremoved[$i]['reviewby'])?>
-      <?php $reviewremovedate=$this->reviews->select_removal_review_date($reviewsremoved[$i]['companyid'],$reviewsremoved[$i]['reviewby'],$reviewsremoved[$i]['id'],$orderby);?>
-
-       <tr>  
-        <td>
-			<?php echo substr(stripslashes($reviewsremoved[$i]['comment']),0,150).'...'; ?>
-		</td>
-        <td>   
-			<?php if($user){ echo ucfirst($user[0]['username']); } else{ echo ucfirst($reviewsremoved[$i]['reviewby']); } ?>		
-        </td> 
-        <!--<td>
-			<?php //echo ucfirst($company[0]['company']);?>
-        </td>-->
-        <td><?php echo date('m-d-Y', strtotime($reviewsremoved[$i]['reviewdate'])); ?></td>
-        <td><?php echo date('m-d-Y', strtotime($reviewremovedate['date'])); ?></td>
-        <td><a href="<?php echo site_url('review/removeview/'.$reviewsremoved[$i]['id'].'/'.$reviewsremoved[$i]['companyid'].'/'.$reviewsremoved[$i]['reviewby']); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
-        <td><a href="<?php echo site_url('review/printhistory/'.$reviewsremoved[$i]['id'].'/'.$reviewsremoved[$i]['companyid']); ?>">Click Here</a></td>
-      </tr>
-      <?php } ?>
-    </table>
+	 <table class="tab tab-drag review_remove">
+		<thead>
+			<tr class="top nodrop nodrag">
+			<?php 
+			
+			
+			foreach($fields as $field_name => $field_display): ?>
+				
+			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php echo anchor("review/removed/$field_name/" .
+					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+					$field_display,array('class' => 'sorttitle')); ?>
+			</th>
+			
+			
+			<?php endforeach; ?>
+			<th>Action</th>
+			<th>Print History</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<?php foreach($reviewsremoved as $reviewsremove): 
+				$company = $this->reviews->get_company_byid($reviewsremove->companyid);				
+				//echo $reviewsremove->reviewby;die;
+				$user = $this->users->get_user_byid($reviewsremove->reviewby);
+				$reviewremovedate = $this->reviews->select_removal_review_date($reviewsremove->companyid,$reviewsremoved->reviewby,$reviewsremove->id);
+				
+			?>
+			<tr>
+				<?php foreach($fields as $field_name => $field_display): ?>
+				<td>
+					
+				 <?php					
+					if ($field_name == 'comment'){
+						echo $reviewsremove->comment;
+					}
+					elseif($field_name == 'reviewby'){
+						 if($user){ 
+							 echo ucfirst($user[0]['username']); 
+						 } else{ 
+							 echo ucfirst($reviewsremove->reviewby); 
+						 } 
+							 
+					}elseif($field_name == 'reviewdate'){
+						echo date('m-d-Y', strtotime($reviewsremove->reviewdate));
+					}
+					elseif($field_name == 'reviewremoveddate'){
+						echo date('m-d-Y', strtotime($reviewsremove->reviewremoveddate));
+					}				
+					else{
+						echo $review->$field_name; 
+					 }
+					?>	
+					
+				</td>			
+				<?php endforeach; ?>
+				<td><a href="<?php echo site_url('review/removeview/'.$reviewsremove->id.'/'.$reviewsremove->companyid.'/'.$reviewsremove->reviewby); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
+				<td><a href="<?php echo site_url('review/printhistory/'.$reviewsremove->id.'/'.$reviewsremove->companyid); ?>">Click Here</a></td>
+			</tr>
+			<?php endforeach; ?>			
+		</tbody>
+		
+	</table>	
     <?php  if($this->pagination->create_links()) { ?>
 		<div class="pagination"><?php echo $this->pagination->create_links(); ?></div>
     <?php } ?>
@@ -391,17 +421,15 @@
 					  <!-- box -->
 					  <div class="box">
 						<div class="headlines">
-						  <h2><span>
-							<?php if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult')
-						   {} else { ?>
-							<?php echo "Business Reviews"; } ?></span></h2>
+						  <h2><span><?php echo "Business Reviews"; 
+						  ?></span></h2>
 							<h2>
 							   <span>
-									<a href="<?php echo site_url('review/csv/'.$keyword); ?>" title="Export as CSV file">
+									<a href="<?php if(!empty($_GET['s'])){  echo site_url('review/csv/'.$_GET['s']); }else { echo site_url('review/csv'); } ?>" title="Export as CSV file">
 										<img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
 									</a>
 								</span>
-							</h2>
+							</h2>					
 						</div>
 						
     <!-- Correct form message -->

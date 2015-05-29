@@ -41,6 +41,71 @@ class Reviews extends CI_Model
 		
 	}
 	
+	function reviewsSearch($keyword, $companyid, $siteid, $limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('reviewtitle','comment', 'reviewby','rate','status');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'reviewdate';
+		
+		if($sort_by == 'reviewby'){
+			$sort_by = 'u.username';
+		}
+		//results query
+		if($siteid!='all')
+		{
+			$q = $this->db->select('r.*')
+			->from('reviews as r')
+			->join('user as u','r.reviewby=u.id','left')
+			->where(array('r.companyid' => $companyid,'r.websiteid' => $siteid));
+			
+		}else{
+			$q = $this->db->select('r.*')
+			->from('reviews as r')
+			->join('user as u','r.reviewby=u.id','left')
+			->where(array('r.companyid' => $companyid));
+		}			
+			
+		if(!empty($limit)){	
+			$q->limit($limit, $offset);
+			$q->order_by($sort_by, $sort_order);
+		}
+		
+		if (strlen($keyword)) {							
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'r.comment' => $keyword , 'c.company'=> $keyword , 'c.streetaddress' => $keyword , 'c.aboutus' => $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );							
+		}
+		
+		
+		$ret['rows'] = $q->get()->result();
+			
+		// count query
+		
+		if($siteid!='all')
+		{
+			$q = $this->db->select('COUNT(*) as count', FALSE)
+			->from('reviews as r')
+			->join('user as u','r.reviewby=u.id','left')
+			->where(array('r.companyid' => $companyid,'r.websiteid' => $siteid));
+			
+		}else{
+			$q = $this->db->select('COUNT(*) as count', FALSE)
+			->from('reviews as r')
+			->join('user as u','r.reviewby=u.id','left')
+			->where(array('r.companyid' => $companyid));
+		}		
+		
+		if (strlen($keyword)) {							
+			
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'r.comment' => $keyword , 'c.company'=> $keyword , 'c.streetaddress' => $keyword , 'c.aboutus' => $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
+		}
+		
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		//print_r($ret['num_rows']);die;
+		return $ret;
+	}
+	
+	
 	function get_all_mainreviews($companyid,$siteid,$limit ='',$offset='',$sortby = 'reviewdate',$orderby = 'DESC')
  	{
 		//Ordering Data

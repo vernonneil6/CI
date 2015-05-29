@@ -213,42 +213,118 @@ class Comment extends CI_Controller {
 	{
 		if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
 		{
-			$keyword = addslashes($this->input->post('keysearch'));
-			$keyword = htmlspecialchars(str_replace('%20', ' ', $keyword));
-			$keyword = preg_replace('/[^a-zA-Z0-9\']/', '',$keyword);
-			$keyword = str_replace(' ','-', $keyword);
-		
-			redirect('comment/searchresult/'.$keyword,'refresh');	
+			$keyword = urlencode($this->input->post('keysearch'));				
+			//echo $keyword;die;
+			redirect('comment/searchresult/?s='.$keyword);
+				
 		}
 		else
 		{
 			redirect('comment','refresh');
 		}
+		
+		
 	}
 	
-	public function searchresult($keyword='')
+	
+	public function searchresult($sort_by = 'commentby', $sort_order = 'asc', $offset = 0) 
 	{
-		$keyword = str_replace('-',' ', $keyword);
-							
-		$limit = $this->paging['per_page'];
-		$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
+		
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+			$limit = 15;
+			$this->data['fields'] = array(
+				'id' => 'Comment ID',
+				'comment' => 'Title',
+				'commentby' => 'Submitted By',								
+				'commentdate' => 'Date',
+				'status' => 'Status'
+			);
 			
-		//Addingg Setting Result to variable
-		$this->data['comments'] = $this->comments->search_comment($keyword,$limit,$offset);
-		//echo "<pre>";
-		//print_r($this->data['comments']);
-		//die();
+			$this->load->model('comments');
 			
-		$this->paging['base_url'] = site_url("comment/searchresult/".$keyword."/index");
-		$this->paging['uri_segment'] = 5;
-		$this->paging['total_rows'] = count($this->comments->search_comment($keyword));
-		$this->pagination->initialize($this->paging);
-		//echo "<pre>";
-		//print_r($this->paging);
-		//die();
-		$this->load->view('comment',$this->data);
+			
+			if($this->input->get('s')){				
+				$decodeKeyword = urldecode($this->input->get('s'));
+			}
+			//echo $decodeKeyword;die;
+			
+			$results = $this->comments->commentsSearchResults($decodeKeyword, $limit, $offset, $sort_by, $sort_order);
+			
+			$this->data['comments'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
+			//echo $this->data['num_results'];die;
+			
+			// pagination				
+			$this->paging['base_url'] = site_url("comment/searchresult/$sort_by/$sort_order");
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;
+			$this->paging['uri_segment'] = 5;
+			$this->pagination->initialize($this->paging);									
+			
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('comment', $this->data);
+		}
+		
 	}
 	
+	public function csv($keyword)
+    {
+        if( $this->session->userdata['youg_admin'] )
+        {
+				if($keyword!='') 
+				{
+					$file = 'Report-of-search-comments.csv';
+					$searchKey = urldecode($keyword);
+					
+					$comments = $this->comments->commentsSearchResults($searchKey);				
+				}
+				else
+				{
+					$file = 'Report-of-all-comments.csv';
+					$comments = $this->comments->commentsSearchResults();
+				}
+				ob_start();
+				echo "User,Comment date,Comment,Email";
+				echo "\n";			    		
+				    		
+				foreach($comments as $comment1): 
+					foreach($comment1 as $comment): 	
+														
+						echo $comment->firstname.' '.$comment->lastname;
+						echo ",";
+						echo date('m-d-Y', strtotime($comment->commentdate));
+						echo ",";
+						echo "\"".$comment->comment."\"";
+						echo ",";
+						echo $comment->email;
+						echo "\n";									
+					endforeach;
+				endforeach;
+							
+							
+				$content = ob_get_contents();
+				ob_end_clean();
+				header("Expires: 0");
+				header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+				header("Cache-Control: no-store, no-cache, must-revalidate");
+				header("Cache-Control: post-check=0, pre-check=0", false);
+				header("Pragma: no-cache");  header("Content-type: application/csv;charset:UTF-8");
+				header('Content-length: '.strlen($content));
+				header('Content-disposition: attachment; filename='.basename($file));
+				echo $content;
+				exit;
+							
+						
+		}
+		else
+		{
+			redirect('adminlogin','refresh');
+		}
+    }
+
 	function foo()
 	{
 		if($this->input->post('checktype'))

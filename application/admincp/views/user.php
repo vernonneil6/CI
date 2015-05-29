@@ -731,13 +731,7 @@ else { ?>
   <!-- box -->
   <div class="box">
     <div class="headlines">
-      <h2><span>
-        <?php if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult')
-	   {
-	   	?>
-        search results for '<?php echo $this->uri->segment(3);?>'
-        <?php
-	   } else { echo "Users"; } ?></span></h2>
+      <h2><span> Users: </span></h2>
        
         <h2><span>
 
@@ -797,7 +791,7 @@ else { ?>
               <div class="lab">
                 <label for="keysearch">Keyword<span>*</span></label>
               </div>
-              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search user by name or email','value'=>'')); ?> </div>
+              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search user by name or email','value'=>"")); ?> </div>
             </div>
           </div>
           <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
@@ -805,6 +799,14 @@ else { ?>
         <div class="btn-submit"> 
           <!-- Submit form --> 
           <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('user');?>" class="Cancel">Cancel</a> </div>
+          
+          <?php if(!empty($_GET['s']))
+			{	   
+				echo "<div style='margin-top:1em;'> Search results for <span style='color:#1a2e4d'>' ". $_GET['s'] . " ' </span> </div>";
+			}
+			
+		?>
+         
       </fieldset>
       <?php echo form_close(); ?> </div>
   
