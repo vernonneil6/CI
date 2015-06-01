@@ -35,18 +35,17 @@
 	<div class="hm_rght_panel">
 	 <div class="hm_live_menus"><span>Live Review Feed</span></div>
      
-        <div class="hm_rvw_wrp">
-          <?php $j=0;
+        <div class="hm_rvw_wrp"><table>
+          <?php $j=0; $k=1;
+			echo"<tr>";
 			if(count($complaints)>0) { 
-				
 				for($i=0; $i<count($complaints); $i++) {   
 			$user=$this->users->get_user_bysingleid($complaints[$i]['reviewby']) ;
 			$companyname = $this->users->get_company_bysingleid($complaints[$i]['companyid']); 
 			$avgstar = $this->common->get_avg_ratings_bycmid($complaints[$i]['companyid']);
 			$avgstar = round($avgstar);						
           ?>
-   
-		  
+  		<td>			  
           <div class="review_blocks <?php if($j%4==2 || $j%4==3 ) {echo "fadeout ";} $j++; if($i%2==1) { echo "feed-right";}else { echo " feed-left";} ?>">
             <div class="review_left">
                                      
@@ -89,14 +88,17 @@
 				    <?php } ?>  
 					<div class="reviewspace_new"><a href="<?php echo site_url('review/browse/'.$complaints[$i]['seokeyword']); ?>" title="view Review Detail"><?php echo ucfirst(substr(stripslashes($complaints[$i]['comment']),0,212)."..."); ?></a></div>
                  </div>              
-
               
 				</div>
 			</div>
+			</td>
 			<?php 
-	           } 
-				} ?>
-			
+				 if($k%2==0 && $k!=1) {  echo"</tr>"; if($k < count($complaints)){ echo "<tr>"; } } 
+	             $k++; 
+	           }  
+			} echo "</tr>"; ?>
+				
+			</table>
         </div>
         <div class="view-all"> <span><a href="/review">View ALL</a></span></div>	
       </div>
