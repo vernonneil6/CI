@@ -562,8 +562,8 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
 .fadeout{background:#F5F5F5;}
 .table_block{display:table;}
 .review_blocks {display:table-cell;vertical-align:middle;}
-.review_right{display:table-cell;width:555px;}
-.review_left{display:table-cell;width:50px;padding-right:10px;padding-left:10px;vertical-align:top;} 
+.review_right{display:table-cell;width:555px; padding:10px;}
+.review_left{display:table-cell;width:50px;padding:10px;vertical-align:top;} 
 
 
 /*=======================Right_panel ==============================*/
@@ -1098,7 +1098,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .hm_lft_panel h2 small{font-family:"myriadpro-regular"; font-size:34px; color:#333;}
 .tag_lnkwrp{float:left;margin-top:10px; display:inline-block;}
 .tag_lnkwrp a{float:left; background:#0080ff; color:#fff; font-family:"myriadpro-regular";font-weight:bold; padding:10px; margin:0 6px 6px 0; text-transform:uppercase; font-size:18px;}
-.hm_rght_panel{ width: 635px; float:left;margin-left: 3px;} 
+.hm_rght_panel{ width: 100%; float:left;margin-left: 3px;} 
 .hm_live_menu{width:100%; float:left; margin-bottom:10px;padding: 13px 0;background:url(../images/recentcolor.png) no-repeat;}
 .hm_live_menu ul{margin:0; padding:0;}
 .hm_live_menu ul li {color: #999;  float: left; font-family: ""MyriadPro-BlackSemiCn""; font-size: 12px; list-style: none outside none;}
@@ -1111,10 +1111,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .hm_live_menu ul li:last-child a { background: none;}
 .hm_live_menu ul li a:hover {	color:#AE9D05 !important;}	
 .hm_rvw_wrp{width:100%; float:left; display:inline-block;}
+.hm_rvw_wrp > ul {padding:0;}
 .hm_rvw_wrp .review_rgt{width:555px!important; float:left; display:inline-block; }
 .hm_rvw_wrp .review_lft{width:50px !important; float:left; display:inline-block; margin-right:10px;}
 .hm_live_menu span{display:inline-block; margin-top:1px; float:left;}
-.hm_live_menus{background:url(../images/livefeed2.png) no-repeat;height: 42px;}
+.hm_live_menus{background:#464646;height: 42px;text-align:center;}
 .brws_category{margin-top:35px; float:left; width:100%; display:inline-block;}
 .brwse_titl{width:100%; float:left; text-align:center; margin-bottom:20px;}
 .catgry_blck_wrp{width:100%; float:left; display:inline-block;}
@@ -2309,4 +2310,40 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
 .form-col-2 li p {
     font-size: 14px;
     margin: 5px;
+}
+.review_right div {width:285px;text-align: justify;}
+.review_blocks.feed-left { 
+	float: left;
+    margin-bottom: 10px;
+    margin-left: 5em;
+    margin-top: 9px;
+    width: 40%;
+ }
+.review_blocks.feed-right {
+	float: right;
+    margin-bottom: 10px;
+    margin-right: 5em;
+    margin-top: 10px;
+    width: 40%;
+}
+.hm_live_menus > span 
+{
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    display: inline-block;
+}
+
+.view-all {
+    margin-right: 5em;
+}
+
+
+.view-all a {
+    color: #2c6a99;
+    float: right;
+    font-family: "MyriadPro-BlackSemiCn";
+    font-size: 14px;
+    text-transform: uppercase;
 }

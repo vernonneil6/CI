@@ -33,26 +33,21 @@
     <div class="container table_hme" >      
 	
 	<div class="hm_rght_panel">
-	 <div class="hm_live_menus"></div>
-        <div class="hm_live_menu" style = "margin:0">
-			<ul>
-				<li><a href="<?php echo base_url();?>" title="RECENT ACTIVITY" style="color:black;">RECENT ACTIVITY</a></li>
-				<li><a href="<?php echo site_url('complaint');?>" title="Trending Complaints">TRENDING COMPLAINTS<span>:<span></a></li>
-				<li><a href="<?php echo site_url('complaint/advfilter');?>" title="Advance Filter">ADVANCED FILTER<span>:<span></a></li>
-			</ul>
-        </div>
+	 <div class="hm_live_menus"><span>Live Review Feed</span></div>
+     
         <div class="hm_rvw_wrp">
-          <?php 
+          <?php $j=0;
 			if(count($complaints)>0) { 
-				for($i=0; $i<count($complaints); $i++) {    
-					
+				
+				for($i=0; $i<count($complaints); $i++) {   
 			$user=$this->users->get_user_bysingleid($complaints[$i]['reviewby']) ;
 			$companyname = $this->users->get_company_bysingleid($complaints[$i]['companyid']); 
 			$avgstar = $this->common->get_avg_ratings_bycmid($complaints[$i]['companyid']);
 			$avgstar = round($avgstar);						
           ?>
-          <div class="table_block">
-          <div class="review_blocks <?php if($i%2==1)   {echo "fadeout";}?>">
+   
+		  
+          <div class="review_blocks <?php if($j%4==2 || $j%4==3 ) {echo "fadeout ";} $j++; if($i%2==1) { echo "feed-right";}else { echo " feed-left";} ?>">
             <div class="review_left">
                                      
 				  <?php if($user['id']==$complaints[$i]['reviewby']) { ?>
@@ -96,13 +91,16 @@
                  </div>              
 
               
-            </div>
-          </div>
-          </div>
-          <?php } } ?>
+				</div>
+			</div>
+			<?php 
+	           } 
+				} ?>
+			
         </div>
+        <div class="view-all"> <span><a href="/review">View ALL</a></span></div>	
       </div>
-
+<!--
 <div class="hm_lft_panel">
 	<div class='browsecategories'></div>	
 		<div class='browselink'>
@@ -136,7 +134,7 @@
 		?>
 		</div>
 	</div>
-</div>
+</div>-->
 </section>
 </section>
 <script>$(".hm_rght_panel").height($(".hm_lft_panel").height());</script>
