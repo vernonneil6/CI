@@ -756,7 +756,7 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 .footer_block ul li a:hover{}
 
 
-.footer_block ul li.ftitle{width:auto; height:auto;list-style:none; margin-bottom: 10px; color: #A09507; font-family:aller; font-size:18px; font-family:"MyriadPro-BoldCond";  text-transform:uppercase; float:none !important; display:inline-block;}
+.footer_block ul li.ftitle{width:auto; height:auto;list-style:none; margin-bottom: 10px; color: #ff8300; font-family:aller; font-size:18px; font-family:"MyriadPro-BoldCond";  text-transform:uppercase; float:none !important; display:inline-block;}
 
 
 .footer_menu{width:967px; float:left; font-size:14px; color:#968c87; }
@@ -2311,7 +2311,7 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
     font-size: 14px;
     margin: 5px;
 }
-.review_right div {width:285px;text-align: justify;}
+.review_right div {width:285px;text-align: justify;margin-top:6px;}
 .review_blocks.feed-left { 
 	float: left;
     margin-bottom: 10px;
