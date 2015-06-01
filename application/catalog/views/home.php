@@ -33,7 +33,8 @@
     <div class="container table_hme" >      
 	
 	<div class="hm_rght_panel">
-	 <div class="hm_live_menus"><span>Live Review Feed</span></div>
+	 <h1 class="bannertext"><span class="bannertextregular">Live Review </span>Feed</h1>
+	 
      
         <div class="hm_rvw_wrp"><table>
           <?php $j=0; $k=1;
@@ -71,7 +72,7 @@
 					</div>      
 			 
 				    <div class="home_mar_line">
-						<?php for($r=0;$r<($complaints[$i]['rate']);$r++){?>
+						<?php for($r=0;$r<($complaints[$i]['rate']);$r++){  ?>
 						<i class="vry_rat_icn"></i>
 						<?php } ?>
 						<?php for($p=0;$p<(5-($complaints[$i]['rate']));$p++){?>
@@ -86,7 +87,20 @@
 				    <?php } else{ ?>
 					<div><a class="home_cap1"><?php echo ucfirst($complaints[$i]['reviewby']);?></a></div>
 				    <?php } ?>  
-					<div class="reviewspace_new"><a href="<?php echo site_url('review/browse/'.$complaints[$i]['seokeyword']); ?>" title="view Review Detail"><?php echo ucfirst(substr(stripslashes($complaints[$i]['comment']),0,212)."..."); ?></a></div>
+					<div class="reviewspace_new">
+						<a href="<?php echo site_url('review/browse/'.$complaints[$i]['seokeyword']); ?>" title="view Review Detail">
+						<?php 
+								if(strlen($complaints[$i]['comment']) > 137){ 
+									echo ucfirst(substr(stripslashes($complaints[$i]['comment']),0,140)."..."); 
+									echo '<div class="view-all"> <span><a href="'.site_url('review/browse/'.$complaints[$i]['seokeyword']).'">Read More</a></span></div>';
+								}else{ 
+									echo ucfirst(substr(stripslashes($complaints[$i]['comment']),0,140)); 
+									echo '<div class="view-all"> <span><a href="'.site_url('review/browse/'.$complaints[$i]['seokeyword']).'">Read More</a></span></div>';
+								} 
+						?>
+						 
+						</a>
+					</div>
                  </div>              
               
 				</div>
@@ -100,7 +114,7 @@
 				
 			</table>
         </div>
-        <div class="view-all"> <span><a href="/review">View ALL</a></span></div>	
+       
       </div>
 <!--
 <div class="hm_lft_panel">

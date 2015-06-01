@@ -99,7 +99,7 @@ class Welcome extends CI_Controller {
 		
 		$this->data['homesliding']=$this->sliders->homepageslider();
 		
-		$limit=6;
+		$limit=20;
 		$this->data['complaints'] = $this->reviews->get_all_reviews($limit);
 		
 		
