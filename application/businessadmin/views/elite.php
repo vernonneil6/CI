@@ -41,7 +41,7 @@
       <tr>
           <td><?php echo date("M d Y",strtotime($elite[$i]['payment_date'])); ?></td>
           <td>
-          <a href="<?php echo site_url('elite/cancel/'.$elite[$i]['subscr_id'].'/'.$elite[$i]['company_id']);?>" title="Click to Cancel Membership" class="btn btn-small btn-success" onClick="return confirm('Are you sure to cancel elite membership');"><span>Enable</span></a>          
+          <a href="<?php echo site_url('elite/cancel/'.$elite[$i]['subscr_id'].'/'.$elite[$i]['company_id']);?>" title="Click to Cancel Membership" class="btn btn-small btn-success" onClick="return confirm('Are you sure to cancel elite membership');"><span>Active</span></a>          
           </td>
         
       </tr>
@@ -93,9 +93,9 @@
       <tr>
           <td><?php echo date("M d Y",strtotime($elite[$i]['payment_date'])); ?></td>
           <td><?php if( stripslashes($elite[$i]['cancel_flag']) == '0' ) { ?>
-          <a href="<?php echo site_url('elite/disable/'.$elite[$i]['id'].'/'.$elite[$i]['company_id']);?>" title="Click to Cancel Membership" class="btn btn-small btn-success" onClick="return confirm('Are you sure You want to cancel Your elite membership?');"><span>Enable</span></a>
+          <a href="<?php echo site_url('elite/disable/'.$elite[$i]['id'].'/'.$elite[$i]['company_id']);?>" title="Click to Cancel Membership" class="btn btn-small btn-success" onClick="return confirm('Are you sure You want to cancel Your elite membership?');"><span>Active</span></a>
           <?php } if( stripslashes($elite[$i]['cancel_flag']) == '1' ) { $data=1;?>
-		  <a class="btn btn-small btn-success"><span>Disable</span></a>
+		  <a class="btn btn-small btn-success"><span>Inactive</span></a>
 		  <?php } ?>	  
           <td><?php echo date('M d Y',strtotime($elitepayment['expires'])); ?></td>
           <td><?php echo "$ ".$elitepayment['amount']; ?></td>
