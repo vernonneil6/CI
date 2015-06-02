@@ -33,7 +33,7 @@
     <div class="container table_hme" >      
 	
 	<div class="hm_rght_panel">
-	 <h1 class="bannertext"><span class="bannertextregular">Live Review </span>Feed</h1>
+	<div class="hm_live_menus"><span>CURRENT REVIEWS</span></div>
 	 
      
         <div class="hm_rvw_wrp"><table>
@@ -112,7 +112,8 @@
 	           }  
 			} echo "</tr>"; ?>
 				
-			</table>
+	</table>
+	<div class="view-all-reviews"><a href="/review">View All Reviews</a></div>
         </div>
        
       </div>

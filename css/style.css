@@ -1115,7 +1115,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .hm_rvw_wrp .review_rgt{width:555px!important; float:left; display:inline-block; }
 .hm_rvw_wrp .review_lft{width:50px !important; float:left; display:inline-block; margin-right:10px;}
 .hm_live_menu span{display:inline-block; margin-top:1px; float:left;}
-.hm_live_menus{background:#464646;height: 42px;text-align:center;}
+.hm_live_menus{background:#2c6a99;height: 42px;text-align:center;}
 .brws_category{margin-top:35px; float:left; width:100%; display:inline-block;}
 .brwse_titl{width:100%; float:left; text-align:center; margin-bottom:20px;}
 .catgry_blck_wrp{width:100%; float:left; display:inline-block;}
@@ -2341,8 +2341,20 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
     margin-right: 5em;
 }
 
+.view-all-reviews {
+    margin-right: 0em;
+    padding-top:5px;
+}
 
 .view-all a {
+    color: #2c6a99;
+    float: right;
+    font-family: "MyriadPro-BlackSemiCn";
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.view-all-reviews a {
     color: #2c6a99;
     float: right;
     font-family: "MyriadPro-BlackSemiCn";
