@@ -20,39 +20,7 @@
               }
               $(document).ready(function() {
                   $("#btnaddcompany").click(function () {
-					  
-					 
-					  if($('#g-recaptcha-response').val() != ''){
-					  var site_domain = '<?php echo $_SERVER['REMOTE_ADDR']; ?>';
-					  var responseData = {
-						  secret : '6Lcj5QETAAAAAPty66XTLlKG1ERLbMkLkMI-Yguf',
-						  response :  $('#g-recaptcha-response').val(),
-						  remoteip: site_domain
-					  }
-					 var google_url="/businessdirectory/google_recapcha";	
-					 $.ajax( { 
-						url: google_url,
-						type:'GET',
-						dataType:'json',
-						data:responseData,
-						success: function(data){
-							$('#recaptcha_error').html('success');
-							/*	
-							console.log(data);						
-							if(data.success=='true'){
-								$('#recaptcha_error').html('success');
-							}else{
-								$('#recaptcha_error').html('Please re-enter your reCAPTCHA.');
-							}
-							*/
-						}						
-					 });
-				 }else{
-					 $('#recaptcha_error').show();
-					 return false;
-				 }
-					  console.log('#name');
-					  
+					  					  
 					  if( trim($("#name").val()) == "" )
 					  {
 						  $("#nameerror").show();
@@ -64,7 +32,6 @@
 						  $("#nameerror").hide();
 						
 					  }
-					  console.log('#website');
 					   if( trim($("#website").val()) == "" )
 					  {
 						  $("#websiteerror").show();
@@ -75,7 +42,6 @@
 					  {
 						  $("#websiteerror").hide();
 					  }
-					  console.log('#email');
 					   var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 					  if( trim($("#email").val()) == "" )
 					  {
@@ -98,7 +64,6 @@
 							  $("#emailerror").hide();
 						  }
 					  }
-					  console.log('#streetaddress');
 					  if( trim($("#streetaddress").val()) == "" )
 					  {
 						  $("#streetaddresserror").show();
@@ -109,7 +74,6 @@
 					  {
 						  $("#streetaddresserror").hide();
 					  }
-					  console.log('#city');
 					  if( trim($("#city").val()) == "" )
 					  {
 						  $("#cityerror").show();
@@ -120,7 +84,6 @@
 					  {
 						  $("#cityerror").hide();
 					  }
-					  console.log('#state');
 					  if( trim($("#state").val()) == "" )
 					  {
 						  $("#stateerror").show();
@@ -131,7 +94,6 @@
 					  {
 						  $("#stateerror").hide();
 					  }
-					  console.log('#country');
 					  if( trim($("#country").val()) == "" )
 					  {
 						  $("#countryerror").show();
@@ -142,7 +104,6 @@
 					  {
 						  $("#countryerror").hide();
 					  }
-					  console.log('#zip');
 					  if( trim($("#zip").val()) == "" )
 					  {
 						  $("#ziperror").show();
@@ -165,7 +126,6 @@
 							  $("#zipverror").hide();
 						  }
 					  }
-					  console.log('#phone');
 					  if( trim($("#phone").val()) == "" )
 					  {
 						  $("#phoneerror").show();
@@ -188,7 +148,6 @@
 							  $("#phoneverror").hide();
 						  }
 					  }
-					  console.log('#cname');
 					  
 					  
 					  if( trim($("#cname").val()) == "" )
@@ -246,11 +205,39 @@
 							  $("#cemailerror").hide();
 						  }
 					  }*/
-					  console.log('#frmaddcompany-submit');
 					  
-					 					
+					 if($('#g-recaptcha-response').val() != ''){
+						  var site_domain = '<?php echo $_SERVER['REMOTE_ADDR']; ?>';
+						  var responseData = {
+							  secret : '6Lcj5QETAAAAAPty66XTLlKG1ERLbMkLkMI-Yguf',
+							  response :  $('#g-recaptcha-response').val(),
+							  remoteip: site_domain
+						  }
+						 var google_url="/businessdirectory/google_recapcha";	
+						 $.ajax( { 
+							url: google_url,
+							type:'GET',
+							dataType:'json',
+							data:responseData,
+							success: function(data){
+								//$('#recaptcha_error').html('success');
+								
+								if(data=='1'){
+									$('#recaptcha_error').html('success');
+									$("#frmaddcompany").submit();
+								}else{
+									$('#recaptcha_error').html('Please re-enter your reCAPTCHA.');
+								}
+								$('#recaptcha_error').show();
+								return false;
+								
+							}						
+						 });
+					 }else{
+						 $('#recaptcha_error').show();
+						 return false;
+					 }					
 						  
-					  $("#frmaddcompany").submit();
                   });
               });
           </script>

@@ -626,7 +626,13 @@ class Businessdirectory extends CI_Controller {
 	function google_recapcha(){
 		$captcha = $_REQUEST['response'];
 		$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6Lcj5QETAAAAAPty66XTLlKG1ERLbMkLkMI-Yguf&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
-		print_r($response);
+		$res = json_decode($response, TRUE);
+		if(isset($res['success'])){
+			echo '1';
+		} else {
+			echo '0';
+		}
+		die;
 		//return $response;		
 	}
 }
