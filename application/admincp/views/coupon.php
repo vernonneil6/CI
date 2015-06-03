@@ -575,6 +575,10 @@ else { ?>
 			foreach($fields as $field_name => $field_display): ?>
 			
 			<th width="30%" <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php
+				if($sort_by == $field_name){ 
+						$field_display .= "<img alt='desc' src='".site_url("images/sort_".$sort_order.".gif")."'/>";
+				}?>
 				<?php echo anchor("coupon/index/$field_name/" .
 					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
 					$field_display,array('class' => 'sorttitle')); ?>

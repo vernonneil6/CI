@@ -63,7 +63,7 @@ class Elites extends CI_Model
 		}
  	}
  	
- 	function elitesSearch($limit, $offset, $sort_by, $sort_order) {
+ 	function elitesSearch($keyword, $limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
 		$sort_columns = array('contactname', 'email','contactemail','payment_amount','status','registerdate','payment_date');
@@ -72,9 +72,17 @@ class Elites extends CI_Model
 		// results query
 		$q = $this->db->select('e.*, c.*')
 				->from('elite as e')
-				->join('company as c','e.company_id=c.id')				
-				->limit($limit, $offset)
-				->order_by($sort_by, $sort_order);
+				->join('company as c','e.company_id=c.id','left');				
+				
+		if(!empty($limit)){					
+			$q->limit($limit, $offset);
+			$q->order_by($sort_by, $sort_order);
+		}
+				
+		if (strlen($keyword)) {			
+			$q->or_like(array('c.city'=> $keyword , 'c.state'=> $keyword , 'c.country'=> $keyword , 'c.zip'=> $keyword , 'c.company'=> $keyword , 'c.email'=> $keyword , 'c.contactname'=> $keyword,  'c.companyseokeyword'=> $keyword ) );
+			
+		}					
 		
 		$ret['rows'] = $q->get()->result();
 		
@@ -82,12 +90,17 @@ class Elites extends CI_Model
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)	 
 			->from('elite as e')
-			->join('company as c','e.company_id=c.id');			
+			->join('company as c','e.company_id=c.id','left');			
 				
+					
+		if (strlen($keyword)) {			
+			$q->or_like(array('c.city'=> $keyword , 'c.state'=> $keyword , 'c.country'=> $keyword , 'c.zip'=> $keyword , 'c.company'=> $keyword , 'c.email'=> $keyword , 'c.contactname'=> $keyword,  'c.companyseokeyword'=> $keyword ) );			
+		}	
 		
 		$tmp = $q->get()->result();
 		
 		$ret['num_rows'] = $tmp[0]->count;
+		
 		
 		return $ret;
 	}

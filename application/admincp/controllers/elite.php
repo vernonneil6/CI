@@ -96,7 +96,11 @@ class Elite extends CI_Controller {
 			
 			$this->load->model('elites');
 			
-			$results = $this->elites->elitesSearch($limit, $offset, $sort_by, $sort_order);
+			if($this->input->get('s')){				
+				$decodeKeyword = urldecode($this->input->get('s'));
+			}
+			
+			$results = $this->elites->elitesSearch($decodeKeyword, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['elites'] = $results['rows'];
 			$this->data['num_results'] = $results['num_rows'];
@@ -129,10 +133,9 @@ class Elite extends CI_Controller {
 	{
 		if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
 		{
-			$keyword = addslashes($this->input->post('keysearch'));
-			$keyword = urlencode($keyword);
-		
-			redirect('elite/searchresult/'.$keyword,'refresh');	
+			
+			$keyword = urlencode($this->input->post('keysearch'));		
+			redirect('elite/index/?s='.$keyword,'refresh');	
 		}
 		else
 		{
@@ -275,19 +278,36 @@ class Elite extends CI_Controller {
         {
 				if($keyword!='') 
 				{
-					$file = 'Report-of-search-elite.csv';
-					$keyword = str_replace('+',' ', $keyword);					
-					$elite = $this->elites->search_elitemember($keyword);
+					$file = 'Report-of-search-elite.csv';					
+					$searchKey = urldecode($keyword);
+					$elites_data = $this->elites->elitesSearch($searchKey);
 				}
 				else
 				{
 					$file = 'Report-of-all-elite.csv';
-					$elite = $this->elites->get_all_elitememberss();
+					$elites_data = $this->elites->elitesSearch($searchKey = '');
 				}
 				ob_start();
 				echo "Company,Name,Public Email,Private Email,Payment Amount,Status,Date Created,Payment Date"."\n";
 				
-				   for($i=0;$i<count($elite);$i++) { 
+				//print_r($elites_data);die;
+				
+				foreach($elites_data as $elites): 
+					foreach($elites as $elite): 															
+								
+						echo "\"".$elite->company."\",";						
+						echo "\"".$elite->contactname."\",";						
+						echo "\"".$elite->email."\",";						
+						echo "\"".$elite->contactemail."\",";						
+						echo "\"".$elite->payment_currency.' '.$elite->payment_amount."\",";						
+						echo "\"".$elite->status."\",";						
+						echo date("m-d-Y",strtotime($complaint->registerdate)).","; 
+						echo date("m-d-Y",strtotime($complaint->payment_date)); 
+						echo "\n";													
+					endforeach;
+				endforeach;	
+				
+				   /*for($i=0;$i<count($elite);$i++) { 
 					
 						echo stripslashes(ucwords($elite[$i]['company'])).',';
 						echo stripslashes(ucwords($elite[$i]['contactname'])).',';
@@ -298,7 +318,7 @@ class Elite extends CI_Controller {
 						echo date("m-d-Y",strtotime($elite[$i]['registerdate'])).','; 
 						echo date("m-d-Y",strtotime($elite[$i]['payment_date'])); 
 						echo "\n";							
-					}
+					}*/
 			
 					$content = ob_get_contents();
 					ob_end_clean();

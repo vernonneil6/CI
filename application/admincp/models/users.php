@@ -44,8 +44,9 @@ Class Users extends CI_Model
 	function usersSearch($keyword, $limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('email', 'status','date');
+		$sort_columns = array('email', 'status','registerdate');
 		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'firstname';
+		
 		
 		// results query
 		$q = $this->db->select('*')

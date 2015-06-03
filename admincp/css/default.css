@@ -396,10 +396,13 @@ a:hover.ico   { background-position: 0 0; }
     text-decoration: none!important;
 }
 .sort_asc:after {
-	content: "▲";
+	
 }
 .sort_desc:after {
-	content: "▼";
+	
+}
+.sorttitle > img {
+    padding-left:2px;
 }
 table.elites1 td, table.elites1 th
 {

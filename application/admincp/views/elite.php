@@ -150,8 +150,8 @@ else { ?>
     <div class="headlines">
       <h2><span><?php echo "Elite Members"; ?></span></h2>
        <h2>
-		   <span>
-				<a href="<?php if($this->uri->segment(2)=='searchresult'){ echo site_url('elite/csv/'.$this->uri->segment(3)); } else { echo site_url('elite/csv'); } ?>" title="Export as CSV file">
+		   <span>			   
+				<a href="<?php if(!empty($_GET['s'])){ echo site_url('elite/csv/'.$_GET['s']); } else { echo site_url('elite/csv'); } ?>" title="Export as CSV file">
 					<img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
 				</a>
 			</span>
@@ -288,6 +288,13 @@ else { ?>
 				<th><input type="checkbox" id="selectall" name="maincheck"/></th>
 			<?php }else{ ?>
 			<th width="30%" <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php
+				
+				if($sort_by == $field_name){ 
+						$field_display .= "<img alt='desc' src='".site_url("images/sort_".$sort_order.".gif")."'/>";
+				}
+				
+				?>
 				<?php echo anchor("elite/index/$field_name/" .
 					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
 					$field_display,array('class' => 'sorttitle')); ?>

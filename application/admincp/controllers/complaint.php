@@ -106,7 +106,11 @@ class Complaint extends CI_Controller {
 			
 			$siteid = $this->session->userdata('siteid');
 			
-			$results = $this->complaints->complaintsSearch($siteid, $limit, $offset, $sort_by, $sort_order);
+			if($this->input->get('s')){				
+				$decodeKeyword = urldecode($this->input->get('s'));
+			}
+			
+			$results = $this->complaints->complaintsSearch($decodeKeyword, $siteid, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['complaints'] = $results['rows'];
 			$this->data['num_results'] = $results['num_rows'];
@@ -365,12 +369,10 @@ class Complaint extends CI_Controller {
 	{
 		if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
 		{
-			$keyword = addslashes($this->input->post('keysearch'));
-			$keyword = htmlspecialchars(str_replace('%20', ' ', $keyword));
-			$keyword = preg_replace('/[^a-zA-Z0-9\']/', '',$keyword);
-			$keyword = str_replace(' ','-', $keyword);
-		
-			redirect('complaint/removedsearchresult/'.$keyword,'refresh');	
+			$keyword = urlencode($this->input->post('keysearch'));				
+			redirect('complaint/removed/?s='.$keyword);
+			
+			
 		}
 		else
 		{
@@ -405,12 +407,8 @@ class Complaint extends CI_Controller {
 	{
 		if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
 		{
-			$keyword = addslashes($this->input->post('keysearch'));
-			$keyword = htmlspecialchars(str_replace('%20', ' ', $keyword));
-			$keyword = preg_replace('/[^a-zA-Z0-9\']/', '',$keyword);
-			$keyword = str_replace(' ','-', $keyword);
-		
-			redirect('complaint/searchresult/'.$keyword,'refresh');	
+			$keyword = urlencode($this->input->post('keysearch'));				
+			redirect('complaint/index/?s='.$keyword);	
 		}
 		else
 		{
@@ -441,25 +439,48 @@ class Complaint extends CI_Controller {
 		
 		$this->load->view('complaint',$this->data);
 	}
-	public function removed($sortby,$orderby='asc')
+	public function removed($sort_by = 'companyid', $sort_order = 'asc', $offset = 0)
 	{
-	
+	  	
 		if( $this->session->userdata['youg_admin'] )
 	  	{
-			$limit = $this->paging['per_page'];
-			$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
-			$siteid = $this->session->userdata('siteid');
-			//Addingg Setting Result to variable
-			$this->data['removedcomplaints'] = $this->complaints->get_all_removedcomplaints($siteid,$limit,$offset,$sortby,$orderby);
-						
-			$this->paging['base_url'] = site_url("complaint/removed/index");
-			$this->paging['uri_segment'] = 4;
-			$this->paging['total_rows'] = count($this->complaints->get_all_removedcomplaints($siteid));
-			$this->pagination->initialize($this->paging);
+			$limit = 15;
 			
-			//Loading View File
-			$this->load->view('complaint',$this->data);
-	  	}
+			$this->data['fields'] = array(									
+				'detail' => 'Complaint',
+				'userid' => 'Complaint By',
+				'companyid' => 'Complaint To',
+				'whendate' => 'Complaint Date',
+				'transaction_date' => 'Removal Date'								
+			);
+			
+			$this->load->model('complaints');
+			
+			$siteid = $this->session->userdata('siteid');
+			
+			if($this->input->get('s')){				
+				$decodeKeyword = urldecode($this->input->get('s'));
+			}
+			
+			$results = $this->complaints->removedComplaintsSearch($decodeKeyword, $siteid, $limit, $offset, $sort_by, $sort_order);
+			
+			$this->data['removedcomplaints'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
+			
+			
+			// pagination				
+			$this->paging['base_url'] = site_url("complaint/removed/$sort_by/$sort_order");
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;
+			$this->paging['uri_segment'] = 5;
+			$this->pagination->initialize($this->paging);									
+			
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('complaint', $this->data);
+		}
+	  	
 	
 	}
 	
@@ -502,27 +523,34 @@ class Complaint extends CI_Controller {
 				$siteid = $this->session->userdata('siteid');
 				if($keyword!='') 
 				{
-					$file = 'Report-of-search-complaint.csv';				
-					$complaint = $this->complaints->search_complaint($keyword,$siteid);
+					$file = 'Report-of-search-complaint.csv';
+					$searchKey = urldecode($keyword);
+					$complaints_data = $this->complaints->complaintsSearch($searchKey, $siteid);									
 				}
 				else
 				{
-					$file = 'Report-of-all-complaint.csv';
-					$complaint = $this->complaints->get_all_complaints($siteid);
+					$file = 'Report-of-all-complaint.csv';					
+					$complaints_data = $this->complaints->complaintsSearch($searchKey = '', $siteid);				
+					
 				}
+				
 				ob_start();
 				echo "Complaint,Against,By,Date"."\n";
 				
-				   for($i=0;$i<count($complaint);$i++) { 
-					
-						echo stripslashes(ucwords($complaint[$i]['detail'])).',';
-						$user=$this->complaints->get_user_bysingleid($complaint[$i]['userid']);
+				foreach($complaints_data as $complaints): 
+					foreach($complaints as $complaint): 															
+								
+						echo "\"".$complaint->detail."\",";						
+						$user=$this->complaints->get_user_bysingleid($complaint->userid);
 						echo stripslashes(ucwords($user['username'])).',';
-						$company=$this->complaints->get_company_bysingleid($complaint[$i]['companyid']);
-						echo stripslashes(ucwords($company['company'])).',';
-						echo date("m-d-Y",strtotime($complaint[$i]['complaindate'])); 
-						echo "\n";							
-					}
+						$company=$this->complaints->get_company_bysingleid($complaint->companyid);
+						echo "\"". $company['company']."\",";						
+						echo date("m-d-Y",strtotime($complaint->complaindate)); 
+						echo "\n";
+													
+					endforeach;
+				endforeach;				
+				
 			
 					$content = ob_get_contents();
 					ob_end_clean();
@@ -547,28 +575,42 @@ class Complaint extends CI_Controller {
     
     
     
-    public function removedcomplaintcsv()
+    public function removedcomplaintcsv($keyword)
     {
         if( $this->session->userdata['youg_admin'] )
         {
 				$siteid = $this->session->userdata('siteid');
-				$file = 'Report-of-Removed-complaint.csv';
-				$complaint = $this->complaints->get_all_removedcomplaints($siteid);
+				
+				if($keyword!='') 
+				{
+					$file = 'Report-of-search-removedcomplaint.csv';
+					$searchKey = urldecode($keyword);
+					$removed_complaints = $this->complaints->removedComplaintsSearch($searchKey, $siteid);									
+				}
+				else
+				{
+					$file = 'Report-of-all-removedcomplaint.csv';					
+					$removed_complaints = $this->complaints->removedComplaintsSearch($searchKey = '', $siteid);				
+					
+				}			
 				
 				ob_start();
 				echo "Complaint,Complaint By,Company,Complaint Date,Removal Date"."\n";
 				
-				   for($i=0;$i<count($complaint);$i++) { 
-					
-						echo stripslashes(ucwords(str_replace(',', '',$complaint[$i]['detail']))).',';
-						$user=$this->complaints->get_user_bysingleid($complaint[$i]['userid']);
-						echo stripslashes(ucwords($user['firstname'].' '.$user['lastname'])).',';
-						$company=$this->complaints->get_company_bysingleid($complaint[$i]['companyid']);
-						echo stripslashes(ucwords($company['company'])).',';
-						echo date("m-d-Y",strtotime($complaint[$i]['whendate'])).','; 
-						echo date("m-d-Y",strtotime($complaint[$i]['transaction_date'])); 
-						echo "\n";							
-					}
+				   foreach($removed_complaints as $removed_complaint): 
+					foreach($removed_complaint as $removedcomplaint): 															
+								
+						echo "\"".$removedcomplaint->detail."\",";						
+						$user=$this->complaints->get_user_bysingleid($removedcomplaint->userid);
+						echo stripslashes(ucwords($user['username'])).',';
+						$company=$this->complaints->get_company_bysingleid($removedcomplaint->companyid);
+						echo "\"". $company['company']."\",";						
+						echo date("m-d-Y",strtotime($removedcomplaint->whendate)).','; 
+						echo date("m-d-Y",strtotime($removedcomplaint->transaction_date)); 
+						echo "\n";
+													
+					endforeach;
+				endforeach;				
 			
 					$content = ob_get_contents();
 					ob_end_clean();

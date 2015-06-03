@@ -450,7 +450,9 @@ else { ?>
       
       <h2>
 		   <span>
-				<a href="<?php if($this->uri->segment(2)=='searchresult'){ echo site_url('complaint/removedcomplaintcsv/'.$this->uri->segment(3)); } else { echo site_url('complaint/removedcomplaintcsv'); } ?>" title="Export as CSV file">
+			   
+			   
+				<a href="<?php if(!empty($_GET['s'])){ echo site_url('complaint/removedcomplaintcsv/'.$_GET['s']); } else { echo site_url('complaint/removedcomplaintcsv'); } ?>" title="Export as CSV file">
 					<img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
 				</a>
 			</span>
@@ -466,7 +468,7 @@ else { ?>
               <div class="lab">
                 <label for="keysearch">Keyword<span>*</span></label>
               </div>
-              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search complaint by user or company or keyword','value'=>$this->uri->segment(3))); ?> </div>
+              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search complaint by user or company or keyword','value'=>'')); ?> </div>
             </div>
           </div>
           <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
@@ -477,44 +479,85 @@ else { ?>
       </fieldset>
       <?php echo form_close(); ?> </div>
         <?php if(count($removedcomplaints) > 0 ) { 
-			 $order_seg = $this->uri->segment(4,"asc"); 
-			if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+			
 			?>
 		<!-- table -->
-		<table class="tab tab-drag complaint">
-		  <tr class="top nodrop nodrag">
-			<th width="30%"><a class="sorttitle" href="<?php echo base_url('complaint/removed/complaint');?>/<?=$orderby?>">Complaint</th>
-			<th><a class="sorttitle" href="<?php echo base_url('complaint/removed/by');?>/<?=$orderby?>">Complaint By</th>
-			<th><a class="sorttitle" href="<?php echo base_url('complaint/removed/against');?>/<?=$orderby?>">Complaint To</th>
-			<th><a class="sorttitle" href="<?php echo base_url('complaint/removed/complaintdate');?>/<?=$orderby?>">Complaint Date</th>
-			<th><a class="sorttitle" href="<?php echo base_url('complaint/removed/removaldate');?>/<?=$orderby?>">Removal Date</th>
-			<th>Action</th>
-			<th>Print History</th>
-		  </tr>
-        <?php 
-		$site = site_url();			
-		$url = explode("/admincp",$site);
-		$path = $url[0];
-		?>
-		  <?php for($i=0;$i<count($removedcomplaints);$i++) { ?>
-		  <?php $user = $this->users->get_user_byid($removedcomplaints[$i]['userid']);?>
-		  <?php $company = $this->companys->get_company_byid($removedcomplaints[$i]['companyid']);?>
-		  <tr>
-			<td><?php echo substr(stripslashes($removedcomplaints[$i]['detail']),0,40)."..."; ?></td>
-			<td><?php if(count($user)>0) { ?>
-			  <span title="<?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']); ?>"><?php echo stripslashes($user[0]['firstname'].' '.$user[0]['lastname']); ?></span>
-			  <?php } else { ?>
-			  <span title="Anonymous">Anonymous</span>
-			  <?php } ?></td>
-			<td><?php echo $company[0]['company'];?></td>
-			<td><?php echo date('m-d-Y',strtotime($removedcomplaints[$i]['whendate']));?></td>
-			<td><?php echo date('M d Y H:i:s',strtotime($removedcomplaints[$i]['transaction_date'])); ?></td>
-			<td><a href="<?php echo site_url('complaint/view/'.$removedcomplaints[$i]['id']); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
-		  <td><a href="<?php echo site_url('complaint/printhistory/'.$removedcomplaints[$i]['id']); ?>">Click here</a></td>
-		 </tr>
-		  <?php } ?>
-      <!-- /pagination --> 
-    </table>
+		
+		 <table class="tab tab-drag complaints">
+		<thead>
+			<tr class="top nodrop nodrag">
+			<?php 
+			
+			
+			foreach($fields as $field_name => $field_display): ?>
+		
+				<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php
+				if($sort_by == $field_name){ 
+						$field_display .= "<img alt='desc' src='".site_url("images/sort_".$sort_order.".gif")."'/>";
+				}?>
+				<?php echo anchor("complaint/removed/$field_name/" .
+					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+					$field_display,array('class' => 'sorttitle')); ?>
+				</th>
+						
+			<?php endforeach; ?>
+				<th>Action</th>
+				<th>Print History</th>
+			
+			</tr>
+		</thead>
+		
+		<tbody>
+			<?php foreach($removedcomplaints as $removedcomplaint): 
+			
+			?>
+			<tr>
+				<?php foreach($fields as $field_name => $field_display): ?>
+				
+				
+				<td>
+					<?php 
+					
+					if($field_name == 'detail'){
+						echo (strlen($removedcomplaint->$field_name) > 50) ? substr($removedcomplaint->$field_name,0,50).'...' : $removedcomplaint->$field_name;
+					}elseif ($field_name == 'companyid'){
+						$company = $this->companys->get_company_byid($removedcomplaint->companyid);
+						if(count($company)>0) { 
+							echo ucfirst($company[0]['company']); 
+						}
+					}elseif ($field_name == 'userid'){
+						$user = $this->users->get_user_byid($removedcomplaint->userid); 						
+						if(count($user)>0) { 
+							echo ucfirst($user[0]['firstname'].' '.$user[0]['lastname']);
+						}else { ?>
+							<span title="Anonymous"></span>
+					<?php }						
+					}
+					elseif($field_name == 'whendate'){
+						echo date('m-d-Y', strtotime($removedcomplaint->whendate));
+					}					
+					elseif($field_name == 'transaction_date'){
+						echo date('m-d-Y', strtotime($removedcomplaint->transaction_date));
+					}
+					else{
+						echo $removedcomplaint->$field_name; 
+					 }
+					?>	
+					
+				</td>			
+				<?php endforeach; ?>
+				<td><a href="<?php echo site_url('complaint/view/'.$removedcomplaint->id); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
+				<td><a href="<?php echo site_url('complaint/printhistory/'.$removedcomplaint->id); ?>">Click here</a></td>		
+			</tr>
+			<?php endforeach; ?>			
+		</tbody>
+		
+	</table> 
+  
+		
+		
+		
     <!-- /table --> 
 			<!-- /pagination -->
 			<?php  if($this->pagination->create_links()) { ?>
@@ -627,21 +670,14 @@ else { ?>
   <!-- box -->
   <div class="box">
     <div class="headlines">
-      <h2><span>
-        <?php if($this->uri->segment(2) && ($this->uri->segment(2)=='searchresult' || $this->uri->segment(2)=='removedsearchresult'))
-	   {
-	   	?>
-        search results for '<?php echo $this->uri->segment(3);?>'
-        <?php
-	   } else { echo "Complaints"; } ?>
+       <h2><span> Complaints: </span></h2>
+       
+        <h2><span>
+
+        <a href="<?php if(!empty($_GET['s'])){ echo site_url('complaint/csv/'.$_GET['s']); } else { echo site_url('complaint/csv'); } ?>" title="Export as CSV file">
+       <img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV </a>
         </span></h2>
-        <h2>
-		   <span>
-				<a href="<?php if($this->uri->segment(2)=='searchresult'){ echo site_url('complaint/csv/'.$this->uri->segment(3)); }elseif($this->uri->segment(2)=='removedsearchresult'){ echo site_url('complaint/csv/'.$this->uri->segment(3));  }else { echo site_url('complaint/csv'); } ?>" title="Export as CSV file">
-					<img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
-				</a>
-			</span>
-		</h2>
+		
     </div>
     
     <!-- Correct form message -->
@@ -696,7 +732,7 @@ else { ?>
               <div class="lab">
                 <label for="keysearch">Keyword<span>*</span></label>
               </div>
-              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search complaint by user or company or keyword','value'=>$this->uri->segment(3))); ?> </div>
+              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search complaint by user or company or keyword','value'=>'')); ?> </div>
             </div>
           </div>
           <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
@@ -779,6 +815,10 @@ function submitfrm()
 					<?php }
 					}else{ ?>
 				<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php
+				if($sort_by == $field_name){ 
+						$field_display .= "<img alt='desc' src='".site_url("images/sort_".$sort_order.".gif")."'/>";
+				}?>
 				<?php echo anchor("complaint/index/$field_name/" .
 					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
 					$field_display,array('class' => 'sorttitle')); ?>
@@ -815,7 +855,7 @@ function submitfrm()
 						if(count($user)>0) { 
 							echo ucfirst($user[0]['firstname'].' '.$user[0]['lastname']);
 						}else { ?>
-							<span title="Anonymous">Anonymous</span>
+							<span title="Anonymous"></span>
 					<?php }						
 					}
 					elseif ($field_name == 'status' ) { ?>

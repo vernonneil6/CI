@@ -33,27 +33,101 @@ class Complaints extends CI_Model
 		}
  	}
  	
- 	function complaintsSearch($siteid, $limit, $offset, $sort_by, $sort_order) {
+ 	function complaintsSearch($keyword, $siteid, $limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
 		$sort_columns = array('detail', 'companyid','userid','status');
-		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'complaindate';
-		
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'companyid';
+		if($sort_by == 'userid'){
+			$sort_by = 'u.firstname';
+		}
+		if($sort_by == 'companyid'){
+			$sort_by = 'cm.company';
+		}
 		// results query
-		$q = $this->db->select('*')
-				->from('complaints')
-				->where('websiteid',$siteid)			
-				->limit($limit, $offset)
-				->order_by($sort_by, $sort_order);
+		$q = $this->db->select('c.*, cm.company,cm.logo,cm.companyseokeyword,u.firstname,u.lastname,u.avatarbig,u.gender')
+				->from('complaints as c')
+				->join('user as u','c.userid=u.id','left')
+				->join('company as cm','cm.id=c.companyid','left')
+				->where('websiteid',$siteid);
+				
+		if(!empty($limit)){					
+				$q->limit($limit, $offset);
+				$q->order_by($sort_by, $sort_order);
+		}
+				
+		if (strlen($keyword)) {
+			$q->where('c.status','Disable');
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'c.detail'=> $keyword , 'c.username'=> $keyword , 'c.comseokeyword'=> $keyword , 'c.location'=> $keyword , 'c.damagesinamt'=> $keyword , 'cm.company'=> $keyword , 'cm.companyseokeyword'=> $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
+			
+		}				
 		
 		$ret['rows'] = $q->get()->result();
 		
 		
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)	 
-				->from('complaints')						
+				->from('complaints as c')
+				->join('user as u','c.userid=u.id','left')						
+				->join('company as cm','cm.id=c.companyid','left')
 				->where('websiteid',$siteid);
+				
+		if (strlen($keyword)) {
+			$q->where('c.status','Disable');
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'c.detail'=> $keyword , 'c.username'=> $keyword , 'c.comseokeyword'=> $keyword , 'c.location'=> $keyword , 'c.damagesinamt'=> $keyword , 'cm.company'=> $keyword , 'cm.companyseokeyword'=> $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
+		}
+				
+		$tmp = $q->get()->result();
 		
+		$ret['num_rows'] = $tmp[0]->count;
+		
+		return $ret;
+	}
+ 	
+ 	function removedComplaintsSearch($keyword, $siteid, $limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('detail', 'userid','companyid','whendate','transaction_date');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'complaindate';
+		
+		if($sort_by == 'userid'){
+			$sort_by = 'u.firstname';
+		}
+		if($sort_by == 'companyid'){
+			$sort_by = 'cm.company';
+		}
+		// results query
+		$q = $this->db->select('c.*, cm.company,cm.logo,cm.companyseokeyword,u.firstname,u.lastname,u.avatarbig,u.gender')
+				->from('complaints as c')
+				->join('user as u','c.userid=u.id','left')
+				->join('company as cm','cm.id=c.companyid','left')			
+				->where(array('c.status'=>'Disable','c.transactionid !='=>'','c.websiteid'=>$siteid));
+				
+				
+		if(!empty($limit)){					
+				$q->limit($limit, $offset);
+				$q->order_by($sort_by, $sort_order);
+		}
+				
+		if (strlen($keyword)) {			
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'c.detail'=> $keyword , 'c.username'=> $keyword , 'c.comseokeyword'=> $keyword , 'c.location'=> $keyword , 'c.damagesinamt'=> $keyword , 'cm.company'=> $keyword , 'cm.companyseokeyword'=> $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
+			
+		}				
+		
+		$ret['rows'] = $q->get()->result();
+		
+		
+		// count query
+		$q = $this->db->select('COUNT(*) as count', FALSE)	 
+				->from('complaints as c')
+				->join('user as u','c.userid=u.id','left')
+				->join('company as cm','cm.id=c.companyid','left')										
+				->where(array('c.status'=>'Disable','c.transactionid !='=>'','c.websiteid'=>$siteid));
+				
+		if (strlen($keyword)) {			
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'c.detail'=> $keyword , 'c.username'=> $keyword , 'c.comseokeyword'=> $keyword , 'c.location'=> $keyword , 'c.damagesinamt'=> $keyword , 'cm.company'=> $keyword , 'cm.companyseokeyword'=> $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
+		}
+				
 		$tmp = $q->get()->result();
 		
 		$ret['num_rows'] = $tmp[0]->count;
