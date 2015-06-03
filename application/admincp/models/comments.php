@@ -33,68 +33,42 @@ class Comments extends CI_Model
 		}
  	}
 	
-	function commentsSearch($limit, $offset, $sort_by, $sort_order) {
+	function commentsSearch($keyword, $limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('comment','commentdate');
+		$sort_columns = array('comment','commentdate','company');
 		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'u.username';
 		
 		// results query
-		$q = $this->db->select('*')
+		$q = $this->db->select('c.*,u.*,com.company,c.id as cid')
 			->from('comments as c')
-			->join('user as u','c.commentby=u.id','left')			
-			->limit($limit, $offset)
-			->order_by($sort_by, $sort_order);
+			->join('reviews as r','r.id=c.reviewid','left')			
+			->join('company as com','com.id=r.companyid','left')
+			->join('user as u','c.commentby=u.id','left');
+		
+		if(!empty($limit)){
+			$q->limit($limit, $offset);
+			$q->order_by($sort_by, $sort_order);
+		}
 			
-		$ret['rows'] = $q->get()->result();
-		
-		
-		// count query
-		$q = $this->db->select('COUNT(*) as count', FALSE)	 
-			->from('comments as c')
-			->join('user as u','c.commentby=u.id','left');			
-		
-		$tmp = $q->get()->result();
-		
-		$ret['num_rows'] = $tmp[0]->count;
-		
-		return $ret;
-	}
-	
-	function commentsSearchResults($keyword, $limit, $offset, $sort_by, $sort_order) {
-		
-		$siteid = $this->session->userdata('siteid');
-		
-		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('comment','commentdate');
-		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'u.username';
-		
-		// results query
-		$q = $this->db->select('c.*, r.*,u.*, c.id as cid')
-				->from('comments as c')
-				->join('reviews as r','c.reviewid=r.id')
-				->join('user as u','c.commentby=u.id')
-				->where('r.websiteid',$siteid);			
-				
-		if (strlen($keyword)) {				
-			
-			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );			
+		if (strlen($keyword)) {
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'u.username'=> $keyword, 'com.company'=> $keyword, 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );			
 		}	
-		
-		
+			
+			
 		$ret['rows'] = $q->get()->result();
 		
 		
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)	 
-				->from('comments as c')
-				->join('reviews as r','c.reviewid=r.id')
-				->join('user as u','c.commentby=u.id')
-				->where('r.websiteid',$siteid);			
+			->from('comments as c')
+			->join('reviews as r','r.id=c.reviewid','left')
+			->join('company as com','com.id=r.companyid','left')
+			->join('user as u','c.commentby=u.id','left');			
 		
 		if (strlen($keyword)) {
 			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );			
-		}	
+		}
 		
 		$tmp = $q->get()->result();
 		

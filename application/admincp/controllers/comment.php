@@ -86,6 +86,7 @@ class Comment extends CI_Controller {
 			$this->data['fields'] = array(
 				'id' => 'Comment ID',
 				'comment' => 'Title',
+				'company' => 'Business Name',
 				'commentby' => 'Submitted By',								
 				'commentdate' => 'Date',
 				'status' => 'Status'
@@ -93,7 +94,11 @@ class Comment extends CI_Controller {
 			
 			$this->load->model('comments');
 			
-			$results = $this->comments->commentsSearch($limit, $offset, $sort_by, $sort_order);
+			if($this->input->get('s')){				
+				$decodeKeyword = urldecode($this->input->get('s'));
+			}
+			
+			$results = $this->comments->commentsSearch($decodeKeyword, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['comments'] = $results['rows'];
 			$this->data['num_results'] = $results['num_rows'];
@@ -215,7 +220,7 @@ class Comment extends CI_Controller {
 		{
 			$keyword = urlencode($this->input->post('keysearch'));				
 			//echo $keyword;die;
-			redirect('comment/searchresult/?s='.$keyword);
+			redirect('comment/index/?s='.$keyword);
 				
 		}
 		else
@@ -279,12 +284,12 @@ class Comment extends CI_Controller {
 					$file = 'Report-of-search-comments.csv';
 					$searchKey = urldecode($keyword);
 					
-					$comments = $this->comments->commentsSearchResults($searchKey);				
+					$comments = $this->comments->commentsSearch($searchKey);				
 				}
 				else
 				{
 					$file = 'Report-of-all-comments.csv';
-					$comments = $this->comments->commentsSearchResults();
+					$comments = $this->comments->commentsSearch();
 				}
 				ob_start();
 				echo "User,Comment date,Comment,Email";

@@ -236,6 +236,9 @@ function submitfrm()
 					}elseif ($field_name == 'comment'){
 						echo nl2br(substr($comment->comment,0,100)).'...';
 					}
+					elseif( $field_name == 'company'){
+						echo $comment->company; 
+					}
 					elseif($field_name == 'commentby'){
 						
 						 $username = $this->comments->get_user_bysingleid($comment->commentby); 
