@@ -447,7 +447,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/icons.png) -237px -65px no-repeat; margin-right:4px;}
 .vry_btn a:hover
 {
-background:#AAA000;
+background:#2B6998;
 }
 .compny_name{width:80%; float:left;}
 .compny_name h1{float:left;padding: 5px 0 0; font-family:"MyriadPro-BoldCond"; font-size:32px; color:#333; text-transform:uppercase; margin:0; font-weight:normal; height:inherit; width:100%; border:0 none; padding:0; text-align:inherit;}
