@@ -135,7 +135,7 @@ class Elite extends CI_Controller {
 		{
 			
 			$keyword = urlencode($this->input->post('keysearch'));		
-			redirect('elite/index/?s='.$keyword,'refresh');	
+			redirect('elite/index/?s='.$keyword);	
 		}
 		else
 		{

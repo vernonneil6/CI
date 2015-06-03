@@ -80,7 +80,7 @@ class Elites extends CI_Model
 		}
 				
 		if (strlen($keyword)) {			
-			$q->or_like(array('c.city'=> $keyword , 'c.state'=> $keyword , 'c.country'=> $keyword , 'c.zip'=> $keyword , 'c.company'=> $keyword , 'c.email'=> $keyword , 'c.contactname'=> $keyword,  'c.companyseokeyword'=> $keyword ) );
+			$q->or_like(array('c.city'=> $keyword , 'c.state'=> $keyword , 'c.country'=> $keyword , 'c.zip'=> $keyword , 'c.company'=> $keyword , 'c.email'=> $keyword , 'c.contactemail'=> $keyword, 'c.contactname'=> $keyword,  'c.companyseokeyword'=> $keyword ) );
 			
 		}					
 		
