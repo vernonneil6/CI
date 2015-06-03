@@ -996,8 +996,8 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .pagination{width:800px; margin:0 auto 30px auto; display:table; padding-top:10px; border-top:1px solid #666;}
 .pagination ul{margin:0 auto; display:table; padding:0;}
 .pagination ul li{float:left; list-style:none; vertical-align:middle; margin:0 10px;}
-.pagination ul li a{display:inline-block; background:#fff; padding:10px; border-radius:100%; font-family:"myriadpro-regular"; font-size:18px; color:#2c6a99; border:1px solid #686868; margin-top:13px; line-height:10px; }
-.pagination ul li a:hover{display:inline-block; background:#2c6a99; padding:10px; border-radius:100%; font-family:"myriadpro-regular"; font-size:18px; color:#fff; border:1px solid #686868; margin-top:13px; z-index:9999; position:relative; zoom:100%;}
+.pagination ul li a{display:inline-block; background:#fff; padding:10px; font-family:"myriadpro-regular"; font-size:18px; color:#2c6a99;  margin-top:13px; line-height:10px; }
+.pagination ul li a:hover{display:inline-block; background:#2c6a99; padding:10px;  font-family:"myriadpro-regular"; font-size:18px; color:#fff;  margin-top:13px; z-index:9999; position:relative; zoom:100%;}
 
 .pagination ul li.first_pg{background:url(../images/first_page.png) no-repeat; width:60px; height:60px; margin-right:10px; margin-left:0px;}
 .pagination ul li.first_pg a{width:60px; height:60px; display:inline-block; background:none; padding:0; border:0 none;}
