@@ -66,7 +66,7 @@ class Elites extends CI_Model
  	function elitesSearch($keyword, $limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('contactname', 'email','contactemail','payment_amount','status','registerdate','payment_date');
+		$sort_columns = array('company','contactname', 'email','contactemail','payment_amount','status','registerdate','payment_date');
 		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'company';
 		
 		// results query
@@ -74,9 +74,9 @@ class Elites extends CI_Model
 				->from('elite as e')
 				->join('company as c','e.company_id=c.id','left');				
 				
-		if(!empty($limit)){					
-			$q->limit($limit, $offset);
-			$q->order_by($sort_by, $sort_order);
+		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
+				$q->limit($limit, $offset);
+				$q->order_by($sort_by, $sort_order);
 		}
 				
 		if (strlen($keyword)) {			

@@ -87,7 +87,7 @@ class Complaint extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sort_by = 'complaindate', $sort_order = 'asc', $offset = 0) {
+	public function index($sort_by = '', $sort_order = '', $offset = 0) {
 		
 		if( $this->session->userdata['youg_admin'] )
 	  	{
@@ -439,7 +439,7 @@ class Complaint extends CI_Controller {
 		
 		$this->load->view('complaint',$this->data);
 	}
-	public function removed($sort_by = 'companyid', $sort_order = 'asc', $offset = 0)
+	public function removed($sort_by = '', $sort_order = '', $offset = 0)
 	{
 	  	
 		if( $this->session->userdata['youg_admin'] )

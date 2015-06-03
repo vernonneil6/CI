@@ -37,13 +37,15 @@ class Complaints extends CI_Model
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
 		$sort_columns = array('detail', 'companyid','userid','status');
-		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'companyid';
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
+		
 		if($sort_by == 'userid'){
 			$sort_by = 'u.firstname';
 		}
 		if($sort_by == 'companyid'){
 			$sort_by = 'cm.company';
 		}
+		
 		// results query
 		$q = $this->db->select('c.*, cm.company,cm.logo,cm.companyseokeyword,u.firstname,u.lastname,u.avatarbig,u.gender')
 				->from('complaints as c')
@@ -51,7 +53,7 @@ class Complaints extends CI_Model
 				->join('company as cm','cm.id=c.companyid','left')
 				->where('websiteid',$siteid);
 				
-		if(!empty($limit)){					
+		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
 				$q->limit($limit, $offset);
 				$q->order_by($sort_by, $sort_order);
 		}
@@ -88,7 +90,7 @@ class Complaints extends CI_Model
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
 		$sort_columns = array('detail', 'userid','companyid','whendate','transaction_date');
-		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'complaindate';
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
 		
 		if($sort_by == 'userid'){
 			$sort_by = 'u.firstname';
@@ -104,7 +106,7 @@ class Complaints extends CI_Model
 				->where(array('c.status'=>'Disable','c.transactionid !='=>'','c.websiteid'=>$siteid));
 				
 				
-		if(!empty($limit)){					
+		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
 				$q->limit($limit, $offset);
 				$q->order_by($sort_by, $sort_order);
 		}

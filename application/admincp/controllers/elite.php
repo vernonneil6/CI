@@ -77,7 +77,7 @@ class Elite extends CI_Controller {
 	}
 
 	
-	public function index($sort_by = 'company', $sort_order = 'asc', $offset = 0) {
+	public function index($sort_by = '', $sort_order = '', $offset = 0) {
 		
 		if( $this->session->userdata['youg_admin'] )
 	  	{

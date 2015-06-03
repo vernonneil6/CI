@@ -43,17 +43,17 @@ class Reviews extends CI_Model
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
 		$sort_columns = array('reviewip', 'firstname','company','comment','reviewdate');
-		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'company';
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
 		
 		// results query
 		$q = $this->db->select('r.*,c.company,c.logo,u.avatarbig,u.firstname,u.lastname')
 			->from('reviews as r')
-			->join('company as c','r.companyid=c.id')
+			->join('company as c','r.companyid=c.id','left')
 			->join('user as u','r.reviewby=u.id','left');
 			
-		if(!empty($limit)){	
-			$q->limit($limit, $offset);
-			$q->order_by($sort_by, $sort_order);
+		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
+				$q->limit($limit, $offset);
+				$q->order_by($sort_by, $sort_order);
 		}
 		
 		if (strlen($keyword)) {							
@@ -66,7 +66,7 @@ class Reviews extends CI_Model
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)	 
 			->from('reviews as r')
-			->join('company as c','r.companyid=c.id')
+			->join('company as c','r.companyid=c.id','left')
 			->join('user as u','r.reviewby=u.id','left');	
 		
 		if (strlen($keyword)) {							
@@ -394,21 +394,23 @@ class Reviews extends CI_Model
 	function removedReviewsSearch($limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('reviewby','reviewdate','reviewremoveddate');
+		$sort_columns = array('comment','reviewby','reviewdate','reviewremoveddate');
 		if($sort_by == 'reviewby'){
 			$sort_by = 'u.username';
 		}else{	
-			$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'comment';
+			$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
 		}
 		
 		// results query
 		$q = $this->db->select('r.*,u.firstname,u.lastname')
 			->from('reviews as r')
-			->join('user as u','r.reviewby=u.id')
-			->where('r.status','Disable')			
-			->limit($limit, $offset)
-			->order_by($sort_by, $sort_order);
-		//print_r($q);die;
+			->join('user as u','r.reviewby=u.id');
+		
+		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
+				$q->limit($limit, $offset);
+				$q->order_by($sort_by, $sort_order);
+		}
+		
 		$ret['rows'] = $q->get()->result();
 		
 		

@@ -506,6 +506,13 @@
         <div class="btn-submit"> 
           <!-- Submit form --> 
           <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('review');?>" class="Cancel">Cancel</a> </div>
+          
+          <?php if(!empty($_GET['s']))
+			{	   
+				echo "<div style='margin-top:1em;'> Search results for <span style='color:#1a2e4d'>' ". $_GET['s'] . " ' </span> </div>";
+			}
+			
+		?>
       </fieldset>
       <?php echo form_close(); ?> </div>
    

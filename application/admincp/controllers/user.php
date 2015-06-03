@@ -94,7 +94,7 @@ class User extends CI_Controller {
 	
 	
 	
-	public function index($sort_by = 'firstname', $sort_order = 'asc', $offset = 0) {
+	public function index($sort_by = '', $sort_order = '', $offset = 0) {
 		
 		if( $this->session->userdata['youg_admin'] )
 	  	{

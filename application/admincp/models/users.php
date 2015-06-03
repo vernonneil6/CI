@@ -44,15 +44,18 @@ Class Users extends CI_Model
 	function usersSearch($keyword, $limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('email', 'status','registerdate');
-		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'firstname';
+		$sort_columns = array('firstname','email', 'status','registerdate');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
 		
 		
 		// results query
 		$q = $this->db->select('*')
-			->from('user')
-			->limit($limit, $offset)
-			->order_by($sort_by, $sort_order);
+			->from('user');
+		
+		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
+				$q->limit($limit, $offset);
+				$q->order_by($sort_by, $sort_order);
+		}
 		
 		if (strlen($keyword)) {
 			$q->or_like(array('firstname'=> $keyword , 'lastname'=> $keyword , 'email'=> $keyword , 'phoneno'=> $keyword , 'street'=> $keyword , 'city'=> $keyword , 'state'=> $keyword , 'zipcode'=> $keyword, "CONCAT(firstname, ' ', lastname)" => $keyword ) );

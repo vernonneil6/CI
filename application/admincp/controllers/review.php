@@ -92,7 +92,7 @@ class Review extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sort_by = 'company', $sort_order = 'asc', $offset = 0) {
+	public function index($sort_by = '', $sort_order = '', $offset = 0) {
 		
 		if( $this->session->userdata['youg_admin'] )
 	  	{
@@ -473,8 +473,7 @@ class Review extends CI_Controller {
 			$this->data['fields'] = array(				
 				'comment' => 'Review',				
 				'reviewby' => 'Review by',				
-				'reviewdate' => 'Review Date',
-				'reviewremoveddate' => 'Removal Date',				
+				'reviewdate' => 'Review Date'								
 			);
 			
 			$this->load->model('reviews');
