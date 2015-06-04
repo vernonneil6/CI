@@ -253,7 +253,7 @@
 
 <section class="container">
   <section class="main_contentarea">
-    <div class="banner_wrp"> <img src="images/YouGotRated_HeaderGraphics_SignUpPage.png" alt="Register" title="Register" style="width:966px;height:100%;"> </div>
+    <!--<div class="banner_wrp"> <img src="images/YouGotRated_HeaderGraphics_SignUpPage.png" alt="Register" title="Register"> </div>-->
     <div class="regr_lnk">
       <div class="innr_wrap">
         <div class="new_usr"> ADD BUSINESS TO YGR DIRECTORY</div>

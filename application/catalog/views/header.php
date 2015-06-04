@@ -13,17 +13,20 @@
 <meta name="description" content="<?php echo $description;?>">
 <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
 <link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="css/rwd_style.css" type="text/css">
 <link rel="stylesheet" href="css/new.css" type="text/css">
+<link rel="stylesheet" href="css/slicknav.css">
 
 <link rel="stylesheet" href="css/flexslider.css" type="text/css">
 
 <script src="js/jquery.raty.min.js"></script>
 
 <script src="js/jquery.flexslider-min.js"></script>
-
+<script src="js/mobile_nav/jquery.slicknav.js"></script>
 <script>
  $(document).ready(function() {
  $('.data_table').delay(6000).fadeOut(600);
+ $('#menu').slicknav();
  });
 </script>
 
@@ -100,7 +103,7 @@
       </div>
     </div>
    
-    <div class="menu">
+    <div class="menu" id="menu">
       <ul>
         <!--<li><a href="<?php echo base_url();?>" title="Home">Home<span><span></a> </li>-->
         <li><a href="<?php echo site_url('businessdirectory');?>" title="Business Directory">Business Directory</a></li>
