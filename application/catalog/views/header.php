@@ -102,11 +102,29 @@
    
     <div class="menu">
       <ul>
-        <!--<li><a href="<?php echo base_url();?>" title="Home">Home<span><span></a> </li>-->
-        <li><a href="<?php echo site_url('businessdirectory');?>" title="Business Directory">Business Directory</a></li>
-        <li><a href="<?php echo site_url('review');?>" title="Business Review">Business Reviews</a></li>
+         <!--<li><a href="<?php echo base_url();?>" title="Home">Home<span><span></a> </li>-->
+        <li><a href="<?php echo site_url('businessdirectory/category/');?>" title="Categories">Categories</a>
+<ul>
+<?php $catlist = $this->common->get_all_categorys('1','category','ASC'); 
+foreach($catlist as $row=> $result)
+{
+					//lower case everything
+					$categoryname = strtolower($result['category']);
+					//make alphaunermic
+					$categoryname = preg_replace("/[^a-z0-9\s-]/", "", $categoryname);
+					//Clean multiple dashes or whitespaces
+					$categoryname = preg_replace("/[\s-]+/", " ", $categoryname);
+					//Convert whitespaces to dash
+					$categoryname = preg_replace("/[\s]/", "-", $categoryname);
+	
+	?>
+<li><a href="<?php echo site_url('businessdirectory/category/')."/".$categoryname."/".$result['id'];?>"><?php echo $result['category'];?></a></li>
+<?php } ?>
+</ul></li>
+        <li><a href="<?php echo site_url('businessdirectory');?>" title="Directory">Directory</a></li>
+        <li><a href="<?php echo site_url('review');?>" title="Review">Reviews</a></li>
         <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">Press Releases</a></li>
-        <li><a href="<?php echo site_url('complaint');?>" title="Complaints">Business Complaints</a></li>
+        <li><a href="<?php echo site_url('complaint');?>" title="Complaints">Complaints</a></li>
         <li><a href="<?php echo site_url('coupon');?>" title="Coupons deals & Steals">Coupons deals & Steals</a></li>
         <li><a href="http://business.yougotrated.com" title="Business Solutions">Business Solutions</a></li>
       </ul>
@@ -115,7 +133,7 @@
 	<div class='headersearch'>
 	  <?php echo form_open('businessdirectory/search',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
         <?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
-		<input type='text'  class='headersearchbar' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
+		<input type='text'  class='headersearchbar' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30"><div id="loading"></div>
 		<input type="submit" class="headersearchbtn" value="SEARCH" name="btnsearch">
 	 <?php echo form_close();?> 
     </div>
@@ -180,7 +198,80 @@ function FBLogin(){
 }
 
 </script>
+
+<link rel="stylesheet" href="css/autocss.css" type="text/css">
+    
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript">
+	jQuery(function($) {
+	 $( "#search" ).autocomplete();
+$('#search').on('keyup', function() {
+	$( "#search" ).autocomplete();
+	var req = $('#search').val();
+	
+	if (req.length > 0) {
+		//$('#loading').show();
+		$('#loading').html('<img src="images/spin.gif" height="20px">');
+		$.ajax({
+			
+			url: "<?php echo base_url(); ?>search/autocomplete", //Controller where search is performed
+			type: 'POST',
+			data: {'search_data': req},
+			
+			success: function(html){
+				$.ui.autocomplete.prototype._renderItem = function (ul, item) {
+    item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
+    return $("<li></li>")
+            .data("item.autocomplete", item)
+            .append("<a>" + item.label + "</a>")
+            .appendTo(ul);
+};
+				//alert(html);
+					var datas = [
+  "Apple",
+  "Orange",
+  "Pineapple",
+  "Strawberry",
+  "Mango"
+  	];
+  	setTimeout(function() {
+    $('#loading').html('');
+}, 500);
+			
+			var data = JSON.parse(html);
+		
+		 	$( "#search" ).autocomplete({source:data,autoFocus: true,highlightClass: "bold-text",select: function(event, ui) {
+                $(event.target).val(ui.item.value);
+                $('#frmsearch').submit();
+                return false;
+            } });
+		 	
+                
+			}
+			
+		});
+}
+});
+});
+
+
+</script>
+
 <style>
+	.bold-text {
+    font-weight: bold;
+}
+	.headersearchbtn,.headersearchbar{float:left;}
+.formBox {
+    margin: 0 auto;
+    width: 455px;
+}
+#loading{
+   width:20px;
+  float: left;
+    margin-right: 5px;
+    margin-top: 5px;  
+}
 .addthis_counter.addthis_pill_style.addthis_nonzero a.addthis_button_expanded
 {
 display:none !important;
