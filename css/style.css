@@ -91,7 +91,7 @@ img{border:none;}
 .account
 {
 	text-align : center;
-	width : 967px;
+	width : auto;
 	margin: 0 auto;
 }
 .account h3
@@ -900,7 +900,7 @@ input[type="file"].filupload:before {
 }
 
 /*============ Business_Directory ===========================*/
-.bus_dir_head{text-align:center; margin:40px auto 0 auto; width:940px; padding-bottom:32px; }
+.bus_dir_head{text-align:center; margin:40px auto 0 auto; padding-bottom:32px; }
 .bus_dir_head a{display:inline-block;}
 .busdt_wrap{width:100%; display:inline-block; margin-top:99px;}
 .bdsrch_wrp{width:587px; display:inline-block; height:25px;}
@@ -935,11 +935,11 @@ i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/YGR_
 .bsntg{position : static!important; float:left; padding : 0 0 0 10px;}
 
 /*============ Business_Review ===========================*/
-h1{text-align:center; margin:40px auto 0 auto; width:940px; height:86px; padding-bottom:23px; border-bottom:1px solid #999;}
+h1{text-align:center; margin:40px auto 0 auto;height:86px; padding-bottom:23px; border-bottom:1px solid #999;}
 h1 a{display:inline-block;}
 .dir_rew_wrap{ display: inline-block; margin-top: 90px;  width: 100%;}
 .revw_blck{display:inline-block; float:left; width:100%;}
-.revw_blck_img{width:100px; float:left; display:inline-block; height:130px; margin-right:25px;}
+.revw_blck_img{width:100px; float:left; display:inline-block; height:130px; margin-right:10px;}
 .revw_blck_cnt{display:inline-block; float:left;margin-bottom: 50px; width: 87%;}
 .revw_blck_cnt h2{font-family:"myriadpro-regular"; font-weight:bold; font-size:36px; margin: 0 0 10px; color:#0080ff; text-transform:uppercase;line-height:30px; height:30px;}
 .revw_blck_cnt h2 .rating{width:inherit; display:inline-block; float:none;}
@@ -1058,7 +1058,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 /*============ Submit Review ===========================*/
 .head_sb_rvw{width:560px; text-align:center; margin:0 auto;}
 .head_sb_rvw h1{text-align:center; display:inline-block; width:inherit; height:auto; border:0 none; margin:0 auto; font-size:45px; font-family:"myriadpro-regular"; font-weight:bold; padding:0;}
-.head_sb_rvw span{width:5px; height:52px; background:#2c6a99; margin-right:5px; display:inline-block; margin-top:6px; float:left;}
+.head_sb_rvw span{width:5px; height:52px; /*background:#2c6a99;*/ margin-right:5px; display:inline-block; margin-top:6px; float:left;}
 .head_sb_rvw h5{ display:inline-block; width:inherit; height:auto; border:0 none; margin:0 auto; font-size:24px; font-family: "Myriadpro-regular"; color:#2c6a99; font-weight:normal; padding:0; line-height:16px;}
 .brd_btm{border-bottom:1px solid #666; padding-bottom:35px;}
 .rvw_fillwrp{width:775px; float:left; display:block;}
@@ -2301,7 +2301,7 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
 }
 .business-callout h3,h4,p
 {
-	margin:8px 0 0 15px;color:#2C6A99; font-family: "myriadpro-regular";
+	margin:8px 0 0 15px;color:#2C6A99; font-family: "myriadpro-regular";text-align: justify;
 }
 
 .form-col-2 > ul {
@@ -2363,3 +2363,6 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
     font-size: 14px;
     text-transform: uppercase;
 }
+.user_dashboard{margin-top:20px;}
+.banner_wrp img{height:100%; max-width:100%;}
+.pr_countwrp p{text-align:center;}
