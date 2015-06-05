@@ -264,17 +264,6 @@ $('#search').on('keyup', function() {
 	.bold-text {
     font-weight: bold;
 }
-	.headersearchbtn,.headersearchbar{float:left;}
-.formBox {
-    margin: 0 auto;
-    width: 455px;
-}
-#loading{
-   width:20px;
-  float: left;
-    margin-right: 5px;
-    margin-top: 5px;  
-}
 .addthis_counter.addthis_pill_style.addthis_nonzero a.addthis_button_expanded
 {
 display:none !important;

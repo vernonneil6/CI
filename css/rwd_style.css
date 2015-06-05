@@ -52,6 +52,8 @@ td{display:block;}
 .cpyynme{margin-bottom:0 !important;}
 .verified_wrp.srch_rslt_vrfy .compny_name h2{text-align:left;}
 .verified_wrp.srch_rslt_vrfy{width:130px;}
+
+.revw_occupt span a{max-width:550px !important;display:block;}
 }
 @media only screen and (min-width: 850px) and (max-width: 1050px)  {
 .main_footer, .innr_wrap, .container{width:82%;padding:0 20px; }
@@ -71,7 +73,7 @@ td{display:block;}
 .yougot_logo{display: none;}
 .head_right_lnk, .head_right{text-align: center;float:none;display: inline-block;}
 .headerbusiness, .headerlogin, .headersignup{float:none;display: inline-block;}
-.review_right div{width:auto;}
+/*.review_right div{width:auto;}*/
 .hm_rght_panel{margin-left:0;}
 .main_contentarea .container{padding:0;}
 .main_contentarea .innr_wrap{width:auto;padding:0;}
@@ -89,7 +91,7 @@ td{display:block;}
 
 
 .revw_occupt{width:97%;}
-.revw_blck_cnt{width:auto;}
+.revw_blck_cnt{width:100%;}
 .vry_logo {float:none;width:auto;text-align:center;margin-top:25px;}
 .revw_blck_img{display: inline;float:none;width:auto;}
 .reviewnotverifiedlogo{position:relative;top:20px;}
@@ -128,6 +130,8 @@ td{display:block;}
 .serch_result h1{font-size:40px;}
 .verified_wrp a{margin-bottom:10px;}
 .srch_rslt_left .vry_logo{margin-top:0 !important;}
+.review_blocks.feed-right, .review_blocks.feed-left{height:auto;}
+.p_realese_head{width:auto;}
 }
 
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
@@ -139,6 +143,8 @@ td{display:block;}
 .txrareawrp{width:100%;}
 .rvw_fillwrp{width:auto;}
 .rvw_fillwrp h3{font-size:20px;}
+.review_right div{width:350px;}
+.press_srchwrp,.pres_srch_wrp,.main_press_srchwrp{width:auto;}
 }
 
 
@@ -154,9 +160,17 @@ td{display:block;}
 .reg-row label{font-size:28px;}
 .gdr_male label,.gdr_female label{font-size:14px;}
 .srch_rslt_left{width:411px;}
+.review_right div{width:290px;}
+}
+@media only screen and (min-width: 310px) and (max-width: 549px)  {
+#loading{height:10px;float:none;margin:0 auto; position: relative; z-index: 9999999;}
+.headersearchbtn, .headersearchbar{margin:0 auto;float:none;}
+.formBox{width:auto;}
+.main_press_srchwrp{text-align:center;}
+.press_srchwrp,.pres_srch_wrp,.main_press_srchwrp{width:auto;}
+.press_srchwrp input.press_srch_txtbx[type="text"]{width:280px;}
 
 }
-
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
 .container{width:311px;padding:0 20px; }
 .bannertext{font-size:25px !important;height:25px;}
@@ -179,6 +193,8 @@ td{display:block;}
 .srch_rslt_left{width:311px;}
 .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px;}
 .serch_result h1{font-size:25px;}
+.review_right div{width:200px;}
+
 }
 
 @media only screen and (min-width: 620px) and (max-width: 1050px)  {
