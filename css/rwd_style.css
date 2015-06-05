@@ -4,7 +4,10 @@
 .fadeout {background: none;}
 table{margin:0 auto;}
 td{display:block;}
-
+.srch_rslt_left .verified_wrp.srch_rslt_vrfy{display:inline;}
+.srch_rslt_left .verified_wrp.srch_rslt_vrfy .vry_logo{float:left;}
+.srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:25px;}
+.srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name{margin-bottom:5px;margin-top:10px;}
 } 
 
 @media only screen and (min-width: 771px) and (max-width: 1050px){
@@ -54,6 +57,7 @@ td{display:block;}
 .verified_wrp.srch_rslt_vrfy{width:130px;}
 
 .revw_occupt span a{max-width:550px !important;display:block;}
+.p_realese_head{width:auto;}
 }
 @media only screen and (min-width: 850px) and (max-width: 1050px)  {
 .main_footer, .innr_wrap, .container{width:82%;padding:0 20px; }
@@ -132,6 +136,8 @@ td{display:block;}
 .srch_rslt_left .vry_logo{margin-top:0 !important;}
 .review_blocks.feed-right, .review_blocks.feed-left{height:auto;}
 .p_realese_head{width:auto;}
+
+.coupon_wrap .revw_blck_img{display:block;height:auto;margin:0 auto;text-align:center;}
 }
 
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
@@ -169,7 +175,8 @@ td{display:block;}
 .main_press_srchwrp{text-align:center;}
 .press_srchwrp,.pres_srch_wrp,.main_press_srchwrp{width:auto;}
 .press_srchwrp input.press_srch_txtbx[type="text"]{width:280px;}
-
+.p_realese_head{border-bottom:none;height:20px;}
+.srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px !important;width:300px;}
 }
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
 .container{width:311px;padding:0 20px; }
