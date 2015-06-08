@@ -50,10 +50,7 @@
 			</li>
 			<li>
 				<a href="<?php echo site_url('category'); ?>" title="List All Categories">List All Categories</a>
-			</li>
-			<li>
-				<a href="<?php echo site_url('category/search'); ?>" title="Search Category">Search Category</a>
-			</li>
+			</li>			
 		</ul>
     </li>
     
@@ -65,10 +62,7 @@
 			</li>
 			<li>
 				<a href="<?php echo site_url('solution'); ?>" title="List All Solutions">List All Solutions</a>
-			</li>
-			<li>
-				<a href="<?php echo site_url('solution/search'); ?>" title="Search Solution">Search Solution</a>
-			</li>
+			</li>		
 		</ul>
     </li>
     
@@ -80,10 +74,7 @@
 			</li>
 			<li>
 				<a href="<?php echo site_url('company'); ?>" title="List All Companies">List All Companies</a>
-			</li>
-			<li>
-				<a href="<?php echo site_url('company/search'); ?>" title="Search Company">Search Company</a>
-			</li>
+			</li>		
 		</ul>
     </li>
     

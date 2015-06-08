@@ -53,11 +53,16 @@ class Complaints extends CI_Model
 				->join('company as cm','cm.id=c.companyid','left')
 				->where('websiteid',$siteid);
 				
-		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
-				$q->limit($limit, $offset);
-				$q->order_by($sort_by, $sort_order);
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
 		}
-				
+		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}
+		
+		// search query		
 		if (strlen($keyword)) {
 			$q->where('c.status','Disable');
 			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'c.detail'=> $keyword , 'c.username'=> $keyword , 'c.comseokeyword'=> $keyword , 'c.location'=> $keyword , 'c.damagesinamt'=> $keyword , 'cm.company'=> $keyword , 'cm.companyseokeyword'=> $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
@@ -73,7 +78,8 @@ class Complaints extends CI_Model
 				->join('user as u','c.userid=u.id','left')						
 				->join('company as cm','cm.id=c.companyid','left')
 				->where('websiteid',$siteid);
-				
+		
+		// search query		
 		if (strlen($keyword)) {
 			$q->where('c.status','Disable');
 			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'c.detail'=> $keyword , 'c.username'=> $keyword , 'c.comseokeyword'=> $keyword , 'c.location'=> $keyword , 'c.damagesinamt'=> $keyword , 'cm.company'=> $keyword , 'cm.companyseokeyword'=> $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
@@ -106,11 +112,16 @@ class Complaints extends CI_Model
 				->where(array('c.status'=>'Disable','c.transactionid !='=>'','c.websiteid'=>$siteid));
 				
 				
-		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
-				$q->limit($limit, $offset);
-				$q->order_by($sort_by, $sort_order);
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
 		}
-				
+		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}
+		
+		// search query		
 		if (strlen($keyword)) {			
 			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'c.detail'=> $keyword , 'c.username'=> $keyword , 'c.comseokeyword'=> $keyword , 'c.location'=> $keyword , 'c.damagesinamt'=> $keyword , 'cm.company'=> $keyword , 'cm.companyseokeyword'=> $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
 			
@@ -126,6 +137,7 @@ class Complaints extends CI_Model
 				->join('company as cm','cm.id=c.companyid','left')										
 				->where(array('c.status'=>'Disable','c.transactionid !='=>'','c.websiteid'=>$siteid));
 				
+		// search query		
 		if (strlen($keyword)) {			
 			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'c.detail'=> $keyword , 'c.username'=> $keyword , 'c.comseokeyword'=> $keyword , 'c.location'=> $keyword , 'c.damagesinamt'=> $keyword , 'cm.company'=> $keyword , 'cm.companyseokeyword'=> $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
 		}

@@ -50,13 +50,18 @@ Class Users extends CI_Model
 		
 		// results query
 		$q = $this->db->select('*')
-			->from('user');
+			->from('user');								
 		
-		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
-				$q->limit($limit, $offset);
-				$q->order_by($sort_by, $sort_order);
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
 		}
 		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}
+		
+		// search query
 		if (strlen($keyword)) {
 			$q->or_like(array('firstname'=> $keyword , 'lastname'=> $keyword , 'email'=> $keyword , 'phoneno'=> $keyword , 'street'=> $keyword , 'city'=> $keyword , 'state'=> $keyword , 'zipcode'=> $keyword, "CONCAT(firstname, ' ', lastname)" => $keyword ) );
 		}
@@ -66,7 +71,8 @@ Class Users extends CI_Model
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)
 			->from('user');
-		
+			
+		// search query
 		if (strlen($keyword)) {
 			$q->or_like(array('firstname'=> $keyword , 'lastname'=> $keyword , 'email'=> $keyword , 'phoneno'=> $keyword , 'street'=> $keyword , 'city'=> $keyword , 'state'=> $keyword , 'zipcode'=> $keyword, "CONCAT(firstname, ' ', lastname)" => $keyword ));
 		}

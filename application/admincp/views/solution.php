@@ -273,7 +273,7 @@ else { ?>
       <p><?php echo $this->session->flashdata('error'); ?></p>
     </div>
     <?php } ?>
-    <?php if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult') { ?>
+    
     <script type="text/javascript" language="javascript">
 	function trim(stringToTrim) {
 		return stringToTrim.replace(/^\s+|\s+$/g,"");
@@ -312,7 +312,7 @@ else { ?>
               <div class="lab">
                 <label for="keysearch">Keyword<span>*</span></label>
               </div>
-              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search Business Solution','value' => $this->uri->segment(3))); ?> </div>
+              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search Business Solution','value' => '')); ?> </div>
             </div>
           </div>
           <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
@@ -320,38 +320,78 @@ else { ?>
         <div class="btn-submit"> 
           <!-- Submit form --> 
           <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('solution');?>" class="Cancel">Cancel</a> </div>
+            <?php if(!empty($_GET['s']))
+			{	   
+				echo "<div style='margin-top:1em;'> Search results for <span style='color:#1a2e4d'>' ". $_GET['s'] . " ' </span> </div>";
+			}
+			
+		?>
+          
       </fieldset>
       <?php echo form_close(); ?> </div>
-    <?php } ?>
+    
     <?php if( count($solutions) > 0 ) { ?>
     <!-- table -->
-    <table class="tab tab-drag">
-      <tr class="top nodrop nodrag">
-        <th>Title</th>
-        <!--        <th>Detail</th>-->
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-      <?php 
-	$site = site_url();			
-	$url = explode("/admincp",$site);
-	$path = $url[0];
-	?>
-      <?php for($i=0;$i<count($solutions);$i++) { ?>
-      <tr>
-        <td><a href="<?php echo site_url('solution/view/'.$solutions[$i]['id']); ?>" title="View Detail of <?php echo stripslashes($solutions[$i]['title']);?>" class="colorbox" style="color: #404040;"><?php echo ucfirst(stripslashes($solutions[$i]['title'])); ?></a></td>
-        <?php /*?> <td align="justify"><?php echo nl2br(stripslashes($solutions[$i]['detail'])); ?></td><?php */?>
-        <td><?php if( stripslashes($solutions[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('solution/disable/'.$solutions[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this solution?');"><span>Enable</span></a>
-          <?php } ?>
-          <?php if( stripslashes($solutions[$i]['status']) == 'Disable' ) { ?>
-          <a href="<?php echo site_url('solution/enable/'.$solutions[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this solution?');"><span>Disable</span></a>
-          <?php } ?></td>
-        <td><a href="<?php echo site_url('solution/edit/'.$solutions[$i]['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> <a href="<?php echo site_url('solution/delete/'.$solutions[$i]['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this solution?');">Delete</a> <a href="<?php echo site_url('solution/view/'.$solutions[$i]['id']); ?>" title="View Detail of <?php echo stripslashes($solutions[$i]['title']);?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
-      </tr>
-      <?php } ?>
-     
-    </table>
+    
+     <table class="tab tab-drag">
+		<thead>
+			<tr class="top nodrop nodrag">
+			<?php foreach($fields as $field_name => $field_display): ?>
+			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php 
+					if($sort_by == $field_name){ 
+						$field_display .= "<img alt='desc' src='".site_url("images/sort_".$sort_order.".gif")."'/>";
+					}
+				 ?>
+				<?php echo anchor("solution/index/$field_name/" .
+					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+					$field_display,array('class' => 'sorttitle')); ?>
+			</th>
+			
+			
+			<?php endforeach; ?>
+			<th>Action</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<?php foreach($solutions as $solution): ?>
+			<tr>
+				<?php foreach($fields as $field_name => $field_display): ?>
+				<td>
+					<?php
+						 if ($field_name == 'status' ) { 
+							if( $solution->$field_name == 'Enable' ){ ?>
+								<a href="<?php echo site_url('solution/disable/'.$solution->id);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span><?php echo $solution->$field_name; ?></span></a>
+								
+							<?php 
+							}else{ ?>
+								
+							<a href="<?php echo site_url('solution/enable/'.$solution->id);?>" title="Click to Enable" class="btn btn-small btn-success" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this user?');"><span><?php echo $solution->$field_name; ?></span></a>
+						 <?php
+							}
+						  
+						  }else{						
+							echo $solution->$field_name; 
+						  }
+					?>	
+					
+				</td>			
+				<?php endforeach; ?>
+				<td>
+					<a href="<?php echo site_url('solution/edit/'.$solution->id); ?>" title="Edit" class="ico ico-edit">Edit</a> 					
+					<a href="<?php echo site_url('solution/delete/'.$solution->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this user?');">Delete</a>
+					<a href="<?php echo site_url('solution/view/'.$solution->id); ?>" title="View Detail of <?php echo stripslashes($solution->title);?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a>
+				</td>
+			</tr>
+			<?php endforeach; ?>			
+		</tbody>
+		
+	</table> 
+    
+    
+    
+    
     <!-- /pagination -->
 	<?php  if($this->pagination->create_links()) { ?>
 	<div class="pagination"> <?php echo $this->pagination->create_links(); ?> </div>

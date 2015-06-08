@@ -67,18 +67,24 @@ class Elites extends CI_Model
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
 		$sort_columns = array('company','contactname', 'email','contactemail','payment_amount','status','registerdate','payment_date');
-		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'company';
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
 		
 		// results query
 		$q = $this->db->select('e.*, c.*')
 				->from('elite as e')
-				->join('company as c','e.company_id=c.id','left');				
+				->join('company as c','e.company_id=c.id','left')
+				->where('c.company is NOT NULL');				
 				
-		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
-				$q->limit($limit, $offset);
-				$q->order_by($sort_by, $sort_order);
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
 		}
-				
+		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}
+		
+		// search query		
 		if (strlen($keyword)) {			
 			$q->or_like(array('c.city'=> $keyword , 'c.state'=> $keyword , 'c.country'=> $keyword , 'c.zip'=> $keyword , 'c.company'=> $keyword , 'c.email'=> $keyword , 'c.contactemail'=> $keyword, 'c.contactname'=> $keyword,  'c.companyseokeyword'=> $keyword ) );
 			
@@ -90,9 +96,10 @@ class Elites extends CI_Model
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)	 
 			->from('elite as e')
-			->join('company as c','e.company_id=c.id','left');			
+			->join('company as c','e.company_id=c.id','left')
+			->where('c.company is NOT NULL');			
 				
-					
+		// search query			
 		if (strlen($keyword)) {			
 			$q->or_like(array('c.city'=> $keyword , 'c.state'=> $keyword , 'c.country'=> $keyword , 'c.zip'=> $keyword , 'c.company'=> $keyword , 'c.email'=> $keyword , 'c.contactname'=> $keyword,  'c.companyseokeyword'=> $keyword ) );			
 		}	

@@ -92,17 +92,29 @@ class Coupon extends CI_Controller {
 			
 			$this->load->model('coupons');
 			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+						
 			$results = $this->coupons->couponsSearch($limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['coupons'] = $results['rows'];
 			$this->data['num_results'] = $results['num_rows'];
 			
 			
-			// pagination				
-			$this->paging['base_url'] = site_url("coupon/index/$sort_by/$sort_order");
+			// pagination
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("coupon/index/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("coupon/index");
+				$uriSegment = 3;
+			}					
+			$this->paging['base_url'] = $siteURL;
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
-			$this->paging['uri_segment'] = 5;
+			$this->paging['uri_segment'] = $uriSegment;
 			$this->pagination->initialize($this->paging);									
 			
 			$this->data['sort_by'] = $sort_by;

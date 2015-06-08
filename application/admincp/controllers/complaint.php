@@ -110,17 +110,30 @@ class Complaint extends CI_Controller {
 				$decodeKeyword = urldecode($this->input->get('s'));
 			}
 			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+			
 			$results = $this->complaints->complaintsSearch($decodeKeyword, $siteid, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['complaints'] = $results['rows'];
 			$this->data['num_results'] = $results['num_rows'];
 			
 			
-			// pagination				
-			$this->paging['base_url'] = site_url("complaint/index/$sort_by/$sort_order");
+			// pagination	
+			
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("complaint/index/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("complaint/index");
+				$uriSegment = 3;
+			}			
+			$this->paging['base_url'] = $siteURL;
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
-			$this->paging['uri_segment'] = 5;
+			$this->paging['uri_segment'] = $uriSegment;
 			$this->pagination->initialize($this->paging);									
 			
 			$this->data['sort_by'] = $sort_by;
@@ -462,17 +475,30 @@ class Complaint extends CI_Controller {
 				$decodeKeyword = urldecode($this->input->get('s'));
 			}
 			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+			
 			$results = $this->complaints->removedComplaintsSearch($decodeKeyword, $siteid, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['removedcomplaints'] = $results['rows'];
 			$this->data['num_results'] = $results['num_rows'];
 			
 			
-			// pagination				
-			$this->paging['base_url'] = site_url("complaint/removed/$sort_by/$sort_order");
+			// pagination
+			
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("complaint/removed/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("complaint/removed");
+				$uriSegment = 3;
+			}					
+			$this->paging['base_url'] = $siteURL;
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
-			$this->paging['uri_segment'] = 5;
+			$this->paging['uri_segment'] = $uriSegment;
 			$this->pagination->initialize($this->paging);									
 			
 			$this->data['sort_by'] = $sort_by;
