@@ -7,7 +7,7 @@
 	    <li class="first"><a class="topmenu" href="<?php echo site_url('dashboard'); ?>" class="link" title="Dashboard">Dashboard</a>
 		    <ul class="submenu">
 				<li><a href="<?php echo site_url('elite'); ?>" title="Elite Membership Status" class="link">Elite Membership Status</a> </li>
-				<li><a href="<?php echo site_url('elite/update'); ?>" title="Update Your Credit Card" class="link">Update Your Credit card</a> </li>
+				<li><a href="<?php echo site_url('elite/update'); ?>" title="Update Your Credit Card" class="link">Update Your Credit Card</a> </li>
 				<li><a href="<?php echo site_url('tutorial'); ?>"  class="link" title="Tutorials">Tutorials</a>
 				<li><a href="<?php echo site_url('faq'); ?>"  class="link" title="FAQ">FAQ</a>
 		    </ul>
