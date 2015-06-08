@@ -58,6 +58,14 @@ td{display:block;}
 
 .revw_occupt span a{max-width:550px !important;display:block;}
 .p_realese_head{width:auto;}
+
+
+.reg_frm{float:none;width:82%;margin:0 auto;}
+.reg-row:first-child{display: inline-block;}
+.form-col-2{width:300px;}
+#streetaddress,#city,#country1,#state1,#zip{width:275px;}
+.form-col-2 label{font-size:25px;}
+.business-callout{float:none;margin-left:13.5em;}
 }
 @media only screen and (min-width: 850px) and (max-width: 1050px)  {
 .main_footer, .innr_wrap, .container{width:82%;padding:0 20px; }
@@ -138,6 +146,10 @@ td{display:block;}
 .p_realese_head{width:auto;}
 
 .coupon_wrap .revw_blck_img{display:block;height:auto;margin:0 auto;text-align:center;}
+
+#frmaddcompany .reg-row:first-child{display: inline-block;}
+#frmaddcompany .form-col-2{width:300px;}
+ #streetaddress,#city,#country1,#state1,#zip,#phone,#aboutcompany{width:225px;}
 }
 
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
@@ -151,6 +163,10 @@ td{display:block;}
 .rvw_fillwrp h3{font-size:20px;}
 .review_right div{width:350px;}
 .press_srchwrp,.pres_srch_wrp,.main_press_srchwrp{width:auto;}
+
+#frmaddcompany{float:none;width:511px;margin:0 auto;}
+#frmaddcompany .form-col-2 label{font-size:25px;}
+.business-callout{float:none;margin-left:13.5em;}
 }
 
 
@@ -167,6 +183,12 @@ td{display:block;}
 .gdr_male label,.gdr_female label{font-size:14px;}
 .srch_rslt_left{width:411px;}
 .review_right div{width:290px;}
+
+#frmaddcompany{float:none;width:411px;margin:0 auto;}
+#frmaddcompany .form-col-2 label{font-size:25px;}
+#frmaddcompany .form-col-1{width:65px;}
+#frmaddcompany .form-circle{margin-left:0px;}
+.business-callout{float:none;margin-left:4.5em;}
 }
 @media only screen and (min-width: 310px) and (max-width: 549px)  {
 #loading{height:10px;float:none;margin:0 auto; position: relative; z-index: 9999999;}
@@ -202,6 +224,15 @@ td{display:block;}
 .serch_result h1{font-size:25px;}
 .review_right div{width:200px;}
 
+#frmaddcompany{float:none;width:311px;margin:0 auto;}
+#frmaddcompany .form-col-2 label{font-size:20px;}
+#frmaddcompany .form-col-2 {margin-top:2em;}
+#frmaddcompany .form-col-1{width:65px;}
+#frmaddcompany .form-circle{margin-left:0px;}
+.business-callout .form-col-2{width:268px !important;}
+#frmaddcompany .business-callout{float:none;}
+ #streetaddress,#city,#country1,#state1,#zip,#phone,#aboutcompany{width:275px !important;}
+ .new_usr{float:none;text-align:center;font-size:20px;}
 }
 
 @media only screen and (min-width: 620px) and (max-width: 1050px)  {

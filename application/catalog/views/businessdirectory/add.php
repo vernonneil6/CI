@@ -272,7 +272,7 @@
           
           <div class="reg-row business-callout">
 			<div >
-				<span class="form-col-2" style="width:400px;">
+				<span class="form-col-2" >
 					<a href="/solution/claimbusiness"><h3 >YouGotRated Elite Membership:</h3></a>
 					<h4 >Becoming a YGR Elite member gives you the following benefits:</h4>        
 					<ul>
