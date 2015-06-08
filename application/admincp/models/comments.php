@@ -36,28 +36,38 @@ class Comments extends CI_Model
 	function commentsSearch($keyword, $limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('comment','commentdate','company');
-		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'u.username';
+		$sort_columns = array('comment','commentdate','company','commentby','reviewby');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
+		
+		if($sort_by == 'commentby'){
+			$sort_by = 'u.username';
+		}
+		
 		
 		// results query
-		$q = $this->db->select('c.*,u.*,com.company,c.id as cid')
+		$q = $this->db->select('c.*,u.username,r.comment as reviewcomment, com.company,c.id as cid')
 			->from('comments as c')
 			->join('reviews as r','r.id=c.reviewid','left')			
 			->join('company as com','com.id=r.companyid','left')
 			->join('user as u','c.commentby=u.id','left');
 		
+		// limit query
 		if(!empty($limit)){
-			$q->limit($limit, $offset);
-			$q->order_by($sort_by, $sort_order);
+			$q->limit($limit, $offset);		
 		}
-			
+		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}	
+		
+		// search query	
 		if (strlen($keyword)) {
 			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'u.username'=> $keyword, 'com.company'=> $keyword, 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );			
 		}	
 			
 			
 		$ret['rows'] = $q->get()->result();
-		
+		//print_r($ret['rows']);die;
 		
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)	 

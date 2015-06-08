@@ -121,7 +121,7 @@ else { ?>
         </div>
         <div class="btn-submit"> 
           <!-- Submit form --> 
-          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('user');?>" class="Cancel">Cancel</a> </div>
+          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('comment');?>" class="Cancel">Cancel</a> </div>
           
           <?php if(!empty($_GET['s']))
 			{	   
@@ -234,7 +234,14 @@ function submitfrm()
 						<input type="checkbox" class="case" name="foo[]" value="<?php echo $comment->id;?>" />
 				 <?php					
 					}elseif ($field_name == 'comment'){
-						echo nl2br(substr($comment->comment,0,100)).'...';
+						//echo nl2br(substr($comment->comment,0,100)).'...';
+						
+						echo $string = (strlen($comment->comment) > 20) ? substr($comment->comment,0,15).'...' : $comment->comment;
+					}
+					elseif ($field_name == 'reviewcomment'){
+						//echo nl2br(substr($comment->comment,0,100)).'...';
+						
+						echo $string = (strlen($comment->reviewcomment) > 20) ? substr($comment->reviewcomment,0,15).'...' : $comment->reviewcomment;
 					}
 					elseif( $field_name == 'company'){
 						echo $comment->company; 

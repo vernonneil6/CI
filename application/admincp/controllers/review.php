@@ -478,7 +478,7 @@ class Review extends CI_Controller {
 	}*/
 	
 	
-	public function removed($sort_by = 'comment', $sort_order = 'asc', $offset = 0) {
+	public function removed($sort_by = '', $sort_order = '', $offset = 0) {
 		
 		if( $this->session->userdata['youg_admin'] )
 	  	{

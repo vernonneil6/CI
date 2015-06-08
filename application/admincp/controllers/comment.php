@@ -78,7 +78,7 @@ class Comment extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sort_by = 'commentby', $sort_order = 'asc', $offset = 0) {
+	public function index($sort_by = '', $sort_order = '', $offset = 0) {
 		
 		if( $this->session->userdata['youg_admin'] )
 	  	{
@@ -86,6 +86,7 @@ class Comment extends CI_Controller {
 			$this->data['fields'] = array(
 				'id' => 'Comment ID',
 				'comment' => 'Title',
+				'reviewcomment' => 'Review',
 				'company' => 'Business Name',
 				'commentby' => 'Submitted By',								
 				'commentdate' => 'Date',
