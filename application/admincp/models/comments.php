@@ -62,12 +62,12 @@ class Comments extends CI_Model
 		
 		// search query	
 		if (strlen($keyword)) {
-			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'u.username'=> $keyword, 'com.company'=> $keyword, 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );			
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'u.username'=> $keyword, 'com.company'=> $keyword, 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword, 'r.comment' => $keyword ) );			
 		}	
 			
 			
 		$ret['rows'] = $q->get()->result();
-		//print_r($ret['rows']);die;
+		
 		
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)	 
@@ -77,7 +77,7 @@ class Comments extends CI_Model
 			->join('user as u','c.commentby=u.id','left');			
 		
 		if (strlen($keyword)) {
-			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );			
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'u.username'=> $keyword, 'com.company'=> $keyword, 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword, 'r.comment' => $keyword ) );	
 		}
 		
 		$tmp = $q->get()->result();
