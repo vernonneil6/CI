@@ -100,6 +100,10 @@ class Elite extends CI_Controller {
 				$decodeKeyword = urldecode($this->input->get('s'));
 			}
 			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+			
 			$results = $this->elites->elitesSearch($decodeKeyword, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['elites'] = $results['rows'];

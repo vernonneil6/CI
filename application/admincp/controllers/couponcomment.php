@@ -95,6 +95,10 @@ class Couponcomment extends CI_Controller {
 			
 			$this->load->model('couponcomments');
 			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+			
 			$results = $this->couponcomments->couponcommentsSearch($limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['couponcomments'] = $results['rows'];

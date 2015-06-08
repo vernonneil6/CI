@@ -98,6 +98,10 @@ class Comment extends CI_Controller {
 				$decodeKeyword = urldecode($this->input->get('s'));
 			}
 			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+			
 			$results = $this->comments->commentsSearch($decodeKeyword, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['comments'] = $results['rows'];
@@ -105,10 +109,19 @@ class Comment extends CI_Controller {
 			//echo $this->data['num_results'];die;
 			
 			// pagination				
-			$this->paging['base_url'] = site_url("comment/index/$sort_by/$sort_order");
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("comment/index/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("comment/index");
+				$uriSegment = 3;
+			}
+			
+			$this->paging['base_url'] = $siteURL
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
-			$this->paging['uri_segment'] = 5;
+			$this->paging['uri_segment'] = $uriSegment;
 			$this->pagination->initialize($this->paging);									
 			
 			$this->data['sort_by'] = $sort_by;
