@@ -418,13 +418,8 @@ class Reviews extends CI_Model
 			$q->limit($limit, $offset);		
 		}
 		
-		if(!empty($sort_by) && !empty($sort_order)){
-			if($sort_by == 'reviewby'){
-				$q->order_by('u.username', $sort_order);
-				$q->order_by('r.reviewby', $sort_order);
-			}else{
-				$q->order_by($sort_by, $sort_order);
-			}
+		if(!empty($sort_by) && !empty($sort_order)){			
+			$q->order_by($sort_by, $sort_order);		
 		}
 		
 		$ret['rows'] = $q->get()->result();

@@ -69,7 +69,7 @@ class Pressrelease extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sortby,$orderby='asc')
+	/*public function index($sortby,$orderby='asc')
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
@@ -105,7 +105,7 @@ class Pressrelease extends CI_Controller {
 				$base = site_url("pressrelease/index");
 				$orderby = 'asc';
 				$url = 3;
-			}*/
+			}
 			
 			
 			//Addingg Setting Result to variable
@@ -118,7 +118,78 @@ class Pressrelease extends CI_Controller {
 			//Loading View File
 			$this->load->view('pressrelease',$this->data);
 	  	}
+	}*/
+	
+	
+	public function index($sort_by = '', $sort_order = '', $offset = 0) {
+		
+		if( !$this->session->userdata('youg_admin'))
+	  	{
+	  	  	redirect('adminlogin', 'refresh');
+		}
+		
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+			$limit = 15;
+			$this->data['fields'] = array(
+				'site' => 'Site Name',
+				'title' => 'Title',
+				'subtitle' => 'Sub Title',
+				'release' => 'Release Date',				
+				'status' => 'Status'
+			);
+			
+			$this->load->model('pressreleases');
+			
+			if($this->input->get('s')){				
+				$decodeKeyword = urldecode($this->input->get('s'));
+			}
+			
+			$companyid = $this->session->userdata['youg_admin']['id'];
+			
+			$siteid = $this->session->userdata['siteid'];
+			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+			
+			$results = $this->pressreleases->pressSearch($decodeKeyword, $companyid, $siteid, $limit, $offset, $sort_by, $sort_order);
+			
+			$this->data['pressreleases'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
+			//echo $this->data['num_results'];die;
+			
+			// pagination				
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("pressrelease/index/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("pressrelease/index");
+				$uriSegment = 3;
+			}
+			
+			$this->paging['base_url'] = $siteURL;
+			
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;
+			$this->paging['uri_segment'] = 5;
+			
+			if(!empty($_GET)){
+				$this->paging['suffix'] = '?'.http_build_query($_GET, '', "&");
+				$this->paging['first_url'] = $this->paging['base_url'] . $this->paging['suffix'];
+			}
+						
+			$this->pagination->initialize($this->paging);									
+			
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('pressrelease', $this->data);
+			
+		}
 	}
+	
 	
 	public function add()
 	{

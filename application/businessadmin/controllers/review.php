@@ -49,7 +49,7 @@ class Review extends CI_Controller
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sort_by = 'reviewdate', $sort_order = 'asc', $offset = 0) {
+	public function index($sort_by = '', $sort_order = '', $offset = 0) {
 		
 		if( !$this->session->userdata('youg_admin'))
 	  	{
@@ -78,6 +78,9 @@ class Review extends CI_Controller
 			
 			$siteid = $this->session->userdata['siteid'];
 			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
 			
 			$results = $this->reviews->reviewsSearch($decodeKeyword, $companyid, $siteid, $limit, $offset, $sort_by, $sort_order);
 			
@@ -86,7 +89,17 @@ class Review extends CI_Controller
 			//echo $this->data['num_results'];die;
 			
 			// pagination				
-			$this->paging['base_url'] = site_url("review/index/$sort_by/$sort_order");
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("review/index/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("review/index");
+				$uriSegment = 3;
+			}
+			
+			$this->paging['base_url'] = $siteURL;
+			
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
 			$this->paging['uri_segment'] = 5;
@@ -746,9 +759,9 @@ public function request($reviewid='',$userid='')
 		function searchrevs()
 		{
 			if($this->input->post('btnsearch'))
-			{
-				$keyword = $this->input->post('keysearch');
-				redirect('review/searchresult/'.$keyword,'refresh');				
+			{				
+				$keyword = urlencode($this->input->post('keysearch'));				
+				redirect('review/index/?s='.$keyword);					
 			}
 			else
 			{
@@ -792,20 +805,43 @@ public function request($reviewid='',$userid='')
 				
 				if($keyword!='') 
 				{					
+					$searchKey = urldecode($keyword);
 					$file = 'Report-of-search-reviews.csv';					
-					$review = $this->reviews->searchrev($keyword,$companyid,$limit,$offset);
+					$review_results = $this->reviews->reviewsSearch($keyword,$companyid,$siteid);
 					
 				}
 				else
 				{					
 					$file = 'Report-of-all-reviews.csv';
-					$review = $this->reviews->get_all_reviews($companyid,$siteid,$limit,$offset,$sortby,$orderby);
+					$review_results = $this->reviews->reviewsSearch($keyword,$companyid,$siteid);
 				}
 				
 				ob_start();
-				echo "Review,Review to,Review by,IP,Date Reviewed,Status"."\n";
+				echo "Review,Business Name,Review by,Date Reviewed,Status"."\n";
 				
-				   for($i=0;$i<count($review);$i++) { 
+				//print_r($review);die;
+				
+				foreach($review_results as $review_result): 
+					foreach($review_result as $reviews): 	
+					
+						echo "\"".$reviews->comment."\"";
+						echo ",";								
+						echo "\"".$reviews->company."\"";
+						echo ",";
+						if(!empty($reviews->firstname) && !empty($reviews->lastname)){
+							echo $reviews->firstname.' '.$reviews->lastname;
+						}else{
+							echo $reviews->username;
+						}
+						echo ",";						
+						echo date('m-d-Y', strtotime($reviews->reviewdate));
+						echo ",";						
+						echo $reviews->status;
+						echo "\n";									
+					endforeach;
+				endforeach;
+				
+				   /*for($i=0;$i<count($review);$i++) { 
 						$comment = str_replace('"','',$review[$i]['comment']);
 						$comment = str_replace("'","",$comment);
 						$comment = str_replace(",",'#COMMA#',$comment);
@@ -817,7 +853,7 @@ public function request($reviewid='',$userid='')
 						echo stripslashes(ucwords($review[$i]['status'])); 
 						echo "\n";							
 						//break;
-					}
+					}*/
 			
 					$content = ob_get_contents();
 					ob_end_clean();

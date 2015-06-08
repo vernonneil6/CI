@@ -436,18 +436,7 @@ class Review extends CI_Controller {
 						echo "\n";									
 					endforeach;
 				endforeach;
-				
-				   /*for($i=0;$i<count($review);$i++) { 
-					
-						echo stripslashes(ucwords($review[$i]['comment'])).',';
-						echo stripslashes(ucwords($review[$i]['company'])).',';
-						echo ucfirst($reviews[$i]['firstname'].' '.$reviews[$i]['lastname']).',';
-						echo stripslashes(ucwords($review[$i]['reviewip'])).',';
-						echo stripslashes($review[$i]['reviewdate']).',';
-						echo stripslashes(ucwords($review[$i]['status'])); 
-						echo "\n";							
-					}*/
-			
+								
 					$content = ob_get_contents();
 					ob_end_clean();
 					header("Expires: 0");

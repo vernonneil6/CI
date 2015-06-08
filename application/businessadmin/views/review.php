@@ -23,7 +23,7 @@
 		<h2><span> Reviews</span></h2>
 		<h2>
 		   <span>
-				<a href="<?php echo site_url('review/export_csv/'.$keyword); ?>" title="Export as CSV file">
+				<a href="<?php if(!empty($_GET['s'])){  echo site_url('review/export_csv/'.$_GET['s']); }else { echo site_url('review/export_csv'); } ?>" title="Export as CSV file">
 					<img src="<?php echo base_url(); ?>images/export_csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
 				</a>
 			</span>
@@ -103,6 +103,11 @@
 			foreach($fields as $field_name => $field_display): ?>
 		
 			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php
+				if($sort_by == $field_name){ 
+						$field_display .= "<img alt='desc' src='".site_url("images/sort_".$sort_order.".gif")."'/>";
+				}
+				?>
 				<?php echo anchor("review/index/$field_name/" .
 					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
 					$field_display,array('class' => 'sorttitle')); ?>
