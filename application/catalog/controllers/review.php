@@ -137,7 +137,8 @@ class Review extends CI_Controller
 		if($companyid!='' || $companyid!=0)
 		{
 			$this->data['companyid'] = $companyid;
-
+			$this->data['findproforuser']=$this->reviews->find_promocode_foruser($userid);
+			$this->data['findproforcompany']=$this->reviews->find_reviewpromocode_forcompany($companyid);
 			$this->data['company'] = $this->reviews->get_company_byid($companyid);
 			
 			if(count($this->data['company'])>0){

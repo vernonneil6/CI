@@ -987,7 +987,38 @@ class Reviews extends CI_Model
 		}
 		
 	}
-	
+	/* Find review promocode available for company */
+	function find_reviewpromocode_forcompany($companyid)
+	{
+		$query = $this->db->get_where('youg_reviewpromo',array('status'=>'Enable','companyid'=>$companyid));
+	    
+	    if ($query->num_rows() > 0)
+		{
+			//return $query->row_array();
+			return $value='1';
+		}
+		else
+		{
+			return $value='0';
+		}
+		
+	}
+	/* Find promocode available for user */
+	function find_promocode_foruser($userid)
+	{
+		$query = $this->db->get_where('youg_elite',array('id'=>$userid,'status'=>'Enable'));
+	    
+	    if ($query->num_rows() > 0)
+		{
+			//return $query->row_array();
+			return $value='1';
+		}
+		else
+		{
+			return $value='0';
+		}
+		
+	}
 	
 }
 ?>
