@@ -113,6 +113,10 @@ class Review extends CI_Controller {
 				$decodeKeyword = urldecode($this->input->get('s'));
 			}
 			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+			
 			$results = $this->reviews->reviewsSearch($decodeKeyword, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['reviews'] = $results['rows'];
@@ -120,10 +124,19 @@ class Review extends CI_Controller {
 			//echo $this->data['num_results'];die;
 			
 			// pagination				
-			$this->paging['base_url'] = site_url("review/index/$sort_by/$sort_order");
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("review/index/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("review/index");
+				$uriSegment = 3;
+			}
+			
+			$this->paging['base_url'] = $siteURL;
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
-			$this->paging['uri_segment'] = 5;
+			$this->paging['uri_segment'] = $uriSegment;
 			
 			if(!empty($_GET)){
 				$this->paging['suffix'] = '?'.http_build_query($_GET, '', "&");
@@ -478,6 +491,10 @@ class Review extends CI_Controller {
 			
 			$this->load->model('reviews');
 			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+			
 			$results = $this->reviews->removedReviewsSearch($limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['reviewsremoved'] = $results['rows'];
@@ -485,10 +502,17 @@ class Review extends CI_Controller {
 			//echo $this->data['num_results'];die;
 			
 			// pagination				
-			$this->paging['base_url'] = site_url("review/removed/$sort_by/$sort_order");
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("review/removed/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("review/removed");
+				$uriSegment = 3;
+			}
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
-			$this->paging['uri_segment'] = 6;
+			$this->paging['uri_segment'] = $uriSegment;
 			$this->pagination->initialize($this->paging);									
 			
 			$this->data['sort_by'] = $sort_by;

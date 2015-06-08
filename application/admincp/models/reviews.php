@@ -51,11 +51,16 @@ class Reviews extends CI_Model
 			->join('company as c','r.companyid=c.id','left')
 			->join('user as u','r.reviewby=u.id','left');
 			
-		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
-				$q->limit($limit, $offset);
-				$q->order_by($sort_by, $sort_order);
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
 		}
 		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}	
+		
+		// search query
 		if (strlen($keyword)) {							
 			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'r.comment' => $keyword , 'c.company'=> $keyword , 'c.streetaddress' => $keyword , 'c.aboutus' => $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );							
 		}
@@ -69,6 +74,7 @@ class Reviews extends CI_Model
 			->join('company as c','r.companyid=c.id','left')
 			->join('user as u','r.reviewby=u.id','left');	
 		
+		// search query
 		if (strlen($keyword)) {							
 			
 			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'r.comment' => $keyword , 'c.company'=> $keyword , 'c.streetaddress' => $keyword , 'c.aboutus' => $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
@@ -396,19 +402,29 @@ class Reviews extends CI_Model
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
 		$sort_columns = array('comment','reviewby','reviewdate','reviewremoveddate');
 		if($sort_by == 'reviewby'){
-			$sort_by = 'u.username';
+			$sort_by = 'reviewuser';
 		}else{	
 			$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
 		}
 		
 		// results query
-		$q = $this->db->select('r.*,u.firstname,u.lastname')
+		$q = $this->db->select("r.reviewby,r.comment,u.firstname,u.lastname,u.username, (case when (u.username != '') then u.username else r.reviewby end) as reviewuser", FALSE)
 			->from('reviews as r')
-			->join('user as u','r.reviewby=u.id');
+			->join('user as u','r.reviewby=u.id','left')
+			->where('r.status','Disable');			
 		
-		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
-				$q->limit($limit, $offset);
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
+		}
+		
+		if(!empty($sort_by) && !empty($sort_order)){
+			if($sort_by == 'reviewby'){
+				$q->order_by('u.username', $sort_order);
+				$q->order_by('r.reviewby', $sort_order);
+			}else{
 				$q->order_by($sort_by, $sort_order);
+			}
 		}
 		
 		$ret['rows'] = $q->get()->result();
@@ -417,7 +433,7 @@ class Reviews extends CI_Model
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)	 
 			->from('reviews as r')
-			->join('user as u','r.reviewby=u.id')
+			->join('user as u','r.reviewby=u.id','left')
 			->where('r.status','Disable');		
 		
 		$tmp = $q->get()->result();

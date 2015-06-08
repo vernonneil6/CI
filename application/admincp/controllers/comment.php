@@ -118,7 +118,7 @@ class Comment extends CI_Controller {
 				$uriSegment = 3;
 			}
 			
-			$this->paging['base_url'] = $siteURL
+			$this->paging['base_url'] = $siteURL;
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
 			$this->paging['uri_segment'] = $uriSegment;
