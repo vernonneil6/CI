@@ -4,7 +4,7 @@
   <div class="breadcrumbs">
     <ul>
       <li class="home"><a href="<?php echo site_url('dashboard');?>" title="Dashboard">Dashboard</a></li>
-      <li><a href="<?php echo site_url('elite/update');?>" title="<?php echo "Elite Update card"; ?>"><?php echo "Elite Update card"; ?></a></li>
+      <li><a href="<?php echo site_url('elite/update');?>" title="<?php echo "Elite Update card"; ?>"><?php echo "Update Credit Card"; ?></a></li>
     </ul>
   </div>
 
@@ -70,7 +70,7 @@ $(document).ready(function() {
 
   <div class="box">
     <div class="headlines">
-      <h2><span>Elite Update card</span></h2>
+      <h2><span>Update Credit Card</span></h2>
     </div>
     <div class="box-content"> 
 			<?php echo form_open('elite/renew/'.$elite[0]['id'],array('class'=>'formBox','id'=>'frmelite')); ?>
@@ -90,15 +90,70 @@ $(document).ready(function() {
           <div class="col1" style="width:100%">
             <div class="clearfix">
               <div class="lab">
-                <p style="width: 272px;">Enter Billing Address for your Credit Card</p>					
+                <p style="width: 310px;margin-bottom:0px;">Enter Billing Address for your Debit/Credit Card</p>					
               </div>
               <div class="">            
               </div>
             </div>
           </div>
         </div>
-		
-		<div class="form-cols">
+         <div id="cc-error"><?php echo $this->session->flashdata('success_msg'); ?></div>
+         <div class="form-cols" style="display:none;">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+				<table style="border:1px solid #ccc;width:80%;font-weight:bold;">
+				<thead style="background-color:#D3F1FB">
+				<tr>
+				<th>Card Type</th>
+				<th>Last 4 digits on card</th>
+				<th>Expiration Date </th>
+				<th>Billing Address</th>
+				<th>Action</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+				<td style="padding-left: 10px;"> Visa</td>
+				<td style="padding-left: 10px;"> 1234</td>
+				<td style="padding-left: 10px;">05/2020</td>
+				<td style="padding-left: 10px;"> NO 12/24 benz cross,</br>Suite 255,</br>Tampa Fl 3324</br>United States</br> (confirmed)</td>
+				<td style="padding-left: 10px;"><a href="#">Edit</a> | <a href="#">Remove</a></td>
+				</tr>
+				</tbody>
+				
+				</table>
+			</div>
+		  </div>
+		</div>
+         
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 8% !important;">
+                <label>First Name:</label>
+              </div>
+              <div class="con" style="width: 59% !important; float:left">
+					<?php echo form_input(array( 'name'=>'fname','id'=>'fname','class'=>'input','type'=>'text','placeholder'=>'Enter Your first name')); ?>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+        
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+              <div class="lab" style="width: 8% !important;">
+                <label>Last Name:</label>
+              </div>
+              <div class="con" style="width: 59% !important; float:left">
+					<?php echo form_input(array( 'name'=>'lname','id'=>'lname','class'=>'input','type'=>'text','placeholder'=>'Enter Your last name')); ?>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-cols">
           <div class="col1" style="width:100%">
             <div class="clearfix">
               <div class="lab" style="width: 8% !important;">
@@ -114,20 +169,17 @@ $(document).ready(function() {
         <div class="form-cols">
           <div class="col1" style="width:100%">
             <div class="clearfix">
-				
               <div class="lab" style="width: 8% !important;">
-                <label>Country:</label>
+                <label>City:</label>
               </div>
-              <div class="" style="float:left">
-                <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
+              <div class="con" style="width: 59% !important; float:left">
+                 <?php echo form_input(array( 'name'=>'city','id'=>'city','class'=>'input','type'=>'text','placeholder'=>'Enter Your city')); ?>
               </div>
-              
-             
-              
             </div>
           </div>
         </div>
-		<div class="form-cols">
+        
+        <div class="form-cols">
 			<div class="col1" style="width:100%">
 				<div class="clearfix">    
 					<div class="lab" style="width: 8% !important;">
@@ -143,22 +195,26 @@ $(document).ready(function() {
 					</div>
 				</div>
 			</div>
-		</div>             
-        <div class="form-cols">
+		</div>       
+		
+		<div class="form-cols">
           <div class="col1" style="width:100%">
             <div class="clearfix">
+				
               <div class="lab" style="width: 8% !important;">
-                <label>City:</label>
+                <label>Country:</label>
               </div>
-              <div class="con" style="width: 59% !important; float:left">
-                 <?php echo form_input(array( 'name'=>'city','id'=>'city','class'=>'input','type'=>'text','placeholder'=>'Enter Your city')); ?>
+              <div class="" style="float:left">
+                <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
               </div>
+              
+             
+              
             </div>
           </div>
         </div>
         
-        
-        <div class="form-cols">
+          <div class="form-cols">
           <div class="col1" style="width:100%">
             <div class="clearfix">
               <div class="lab" style="width: 8% !important;">
@@ -171,8 +227,7 @@ $(document).ready(function() {
           </div>
         </div>
         
-        
-        <div class="form-cols">
+         <div class="form-cols">
           <div class="col1" style="width:100%">
             <div class="clearfix">
               <div class="lab">
@@ -211,34 +266,6 @@ $(document).ready(function() {
                <a class="cvvpop" href="<?php echo base_url();?>">What is this? 
 					<img src="images/cvvpop1.jpg" id="cvvhover" style="display:none;">
                </a> 
-            </div>
-          </div>
-        </div>
-        
-        
-        <div class="form-cols">
-          <div class="col1" style="width:100%">
-            <div class="clearfix">
-              <div class="lab" style="width: 8% !important;">
-                <label>First Name:</label>
-              </div>
-              <div class="con" style="width: 59% !important; float:left">
-					<?php echo form_input(array( 'name'=>'fname','id'=>'fname','class'=>'input','type'=>'text','placeholder'=>'Enter Your first name')); ?>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="cc-error"><?php echo $this->session->flashdata('success_msg'); ?></div>
-        
-        <div class="form-cols">
-          <div class="col1" style="width:100%">
-            <div class="clearfix">
-              <div class="lab" style="width: 8% !important;">
-                <label>Last Name:</label>
-              </div>
-              <div class="con" style="width: 59% !important; float:left">
-					<?php echo form_input(array( 'name'=>'lname','id'=>'lname','class'=>'input','type'=>'text','placeholder'=>'Enter Your last name')); ?>
-              </div>
             </div>
           </div>
         </div>
