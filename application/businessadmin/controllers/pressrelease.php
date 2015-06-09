@@ -543,8 +543,9 @@ class Pressrelease extends CI_Controller {
 	{
 		if($this->input->post('btnsearch'))
 		{
-			$keyword = $this->input->post('keysearch');
-			redirect('pressrelease/searchresult/'.$keyword,'refresh');				
+			
+			$keyword = urlencode($this->input->post('keysearch'));				
+			redirect('pressrelease/index/?s='.$keyword);							
 		}
 		else
 		{
@@ -566,6 +567,68 @@ class Pressrelease extends CI_Controller {
 
 		$this->load->view('pressrelease',$this->data);
 	}
+	
+	public function export_csv($keyword)
+    {		
+        if( $this->session->userdata['youg_admin'] )
+        {				
+				$companyid = $this->session->userdata['youg_admin']['id'];
+				
+				$siteid = $this->session->userdata['siteid'];
+				
+				if($keyword!='') 
+				{					
+					$searchKey = urldecode($keyword);
+					$file = 'Report-of-search-pressreleases.csv';					
+					$press_results = $this->pressreleases->pressSearch($searchKey, $companyid, $siteid);
+					
+				}
+				else
+				{					
+					$file = 'Report-of-all-pressreleases.csv';
+					$press_results = $this->pressreleases->pressSearch($searchKey,$companyid,$siteid);
+				}
+				
+				ob_start();
+				echo "Site Name,Title,Sub Title,Release Date,Status"."\n";
+				
+				//print_r($review);die;
+				
+				foreach($press_results as $press_result): 
+					foreach($press_result as $press): 	
+					
+						echo "\"".str_replace('"',"'",$press->site)."\",";											
+						echo "\"".str_replace('"',"'",$press->title)."\",";
+						echo "\"".str_replace('"',"'",$press->subtitle)."\",";											
+						echo date('m-d-Y', strtotime($press->insertdate)).",";						
+						echo $press->status;
+						echo "\n";									
+						
+					endforeach;
+				endforeach;
+				
+				   
+			
+					$content = ob_get_contents();
+					ob_end_clean();
+					header("Expires: 0");
+					header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+					header("Cache-Control: no-store, no-cache, must-revalidate");
+					header("Cache-Control: post-check=0, pre-check=0", false);
+					header("Pragma: no-cache");  header("Content-type: application/csv;charset:UTF-8");
+					header('Content-length: '.strlen($content));
+					header('Content-disposition: attachment; filename='.basename($file));
+					echo $content;
+					exit;
+							
+						
+		}
+		else
+		{
+			redirect('adminlogin','refresh');
+		}
+    }
+	
 }
 
 /* End of file dashboard.php */

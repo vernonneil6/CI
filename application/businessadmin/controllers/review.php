@@ -102,7 +102,7 @@ class Review extends CI_Controller
 			
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
-			$this->paging['uri_segment'] = 5;
+			$this->paging['uri_segment'] = $uriSegment;
 			
 			if(!empty($_GET)){
 				$this->paging['suffix'] = '?'.http_build_query($_GET, '', "&");
@@ -807,13 +807,13 @@ public function request($reviewid='',$userid='')
 				{					
 					$searchKey = urldecode($keyword);
 					$file = 'Report-of-search-reviews.csv';					
-					$review_results = $this->reviews->reviewsSearch($keyword,$companyid,$siteid);
+					$review_results = $this->reviews->reviewsSearch($searchKey,$companyid,$siteid);
 					
 				}
 				else
 				{					
 					$file = 'Report-of-all-reviews.csv';
-					$review_results = $this->reviews->reviewsSearch($keyword,$companyid,$siteid);
+					$review_results = $this->reviews->reviewsSearch($searchKey,$companyid,$siteid);
 				}
 				
 				ob_start();
@@ -824,14 +824,14 @@ public function request($reviewid='',$userid='')
 				foreach($review_results as $review_result): 
 					foreach($review_result as $reviews): 	
 					
-						echo "\"".$reviews->comment."\"";
+						echo "\"".str_replace('"',"'",$reviews->comment)."\"";
 						echo ",";								
 						echo "\"".$reviews->company."\"";
 						echo ",";
 						if(!empty($reviews->firstname) && !empty($reviews->lastname)){
 							echo $reviews->firstname.' '.$reviews->lastname;
 						}else{
-							echo $reviews->username;
+							echo $reviews->reviewby;
 						}
 						echo ",";						
 						echo date('m-d-Y', strtotime($reviews->reviewdate));
@@ -841,19 +841,7 @@ public function request($reviewid='',$userid='')
 					endforeach;
 				endforeach;
 				
-				   /*for($i=0;$i<count($review);$i++) { 
-						$comment = str_replace('"','',$review[$i]['comment']);
-						$comment = str_replace("'","",$comment);
-						$comment = str_replace(",",'#COMMA#',$comment);
-						echo stripslashes(ucwords($comment)).',';
-						echo stripslashes(ucwords($review[$i]['company'])).',';
-						echo ucfirst($reviews[$i]['firstname'].' '.$reviews[$i]['lastname']).',';
-						echo stripslashes(ucwords($review[$i]['reviewip'])).',';
-						echo stripslashes($review[$i]['reviewdate']).',';
-						echo stripslashes(ucwords($review[$i]['status'])); 
-						echo "\n";							
-						//break;
-					}*/
+				   
 			
 					$content = ob_get_contents();
 					ob_end_clean();
