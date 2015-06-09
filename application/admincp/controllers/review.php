@@ -486,32 +486,26 @@ class Review extends CI_Controller {
 					$searchKey = urldecode($keyword);		
 					
 					$file = 'Report-of-search-removed_reviews.csv';									
-					$review_results = $this->reviews->removedReviewsSearch($keyword);
+					$removed_reviews = $this->reviews->removedReviewsSearch($searchKey);
 				}
 				else
 				{
 					$file = 'Report-of-all-removed_reviews.csv';
-					$review_results = $this->reviews->removedReviewsSearch();
+					$removed_reviews = $this->reviews->removedReviewsSearch();
 				}
 				
 				ob_start();
-				echo "Review,Review to,Review by,IP,Date Reviewed,Status"."\n";
-				
-				
-				foreach($review_results as $review_result): 
-					foreach($review_result as $reviews): 	
+				echo "Review,Review to,Review by,Date Reviewed,Date of Remove,Status"."\n";
+								
+				foreach($removed_reviews as $removed_review): 
+					foreach($removed_review as $removed): 	
 					
-						echo "\"".$reviews->comment."\"";
-						echo ",";								
-						echo "\"".$reviews->company."\"";
-						echo ",";
-						echo $reviews->firstname.' '.$reviews->lastname;
-						echo ",";
-						echo $reviews->reviewip;
-						echo ",";
-						echo date('m-d-Y', strtotime($reviews->reviewdate));
-						echo ",";						
-						echo $reviews->status;
+						echo "\"".$removed->comment."\",";								
+						echo "\"".$removed->company."\",";						
+						echo $removed->reviewuser.",";												
+						echo date('m-d-Y', strtotime($removed->reviewdate)).",";						
+						echo date('m-d-Y', strtotime($removed->reviewremoveddate)).",";
+						echo $removed->status;
 						echo "\n";									
 					endforeach;
 				endforeach;
