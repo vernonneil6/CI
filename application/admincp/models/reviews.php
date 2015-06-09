@@ -408,7 +408,7 @@ class Reviews extends CI_Model
 		}
 		
 		// results query
-		$q = $this->db->select("r.id,r.companyid,r.reviewdate,r.reviewremoveddate,r.status,r.reviewby,r.comment,u.firstname,u.lastname,u.username, (case when (u.username != '') then u.username else r.reviewby end) as reviewuser", FALSE)
+		$q = $this->db->select("r.id,r.companyid,r.reviewdate,r.reviewremoveddate,r.status,r.reviewby,r.comment,u.firstname,u.lastname,u.username, (case when (u.username != '') then u.username else r.reviewby end) as reviewuser,c.company", FALSE)
 			->from('reviews as r')
 			->join('user as u','r.reviewby=u.id','left')
 			->join('company as c','r.companyid=c.id','left')
