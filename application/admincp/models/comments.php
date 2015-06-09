@@ -36,7 +36,7 @@ class Comments extends CI_Model
 	function commentsSearch($keyword, $limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('comment','commentdate','company','commentby','reviewby');
+		$sort_columns = array('comment','commentdate','company','commentby','reviewcomment');
 		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
 		
 		if($sort_by == 'commentby'){
