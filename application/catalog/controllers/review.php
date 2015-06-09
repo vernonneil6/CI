@@ -1509,7 +1509,7 @@ class Review extends CI_Controller
 						
 						if(($this->data['review'][0]['reviewby']==$this->session->userdata['youg_user']['userid']))
 						 { 
-								if( $this->reviews->delete_review_byid($id) )
+								if( $this->reviews->delete_reviewcomments_byid($id) )
 								{
 					$this->session->set_flashdata('success', 'Review has been Deleted successfully.');
 					redirect('review', 'refresh');

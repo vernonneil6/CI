@@ -842,6 +842,28 @@ class Reviews extends CI_Model
 		}
  	}
 	
+	//delete review by id elite
+	function delete_reviewcomments_byid($id)
+ 	{	
+	  
+		if(!empty($id)){
+		
+			$sql = "DELETE r,c FROM youg_reviews r
+				JOIN youg_comments c ON r.id = c.reviewid
+				WHERE c.reviewid = ?";		
+
+			if($this->db->query($sql, array($id)))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+ 	}
+	
+	
 	//get disable review of elite
 	function get_disreview_byid($id)
  	{
