@@ -160,7 +160,7 @@
         <textarea class="txrareawrp" id="review" name="review"></textarea>
         
         <!--Review Promo-->       
-       <input class="txt_box review_txt_box" id="reviewpromo"  <?php if($findproforcompany =='0' && $findproforuser =='0'){ ?> type="hidden" <?php }?> name="reviewpromo" placeholder="Please enter review promo code here"/>  <!--<input type="button" id="applypromo" value="Apply code">--> 
+       <input class="txt_box review_txt_box" id="reviewpromo"  <?php if($findproforcompany =='0' || $findproforuser =='0'){ ?> type="hidden" <?php }?> name="reviewpromo" placeholder="Please enter review promo code here"/>  <!--<input type="button" id="applypromo" value="Apply code">--> 
         
         
         <div class = "profile_about_us">
