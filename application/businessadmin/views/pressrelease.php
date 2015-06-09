@@ -452,6 +452,13 @@ else { ?>
   <div class="box">
     <div class="headlines">
       <h2><span> Press Releases </span></h2>
+      <h2>
+		   <span>
+				<a href="<?php if(!empty($_GET['s'])){  echo site_url('pressrelease/export_csv/'.$_GET['s']); }else { echo site_url('pressrelease/export_csv'); } ?>" title="Export as CSV file">
+					<img src="<?php echo base_url(); ?>images/export_csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
+				</a>
+			</span>
+		</h2>
     </div>
     
     <!-- Correct form message -->
@@ -483,7 +490,14 @@ else { ?>
 		</div>
 		<div class="btn-submit"> 
 		  <?php echo form_input(array('name'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('pressrelease');?>" class="Cancel">Cancel</a> 
+		 
 		</div>
+		<?php if(!empty($_GET['s']))
+			{	   
+				echo "<div style='margin-top:2em;'> Search results for <span style='color:#1a2e4d'>' ". $_GET['s'] . " ' </span> </div>";
+			}
+			
+		?> 
     </fieldset>
     <?php echo form_close(); ?> 
     </div>
@@ -492,8 +506,7 @@ else { ?>
     
     
     <?php if( count($pressreleases) > 0 ) {
-		$order_seg = $this->uri->segment(4,"asc"); 
-		if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+
 	 ?>
     <!-- table -->
     <table class="tab tab-drag">

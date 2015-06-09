@@ -73,9 +73,8 @@ Class Pressreleases extends CI_Model
 		
 		// search query
 		if (strlen($keyword)) {							
-			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'r.comment' => $keyword , 'c.company'=> $keyword , 'c.streetaddress' => $keyword , 'c.aboutus' => $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );							
+			$q->or_like(array('u.url'=> $keyword , 'p.title' => $keyword , 'p.subtitle'=> $keyword , 'p.sortdesc' => $keyword , 'p.metakeywords' => $keyword, 'p.metadescription' => $keyword,  "p.presscontent" => $keyword ), 'after' );
 		}
-		
 		
 		$ret['rows'] = $q->get()->result();
 			
@@ -90,7 +89,7 @@ Class Pressreleases extends CI_Model
 		// search query
 		if (strlen($keyword)) {							
 			
-			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'r.comment' => $keyword , 'c.company'=> $keyword , 'c.streetaddress' => $keyword , 'c.aboutus' => $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
+			$q->or_like(array('u.url'=> $keyword , 'p.title' => $keyword , 'p.subtitle'=> $keyword , 'p.sortdesc' => $keyword , 'p.metakeywords' => $keyword, 'p.metadescription' => $keyword,  "p.presscontent" => $keyword ), 'after' );
 		}
 		
 		$tmp = $q->get()->result();
