@@ -9,8 +9,15 @@
 		if( !$('#transactionid').val()){			
 			$('#trans-error').show();		
 			return false;			
-		}else{		
-			$('#trans-error').hide();		
+		}else{
+			if($('#transactionid').val() != '<?php echo $companyid; ?>'){	
+				$('#trans-error').html('Please Enter the correct Transaction ID');
+				$('#trans-error').show();
+							
+				return false;
+			}else{		
+				$('#trans-error').hide();		
+			}
 		}	
 		if (!$("#terms-conditions").is(":checked")) {
 				$('#terms-error').show();
