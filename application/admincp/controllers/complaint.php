@@ -566,7 +566,7 @@ class Complaint extends CI_Controller {
 				foreach($complaints_data as $complaints): 
 					foreach($complaints as $complaint): 															
 								
-						echo "'".str_replace('"',"'",$complaint->detail)."',";
+						echo "\"".str_replace('"',"'",$complaint->detail)."\",";
 						echo $complaint->company.",";						
 						if(!empty($complaint->firstname) && !empty($complaint->lastname)){
 							echo $complaint->firstname.' '.$complaint->lastname;
