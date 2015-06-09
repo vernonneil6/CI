@@ -224,7 +224,7 @@
           </div>
           <div id="siteurlerror" class="error">Site Url is required.</div>
         </div>
-        <div class="clearfix file" style = "display:none">
+        <div class="clearfix file">
           <div class="lab" style="width:18%">
             <label for="companylogo">Logo <span class="errorsign">*</span></label>
           </div>

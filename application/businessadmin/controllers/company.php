@@ -257,6 +257,16 @@ class Company extends CI_Controller {
 											}
 										}
 									}
+									if($this->companys->update($id,$company,$streetaddress,$city,$state,$country,$zip,$companystreet,$companycity,$companystate,$companycountry,$companyzip,$email,$siteurl,$imgdata['file_name'],$phone,$about,$creditcard1,$creditcard2,$category,$contactname,$ctitle,$contactemail,$contactphonenumber,$price_range,$accept_credit_cards,$accept_paypal))
+									{
+										$this->session->set_flashdata('success', 'company profile updated successfully.');
+										redirect('company/edit', 'refresh');
+									}
+									else
+									{
+										$this->session->set_flashdata('error', 'There is error in updating company. Try later!');
+										redirect('company/edit', 'refresh');
+									}
 								
 								}
 								else
