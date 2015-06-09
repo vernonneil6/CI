@@ -1006,7 +1006,7 @@ class Reviews extends CI_Model
 	/* Find promocode available for user */
 	function find_promocode_foruser($userid)
 	{
-		$query = $this->db->get_where('youg_elite',array('id'=>$userid,'status'=>'Enable'));
+		$query = $this->db->get_where('youg_elite',array('id'=>$userid,'discountcode'=>'NOT NULL','status'=>'Enable'));
 	    
 	    if ($query->num_rows() > 0)
 		{
