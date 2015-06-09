@@ -36,7 +36,7 @@ class Complaints extends CI_Model
  	function complaintsSearch($keyword, $siteid, $limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('detail', 'companyid','userid','status');
+		$sort_columns = array('detail', 'companyid','userid','status','complaindate');
 		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
 		
 		if($sort_by == 'userid'){
@@ -47,7 +47,7 @@ class Complaints extends CI_Model
 		}
 		
 		// results query
-		$q = $this->db->select('c.*, cm.company,cm.logo,cm.companyseokeyword,u.firstname,u.lastname,u.avatarbig,u.gender')
+		$q = $this->db->select('c.*, cm.company,cm.logo,cm.companyseokeyword,u.firstname,u.lastname,u.username,u.avatarbig,u.gender')
 				->from('complaints as c')
 				->join('user as u','c.userid=u.id','left')
 				->join('company as cm','cm.id=c.companyid','left')

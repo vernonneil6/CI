@@ -234,12 +234,10 @@ function submitfrm()
 						<input type="checkbox" class="case" name="foo[]" value="<?php echo $comment->id;?>" />
 				 <?php					
 					}elseif ($field_name == 'comment'){
-						//echo nl2br(substr($comment->comment,0,100)).'...';
-						
+												
 						echo $string = (strlen($comment->comment) > 20) ? substr($comment->comment,0,15).'...' : $comment->comment;
 					}
-					elseif ($field_name == 'reviewcomment'){
-						//echo nl2br(substr($comment->comment,0,100)).'...';
+					elseif ($field_name == 'reviewcomment'){				
 						
 						echo $string = (strlen($comment->reviewcomment) > 20) ? substr($comment->reviewcomment,0,15).'...' : $comment->reviewcomment;
 					}

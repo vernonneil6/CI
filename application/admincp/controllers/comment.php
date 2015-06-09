@@ -306,23 +306,23 @@ class Comment extends CI_Controller {
 					$comments = $this->comments->commentsSearch();
 				}
 				ob_start();
-				echo "User,Comment date,Comment,Business Name,Email";
+				echo "Title,Review,Business Name,Submitted By,Comment date,Status";
 				echo "\n";			    		
 				    		
 				foreach($comments as $comment1): 
 					foreach($comment1 as $comment): 	
+						
+						echo "\"".$comment->comment."\",";
+						echo "\"".$comment->reviewcomment."\",";
+						echo $comment->company.",";
 						if(!empty($comment->firstname) && !empty($comment->lastname)){
 							echo $comment->firstname.' '.$comment->lastname;
 						}else{								
 							echo $comment->username;	
 						}
 						echo ",";
-						echo date('m-d-Y', strtotime($comment->commentdate));
-						echo ",";
-						echo "\"".$comment->comment."\"";
-						echo ",";
-						echo $comment->company.",";
-						echo $comment->email;
+						echo date('m-d-Y', strtotime($comment->commentdate)).",";						
+						echo $comment->status;
 						echo "\n";									
 					endforeach;
 				endforeach;

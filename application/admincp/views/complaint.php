@@ -475,7 +475,7 @@ else { ?>
         </div>
         <div class="btn-submit"> 
           <!-- Submit form --> 
-          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('complaint');?>" class="Cancel">Cancel</a> </div>
+          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('complaint/removed');?>" class="Cancel">Cancel</a> </div>
           
          <?php if(!empty($_GET['s']))
 			{	   

@@ -561,17 +561,21 @@ class Complaint extends CI_Controller {
 				}
 				
 				ob_start();
-				echo "Complaint,Against,By,Date"."\n";
+				echo "Complaint,Against,By,Date,Status"."\n";
 				
 				foreach($complaints_data as $complaints): 
 					foreach($complaints as $complaint): 															
 								
-						echo "\"".$complaint->detail."\",";						
-						$user=$this->complaints->get_user_bysingleid($complaint->userid);
-						echo stripslashes(ucwords($user['username'])).',';
-						$company=$this->complaints->get_company_bysingleid($complaint->companyid);
-						echo "\"". $company['company']."\",";						
-						echo date("m-d-Y",strtotime($complaint->complaindate)); 
+						echo "\"".$complaint->detail."\",";
+						echo "\"".$complaint->company."\",";						
+						if(!empty($complaint->firstname) && !empty($complaint->lastname)){
+							echo $complaint->firstname.' '.$complaint->lastname;
+						}else{								
+							echo $complaint->username;	
+						}
+						echo ",";					
+						echo date("m-d-Y",strtotime($complaint->complaindate)).","; 
+						echo $complaint->status.","; 
 						echo "\n";
 													
 					endforeach;
