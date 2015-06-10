@@ -30,7 +30,7 @@
 			<textarea cols='90' rows='10'>
 				<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/YGR_email.jpg'; ?>"  title="<?php echo ucfirst($company['company']); ?>" usemap="#graphicmap">
 				<map name="imgmap" id="graphicmap">
-					<area shape="poly" coords="177,101,177,82,274,83,276,101" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/company/'.urlencode($company['companyseokeyword']).'/reviews/coupons/complaints';?>" target="_blank">
+					<area shape="poly" coords="177,101,177,82,274,83,276,101" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/add/'.$company['id'];?>" target="_blank">
 				</map>
 			</textarea>
 			
@@ -42,7 +42,7 @@
 			<td>
 				<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/images/YGR_email.jpg'; ?>"  title="<?php echo ucfirst($company['company']); ?>" usemap="#graphicmap">
 				<map name="imgmap" id="graphicmap">
-					<area shape="poly" coords="177,101,177,82,274,83,276,101" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/company/'.urlencode($company['companyseokeyword']).'/reviews/coupons/complaints';?>" target="_blank">
+					<area shape="poly" coords="177,101,177,82,274,83,276,101" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/review/add/'.$company['id'];?>" target="_blank">
 				</map>
 			</td>
 		</tr>
