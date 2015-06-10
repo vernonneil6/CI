@@ -539,7 +539,7 @@ class Review extends CI_Controller {
 			$this->data['fields'] = array(				
 				'comment' => 'Review',				
 				'reviewby' => 'Review by',				
-				'reviewremoveddate' => 'Review Date'								
+				'reviewdate' => 'Review Date'								
 			);
 			
 			$this->load->model('reviews');

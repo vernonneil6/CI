@@ -65,6 +65,54 @@
 <?php } 
 
 
+else if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'payview' ) ) { ?>
+	
+
+	
+<!-- box -->
+
+<div class="box">
+  <div class="headlines">
+    <h2><span>Payment Detail</span></h2>
+  </div>
+  <!-- table -->
+  <table class="tab tab-drag">
+		  <tr class="top nodrop nodrag">
+			  <?php //echo '<pre>';print_r($payment);?>
+			<th>Started date</th>
+			<th>Subscription amount</th>
+			<th>Payment date</th>
+			<th>Expire date</th>
+			<th>Total payments</th>
+			<th>Status</th>
+		  </tr>
+		  <?php if($payment) { ?>
+          <tr>
+			<td><?php echo date('M d Y',strtotime($payment['startdate']));?></td>
+			<td><?php echo '$  '.$payment['payment_amount'];?></td>
+			<td><?php echo date('M d Y',strtotime($payment['payment_date']));?></td>
+			<td><?php 
+			if(!empty($payment['expires'])){
+			
+			echo date('M d Y',strtotime($payment['expires']));
+			
+			}?></td>
+			<td><?php if($payment['subscription_paynumber']!='') {echo $payment['subscription_paynumber'].'/'.'12';} else { echo '0/12';} ?></td>
+			<td><?php echo $payment['status'];?></td>
+		  </tr>
+        <?php } else { ?>
+			<div class="form-message warning">
+				<p>No record found.</p>
+			</div>
+			
+		<?php } ?>	
+    </table>  
+      
+  <!-- /table --> 
+</div>
+<!-- /box -->
+<?php }
+
 
 else { ?>
 <?php echo $heading; ?>
@@ -145,6 +193,17 @@ else { ?>
   
   
     	else { ?>
+			
+		 <?php echo link_tag('colorbox/colorbox.css'); ?> 
+  <script language="javascript" type="text/javascript" src="<?php echo base_url();?>colorbox/jquery.colorbox.js"></script> 
+  <script language="javascript" type="text/javascript">
+  $(document).ready(function(){
+		//$('.colorbox').colorbox({'width':'55%'});
+		$('.colorbox').colorbox({'width':'60%','height':'70%'});
+	
+	   
+  });
+</script>	
   <!-- box -->
   <div class="box">
     <div class="headlines">
@@ -380,7 +439,7 @@ else { ?>
     <?php }
     
     
-     if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'payview' ) ) {?>
+     if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'payviews' ) ) {?>
 	
 	<table class="tab tab-drag">
 		  <tr class="top nodrop nodrag">

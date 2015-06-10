@@ -72,8 +72,10 @@ class Elites extends CI_Model
 		// results query
 		$q = $this->db->select('e.*, c.*')
 				->from('elite as e')
-				->join('company as c','e.company_id=c.id','left')
-				->where('c.company is NOT NULL');				
+				->join('company as c','e.company_id=c.id','left')				
+				->where('c.company is NOT NULL')
+				->where('c.contactemail != ""');								
+				
 				
 		// limit query
 		if(!empty($limit)){
@@ -94,11 +96,12 @@ class Elites extends CI_Model
 		
 		
 		// count query
-		$q = $this->db->select('COUNT(*) as count', FALSE)	 
+		$q = $this->db->select('COUNT( * ) as count', FALSE)	 
 			->from('elite as e')
-			->join('company as c','e.company_id=c.id','left')
-			->where('c.company is NOT NULL');			
-				
+			->join('company as c','e.company_id=c.id','left')			
+			->where('c.company is NOT NULL')
+			->where('c.contactemail != ""');
+															
 		// search query			
 		if (strlen($keyword)) {			
 			$q->or_like(array('c.city'=> $keyword , 'c.state'=> $keyword , 'c.country'=> $keyword , 'c.zip'=> $keyword , 'c.company'=> $keyword , 'c.email'=> $keyword , 'c.contactname'=> $keyword,  'c.companyseokeyword'=> $keyword ) );			
@@ -199,14 +202,42 @@ class Elites extends CI_Model
 							->get()
 							->row_array();
 		 }
-		 //echo $this->db->last_query();				
+		 
 		 //echo '<pre>';print_r($query);
 		 $startdate=$this->db->get_where('company', array('id' => $id))->row_array();
 		 $query['startdate']=$startdate['registerdate'];
 		 $query['sub_amt']=$subscription_amount['value'];
 		 $query['status']=$enablecheck['status'];
+		
 		 return $query;	
 			
+	}
+	
+	function getElitePaymentDetails($id){
+	
+		// results query
+		$elites = $this->db->get_where('elite', array('company_id' => $id))->row_array();
+		$subscription_amount = $this->db->get_where('setting', array('id' => '19'))->row_array();
+		if(trim($elites['status'])=='Enable')
+		 {
+		   $sub_id=$this->db->get_where('subscription', array('company_id' => $id))->row_array();
+		   $query= $this->db->select('*')
+							->from('subscription sb')
+							->join('silent si', 'sb.subscr_id = si.subscription_id', 'left')
+							->where(array('sb.subscr_id'=>$sub_id['subscr_id'],'sb.company_id'=>$id))
+							->get()
+							->row_array();							
+		 }
+		 
+		 
+		 $companies =$this->db->get_where('company', array('id' => $id))->row_array();		 
+		 $query['startdate']=$companies['registerdate'];
+		 $query['sub_amt']=$subscription_amount['value'];
+		 $query['status']=$elites['status'];
+		 $query['payment_date']=$elites['payment_date'];
+		 $query['payment_amount']=$elites['payment_amount'];
+		 		 
+		return $query;
 	}
 }
 
