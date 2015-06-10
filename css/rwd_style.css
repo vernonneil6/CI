@@ -74,6 +74,13 @@ td{display:block;}
 
 #selstatediv1,#selstatediv{ float:none;margin-right:0;}
 #streetaddress1{width:238px;}
+
+
+}
+@media only screen and (min-width: 771px) {
+.footer-col {display: inline;}
+.fmenu {display: block !important;}
+
 }
 @media only screen and (min-width: 850px) and (max-width: 1050px)  {
 .main_footer, .innr_wrap, .container{width:82%;padding:0 20px; }
@@ -164,6 +171,27 @@ td{display:block;}
 
 #selstatediv1,#selstatediv{ float:none;margin-right:0;}
 #streetaddress1{width:238px;}
+
+span.toggle:before {content: "\f067";}
+span.opened:before {content: "\f068";}
+.fmenu {display:none;}
+span.toggle {
+	cursor:pointer;
+	width:20px;
+	text-align: center;
+	font-size: 16px;
+	float:right
+}
+span.toggle:before{
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-indent: 0 !important;
+}
+.foot_mid_bar,.footer_block ul li.ftitle,.footer_block ul{width:100% !important;}
 }
 
 @media only screen and (min-width: 550px) and (max-width: 770px)  {

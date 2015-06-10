@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/rwd_style.css" type="text/css">
 <link rel="stylesheet" href="css/new.css" type="text/css">
+<link rel="stylesheet" href="css/font-awesome.css" type="text/css">
 <link rel="stylesheet" href="css/slicknav.css">
 
 <link rel="stylesheet" href="css/flexslider.css" type="text/css">
