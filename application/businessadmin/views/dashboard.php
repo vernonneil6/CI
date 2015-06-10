@@ -96,7 +96,7 @@ $logdata=$this->session->all_userdata();
 $logcount=$this->session->userdata['youg_admin']['logcount'];
 ?>
 <!--Terms and conditions Popup-->
-<?php if($logcount=='0'){ 
+<?php if($logcount==0){ 
 	//setcookie("firstvisit", "1", time() + 2592000); ?>
 
 <div class="black_overlay" id="black_overlay"></div>
