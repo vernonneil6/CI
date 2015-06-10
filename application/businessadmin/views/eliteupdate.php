@@ -67,7 +67,12 @@ $(document).ready(function() {
 });
 });
 </script>
-
+<?php 
+//echo "<pre>";
+//print_r($elite);
+//print_r($subscription);
+//echo "</pre>";
+?>
   <div class="box">
     <div class="headlines">
       <h2><span>Update Credit Card</span></h2>
@@ -98,26 +103,24 @@ $(document).ready(function() {
           </div>
         </div>
          <div id="cc-error"><?php echo $this->session->flashdata('success_msg'); ?></div>
-         <div class="form-cols" style="display:none;">
+         <div class="form-cols" id="displaypart" >
           <div class="col1" style="width:100%">
             <div class="clearfix">
 				<table style="border:1px solid #ccc;width:80%;font-weight:bold;">
 				<thead style="background-color:#D3F1FB">
-				<tr>
-				<th>Card Type</th>
-				<th>Last 4 digits on card</th>
-				<th>Expiration Date </th>
-				<th>Billing Address</th>
-				<th>Action</th>
+				<tr>				
+				<th align="left">Last 4 digits on card</th>
+				<th align="left">Expiration Date </th>
+				<th align="left">Billing Address</th>
+				<th align="left">Action</th>
 				</tr>
 				</thead>
 				<tbody>
-				<tr>
-				<td style="padding-left: 10px;"> Visa</td>
-				<td style="padding-left: 10px;"> 1234</td>
-				<td style="padding-left: 10px;">05/2020</td>
-				<td style="padding-left: 10px;"> NO 12/24 benz cross,</br>Suite 255,</br>Tampa Fl 3324</br>United States</br> (confirmed)</td>
-				<td style="padding-left: 10px;"><a href="#">Edit</a> | <a href="#">Remove</a></td>
+				<tr>				
+				<td style="padding-left: 10px;"> <?php echo substr($subscription[0]['ccnumber'], -4);  ?></td>
+				<td style="padding-left: 10px;"><?php echo $subscription[0]['ccexpiredate']; ?></td>
+				<td style="padding-left: 10px;"><?php echo $elite[0]['streetaddress']."<br>".$elite[0]['city']."<br>".$elite[0]['state']." ".$elite[0]['country']." - ".$elite[0]['zip']; ?> </td>
+				<td style="padding-left: 10px;"><a onclick="showeditwindow()">Edit</a> <!--| <a href="#">Remove</a>--></td>
 				</tr>
 				</tbody>
 				
@@ -125,15 +128,15 @@ $(document).ready(function() {
 			</div>
 		  </div>
 		</div>
-         
-        <div class="form-cols">
+         <div id="editpart" style="display:none;">
+        <div class="form-cols" >
           <div class="col1" style="width:100%">
             <div class="clearfix">
               <div class="lab" style="width: 8% !important;">
                 <label>First Name:</label>
               </div>
               <div class="con" style="width: 59% !important; float:left">
-					<?php echo form_input(array( 'name'=>'fname','id'=>'fname','class'=>'input','type'=>'text','placeholder'=>'Enter Your first name')); ?>
+					<?php echo form_input(array( 'name'=>'fname','id'=>'fname','class'=>'input','type'=>'text','placeholder'=>'Enter Your first name','value'=>$subscription[0]['firstname'])); ?>
               </div>
             </div>
           </div>
@@ -147,7 +150,7 @@ $(document).ready(function() {
                 <label>Last Name:</label>
               </div>
               <div class="con" style="width: 59% !important; float:left">
-					<?php echo form_input(array( 'name'=>'lname','id'=>'lname','class'=>'input','type'=>'text','placeholder'=>'Enter Your last name')); ?>
+					<?php echo form_input(array( 'name'=>'lname','id'=>'lname','class'=>'input','type'=>'text','placeholder'=>'Enter Your last name','value'=>$subscription[0]['lastname'])); ?>
               </div>
             </div>
           </div>
@@ -160,7 +163,7 @@ $(document).ready(function() {
                 <label>Street:</label>
               </div>
               <div class="con" style="width: 59% !important; float:left">
-                <?php echo form_input(array( 'name'=>'streetaddress','id'=>'streetaddress','class'=>'input','type'=>'text','placeholder'=>'Enter Your street address')); ?>
+                <?php echo form_input(array( 'name'=>'streetaddress','id'=>'streetaddress','class'=>'input','type'=>'text','placeholder'=>'Enter Your street address','value'=>$elite[0]['streetaddress'])); ?>
               </div>
             </div>
           </div>
@@ -173,8 +176,26 @@ $(document).ready(function() {
                 <label>City:</label>
               </div>
               <div class="con" style="width: 59% !important; float:left">
-                 <?php echo form_input(array( 'name'=>'city','id'=>'city','class'=>'input','type'=>'text','placeholder'=>'Enter Your city')); ?>
+                 <?php echo form_input(array( 'name'=>'city','id'=>'city','class'=>'input','type'=>'text','placeholder'=>'Enter Your city','value'=>$elite[0]['city'])); ?>
               </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-cols">
+          <div class="col1" style="width:100%">
+            <div class="clearfix">
+				
+              <div class="lab" style="width: 8% !important;">
+                <label>Country:</label>
+              </div>
+              <div class="" style="float:left">
+				<?php foreach($selcon as $k => $v){ if($v == $elite[0]['country']){ $country_code = $k; } } ?>  
+                <?php echo form_dropdown('country',$selcon,$country_code,'id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
+              </div>
+              
+             
+              
             </div>
           </div>
         </div>
@@ -190,29 +211,13 @@ $(document).ready(function() {
 					  $selstate=array(''=>'--Select State--');
 					?>
 						<div id="selstatediv">
-						  <?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?>
+						  <?php $selstate[$elite[0]['state']] = $elite[0]['state'];  ?>
+						  <?php echo form_dropdown('state',$selstate,$elite[0]['state'],'id="state" class="seldrop"');?>
 						 </div>
 					</div>
 				</div>
 			</div>
-		</div>       
-		
-		<div class="form-cols">
-          <div class="col1" style="width:100%">
-            <div class="clearfix">
-				
-              <div class="lab" style="width: 8% !important;">
-                <label>Country:</label>
-              </div>
-              <div class="" style="float:left">
-                <?php echo form_dropdown('country',$selcon,'','id="country" class="seldrop" onchange=getstates(this.value,"state","#selstatediv");');?>
-              </div>
-              
-             
-              
-            </div>
-          </div>
-        </div>
+		</div>   	
         
           <div class="form-cols">
           <div class="col1" style="width:100%">
@@ -221,7 +226,7 @@ $(document).ready(function() {
                 <label>Zip:</label>
               </div>
               <div class="con" style="width: 59% !important; float:left">
-                <?php echo form_input(array( 'name'=>'zip','id'=>'zip','class'=>'input','type'=>'text','placeholder'=>'Enter Your zip')); ?>
+                <?php echo form_input(array( 'name'=>'zip','id'=>'zip','class'=>'input','type'=>'text','placeholder'=>'Enter Your zip','value'=>$elite[0]['zip'])); ?>
               </div>
             </div>
           </div>
@@ -247,7 +252,7 @@ $(document).ready(function() {
                 <label>CC Number:</label>
               </div>
               <div class="con" style="width: 59% !important; float:left">
-                <?php echo form_input(array( 'name'=>'ccnumber','id'=>'ccnumber','class'=>'input','type'=>'text','placeholder'=>'Enter Your credit card number','onkeypress'=>'return number(event)','onblur'=>'return checkcard();','required'=>'required')); ?>
+                <?php echo form_input(array( 'name'=>'ccnumber','id'=>'ccnumber','class'=>'input','type'=>'text','placeholder'=>'Enter Your credit card number','onkeypress'=>'return number(event)','onblur'=>'return checkcard();','required'=>'required','value'=>$subscription[0]['ccnumber'])); ?>
               </div>
             </div>
           </div>
@@ -260,7 +265,7 @@ $(document).ready(function() {
                 <label>CVV Code:</label>
               </div>
               <div class="con" style="width: 59% !important; float:left">
-                <?php echo form_input(array( 'name'=>'cvv','id'=>'cvv','class'=>'input','type'=>'text','placeholder'=>'Enter Your CVV number')); ?>
+                <?php echo form_input(array( 'name'=>'cvv','id'=>'cvv','class'=>'input','type'=>'text','placeholder'=>'Enter Your CVV number','value'=>$subscription[0]['cvv'])); ?>
 			       
               </div>
                <a class="cvvpop" href="<?php echo base_url();?>">What is this? 
@@ -277,11 +282,13 @@ $(document).ready(function() {
                 <label>Expiration date:<span class="errorsign">*</span></label>
               </div>
               <div class="" style="width: 59% !important; float:left">	 	  
-				  
+				  <?php 						
+						$expire = explode('-',$subscription[0]['ccexpiredate']); 					?>
 				  <select id="expirationdatem" name="expirationdatem">
 					<option value="">--Month--</option>
+					
 					<?php for($i=1;$i<13;$i++) {?>
-					<option value="<?php echo $i;?>"><?php echo $i;?></option>
+					<option value="<?php echo $i;?>" <?php if($expire[1] == $i){ ?> selected="selected" <?php } ?> ><?php echo $i;?></option>
 					<?php } ?>
 				  </select>
 				   &nbsp;
@@ -289,7 +296,7 @@ $(document).ready(function() {
 					<option value="">--Year--</option>
 					<?php for($k=0;$k<10;$k++) {?>
 					<?php $a = date('Y')+$k;?>
-					<option value="<?php echo $a;?>"><?php echo $a;?></option>
+					<option value="<?php echo $a;?>" <?php if(trim($expire[0]) == $a){ ?> selected="selected" <?php } ?>><?php echo $a;?></option>
 					<?php } ?>
 				  </select>
               </div>
@@ -301,10 +308,14 @@ $(document).ready(function() {
           <!-- Submit form -->
           
           <?php echo form_input(array('name'=>'btnupdate','id'=>'btnupdate','class'=>'button','type'=>'submit','value'=>'Update')); ?>
-    
+			
+          
+          <input type="button" class="button" onclick="closeeditbox()" value="Cancel" name="cnslbtnupdate">    
+          
           </div>
       </fieldset>
       <?php echo form_close(); ?> </div>
+      </div>
   </div>
   <!-- /box-content -->
     <!-- Correct form message -->
@@ -335,3 +346,13 @@ $(document).ready(function() {
 
 
 <?php echo $footer; ?> 
+<script>
+function showeditwindow(){
+	$('#editpart').show();
+	$('#displaypart').hide();
+}
+function closeeditbox(){
+	$('#editpart').hide();
+	$('#displaypart').show();
+}
+</script>
