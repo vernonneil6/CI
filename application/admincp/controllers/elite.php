@@ -243,8 +243,8 @@ class Elite extends CI_Controller {
 					}
 				
 				//Getting detail for displaying in form
-				$this->data['payment'] = $this->elites->get_elitepayment_byid($id);
-	
+				$this->data['payment'] = $this->elites->getElitePaymentDetails($id);
+				
 				if( count($this->data['payment'])>0 )
 				{			
 					//Loading View File

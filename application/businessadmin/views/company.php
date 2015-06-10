@@ -463,7 +463,7 @@
 				  <label>Zip Code <span class="errorsign">*</span></label>
               </div>          
               <div class="con">
-				<?php echo form_input( array( 'name'=>'companyzip','id'=>'companyzip','class'=>'input','type'=>'text','value'=>$company[0]['zip']) ); ?>
+				<?php echo form_input( array( 'name'=>'zip','id'=>'zip','class'=>'input','type'=>'text','value'=>$company[0]['zip']) ); ?>
               </div>
             </div>
           </div> 
