@@ -46,7 +46,7 @@ Class Login extends CI_Model
 						
 			if ($query1->num_rows() > 0)
 			{
-				$result = array( 'id' => $id,'username' => $username,'companyname'=>$company[0]['company']);
+				$result = array( 'id' => $id,'username' => $username,'companyname'=>$company[0]['company'],'logcount'=>$logcounts,'lastseen'=>$lastseen);
 				return $result;
 			}
 			else
