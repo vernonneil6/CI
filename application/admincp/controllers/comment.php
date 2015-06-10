@@ -85,7 +85,7 @@ class Comment extends CI_Controller {
 			$limit = 15;
 			$this->data['fields'] = array(
 				'id' => 'Comment ID',
-				'comment' => 'Title',
+				'comment' => 'Comment',
 				'reviewcomment' => 'Review',
 				'company' => 'Business Name',
 				'commentby' => 'Submitted By',								

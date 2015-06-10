@@ -397,20 +397,21 @@ class Reviews extends CI_Model
 			return array();
 		}
 	}
-	function removedReviewsSearch($limit, $offset, $sort_by, $sort_order) {
+	function removedReviewsSearch($keyword, $limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
 		$sort_columns = array('comment','reviewby','reviewdate','reviewremoveddate');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
+		
 		if($sort_by == 'reviewby'){
 			$sort_by = 'reviewuser';
-		}else{	
-			$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
 		}
 		
 		// results query
-		$q = $this->db->select("r.reviewby,r.comment,u.firstname,u.lastname,u.username, (case when (u.username != '') then u.username else r.reviewby end) as reviewuser", FALSE)
+		$q = $this->db->select("r.id,r.companyid,r.reviewdate,r.reviewremoveddate,r.status,r.reviewby,r.comment,u.firstname,u.lastname,u.username, (case when (u.username != '') then u.username else r.reviewby end) as reviewuser,c.company", FALSE)
 			->from('reviews as r')
 			->join('user as u','r.reviewby=u.id','left')
+			->join('company as c','r.companyid=c.id','left')
 			->where('r.status','Disable');			
 		
 		// limit query
@@ -422,6 +423,11 @@ class Reviews extends CI_Model
 			$q->order_by($sort_by, $sort_order);		
 		}
 		
+		// search query
+		if (strlen($keyword)) {	
+			$q->where('(r.comment LIKE \'%'.$keyword.'%\' OR u.username LIKE \'%'.$keyword.'%\' OR r.reviewby LIKE \'%'.$keyword.'%\' OR u.firstname LIKE \'%'.$keyword.'%\' OR u.lastname LIKE \'%'.$keyword.'%\' OR c.company LIKE \'%'.$keyword.'%\')', NULL, FALSE);									
+		}
+		
 		$ret['rows'] = $q->get()->result();
 		
 		
@@ -429,7 +435,13 @@ class Reviews extends CI_Model
 		$q = $this->db->select('COUNT(*) as count', FALSE)	 
 			->from('reviews as r')
 			->join('user as u','r.reviewby=u.id','left')
+			->join('company as c','r.companyid=c.id','left')
 			->where('r.status','Disable');		
+		
+		// search query
+		if (strlen($keyword)) {							
+			$q->where('(r.comment LIKE \'%'.$keyword.'%\' OR u.username LIKE \'%'.$keyword.'%\' OR r.reviewby LIKE \'%'.$keyword.'%\' OR u.firstname LIKE \'%'.$keyword.'%\' OR u.lastname LIKE \'%'.$keyword.'%\' OR c.company LIKE \'%'.$keyword.'%\')', NULL, FALSE);
+		}
 		
 		$tmp = $q->get()->result();
 		

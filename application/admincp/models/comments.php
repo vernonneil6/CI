@@ -36,7 +36,7 @@ class Comments extends CI_Model
 	function commentsSearch($keyword, $limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('comment','commentdate','company','commentby','reviewby');
+		$sort_columns = array('comment','commentdate','company','commentby','reviewcomment');
 		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
 		
 		if($sort_by == 'commentby'){
@@ -49,7 +49,10 @@ class Comments extends CI_Model
 			->from('comments as c')
 			->join('reviews as r','r.id=c.reviewid','left')			
 			->join('company as com','com.id=r.companyid','left')
-			->join('user as u','c.commentby=u.id','left');
+			->join('user as u','c.commentby=u.id','left')
+			->where('r.comment is NOT NULL')
+			->where('com.company is NOT NULL');
+	
 		
 		// limit query
 		if(!empty($limit)){
@@ -74,7 +77,9 @@ class Comments extends CI_Model
 			->from('comments as c')
 			->join('reviews as r','r.id=c.reviewid','left')
 			->join('company as com','com.id=r.companyid','left')
-			->join('user as u','c.commentby=u.id','left');			
+			->join('user as u','c.commentby=u.id','left')
+			->where('r.comment is NOT NULL')
+			->where('com.company is NOT NULL');			
 		
 		if (strlen($keyword)) {
 			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'u.username'=> $keyword, 'com.company'=> $keyword, 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword, 'r.comment' => $keyword ) );	

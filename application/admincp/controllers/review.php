@@ -366,6 +366,25 @@ class Review extends CI_Controller {
 	}
 	
 	
+	public function searchremovereview()
+	{
+		if( $this->session->userdata['youg_admin'] )
+ 		{
+			
+			if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
+			{
+				$keyword = urlencode($this->input->post('keysearch'));				
+				redirect('review/removed/?s='.$keyword);	
+			}
+			else
+			{
+				redirect('review/removed','refresh');
+			}		
+		}
+	
+	}
+	
+	
 	function foo()
 	{
 		if($this->input->post('checktype'))
@@ -457,15 +476,60 @@ class Review extends CI_Controller {
 		}
     }
     
-    /*public function removed($sortby,$orderby='asc')
-	{
-		if( $this->session->userdata['youg_admin'] )
-	  	{
-		$this->data['reviewsremoved'] = $this->reviews->removed_review($sortby,$orderby);
-		$this->load->view('review',$this->data);
+    
+    public function removedcsv($keyword)
+    {
+        if( $this->session->userdata['youg_admin'] )
+        {
+				if($keyword!='') 
+				{
+					$searchKey = urldecode($keyword);		
+					
+					$file = 'Report-of-search-removed_reviews.csv';									
+					$removed_reviews = $this->reviews->removedReviewsSearch($searchKey);
+				}
+				else
+				{
+					$file = 'Report-of-all-removed_reviews.csv';
+					$removed_reviews = $this->reviews->removedReviewsSearch();
+				}
+				
+				ob_start();
+				echo "Review,Review to,Review by,Date Reviewed,Date of Remove,Status"."\n";
+								
+				foreach($removed_reviews as $removed_review): 
+					foreach($removed_review as $removed): 	
+					
+						echo "\"".$removed->comment."\",";								
+						echo "\"".$removed->company."\",";						
+						echo $removed->reviewuser.",";												
+						echo date('m-d-Y', strtotime($removed->reviewdate)).",";						
+						echo date('m-d-Y', strtotime($removed->reviewremoveddate)).",";
+						echo $removed->status;
+						echo "\n";									
+					endforeach;
+				endforeach;
+								
+					$content = ob_get_contents();
+					ob_end_clean();
+					header("Expires: 0");
+					header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+					header("Cache-Control: no-store, no-cache, must-revalidate");
+					header("Cache-Control: post-check=0, pre-check=0", false);
+					header("Pragma: no-cache");  header("Content-type: application/csv;charset:UTF-8");
+					header('Content-length: '.strlen($content));
+					header('Content-disposition: attachment; filename='.basename($file));
+					echo $content;
+					exit;
+							
+						
 		}
-	}*/
-	
+		else
+		{
+			redirect('adminlogin','refresh');
+		}
+    }
+    
 	
 	public function removed($sort_by = '', $sort_order = '', $offset = 0) {
 		
@@ -475,16 +539,20 @@ class Review extends CI_Controller {
 			$this->data['fields'] = array(				
 				'comment' => 'Review',				
 				'reviewby' => 'Review by',				
-				'reviewdate' => 'Review Date'								
+				'reviewremoveddate' => 'Review Date'								
 			);
 			
 			$this->load->model('reviews');
+			
+			if($this->input->get('s')){				
+				$decodeKeyword = urldecode($this->input->get('s'));
+			}
 			
 			if(empty($sort_by) || empty($sort_order)){
 				$offset = $sort_by;
 			}
 			
-			$results = $this->reviews->removedReviewsSearch($limit, $offset, $sort_by, $sort_order);
+			$results = $this->reviews->removedReviewsSearch($decodeKeyword, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['reviewsremoved'] = $results['rows'];
 			$this->data['num_results'] = $results['num_rows'];
@@ -499,6 +567,7 @@ class Review extends CI_Controller {
 				$siteURL = site_url("review/removed");
 				$uriSegment = 3;
 			}
+			$this->paging['base_url'] = $siteURL;
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
 			$this->paging['uri_segment'] = $uriSegment;
@@ -519,8 +588,7 @@ class Review extends CI_Controller {
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 					$this->data['reviewremove'] = $this->reviews->get_review_byid($id);
-					$this->data['review_date'] = $this->reviews->select_review_date($companyid, $userid, $id);
-					
+									
 					if( count($this->data['reviewremove'])>0 )
 					{		
 						$this->load->view('review',$this->data);
