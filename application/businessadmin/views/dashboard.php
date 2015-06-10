@@ -91,10 +91,13 @@ document.getElementById('popup').style.display = 'block';
 }
 window.onload = show_popup;
 </script>
-
+<?php 
+$logdata=$this->session->all_userdata();
+$logcount=$this->session->userdata['youg_admin']['logcount'];
+?>
 <!--Terms and conditions Popup-->
-<?php if(empty($_COOKIE['firstvisit'])){ 
-	setcookie("firstvisit", "1", time() + 2592000); echo $_COOKIE['firstvisit'];?>
+<?php if(empty($_COOKIE['firstvisit']) || $logcount=='0'){ 
+	setcookie("firstvisit", "1", time() + 2592000); ?>
 
 <div class="black_overlay" id="black_overlay"></div>
 <div id="popup" class="popupclose">
@@ -119,7 +122,12 @@ window.onload = show_popup;
 
 <!--Welcome video Popup-->
 
-<?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'popupclicked' ) ) { ?>
+<?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'popupclicked' ) ) {
+	
+	$get_sessionvalue = $this->session->all_userdata();
+	$get_sessionvalue['youg_admin']['logcount'] = $this->session->userdata['youg_admin']['logcount']+1;
+	$this->session->set_userdata($get_sessionvalue);
+	 ?>
 <style>
 .welcomevideo
 {
