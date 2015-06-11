@@ -464,7 +464,7 @@ class Complaint extends CI_Controller {
 				'userid' => 'Complaint By',
 				'companyid' => 'Complaint To',
 				'whendate' => 'Complaint Date',
-				'transaction_date' => 'Removal Date'								
+				'remove_date' => 'Removal Date'								
 			);
 			
 			$this->load->model('complaints');

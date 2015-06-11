@@ -76,7 +76,15 @@
     <tr>
       <td width="120"><b>Transaction Date</b></td>
       <td><b>:</b></td>
-      <td><?php echo date('M d Y',strtotime($complaint[0]['transaction_date'])); ?></td>
+      <td>
+		<?php
+			if( strtotime($complaint[0]['transaction_date']) < 0 ){							
+				echo date('M d Y');
+			}else{
+				echo date('M d Y', strtotime($complaint[0]['transaction_date']));
+			}
+		  
+		 ?></td>
     </tr>
     <?php
     }
@@ -544,8 +552,12 @@ else { ?>
 					elseif($field_name == 'whendate'){
 						echo date('m-d-Y', strtotime($removedcomplaint->whendate));
 					}					
-					elseif($field_name == 'transaction_date'){
-						echo date('m-d-Y', strtotime($removedcomplaint->transaction_date));
+					elseif($field_name == 'remove_date'){
+						if( strtotime($removedcomplaint->remove_date) < 0 ){							
+							echo date('m-d-Y');
+						}else{
+							echo date('m-d-Y', strtotime($removedcomplaint->remove_date));
+						}
 					}
 					else{
 						echo $removedcomplaint->$field_name; 

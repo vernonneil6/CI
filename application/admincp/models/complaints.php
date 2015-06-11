@@ -293,6 +293,7 @@ class Complaints extends CI_Model
 		$data = array(
 						'status'			=> 'Disable',
 						'complainip' 	=> $vareditip,
+						'remove_date' => date('Y-m-d H:i:s')
 						 		);
 		$this->db->where('id', $id);
 		if( $this->db->update('complaints', $data) )
