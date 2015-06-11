@@ -153,7 +153,7 @@ foreach($catlist as $row=> $result)
 </div>
 <?php if(isset($topads)){ ?>
 <?php if(count($topads)){ ?>
-<div align="center"><a href="<?php echo $topads[0]['url'];?>" title="Adverstiment" target="_blank" rel="nofollow"><img src="<?php if( $topads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($topads[0]['image']); } ?>" alt="Adverstiment" width="940" height="180" class="adimg"/></a> </div>
+<div align="center" class="addvert"><a href="<?php echo $topads[0]['url'];?>" title="Adverstiment" target="_blank" rel="nofollow"><img src="<?php if( $topads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($topads[0]['image']); } ?>" alt="Adverstiment" width="940" height="180" class="adimg"/></a> </div>
 <?php } ?>
 <?php } ?>
 <?php $fb_appId = $this->common->get_setting_value(20);?>
