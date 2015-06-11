@@ -70,7 +70,7 @@
 	</script>
 <?php } ?>
 </head><body>
-<header>
+<header class="noscroll-head">
   <div class="container">
     <div class="head_bg">
       <div class="yougot_logo"><a href="<?php echo base_url();?>" title="<?php echo $site_name;?>"><img src="images/ygr_logos.png" alt="<?php echo $site_name;?>" title="<?php echo $site_name;?>"></a></div>
@@ -136,15 +136,7 @@ foreach($catlist as $row=> $result)
         <li><a href="http://business.yougotrated.com" title="Business Solutions">Business Solutions</a></li>
       </ul>
     </div>
-   <?php if($this->uri->segment(1)!='businessdirectory' && $this->uri->segment(1)!='solution' && $this->uri->segment(1)!='login' && $this->uri->segment(2)!='register') { ?> 
-	<div class='headersearch'>
-	  <?php echo form_open('businessdirectory/search',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
-        <?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
-		<input type='text'  class='headersearchbar' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30"><div id="loading"></div>
-		<input type="submit" class="headersearchbtn" value="SEARCH" name="btnsearch">
-	 <?php echo form_close();?> 
-    </div>
-   <?php }  ?>	 
+ 
   </div>
 </header>
 <div class="data_table" align="center" style="width:60.7%;margin:0 auto;"> 
