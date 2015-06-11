@@ -1,4 +1,39 @@
-<?php echo $heading; ?>
+<?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
+<!-- box -->
+
+<div class="box">
+  <div class="headlines">
+    <h2><span>Review Details</span></h2>
+  </div>
+  <!-- table -->
+  <table align="center" width="100%" cellspacing="10" cellpadding="0" border="0">
+    <?php if( count($reviews)>0 ) { ?>
+    <tr>
+      <td width="120"><b>Title</b></td>
+      <td><b>:</b></td>
+      <td><?php echo stripslashes($reviews[0]['reviewtitle']); ?></td>
+    </tr>
+    <tr>
+      <td width="120"><b>Review</b></td>
+      <td><b>:</b></td>
+      <td><?php echo stripslashes($reviews[0]['comment']); ?></td>
+    </tr>
+   
+    <?php } else { ?>
+    <!-- Warning form message -->
+    <div class="form-message warning">
+      <p>No record found.</p>
+    </div>
+    <?php } ?>
+  </table>
+  <!-- /table --> 
+</div>
+<!-- /box -->
+
+<?php } 
+else {
+	
+ echo $heading; ?>
 <link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';?>css/fancybox.css" type="text/css">
 <script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';?>js/fancybox.js"></script>
 <script type="text/javascript" language="javascript">	
@@ -9,6 +44,15 @@
 	});
 
 </script>
+
+<?php echo link_tag('colorbox/colorbox.css'); ?> 
+<script language="javascript" type="text/javascript" src="<?php echo base_url();?>colorbox/jquery.colorbox.js"></script> 
+<script language="javascript" type="text/javascript">
+  $(document).ready(function(){
+		$('.colorbox').colorbox({'width':'65%','height':'85%'});
+	
+  });
+</script> 
 <!-- #content -->
 <div id="content">
   <div class="breadcrumbs">
@@ -72,32 +116,17 @@
 		<div class="btn-submit"> 
 		  <?php echo form_input(array('name'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('review');?>" class="Cancel">Cancel</a> 
 		</div>
-    </fieldset>
-    <?php echo form_close(); ?> 
-    </div>
-    
-    <?php echo form_open_multipart('review/import_csv',array('class'=>'formBox','id'=>'frmupload')); ?>
-    <?php 
-	$site = site_url();			
-	$url = explode("/businessadmin",$site);
-	$path = $url[0];
-	?>
-    <div class="clearfix file uploadbox" style="width:auto">
-      <div class = "review_download">Elite member review upload tool</div>
-	  <div class = "review_download">Use the template below to format your reviews in Excel with the same columns and formatting. When ready, upload your file to populate your elite business profile page with your preferred business reviews!</div>
-	  
-      <div id="divlink"><a title="Upload CSV" id="uploadcsv" style="cursor:pointer; display:block">Upload CSV</a> or <a title="Download Sample CSV" href="<?php echo site_url('review/download');?>" id="downloadcsv" style="cursor:pointer">( Download Sample CSV )</a></div>
-      <div class="con" id="divupload"> <?php echo form_input( array( 'name'=>'csvfile','id'=>'csvfile','class'=>'input file upload-file','type'=>'file') ); ?> </div>
-      <div class="btn-submit" id="submitupload"> <?php echo form_input(array('name'=>'btnupload','id'=>'btnupload','class'=>'button','type'=>'submit','value'=>'Submit')); ?> or <a href="<?php echo site_url('review');?>" class="Cancel">Cancel</a> </div>
-      <?php if(!empty($_GET['s']))
+		 <?php if(!empty($_GET['s']))
 			{	   
 				echo "<div style='margin-top:2em;'> Search results for <span style='color:#1a2e4d'>' ". $_GET['s'] . " ' </span> </div>";
 			}
 			
-		?> 
-      
+		?>
+    </fieldset>
+    <?php echo form_close(); ?> 
     </div>
-    <?php echo form_close();?>
+    
+ 
     <?php if( count($reviews) > 0 ) { ?>
     <!-- table -->
     
@@ -121,8 +150,8 @@
 			</th>			
 			
 			<?php endforeach; ?>			 
-			<th width="10%">Action</th>
-			<th width="15%">Share On</th>
+			<th>Action</th>
+			<th>Share On</th>
 			</tr>
 		</thead>
 		
@@ -174,7 +203,10 @@
 					
 				</td>			
 				<?php endforeach; ?>
-				<td><a href="<?php echo site_url('review/delete/'.$review->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this review ?');">Delete</a></td> 
+				<td>
+					<a href="<?php echo site_url('review/delete/'.$review->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this review ?');">Delete</a>
+					<a href="<?php echo site_url('review/view/'.$review->id); ?>" title="View Detail of <?php echo stripslashes($pressrelease->id);?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a>		
+				</td> 
 				<td>  
 					<?php 				 
 						$title=urlencode('My post');
@@ -610,3 +642,4 @@
 <!-- /#sidebar --> 
 <!-- #footer --> 
 <?php echo $footer; ?> 
+<?php } ?>

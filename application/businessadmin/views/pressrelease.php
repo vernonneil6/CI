@@ -529,8 +529,8 @@ else { ?>
 			</th>			
 			
 			<?php endforeach; ?>			 
-			<th width="10%">Action</th>
-			<th width="15%">Share On</th>
+			<th>Action</th>
+			<th>Share On</th>
 			</tr>
 		</thead>
 		

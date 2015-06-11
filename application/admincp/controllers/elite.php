@@ -314,24 +314,11 @@ class Elite extends CI_Controller {
 						echo "\"".$elite->contactemail."\",";						
 						echo "\"".$elite->payment_currency.' '.$elite->payment_amount."\",";						
 						echo "\"".$elite->status."\",";						
-						echo date("m-d-Y",strtotime($complaint->registerdate)).","; 
-						echo date("m-d-Y",strtotime($complaint->payment_date)); 
+						echo date("m-d-Y",strtotime($elite->registerdate)).","; 
+						echo date("m-d-Y",strtotime($elite->payment_date)); 
 						echo "\n";													
 					endforeach;
-				endforeach;	
-				
-				   /*for($i=0;$i<count($elite);$i++) { 
-					
-						echo stripslashes(ucwords($elite[$i]['company'])).',';
-						echo stripslashes(ucwords($elite[$i]['contactname'])).',';
-						echo stripslashes(ucwords($elite[$i]['email'])).',';
-						echo stripslashes(ucwords($elite[$i]['contactemail'])).',';
-						echo stripslashes($elitemembers[$i]['payment_currency']).' '.$elitemembers[$i]['payment_amount'].',';
-						echo stripslashes(ucwords($elite[$i]['status'])).',';
-						echo date("m-d-Y",strtotime($elite[$i]['registerdate'])).','; 
-						echo date("m-d-Y",strtotime($elite[$i]['payment_date'])); 
-						echo "\n";							
-					}*/
+				endforeach;					
 			
 					$content = ob_get_contents();
 					ob_end_clean();

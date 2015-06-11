@@ -118,7 +118,41 @@ class Review extends CI_Controller
 		}
 	}
 	
-
+	public function view($id = '')
+	{
+		if( $this->input->is_ajax_request() )
+		{
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+			if(!$id)
+			{
+				redirect('review', 'refresh');
+			}
+			//Loading Model File
+	  		
+			//Getting detail for displaying in form
+			$this->data['reviews'] = $this->reviews->get_review_byid($id);
+			/*echo "<pre>";
+			print_r($this->data['pressrelease']);
+			die();*/
+			if( count($this->data['reviews'])>0 )
+			{
+				//Loading View File
+				$this->load->view('review',$this->data);
+			}
+			else
+			{
+				$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
+				redirect('review', 'refresh');
+			}
+	  	}
+		}
+		else
+		{
+				redirect('review', 'refresh');
+		}
+	
+	}
 	public function import_csv()
 	{
 
