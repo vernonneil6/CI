@@ -17,7 +17,7 @@ td{display:block;}
 .head_bg {float: none;height: 80px; margin-top: 10px; width: auto;}
 .menu li{margin-right: 15px;}
 .main_contentarea{width:100%;display: block;}
-#first.footer_block, .main_footer, .container{width:92%;}
+#first.footer_block, .main_footer, .container,.headersearch{width:92%;}
 .footer_block ul{display: inline-block;float:none;vertical-align:top;margin-bottom: 15px;}
 .foot_last_bar,.foot_mid_bar{padding:0 !important;	}
 .foot_title_bar{margin-left:0;}
@@ -75,16 +75,19 @@ td{display:block;}
 #selstatediv1,#selstatediv{ float:none;margin-right:0;}
 #streetaddress1{width:238px;}
 
-
+.headersearchbar{width:400px;}
+.headersearch .formBox{width:405px;}
 }
 @media only screen and (min-width: 771px) {
 .footer-col {display: inline;}
 .fmenu {display: block !important;}
 
+.noscroll-head{position:fixed;z-index:10000;background: none repeat scroll 0 0 #fff;border-bottom:1px solid rgba(0, 0, 0, 0.25);}
+.slider {padding-top: 8.5em;}
 }
 @media only screen and (min-width: 850px) and (max-width: 1050px)  {
 .main_footer, .innr_wrap, .container{width:82%;padding:0 20px; }
-
+.headersearch{width:82%;}
 }
 
 @media only screen and (min-width: 310px) and (max-width: 400px){
@@ -196,6 +199,7 @@ span.toggle:before{
 
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
 .container{width:511px;padding:0 20px; }
+.headersearch{width:511px;}
 .regr_lnk,.innr_wrap{width:511px;}
 .reg_frm_wrap{float:none;width:auto;}
 .reg_txt_box{width:225px;}
@@ -211,11 +215,16 @@ span.toggle:before{
 .business-callout{float:none;margin-left:13.5em;}
 .new_usr a{font-size:20px;}
 .new_usr{font-size:21px;}
+
+.headersearchbar{width:300px;height:30px;}
+.headersearch .formBox{width:305px;}
+.headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
 }
 
 
 @media only screen and (min-width: 440px) and (max-width: 549px)  {
 .container{width:411px;padding:0 20px;}
+.headersearch{width:411px;}
 .revw_blck_cnt h2{font-size:15px !important;}
 #first.footer_block,.main_footer{width:411px; padding:0;margin:0 auto;}
 .regr_lnk,.innr_wrap{width:411px;}
@@ -236,6 +245,11 @@ span.toggle:before{
 
 .new_usr a{font-size:15px;}
 .new_usr{font-size:18px;}
+
+.headersearchbar{width:250px;height:30px;}
+.headersearch .formBox{width:255px;}
+.headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
+.headersearch{bottom:20%;}
 }
 @media only screen and (min-width: 310px) and (max-width: 549px)  {
 #loading{height:10px;float:none;margin:0 auto; position: relative; z-index: 9999999;}
@@ -249,6 +263,7 @@ span.toggle:before{
 }
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
 .container{width:311px;padding:0 20px; }
+.headersearch{width:311px;}
 .bannertext{font-size:25px !important;height:25px;}
 .revw_ratpoint span h5{display: block !important;margin-bottom:5px;}
 .revw_ratpoint span {line-height:20px;}
@@ -283,6 +298,10 @@ span.toggle:before{
 
 .innr_wrap .new_usr a{font-size:15px; display:block;}
 
+.headersearchbar{width:220px;height:30px;}
+.headersearch .formBox{width:225px;}
+.headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
+.headersearch{bottom:0%;}
 }
 
 @media only screen and (min-width: 620px) and (max-width: 1050px)  {
@@ -291,7 +310,9 @@ span.toggle:before{
 .bus_tag{font-size:30px;}
 .bannertext{font-size:55px;}
 }
-
+@media only screen and (min-width: 620px) and (max-width: 770px)  {
+.headersearchbtn{bottom:1.3em;}
+}
 @media only screen and (min-width: 310px) and (max-width: 619px)  {
 .bannertextcoupon{font-size:25px !important;height:35px;}
 .bus_dir_head  h1{height:20px;}
