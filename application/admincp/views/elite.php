@@ -79,8 +79,10 @@ else if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'payview' ) ) { ?
   <table class="tab tab-drag">
 		  <tr class="top nodrop nodrag">
 			  <?php //echo '<pre>';print_r($payment);?>
-			<th>Started date</th>
+			<th>Business Name</th>
 			<th>Subscription amount</th>
+			<th>Register date</th>
+			
 			<th>Payment date</th>
 			<th>Expire date</th>
 			<th>Total payments</th>
@@ -88,8 +90,10 @@ else if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'payview' ) ) { ?
 		  </tr>
 		  <?php if($payment) { ?>
           <tr>
-			<td><?php echo date('M d Y',strtotime($payment['startdate']));?></td>
+			<td><?php echo $payment['company']; ?></td>
 			<td><?php echo '$  '.$payment['payment_amount'];?></td>
+			<td><?php echo date('M d Y',strtotime($payment['registerdate']));?></td>
+			
 			<td><?php echo date('M d Y',strtotime($payment['payment_date']));?></td>
 			<td><?php 
 			if(!empty($payment['expires'])){

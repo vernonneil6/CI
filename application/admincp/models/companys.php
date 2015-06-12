@@ -40,7 +40,7 @@ Class Companys extends CI_Model
 		
 		
 		// results query
-		$q = $this->db->select('company,status,email')
+		$q = $this->db->select('company,status,email,id')
 			->from('company')		
 			->where('company !=','');
 		

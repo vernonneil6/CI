@@ -231,7 +231,8 @@ class Elites extends CI_Model
 		 
 		 
 		 $companies =$this->db->get_where('company', array('id' => $id))->row_array();		 
-		 $query['startdate']=$companies['registerdate'];
+		 $query['company']=$companies['company'];
+		 $query['registerdate']=$companies['registerdate'];
 		 $query['sub_amt']=$subscription_amount['value'];
 		 $query['status']=$elites['status'];
 		 $query['payment_date']=$elites['payment_date'];
