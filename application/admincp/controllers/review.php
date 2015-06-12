@@ -537,7 +537,8 @@ class Review extends CI_Controller {
 	  	{
 			$limit = 15;
 			$this->data['fields'] = array(				
-				'comment' => 'Review',				
+				'comment' => 'Review',
+				'company' => 'Review To',				
 				'reviewby' => 'Review by',				
 				'reviewdate' => 'Review Date'								
 			);

@@ -428,8 +428,7 @@ class Reviews extends CI_Model
 			$q->where('(r.comment LIKE \'%'.$keyword.'%\' OR u.username LIKE \'%'.$keyword.'%\' OR r.reviewby LIKE \'%'.$keyword.'%\' OR u.firstname LIKE \'%'.$keyword.'%\' OR u.lastname LIKE \'%'.$keyword.'%\' OR c.company LIKE \'%'.$keyword.'%\')', NULL, FALSE);									
 		}
 		
-		$ret['rows'] = $q->get()->result();
-		
+		$ret['rows'] = $q->get()->result();		
 		
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)	 

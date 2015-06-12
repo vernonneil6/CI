@@ -174,7 +174,7 @@
 						echo date('m-d-Y', strtotime($reviewsremove->reviewremoveddate));
 					}				
 					else{
-						echo $review->$field_name; 
+						echo $reviewsremove->$field_name; 
 					 }
 					?>	
 					
