@@ -46,6 +46,38 @@
 	
 }
 
+
+@font-face {
+	font-family: 'Palatino-regular';
+	src: url('../font/Palatino/Palatino_Linotype_Regular.eot'); 
+	src: url('../font/Palatino/Palatino_Linotype_Regular.eot?#iefix') format('embedded-opentype'), 
+		 url('../font/Palatino/Palatino_Linotype_Regular.woff') format('woff'),
+		 url('../font/Palatino/Palatino_Linotype_Regular.ttf')  format('truetype'), 
+		 url('../font/Palatino/Palatino_Linotype_Regular.otf')  format('opentype'),
+		 url('../font/Palatino/Palatino_Linotype_Regular.svg#Palatino_Linotype_Regular') format('svg'); 
+	
+}
+@font-face {
+	font-family: 'Palatino-italic';
+	src: url('../font/Palatino/Palatino_Linotype_Italic.eot'); 
+	src: url('../font/Palatino/Palatino_Linotype_Italic.eot?#iefix') format('embedded-opentype'), 
+		 url('../font/Palatino/Palatino_Linotype_Italic.woff') format('woff'),
+		 url('../font/Palatino/Palatino_Linotype_Italic.ttf')  format('truetype'), 
+		 url('../font/Palatino/Palatino_Linotype_Italic.otf')  format('opentype'),
+		 url('../font/Palatino/Palatino_Linotype_Italic.svg#Palatino_Linotype_Italic') format('svg'); 
+	
+}
+@font-face {
+	font-family: 'Palatino-bold-italic';
+	src: url('../font/Palatino/Palatino_Linotype_Bold_Italic.eot'); 
+	src: url('../font/Palatino/Palatino_Linotype_Bold_Italic.eot?#iefix') format('embedded-opentype'), 
+		 url('../font/Palatino/Palatino_Linotype_Bold_Italic.woff') format('woff'),
+		 url('../font/Palatino/Palatino_Linotype_Bold_Italic.ttf')  format('truetype'), 
+		 url('../font/Palatino/Palatino_Linotype_Bold_Italic.otf')  format('opentype'),
+		 url('../font/Palatino/Palatino_Linotype_Bold_Italic.svg#Palatino_Linotype_Bold_Italic') format('svg'); 
+	
+}
+
 /* Global properties ======================================================== */
 html, body{width:100%;}
 body {
@@ -991,7 +1023,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .pre_titlewrp p{font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#fff; text-transform:uppercase; margin:6px 0 0 0 ; line-height:25px;}
 .pressfact{color: #fff!important}
 .pressnotice{color: #fff!important;font-size: 15px;}
-.bannertext{font-family:'MyriadPro-BlackSemiCn';font-size:100px;font-weight:normal;color: #2c6a99;letter-spacing: 3px;text-transform:uppercase;}
+.bannertext{font-family:'Palatino-regular';font-size:7em;font-weight:normal;color: #2c6a99;letter-spacing: 3px;text-transform:uppercase;}
 .bannertextregular{color:black;}
 .pagination{width:800px; margin:0 auto 30px auto; display:table; padding-top:10px; border-top:1px solid #666;}
 .pagination ul{margin:0 auto; display:table; padding:0;}
@@ -1131,9 +1163,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 /*============ Coupon Deal ===========================*/
 .bannertextcoupon {
     color: #2c6a99;
-    font-family: "MyriadPro-BlackSemiCn";
+    font-family: "Palatino-regular";
     font-size: 80px;
-    font-weight: bold;
+    font-weight: normal;
     letter-spacing: 0;
     text-transform: uppercase;
 }
@@ -1416,7 +1448,7 @@ color:#2c6a99;
 }
 .bnrtxt
 {
-	font-size: 76px!important;
+	font-size: 60px!important;
 }
 .btxt
 {
