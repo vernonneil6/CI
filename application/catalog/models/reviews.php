@@ -1012,7 +1012,7 @@ class Reviews extends CI_Model
 	/* Find review promocode available for company */
 	function find_reviewpromocode_forcompany($companyid)
 	{
-		$query = $this->db->get_where('youg_elite',array('company_id'=>$companyid,'discountcode !='=> '','status'=>'Enable'));
+		$query = $this->db->get_where('youg_reviewpromo',array('companyid'=>$companyid,'status'=>'Enable'));
 	    
 	    if ($query->num_rows() > 0)
 		{
