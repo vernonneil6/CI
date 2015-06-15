@@ -221,7 +221,7 @@ function FileUpload( $resourceType, $currentFolder, $sCommand, $CKEcallback = ''
 				if ( is_file( $sFilePath ) )
 				{
 					$iCounter++ ;
-					$sFileName = RemoveExtension( $sOriginalFileName ) . '(' . $iCounter . ').' . $sExtension ;
+					$sFileName = RemoveExtension( $sOriginalFileName ) . '_' . uniqid() . '.' . $sExtension ;
 					$sErrorNumber = '201' ;
 				}
 				else
