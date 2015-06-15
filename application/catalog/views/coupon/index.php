@@ -6,6 +6,7 @@
       <h1  class="bannertextcoupon bnrtxt">
 		<span class="bannertextregular">Coupon, Deals </span>& Steals	
       </h1>
+     <div class="addthis_native_toolbox"></div>
       <div class="coupon_wrap">
         <?php if(count($coupons)>0) {?>
         <?php for($i=0; $i<count($coupons); $i++) { ?>
