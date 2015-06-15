@@ -1004,7 +1004,7 @@ h1 a{display:inline-block;}
 .pipe_line{border : none!important;}
 
 /*============ Business_Directory ===========================*/
-.p_realese_head{text-align:center; margin:40px auto 0 auto; width:940px; height:97px; padding-bottom:12px; border-bottom:1px solid #999;}
+.p_realese_head{text-align:center; margin:40px auto 0 auto; width:940px; height:97px; padding-bottom:12px; }
 .p_realese_head a{/*display:inline-block;*/}
 .p_realse_wrap{width:100%; display:inline-block; margin-top:51px;}
 .pres_srch_wrp{width:520px; display:inline-block; height:38px;}
@@ -1023,7 +1023,9 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .pre_titlewrp p{font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#fff; text-transform:uppercase; margin:6px 0 0 0 ; line-height:25px;}
 .pressfact{color: #fff!important}
 .pressnotice{color: #fff!important;font-size: 15px;}
-.bannertext{font-family:'Palatino-regular';font-size:7em;font-weight:normal;color: #2c6a99;letter-spacing: 3px;text-transform:uppercase;}
+.bannertext{
+	font-family:'Palatino-regular';font-size:18px;font-weight:normal;color: #2c6a99;letter-spacing: 3px;text-transform:uppercase;height: auto;letter-spacing: 3px;margin-top: 20px;
+}
 .bannertextregular{color:black;}
 .pagination{width:800px; margin:0 auto 30px auto; display:table; padding-top:10px; border-top:1px solid #666;}
 .pagination ul{margin:0 auto; display:table; padding:0;}
@@ -1164,10 +1166,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .bannertextcoupon {
     color: #2c6a99;
     font-family: "Palatino-regular";
-    font-size: 80px;
+    font-size: 18px;
     font-weight: normal;
-    letter-spacing: 0;
+    letter-spacing: 2px;
     text-transform: uppercase;
+    height: auto;
+    margin-top: 20px;    
 }
 .coupon_company_title{
 	font-family: "myriadpro-regular";
@@ -1446,10 +1450,7 @@ color:#2c6a99;
 {
 	margin: 4px 47px 0 0!important;
 }
-.bnrtxt
-{
-	font-size: 60px!important;
-}
+
 .btxt
 {
 	font-size: 90px;
