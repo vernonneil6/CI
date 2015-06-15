@@ -73,6 +73,7 @@
                 <li><span>E-MAIL</span> <a href="mailto:<?php echo ($company[0]['email']);?>" title="mail us"><?php echo ($company[0]['email']);?></a></li>
               </ul>
             </div>
+            <div class="addthis_native_toolbox"></div>
           </div>
           
           
