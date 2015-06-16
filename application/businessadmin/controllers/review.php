@@ -118,6 +118,9 @@ class Review extends CI_Controller
 		}
 	}
 	
+	public function bulk(){
+		$this->load->view('review', $this->data);
+	}
 	public function view($id = '')
 	{
 		if( $this->input->is_ajax_request() )
@@ -163,6 +166,7 @@ class Review extends CI_Controller
 		
 		if( $this->session->userdata['youg_admin'] )
 	  	{
+			//print_r($this->input->post('csvfile'));die;
 			if($this->input->post('btnupload'))
 			{
 	  	  		$config['upload_path'] = '../uploads/reviewcsv/';

@@ -124,7 +124,10 @@
 				<a href="<?php echo site_url('elite'); ?>" title="List All Elite Members">List All Elite Members</a>
 			</li>
 			<li>
-				<a href="<?php echo site_url('elite/subscriptions'); ?>" title="Subscribtions">Subscriptions</a>
+				<a href="<?php echo site_url('elite/subscriptions'); ?>" title="Subscriptions">Subscriptions</a>
+			</li>
+			<li>
+				<a href="<?php echo site_url('elite/reviewUploadSecurity'); ?>" title="Review Upload Security">Review Upload Security</a>
 			</li>
 		</ul>
     </li>

@@ -133,6 +133,133 @@ class Elite extends CI_Controller {
 		}
 	}
 	
+	public function reviewUploadSecurity($sort_by = '', $sort_order = '', $offset = 0) {
+		
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+			$limit = 15;
+			$this->data['fields'] = array(				
+				'company' => 'Company',											
+				'status' => 'Status'																				
+			);
+			
+			$this->load->model('elites');
+			
+			if($this->input->get('s')){				
+				$decodeKeyword = urldecode($this->input->get('s'));
+			}
+			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+			
+			$results = $this->elites->elitemembersSearch($decodeKeyword, $limit, $offset, $sort_by, $sort_order);
+			
+			$this->data['elite_members'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
+			
+			
+			// pagination	
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("elite/review_upload/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("elite/review_upload");
+				$uriSegment = 3;
+			}
+						
+			$this->paging['base_url'] = $siteURL;
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;
+			$this->paging['uri_segment'] = $uriSegment;
+			$this->pagination->initialize($this->paging);									
+			
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('elite', $this->data);
+		}
+	}
+	
+	public function create($id = ''){
+		
+		if( $this->session->userdata['youg_admin'] )
+		{
+			if(!$id)
+			{
+				redirect('elite/reviewUploadSecurity', 'refresh');
+			}
+			
+			//Getting detail for displaying in form
+				$this->data['elitedetails'] = $this->elites->getEliteMembersDetails($id);
+			
+			/*echo "<pre>";
+			print_r($this->data['elitedetails']);
+			die();*/
+			if( count($this->data['elitedetails'])>0 )
+			{			
+				//Loading View File
+				$this->load->view('elite',$this->data);
+			}
+			else
+			{
+				$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
+				redirect('elite/reviewUploadSecurity', 'refresh');
+			}
+		}
+	}
+	
+	public function update(){
+		
+		if( $this->session->userdata['youg_admin'] )
+		{			
+			//print_r($this->input->post('id'));die;
+			
+			if(count($this->input->post()) > 0){
+				
+				$id = $this->input->post('id');
+				$password = $this->input->post('password');
+				
+				//Getting detail for displaying in form
+				$elitedata = array(
+					'id' => $id,
+					'password' => $password								
+				);
+				//print_r($elitedata);die;
+			
+				if( $this->elites->updateEliteMembersDetails($elitedata) )
+				{			
+					echo "success";					
+				}
+				else
+				{
+					echo "failure";			
+				}
+			}
+		}
+	}
+	
+	public function remove($id){
+			
+		if(!empty($id)){
+			$elitedata = array(
+				'id' => $id,
+				'password' => ''								
+			);
+					//print_r($elitedata);die;
+			
+			if( $this->elites->updateEliteMembersDetails($elitedata) )
+			{
+				$this->session->set_flashdata('success', 'deleted password successfully');
+				redirect('elite/reviewUploadSecurity', 'refresh');
+			}
+		}else{
+			$this->session->set_flashdata('error', 'deleted password successfully');
+			redirect('elite/reviewUploadSecurity', 'refresh');
+		}
+	}
+	
 	public function search()
 	{
 		if( $this->session->userdata['youg_admin'] )

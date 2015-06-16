@@ -51,7 +51,7 @@
 			<ul class="submenu">
 				<li><a class="childmenu" href="<?php echo site_url('review'); ?>" title="Reviews">Reviews</a>
 					<ul class="child">
-						<li><a href="<?php echo site_url('review?bulk'); ?>" class="link" title="Upload Reviews in Bulk">Upload Reviews in Bulk</a></li>
+						<li><a href="<?php echo site_url('review/bulk'); ?>" class="link" title="Upload Reviews in Bulk">Upload Reviews in Bulk</a></li>
 						<li><a href="<?php echo site_url('review'); ?>"  class="link" title="List All Reviews">List All Reviews</a></li>
 					</ul>
 				</li>

@@ -78,14 +78,7 @@ else {
 	  <?php $pageurl = $url1[0]['siteurl'].'review/browse/';?>
     <?php if( $this->uri->segment(1) == 'review' && ( $this->uri->segment(2) == 'index' || $this->uri->segment(2) == '' || $this->uri->segment(2) == 'searchresult' ) )
 	{ ?>
-    <script language="javascript" type="text/javascript">
-	  $(document).ready(function(){
-		$('#uploadcsv').click(function() {
-			$('#divupload').show();
-			$('#submitupload').show();
-		});
-	  });
-	</script> 
+    
     <!-- Correct form message -->
     <?php if( $this->session->flashdata('success') ) { ?>
     <div class="form-message correct">
@@ -246,8 +239,37 @@ else {
     </div>
     <?php } 
     }
-    
-    
+    if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'bulk' )
+	{ ?>
+		
+	<script language="javascript" type="text/javascript">
+	  $(document).ready(function(){
+		$('#uploadcsv').click(function() {
+			$('#divupload').show();
+			$('#submitupload').show();
+		});
+	  });
+	</script> 	
+		
+		<?php echo form_open_multipart('review/import_csv',array('class'=>'formBox','id'=>'frmupload')); ?>
+		<?php 
+		$site = site_url();			
+		$url = explode("/businessadmin",$site);
+		$path = $url[0];
+		?>
+		<div class="clearfix file uploadbox" style="width:auto">
+		  <div class = "review_download">Elite member review upload tool</div>
+		  <div class = "review_download">Use the template below to format your reviews in Excel with the same columns and formatting. When ready, upload your file to populate your elite business profile page with your preferred business reviews!</div>
+		  
+		  <div id="divlink"><a title="Upload CSV" id="uploadcsv" style="cursor:pointer; display:block">Upload CSV</a> or <a title="Download Sample CSV" href="<?php echo site_url('review/download');?>" id="downloadcsv" style="cursor:pointer">( Download Sample CSV )</a></div>
+		  <div class="con" id="divupload"> <?php echo form_input( array( 'name'=>'csvfile','id'=>'csvfile','class'=>'input file upload-file','type'=>'file') ); ?> </div>
+		  <div class="btn-submit" id="submitupload"> <?php echo form_input(array('name'=>'btnupload','id'=>'btnupload','class'=>'button','type'=>'submit','value'=>'Submit')); ?> or <a href="<?php echo site_url('review');?>" class="Cancel">Cancel</a> </div>
+		</div>
+		<?php echo form_close();?>	
+		
+		
+    <?php
+	}
 	if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'reviews' )
 	{ ?>
 	<!-- Correct form message -->
