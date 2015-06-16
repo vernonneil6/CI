@@ -717,7 +717,7 @@ class CKFinder_Connector_Utils_FileSystem
         $sFilePath = CKFinder_Connector_Utils_FileSystem::combinePaths($filePath, $fileName);
         if ( file_exists($sFilePath) ){
           $iCounter++;
-          $fileName = CKFinder_Connector_Utils_FileSystem::getFileNameWithoutExtension($sFileNameOrginal, false) . "(" . $iCounter . ")" . "." .CKFinder_Connector_Utils_FileSystem::getExtension($sFileNameOrginal, false);
+          $fileName = CKFinder_Connector_Utils_FileSystem::getFileNameWithoutExtension($sFileNameOrginal, false) . '_' . uniqid() . '.' .CKFinder_Connector_Utils_FileSystem::getExtension($sFileNameOrginal, false);
         }
         else
         {
