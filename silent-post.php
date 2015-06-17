@@ -46,7 +46,7 @@ if($sql!='')
 	 $expires = date('Y-m-d H:i:s', strtotime("+$time Month"));
 	 $query="UPDATE youg_subscription SET `payment_date`='$date',`expires`='$expires',`datereturn`='$date' , `transactionstatus`='$tn_status' , `transactionresponse`='$transaction_status' WHERE subscr_id='$sub_id'";
 	 $jamcode_arr = array();
-	$check_jamcode = "SELECT * FROM `youg_subscription` WHERE `subscr_id` = '".$sub_id."'";
+	$check_jamcode = "SELECT * FROM `youg_subscription` LEFT JOIN `youg_company` on `youg_company`.`id` = `youg_subscription`.`company_id` WHERE `youg_subscription`.`subscr_id` = '".$sub_id."'";
 	$result = mysql_query($check_jamcode,$con);
 	$jamcode_arr = mysql_fetch_assoc($result);
 	if(!empty($jamcode_arr['jamcode']) && $paynumber > 1 && $paynumber != ''){
@@ -67,7 +67,7 @@ if($sql!='')
 					$groupid = $group_query_result['group_id'] + 1;
 					$update_group_query = mysql_query("UPDATE `jam_members_groups` SET `group_id` = '".$groupid."' WHERE `member_id` = '".$query_result['member_id']."'",$con);
 
-					$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode']);
+					$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode'] . '/customer_name/' . trim(urlencode($jamcode_arr['company'])));
 					
 					$groupid = $groupid - 1;
 					$update_group_query = mysql_query("UPDATE `jam_members_groups` SET `group_id` = '".$groupid."' WHERE `member_id` = '".$query_result['member_id']."'",$con);
@@ -76,7 +76,7 @@ if($sql!='')
 
 		}		
 	} elseif(!empty($jamcode_arr['jamcode']) && $paynumber <= 1 && $paynumber != ''){
-		$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode']);
+		$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode'] . '/customer_name/' . trim(urlencode($jamcode_arr['company'])));
 	}
  } else {
 	 $tn_status=0;
