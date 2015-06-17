@@ -158,8 +158,7 @@ class Review extends CI_Controller
 						/*Reset Password Email*/						
 							$this->load->library('email');
 							$this->email->from($result['rows'][0]->contactemail, $result['rows'][0]->contactname);
-							$this->email->to('vernonneil@grossmaninteractive.com'); 	
-							$this->email->to('sales@yougotrated.com');
+							$this->email->to('vernonneil@grossmaninteractive.com','sales@yougotrated.com'); 								
 							$this->email->subject('Request Password Access');
 							$this->email->message('Hi, Please provide access to Review Upload Admin Tool');	
 							$this->email->send();
