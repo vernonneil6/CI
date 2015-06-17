@@ -284,7 +284,7 @@ else {
 								window.location.href = "<?php echo site_url('review/bulk'); ?>";
 							}else{
 								
-								$("#error_message").html("There is no data in database");
+								$("#error_message").html("Invalid Username or Password");
 							}
 						},
 						error: function(r){

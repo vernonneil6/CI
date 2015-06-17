@@ -46,7 +46,7 @@ class Reviews extends CI_Model
 			->join('company as c','c.id=e.company_id','left');
 		
 		if(!empty($data['password']) && !empty($data['username'])){	
-			$q->where(array('e.password'=>$data['password'],'c.contactemail'=>$data['username']));	
+			$q->where(array('e.password'=>MD5($data['password']),'c.contactemail'=>$data['username']));	
 		}
 		
 		if(!empty($data['email'])){	

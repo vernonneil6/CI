@@ -219,7 +219,7 @@ class Elite extends CI_Controller {
 			if(count($this->input->post()) > 0){
 				
 				$id = $this->input->post('id');
-				$password = $this->input->post('password');
+				$password = MD5($this->input->post('password'));
 				
 				//Getting detail for displaying in form
 				$elitedata = array(
