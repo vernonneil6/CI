@@ -183,7 +183,7 @@ class Review extends CI_Controller
 				$this->load->library('session');
 				if( $this->input->post('username') &&  $this->input->post('password'))
 				{			
-					//$this->session->unset_userdata($data);
+					$this->session->unset_userdata($data);
 					
 					$data = array(
 						'username' => $this->input->post('username'),
@@ -193,7 +193,7 @@ class Review extends CI_Controller
 					//print_r($result);die;
 					
 					if($result['rows'][0]->count > 0){
-						//$this->session->set_userdata($data);
+						$this->session->set_userdata($data);
 						echo "SUCCESS";
 						
 					}else{
