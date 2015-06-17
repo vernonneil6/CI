@@ -67,18 +67,26 @@ class Elites extends CI_Model
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
 		$sort_columns = array('company','contactname', 'email','contactemail','payment_amount','status','registerdate','payment_date');
-		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'company';
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
 		
 		// results query
 		$q = $this->db->select('e.*, c.*')
 				->from('elite as e')
-				->join('company as c','e.company_id=c.id','left');				
+				->join('company as c','e.company_id=c.id','left')				
+				->where('c.company is NOT NULL')
+				->where('c.contactemail != ""');								
 				
-		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
-				$q->limit($limit, $offset);
-				$q->order_by($sort_by, $sort_order);
+				
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
 		}
-				
+		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}
+		
+		// search query		
 		if (strlen($keyword)) {			
 			$q->or_like(array('c.city'=> $keyword , 'c.state'=> $keyword , 'c.country'=> $keyword , 'c.zip'=> $keyword , 'c.company'=> $keyword , 'c.email'=> $keyword , 'c.contactemail'=> $keyword, 'c.contactname'=> $keyword,  'c.companyseokeyword'=> $keyword ) );
 			
@@ -88,11 +96,13 @@ class Elites extends CI_Model
 		
 		
 		// count query
-		$q = $this->db->select('COUNT(*) as count', FALSE)	 
+		$q = $this->db->select('COUNT( * ) as count', FALSE)	 
 			->from('elite as e')
-			->join('company as c','e.company_id=c.id','left');			
-				
-					
+			->join('company as c','e.company_id=c.id','left')			
+			->where('c.company is NOT NULL')
+			->where('c.contactemail != ""');
+															
+		// search query			
 		if (strlen($keyword)) {			
 			$q->or_like(array('c.city'=> $keyword , 'c.state'=> $keyword , 'c.country'=> $keyword , 'c.zip'=> $keyword , 'c.company'=> $keyword , 'c.email'=> $keyword , 'c.contactname'=> $keyword,  'c.companyseokeyword'=> $keyword ) );			
 		}	
@@ -103,6 +113,85 @@ class Elites extends CI_Model
 		
 		
 		return $ret;
+	}
+	
+	function elitemembersSearch($keyword, $limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('company','status','registerdate','payment_date');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
+		
+		// results query
+		$q = $this->db->select('e.*, c.company')
+				->from('elite as e')
+				->join('company as c','e.company_id=c.id','left')				
+				->where('c.company is NOT NULL')
+				->where('c.contactemail != ""');								
+				
+				
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
+		}
+		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}
+		
+		// search query		
+		if (strlen($keyword)) {			
+			$q->or_like(array('c.city'=> $keyword , 'c.state'=> $keyword , 'c.country'=> $keyword , 'c.zip'=> $keyword , 'c.company'=> $keyword , 'c.email'=> $keyword , 'c.contactemail'=> $keyword, 'c.contactname'=> $keyword,  'c.companyseokeyword'=> $keyword ) );
+			
+		}					
+		
+		$ret['rows'] = $q->get()->result();
+		
+		
+		// count query
+		$q = $this->db->select('COUNT( * ) as count', FALSE)	 
+			->from('elite as e')
+			->join('company as c','e.company_id=c.id','left')			
+			->where('c.company is NOT NULL')
+			->where('c.contactemail != ""');
+															
+		// search query			
+		if (strlen($keyword)) {			
+			$q->or_like(array('c.city'=> $keyword , 'c.state'=> $keyword , 'c.country'=> $keyword , 'c.zip'=> $keyword , 'c.company'=> $keyword , 'c.email'=> $keyword , 'c.contactname'=> $keyword,  'c.companyseokeyword'=> $keyword ) );			
+		}	
+		
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		
+		
+		return $ret;
+	}
+	
+	
+	function getEliteMembersDetails($id){
+		
+		
+		$q = $this->db->select('e.*, c.company')
+				->from('elite as e')
+				->join('company as c','c.id = e.company_id','left')								
+				->where(array('e.id'=>$id), NULL, FALSE);
+				
+				
+		$ret['rows'] = $q->get()->result();		
+		
+		return $ret['rows'];
+			
+				
+	}
+	
+	function updateEliteMembersDetails($data){				
+					
+		$this->db->where(array('elite.id'=>$data['id']));	
+		if($this->db->update('elite',$data)){
+			return true;
+		}else{
+			return false;
+		}				
 	}
 	
 	function search_elitemember($keyword,$limit ='',$offset='',$sortby = 'company',$orderby = 'ASC')
@@ -192,14 +281,43 @@ class Elites extends CI_Model
 							->get()
 							->row_array();
 		 }
-		 //echo $this->db->last_query();				
+		 
 		 //echo '<pre>';print_r($query);
 		 $startdate=$this->db->get_where('company', array('id' => $id))->row_array();
 		 $query['startdate']=$startdate['registerdate'];
 		 $query['sub_amt']=$subscription_amount['value'];
 		 $query['status']=$enablecheck['status'];
+		
 		 return $query;	
 			
+	}
+	
+	function getElitePaymentDetails($id){
+	
+		// results query
+		$elites = $this->db->get_where('elite', array('company_id' => $id))->row_array();
+		$subscription_amount = $this->db->get_where('setting', array('id' => '19'))->row_array();
+		if(trim($elites['status'])=='Enable')
+		 {
+		   $sub_id=$this->db->get_where('subscription', array('company_id' => $id))->row_array();
+		   $query= $this->db->select('*')
+							->from('subscription sb')
+							->join('silent si', 'sb.subscr_id = si.subscription_id', 'left')
+							->where(array('sb.subscr_id'=>$sub_id['subscr_id'],'sb.company_id'=>$id))
+							->get()
+							->row_array();							
+		 }
+		 
+		 
+		 $companies =$this->db->get_where('company', array('id' => $id))->row_array();		 
+		 $query['company']=$companies['company'];
+		 $query['registerdate']=$companies['registerdate'];
+		 $query['sub_amt']=$subscription_amount['value'];
+		 $query['status']=$elites['status'];
+		 $query['payment_date']=$elites['payment_date'];
+		 $query['payment_amount']=$elites['payment_amount'];
+		 		 
+		return $query;
 	}
 }
 

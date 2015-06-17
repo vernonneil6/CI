@@ -136,8 +136,8 @@
                 <label for="city">City <span class="errorsign">*</span></label>
               </div>
               <div class="con">
-                <?php if($this->uri->segment(2) == 'edit') { ?>
-                <?php echo form_input( array( 'name'=>'city','id'=>'city','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['companycity']) ) ); ?>
+                <?php if($this->uri->segment(2) == 'edit') { ?>                
+                <?php echo form_input( array( 'name'=>'companycity','id'=>'companycity','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['companycity']) ) ); ?>
                 <?php } ?>
               </div>
             </div>
@@ -152,7 +152,7 @@
               </div>
               <div class="con">
                 <?php if($this->uri->segment(2) == 'edit') { ?>
-                <?php echo form_input( array( 'name'=>'state','id'=>'state','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['companystate']) ) ); ?>
+                <?php echo form_input( array( 'name'=>'companystate','id'=>'companystate','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['companystate']) ) ); ?>
                 <?php } ?>
               </div>
             </div>
@@ -169,7 +169,7 @@
                 <?php 
 					if($this->uri->segment(2) == 'edit') { 
 				?>				
-                <?php echo form_input( array( 'name'=>'country','id'=>'country','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['companycountry']) ) ); ?>
+                <?php echo form_input( array( 'name'=>'companycountry','id'=>'companycountry','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['companycountry']) ) ); ?>
                 <?php } ?>
               </div>
             </div>
@@ -184,7 +184,7 @@
               </div>
               <div class="con">
                 <?php if($this->uri->segment(2) == 'edit') { ?>
-                <?php echo form_input( array( 'name'=>'zip','id'=>'zip','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['companyzip']) ) ); ?>
+                <?php echo form_input( array( 'name'=>'companyzip','id'=>'companyzip','class'=>'input','type'=>'text','value'=>stripslashes($company[0]['companyzip']) ) ); ?>
                 <?php } ?>
               </div>
             </div>
@@ -224,7 +224,7 @@
           </div>
           <div id="siteurlerror" class="error">Site Url is required.</div>
         </div>
-        <div class="clearfix file" style = "display:none">
+        <div class="clearfix file">
           <div class="lab" style="width:18%">
             <label for="companylogo">Logo <span class="errorsign">*</span></label>
           </div>
@@ -418,7 +418,7 @@
 				  <label>City <span class="errorsign">*</span></label>
               </div>          
               <div class="con">
-				<?php echo form_input( array( 'name'=>'companycity','id'=>'companycity','class'=>'input','type'=>'text','value'=>$company[0]['city']) ); ?>
+				<?php echo form_input( array( 'name'=>'city','id'=>'city','class'=>'input','type'=>'text','value'=>$company[0]['city']) ); ?>
               </div>
             </div>
           </div> 
@@ -433,7 +433,7 @@
 				  <label>State <span class="errorsign">*</span></label>
               </div>          
               <div class="con">
-				<?php echo form_input( array( 'name'=>'companystate','id'=>'companystate','class'=>'input','type'=>'text','value'=>$company[0]['state']) ); ?>
+				<?php echo form_input( array( 'name'=>'state','id'=>'state','class'=>'input','type'=>'text','value'=>$company[0]['state']) ); ?>
               </div>
             </div>
           </div>
@@ -448,7 +448,7 @@
 				  <label>Country<span class="errorsign">*</span></label>
               </div>          
               <div class="con">
-				<?php echo form_input( array( 'name'=>'companycountry','id'=>'companycountry','class'=>'input','type'=>'text','value'=>$company[0]['country']) ); ?>
+				<?php echo form_input( array( 'name'=>'country','id'=>'country','class'=>'input','type'=>'text','value'=>$company[0]['country']) ); ?>
               </div>
             </div>
           </div>
@@ -463,12 +463,12 @@
 				  <label>Zip Code <span class="errorsign">*</span></label>
               </div>          
               <div class="con">
-				<?php echo form_input( array( 'name'=>'companyzip','id'=>'companyzip','class'=>'input','type'=>'text','value'=>$company[0]['zip']) ); ?>
+				<?php echo form_input( array( 'name'=>'zip','id'=>'zip','class'=>'input','type'=>'text','value'=>$company[0]['zip']) ); ?>
               </div>
             </div>
           </div> 
          <div id="contactcompanyziperror" class="error">Contact Zip Code is required.</div>
-        <div id="contactcompanyvziperror" class="error">Enter only digits valid format.</div>       
+        <div id="contactcompanyvziperror" class="error">Enter only digits valid format.</div>        
         </div>
 
         

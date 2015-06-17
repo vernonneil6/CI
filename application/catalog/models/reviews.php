@@ -842,6 +842,28 @@ class Reviews extends CI_Model
 		}
  	}
 	
+	//delete review by id elite
+	function delete_reviewcomments_byid($id)
+ 	{	
+	  
+		if(!empty($id)){
+		
+			$sql = "DELETE r,c FROM youg_reviews r
+				JOIN youg_comments c ON r.id = c.reviewid
+				WHERE c.reviewid = ?";		
+
+			if($this->db->query($sql, array($id)))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+ 	}
+	
+	
 	//get disable review of elite
 	function get_disreview_byid($id)
  	{
@@ -987,7 +1009,23 @@ class Reviews extends CI_Model
 		}
 		
 	}
-	
+	/* Find review promocode available for company */
+	function find_reviewpromocode_forcompany($companyid)
+	{
+		$query = $this->db->get_where('youg_reviewpromo',array('companyid'=>$companyid,'status'=>'Enable'));
+	    
+	    if ($query->num_rows() > 0)
+		{
+			//return $query->result_array();
+			return $value='1';
+		}
+		else
+		{
+			return $value='0';
+		}
+		
+	}
+
 	
 }
 ?>

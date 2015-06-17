@@ -30,6 +30,52 @@ Class Categorys extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	function categoriesSearch($keyword, $siteid, $limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('category','status');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
+		
+		
+		// results query
+		$q = $this->db->select('*')
+			->from('category')		
+			->where('websiteid',$siteid);		
+		
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
+		}
+		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}
+		
+		// search query
+		if (strlen($keyword)) {
+			$q->where('(category LIKE \'%'.$keyword.'%\')', NULL, FALSE);
+		}
+		
+		$ret['rows'] = $q->get()->result();
+		
+		// count query
+		$q = $this->db->select('COUNT(*) as count', FALSE)
+			->from('category')
+			->where('websiteid',$siteid);
+		
+		// search query
+		if (strlen($keyword)) {
+			$q->where('(category LIKE \'%'.$keyword.'%\')', NULL, FALSE);
+		}
+		
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		
+		return $ret;
+	}
+ 	
 	
 	//Inserting Record
 	function insert($category,$siteid,$image)

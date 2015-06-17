@@ -42,6 +42,63 @@ Class Pressreleases extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	
+ 	function pressSearch($keyword, $companyid, $siteid, $limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('site','title', 'subtitle','release','status');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
+		
+		
+		if($sort_by == 'release'){
+			$sort_by = 'p.insertdate';
+		}
+		//results query
+		
+		$q = $this->db->select('p.*,u.url as site')
+		->from('pressrelease as p')
+		->join('url as u','u.id=p.websiteid','left')			
+		->where(array('p.companyid' => $companyid));
+						
+			
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
+		}
+		
+		if(!empty($sort_by) && !empty($sort_order)){			
+			$q->order_by($sort_by, $sort_order);		
+		}
+		
+		// search query
+		if (strlen($keyword)) {							
+			$q->or_like(array('u.url'=> $keyword , 'p.title' => $keyword , 'p.subtitle'=> $keyword , 'p.sortdesc' => $keyword , 'p.metakeywords' => $keyword, 'p.metadescription' => $keyword,  "p.presscontent" => $keyword ), 'after' );
+		}
+		
+		$ret['rows'] = $q->get()->result();
+			
+		// count query
+		
+		
+		$q = $this->db->select('COUNT(*) as count', FALSE)
+		->from('pressrelease as p')	
+		->join('url as u','u.id=p.websiteid','left')		
+		->where(array('p.companyid' => $companyid));				
+		
+		// search query
+		if (strlen($keyword)) {							
+			
+			$q->or_like(array('u.url'=> $keyword , 'p.title' => $keyword , 'p.subtitle'=> $keyword , 'p.sortdesc' => $keyword , 'p.metakeywords' => $keyword, 'p.metadescription' => $keyword,  "p.presscontent" => $keyword ), 'after' );
+		}
+		
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		//print_r($ret['num_rows']);die;
+		return $ret;
+		die('d');
+	}
 	
 	function check_pressrelease($companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$siteid){
 		$query = $this->db->query("SELECT * FROM `youg_pressrelease` WHERE `companyid` = ".$companyid." AND `presscontent` LIKE '%".mysql_escape_string($presscontent)."%'");

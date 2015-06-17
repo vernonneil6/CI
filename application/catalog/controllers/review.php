@@ -137,7 +137,7 @@ class Review extends CI_Controller
 		if($companyid!='' || $companyid!=0)
 		{
 			$this->data['companyid'] = $companyid;
-
+			$this->data['findproforcompany']=$this->reviews->find_reviewpromocode_forcompany($companyid);
 			$this->data['company'] = $this->reviews->get_company_byid($companyid);
 			
 			if(count($this->data['company'])>0){
@@ -1509,7 +1509,7 @@ class Review extends CI_Controller
 						
 						if(($this->data['review'][0]['reviewby']==$this->session->userdata['youg_user']['userid']))
 						 { 
-								if( $this->reviews->delete_review_byid($id) )
+								if( $this->reviews->delete_reviewcomments_byid($id) )
 								{
 					$this->session->set_flashdata('success', 'Review has been Deleted successfully.');
 					redirect('review', 'refresh');

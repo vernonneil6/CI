@@ -99,6 +99,7 @@ class User extends CI_Controller {
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			$limit = 15;
+			
 			$this->data['fields'] = array(
 				'firstname' => 'Name',
 				'email' => 'Email',
@@ -110,17 +111,29 @@ class User extends CI_Controller {
 			if($this->input->get('s')){				
 				$decodeKeyword = urldecode($this->input->get('s'));
 			}
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
 			$results = $this->users->usersSearch($decodeKeyword, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['users'] = $results['rows'];
 			$this->data['num_results'] = $results['num_rows'];
 			
 			// pagination				
-			$this->paging['base_url'] = site_url("user/index/$sort_by/$sort_order");
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("user/index/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("user/index");
+				$uriSegment = 3;
+			}
+			
+			$this->paging['base_url'] = $siteURL;			
 			$this->paging['total_rows'] = $this->data['num_results'];
-			$this->paging['per_page'] = $limit;
-			$this->paging['uri_segment'] = 5;
-			$this->pagination->initialize($this->paging);									
+			$this->paging['per_page'] = $limit;			
+			$this->paging['uri_segment'] = $uriSegment;		
+			$this->pagination->initialize($this->paging);
 			
 			$this->data['sort_by'] = $sort_by;
 			$this->data['sort_order'] = $sort_order;

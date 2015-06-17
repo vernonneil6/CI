@@ -75,7 +75,44 @@
 <div class="box">
     <div class="headlines">
       <h2><span>Removed Reviews</span></h2>
+      <h2>
+							   <span>
+									<a href="<?php if(!empty($_GET['s'])){  echo site_url('review/removedcsv/'.$_GET['s']); }else { echo site_url('review/removedcsv'); } ?>" title="Export as CSV file">
+										<img src="<?php echo base_url(); ?>images/csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
+									</a>
+								</span>
+							</h2>
     </div>
+    
+    <div class="box-content"> <?php echo form_open('review/searchremovereview',array('class'=>'formBox','id'=>'frmsearch','method'=>'POST')); ?>
+      <fieldset>
+        
+        <!-- Error form message -->
+        
+        <div class="form-cols"><!-- two form cols -->
+          <div class="col1">
+            <div class="clearfix">
+              <div class="lab">
+                <label for="keysearch">Keyword<span>*</span></label>
+              </div>
+              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'search reivew by company name or user or keyword','value'=>$keyword)); ?> </div>
+            </div>
+          </div>
+          <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
+        </div>
+        <div class="btn-submit"> 
+          <!-- Submit form --> 
+          <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('review/removed');?>" class="Cancel">Cancel</a> </div>
+          
+          <?php if(!empty($_GET['s']))
+			{	   
+				echo "<div style='margin-top:1em;'> Search results for <span style='color:#1a2e4d'>' ". $_GET['s'] . " ' </span> </div>";
+			}
+			
+		?>
+      </fieldset>
+      <?php echo form_close(); ?> </div>
+    
     <?php if(count($reviewsremoved) > 0 ) { 
 		
 		
@@ -89,6 +126,12 @@
 			foreach($fields as $field_name => $field_display): ?>
 				
 			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+			<?php
+			
+			if($sort_by == $field_name){ 
+						$field_display .= "<img alt='desc' src='".site_url("images/sort_".$sort_order.".gif")."'/>";
+				}
+				?>
 				<?php echo anchor("review/removed/$field_name/" .
 					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
 					$field_display,array('class' => 'sorttitle')); ?>
@@ -131,7 +174,7 @@
 						echo date('m-d-Y', strtotime($reviewsremove->reviewremoveddate));
 					}				
 					else{
-						echo $review->$field_name; 
+						echo $reviewsremove->$field_name; 
 					 }
 					?>	
 					
@@ -520,8 +563,7 @@
     
     
     <?php if( count($reviews) > 0 ) { 
-	  $order_seg = $this->uri->segment(4,"asc"); 
-	  if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+	  
 	?>
 		<script language="javascript">
 		

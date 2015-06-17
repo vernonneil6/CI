@@ -44,8 +44,8 @@ class Reviews extends CI_Model
 	function reviewsSearch($keyword, $companyid, $siteid, $limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('reviewtitle','comment', 'reviewby','rate','status');
-		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'reviewdate';
+		$sort_columns = array('reviewtitle','comment', 'reviewby','rate','status', 'reviewdate');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
 		
 		if($sort_by == 'reviewby'){
 			$sort_by = 'u.username';
@@ -53,25 +53,32 @@ class Reviews extends CI_Model
 		//results query
 		if($siteid!='all')
 		{
-			$q = $this->db->select('r.*')
+			$q = $this->db->select('r.id,r.reviewtitle,r.reviewby,r.comment,r.rate,r.reviewdate,r.status,c.company,u.username,u.firstname,u.lastname')
 			->from('reviews as r')
 			->join('user as u','r.reviewby=u.id','left')
+			->join('company as c','c.id=r.companyid','left')
 			->where(array('r.companyid' => $companyid,'r.websiteid' => $siteid));
 			
 		}else{
-			$q = $this->db->select('r.*')
+			$q = $this->db->select('r.reviewtitle,r.reviewby,r.comment,r.rate,r.reviewdate,r.status,c.company,u.username,u.firstname,u.lastname')
 			->from('reviews as r')
 			->join('user as u','r.reviewby=u.id','left')
+			->join('company as c','c.id=r.companyid','left')
 			->where(array('r.companyid' => $companyid));
 		}			
 			
-		if(!empty($limit)){	
-			$q->limit($limit, $offset);
-			$q->order_by($sort_by, $sort_order);
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
 		}
 		
+		if(!empty($sort_by) && !empty($sort_order)){			
+			$q->order_by($sort_by, $sort_order);		
+		}
+		
+		// search query
 		if (strlen($keyword)) {							
-			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'r.comment' => $keyword , 'c.company'=> $keyword , 'c.streetaddress' => $keyword , 'c.aboutus' => $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );							
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'r.reviewtitle' => $keyword, 'r.comment' => $keyword , 'c.company'=> $keyword , 'c.streetaddress' => $keyword , 'c.aboutus' => $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );							
 		}
 		
 		
@@ -84,18 +91,21 @@ class Reviews extends CI_Model
 			$q = $this->db->select('COUNT(*) as count', FALSE)
 			->from('reviews as r')
 			->join('user as u','r.reviewby=u.id','left')
+			->join('company as c','c.id=r.companyid','left')
 			->where(array('r.companyid' => $companyid,'r.websiteid' => $siteid));
 			
 		}else{
 			$q = $this->db->select('COUNT(*) as count', FALSE)
 			->from('reviews as r')
 			->join('user as u','r.reviewby=u.id','left')
+			->join('company as c','c.id=r.companyid','left')
 			->where(array('r.companyid' => $companyid));
 		}		
 		
+		// search query
 		if (strlen($keyword)) {							
 			
-			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'r.comment' => $keyword , 'c.company'=> $keyword , 'c.streetaddress' => $keyword , 'c.aboutus' => $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'r.reviewtitle' => $keyword, 'r.comment' => $keyword , 'c.company'=> $keyword , 'c.streetaddress' => $keyword , 'c.aboutus' => $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
 		}
 		
 		$tmp = $q->get()->result();

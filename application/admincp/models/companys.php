@@ -31,6 +31,49 @@ Class Companys extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	function companiesSearch($keyword, $limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('company','email','status');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
+		
+		
+		// results query
+		$q = $this->db->select('company,status,email,id')
+			->from('company')		
+			->where('company !=','');
+		
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
+		}
+		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}
+		
+		if (strlen($keyword)) {
+			$q->or_like(array('streetaddress'=> $keyword,'city'=>$keyword,'state'=>$keyword,'country'=>$keyword,'zip'=>$keyword,'company'=>strtolower($keyword),'companyseokeyword'=>$keyword),'after');			
+		}
+		
+		$ret['rows'] = $q->get()->result();
+		
+		// count query
+		$q = $this->db->select('COUNT(*) as count', FALSE)
+			->from('company')
+			->where('company !=','');
+		
+		if (strlen($keyword)) {
+			$q->or_like(array('streetaddress'=> $keyword,'city'=>$keyword,'state'=>$keyword,'country'=>$keyword,'zip'=>$keyword,'company'=>strtolower($keyword),'companyseokeyword'=>$keyword),'after');			
+		}
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		
+		return $ret;
+	}
+ 	
 	
 	//Inserting Record
 	function insert($company,$streetaddress,$city,$state,$country,$zip,$email,$siteurl,$paypalid,$logo,$phone,$companyseokeyword,$about,$category,$price_range,$accept_credit_cards,$accept_paypal)

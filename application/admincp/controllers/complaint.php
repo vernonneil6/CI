@@ -110,17 +110,30 @@ class Complaint extends CI_Controller {
 				$decodeKeyword = urldecode($this->input->get('s'));
 			}
 			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+			
 			$results = $this->complaints->complaintsSearch($decodeKeyword, $siteid, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['complaints'] = $results['rows'];
 			$this->data['num_results'] = $results['num_rows'];
 			
 			
-			// pagination				
-			$this->paging['base_url'] = site_url("complaint/index/$sort_by/$sort_order");
+			// pagination	
+			
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("complaint/index/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("complaint/index");
+				$uriSegment = 3;
+			}			
+			$this->paging['base_url'] = $siteURL;
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
-			$this->paging['uri_segment'] = 5;
+			$this->paging['uri_segment'] = $uriSegment;
 			$this->pagination->initialize($this->paging);									
 			
 			$this->data['sort_by'] = $sort_by;
@@ -451,7 +464,7 @@ class Complaint extends CI_Controller {
 				'userid' => 'Complaint By',
 				'companyid' => 'Complaint To',
 				'whendate' => 'Complaint Date',
-				'transaction_date' => 'Removal Date'								
+				'remove_date' => 'Removal Date'								
 			);
 			
 			$this->load->model('complaints');
@@ -462,17 +475,30 @@ class Complaint extends CI_Controller {
 				$decodeKeyword = urldecode($this->input->get('s'));
 			}
 			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+			
 			$results = $this->complaints->removedComplaintsSearch($decodeKeyword, $siteid, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['removedcomplaints'] = $results['rows'];
 			$this->data['num_results'] = $results['num_rows'];
 			
 			
-			// pagination				
-			$this->paging['base_url'] = site_url("complaint/removed/$sort_by/$sort_order");
+			// pagination
+			
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("complaint/removed/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("complaint/removed");
+				$uriSegment = 3;
+			}					
+			$this->paging['base_url'] = $siteURL;
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
-			$this->paging['uri_segment'] = 5;
+			$this->paging['uri_segment'] = $uriSegment;
 			$this->pagination->initialize($this->paging);									
 			
 			$this->data['sort_by'] = $sort_by;
@@ -535,17 +561,21 @@ class Complaint extends CI_Controller {
 				}
 				
 				ob_start();
-				echo "Complaint,Against,By,Date"."\n";
+				echo "Complaint,Against,By,Date,Status"."\n";
 				
 				foreach($complaints_data as $complaints): 
 					foreach($complaints as $complaint): 															
 								
-						echo "\"".$complaint->detail."\",";						
-						$user=$this->complaints->get_user_bysingleid($complaint->userid);
-						echo stripslashes(ucwords($user['username'])).',';
-						$company=$this->complaints->get_company_bysingleid($complaint->companyid);
-						echo "\"". $company['company']."\",";						
-						echo date("m-d-Y",strtotime($complaint->complaindate)); 
+						echo "\"".str_replace('"',"'",$complaint->detail)."\",";
+						echo $complaint->company.",";						
+						if(!empty($complaint->firstname) && !empty($complaint->lastname)){
+							echo $complaint->firstname.' '.$complaint->lastname;
+						}else{								
+							echo $complaint->username;	
+						}
+						echo ",";					
+						echo date("m-d-Y",strtotime($complaint->complaindate)).","; 
+						echo $complaint->status.","; 
 						echo "\n";
 													
 					endforeach;

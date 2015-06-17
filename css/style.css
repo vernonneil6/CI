@@ -46,6 +46,38 @@
 	
 }
 
+
+@font-face {
+	font-family: 'Palatino-regular';
+	src: url('../font/Palatino/Palatino_Linotype_Regular.eot'); 
+	src: url('../font/Palatino/Palatino_Linotype_Regular.eot?#iefix') format('embedded-opentype'), 
+		 url('../font/Palatino/Palatino_Linotype_Regular.woff') format('woff'),
+		 url('../font/Palatino/Palatino_Linotype_Regular.ttf')  format('truetype'), 
+		 url('../font/Palatino/Palatino_Linotype_Regular.otf')  format('opentype'),
+		 url('../font/Palatino/Palatino_Linotype_Regular.svg#Palatino_Linotype_Regular') format('svg'); 
+	
+}
+@font-face {
+	font-family: 'Palatino-italic';
+	src: url('../font/Palatino/Palatino_Linotype_Italic.eot'); 
+	src: url('../font/Palatino/Palatino_Linotype_Italic.eot?#iefix') format('embedded-opentype'), 
+		 url('../font/Palatino/Palatino_Linotype_Italic.woff') format('woff'),
+		 url('../font/Palatino/Palatino_Linotype_Italic.ttf')  format('truetype'), 
+		 url('../font/Palatino/Palatino_Linotype_Italic.otf')  format('opentype'),
+		 url('../font/Palatino/Palatino_Linotype_Italic.svg#Palatino_Linotype_Italic') format('svg'); 
+	
+}
+@font-face {
+	font-family: 'Palatino-bold-italic';
+	src: url('../font/Palatino/Palatino_Linotype_Bold_Italic.eot'); 
+	src: url('../font/Palatino/Palatino_Linotype_Bold_Italic.eot?#iefix') format('embedded-opentype'), 
+		 url('../font/Palatino/Palatino_Linotype_Bold_Italic.woff') format('woff'),
+		 url('../font/Palatino/Palatino_Linotype_Bold_Italic.ttf')  format('truetype'), 
+		 url('../font/Palatino/Palatino_Linotype_Bold_Italic.otf')  format('opentype'),
+		 url('../font/Palatino/Palatino_Linotype_Bold_Italic.svg#Palatino_Linotype_Bold_Italic') format('svg'); 
+	
+}
+
 /* Global properties ======================================================== */
 html, body{width:100%;}
 body {
@@ -237,7 +269,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .srch_btn{width:36px; box-shadow:none; height:30px; background: url(../images/icons.png) -177px 1px; border:0 none; overflow:hidden; cursor:pointer; float:left;}
 .headersignup{/*background:#2c6a99;*/ height: 22px; width:64px;  margin-right: 10px; float: left;}
 .headerlogin{/*background:#2c6a99;*/ height: 22px;  width: 62px; margin-right: 10px; float: left;}
-.headerbusiness{/*background:#2c6a99;*/ height: 22px;  width: 175px; margin-right: 10px; float: left;}
+.headerbusiness{/*background:#2c6a99;*/ height: 22px;  width: 173px; float: right;}
 .headerfb{background:url('../images/fbbg.png') no-repeat; height: 22px; width: 160px; float: left;}
 .headerfb a{padding: 4px 0 0 35px;  display: inline-block;}
 .headersearch{display:inline-block; margin: 30px 0 20px; text-align: center; width:967px;position: absolute;z-index:9999;bottom:35%;height:40px;}
@@ -269,8 +301,8 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .menu{
  	   
 		
-		float:left;
-		padding: 0 2px;
+		/*float:left;
+		padding: 0 2px;*/
 	}
 .menu a {
 	color: black;
@@ -302,6 +334,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 	margin:0px;
 	padding:0px;
 }
+.menu li:last-child{ margin-right:0px;-webkit-margin-end: 0px; float:right;}
 .menu li {
 	height:29px;
 	width:auto;
@@ -310,8 +343,8 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 	text-align:center;
 	font-size:20px;	
 	font-family: "myriadpro-regular";
-	-webkit-margin-end: 35px;
-	margin-right:35px;
+	-webkit-margin-end: 55px;
+	margin-right:55px;
 	list-style:none;
 	position:relative;
 	
@@ -973,7 +1006,7 @@ h1 a{display:inline-block;}
 .pipe_line{border : none!important;}
 
 /*============ Business_Directory ===========================*/
-.p_realese_head{text-align:center; margin:40px auto 0 auto; width:940px; height:97px; padding-bottom:12px; border-bottom:1px solid #999;}
+.p_realese_head{text-align:center; margin:40px auto 0 auto; width:940px; height:97px; padding-bottom:12px; }
 .p_realese_head a{/*display:inline-block;*/}
 .p_realse_wrap{width:100%; display:inline-block; margin-top:51px;}
 .pres_srch_wrp{width:520px; display:inline-block; height:38px;}
@@ -992,7 +1025,9 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .pre_titlewrp p{font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#fff; text-transform:uppercase; margin:6px 0 0 0 ; line-height:25px;}
 .pressfact{color: #fff!important}
 .pressnotice{color: #fff!important;font-size: 15px;}
-.bannertext{font-family:'MyriadPro-BlackSemiCn';font-size:100px;font-weight:normal;color: #2c6a99;letter-spacing: 3px;text-transform:uppercase;}
+.bannertext{
+	font-family:'Palatino-regular';font-size:18px;font-weight:normal;color: #2c6a99;letter-spacing: 3px;text-transform:uppercase;height: auto;letter-spacing: 3px;margin-top: 20px;
+}
 .bannertextregular{color:black;}
 .pagination{width:800px; margin:0 auto 30px auto; display:table; padding-top:10px; border-top:1px solid #666;}
 .pagination ul{margin:0 auto; display:table; padding:0;}
@@ -1132,11 +1167,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 /*============ Coupon Deal ===========================*/
 .bannertextcoupon {
     color: #2c6a99;
-    font-family: "MyriadPro-BlackSemiCn";
-    font-size: 80px;
-    font-weight: bold;
-    letter-spacing: 0;
+    font-family: "Palatino-regular";
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 2px;
     text-transform: uppercase;
+    height: auto;
+    margin-top: 20px;    
 }
 .coupon_company_title{
 	font-family: "myriadpro-regular";
@@ -1415,10 +1452,7 @@ color:#2c6a99;
 {
 	margin: 4px 47px 0 0!important;
 }
-.bnrtxt
-{
-	font-size: 76px!important;
-}
+
 .btxt
 {
 	font-size: 90px;

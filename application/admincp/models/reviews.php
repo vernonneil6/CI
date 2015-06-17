@@ -51,11 +51,16 @@ class Reviews extends CI_Model
 			->join('company as c','r.companyid=c.id','left')
 			->join('user as u','r.reviewby=u.id','left');
 			
-		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
-				$q->limit($limit, $offset);
-				$q->order_by($sort_by, $sort_order);
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
 		}
 		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}	
+		
+		// search query
 		if (strlen($keyword)) {							
 			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'r.comment' => $keyword , 'c.company'=> $keyword , 'c.streetaddress' => $keyword , 'c.aboutus' => $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );							
 		}
@@ -69,6 +74,7 @@ class Reviews extends CI_Model
 			->join('company as c','r.companyid=c.id','left')
 			->join('user as u','r.reviewby=u.id','left');	
 		
+		// search query
 		if (strlen($keyword)) {							
 			
 			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'r.comment' => $keyword , 'c.company'=> $keyword , 'c.streetaddress' => $keyword , 'c.aboutus' => $keyword, "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );
@@ -391,34 +397,50 @@ class Reviews extends CI_Model
 			return array();
 		}
 	}
-	function removedReviewsSearch($limit, $offset, $sort_by, $sort_order) {
+	function removedReviewsSearch($keyword, $limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
 		$sort_columns = array('comment','reviewby','reviewdate','reviewremoveddate');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
+		
 		if($sort_by == 'reviewby'){
-			$sort_by = 'u.username';
-		}else{	
-			$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
+			$sort_by = 'reviewuser';
 		}
 		
 		// results query
-		$q = $this->db->select('r.*,u.firstname,u.lastname')
+		$q = $this->db->select("r.id,r.companyid,r.reviewdate,r.reviewremoveddate,r.status,r.reviewby,r.comment,u.firstname,u.lastname,u.username, (case when (u.username != '') then u.username else r.reviewby end) as reviewuser,c.company", FALSE)
 			->from('reviews as r')
-			->join('user as u','r.reviewby=u.id');
+			->join('user as u','r.reviewby=u.id','left')
+			->join('company as c','r.companyid=c.id','left')
+			->where('r.status','Disable');			
 		
-		if(!empty($limit) && !empty($sort_by) && !empty($sort_order)){					
-				$q->limit($limit, $offset);
-				$q->order_by($sort_by, $sort_order);
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
 		}
 		
-		$ret['rows'] = $q->get()->result();
+		if(!empty($sort_by) && !empty($sort_order)){			
+			$q->order_by($sort_by, $sort_order);		
+		}
 		
+		// search query
+		if (strlen($keyword)) {	
+			$q->where('(r.comment LIKE \'%'.$keyword.'%\' OR u.username LIKE \'%'.$keyword.'%\' OR r.reviewby LIKE \'%'.$keyword.'%\' OR u.firstname LIKE \'%'.$keyword.'%\' OR u.lastname LIKE \'%'.$keyword.'%\' OR c.company LIKE \'%'.$keyword.'%\')', NULL, FALSE);									
+		}
+		
+		$ret['rows'] = $q->get()->result();		
 		
 		// count query
 		$q = $this->db->select('COUNT(*) as count', FALSE)	 
 			->from('reviews as r')
-			->join('user as u','r.reviewby=u.id')
+			->join('user as u','r.reviewby=u.id','left')
+			->join('company as c','r.companyid=c.id','left')
 			->where('r.status','Disable');		
+		
+		// search query
+		if (strlen($keyword)) {							
+			$q->where('(r.comment LIKE \'%'.$keyword.'%\' OR u.username LIKE \'%'.$keyword.'%\' OR r.reviewby LIKE \'%'.$keyword.'%\' OR u.firstname LIKE \'%'.$keyword.'%\' OR u.lastname LIKE \'%'.$keyword.'%\' OR c.company LIKE \'%'.$keyword.'%\')', NULL, FALSE);
+		}
 		
 		$tmp = $q->get()->result();
 		

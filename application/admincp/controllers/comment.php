@@ -78,14 +78,15 @@ class Comment extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sort_by = 'commentby', $sort_order = 'asc', $offset = 0) {
+	public function index($sort_by = '', $sort_order = '', $offset = 0) {
 		
 		if( $this->session->userdata['youg_admin'] )
 	  	{
 			$limit = 15;
 			$this->data['fields'] = array(
 				'id' => 'Comment ID',
-				'comment' => 'Title',
+				'comment' => 'Comment',
+				'reviewcomment' => 'Review',
 				'company' => 'Business Name',
 				'commentby' => 'Submitted By',								
 				'commentdate' => 'Date',
@@ -98,6 +99,10 @@ class Comment extends CI_Controller {
 				$decodeKeyword = urldecode($this->input->get('s'));
 			}
 			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+			
 			$results = $this->comments->commentsSearch($decodeKeyword, $limit, $offset, $sort_by, $sort_order);
 			
 			$this->data['comments'] = $results['rows'];
@@ -105,10 +110,19 @@ class Comment extends CI_Controller {
 			//echo $this->data['num_results'];die;
 			
 			// pagination				
-			$this->paging['base_url'] = site_url("comment/index/$sort_by/$sort_order");
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("comment/index/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("comment/index");
+				$uriSegment = 3;
+			}
+			
+			$this->paging['base_url'] = $siteURL;
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
-			$this->paging['uri_segment'] = 5;
+			$this->paging['uri_segment'] = $uriSegment;
 			$this->pagination->initialize($this->paging);									
 			
 			$this->data['sort_by'] = $sort_by;
@@ -292,19 +306,23 @@ class Comment extends CI_Controller {
 					$comments = $this->comments->commentsSearch();
 				}
 				ob_start();
-				echo "User,Comment date,Comment,Email";
+				echo "Title,Review,Business Name,Submitted By,Comment date,Status";
 				echo "\n";			    		
 				    		
 				foreach($comments as $comment1): 
 					foreach($comment1 as $comment): 	
-														
-						echo $comment->firstname.' '.$comment->lastname;
+						
+						echo "\"".$comment->comment."\",";
+						echo "\"".$comment->reviewcomment."\",";
+						echo $comment->company.",";
+						if(!empty($comment->firstname) && !empty($comment->lastname)){
+							echo $comment->firstname.' '.$comment->lastname;
+						}else{								
+							echo $comment->username;	
+						}
 						echo ",";
-						echo date('m-d-Y', strtotime($comment->commentdate));
-						echo ",";
-						echo "\"".$comment->comment."\"";
-						echo ",";
-						echo $comment->email;
+						echo date('m-d-Y', strtotime($comment->commentdate)).",";						
+						echo $comment->status;
 						echo "\n";									
 					endforeach;
 				endforeach;

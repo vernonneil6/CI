@@ -78,7 +78,7 @@ class Company extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	/*public function index()
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
@@ -100,7 +100,58 @@ class Company extends CI_Controller {
 			//Loading View File
 			$this->load->view('company',$this->data);
 	  	}
+	}*/
+	
+	public function index($sort_by = '', $sort_order = '', $offset = 0) {
+		
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+			$limit = 15;
+			
+			$this->data['fields'] = array(
+				'company' => 'Company Name',				
+				'email' => 'Email',
+				'status' => 'Status'
+			);
+			
+			$this->load->model('companys');
+			if($this->input->get('s')){				
+				$decodeKeyword = urldecode($this->input->get('s'));
+			}
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+						
+			$results = $this->companys->companiesSearch($decodeKeyword, $limit, $offset, $sort_by, $sort_order);
+			
+			$this->data['companies'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
+			
+			// pagination				
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("company/index/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("company/index");
+				$uriSegment = 3;
+			}
+			
+			$this->paging['base_url'] = $siteURL;			
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;			
+			$this->paging['uri_segment'] = $uriSegment;		
+			$this->pagination->initialize($this->paging);
+			
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('company', $this->data);
+		}
 	}
+	
+	
+	
 	
 	public function add()
 	{
@@ -850,12 +901,8 @@ class Company extends CI_Controller {
 	{
 		if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
 		{
-			$keyword = addslashes($this->input->post('keysearch'));
-			$keyword = htmlspecialchars(str_replace('%20', ' ', $keyword));
-			$keyword = preg_replace('/[^a-zA-Z0-9\']/', '-',$keyword);
-			$keyword = str_replace(' ','-', $keyword);
-			
-			redirect('company/searchresult/'.$keyword,'refresh');	
+			$keyword = urlencode($this->input->post('keysearch'));				
+			redirect('company/index/?s='.$keyword);		
 		}
 		else
 		{

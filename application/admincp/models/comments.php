@@ -36,23 +36,36 @@ class Comments extends CI_Model
 	function commentsSearch($keyword, $limit, $offset, $sort_by, $sort_order) {
 		
 		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
-		$sort_columns = array('comment','commentdate','company');
-		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'u.username';
+		$sort_columns = array('comment','commentdate','company','commentby','reviewcomment');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
+		
+		if($sort_by == 'commentby'){
+			$sort_by = 'u.username';
+		}
+		
 		
 		// results query
-		$q = $this->db->select('c.*,u.*,com.company,c.id as cid')
+		$q = $this->db->select('c.*,u.username,r.comment as reviewcomment, com.company,c.id as cid')
 			->from('comments as c')
 			->join('reviews as r','r.id=c.reviewid','left')			
 			->join('company as com','com.id=r.companyid','left')
-			->join('user as u','c.commentby=u.id','left');
+			->join('user as u','c.commentby=u.id','left')
+			->where('r.comment is NOT NULL')
+			->where('com.company is NOT NULL');
+	
 		
+		// limit query
 		if(!empty($limit)){
-			$q->limit($limit, $offset);
-			$q->order_by($sort_by, $sort_order);
+			$q->limit($limit, $offset);		
 		}
-			
+		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}	
+		
+		// search query	
 		if (strlen($keyword)) {
-			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'u.username'=> $keyword, 'com.company'=> $keyword, 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );			
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'u.username'=> $keyword, 'com.company'=> $keyword, 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword, 'r.comment' => $keyword ) );			
 		}	
 			
 			
@@ -64,10 +77,12 @@ class Comments extends CI_Model
 			->from('comments as c')
 			->join('reviews as r','r.id=c.reviewid','left')
 			->join('company as com','com.id=r.companyid','left')
-			->join('user as u','c.commentby=u.id','left');			
+			->join('user as u','c.commentby=u.id','left')
+			->where('r.comment is NOT NULL')
+			->where('com.company is NOT NULL');			
 		
 		if (strlen($keyword)) {
-			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword ) );			
+			$q->or_like(array('u.firstname'=> $keyword , 'u.lastname'=> $keyword , 'u.username'=> $keyword, 'com.company'=> $keyword, 'c.comment'=> $keyword , "CONCAT(u.firstname, ' ', u.lastname)" => $keyword, 'r.comment' => $keyword ) );	
 		}
 		
 		$tmp = $q->get()->result();

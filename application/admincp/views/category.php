@@ -195,14 +195,7 @@ else { ?>
   <!-- box -->
   <div class="box">
     <div class="headlines">
-      <h2><span>
-        <?php if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult')
-	   {
-	   	?>
-        search results for '<?php echo $this->uri->segment(3);?>'
-        <?php
-	   } else { echo "Business Categories"; } ?>
-        </span></h2>
+      <h2><span>Business Categories </span></h2>
     </div>
     
     <!-- Correct form message -->
@@ -217,7 +210,7 @@ else { ?>
       <p><?php echo $this->session->flashdata('error'); ?></p>
     </div>
     <?php } ?>
-    <?php if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult') { ?>
+    <?php //if($this->uri->segment(2) && $this->uri->segment(2)=='searchresult') { ?>
     <script type="text/javascript" language="javascript">
 	function trim(stringToTrim) {
 		return stringToTrim.replace(/^\s+|\s+$/g,"");
@@ -256,7 +249,7 @@ else { ?>
               <div class="lab">
                 <label for="keysearch">Keyword<span>*</span></label>
               </div>
-              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search Business Category','value' => $this->uri->segment(3))); ?> </div>
+              <div class="con"> <?php echo form_input( array( 'name'=>'keysearch','id'=>'keysearch','class'=>'input','type'=>'text','placeholder'=>'Search Business Category','value' => '')); ?> </div>
             </div>
           </div>
           <div id="keysearcherror" style="display:none;" class="error" align="right">Enter Keyword.</div>
@@ -264,31 +257,74 @@ else { ?>
         <div class="btn-submit"> 
           <!-- Submit form --> 
           <?php echo form_input(array('name'=>'btnsearch','id'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('category');?>" class="Cancel">Cancel</a> </div>
+            <?php if(!empty($_GET['s']))
+			{	   
+				echo "<div style='margin-top:1em;'> Search results for <span style='color:#1a2e4d'>' ". $_GET['s'] . " ' </span> </div>";
+			}
+			
+		?>
+          
       </fieldset>
       <?php echo form_close(); ?> </div>
-    <?php } ?>
-    <?php if( count($categorys) > 0 ) { ?>
+    <?php //} ?>
+    <?php if( count($categories) > 0 ) { ?>
     <!-- table -->
+    
     <table class="tab tab-drag">
-      <tr class="top nodrop nodrag">
-        <th>Category</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-      <?php for($i=0;$i<count($categorys);$i++) { ?>
-      <tr>
-        <td><?php echo ucfirst(stripslashes($categorys[$i]['category'])); ?></a></td>
-        <td><?php if( stripslashes($categorys[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('category/disable/'.$categorys[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this category?');"><span>Enable</span></a>
-          <?php } ?>
-          <?php if( stripslashes($categorys[$i]['status']) == 'Disable' ) { ?>
-          <a href="<?php echo site_url('category/enable/'.$categorys[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this category?');"><span>Disable</span></a>
-          <?php } ?></td>
-        <td><a href="<?php echo site_url('category/edit/'.$categorys[$i]['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> <a href="<?php echo site_url('category/delete/'.$categorys[$i]['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this category?');">Delete</a></td>
-      </tr>
-      <?php } ?>
-     
-    </table>
+		<thead>
+			<tr class="top nodrop nodrag">
+			<?php foreach($fields as $field_name => $field_display): ?>
+			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php 
+					if($sort_by == $field_name){ 
+						$field_display .= "<img alt='desc' src='".site_url("images/sort_".$sort_order.".gif")."'/>";
+					}
+				 ?>
+				<?php echo anchor("category/index/$field_name/" .
+					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+					$field_display,array('class' => 'sorttitle')); ?>
+			</th>
+			
+			
+			<?php endforeach; ?>
+			<th>Action</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<?php foreach($categories as $category): ?>
+			<tr>
+				<?php foreach($fields as $field_name => $field_display): ?>
+				<td>
+					<?php
+						if ($field_name == 'status' ) { 
+							if( $category->$field_name == 'Enable' ){ 
+					?>
+								<a href="<?php echo site_url('category/disable/'.$category->id);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span><?php echo $category->$field_name; ?></span></a>
+								
+					<?php 
+							}else{ ?>
+								
+							<a href="<?php echo site_url('category/enable/'.$category->id);?>" title="Click to Enable" class="btn btn-small btn-success" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this user?');"><span><?php echo $category->$field_name; ?></span></a>
+						 <?php
+							}
+						  
+						  }else{						
+							echo $category->$field_name; 
+						  }
+					?>	
+					
+				</td>			
+				<?php endforeach; ?>
+				<td>
+					<a href="<?php echo site_url('category/edit/'.$category->id); ?>" title="Edit" class="ico ico-edit">Edit</a> 					
+					<a href="<?php echo site_url('category/delete/'.$category->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this user?');">Delete</a>
+				</td>
+			</tr>
+			<?php endforeach; ?>			
+		</tbody>
+		
+	</table>  
     <!-- /pagination -->
 	<?php  if($this->pagination->create_links()) { ?>
 	<div class="pagination"> <?php echo $this->pagination->create_links(); ?> </div>
