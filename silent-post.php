@@ -67,7 +67,7 @@ if($sql!='')
 					$groupid = $group_query_result['group_id'] + 1;
 					$update_group_query = mysql_query("UPDATE `jam_members_groups` SET `group_id` = '".$groupid."' WHERE `member_id` = '".$query_result['member_id']."'",$con);
 
-					$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode'] . '/customer_name/' . trim(urlencode($jamcode_arr['company'])));
+					$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode'] . '/customer_name/' . trim(urlencode($jamcode_arr['company'])) . '/ygrpassvalue/1');
 					
 					$groupid = $groupid - 1;
 					$update_group_query = mysql_query("UPDATE `jam_members_groups` SET `group_id` = '".$groupid."' WHERE `member_id` = '".$query_result['member_id']."'",$con);
@@ -76,7 +76,7 @@ if($sql!='')
 
 		}		
 	} elseif(!empty($jamcode_arr['jamcode']) && $paynumber <= 1 && $paynumber != ''){
-		$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode'] . '/customer_name/' . trim(urlencode($jamcode_arr['company'])));
+		$getdata = file_get_contents('http://www.yougotrated.com/affiliates/sale/amount/' . trim($amt) . '/trans_id/' . trim($transaction_id) . '/tracking_code/' . $jamcode_arr['jamcode'] . '/customer_name/' . trim(urlencode($jamcode_arr['company'])) . '/ygrpassvalue/1');
 	}
  } else {
 	 $tn_status=0;
