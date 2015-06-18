@@ -244,7 +244,7 @@
 
 <section class="container">
   <section class="main_contentarea">
-    <div class="banner_wrp"> <img src="images/YouGotRated_HeaderGraphics_SignUpPage.png" alt="Register" title="Register" style="width:966px;height:100%;"> </div>
+    <!--<div class="banner_wrp"> <img src="images/YouGotRated_HeaderGraphics_SignUpPage.png" alt="Register" title="Register"> </div>-->
     <div class="regr_lnk">
       <div class="innr_wrap">
         <div class="new_usr"> ADD BUSINESS TO YGR DIRECTORY</div>
@@ -272,7 +272,7 @@
           
           <div class="reg-row business-callout">
 			<div >
-				<span class="form-col-2" style="width:400px;">
+				<span class="form-col-2" >
 					<a href="/solution/claimbusiness"><h3 >YouGotRated Elite Membership:</h3></a>
 					<h4 >Becoming a YGR Elite member gives you the following benefits:</h4>        
 					<ul>

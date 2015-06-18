@@ -94,126 +94,135 @@ $this->session->set_userdata('last_url_1',$currenturl);
         <div class="main_footer">
           <div class="main_footer_block">
             <div class="footer_block foot_bar" id="first">
-              <ul>
-                <li class="ftitle">YOU GOT RATED GUIDE</li>
-                <?php 
-				$footerpart1 = $this->common->get_footerlink_byid(1); 
-				if($footerpart1 != '')
-				{
-				foreach($footerpart1 as $part1) 
-				{ 
-				?>
-					<li><a href="<?php echo 'footerpage/index/'.$part1['intid'];?>" title="<?php echo $part1['title'];?>"><?php echo $part1['title'];?></a></li>
-				<?php 
-				}
-				}
-				?>
-				
-              </ul>
+              <div class="footer-col">
+				  <ul>
+					<li class="ftitle">YOU GOT RATED GUIDE</li>
+					<?php 
+					$footerpart1 = $this->common->get_footerlink_byid(1); 
+					if($footerpart1 != '')
+					{
+					foreach($footerpart1 as $part1) 
+					{ 
+					?>
+						<li class="fmenu"><a href="<?php echo 'footerpage/index/'.$part1['intid'];?>" title="<?php echo $part1['title'];?>"><?php echo $part1['title'];?></a></li>
+					<?php 
+					}
+					}
+					?>
+					
+				  </ul>
+			</div>
+			<div class="footer-col">	
+				  <ul class="foot_mid_bar">
+					<li class="ftitle">COMMUNITY BOARDS</li>
+					<?php /*<li><a href="<?php echo site_url('businessdirectory');?>" title="Report a Complaint">File Complaint</a></li> */?>
+					<li class="fmenu"><a href="<?php echo site_url('review');?>" title="Browse Reviews">BROWSE REVIEWS</a></li>
+					<li class="fmenu"><a href="<?php echo site_url('complaint');?>" title="Browse Complaints">BROWSE COMPLAINTS</a></li>
+					<li class="fmenu"><a href="<?php echo site_url('pressrelease');?>" title="Browse Press Releases">BROWSE PRESS RELEASES</a></li>
+					<li class="fmenu"><a href="<?php echo site_url('businessdirectory');?>" title="Browse Companies">BROWSE COMPANIES</a></li>
+					<?php 
+					$footerpart2 = $this->common->get_footerlink_byid(2); 
+					if($footerpart2 != '')
+					{
+					foreach($footerpart2 as $part2) 
+					{ 
+					?>
+						<li class="fmenu"><a href="<?php echo 'footerpage/index/'.$part2['intid'];?>" title="<?php echo $part2['title'];?>"><?php echo $part2['title'];?></a></li>
+					<?php 
+					}
+					}
+					?>
+				  </ul>
+              </div>
               
-              <ul class="foot_mid_bar">
-                <li class="ftitle">COMMUNITY BOARDS</li>
-                <?php /*<li><a href="<?php echo site_url('businessdirectory');?>" title="Report a Complaint">File Complaint</a></li> */?>
-                <li><a href="<?php echo site_url('review');?>" title="Browse Reviews">BROWSE REVIEWS</a></li>
-                <li><a href="<?php echo site_url('complaint');?>" title="Browse Complaints">BROWSE COMPLAINTS</a></li>
-                <li><a href="<?php echo site_url('pressrelease');?>" title="Browse Press Releases">BROWSE PRESS RELEASES</a></li>
-                <li><a href="<?php echo site_url('businessdirectory');?>" title="Browse Companies">BROWSE COMPANIES</a></li>
-                <?php 
-				$footerpart2 = $this->common->get_footerlink_byid(2); 
-				if($footerpart2 != '')
-				{
-				foreach($footerpart2 as $part2) 
-				{ 
-				?>
-					<li><a href="<?php echo 'footerpage/index/'.$part2['intid'];?>" title="<?php echo $part2['title'];?>"><?php echo $part2['title'];?></a></li>
-				<?php 
-				}
-				}
-				?>
-              </ul>
+              <div class="footer-col">	
+				  <ul>
+				  <li class="ftitle">BUYER PROTECTION PROGRAM</li>
+				  <?php 
+					$footerpart5 = $this->common->get_footerlink_byid(5); 
+					if($footerpart5 != '')
+					{
+					foreach($footerpart5 as $part5) 
+					{ 
+					?>
+						<li class="fmenu"><a href="<?php echo 'footerpage/index/'.$part5['intid'];?>" title="<?php echo $part5['title'];?>"><?php echo $part5['title'];?></a></li>
+					<?php 
+					}
+					}
+					?>
+				  </ul>
+              </div>
+               <div class="footer-col">           
+				  <ul class="forbusiness_footer">
+					<li class="ftitle">FOR BUSINESSES</li>
+					<li class="fmenu"><a href="http://business.yougotrated.com/" title="Business Solution">BUSINESS SOLUTIONS</a></li>
+					<?php 
+					$url = str_replace( 'http://', 'https://',site_url('solution/claimbusiness'));
+					?>
+					<li class="fmenu"><a id="merchant-signup" href="<?php echo site_url('solution/claimbusiness'); ?>" title="Merchant Signup">merchant sign up</a></li>
+					<?php 
+					$footerpart3 = $this->common->get_footerlink_byid(3); 
+					if($footerpart3 != '')
+					{
+					foreach($footerpart3 as $part3) 
+					{ 
+					?>
+						<li class="fmenu"><a href="<?php echo 'footerpage/index/'.$part3['intid'];?>" title="<?php echo $part3['title'];?>"><?php echo $part3['title'];?></a></li>
+					<?php 
+					}
+					}
+					?>
+				  </ul>
+              </div>
               
-              <ul>
-				<li class="ftitle foot_title_bar">JOIN THE CONVERSATION</li>
-				<div class="foot_social_img">
-					<li class="twitter"><a href="<?php echo $tw;?>" title="Twitter"><img src="../images/img/socialicon/twitter.jpg" /></a></li>
-					<li class="facebook"><a href="<?php echo $fb;?>" title="Facebook"><img src="../images/img/socialicon/facebook.jpg" /></a></li>
-					<li class="google"><a href="<?php echo $go;?>" title="Google"><img src="../images/img/socialicon/googleplus.jpg" /></a></li>
-					<li class="pinterest"><a href="<?php echo $pi;?>" title="Pinterest"><img src="../images/img/socialicon/pinterest.jpg" /></a></li>
-					<li class="linkedin"><a href="<?php echo $li;?>" title="linkedin"><img src="../images/img/socialicon/LinkedIn_icon.jpg" /></a></li>
-				</div>
-			  </ul>
-			    
-			  <ul class="foot_last_bar">
-			    <?php if($this->uri->segment(1)!='login'){?>
-               <?php if( !array_key_exists('youg_user',$this->session->userdata) ) { ?>
-               <li class="ftitle">User LOGIN</li>
-               <li>
-                  <div class="user_login">
-                  <form action="login" id="userflogin" name="" method="post">
-					  <input type="email" class="usr_txtbox" placeholder="Username" name="loginemail" id="loginemail" required>
-					  <input type="password" class="usr_txtbox" placeholder="Password" name="loginpassword" id="loginpassword" required>
-					  <span><button type="button" title="Login" onclick="userlogin();">login</button></span> 
-                  </form>
-                  </div>
-                </li>
-                <?php } } ?>
-               </ul>
-			  
+              
               
             </div>
             
             <div class="footer_block"  id="first">
-				
-			  <ul>
-              <li class="ftitle">BUYER PROTECTION PROGRAM</li>
-              <?php 
-				$footerpart5 = $this->common->get_footerlink_byid(5); 
-				if($footerpart5 != '')
-				{
-				foreach($footerpart5 as $part5) 
-				{ 
-				?>
-					<li><a href="<?php echo 'footerpage/index/'.$part5['intid'];?>" title="<?php echo $part5['title'];?>"><?php echo $part5['title'];?></a></li>
-				<?php 
-				}
-				}
-				?>
-              </ul>
-              
-                         
-			  <ul class="forbusiness_footer">
-                <li class="ftitle">FOR BUSINESSES</li>
-                <li><a href="http://business.yougotrated.com/" title="Business Solution">BUSINESS SOLUTIONS</a></li>
-                <?php 
-				$url = str_replace( 'http://', 'https://',site_url('solution/claimbusiness'));
-				?>
-                <li><a id="merchant-signup" href="<?php echo site_url('solution/claimbusiness'); ?>" title="Merchant Signup">merchant sign up</a></li>
-                <?php 
-				$footerpart3 = $this->common->get_footerlink_byid(3); 
-				if($footerpart3 != '')
-				{
-				foreach($footerpart3 as $part3) 
-				{ 
-				?>
-					<li><a href="<?php echo 'footerpage/index/'.$part3['intid'];?>" title="<?php echo $part3['title'];?>"><?php echo $part3['title'];?></a></li>
-				<?php 
-				}
-				}
-				?>
-              </ul>
-              
-              <ul  class="foot_last_bar">              
-                <li class="ftitle">MERCHANT LOGIN</li>
-                <li>
-                  <form action="<?php echo base_url();?>businessadmin/adminlogin" id="elitelogin" method="post">
-                  <div class="user_login">
-                    <input type="text" class="usr_txtbox" placeholder="Username" name="user_name" id="user_name" required>
-                    <input type="password" class="usr_txtbox" placeholder="Password" name="user_pass" id="user_pass" required>
-                    <span><button title="Login" onclick="elitelogin();" type="button">login</button></span> </div>
-                    </form>
-                </li>
-              </ul>
-              
+			  <div class="footer-col">
+				  <ul>
+					<li class="social_tit foot_title_bar">JOIN THE CONVERSATION</li>
+					<div class="foot_social_img ">
+						<li class="twitter "><a href="<?php echo $tw;?>" title="Twitter"><img src="../images/img/socialicon/twitter.jpg" /></a></li>
+						<li class="facebook "><a href="<?php echo $fb;?>" title="Facebook"><img src="../images/img/socialicon/facebook.jpg" /></a></li>
+						<li class="google "><a href="<?php echo $go;?>" title="Google"><img src="../images/img/socialicon/googleplus.jpg" /></a></li>
+						<li class="pinterest "><a href="<?php echo $pi;?>" title="Pinterest"><img src="../images/img/socialicon/pinterest.jpg" /></a></li>
+						<li class="linkedin "><a href="<?php echo $li;?>" title="linkedin"><img src="../images/img/socialicon/LinkedIn_icon.jpg" /></a></li>
+					</div>
+				  </ul>
+			  </div>
+			  <div class="footer-col">  
+				  <ul class="foot_last_bar">
+					<?php if($this->uri->segment(1)!='login'){?>
+				   <?php if( !array_key_exists('youg_user',$this->session->userdata) ) { ?>
+				   <li class="ftitle">User LOGIN</li>
+				   <li class="fmenu">
+					  <div class="user_login">
+					  <form action="login" id="userflogin" name="" method="post">
+						  <input type="email" class="usr_txtbox" placeholder="Username" name="loginemail" id="loginemail" required>
+						  <input type="password" class="usr_txtbox" placeholder="Password" name="loginpassword" id="loginpassword" required>
+						  <span><button type="button" title="Login" onclick="userlogin();">login</button></span> 
+					  </form>
+					  </div>
+					</li>
+					<?php } } ?>
+				   </ul>
+			  </div>		  
+             
+              <div class="footer-col">
+				  <ul  class="foot_last_bar">              
+					<li class="ftitle">MERCHANT LOGIN</li>
+					<li class="fmenu">
+					  <form action="<?php echo base_url();?>businessadmin/adminlogin" id="elitelogin" method="post">
+					    <div class="user_login">
+						<input type="text" class="usr_txtbox" placeholder="Username" name="user_name" id="user_name" required>
+						<input type="password" class="usr_txtbox" placeholder="Password" name="user_pass" id="user_pass" required>
+						<span><button title="Login" onclick="elitelogin();" type="button">login</button></span> </div>
+					  </form>
+					</li>
+				  </ul>
+              </div>
               
             </div>
                     

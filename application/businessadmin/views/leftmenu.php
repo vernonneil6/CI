@@ -40,6 +40,7 @@
 			<ul class="submenu">
 				<li><a href="<?php echo site_url('badge');?>" class="link" title="Embed YGR Verified Seal">Embed YGR Verified Seal</a></li>
 				<li><a href="<?php echo site_url('widget');?>" class="link" title="Embed Reviews Widget">Embed Reviews Widget</a></li>
+				<li><a href="<?php echo site_url('graphic');?>" class="link" title="Embed Graphics">Embed Graphic</a></li>
 				<li><a href="<?php echo site_url('buyer');?>"  class="link" title="Embed Buyers Protection Badge">Embed Buyers Protection Badge</a></li>
 				<li><a href="<?php echo site_url('review?embed'); ?>" class="link" title="Embed Request for New Reviews">Embed Request for New Reviews</a></li>
 			</ul>

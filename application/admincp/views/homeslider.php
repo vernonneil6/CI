@@ -22,10 +22,10 @@
 	 <fieldset>
         <div class="clearfix">
           <div class="lab slider_title_space">
-            <label for="title">Title </label>
+            <label for="title">Slider Text </label>
           </div>
           <div class="con slider_text">
-            <?php echo form_input( array( 'name'=>'title','class'=>'input','type'=>'text' ) ); ?>
+            <?php echo form_textarea( array( 'name'=>'title','id'=>'title','class'=> 'tinymce','style'=>'width:900px')) ; ?>
           </div>
         </div>
 	<div class="clearfix file">
@@ -49,11 +49,11 @@
 	<?php echo form_open_multipart('homeslider/edit/'.$id,array('class'=>'formBox')); ?>
 	<fieldset>
         <div class="clearfix">
-          <div class="lab">
+          <div class="lab slider_title_space">
             <label for="title">Title </label>
           </div>
-          <div class="con">
-            <?php echo form_input( array( 'name'=>'title','class'=>'input','type'=>'text' ,'value'=> $title) ); ?>
+          <div class="con slider_text">
+            <?php echo form_textarea( array( 'name'=>'title','id'=>'title','class'=> 'tinymce','style'=>'width:900px','value'=> stripslashes($title))); ?>
           </div>
         </div>
 	<div class="clearfix file">
@@ -92,13 +92,13 @@ else { ?>
     <!-- table -->
     <table class="tab tab-drag">
       <tr class="top nodrop nodrag">
-        <th>Title</th>
+        <th>Slider Text</th>
         <th>Image</th>
         <th class="action">Action</th>
       </tr>
       <?php foreach($sliderimage as $sliders){ ?>
       <tr>
-        <td><?php echo $sliders->title; ?></td>
+        <td><?php echo strip_tags($sliders->title); ?></td>
         <td><img src="../uploads/slider/<?php echo $sliders->image;?>" width="40" height="30" alt="<?php echo $image;?>"></td>
 		<td class="action">		  
 			<a href="<?php echo site_url('homeslider/delete/'.$sliders->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this slider image?');">Delete</a>
@@ -116,3 +116,23 @@ else { ?>
 
 <?php include('leftmenu.php'); ?>
 <?php echo $footer; ?>
+ <script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'] ?>/admincp/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+tinymce.init({
+    selector: "textarea.tinymce",
+    theme: "modern",
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    toolbar2: "print preview media | forecolor backcolor emoticons",
+    image_advtab: true,
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+        {title: 'Test template 2', content: 'Test 2'}
+    ]
+});
+</script>
