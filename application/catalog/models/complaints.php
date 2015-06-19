@@ -1746,7 +1746,7 @@ class Complaints extends CI_Model
 	function insert_dispute($companyname,$companyid,$companyemail,$userid,$username,$useremail,$status,$ondate,$msglink,$transactionid,$transactionamt,$transactiondate,$reasondispute,$merchantresolution)
 	{
 				
-		$transaction_date = date('Y-m-d H:i:s',strtotime($transaction_date));
+		$transaction_date = date('Y-m-d H:i:s',strtotime($transactiondate));
 		
 		$data = array(
 	              'companyname'=>$companyname,

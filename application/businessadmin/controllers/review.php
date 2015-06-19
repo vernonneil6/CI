@@ -119,8 +119,94 @@ class Review extends CI_Controller
 	}
 	
 	public function bulk(){
-		$this->load->view('review', $this->data);
+	
+		if( $this->session->userdata('username') && $this->session->userdata('password') ){		
+			$this->load->view('review');
+		}
 	}
+	
+	public function uploadReview(){
+		if( $this->session->userdata['youg_admin'] )
+	  	{			
+			$this->load->view('review');
+		}		
+
+	}
+	
+	public function forgot(){
+		if( $this->session->userdata['youg_admin'] )
+	  	{	
+			$this->load->view('review');
+		}		
+
+	}
+	
+	public function forgotpassword(){
+		
+		if( $this->session->userdata['youg_admin'] ){	
+			if( $this->input->post('email')){
+					
+					$data = array(
+						'email' => $this->input->post('email')						
+					);
+					$result = $this->reviews->uploadCheck($data);
+					//print_r($result);die;
+					
+					if($result['rows'][0]->count > 0){
+						echo "SUCCESS";	
+						
+						/*Reset Password Email*/						
+							$this->load->library('email');
+							$this->email->from($result['rows'][0]->contactemail, $result['rows'][0]->contactname);
+							$this->email->to('vernonneil@grossmaninteractive.com','sales@yougotrated.com'); 								
+							$this->email->subject('Request Password Access');
+							$this->email->message('Hi, Please provide access to Review Upload Admin Tool');	
+							$this->email->send();
+						/*Reset Password Email*/
+											
+					}else{
+						echo "ERROR";				
+					}
+			}
+			else
+			{
+					echo "ERROR";				
+					
+			}			
+		}
+	}
+	public function uploadLogin(){
+		if( $this->session->userdata['youg_admin'] )
+	  	{		
+				// Load session library
+				$this->load->library('session');
+				if( $this->input->post('username') &&  $this->input->post('password'))
+				{			
+					$this->session->unset_userdata($data);
+					
+					$data = array(
+						'username' => $this->input->post('username'),
+						'password' => $this->input->post('password')
+					);
+					$result = $this->reviews->uploadCheck($data);
+					//print_r($result);die;
+					
+					if($result['rows'][0]->count > 0){
+						$this->session->set_userdata($data);
+						echo "SUCCESS";
+						
+					}else{
+						echo "ERROR";				
+					}				
+				}
+				else
+				{
+					echo "ERROR";				
+					
+				}
+		}			
+	}
+	
 	public function view($id = '')
 	{
 		if( $this->input->is_ajax_request() )

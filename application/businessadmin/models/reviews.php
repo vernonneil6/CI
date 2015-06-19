@@ -40,6 +40,26 @@ class Reviews extends CI_Model
 		}
 		
 	}
+	function uploadCheck( $data ){
+		$q = $this->db->select('c.contactemail, c.contactname, COUNT(*) as count',FALSE)
+			->from('elite as e')
+			->join('company as c','c.id=e.company_id','left');
+		
+		if(!empty($data['password']) && !empty($data['username'])){	
+			$q->where(array('e.password'=>MD5($data['password']),'c.contactemail'=>$data['username']));	
+		}
+		
+		if(!empty($data['email'])){	
+			$q->where(array('c.contactemail'=>$data['email']));	
+		}	
+		
+		$tmp = $q->get()->result();
+				
+		$ret['rows'] = $tmp;
+		
+		return $ret;
+			
+	}
 	
 	function reviewsSearch($keyword, $companyid, $siteid, $limit, $offset, $sort_by, $sort_order) {
 		

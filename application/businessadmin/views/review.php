@@ -64,14 +64,33 @@ else {
   <!-- box -->
   <div class="box">
     <div class="headlines">
-		<h2><span> Reviews</span></h2>
 		<h2>
-		   <span>
-				<a href="<?php if(!empty($_GET['s'])){  echo site_url('review/export_csv/'.$_GET['s']); }else { echo site_url('review/export_csv'); } ?>" title="Export as CSV file">
-					<img src="<?php echo base_url(); ?>images/export_csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
-				</a>
+			<span> 
+				<?php 
+				
+				if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'uploadReview' ) {
+					echo "Upload Review Login";
+				}
+				elseif( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'forgot' ) {
+					echo "Reset Password";
+				}
+				else{			
+					echo "Reviews";		
+				}				
+				?>		
 			</span>
 		</h2>
+		<?php 
+		
+		if( $this->uri->segment(1) == 'review' && ($this->uri->segment(2) != 'uploadReview' && $this->uri->segment(2) != 'bulk' && $this->uri->segment(2) != 'forgot' ) ) {	 ?>
+			<h2>
+			   <span>
+					<a href="<?php if(!empty($_GET['s'])){  echo site_url('review/export_csv/'.$_GET['s']); }else { echo site_url('review/export_csv'); } ?>" title="Export as CSV file">
+						<img src="<?php echo base_url(); ?>images/export_csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
+					</a>
+				</span>
+			</h2>
+		<?php } ?>
     </div>          
      <?php $id = $this->session->userdata('siteid');?>
       <?php $url1 = $this->reviews->get_url_byid($id);?>
@@ -238,7 +257,220 @@ else {
       <p>No records found.</p>
     </div>
     <?php } 
-    }
+    }    
+    if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'uploadReview' ) {
+	
+	?>
+	  <script type="text/javascript">
+		$(document).ready(function(){
+			$("#uploadLogin").submit(function(e){
+
+				e.preventDefault();
+				var username = $("#username").val();
+				var password = $("#password").val();
+
+				if( username != '' && password != ''){
+					
+					$.ajax({
+						type: 'POST',
+						url: "review/uploadLogin", 
+						data: { username:username, password: password },
+						success:  function(r) {
+							console.log(r);
+							$("#error_message").show();
+							
+							if(r == 'SUCCESS'){							
+								//$("#error_message").html("Sucesss");								
+								window.location.href = "<?php echo site_url('review/bulk'); ?>";
+							}else{
+								
+								$("#error_message").html("Invalid Username or Password");
+							}
+						},
+						error: function(r){
+							console.log(r);							
+							$("#error_message").html("Enter username or password");
+						}
+					});
+				}else{
+						$("#error_message").show();
+						$("#error_message").html("Enter username or password");
+				}	
+
+			});
+
+		});
+	  
+	  </script>
+  
+			<div class="box-content"> 				
+				<?php echo form_open_multipart('review/uploadLogin',array('class'=>'formBox','id'=>'uploadLogin')); ?>
+				
+				
+				<!-- Correct form message -->
+				<?php if( $this->session->flashdata('success') ) { ?>
+				<div class="form-message correct">
+				<p><?php echo $this->session->flashdata('success'); ?></p>
+				</div>
+				<?php } ?>
+				<!-- Error form message -->
+				<?php if( $this->session->flashdata('error') ) { ?>
+				<div class="form-message error1">
+				<p><?php echo $this->session->flashdata('error'); ?></p>
+				</div>
+				<?php } ?>
+			  <fieldset>
+				  <!-- Show Message -->
+				 <div class="form-cols"><!-- two form cols -->
+				  <div class="col1">
+					<div class="clearfix">
+						<div  id="error_message" class="error"></div>				  
+					</div>
+				  </div>				  
+				</div> 
+				  
+				  
+				<div class="form-cols"><!-- two form cols -->
+				  <div class="col1">
+					<div class="clearfix">
+					  <div class="lab">
+						<label for="username">Username <span class="errorsign">*</span>  </label>
+					  </div>
+					  <div class="con">											
+						<?php echo form_input( array( 'name'=>'username','id'=>'username','class'=>'input','type'=>'text') ) ; ?>
+						
+					  </div>
+					</div>
+				  </div>
+				  
+				</div>
+				
+				<div class="form-cols"><!-- two form cols -->
+				  <div class="col1">
+					<div class="clearfix">
+					  <div class="lab">
+						<label for="password">Password <span class="errorsign">*</span></label>
+					  </div>
+					  <div class="con">					
+						
+						<?php echo form_input( array( 'name'=>'password','id'=>'password','class'=>'input','type'=>'password' ) ); ?>
+						
+					  </div>
+					</div>
+				  </div>
+				  <div id="passworderror" class="error">Password is required.</div>
+				</div>			
+				
+				<div class="btn-submit"> 
+				  <!-- Submit form -->
+				
+				  <?php echo form_input(array('name'=>'login','id'=>'login','class'=>'button','type'=>'submit','value'=>'Login')); ?>
+				  
+				  <a href="<?php echo site_url('review/forgot');?>" class="Cancel">Forget Password</a> </div>
+			  </fieldset>
+			  
+			  <?php echo form_close(); ?> 
+			 </div>		 
+	<?php
+	}	
+    if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'forgot' ) { ?>
+	
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#forgotpassword").submit(function(e){
+
+				e.preventDefault();
+				var email = $("#email").val();
+				
+
+				if( email != '' ){
+					
+					$.ajax({
+						type: 'POST',
+						url: "review/forgotpassword", 
+						data: { email:email },
+						success:  function(r) {
+							console.log(r);
+							$("#error_message").show();							
+							if(r == 'SUCCESS'){							
+								$("#error_message").html("Email has been sent");																
+							}else{
+								
+								$("#error_message").html("No account found with that email address");
+							}
+						},
+						error: function(r){
+							console.log(r);							
+							$("#error_message").html("Enter username or password");
+						}
+					});
+				}else{
+						$("#error_message").show();
+						$("#error_message").html("Please Enter Your Email");
+				}	
+
+			});
+
+		});
+	  
+	  </script>
+	
+	<div class="box-content"> 				
+				<?php echo form_open_multipart('review/forgotpassword',array('class'=>'formBox','id'=>'forgotpassword')); ?>
+				
+				
+				<!-- Correct form message -->
+				<?php if( $this->session->flashdata('success') ) { ?>
+				<div class="form-message correct">
+				<p><?php echo $this->session->flashdata('success'); ?></p>
+				</div>
+				<?php } ?>
+				<!-- Error form message -->
+				<?php if( $this->session->flashdata('error') ) { ?>
+				<div class="form-message error1">
+				<p><?php echo $this->session->flashdata('error'); ?></p>
+				</div>
+				<?php } ?>
+			  <fieldset>
+				  <!-- Show Message -->
+				 <div class="form-cols"><!-- two form cols -->
+				  <div class="col1">
+					<div class="clearfix">
+						<div  id="error_message" class="error"></div>				  
+					</div>
+				  </div>				  
+				</div> 
+				  
+				  
+				<div class="form-cols"><!-- two form cols -->
+				  <div class="col1">
+					<div class="clearfix">
+					  <div class="lab">
+						<label for="email">Email <span class="errorsign">*</span>  </label>
+					  </div>
+					  <div class="con">											
+						<?php echo form_input( array( 'name'=>'email','id'=>'email','class'=>'input','type'=>'text') ) ; ?>						
+					  </div>
+					</div>
+				  </div>
+				  
+				</div>	
+						
+				
+				<div class="btn-submit"> 
+				  <!-- Submit form -->				
+				  <?php echo form_input(array('name'=>'forgot','id'=>'forgot','class'=>'button','type'=>'submit','value'=>'Reset')); ?>				  
+				  
+			  </fieldset>
+			  
+			  <?php echo form_close(); ?> 
+			 </div>	
+	
+	<?php
+	
+	}
+    
     if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'bulk' )
 	{ ?>
 		
@@ -252,6 +484,19 @@ else {
 	</script> 	
 		
 		<?php echo form_open_multipart('review/import_csv',array('class'=>'formBox','id'=>'frmupload')); ?>
+		
+		<!-- Correct form message -->
+    <?php if( $this->session->flashdata('success') ) { ?>
+    <div class="form-message correct">
+      <p><?php echo $this->session->flashdata('success'); ?></p>
+    </div>
+    <?php } ?>
+    <!-- Error form message -->
+    <?php if( $this->session->flashdata('error') ) { ?>
+    <div class="form-message error1">
+      <p><?php echo $this->session->flashdata('error'); ?></p>
+    </div>
+    <?php } ?>
 		<?php 
 		$site = site_url();			
 		$url = explode("/businessadmin",$site);
@@ -269,7 +514,8 @@ else {
 		
 		
     <?php
-	}
+	} 
+	
 	if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'reviews' )
 	{ ?>
 	<!-- Correct form message -->
