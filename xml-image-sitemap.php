@@ -22,13 +22,14 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 function url(){
   return sprintf(
-    "%s://%s%s",
+    "%s://%s/",
     isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
-    $_SERVER['SERVER_NAME'],
-    $_SERVER['REQUEST_URI']
+    $_SERVER['SERVER_NAME']
+    
   );
 }
 $siteurl=url();
+
 // Large websites might require more time
 set_time_limit(0);
 
@@ -46,7 +47,7 @@ $xml = new xmlsitemap;
 // $xml -> XMLlandingpages = array('index.html','index.htm','index.php');  // Use these landing pages when found with the indexed files
 // $xml -> Mainlandingpage = 'index.asp';	                           // Set the main landing page if no other landing page can be found
 // Create the sitemap from current working directory (you can specify a path optionally)
-$filecontent = $xml -> createsitemap();
+$filecontent = $xml -> createsitemap($xmldir,$siteurl);
 
 // Remove old XML sitemap file 
 $file = "image-sitemap.xml";

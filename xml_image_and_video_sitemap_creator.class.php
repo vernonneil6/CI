@@ -165,7 +165,7 @@ class xmlsitemap {
 	 * Public funtion to create the XML sitemap
 	 *
 	 */	
-	public function createsitemap($xmldir = '') {
+	public function createsitemap($xmldir = '',$url) {
 	
 		// Determine the full directory structure
 		if ($xmldir != '') {$this -> xmldir = rtrim($xmldir, '/');} else {$this -> xmldir = getcwd();}
@@ -191,12 +191,12 @@ class xmlsitemap {
 		$newtag = true;
 		$item_counter = 0;
 		$xml .="<url>
-<loc>http://www.devygr.com/uploads/index.php</loc>
-<image:image><image:loc>http://www.devygr.com/images/badge.png</image:loc></image:image>
-<image:image><image:loc>http://www.devygr.com/images/BuyersProtection_Badge.png</image:loc></image:image>
-<image:image><image:loc>http://www.devygr.com/images/verified_img.png</image:loc></image:image>
-<image:image><image:loc>http://www.devygr.com/images/ygr_logos.png</image:loc></image:image>
-<image:image><image:loc>http://www.devygr.com/images/YouGotRated_BusinessProfile_NotVerified-ReviewsTag.png</image:loc></image:image>
+<loc>".$url."uploads/index.php</loc>
+<image:image><image:loc>".$url."images/badge.png</image:loc></image:image>
+<image:image><image:loc>".$url."images/BuyersProtection_Badge.png</image:loc></image:image>
+<image:image><image:loc>".$url."images/verified_img.png</image:loc></image:image>
+<image:image><image:loc>".$url."images/ygr_logos.png</image:loc></image:image>
+<image:image><image:loc>".$url."images/YouGotRated_BusinessProfile_NotVerified-ReviewsTag.png</image:loc></image:image>
 </url>\n";
 
 		foreach ($this -> xmlimageindex as $key => $content) {
