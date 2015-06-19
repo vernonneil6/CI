@@ -314,7 +314,7 @@ class xmlsitemap {
 				while ($file = readdir($dir)) {
 					if (substr($file, 0, 1) != '.' && !is_dir($this -> xmldir . '/' . $content . '/' . $file)) {
 						$extension = strtolower(substr($file, strrpos($file, '.') + 1, strlen($file)));
-						if (in_array($extension, $this -> XMLvideos)) {
+						if (in_array($extension, $this->XMLvideos)) {
 							$this -> xmlvideoindex[]= array($landingpage, trim($content . '/' . $file, '/'));
 						} else if (in_array($extension, $this -> XMLimages)) {
 							$this -> xmlimageindex[]= array($landingpage, trim($content . '/' . $file, '/'));
