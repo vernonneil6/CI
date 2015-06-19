@@ -20,7 +20,15 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 */
-
+function url(){
+  return sprintf(
+    "%s://%s%s",
+    isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
+    $_SERVER['SERVER_NAME'],
+    $_SERVER['REQUEST_URI']
+  );
+}
+$siteurl=url();
 // Large websites might require more time
 set_time_limit(0);
 
@@ -29,7 +37,7 @@ include_once('xml_image_and_video_sitemap_creator.class.php');
 $xml = new xmlsitemap;
 
 // Configuration options
-   $xml -> XMLURL          = 'http://www.devygr.com';                // Specify the base URL to the root instead of auto-determining it
+   $xml -> XMLURL          = $siteurl;                // Specify the base URL to the root instead of auto-determining it
    $xml -> Excludedir      = array('ckeditor','images','js','blog','category','slider','message','sem','companysem','thumb','ad','topsellerratings.com','merchant-informer.com', 'safe-merchants.com');                  // Exclude specific directories
 // $xml -> Excludehtaccess = true;                                         // Exclude directories with .htaccess files
    $xml -> XMLimages       = array('gif', 'png', 'jpg', 'jpeg', 'ico');    // Index these specific images (extensions) only
