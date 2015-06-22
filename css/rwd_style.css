@@ -100,7 +100,9 @@ td{display:block;}
 .head_bg{width:auto;float:none;height:20px;text-align:center;}
 .main_footer, .container{width:auto;padding:0 20px; }
 .menu {display: none;}
-.yougot_logo{display: none;}
+.yougot_logo{margin:0 auto;float:none;}
+.yougot_logo img{width:190px;}
+.yougot_logo a{float:none;}
 .head_right_lnk, .head_right{text-align: center;float:none;display: inline-block;}
 .headerbusiness, .headerlogin, .headersignup{float:none;display: inline-block;}
 /*.review_right div{width:auto;}*/
