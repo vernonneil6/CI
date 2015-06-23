@@ -101,16 +101,34 @@
     </div>
    
     <div class="menu">
-      <ul>
+     <ul>
         <!--<li><a href="<?php echo base_url();?>" title="Home">Home<span><span></a> </li>-->
-        <li><a href="<?php echo site_url('businessdirectory');?>" title="Business Directory">Business Directory</a></li>
-        <li><a href="<?php echo site_url('review');?>" title="Business Review">Business Reviews</a></li>
-        <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">Press Releases</a></li>
-        <li><a href="<?php echo site_url('complaint');?>" title="Complaints">Business Complaints</a></li>
-        <li><a href="<?php echo site_url('coupon');?>" title="Coupons deals & Steals">Coupons deals & Steals</a></li>
-        <li><a href="http://business.yougotrated.com" title="Business Solutions">Business Solutions</a></li>
-      </ul>
-    </div>
+       <li><a href="<?php echo site_url('businessdirectory/category/');?>" title="Categories">Categories</a>
+<ul>
+<?php $catlist = $this->common->get_all_categorys('1','category','ASC'); 
+        foreach($catlist as $row=> $result)
+        {
+                    //lower case everything
+                    $categoryname = strtolower($result['category']);
+                    //make alphaunermic
+                    $categoryname = preg_replace("/[^a-z0-9\s-]/", "", $categoryname);
+                    //Clean multiple dashes or whitespaces
+                    $categoryname = preg_replace("/[\s-]+/", " ", $categoryname);
+                    //Convert whitespaces to dash
+                    $categoryname = preg_replace("/[\s]/", "-", $categoryname);
+    
+            ?>
+            <li><a href="<?php echo site_url('businessdirectory/category/')."/".$categoryname."/".$result['id'];?>"><?php echo $result['category'];?></a></li>
+<?php     } ?>
+</ul></li>
+       <li><a href="<?php echo site_url('businessdirectory');?>" title="Directory">Directory</a></li>
+       <li><a href="<?php echo site_url('review');?>" title="Review">Reviews</a></li>
+       <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">Press Releases</a></li>
+       <li><a href="<?php echo site_url('complaint');?>" title="Complaints">Complaints</a></li>
+       <li><a href="<?php echo site_url('coupon');?>" title="Coupons deals & Steals">Coupons deals & Steals</a></li>
+       <li><a href="http://business.yougotrated.com" title="Business Solutions">Business Solutions</a></li>
+     </ul>
+   </div>	
    <?php if($this->uri->segment(1)!='businessdirectory' && $this->uri->segment(1)!='solution' && $this->uri->segment(1)!='login' && $this->uri->segment(2)!='register') { ?> 
 	<div class='headersearch'>
 	  <?php echo form_open('businessdirectory/search',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>

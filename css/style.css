@@ -269,7 +269,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .srch_btn{width:36px; box-shadow:none; height:30px; background: url(../images/icons.png) -177px 1px; border:0 none; overflow:hidden; cursor:pointer; float:left;}
 .headersignup{/*background:#2c6a99;*/ height: 22px; width:64px;  margin-right: 10px; float: left;}
 .headerlogin{/*background:#2c6a99;*/ height: 22px;  width: 62px; margin-right: 10px; float: left;}
-.headerbusiness{/*background:#2c6a99;*/ height: 22px;  width: 175px; margin-right: 10px; float: left;}
+.headerbusiness{/*background:#2c6a99;*/ height: 22px;  float: right;}
 .headerfb{background:url('../images/fbbg.png') no-repeat; height: 22px; width: 160px; float: left;}
 .headerfb a{padding: 4px 0 0 35px;  display: inline-block;}
 .headersearch{display:inline-block; margin: 30px 0 20px; text-align: center; width: 100%;}
@@ -301,8 +301,8 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .menu{
  	   
 		
-		float:left;
-		padding: 0 2px;
+		/*float:left;
+		padding: 0 2px;*/
 	}
 .menu a {
 	color: black;
@@ -343,7 +343,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 	font-size:20px;	
 	font-family: "myriadpro-regular";
 	-webkit-margin-end: 35px;
-	margin-right:35px;
+	margin-right:62px;
 	list-style:none;
 	position:relative;
 	
@@ -351,25 +351,26 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .menu li.last_menu {
 	background:none;
 }
-
+.menu li:last-child{margin-right:0px; float:right;}
 .menu ul li ul {
 	min-width:150px;
 	width:auto;
 	position:absolute;
 	display:none;
-	background:#f1f1f1;
-		top:48px;
+	background:#f1f1f1;		
+		z-index:9999;
 }
 .menu ul li ul li {
 	min-width:170px;
 	width:auto;
-	padding:10px 0;
+	padding:2px 0;
 	border-bottom:#999 dotted 1px;
 	height:auto;
+	margin-right:0px; 
 }
 .menu ul li ul li:hover {
-	width:100%;
-	padding:10px 0;
+	min-width:170px;
+	padding:2px 0;
 	border-bottom:#999 dotted 1px;
 	height:auto;
 }
