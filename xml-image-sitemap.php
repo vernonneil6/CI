@@ -20,6 +20,16 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 */
+error_reporting(0);
+function url(){
+  return sprintf(
+    "%s://%s/",
+    isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
+    $_SERVER['SERVER_NAME']
+    
+  );
+}
+$siteurl=url();
 
 // Large websites might require more time
 set_time_limit(0);
@@ -29,7 +39,7 @@ include_once('xml_image_and_video_sitemap_creator.class.php');
 $xml = new xmlsitemap;
 
 // Configuration options
-   $xml -> XMLURL          = 'http://www.devygr.com';                // Specify the base URL to the root instead of auto-determining it
+   $xml -> XMLURL          = $siteurl;                // Specify the base URL to the root instead of auto-determining it
    $xml -> Excludedir      = array('ckeditor','images','js','blog','category','slider','message','sem','companysem','thumb','ad','topsellerratings.com','merchant-informer.com', 'safe-merchants.com');                  // Exclude specific directories
 // $xml -> Excludehtaccess = true;                                         // Exclude directories with .htaccess files
    $xml -> XMLimages       = array('gif', 'png', 'jpg', 'jpeg', 'ico');    // Index these specific images (extensions) only
@@ -38,7 +48,7 @@ $xml = new xmlsitemap;
 // $xml -> XMLlandingpages = array('index.html','index.htm','index.php');  // Use these landing pages when found with the indexed files
 // $xml -> Mainlandingpage = 'index.asp';	                           // Set the main landing page if no other landing page can be found
 // Create the sitemap from current working directory (you can specify a path optionally)
-$filecontent = $xml -> createsitemap();
+$filecontent = $xml -> createsitemap($xmldir,$siteurl);
 
 // Remove old XML sitemap file 
 $file = "image-sitemap.xml";

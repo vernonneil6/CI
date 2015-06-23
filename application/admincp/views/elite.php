@@ -262,7 +262,7 @@ else { ?>
 				  <div class="col1">
 					<div class="clearfix">
 					  <div class="lab">
-						<label for="password">Password<span class="errorsign">*</span></label>
+						<label for="password">Password <span class="errorsign">*</span></label>
 					  </div>
 					  <div class="con">					
 						
@@ -279,7 +279,7 @@ else { ?>
 				  <div class="col1">
 					<div class="clearfix">
 					  <div class="lab">
-						<label for="password">Confirm Passwordeli</label>
+						<label for="password">Confirm Password</label>
 					  </div>
 					  <div class="con">					
 						
