@@ -180,14 +180,3 @@ function FBLogin(){
 }
 
 </script>
-<style>
-.addthis_counter.addthis_pill_style.addthis_nonzero a.addthis_button_expanded
-{
-display:none !important;
-}
-.addthis_counter .atc_s, .addthis_counter .addthis_button_expanded
-{
-background:none !important;
-}
-</style>
-
