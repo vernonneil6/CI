@@ -30,7 +30,7 @@
     <div class="innr_wrap">
       
       <div class="p_realese_head">    
-          <h1 class="bannertext"><span class="bannertextregular">Press </span>Releases</h1>        
+          <h1 class="bannertext"><span class="bannertextregular">Press </span>Releases</h1>   <div class="addthis_native_toolbox" style="float:right;margin:10px 0;"></div>    
       </div>
       
       <form class="p_realse_wrap" action="pressrelease/search" method="post">
