@@ -653,7 +653,7 @@ else { ?>
 						<input type="checkbox" class="case" name="foo[]" value="<?php echo $elite->id;?>" />
 				 <?php					
 					}elseif ($field_name == 'company'){ ?>
-					 <div class="task-photo"><?php echo stripslashes($company[0]['company']); ?></div>
+					 <div class="task-photo"><?php echo $elite->company; ?></div>
 				<?php
 					}elseif( $field_name == 'payment_amount'){
 						echo stripslashes($elite->payment_currency).' '.$elite->payment_amount;

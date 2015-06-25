@@ -70,11 +70,13 @@ class Elites extends CI_Model
 		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
 		
 		// results query
-		$q = $this->db->select('e.*, c.*')
+		$q = $this->db->select('e.id,e.company_id,e.payment_amount,e.status,s.payment_date, c.company,c.contactname,c.email,c.contactemail,c.registerdate')
 				->from('elite as e')
-				->join('company as c','e.company_id=c.id','left')				
+				->join('company as c','e.company_id=c.id','left')
+				->join('subscription as s','s.company_id=e.company_id')				
 				->where('c.company is NOT NULL')
 				->where('c.contactemail != ""');								
+				
 				
 				
 		// limit query
@@ -98,7 +100,8 @@ class Elites extends CI_Model
 		// count query
 		$q = $this->db->select('COUNT( * ) as count', FALSE)	 
 			->from('elite as e')
-			->join('company as c','e.company_id=c.id','left')			
+			->join('company as c','e.company_id=c.id','left')
+			->join('subscription as s','s.company_id=e.company_id')			
 			->where('c.company is NOT NULL')
 			->where('c.contactemail != ""');
 															
