@@ -335,6 +335,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 	/*padding:10px 0;*/
 	border-bottom:#999 dotted 1px;
 	height:auto;
+	margin-right:0;
 }
 .menu ul li ul li:hover {
 	/*width:100%;
@@ -564,6 +565,7 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
 .table_block{display:table;}
 .review_blocks {display:table-cell;vertical-align:middle;}
 .review_right{display:table-cell;width:555px; padding:10px;}
+.review_blocks .review_right{ width:0;}
 .review_left{display:table-cell;width:50px;padding:10px;vertical-align:top;padding-left:0px;} 
 
 
@@ -1111,7 +1113,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
     padding: 0 15px;}
 .hm_live_menu ul li:last-child a { background: none;}
 .hm_live_menu ul li a:hover {	color:#AE9D05 !important;}	
-.hm_rvw_wrp{width:100%; float:left; display:inline-block;}
+.hm_rvw_wrp{width:94%; float:none; position:relative;margin:0 auto;}
 .hm_rvw_wrp > ul {padding:0;}
 .hm_rvw_wrp .review_rgt{width:555px!important; float:left; display:inline-block; }
 .hm_rvw_wrp .review_lft{width:50px !important; float:left; display:inline-block; margin-right:10px;}
@@ -2312,9 +2314,9 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
     font-size: 14px;
     margin: 5px;
 }
-.review_right div {width:390px;text-align: justify;margin-top:6px;}
+.review_right div {width:355px;text-align: justify;margin-top:6px;}
 .review_blocks.feed-left { 
-	float: left;
+	/*float: left;*/
 	height:200px;
     /*margin-bottom: 10px;*/
     /*margin-left: 5em;*/
@@ -2374,7 +2376,6 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
 #selstatediv1{ float:right;margin-right:127px;}
 #selstatediv{ float:right;margin-right:127px;}
 
-
 .text-content {
     bottom: 55%;
     font-family: "myriadpro-regular";
@@ -2389,4 +2390,24 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
 .innr_wrap .headersearch{
 position: relative;
 height:auto;
+}
+
+.review-slider-right {
+    /*display: block;*/
+    width:50%;
+    float:left;
+    
+}
+.review-slider {
+    /*display: inline-block;*/
+    width:50%;
+    float:left;
+}
+.review-slider ul{padding:0;padding-left:0px;}
+.review-slider-right ul{padding:0;float:right;padding-left:0px;}
+.review-slider li,.review-slider-right li {
+    border: 1px solid #dcdcdc;
+    border-radius: 15px;
+    list-style:none;
+    margin-top: 22px !important;
 }

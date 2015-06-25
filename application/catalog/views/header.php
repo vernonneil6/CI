@@ -24,9 +24,11 @@
 <link rel="stylesheet" href="css/flexslider.css" type="text/css">
 
 <script src="js/jquery.raty.min.js"></script>
+<script src="js/jquery.easy-ticker.js"></script>
 
 <script src="js/jquery.flexslider-min.js"></script>
 <script src="js/mobile_nav/jquery.slicknav.js"></script>
+
 <script>
  $(document).ready(function() {
  $('.data_table').delay(6000).fadeOut(600);

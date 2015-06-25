@@ -8,9 +8,12 @@ td{display:block;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .vry_logo{float:left;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:25px;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name{margin-bottom:5px;margin-top:10px;}
+.review-slider, .review-slider-right{float:none;width:100%;}
+.review-slider-right{display: none;}
 } 
 
 @media only screen and (min-width: 771px) and (max-width: 1050px){
+.review-slider ul{width:94%;padding:0 0 0 25px;}
 .bannertextcoupon{font-size:53px !important;}
 .hm_rght_panel {margin-left:0;}
 .main_contentarea .container{padding:0;width:100%;display: block; }
@@ -200,6 +203,8 @@ span.toggle:before{
 }
 
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
+.review-slider ul{padding:0 0 0 25px;}
+
 .container{width:511px;padding:0 20px; }
 .headersearch{width:511px;}
 .regr_lnk,.innr_wrap{width:511px;}
@@ -225,6 +230,7 @@ span.toggle:before{
 
 
 @media only screen and (min-width: 440px) and (max-width: 549px)  {
+.review-slider ul{padding:0 0 0 8px;}
 .container{width:411px;padding:0 20px;}
 .headersearch{width:411px;}
 .revw_blck_cnt h2{font-size:15px !important;}
@@ -264,6 +270,7 @@ span.toggle:before{
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px !important;width:300px;}
 }
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
+.review-slider ul{padding:0 0 0 6px;}
 .container{width:311px;padding:0 20px; }
 .headersearch{width:311px;}
 .bannertext{font-size:25px !important;height:25px;}
