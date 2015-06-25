@@ -101,7 +101,7 @@ else if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'payview' ) ) { ?
 			echo date('M d Y',strtotime($payment['expires']));
 			
 			}?></td>
-			<td><?php if($payment['subscription_paynumber']!='') {echo $payment['subscription_paynumber'].'/'.'12';} else { echo '0/12';} ?></td>
+			<td><?php if($payment['subscription_paynumber']!='') {echo $payment['subscription_paynumber'];} else { echo "0";} ?></td>
 			<td><?php echo $payment['status'];?></td>
 		  </tr>
         <?php } else { ?>

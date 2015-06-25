@@ -313,11 +313,10 @@ class Elites extends CI_Model
 		 $query['company']=$companies['company'];
 		 $query['registerdate']=$companies['registerdate'];
 		 $query['sub_amt']=$subscription_amount['value'];
-		 $query['status']=$elites['status'];
-		 $query['payment_date']=$elites['payment_date'];
+		 $query['status']=$elites['status'];		 
 		 $query['payment_amount']=$elites['payment_amount'];
-		 		 
-		return $query;
+		 $query['subscription_paynumber'] = $subscription_amount['subscription_paynumber'];	 
+		 return $query;
 	}
 }
 
