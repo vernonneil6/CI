@@ -1,14 +1,16 @@
 <?php echo $header;?>
-<div class="container">
+
 <div class="slider">
     <div class="flexslider carousel">
         <ul class="slides">
 		<?php 
 			$i=0;
+			//echo"<pre>"; print_r($homesliding);die;
 			foreach($homesliding as $homeslide)
 			{?>
 				<li>
 					<img src="uploads/slider/<?php echo $homeslide->image;?>" alt="How it works" title="How it works"  usemap="<?php if($i==0){echo '#planetmap';}?>">
+					<div class="text-content"> <span><?php echo strip_tags($homeslide->title);?></span></div>
 					<?php 
 					if($i==0)
 					{	?>
@@ -24,9 +26,21 @@
 			}
 		?>
 		</ul>
+		<?php if($this->uri->segment(1)!='businessdirectory' && $this->uri->segment(1)!='solution' && $this->uri->segment(1)!='login' && $this->uri->segment(2)!='register') { ?> 
+		<div class="container">
+			<div class='headersearch'>
+			<?php echo form_open('businessdirectory/search',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
+			<?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
+				<input type='text'  class='headersearchbar' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
+				<button type="submit" class="headersearchbtn fa fa-search" value="" name="btnsearch"></button>
+				<div id="loading"></div>
+			<?php echo form_close();?> 
+			</div>
+		</div>		
+   <?php }  ?>	
 	</div>
  </div>
-</div>
+
   
 <section class="container" >
   <section class="main_contentarea">    

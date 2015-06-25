@@ -125,7 +125,7 @@
 				   <?php 
 				  $selstate=array(''=>'--Select State--');
 				  ?>
-				  <div id="selstatediv1" style="float:right;margin-right:127px;">
+				  <div id="selstatediv1" >
 				  <?php echo form_dropdown('state1',$selstate,'','id="state1" class="seldrop"');?></div>
 				  <br/>
 					<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city1" name="city1" maxlength="50" />
@@ -253,7 +253,7 @@
 					   <?php 
 					  $selstate=array(''=>'--Select State--');
 					  ?>
-					  <div id="selstatediv" style="float:right;margin-right:127px;">
+					  <div id="selstatediv">
 					  <?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?></div>
 					  <br/>
 						<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />

@@ -17,10 +17,10 @@
         <div class="revw_blck">
           <?php /*?><div class="revw_blck_img"> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><img src="<?php if( $complaints[$i]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($complaints[$i]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?>" width="100px" height="40px"/></a> </div><?php */?>
           <?php if(count($elitemem_status)==0){?>
-        <div class="revw_blck_img"> <a href="<?php echo site_url('company/'.$complaints[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class = "reviewnotverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?>" /></a> </div>
+        <div class="revw_blck_img"><div class="vry_logo"> <a href="<?php echo site_url('company/'.$complaints[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class = "reviewnotverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?>" /></a> </div> </div>
         <?php }else{
 				  ?>
-        <div class="revw_blck_img"> <a href="<?php echo site_url('company/'.$complaints[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?>" /></a> </div>
+        <div class="revw_blck_img"><div class="vry_logo"> <a href="<?php echo site_url('company/'.$complaints[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?>" /></a> </div></div>
         <?php
 				  } ?>
           <?php 

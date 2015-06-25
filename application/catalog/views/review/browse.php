@@ -168,6 +168,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
         </div>
         
       </div>
+	<div class="addthis_native_toolbox"></div>
       <div class="pr_detlwrp">
         <div class="titl_pr_rel">
           <div class="pre_rls_rating">
