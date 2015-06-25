@@ -27,7 +27,7 @@ function cke_initialize($data = array()) {
 	if(!defined('CI_CKEDITOR_HELPER_LOADED')) {
 		
 		define('CI_CKEDITOR_HELPER_LOADED', TRUE);
-		$return =  '<script type="text/javascript" src="'.base_url(). $data['path'] . '/ckeditor.js"></script>';
+		$return =  '<script type="text/javascript" src="'.base_url(). $data['path'] . '/ckeditor.js"></script> <script type="text/javascript" src="'.base_url(). $data['path'] . '/ckfinder/ckfinder.js"></script>';
 		$return .=	"<script type=\"text/javascript\">CKEDITOR_BASEPATH = '" . base_url() . $data['path'] . "/';</script>";
 	} 
 	

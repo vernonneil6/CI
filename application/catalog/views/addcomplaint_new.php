@@ -133,16 +133,37 @@
 								  $("#transamterror").hide();
 								 
 							  }
-
+							
+						function ValidateCustomDate(d) {
+							var match = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(d);
+							if (!match) {
+							// pattern matching failed hence the date is syntactically incorrect
+							return false;
+							}
+							var month = parseInt(match[1], 10) - 1; // months are 0-11, not 1-12
+							var day   = parseInt(match[2], 10);
+							var year  = parseInt(match[3], 10);
+							var date  = new Date(year, month, day);
+							// now, Date() will happily accept invalid values and convert them to valid ones
+							// therefore you should compare input month/day/year with generated month/day/year
+							return date.getDate() == day && date.getMonth() == month && date.getFullYear() == year;
+						}
+								
 							if( ($("#transdate").val()) == "" )
 							  {
 								  $("#transdateerror").show();
-								  
+								  $("#transdateerror").html('Enter Transaction Date');
 								  $("#transdate").val('').focus();
 								  return false;
 							  }
 							  else
 							  {
+								  if(ValidateCustomDate($("#transdate").val()) == false){
+									$("#transdateerror").show();
+									$("#transdateerror").html('Enter valid format mm/dd/yyyy');
+									$("#transdate").val('').focus();
+									return false;
+								  }
 								  $("#transdateerror").hide();
 								 
 							  }

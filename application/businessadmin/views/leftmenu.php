@@ -7,7 +7,7 @@
 	    <li class="first"><a class="topmenu" href="<?php echo site_url('dashboard'); ?>" class="link" title="Dashboard">Dashboard</a>
 		    <ul class="submenu">
 				<li><a href="<?php echo site_url('elite'); ?>" title="Elite Membership Status" class="link">Elite Membership Status</a> </li>
-				<li><a href="<?php echo site_url('elite/update'); ?>" title="Update Your Credit Card" class="link">Update Your Credit card</a> </li>
+				<li><a href="<?php echo site_url('elite/update'); ?>" title="Update Your Credit Card" class="link">Update Your Credit Card</a> </li>
 				<li><a href="<?php echo site_url('tutorial'); ?>"  class="link" title="Tutorials">Tutorials</a>
 				<li><a href="<?php echo site_url('faq'); ?>"  class="link" title="FAQ">FAQ</a>
 		    </ul>
@@ -52,7 +52,7 @@
 			<ul class="submenu">
 				<li><a class="childmenu" href="<?php echo site_url('review'); ?>" title="Reviews">Reviews</a>
 					<ul class="child">
-						<li><a href="<?php echo site_url('review?bulk'); ?>" class="link" title="Upload Reviews in Bulk">Upload Reviews in Bulk</a></li>
+						<li><a href="<?php echo site_url('review/uploadReview'); ?>" class="link" title="Upload Reviews in Bulk">Upload Reviews in Bulk</a></li>
 						<li><a href="<?php echo site_url('review'); ?>"  class="link" title="List All Reviews">List All Reviews</a></li>
 					</ul>
 				</li>

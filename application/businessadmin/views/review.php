@@ -1,4 +1,39 @@
-<?php echo $heading; ?>
+<?php if( $this->uri->segment(2) && ( $this->uri->segment(2) == 'view' ) ) { ?>
+<!-- box -->
+
+<div class="box">
+  <div class="headlines">
+    <h2><span>Review Details</span></h2>
+  </div>
+  <!-- table -->
+  <table align="center" width="100%" cellspacing="10" cellpadding="0" border="0">
+    <?php if( count($reviews)>0 ) { ?>
+    <tr>
+      <td width="120"><b>Title</b></td>
+      <td><b>:</b></td>
+      <td><?php echo stripslashes($reviews[0]['reviewtitle']); ?></td>
+    </tr>
+    <tr>
+      <td width="120"><b>Review</b></td>
+      <td><b>:</b></td>
+      <td><?php echo stripslashes($reviews[0]['comment']); ?></td>
+    </tr>
+   
+    <?php } else { ?>
+    <!-- Warning form message -->
+    <div class="form-message warning">
+      <p>No record found.</p>
+    </div>
+    <?php } ?>
+  </table>
+  <!-- /table --> 
+</div>
+<!-- /box -->
+
+<?php } 
+else {
+	
+ echo $heading; ?>
 <link rel="stylesheet" href="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';?>css/fancybox.css" type="text/css">
 <script type="text/javascript" src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';?>js/fancybox.js"></script>
 <script type="text/javascript" language="javascript">	
@@ -9,6 +44,15 @@
 	});
 
 </script>
+
+<?php echo link_tag('colorbox/colorbox.css'); ?> 
+<script language="javascript" type="text/javascript" src="<?php echo base_url();?>colorbox/jquery.colorbox.js"></script> 
+<script language="javascript" type="text/javascript">
+  $(document).ready(function(){
+		$('.colorbox').colorbox({'width':'65%','height':'85%'});
+	
+  });
+</script> 
 <!-- #content -->
 <div id="content">
   <div class="breadcrumbs">
@@ -20,28 +64,40 @@
   <!-- box -->
   <div class="box">
     <div class="headlines">
-		<h2><span> Reviews</span></h2>
 		<h2>
-		   <span>
-				<a href="<?php echo site_url('review/export_csv/'.$keyword); ?>" title="Export as CSV file">
-					<img src="<?php echo base_url(); ?>images/export_csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
-				</a>
+			<span> 
+				<?php 
+				
+				if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'uploadReview' ) {
+					echo "Upload Review Login";
+				}
+				elseif( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'forgot' ) {
+					echo "Reset Password";
+				}
+				else{			
+					echo "Reviews";		
+				}				
+				?>		
 			</span>
 		</h2>
+		<?php 
+		
+		if( $this->uri->segment(1) == 'review' && ($this->uri->segment(2) != 'uploadReview' && $this->uri->segment(2) != 'bulk' && $this->uri->segment(2) != 'forgot' ) ) {	 ?>
+			<h2>
+			   <span>
+					<a href="<?php if(!empty($_GET['s'])){  echo site_url('review/export_csv/'.$_GET['s']); }else { echo site_url('review/export_csv'); } ?>" title="Export as CSV file">
+						<img src="<?php echo base_url(); ?>images/export_csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
+					</a>
+				</span>
+			</h2>
+		<?php } ?>
     </div>          
      <?php $id = $this->session->userdata('siteid');?>
       <?php $url1 = $this->reviews->get_url_byid($id);?>
 	  <?php $pageurl = $url1[0]['siteurl'].'review/browse/';?>
     <?php if( $this->uri->segment(1) == 'review' && ( $this->uri->segment(2) == 'index' || $this->uri->segment(2) == '' || $this->uri->segment(2) == 'searchresult' ) )
 	{ ?>
-    <script language="javascript" type="text/javascript">
-	  $(document).ready(function(){
-		$('#uploadcsv').click(function() {
-			$('#divupload').show();
-			$('#submitupload').show();
-		});
-	  });
-	</script> 
+    
     <!-- Correct form message -->
     <?php if( $this->session->flashdata('success') ) { ?>
     <div class="form-message correct">
@@ -72,25 +128,17 @@
 		<div class="btn-submit"> 
 		  <?php echo form_input(array('name'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('review');?>" class="Cancel">Cancel</a> 
 		</div>
+		 <?php if(!empty($_GET['s']))
+			{	   
+				echo "<div style='margin-top:2em;'> Search results for <span style='color:#1a2e4d'>' ". $_GET['s'] . " ' </span> </div>";
+			}
+			
+		?>
     </fieldset>
     <?php echo form_close(); ?> 
     </div>
     
-    <?php echo form_open_multipart('review/import_csv',array('class'=>'formBox','id'=>'frmupload')); ?>
-    <?php 
-	$site = site_url();			
-	$url = explode("/businessadmin",$site);
-	$path = $url[0];
-	?>
-    <div class="clearfix file uploadbox" style="width:auto">
-      <div class = "review_download">Elite member review upload tool</div>
-	  <div class = "review_download">Use the template below to format your reviews in Excel with the same columns and formatting. When ready, upload your file to populate your elite business profile page with your preferred business reviews!</div>
-	  
-      <div id="divlink"><a title="Upload CSV" id="uploadcsv" style="cursor:pointer; display:block">Upload CSV</a> or <a title="Download Sample CSV" href="<?php echo site_url('review/download');?>" id="downloadcsv" style="cursor:pointer">( Download Sample CSV )</a></div>
-      <div class="con" id="divupload"> <?php echo form_input( array( 'name'=>'csvfile','id'=>'csvfile','class'=>'input file upload-file','type'=>'file') ); ?> </div>
-      <div class="btn-submit" id="submitupload"> <?php echo form_input(array('name'=>'btnupload','id'=>'btnupload','class'=>'button','type'=>'submit','value'=>'Submit')); ?> or <a href="<?php echo site_url('review');?>" class="Cancel">Cancel</a> </div>
-    </div>
-    <?php echo form_close();?>
+ 
     <?php if( count($reviews) > 0 ) { ?>
     <!-- table -->
     
@@ -103,14 +151,19 @@
 			foreach($fields as $field_name => $field_display): ?>
 		
 			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php
+				if($sort_by == $field_name){ 
+						$field_display .= "<img alt='desc' src='".site_url("images/sort_".$sort_order.".gif")."'/>";
+				}
+				?>
 				<?php echo anchor("review/index/$field_name/" .
 					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
 					$field_display,array('class' => 'sorttitle')); ?>
 			</th>			
 			
 			<?php endforeach; ?>			 
-			<th width="10%">Action</th>
-			<th width="15%">Share On</th>
+			<th>Action</th>
+			<th>Share On</th>
 			</tr>
 		</thead>
 		
@@ -162,7 +215,10 @@
 					
 				</td>			
 				<?php endforeach; ?>
-				<td><a href="<?php echo site_url('review/delete/'.$review->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this review ?');">Delete</a></td> 
+				<td>
+					<a href="<?php echo site_url('review/delete/'.$review->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this review ?');">Delete</a>
+					<a href="<?php echo site_url('review/view/'.$review->id); ?>" title="View Detail of <?php echo stripslashes($pressrelease->id);?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a>		
+				</td> 
 				<td>  
 					<?php 				 
 						$title=urlencode('My post');
@@ -201,9 +257,265 @@
       <p>No records found.</p>
     </div>
     <?php } 
-    }
+    }    
+    if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'uploadReview' ) {
+	
+	?>
+	  <script type="text/javascript">
+		$(document).ready(function(){
+			$("#uploadLogin").submit(function(e){
+
+				e.preventDefault();
+				var username = $("#username").val();
+				var password = $("#password").val();
+
+				if( username != '' && password != ''){
+					
+					$.ajax({
+						type: 'POST',
+						url: "review/uploadLogin", 
+						data: { username:username, password: password },
+						success:  function(r) {
+							console.log(r);
+							$("#error_message").show();
+							
+							if(r == 'SUCCESS'){							
+								//$("#error_message").html("Sucesss");								
+								window.location.href = "<?php echo site_url('review/bulk'); ?>";
+							}else{
+								
+								$("#error_message").html("Invalid Username or Password");
+							}
+						},
+						error: function(r){
+							console.log(r);							
+							$("#error_message").html("Enter username or password");
+						}
+					});
+				}else{
+						$("#error_message").show();
+						$("#error_message").html("Enter username or password");
+				}	
+
+			});
+
+		});
+	  
+	  </script>
+  
+			<div class="box-content"> 				
+				<?php echo form_open_multipart('review/uploadLogin',array('class'=>'formBox','id'=>'uploadLogin')); ?>
+				
+				
+				<!-- Correct form message -->
+				<?php if( $this->session->flashdata('success') ) { ?>
+				<div class="form-message correct">
+				<p><?php echo $this->session->flashdata('success'); ?></p>
+				</div>
+				<?php } ?>
+				<!-- Error form message -->
+				<?php if( $this->session->flashdata('error') ) { ?>
+				<div class="form-message error1">
+				<p><?php echo $this->session->flashdata('error'); ?></p>
+				</div>
+				<?php } ?>
+			  <fieldset>
+				  <!-- Show Message -->
+				 <div class="form-cols"><!-- two form cols -->
+				  <div class="col1">
+					<div class="clearfix">
+						<div  id="error_message" class="error"></div>				  
+					</div>
+				  </div>				  
+				</div> 
+				  
+				  
+				<div class="form-cols"><!-- two form cols -->
+				  <div class="col1">
+					<div class="clearfix">
+					  <div class="lab">
+						<label for="username">Username <span class="errorsign">*</span>  </label>
+					  </div>
+					  <div class="con">											
+						<?php echo form_input( array( 'name'=>'username','id'=>'username','class'=>'input','type'=>'text') ) ; ?>
+						
+					  </div>
+					</div>
+				  </div>
+				  
+				</div>
+				
+				<div class="form-cols"><!-- two form cols -->
+				  <div class="col1">
+					<div class="clearfix">
+					  <div class="lab">
+						<label for="password">Password <span class="errorsign">*</span></label>
+					  </div>
+					  <div class="con">					
+						
+						<?php echo form_input( array( 'name'=>'password','id'=>'password','class'=>'input','type'=>'password' ) ); ?>
+						
+					  </div>
+					</div>
+				  </div>
+				  <div id="passworderror" class="error">Password is required.</div>
+				</div>			
+				
+				<div class="btn-submit"> 
+				  <!-- Submit form -->
+				
+				  <?php echo form_input(array('name'=>'login','id'=>'login','class'=>'button','type'=>'submit','value'=>'Login')); ?>
+				  
+				  <a href="<?php echo site_url('review/forgot');?>" class="Cancel">Forget Password</a> </div>
+			  </fieldset>
+			  
+			  <?php echo form_close(); ?> 
+			 </div>		 
+	<?php
+	}	
+    if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'forgot' ) { ?>
+	
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#forgotpassword").submit(function(e){
+
+				e.preventDefault();
+				var email = $("#email").val();
+				
+
+				if( email != '' ){
+					
+					$.ajax({
+						type: 'POST',
+						url: "review/forgotpassword", 
+						data: { email:email },
+						success:  function(r) {
+							console.log(r);
+							$("#error_message").show();							
+							if(r == 'SUCCESS'){							
+								$("#error_message").html("Email has been sent");																
+							}else{
+								
+								$("#error_message").html("No account found with that email address");
+							}
+						},
+						error: function(r){
+							console.log(r);							
+							$("#error_message").html("Enter username or password");
+						}
+					});
+				}else{
+						$("#error_message").show();
+						$("#error_message").html("Please Enter Your Email");
+				}	
+
+			});
+
+		});
+	  
+	  </script>
+	
+	<div class="box-content"> 				
+				<?php echo form_open_multipart('review/forgotpassword',array('class'=>'formBox','id'=>'forgotpassword')); ?>
+				
+				
+				<!-- Correct form message -->
+				<?php if( $this->session->flashdata('success') ) { ?>
+				<div class="form-message correct">
+				<p><?php echo $this->session->flashdata('success'); ?></p>
+				</div>
+				<?php } ?>
+				<!-- Error form message -->
+				<?php if( $this->session->flashdata('error') ) { ?>
+				<div class="form-message error1">
+				<p><?php echo $this->session->flashdata('error'); ?></p>
+				</div>
+				<?php } ?>
+			  <fieldset>
+				  <!-- Show Message -->
+				 <div class="form-cols"><!-- two form cols -->
+				  <div class="col1">
+					<div class="clearfix">
+						<div  id="error_message" class="error"></div>				  
+					</div>
+				  </div>				  
+				</div> 
+				  
+				  
+				<div class="form-cols"><!-- two form cols -->
+				  <div class="col1">
+					<div class="clearfix">
+					  <div class="lab">
+						<label for="email">Email <span class="errorsign">*</span>  </label>
+					  </div>
+					  <div class="con">											
+						<?php echo form_input( array( 'name'=>'email','id'=>'email','class'=>'input','type'=>'text') ) ; ?>						
+					  </div>
+					</div>
+				  </div>
+				  
+				</div>	
+						
+				
+				<div class="btn-submit"> 
+				  <!-- Submit form -->				
+				  <?php echo form_input(array('name'=>'forgot','id'=>'forgot','class'=>'button','type'=>'submit','value'=>'Reset')); ?>				  
+				  
+			  </fieldset>
+			  
+			  <?php echo form_close(); ?> 
+			 </div>	
+	
+	<?php
+	
+	}
     
-    
+    if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'bulk' )
+	{ ?>
+		
+	<script language="javascript" type="text/javascript">
+	  $(document).ready(function(){
+		$('#uploadcsv').click(function() {
+			$('#divupload').show();
+			$('#submitupload').show();
+		});
+	  });
+	</script> 	
+		
+		<?php echo form_open_multipart('review/import_csv',array('class'=>'formBox','id'=>'frmupload')); ?>
+		
+		<!-- Correct form message -->
+    <?php if( $this->session->flashdata('success') ) { ?>
+    <div class="form-message correct">
+      <p><?php echo $this->session->flashdata('success'); ?></p>
+    </div>
+    <?php } ?>
+    <!-- Error form message -->
+    <?php if( $this->session->flashdata('error') ) { ?>
+    <div class="form-message error1">
+      <p><?php echo $this->session->flashdata('error'); ?></p>
+    </div>
+    <?php } ?>
+		<?php 
+		$site = site_url();			
+		$url = explode("/businessadmin",$site);
+		$path = $url[0];
+		?>
+		<div class="clearfix file uploadbox" style="width:auto">
+		  <div class = "review_download">Elite member review upload tool</div>
+		  <div class = "review_download">Use the template below to format your reviews in Excel with the same columns and formatting. When ready, upload your file to populate your elite business profile page with your preferred business reviews!</div>
+		  
+		  <div id="divlink"><a title="Upload CSV" id="uploadcsv" style="cursor:pointer; display:block">Upload CSV</a> or <a title="Download Sample CSV" href="<?php echo site_url('review/download');?>" id="downloadcsv" style="cursor:pointer">( Download Sample CSV )</a></div>
+		  <div class="con" id="divupload"> <?php echo form_input( array( 'name'=>'csvfile','id'=>'csvfile','class'=>'input file upload-file','type'=>'file') ); ?> </div>
+		  <div class="btn-submit" id="submitupload"> <?php echo form_input(array('name'=>'btnupload','id'=>'btnupload','class'=>'button','type'=>'submit','value'=>'Submit')); ?> or <a href="<?php echo site_url('review');?>" class="Cancel">Cancel</a> </div>
+		</div>
+		<?php echo form_close();?>	
+		
+		
+    <?php
+	} 
+	
 	if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'reviews' )
 	{ ?>
 	<!-- Correct form message -->
@@ -598,3 +910,4 @@
 <!-- /#sidebar --> 
 <!-- #footer --> 
 <?php echo $footer; ?> 
+<?php } ?>

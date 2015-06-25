@@ -13,7 +13,7 @@
         <div class="Flexible-container">
           <?php /*?><iframe width="770" height="430" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBkUSG003UBp7IiqoZXZUJjtC_-N4BOZ_c
     &q=<?php echo $address; ?>"></iframe><?php */?>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZKlrc_zm7xNNobdBpaFH8L-viQ-Wn3tE&sensor=false"></script>
 <script type="text/javascript">
             // When the window has finished loading create our google map below
             google.maps.event.addDomListener(window, 'load', init);
@@ -41,7 +41,8 @@
 
                     // How you would like to style the map. 
                     // This is where you would paste any style found on Snazzy Maps.
-                    styles: [	{		featureType:'water',		stylers:[{color:'#0080FF'},{visibility:'on'}]	},{		featureType:'landscape',		stylers:[{color:'#f2f2f2'}]	},{		featureType:'road',		stylers:[{saturation:-100},{lightness:45}]	},{		featureType:'road.highway',		stylers:[{visibility:'simplified'}]	},{		featureType:'road.arterial',		elementType:'labels.icon',		stylers:[{visibility:'off'}]	},{		featureType:'administrative',		elementType:'labels.text.fill',		stylers:[{color:'#444444'}]	},{		featureType:'transit',		stylers:[{visibility:'off'}]	},{		featureType:'poi',		stylers:[{visibility:'off'}]	}]
+                    //styles: [	{		featureType:'water',		stylers:[{color:'#0080FF'},{visibility:'on'}]	},{		featureType:'landscape',		stylers:[{color:'#f2f2f2'}]	},{		featureType:'road',		stylers:[{saturation:-100},{lightness:45}]	},{		featureType:'road.highway',		stylers:[{visibility:'simplified'}]	},{		featureType:'road.arterial',		elementType:'labels.icon',		stylers:[{visibility:'off'}]	},{		featureType:'administrative',		elementType:'labels.text.fill',		stylers:[{color:'#444444'}]	},{		featureType:'transit',		stylers:[{visibility:'off'}]	},{		featureType:'poi',		stylers:[{visibility:'off'}]	}]
+                    //styles : [ {   featureType: "all",   stylers: [     { saturation: -80 }    ]  },{    featureType: "road.arterial",    elementType: "geometry",    stylers: [      { hue: "#00ffee" },      { saturation: 100 }    ]  },{    featureType: "poi.business",    elementType: "labels",    stylers: [      { visibility: "off" }    ]  }]                
                 };
 
                 // Get the HTML DOM element that will contain your map 

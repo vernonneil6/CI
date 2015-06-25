@@ -1117,6 +1117,7 @@ $this->complaints->set_video($companyid,"video2","http://www.youtube.com/watch?v
 	{
 	   
         $datas= $this->complaints->retrieve_company($cmid);
+        $this->data['companyid']=$cmid;
         $this->data['companys']=$datas['company'];
         $this->data['emails']=$datas['contactemail'];
         

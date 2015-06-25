@@ -69,7 +69,7 @@ class Pressrelease extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sortby,$orderby='asc')
+	/*public function index($sortby,$orderby='asc')
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
@@ -105,7 +105,7 @@ class Pressrelease extends CI_Controller {
 				$base = site_url("pressrelease/index");
 				$orderby = 'asc';
 				$url = 3;
-			}*/
+			}
 			
 			
 			//Addingg Setting Result to variable
@@ -118,7 +118,78 @@ class Pressrelease extends CI_Controller {
 			//Loading View File
 			$this->load->view('pressrelease',$this->data);
 	  	}
+	}*/
+	
+	
+	public function index($sort_by = '', $sort_order = '', $offset = 0) {
+		
+		if( !$this->session->userdata('youg_admin'))
+	  	{
+	  	  	redirect('adminlogin', 'refresh');
+		}
+		
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+			$limit = 15;
+			$this->data['fields'] = array(
+				'site' => 'Site Name',
+				'title' => 'Title',
+				'subtitle' => 'Sub Title',
+				'release' => 'Release Date',				
+				'status' => 'Status'
+			);
+			
+			$this->load->model('pressreleases');
+			
+			if($this->input->get('s')){				
+				$decodeKeyword = urldecode($this->input->get('s'));
+			}
+			
+			$companyid = $this->session->userdata['youg_admin']['id'];
+			
+			$siteid = $this->session->userdata['siteid'];
+			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
+			
+			$results = $this->pressreleases->pressSearch($decodeKeyword, $companyid, $siteid, $limit, $offset, $sort_by, $sort_order);
+			
+			$this->data['pressreleases'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
+			//echo $this->data['num_results'];die;
+			
+			// pagination				
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("pressrelease/index/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("pressrelease/index");
+				$uriSegment = 3;
+			}
+			
+			$this->paging['base_url'] = $siteURL;
+			
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;
+			$this->paging['uri_segment'] = 5;
+			
+			if(!empty($_GET)){
+				$this->paging['suffix'] = '?'.http_build_query($_GET, '', "&");
+				$this->paging['first_url'] = $this->paging['base_url'] . $this->paging['suffix'];
+			}
+						
+			$this->pagination->initialize($this->paging);									
+			
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('pressrelease', $this->data);
+			
+		}
 	}
+	
 	
 	public function add()
 	{
@@ -171,9 +242,16 @@ class Pressrelease extends CI_Controller {
 									'filebrowserImageBrowseUrl' => '',
 									'filebrowserBrowseUrl' => '',
 									'filebrowserFlashBrowseUrl' => '',
+									'filebrowserBrowseUrl'      => '../../ckeditor/ckfinder/ckfinder.html',
+									'filebrowserImageBrowseUrl' => '../../ckeditor/ckfinder/ckfinder.html?Type=Images',
+									'filebrowserFlashBrowseUrl' => '../../ckeditor/ckfinder/ckfinder.html?Type=Flash',
+									'filebrowserUploadUrl'      => '../../ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+									'filebrowserImageUploadUrl' => '../../ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+									'filebrowserFlashUploadUrl' => '../../ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
 									
 								),
 						);
+						
 				//Loading View File
 				$this->load->view('pressrelease',$this->data);
 			}
@@ -472,8 +550,9 @@ class Pressrelease extends CI_Controller {
 	{
 		if($this->input->post('btnsearch'))
 		{
-			$keyword = $this->input->post('keysearch');
-			redirect('pressrelease/searchresult/'.$keyword,'refresh');				
+			
+			$keyword = urlencode($this->input->post('keysearch'));				
+			redirect('pressrelease/index/?s='.$keyword);							
 		}
 		else
 		{
@@ -495,6 +574,68 @@ class Pressrelease extends CI_Controller {
 
 		$this->load->view('pressrelease',$this->data);
 	}
+	
+	public function export_csv($keyword)
+    {		
+        if( $this->session->userdata['youg_admin'] )
+        {				
+				$companyid = $this->session->userdata['youg_admin']['id'];
+				
+				$siteid = $this->session->userdata['siteid'];
+				
+				if($keyword!='') 
+				{					
+					$searchKey = urldecode($keyword);
+					$file = 'Report-of-search-pressreleases.csv';					
+					$press_results = $this->pressreleases->pressSearch($searchKey, $companyid, $siteid);
+					
+				}
+				else
+				{					
+					$file = 'Report-of-all-pressreleases.csv';
+					$press_results = $this->pressreleases->pressSearch($searchKey,$companyid,$siteid);
+				}
+				
+				ob_start();
+				echo "Site Name,Title,Sub Title,Release Date,Status"."\n";
+				
+				//print_r($review);die;
+				
+				foreach($press_results as $press_result): 
+					foreach($press_result as $press): 	
+					
+						echo "\"".str_replace('"',"'",$press->site)."\",";											
+						echo "\"".str_replace('"',"'",$press->title)."\",";
+						echo "\"".str_replace('"',"'",$press->subtitle)."\",";											
+						echo date('m-d-Y', strtotime($press->insertdate)).",";						
+						echo $press->status;
+						echo "\n";									
+						
+					endforeach;
+				endforeach;
+				
+				   
+			
+					$content = ob_get_contents();
+					ob_end_clean();
+					header("Expires: 0");
+					header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+					header("Cache-Control: no-store, no-cache, must-revalidate");
+					header("Cache-Control: post-check=0, pre-check=0", false);
+					header("Pragma: no-cache");  header("Content-type: application/csv;charset:UTF-8");
+					header('Content-length: '.strlen($content));
+					header('Content-disposition: attachment; filename='.basename($file));
+					echo $content;
+					exit;
+							
+						
+		}
+		else
+		{
+			redirect('adminlogin','refresh');
+		}
+    }
+	
 }
 
 /* End of file dashboard.php */

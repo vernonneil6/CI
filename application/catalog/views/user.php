@@ -1162,6 +1162,9 @@
 		   ?>" alt="<?php echo stripslashes($user[0]['firstname']); ?>"/> </div>
               </td>
             </tr>
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_native_toolbox" style="float:right;"></div></tr>
+            <tr>
             <tr>
               <td><div class="login_box_title" style="font-size:16px;"><?php echo ucfirst($user[0]['username']); ?></div>
                 <div class="user_view"><a href="<?php echo site_url('user/edit'); ?>" title="edit personal details">Edit Personal Details</a></div>

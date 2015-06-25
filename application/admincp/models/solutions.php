@@ -31,6 +31,51 @@ Class Solutions extends CI_Model
 		}
  	}
 	
+	function solutionsSearch($keyword, $siteid, $limit, $offset, $sort_by, $sort_order) {
+		
+		$sort_order = ($sort_order == 'desc') ? 'desc' : 'asc';
+		$sort_columns = array('title','status');
+		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : '';
+		
+		
+		// results query
+		$q = $this->db->select('*')
+			->from('solutions')		
+			->where('websiteid',$siteid);			
+			
+		// limit query
+		if(!empty($limit) && !empty($offset)){
+			$q->limit($limit, $offset);		
+		}
+		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}
+		
+		// search query
+		if (strlen($keyword)) {
+			$q->or_like(array('detail'=> $keyword, 'title'=> $keyword ) );			
+		}
+		
+		$ret['rows'] = $q->get()->result();
+		
+		// count query
+		$q = $this->db->select('COUNT(*) as count', FALSE)
+			->from('solutions')
+			->where('websiteid',$siteid);
+			
+		// search query
+		if (strlen($keyword)) {
+			$q->or_like(array('detail'=> $keyword, 'title'=> $keyword ) );			
+		}
+		
+		$tmp = $q->get()->result();
+		
+		$ret['num_rows'] = $tmp[0]->count;
+		
+		return $ret;
+	}
+	
 	//Inserting Record
 	function insert($title,$detail,$siteid,$image)
 	{

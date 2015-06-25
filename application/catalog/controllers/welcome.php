@@ -571,9 +571,9 @@ public function fblogin()
 	$fb_appId = $this->common->get_setting_value(20);
 	$fb_secret = $this->common->get_setting_value(21);
 	
-	$lasturl = $this->session->userdata('last_url');  
+	$lasturl = $this->session->userdata('last_url_1');  
 	if($lasturl == ''){
-		$lasturl ='user';
+		$lasturl =site_url();
 	}	
 	 
 	
@@ -601,6 +601,7 @@ public function fblogin()
 		if (!empty($user_profile ))
 		{
 			$this->session->unset_userdata('last_url');
+			$this->session->unset_userdata('last_url_1');
 				$email = $user_profile['email'];
 				$uid = $user_profile['id'];	
 				//Loading model file
@@ -751,6 +752,7 @@ public function fblogin()
 		{
 		$sess_array[$key] = $val;
 		}	
+		$lasturl='user';
 		$this->session->set_userdata('youg_user', $sess_array);
 		redirect($lasturl,'refresh');
 			   

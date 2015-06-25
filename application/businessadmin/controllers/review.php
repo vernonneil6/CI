@@ -49,7 +49,7 @@ class Review extends CI_Controller
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($sort_by = 'reviewdate', $sort_order = 'asc', $offset = 0) {
+	public function index($sort_by = '', $sort_order = '', $offset = 0) {
 		
 		if( !$this->session->userdata('youg_admin'))
 	  	{
@@ -78,6 +78,9 @@ class Review extends CI_Controller
 			
 			$siteid = $this->session->userdata['siteid'];
 			
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
 			
 			$results = $this->reviews->reviewsSearch($decodeKeyword, $companyid, $siteid, $limit, $offset, $sort_by, $sort_order);
 			
@@ -86,10 +89,20 @@ class Review extends CI_Controller
 			//echo $this->data['num_results'];die;
 			
 			// pagination				
-			$this->paging['base_url'] = site_url("review/index/$sort_by/$sort_order");
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("review/index/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("review/index");
+				$uriSegment = 3;
+			}
+			
+			$this->paging['base_url'] = $siteURL;
+			
 			$this->paging['total_rows'] = $this->data['num_results'];
 			$this->paging['per_page'] = $limit;
-			$this->paging['uri_segment'] = 5;
+			$this->paging['uri_segment'] = $uriSegment;
 			
 			if(!empty($_GET)){
 				$this->paging['suffix'] = '?'.http_build_query($_GET, '', "&");
@@ -105,7 +118,130 @@ class Review extends CI_Controller
 		}
 	}
 	
+	public function bulk(){
+	
+		if( $this->session->userdata('username') && $this->session->userdata('password') ){		
+			$this->load->view('review');
+		}
+	}
+	
+	public function uploadReview(){
+		if( $this->session->userdata['youg_admin'] )
+	  	{			
+			$this->load->view('review');
+		}		
 
+	}
+	
+	public function forgot(){
+		if( $this->session->userdata['youg_admin'] )
+	  	{	
+			$this->load->view('review');
+		}		
+
+	}
+	
+	public function forgotpassword(){
+		
+		if( $this->session->userdata['youg_admin'] ){	
+			if( $this->input->post('email')){
+					
+					$data = array(
+						'email' => $this->input->post('email')						
+					);
+					$result = $this->reviews->uploadCheck($data);
+					//print_r($result);die;
+					
+					if($result['rows'][0]->count > 0){
+						echo "SUCCESS";	
+						
+						/*Reset Password Email*/						
+							$this->load->library('email');
+							$this->email->from($result['rows'][0]->contactemail, $result['rows'][0]->contactname);
+							$this->email->to('vernonneil@grossmaninteractive.com','sales@yougotrated.com'); 								
+							$this->email->subject('Request Password Access');
+							$this->email->message('Hi, Please provide access to Review Upload Admin Tool');	
+							$this->email->send();
+						/*Reset Password Email*/
+											
+					}else{
+						echo "ERROR";				
+					}
+			}
+			else
+			{
+					echo "ERROR";				
+					
+			}			
+		}
+	}
+	public function uploadLogin(){
+		if( $this->session->userdata['youg_admin'] )
+	  	{		
+				// Load session library
+				$this->load->library('session');
+				if( $this->input->post('username') &&  $this->input->post('password'))
+				{			
+					$this->session->unset_userdata($data);
+					
+					$data = array(
+						'username' => $this->input->post('username'),
+						'password' => $this->input->post('password')
+					);
+					$result = $this->reviews->uploadCheck($data);
+					//print_r($result);die;
+					
+					if($result['rows'][0]->count > 0){
+						$this->session->set_userdata($data);
+						echo "SUCCESS";
+						
+					}else{
+						echo "ERROR";				
+					}				
+				}
+				else
+				{
+					echo "ERROR";				
+					
+				}
+		}			
+	}
+	
+	public function view($id = '')
+	{
+		if( $this->input->is_ajax_request() )
+		{
+		if( $this->session->userdata['youg_admin'] )
+	  	{
+			if(!$id)
+			{
+				redirect('review', 'refresh');
+			}
+			//Loading Model File
+	  		
+			//Getting detail for displaying in form
+			$this->data['reviews'] = $this->reviews->get_review_byid($id);
+			/*echo "<pre>";
+			print_r($this->data['pressrelease']);
+			die();*/
+			if( count($this->data['reviews'])>0 )
+			{
+				//Loading View File
+				$this->load->view('review',$this->data);
+			}
+			else
+			{
+				$this->session->set_flashdata('error', 'Record not found with specified id. Try later!');
+				redirect('review', 'refresh');
+			}
+	  	}
+		}
+		else
+		{
+				redirect('review', 'refresh');
+		}
+	
+	}
 	public function import_csv()
 	{
 
@@ -116,6 +252,7 @@ class Review extends CI_Controller
 		
 		if( $this->session->userdata['youg_admin'] )
 	  	{
+			//print_r($this->input->post('csvfile'));die;
 			if($this->input->post('btnupload'))
 			{
 	  	  		$config['upload_path'] = '../uploads/reviewcsv/';
@@ -746,9 +883,9 @@ public function request($reviewid='',$userid='')
 		function searchrevs()
 		{
 			if($this->input->post('btnsearch'))
-			{
-				$keyword = $this->input->post('keysearch');
-				redirect('review/searchresult/'.$keyword,'refresh');				
+			{				
+				$keyword = urlencode($this->input->post('keysearch'));				
+				redirect('review/index/?s='.$keyword);					
 			}
 			else
 			{
@@ -792,32 +929,43 @@ public function request($reviewid='',$userid='')
 				
 				if($keyword!='') 
 				{					
+					$searchKey = urldecode($keyword);
 					$file = 'Report-of-search-reviews.csv';					
-					$review = $this->reviews->searchrev($keyword,$companyid,$limit,$offset);
+					$review_results = $this->reviews->reviewsSearch($searchKey,$companyid,$siteid);
 					
 				}
 				else
 				{					
 					$file = 'Report-of-all-reviews.csv';
-					$review = $this->reviews->get_all_reviews($companyid,$siteid,$limit,$offset,$sortby,$orderby);
+					$review_results = $this->reviews->reviewsSearch($searchKey,$companyid,$siteid);
 				}
 				
 				ob_start();
-				echo "Review,Review to,Review by,IP,Date Reviewed,Status"."\n";
+				echo "Review,Business Name,Review by,Date Reviewed,Status"."\n";
 				
-				   for($i=0;$i<count($review);$i++) { 
-						$comment = str_replace('"','',$review[$i]['comment']);
-						$comment = str_replace("'","",$comment);
-						$comment = str_replace(",",'#COMMA#',$comment);
-						echo stripslashes(ucwords($comment)).',';
-						echo stripslashes(ucwords($review[$i]['company'])).',';
-						echo ucfirst($reviews[$i]['firstname'].' '.$reviews[$i]['lastname']).',';
-						echo stripslashes(ucwords($review[$i]['reviewip'])).',';
-						echo stripslashes($review[$i]['reviewdate']).',';
-						echo stripslashes(ucwords($review[$i]['status'])); 
-						echo "\n";							
-						//break;
-					}
+				//print_r($review);die;
+				
+				foreach($review_results as $review_result): 
+					foreach($review_result as $reviews): 	
+					
+						echo "\"".str_replace('"',"'",$reviews->comment)."\"";
+						echo ",";								
+						echo "\"".$reviews->company."\"";
+						echo ",";
+						if(!empty($reviews->firstname) && !empty($reviews->lastname)){
+							echo $reviews->firstname.' '.$reviews->lastname;
+						}else{
+							echo $reviews->reviewby;
+						}
+						echo ",";						
+						echo date('m-d-Y', strtotime($reviews->reviewdate));
+						echo ",";						
+						echo $reviews->status;
+						echo "\n";									
+					endforeach;
+				endforeach;
+				
+				   
 			
 					$content = ob_get_contents();
 					ob_end_clean();

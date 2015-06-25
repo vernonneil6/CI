@@ -43,10 +43,18 @@ class Coupons extends CI_Model
 		// results query
 		$q = $this->db->select('*')
 				->from('coupon')
-				->where('type','admin')
-				->limit($limit, $offset)
-				->order_by($sort_by, $sort_order);
+				->where('type','admin');
+				
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
+		}
 		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}	
+			
+
 		$ret['rows'] = $q->get()->result();
 		
 		

@@ -6,12 +6,23 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 	$('#submit').click(function(){
-	if (!$("#terms-conditions").is(":checked")) {
+		if( !$('#transactionid').val()){			
+			$('#trans-error').show();		
+			return false;			
+		}else{
+			if($('#transactionid').val() != '<?php echo $companyid; ?>'){	
+				$('#trans-error').html('Please Enter the correct Transaction ID');
+				$('#trans-error').show();
+							
+				return false;
+			}else{		
+				$('#trans-error').hide();		
+			}
+		}	
+		if (!$("#terms-conditions").is(":checked")) {
 				$('#terms-error').show();
 				return false;
-			}
-			else
-			{
+			}else{
 				$('#terms-error').hide();
 				return true;
 			}
@@ -200,8 +211,10 @@ if( $this->session->userdata('youg_user') )
 					<span class="form_left">
 						<label class="names">Transaction Details</label>
 						<div>
-							<small class="reg_fld">This is the ID provided by the business, that helps us ensure you have actually purchased from this business.</small>
-							<?php echo form_input(array('name'=>'transactionid','type'=>'text','class'=>'reg_txt_box','value'=>'','placeholder'=>'Please enter Transaction ID'))."<br>"; ?>
+							<small class="reg_fld">This is the ID provided by the business, that helps us ensure you have actually purchased from this business.</small>							
+							<?php echo form_input(array('id'=>'transactionid','name'=>'transactionid','type'=>'text', 'class'=>'reg_txt_box','value'=>'','placeholder'=>'Please enter Transaction ID'))."<br>"; ?>
+							<div><label id="trans-error" style='display:none;color:#ff0000;font-family: myriadpro-regular;font-size:14px;text-transform: lowercase;'>Please Enter Your Transcation Id</label></div>
+							
 							<?php echo form_input(array('name'=>'transactionamt','type'=>'text','class'=>'reg_txt_box','value'=>'','placeholder'=>'Please enter Transaction Amount'))."<br>"; ?>
 							<?php echo form_input(array('name'=>'transactiondate','type'=>'text','class'=>'reg_txt_box','value'=>'','placeholder'=>'Please enter Transaction Date'))."<br>"; ?>
 							

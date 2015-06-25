@@ -62,6 +62,8 @@ class Complaints extends CI_Model
 	//Inserting Record
 	function insert($companyid,$detail,$username,$emailid,$statusdisable,$city,$state,$zip,$company ,$reasondispute,$merchantresolution,$streetaddress,$phone,$caseid,$transactionid,$transaction_date,$transactionamt,$complaintdate,$userid,$companyemail,$complaintdate,$image)
 	{
+		$transaction_date = date('Y-m-d H:i:s',strtotime($transaction_date));
+		
 		$siteid = $this->session->userdata('siteid');
 		$date = date('Y-m-d H:i:s');
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
@@ -1743,6 +1745,9 @@ class Complaints extends CI_Model
 	}
 	function insert_dispute($companyname,$companyid,$companyemail,$userid,$username,$useremail,$status,$ondate,$msglink,$transactionid,$transactionamt,$transactiondate,$reasondispute,$merchantresolution)
 	{
+				
+		$transaction_date = date('Y-m-d H:i:s',strtotime($transactiondate));
+		
 		$data = array(
 	              'companyname'=>$companyname,
 	              'companyid'=>$companyid,

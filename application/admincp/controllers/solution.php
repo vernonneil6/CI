@@ -82,32 +82,53 @@ class Solution extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
-	{
+	public function index($sort_by = '', $sort_order = '', $offset = 0) {
+		
 		if( $this->session->userdata['youg_admin'] )
 	  	{
+			$limit = 15;
+			
+			$this->data['fields'] = array(
+				'title' => 'Title',				
+				'status' => 'Status'
+			);
+			
+			$this->load->model('solutions');
+			if($this->input->get('s')){				
+				$decodeKeyword = urldecode($this->input->get('s'));
+			}
+			if(empty($sort_by) || empty($sort_order)){
+				$offset = $sort_by;
+			}
 			$siteid = $this->session->userdata('siteid');
-			$limit = $this->paging['per_page'];
-			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+			$results = $this->solutions->solutionsSearch($decodeKeyword, $siteid, $limit, $offset, $sort_by, $sort_order);
 			
-			//Addingg Setting Result to variable
-			$this->data['solutions'] = $this->solutions->get_all_solutions($siteid,$limit,$offset);
-			/*echo "<pre>";
-			print_r($this->data['solutions']);
-			die();*/
+			$this->data['solutions'] = $results['rows'];
+			$this->data['num_results'] = $results['num_rows'];
 			
-			$this->paging['base_url'] = site_url("solution/index");
-			$this->paging['uri_segment'] = 3;
-			$this->paging['total_rows'] = count($this->solutions->get_all_solutions($siteid));
+			// pagination				
+			if(!empty($sort_by) && !empty($sort_order)){
+				$siteURL = site_url("solution/index/$sort_by/$sort_order");
+				$uriSegment = 5;
+			}
+			else{
+				$siteURL = site_url("solution/index");
+				$uriSegment = 3;
+			}
+			
+			$this->paging['base_url'] = $siteURL;			
+			$this->paging['total_rows'] = $this->data['num_results'];
+			$this->paging['per_page'] = $limit;			
+			$this->paging['uri_segment'] = $uriSegment;		
 			$this->pagination->initialize($this->paging);
-			//echo "<pre>";
-			//print_r($this->paging);
-			//die();
 			
-			//Loading View File
-			$this->load->view('solution',$this->data);
-	  	}
+			$this->data['sort_by'] = $sort_by;
+			$this->data['sort_order'] = $sort_order;
+			
+			$this->load->view('solution', $this->data);
+		}
 	}
+	
 	
 	public function add()
 	{
@@ -434,41 +455,15 @@ class Solution extends CI_Controller {
 	{
 		if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
 		{
-			$keyword = addslashes($this->input->post('keysearch'));
-			$keyword = htmlspecialchars(str_replace('%20', ' ', $keyword));
-			$keyword = preg_replace('/[^a-zA-Z0-9\']/', '',$keyword);
-			$keyword = str_replace(' ','-', $keyword);
-		
-			redirect('solution/searchresult/'.$keyword,'refresh');	
+			$keyword = urlencode($this->input->post('keysearch'));				
+			redirect('solution/index/?s='.$keyword);		
 		}
 		else
 		{
 			redirect('solution','refresh');
 		}
-	}
+	}	
 	
-	public function searchresult($keyword='')
-	{
-		$keyword = str_replace('-',' ', $keyword);
-		$siteid = $this->session->userdata('siteid');				
-		$limit = $this->paging['per_page'];
-		$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
-			
-		//Addingg Setting Result to variable
-		$this->data['solutions'] = $this->solutions->search_solution($keyword,$siteid,$limit,$offset);
-		//echo "<pre>";
-		//print_r($this->data['solutions']);
-		//die();
-			
-		$this->paging['base_url'] = site_url("solution/searchresult/".$keyword."/index");
-		$this->paging['uri_segment'] = 5;
-		$this->paging['total_rows'] = count($this->solutions->search_solution($keyword,$siteid));
-		$this->pagination->initialize($this->paging);
-		//echo "<pre>";
-		//print_r($this->paging);
-		//die();
-		$this->load->view('solution',$this->data);
-	}
 }
 
 /* End of file dashboard.php */

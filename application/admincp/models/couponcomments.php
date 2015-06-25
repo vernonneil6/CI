@@ -40,9 +40,16 @@ class Couponcomments extends CI_Model
 		
 		// results query
 		$q = $this->db->select('*')
-				->from('couponcomments')				
-				->limit($limit, $offset)
-				->order_by($sort_by, $sort_order);
+				->from('couponcomments');
+								
+		// limit query
+		if(!empty($limit)){
+			$q->limit($limit, $offset);		
+		}
+		
+		if(!empty($sort_by) && !empty($sort_order)){
+			$q->order_by($sort_by, $sort_order);
+		}
 		
 		$ret['rows'] = $q->get()->result();
 		

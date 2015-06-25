@@ -452,6 +452,13 @@ else { ?>
   <div class="box">
     <div class="headlines">
       <h2><span> Press Releases </span></h2>
+      <h2>
+		   <span>
+				<a href="<?php if(!empty($_GET['s'])){  echo site_url('pressrelease/export_csv/'.$_GET['s']); }else { echo site_url('pressrelease/export_csv'); } ?>" title="Export as CSV file">
+					<img src="<?php echo base_url(); ?>images/export_csv.jpeg" alt="" title="Export as CSV file" width="20" height="20"/>&nbsp;CSV 
+				</a>
+			</span>
+		</h2>
     </div>
     
     <!-- Correct form message -->
@@ -483,7 +490,14 @@ else { ?>
 		</div>
 		<div class="btn-submit"> 
 		  <?php echo form_input(array('name'=>'btnsearch','class'=>'button','type'=>'submit','value'=>'Search','style'=>'margin-left:-48px;')); ?> or <a href="<?php echo site_url('pressrelease');?>" class="Cancel">Cancel</a> 
+		 
 		</div>
+		<?php if(!empty($_GET['s']))
+			{	   
+				echo "<div style='margin-top:2em;'> Search results for <span style='color:#1a2e4d'>' ". $_GET['s'] . " ' </span> </div>";
+			}
+			
+		?> 
     </fieldset>
     <?php echo form_close(); ?> 
     </div>
@@ -492,63 +506,91 @@ else { ?>
     
     
     <?php if( count($pressreleases) > 0 ) {
-		$order_seg = $this->uri->segment(4,"asc"); 
-		if($order_seg == "asc"){ $orderby = "desc";} else { $orderby = "asc"; }
+
 	 ?>
     <!-- table -->
     <table class="tab tab-drag">
-      <tr class="top nodrop nodrag">
-        <th><a class="sorttitle" href="<?php echo base_url('pressrelease/index/sitename');?>/<?=$orderby?>">Site Name</a></th>
-        <th><a class="sorttitle" href="<?php echo base_url('pressrelease/index/title');?>/<?=$orderby?>">Title</a></th>
-		<th><a class="sorttitle" href="<?php echo base_url('pressrelease/index/subtitle');?>/<?=$orderby?>">Subtitle</a></th>
-        <th><a class="sorttitle" href="<?php echo base_url('pressrelease/index');?>/<?=$orderby?>">Release Date</a></th>
-        <th>Status</th>
-        <th>Action</th>
-        <th>Share On</th>
-        
-      </tr>
-      <?php $id = $this->session->userdata('siteid');?>
-      <?php $companyid = $this->session->userdata['youg_admin']['id']; ?>
-      <?php $company = $this->settings->get_company_byid($companyid); ?>
-      <?php if(count($company)>0)
-	  {
-	  	$pressimage = $company[0]['logo'];
-	  }
-	  ?>
-	  <?php $url1 = $this->pressreleases->get_url_byid($id);?>
-	  <?php if(count($url1)>0){?>
-	  <?php $pageurl = $url1[0]['siteurl'].'pressrelease/browse/';?>
-      <?php } ?>
-	  <?php for($i=0;$i<count($pressreleases);$i++) { ?>
-       <tr>
-        <td><?php $url2 = $this->pressreleases->get_url_bysingleid($pressreleases[$i]['websiteid']); echo $url2['url'];?></td>
-        <td><?php echo ucfirst(stripslashes($pressreleases[$i]['title'])); ?></td>
-        <td><?php echo ucfirst(stripslashes($pressreleases[$i]['subtitle'])); ?></td>
-        <td><?php echo date("M d Y",strtotime($pressreleases[$i]['insertdate'])); ?></td>
-        <td><?php if( stripslashes($pressreleases[$i]['status']) == 'Enable' ) { ?>
-          <a href="<?php echo site_url('pressrelease/disable/'.$pressreleases[$i]['id']);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this pressrelease?');"><span>Enable</span></a>
-          <?php } ?>
-          <?php if( stripslashes($pressreleases[$i]['status']) == 'Disable' ) { ?>
-          <a href="<?php echo site_url('pressrelease/enable/'.$pressreleases[$i]['id']);?>" title="Click to Enable" class="btn btn-small btn-info" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this pressrelease?');"><span>Disable</span></a>
-          <?php } ?></td>
-        <td><a href="<?php echo site_url('pressrelease/edit/'.$pressreleases[$i]['id']); ?>" title="Edit" class="ico ico-edit">Edit</a> <a href="<?php echo site_url('pressrelease/delete/'.$pressreleases[$i]['id']);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this pressrelease?');">Delete</a>
-        	 <a href="<?php echo site_url('pressrelease/view/'.$pressreleases[$i]['id']); ?>" title="View Detail of <?php echo stripslashes($pressreleases[$i]['title']);?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a>
-        </td>
-        <?php if($id!='all')
-		{?>
-        <td>
-          <?php $title=urlencode($pressreleases[$i]['title']);
-                $url=urlencode($pageurl.$pressreleases[$i]['seokeyword']);
-				$m = ($this->settings->get_setting_value('2').substr($this->config->item('company_thumb_upload_path'),3).stripslashes($pressimage));?>
+		<thead>
+			<tr class="top nodrop nodrag">
+			<?php 
+			
+			
+			foreach($fields as $field_name => $field_display): ?>
+		
+			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
+				<?php
+				if($sort_by == $field_name){ 
+						$field_display .= "<img alt='desc' src='".site_url("images/sort_".$sort_order.".gif")."'/>";
+				}
+				?>
+				<?php echo anchor("pressrelease/index/$field_name/" .
+					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
+					$field_display,array('class' => 'sorttitle')); ?>
+			</th>			
+			
+			<?php endforeach; ?>			 
+			<th>Action</th>
+			<th>Share On</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<?php foreach($pressreleases as $pressrelease): 
+			
+			?>
+			<tr>
+				<?php foreach($fields as $field_name => $field_display): ?>
+				<td>
+					<?php 
+					
+					
+					if($field_name == 'release'){
+						echo date('m-d-Y', strtotime($pressrelease->insertdate));
+					}
+					elseif ($field_name == 'status' ) { 
+						?>
+							<?php
+							if( $pressrelease->$field_name == 'Enable' ){ ?>
+								<a href="<?php echo site_url('pressrelease/disable/'.$pressrelease->id);?>" title="Click to Disable" class="btn btn-small btn-success" onClick="return confirm('Are you sure to Disable this user?');"><span><?php echo $pressrelease->$field_name; ?></span></a>
+								
+							<?php 
+							}else{ ?>
+								
+							<a href="<?php echo site_url('pressrelease/enable/'.$pressrelease->id);?>" title="Click to Enable" class="btn btn-small btn-success" style="cursor:default; color: #CD0B1C;" onClick="return confirm('Are you sure to Enable this user?');"><span><?php echo $pressrelease->$field_name; ?></span></a>
+						 <?php
+							}
+					}
+					else{
+						echo $pressrelease->$field_name; 
+					 }
+					?>	
+					
+				</td>			
+				<?php endforeach; ?>
+				 <td>
+					<a href="<?php echo site_url('pressrelease/edit/'.$pressrelease->id); ?>" title="Edit" class="ico ico-edit">Edit</a> 
+					<a href="<?php echo site_url('pressrelease/delete/'.$pressrelease->id);?>" title="Delete" class="ico ico-delete" onClick="return confirm('Are you sure to Delete this pressrelease?');">Delete</a>
+					<a href="<?php echo site_url('pressrelease/view/'.$pressrelease->id); ?>" title="View Detail of <?php echo stripslashes($pressrelease->id);?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a>
+				</td>
+				<?php 
+				 $id = $this->session->userdata('siteid');
+				if($id!='all')
+				{?>
+				<td>
+				<?php 
+					$title=urlencode($pressrelease->title);
+					$url=urlencode($pageurl.$pressrelease->seokeyword);
+					$m = ($this->settings->get_setting_value('2').substr($this->config->item('company_thumb_upload_path'),3).stripslashes($pressimage));?>
                  <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $title;?>&amp;p[url]=<?php echo $url; ?>&amp;&p[images][0]=<?php echo $m;?>', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)">
                    <img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
                 </a>
                     
-                </a>
-               <a title="google+" onClick="window.open('https://plus.google.com/share?url=<?php echo urlencode($pageurl.$pressreleases[$i]['seokeyword']);?>','Google+','width=500,height=400,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes');"
-                ><img width="16" height="17" border="0" src="images/go.jpg" alt="googleshare"></a>
-           <a href="https://twitter.com/share" class="twitter-share-button" data-url="google.com" data-text="<?php echo ucwords($pressreleases[$i]['title']);?> <?php echo $pageurl.$pressreleases[$i]['seokeyword'];?>" data-count="none">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                
+               <a title="google+" onClick="window.open('https://plus.google.com/share?url=<?php echo urlencode($pageurl.$pressreleases[$i]['seokeyword']);?>','Google+','width=500,height=400,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes');">
+                <img width="16" height="17" border="0" src="images/go.jpg" alt="googleshare">
+               </a>
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="google.com" data-text="<?php echo ucwords($pressreleases[$i]['title']);?> <?php echo $pageurl.$pressreleases[$i]['seokeyword'];?>" data-count="none">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </td>
         <?php
         }
@@ -559,9 +601,15 @@ else { ?>
             <?php
 		}
         ?>
-      </tr>
-      <?php } ?>
-    </table><?php  if($this->pagination->create_links()) { ?>
+				
+			</tr>
+			<?php endforeach; ?>			
+		</tbody>
+		
+	</table>
+   
+   
+   <?php  if($this->pagination->create_links()) { ?>
     <div class="pagination"> <?php echo $this->pagination->create_links(); ?> </div>
     <?php } ?>
     <!-- /table -->
