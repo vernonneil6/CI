@@ -1,6 +1,6 @@
 <?php echo $header;?>
 
-<div class="slider">
+<div class="slider" style="<?php if(isset($header['topads'])){ echo 'padding-top:0';} else { echo 'padding-top:8.5em'; } ?>">
     <div class="flexslider carousel">
         <ul class="slides">
 		<?php 
