@@ -367,6 +367,8 @@
 	
         <div class="tab_container">
           <div class="tab_content" id="tab1">
+			  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+				<div class="addthis_native_toolbox"></div> 
             <?php if( count($reviews) > 0 ) { ?>
 			<div >
 				
