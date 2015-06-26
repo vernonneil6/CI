@@ -1,6 +1,6 @@
 <?php echo $header;?>
 
-<div class="slider" style="<?php if(isset($header['topads'])){ echo 'padding-top:0';} else { echo 'padding-top:8.5em'; } ?>">
+<div class="slider <?php if(isset($header['topads'])){ echo 'addbanner';} else { echo 'no_addbanner'; } ?>">
     <div class="flexslider carousel">
         <ul class="slides">
 		<?php 
@@ -43,7 +43,7 @@
 
   
 <section class="container" >
-  <section class="main_contentarea">    
+  <section class="main_contentarea" style="padding-top:0;">    
     <div class="container table_hme" >      
 	
 	<div class="hm_rght_panel">
