@@ -75,6 +75,8 @@
         <div class="vry_btn"><a href="<?php echo base_url('review/add/'.$coupons[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add');?>" title="File Complaint">FILE COMPLAINT</a></div>
       </div>
     <div class="pr_detlwrp">
+		<!-- Go to www.addthis.com/dashboard to customize your tools -->
+				<div class="addthis_native_toolbox"></div> 
       <div class="titl_pr_rel">
         <div class="pre_rls_rating"> </div>
         <h1>"COUPON OF <?php echo strtoupper(stripslashes($coupons[0]['company'])); ?>"</h1>

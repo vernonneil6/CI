@@ -1155,6 +1155,8 @@
         <div class="login_box">
        
           <?php if( $this->session->userdata('youg_user') ){ ?>
+			 <!-- Go to www.addthis.com/dashboard to customize your tools -->
+				<div class="addthis_native_toolbox"></div>
           <table align="left" border="0" style="margin-top:22px;">
           <tr><td valign="top"><div class="task-photo"> <img width="60px" src="<?php if( strlen($user[0]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($user[0]['avatarbig']); } else { if($user[0]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/default_user.png"; } 
 		  	if($user[0]['gender']=='Female') { echo $this->common->get_setting_value('2')."images/default_user.png"; } 

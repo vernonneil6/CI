@@ -132,6 +132,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
         <?php
 				  } ?>
         <div class="compny_name">
+			
           <h1><a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><?php  echo $review[0]['company'];?></a></h1>
           
           <?php if(count($elitemem_status)==0){?>
@@ -164,11 +165,14 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
         <div class="vry_btn reviewbtn d_tab">
 			<a href="<?php echo base_url('review/add/'.$review[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> 
 			<a href="<?php echo site_url('complaint/add/'.$review[0]['companyid']);?>" title="File Complaint">FILE COMPLAINT</a>
-		</div>  
+		</div> 
+		
         </div>
         
       </div>
       <div class="pr_detlwrp">
+		  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+				<div class="addthis_native_toolbox"></div> 
         <div class="titl_pr_rel">
           <div class="pre_rls_rating">
             <ul>

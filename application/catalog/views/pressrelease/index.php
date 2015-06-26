@@ -30,7 +30,9 @@
     <div class="innr_wrap">
       
       <div class="p_realese_head">    
-          <h1 class="bannertext"><span class="bannertextregular">Press </span>Releases</h1>        
+          <h1 class="bannertext"><span class="bannertextregular">Press </span>Releases</h1>
+          <!-- Go to www.addthis.com/dashboard to customize your tools -->
+				<div class="addthis_native_toolbox"></div>        
       </div>
       
       <form class="p_realse_wrap" action="pressrelease/search" method="post">
