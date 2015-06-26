@@ -30,7 +30,7 @@
 <script>
  $(document).ready(function() {
  $('.data_table').delay(6000).fadeOut(600);
- $('#menu').slicknav();
+ //$('#menu').slicknav();
  });
 </script>
 
