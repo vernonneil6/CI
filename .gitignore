@@ -112,3 +112,59 @@ your-business-report.com/application/cache/*
 your-business-report.com/application/logs/*
 your-business-report.com/application/catalog/config/database.php
 
+# FTPQUOTA # 
+.ftpquota
+
+# WordPress #
+############
+wp-config.php
+blog/wp-content/uploads
+blog/wp-content/blogs.dir/
+blog/wp-content/upgrade/
+blog/wp-content/backup-db/
+blog/wp-content/advanced-cache.php
+blog/wp-content/wp-cache-config.php
+sitemap.xml
+sitemap.xml.gz
+*.log
+.htaccess
+
+# @TODO writable paths
+blog/wp-content/cache/
+blog/wp-content/backups/
+
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.bz2
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.tgz
+
+# Logs and databases #
+######################
+*.log
+*.sql
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+._*
+
+# Vim generated files #
+######################
+*.un~
+
+# SASS #
+##########
+.sass-cache
+

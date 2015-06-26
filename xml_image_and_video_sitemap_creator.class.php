@@ -191,17 +191,17 @@ class xmlsitemap {
 		$newtag = true;
 		$item_counter = 0;
 		$xml .="<url>
-<loc>".$url."uploads/index.php</loc>
-<image:image><image:loc>".$url."images/badge.png</image:loc></image:image>
-<image:image><image:loc>".$url."images/BuyersProtection_Badge.png</image:loc></image:image>
-<image:image><image:loc>".$url."images/verified_img.png</image:loc></image:image>
-<image:image><image:loc>".$url."images/ygr_logos.png</image:loc></image:image>
-<image:image><image:loc>".$url."images/YouGotRated_BusinessProfile_NotVerified-ReviewsTag.png</image:loc></image:image>
+<loc>".$url."/uploads/index.php</loc>
+<image:image><image:loc>".$url."/images/badge.png</image:loc></image:image>
+<image:image><image:loc>".$url."/images/BuyersProtection_Badge.png</image:loc></image:image>
+<image:image><image:loc>".$url."/images/verified_img.png</image:loc></image:image>
+<image:image><image:loc>".$url."/images/ygr_logos.png</image:loc></image:image>
+<image:image><image:loc>".$url."/images/YouGotRated_BusinessProfile_NotVerified-ReviewsTag.png</image:loc></image:image>
 </url>\n";
 
 		foreach ($this -> xmlimageindex as $key => $content) {
 			$expcepturl=$content[0];
-			if ($newtag && $expcepturl!='uploads/index.php') {
+			if ($newtag) {
 				$xml .= "<url>\n";		
 				$xml .= '<loc>' . htmlentities($this -> XMLURL . '/' . $content[0], ENT_QUOTES, 'UTF-8') . "</loc>\n";
 			}
@@ -217,7 +217,7 @@ class xmlsitemap {
 			} else {
 				$newtag = true;
 			}
-			if ($newtag && $expcepturl!='uploads/index.php') {
+			if ($newtag) {
 				$xml .= "</url>\n";
 				$item_counter = 0;
 			}

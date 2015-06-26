@@ -23,7 +23,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 error_reporting(0);
 function url(){
   return sprintf(
-    "%s://%s/",
+    "%s://%s",
     isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
     $_SERVER['SERVER_NAME']
     
@@ -40,7 +40,7 @@ $xml = new xmlsitemap;
 
 // Configuration options
    $xml -> XMLURL          = $siteurl;                // Specify the base URL to the root instead of auto-determining it
-   $xml -> Excludedir      = array('ckeditor','images','js','blog','category','slider','message','sem','companysem','thumb','ad','topsellerratings.com','merchant-informer.com', 'safe-merchants.com');                  // Exclude specific directories
+   $xml -> Excludedir      = array('_thumbs','tutorial','proof','ckeditor','images','js','blog','category','slider','message','sem','companysem','thumb','ad','topsellerratings.com','merchant-informer.com', 'safe-merchants.com');                  // Exclude specific directories
 // $xml -> Excludehtaccess = true;                                         // Exclude directories with .htaccess files
    $xml -> XMLimages       = array('gif', 'png', 'jpg', 'jpeg', 'ico');    // Index these specific images (extensions) only
 // $xml -> XMLvideos       = array('vob', 'wmv');                          // Index these specific movies (extensions) only
@@ -51,11 +51,11 @@ $xml = new xmlsitemap;
 $filecontent = $xml -> createsitemap($xmldir,$siteurl);
 
 // Remove old XML sitemap file 
-$file = "image-sitemap.xml";
+$file = "GMI_scripts/sitemap/image-sitemap.xml";
 unlink($file);
 
 // Write the XML sitemap code to file as UTF-8
-if ($fp = fopen('image-sitemap.xml', 'wb')) {
+if ($fp = fopen('GMI_scripts/sitemap/image-sitemap.xml', 'wb')) {
 	fwrite($fp, utf8_encode($filecontent));
 	fclose($fp);
 	echo "XML image sitemap file has been created!<p>&nbsp;</p>";
