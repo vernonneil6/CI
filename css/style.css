@@ -123,7 +123,7 @@ img{border:none;}
 .account
 {
 	text-align : center;
-	width : 967px;
+	width : auto;
 	margin: 0 auto;
 }
 .account h3
@@ -269,12 +269,12 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .srch_btn{width:36px; box-shadow:none; height:30px; background: url(../images/icons.png) -177px 1px; border:0 none; overflow:hidden; cursor:pointer; float:left;}
 .headersignup{/*background:#2c6a99;*/ height: 22px; width:64px;  margin-right: 10px; float: left;}
 .headerlogin{/*background:#2c6a99;*/ height: 22px;  width: 62px; margin-right: 10px; float: left;}
-.headerbusiness{/*background:#2c6a99;*/ height: 22px;  float: right;}
+.headerbusiness{/*background:#2c6a99;*/ height: 22px;  width: 175px; margin-right: 10px; float: left;}
 .headerfb{background:url('../images/fbbg.png') no-repeat; height: 22px; width: 160px; float: left;}
 .headerfb a{padding: 4px 0 0 35px;  display: inline-block;}
-.headersearch{display:inline-block; margin: 30px 0 20px; text-align: center; width: 100%;}
-.headersearchbar{background:url('../images/searchbar.png') no-repeat; height: 40px;  padding: 0 0 0 50px; width: 250px; margin-right: 15px;border:none;font-family: MyriadPro-SemiboldCondIt; font-size: 18px;}
-.headersearchbtn{background:url('../images/searchbtn.png'); width:115px;height: 40px; padding-top: 1px; vertical-align: top;border:none; color: white; font-family: MyriadPro-BlackSemiCn;  font-size: 14px;}
+.headersearch{display:inline-block; margin: 30px 0 20px; text-align: center; width:967px;position: absolute;z-index:9999;bottom:35%;height:40px;}
+.headersearchbar{border-radius:5px; height: 40px;  padding: 0 0 0 10px; width: 550px; border:1px solid #2C6A99;font-family: MyriadPro-SemiboldCondIt; font-size: 18px;}
+.headersearchbtn{background:white;border:none;font-size: 26px !important;float:right !important;border:0;position:relative;bottom:1.4em;cursor:pointer;}
 .headersub_btn{background:url('../images/searchbtn.png'); width:115px;height: 40px; padding-top: 1px; vertical-align: top;border:none; color: white; font-family: MyriadPro-BlackSemiCn;  font-size: 14px;margin-left: -148px;margin-top: 20px;}
 .sub_paypal{padding-top: 44px;margin-top: 22px;margin-left: -66px;}
 
@@ -301,8 +301,8 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .menu{
  	   
 		
-		/*float:left;
-		padding: 0 2px;*/
+		float:left;
+		padding: 0 2px;
 	}
 .menu a {
 	color: black;
@@ -343,7 +343,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 	font-size:20px;	
 	font-family: "myriadpro-regular";
 	-webkit-margin-end: 35px;
-	margin-right:62px;
+	margin-right:35px;
 	list-style:none;
 	position:relative;
 	
@@ -351,33 +351,34 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .menu li.last_menu {
 	background:none;
 }
-.menu li:last-child{margin-right:0px; float:right;}
+
 .menu ul li ul {
 	min-width:150px;
 	width:auto;
 	position:absolute;
 	display:none;
-	background:#f1f1f1;		
-		z-index:9999;
+	background:#f1f1f1;
+	z-index:99999;
+		/*top:48px;*/
 }
 .menu ul li ul li {
-	min-width:170px;
+	min-width:150px;
 	width:auto;
-	padding:2px 0;
+	/*padding:10px 0;*/
 	border-bottom:#999 dotted 1px;
 	height:auto;
-	margin-right:0px; 
+	margin-right:0;
 }
 .menu ul li ul li:hover {
-	min-width:170px;
-	padding:2px 0;
+	/*width:100%;
+	padding:10px 0;*/
 	border-bottom:#999 dotted 1px;
 	height:auto;
 }
 
 .menu ul li ul li a {
 	font-size:12px;
-	padding:0px 10px;
+	/*padding:0px 10px;*/
 	text-align:left;	
 }
 .menu ul li ul li a:hover {
@@ -596,6 +597,7 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
 .table_block{display:table;}
 .review_blocks {display:table-cell;vertical-align:middle;}
 .review_right{display:table-cell;width:555px; padding:10px;}
+.review_blocks .review_right{ width:0;}
 .review_left{display:table-cell;width:50px;padding:10px;vertical-align:top;padding-left:0px;} 
 
 
@@ -761,10 +763,10 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 }
 .foot_social_img li {display:inline-block;}
 .foot_bar{margin: 0 0 20px;}
-.foot_title_bar{margin-left: 20px;}
+/*.foot_title_bar{margin-left: 20px;}*/
 .foot_last_bar
 {
-	padding: 0 0 0 36px!important;
+	padding: 0 0 0 19px!important;
     width: 205px!important;
 }
 .foot_mid_bar
@@ -772,7 +774,7 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 	padding: 0 0 0 22px!important;
     width: 218px!important;
 }
-.forbusiness_footer{width:461px!important;padding: 0 0 0 22px!important; }
+.forbusiness_footer{/*width:461px!important;padding: 0 0 0 22px!important;*/ }
 .ft_social_wrp{width:100%; float:left; text-align:center; background:#262626; padding-top:20px; padding-bottom:10px;}
 .ft_social_wrp ul{margin:0 -2% 0 auto; padding:0; display:inline-block;}
 .ft_social_wrp ul li{list-style:none; float:left; margin-right:30px;}
@@ -789,7 +791,7 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 .footer_block ul li a:hover{}
 
 
-.footer_block ul li.ftitle{width:auto; height:auto;list-style:none; margin-bottom: 10px; color: #d58438; font-family:aller; font-size:18px; font-family:"MyriadPro-BoldCond";  text-transform:uppercase; float:none !important; display:inline-block;}
+.footer_block ul li.ftitle,.footer_block ul li.social_tit{width:auto; height:auto;list-style:none; margin-bottom: 10px; color: #d58438; font-family:aller; font-size:18px; font-family:"MyriadPro-BoldCond";  text-transform:uppercase; float:none !important; display:inline-block;}
 
 
 .footer_menu{width:967px; float:left; font-size:14px; color:#968c87; }
@@ -932,7 +934,7 @@ input[type="file"].filupload:before {
 }
 
 /*============ Business_Directory ===========================*/
-.bus_dir_head{text-align:center; margin:40px auto 0 auto; width:940px; padding-bottom:32px; }
+.bus_dir_head{text-align:center; margin:40px auto 0 auto; padding-bottom:32px; }
 .bus_dir_head a{display:inline-block;}
 .busdt_wrap{width:100%; display:inline-block; margin-top:99px;}
 .bdsrch_wrp{width:587px; display:inline-block; height:25px;}
@@ -967,11 +969,11 @@ i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/YGR_
 .bsntg{position : static!important; float:left; padding : 0 0 0 10px;}
 
 /*============ Business_Review ===========================*/
-h1{text-align:center; margin:40px auto 0 auto; width:940px; height:86px; padding-bottom:23px; border-bottom:1px solid #999;}
+h1{text-align:center; margin:40px auto 0 auto;height:86px; padding-bottom:23px; border-bottom:1px solid #999;}
 h1 a{display:inline-block;}
 .dir_rew_wrap{ display: inline-block; margin-top: 90px;  width: 100%;}
 .revw_blck{display:inline-block; float:left; width:100%;}
-.revw_blck_img{width:100px; float:left; display:inline-block; height:130px; margin-right:25px;}
+.revw_blck_img{width:100px; float:left; display:inline-block; height:130px; margin-right:10px;}
 .revw_blck_cnt{display:inline-block; float:left;margin-bottom: 50px; width: 87%;}
 .revw_blck_cnt h2{font-family:"myriadpro-regular"; font-weight:bold; font-size:36px; margin: 0 0 10px; color:#0080ff; text-transform:uppercase;line-height:30px; height:30px;}
 .revw_blck_cnt h2 .rating{width:inherit; display:inline-block; float:none;}
@@ -1092,7 +1094,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 /*============ Submit Review ===========================*/
 .head_sb_rvw{width:560px; text-align:center; margin:0 auto;}
 .head_sb_rvw h1{text-align:center; display:inline-block; width:inherit; height:auto; border:0 none; margin:0 auto; font-size:45px; font-family:"myriadpro-regular"; font-weight:bold; padding:0;}
-.head_sb_rvw span{width:5px; height:52px; background:#2c6a99; margin-right:5px; display:inline-block; margin-top:6px; float:left;}
+.head_sb_rvw span{width:5px; height:52px; /*background:#2c6a99;*/ margin-right:5px; display:inline-block; margin-top:6px; float:left;}
 .head_sb_rvw h5{ display:inline-block; width:inherit; height:auto; border:0 none; margin:0 auto; font-size:24px; font-family: "Myriadpro-regular"; color:#2c6a99; font-weight:normal; padding:0; line-height:16px;}
 .brd_btm{border-bottom:1px solid #666; padding-bottom:35px;}
 .rvw_fillwrp{width:775px; float:left; display:block;}
@@ -1145,7 +1147,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
     padding: 0 15px;}
 .hm_live_menu ul li:last-child a { background: none;}
 .hm_live_menu ul li a:hover {	color:#AE9D05 !important;}	
-.hm_rvw_wrp{width:100%; float:left; display:inline-block;}
+.hm_rvw_wrp{width:94%; float:none; position:relative;margin:0 auto;}
 .hm_rvw_wrp > ul {padding:0;}
 .hm_rvw_wrp .review_rgt{width:555px!important; float:left; display:inline-block; }
 .hm_rvw_wrp .review_lft{width:50px !important; float:left; display:inline-block; margin-right:10px;}
@@ -1401,7 +1403,7 @@ color:#2c6a99;
 }
 .reviewnotverifiedlogo
 {
-	height: 120px;
+	height: 98px;
 }
 .subt_btnn
 {
@@ -2334,7 +2336,7 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
 }
 .business-callout h3,h4,p
 {
-	margin:8px 0 0 15px;color:#2C6A99; font-family: "myriadpro-regular";
+	margin:8px 0 0 15px;color:#2C6A99; font-family: "myriadpro-regular";text-align: justify;
 }
 
 .form-col-2 > ul {
@@ -2345,9 +2347,9 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
     font-size: 14px;
     margin: 5px;
 }
-.review_right div {width:390px;text-align: justify;margin-top:6px;}
+.review_right div {width:355px;text-align: justify;margin-top:6px;}
 .review_blocks.feed-left { 
-	float: left;
+	/*float: left;*/
 	height:200px;
     /*margin-bottom: 10px;*/
     /*margin-left: 5em;*/
@@ -2395,4 +2397,50 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
     font-family: "MyriadPro-BlackSemiCn";
     font-size: 14px;
     text-transform: uppercase;
+}
+.user_dashboard{margin-top:20px;}
+.banner_wrp img{height:100%; max-width:100%;}
+.pr_countwrp p{text-align:center;}
+.headersearchbtn,.headersearchbar{float:none;}
+.headersearch .formBox {margin: 0 auto; width: 555px;}
+#loading{  width:20px; margin:0 auto;}
+
+.business-callout .form-col-2{width:400px;}
+#selstatediv1{ float:right;margin-right:127px;}
+#selstatediv{ float:right;margin-right:127px;}
+
+.text-content {
+    bottom: 55%;
+    font-family: "myriadpro-regular";
+    font-size: 3em;
+    margin: 0 auto;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+.adimg{width:100%;height:auto;}
+
+.innr_wrap .headersearch{
+position: relative;
+height:auto;
+}
+
+.review-slider-right {
+    /*display: block;*/
+    width:50%;
+    float:left;
+    
+}
+.review-slider {
+    /*display: inline-block;*/
+    width:50%;
+    float:left;
+}
+.review-slider ul{padding:0;padding-left:0px;}
+.review-slider-right ul{padding:0;float:right;padding-left:0px;}
+.review-slider li,.review-slider-right li {
+    border: 1px solid #dcdcdc;
+    border-radius: 15px;
+    list-style:none;
+    margin-top: 22px !important;
 }

@@ -13,7 +13,7 @@
 		  <?php echo form_open('businessdirectory/search',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmcompany')); ?>
 			  <?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
 			<input type='text'  class='headersearchbar' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
-			<input type="submit" class="headersearchbtn" value="SEARCH" name="btnsearch">
+			<input type="submit" class="headersearchbtn fa fa-search" value="" name="btnsearch">
 			<div class="orwrp">
 				<div class="orinnrwrp"> </div>
 				<h1 class="bus_tag"><a href="<?php echo site_url('businessdirectory/add');?>" title="Submit Business To YouGotRated Directory" class="complaintlist">SUBMIT A NEW BUSINESS</a></h1>

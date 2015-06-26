@@ -49,7 +49,7 @@
 <section class="container">
   <section class="main_contentarea">
     <div class="innr_wrap">
-	  <h1 class="bannertext"><span class="bannertextregular">RECENT </span>REVIEWS</h1>
+	  <h1 class="bannertext"><span class="bannertextregular">RECENT </span>REVIEWS</h1><div class="addthis_native_toolbox" style="float:right;margin:10px 0;"></div>
       <?php if(count($reviews)>0)
 				 { ?>
       <div class="dir_rew_wrap">
@@ -126,7 +126,7 @@
 						"<?php echo $reviews[$i]['reviewtitle'];?>"
 					</a>
 				</span>-
-				<p>
+				<p> 
 					<?php
 					$users = $this->users->get_user_bysingleid($reviews[$i]['reviewby']); 
 					if($users['id']==$reviews[$i]['reviewby'])

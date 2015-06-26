@@ -9,21 +9,30 @@
 </noscript>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title><?php echo $title;?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="keywords" content="<?php echo $keywords;?>">
 <meta name="description" content="<?php echo $description;?>">
 <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
 <link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="css/rwd_style.css" type="text/css">
 <link rel="stylesheet" href="css/new.css" type="text/css">
+<link rel="stylesheet" href="css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="css/slicknav.css">
 
 <link rel="stylesheet" href="css/flexslider.css" type="text/css">
 
 <script src="js/jquery.raty.min.js"></script>
+<script src="js/jquery.easy-ticker.js"></script>
 
 <script src="js/jquery.flexslider-min.js"></script>
+<script src="js/mobile_nav/jquery.slicknav.js"></script>
 
 <script>
  $(document).ready(function() {
  $('.data_table').delay(6000).fadeOut(600);
+ $('#menu').slicknav();
  });
 </script>
 
@@ -63,7 +72,7 @@
 	</script>
 <?php } ?>
 </head><body>
-<header>
+<header class="noscroll-head">
   <div class="container">
     <div class="head_bg">
       <div class="yougot_logo"><a href="<?php echo base_url();?>" title="<?php echo $site_name;?>"><img src="images/ygr_logos.png" alt="<?php echo $site_name;?>" title="<?php echo $site_name;?>"></a></div>
@@ -100,44 +109,36 @@
       </div>
     </div>
    
-    <div class="menu">
-     <ul>
-        <!--<li><a href="<?php echo base_url();?>" title="Home">Home<span><span></a> </li>-->
-       <li><a href="<?php echo site_url('businessdirectory/category/');?>" title="Categories">Categories</a>
+    <div class="menu" id="menu">
+      <ul>
+         <!--<li><a href="<?php echo base_url();?>" title="Home">Home<span><span></a> </li>-->
+        <li><a href="<?php echo site_url('businessdirectory/category/');?>" title="Categories">Categories</a>
 <ul>
 <?php $catlist = $this->common->get_all_categorys('1','category','ASC'); 
-        foreach($catlist as $row=> $result)
-        {
-                    //lower case everything
-                    $categoryname = strtolower($result['category']);
-                    //make alphaunermic
-                    $categoryname = preg_replace("/[^a-z0-9\s-]/", "", $categoryname);
-                    //Clean multiple dashes or whitespaces
-                    $categoryname = preg_replace("/[\s-]+/", " ", $categoryname);
-                    //Convert whitespaces to dash
-                    $categoryname = preg_replace("/[\s]/", "-", $categoryname);
-    
-            ?>
-            <li><a href="<?php echo site_url('businessdirectory/category/')."/".$categoryname."/".$result['id'];?>"><?php echo $result['category'];?></a></li>
-<?php     } ?>
+foreach($catlist as $row=> $result)
+{
+					//lower case everything
+					$categoryname = strtolower($result['category']);
+					//make alphaunermic
+					$categoryname = preg_replace("/[^a-z0-9\s-]/", "", $categoryname);
+					//Clean multiple dashes or whitespaces
+					$categoryname = preg_replace("/[\s-]+/", " ", $categoryname);
+					//Convert whitespaces to dash
+					$categoryname = preg_replace("/[\s]/", "-", $categoryname);
+	
+	?>
+<li><a href="<?php echo site_url('businessdirectory/category/')."/".$categoryname."/".$result['id'];?>"><?php echo $result['category'];?></a></li>
+<?php } ?>
 </ul></li>
-       <li><a href="<?php echo site_url('businessdirectory');?>" title="Directory">Directory</a></li>
-       <li><a href="<?php echo site_url('review');?>" title="Review">Reviews</a></li>
-       <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">Press Releases</a></li>
-       <li><a href="<?php echo site_url('complaint');?>" title="Complaints">Complaints</a></li>
-       <li><a href="<?php echo site_url('coupon');?>" title="Coupons deals & Steals">Coupons deals & Steals</a></li>
-       <li><a href="http://business.yougotrated.com" title="Business Solutions">Business Solutions</a></li>
-     </ul>
-   </div>	
-   <?php if($this->uri->segment(1)!='businessdirectory' && $this->uri->segment(1)!='solution' && $this->uri->segment(1)!='login' && $this->uri->segment(2)!='register') { ?> 
-	<div class='headersearch'>
-	  <?php echo form_open('businessdirectory/search',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
-        <?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
-		<input type='text'  class='headersearchbar' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
-		<input type="submit" class="headersearchbtn" value="SEARCH" name="btnsearch">
-	 <?php echo form_close();?> 
+        <li><a href="<?php echo site_url('businessdirectory');?>" title="Directory">Directory</a></li>
+        <li><a href="<?php echo site_url('review');?>" title="Review">Reviews</a></li>
+        <li><a href="<?php echo site_url('pressrelease');?>" title="Press Releases">Press Releases</a></li>
+        <li><a href="<?php echo site_url('complaint');?>" title="Complaints">Complaints</a></li>
+        <li><a href="<?php echo site_url('coupon');?>" title="Coupons deals & Steals">Coupons deals & Steals</a></li>
+        <li><a href="http://business.yougotrated.com" title="Business Solutions">Business Solutions</a></li>
+      </ul>
     </div>
-   <?php }  ?>	 
+ 
   </div>
 </header>
 <div class="data_table" align="center" style="width:60.7%;margin:0 auto;"> 
@@ -154,7 +155,9 @@
 </div>
 <?php if(isset($topads)){ ?>
 <?php if(count($topads)){ ?>
-<div align="center"><a href="<?php echo $topads[0]['url'];?>" title="Adverstiment" target="_blank" rel="nofollow"><img src="<?php if( $topads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($topads[0]['image']); } ?>" alt="Adverstiment" width="940" height="180" class="adimg"/></a> </div>
+<div class="container">	
+<div align="center" class="addvert"><a href="<?php echo $topads[0]['url'];?>" title="Adverstiment" target="_blank" rel="nofollow"><img src="<?php if( $topads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($topads[0]['image']); } ?>" alt="Adverstiment" width="" height="" class="adimg"/></a> </div>
+</div>
 <?php } ?>
 <?php } ?>
 <?php $fb_appId = $this->common->get_setting_value(20);?>
@@ -198,3 +201,76 @@ function FBLogin(){
 }
 
 </script>
+
+<link rel="stylesheet" href="css/autocss.css" type="text/css">
+    
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript">
+	jQuery(function($) {
+	 $( "#search" ).autocomplete();
+$('#search').on('keyup', function() {
+	$( "#search" ).autocomplete();
+	var req = $('#search').val();
+	
+	if (req.length > 0) {
+		//$('#loading').show();
+		$('#loading').html('<img src="images/spin.gif" height="20px">');
+		$.ajax({
+			
+			url: "<?php echo base_url(); ?>search/autocomplete", //Controller where search is performed
+			type: 'POST',
+			data: {'search_data': req},
+			
+			success: function(html){
+				$.ui.autocomplete.prototype._renderItem = function (ul, item) {
+    item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
+    return $("<li></li>")
+            .data("item.autocomplete", item)
+            .append("<a>" + item.label + "</a>")
+            .appendTo(ul);
+};
+				//alert(html);
+					var datas = [
+  "Apple",
+  "Orange",
+  "Pineapple",
+  "Strawberry",
+  "Mango"
+  	];
+  	setTimeout(function() {
+    $('#loading').html('');
+}, 500);
+			
+			var data = JSON.parse(html);
+		
+		 	$( "#search" ).autocomplete({source:data,autoFocus: true,highlightClass: "bold-text",select: function(event, ui) {
+                $(event.target).val(ui.item.value);
+                $('#frmsearch').submit();
+                return false;
+            } });
+		 	
+                
+			}
+			
+		});
+}
+});
+});
+
+
+</script>
+
+<style>
+	.bold-text {
+    font-weight: bold;
+}
+.addthis_counter.addthis_pill_style.addthis_nonzero a.addthis_button_expanded
+{
+display:none !important;
+}
+.addthis_counter .atc_s, .addthis_counter .addthis_button_expanded
+{
+background:none !important;
+}
+</style>
+
