@@ -165,7 +165,7 @@
 		}
 		
 		function visHeight( anim ){
-			var wrapHeight = 100;
+			var wrapHeight = 0;
 			s.targ.children(':lt(' + s.opts.visible + ')').each(function(){
 				wrapHeight += $(this).outerHeight();
 				
