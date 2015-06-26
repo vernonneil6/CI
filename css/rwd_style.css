@@ -9,7 +9,9 @@ td{display:block;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:25px;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name{margin-bottom:5px;margin-top:10px;}
 } 
-
+@media only screen and (max-width: 1050px){
+.text-content{top:0.5em;font-size:1.5em;}
+}
 @media only screen and (min-width: 771px) and (max-width: 1050px){
 .bannertextcoupon{font-size:53px !important;}
 .hm_rght_panel {margin-left:0;}
