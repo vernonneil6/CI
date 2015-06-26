@@ -1,6 +1,6 @@
 <?php echo $header;?>
 
-<div class="slider">
+<div class="slider <?php if(isset($header['topads'])){ echo 'addbanner';} else { echo 'no_addbanner'; } ?>">
     <div class="flexslider carousel">
         <ul class="slides">
 		<?php 
@@ -48,7 +48,7 @@
 
   
 <section class="container" >
-  <section class="main_contentarea">    
+  <section class="main_contentarea" style="padding-top:0;">    
     <div class="container table_hme" >      
 	
 	<div class="hm_rght_panel">
@@ -69,12 +69,15 @@
             $siteurl = site_url('company/'.$companyname['companyseokeyword'].'/reviews/coupons/complaints');
             $review_detail = ucfirst(stripslashes($complaints[$i]['company'])); 
             $review_date = date('m/d/Y',strtotime($complaints[$i]['reviewdate'])); 
-            $star = '';
+            $star = '<div class ="count-'.$complaints[$i]['rate'].'">';
+            
             for($r=0;$r<($complaints[$i]['rate']);$r++){ 
-                $star = $star.'<i class="vry_rat_icn"></i>';
+				$s =$r+1;
+                $star = $star.'<img src="images/sprite_star.png" alt="no_star" title="no_star" class="star-'. $s .'" />';
             }
+            $star= $star.'</div>';
             for($p=0;$p<(5-($complaints[$i]['rate']));$p++){
-                $star = $star.'<img src="images/no_star.png" alt="no_star" title="no_star" />';                        
+                $star = $star.'<img src="images/sprite_star.png" alt="no_star" title="no_star" class="no-star" />';                        
             }
             $review_title = ucfirst(substr(stripslashes( $complaints[$i]['reviewtitle']),0,50)."...");
            
@@ -181,9 +184,10 @@ $(window).load(function() {
   $('.flexslider').flexslider({
     animation: "slide"
   });
-
+ 
 });
 $(document).ready(function(){
+
 	$('.browses').hover(function(){
 		$(this) .find('.hoverimg').css('display','block');
 		$(this) .find('#browseimg').css('display','none');
@@ -213,7 +217,7 @@ $(function(){
 	 $('.review-slider').easyTicker({
 		direction: 'Top',
 		visible: 10,
-		interval: 140000
+		interval: 14000
 		
 	});
 	if($(window).width() >= 1049)
@@ -224,6 +228,6 @@ $(function(){
 			interval: 18000
 			
 		});
-	}	
+	}
 });
 </script>	

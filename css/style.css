@@ -2444,3 +2444,15 @@ height:auto;
     list-style:none;
     margin-top: 22px !important;
 }
+
+.no-star{ background: none repeat scroll 0 0 #c8c8c8; }
+
+.no-star, .star-1, .star-2, .star-3, .star-4, .star-5 {
+width: 22px;border-radius: 3px;margin-right: 3px;
+}
+.count-1, .count-2, .count-3, .count-4, .count-5{display:inline;}
+.count-1 .star-1 {background: none repeat scroll 0 0 #e22027;}
+.count-2 .star-1, .count-2 .star-2 {background: none repeat scroll 0 0 #f47324;}
+.count-3 .star-1, .count-3 .star-2, .count-3 .star-3 {background: none repeat scroll 0 0 #f8cc18;}
+.count-4 .star-1, .count-4 .star-2, .count-4 .star-3, .count-4 .star-4 {background: none repeat scroll 0 0 #73b143;}
+.count-5 .star-1, .count-5 .star-2, .count-5 .star-3, .count-5 .star-4, .count-5 .star-5{background: none repeat scroll 0 0 #007f4e;} 
