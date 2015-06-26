@@ -229,7 +229,7 @@ class Reviews extends CI_Model
 	//Getting value for editing no status
 	function get_review1_byid($id)
  	{
-		$siteid = $this->session->userdata('siteid');
+		//$siteid = $this->session->userdata('siteid');
 		$this->db->select('r.*, cm.company,cm.logo,cm.aboutus,u.firstname,u.lastname,u.avatarbig,u.gender');
 		$this->db->from('youg_reviews as r');
 		$this->db->join('youg_company as cm','r.companyid=cm.id');
@@ -876,18 +876,21 @@ class Reviews extends CI_Model
  	}
 	
 	//delete review by id elite
-	function delete_reviewcomments_byid($id)
+	function disable_reviewcomments_byid($id)
  	{	
 	  
 		if(!empty($id)){
 		
-			$sql = "DELETE r,c FROM youg_reviews r
-				JOIN youg_comments c ON r.id = c.reviewid
-				WHERE c.reviewid = ?";		
-
-			if($this->db->query($sql, array($id)))
-			{
-				return true;
+			
+			$sql = "UPDATE youg_reviews r SET r.status='Disable' WHERE r.id = ?";	
+			if($this->db->query($sql,array($id)))
+			{	
+				$commentssql = "UPDATE youg_comments c SET c.status='Disable' WHERE c.reviewid = ?";
+				if($this->db->query($commentssql,array($id))){
+					return true;
+				}else{
+					return false;
+				}				
 			}
 			else
 			{

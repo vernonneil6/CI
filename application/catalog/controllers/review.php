@@ -1123,6 +1123,7 @@ class Review extends CI_Controller
 			{
 			
 				$reviewbyseo = $this->reviews->get_review_byseokeyword($reviewseokey);
+				//echo print_r($reviewbyseo);die;
 				if(count($reviewbyseo))
 				{
 					$reviewid = $reviewbyseo[0]['id'];
@@ -1131,7 +1132,7 @@ class Review extends CI_Controller
 				$this->session->set_flashdata('last_url',uri_string());		    			
 				$limit = $this->paging['per_page'];
 		    	$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
-		  
+		 
 		    	$this->data['review'] = $this->reviews->get_review_byid($reviewid);
 				$this->data['disreview'] = $this->reviews->get_disreview_byid($reviewid);
 				$this->data['reviewid'] = $reviewid;
@@ -1459,7 +1460,8 @@ class Review extends CI_Controller
 						$updated = $this->reviews->insert_comment($reviewid,$userid,$comment,'no',$rating);
 						if( $updated = 'added')
 						{	
-							$this->session->set_flashdata('success', 'comment posted successfully.');							
+							$this->session->set_flasdata('success', 'comment posted successfully.');							
+							$review = $this->reviews->get_review1_byid($reviewid);
 							redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
 						}
 						else
@@ -1509,7 +1511,7 @@ class Review extends CI_Controller
 						
 						if(($this->data['review'][0]['reviewby']==$this->session->userdata['youg_user']['userid']))
 						 { 
-								if( $this->reviews->delete_reviewcomments_byid($id) )
+								if( $this->reviews->disable_reviewcomments_byid($id) )
 								{
 					$this->session->set_flashdata('success', 'Review has been Deleted successfully.');
 					redirect('review', 'refresh');
@@ -1601,7 +1603,7 @@ class Review extends CI_Controller
 		//Company Email Address
 													
 					//Loading E-mail library
-					$config = Array(
+					/*$config = Array(
 					'protocol' => 'smtp',
 					'smtp_host' => 'smtp.mandrillapp.com',
 					'smtp_port' => 587,
@@ -1609,7 +1611,7 @@ class Review extends CI_Controller
 					'smtp_pass' => 'vPVq6nWolBWIKNp1LaWNFw',
 					'mailtype'  => 'html', 
 					'charset'   => 'iso-8859-1'
-				);	
+				);	*/
 					
 					$this->load->library('email');
 					$this->email->set_newline("\r\n");				

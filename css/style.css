@@ -2456,3 +2456,10 @@ width: 22px;border-radius: 3px;margin-right: 3px;
 .count-3 .star-1, .count-3 .star-2, .count-3 .star-3 {background: none repeat scroll 0 0 #f8cc18;}
 .count-4 .star-1, .count-4 .star-2, .count-4 .star-3, .count-4 .star-4 {background: none repeat scroll 0 0 #73b143;}
 .count-5 .star-1, .count-5 .star-2, .count-5 .star-3, .count-5 .star-4, .count-5 .star-5{background: none repeat scroll 0 0 #007f4e;} 
+
+/* Social Icons */
+.addthis_native_toolbox
+{
+ margin:10px;
+}
+
