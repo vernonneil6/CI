@@ -343,10 +343,13 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 	font-size:20px;	
 	font-family: "myriadpro-regular";
 	-webkit-margin-end: 35px;
-	margin-right:35px;
+	margin-right:63px;
 	list-style:none;
 	position:relative;
 	
+}
+.menu li:last-child {
+    margin-right: 0;
 }
 .menu li.last_menu {
 	background:none;
