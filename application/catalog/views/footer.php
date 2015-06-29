@@ -74,7 +74,6 @@ $url=base_url()."login";
 $url1=base_url()."welcome/fblogin";
 $url2=base_url()."user/logout";
 
-$this->load->library('user_agent');
 $CI =& get_instance();
 $CI->load->library('user_agent');
 if($CI->agent->is_referral()){
