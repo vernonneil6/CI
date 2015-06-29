@@ -56,7 +56,10 @@
   <section class="main_contentarea">
    
     <div class="innr_wrap wrapborder" itemscope itemtype="http://schema.org/localBusiness">
-		<div class="addthis_native_toolbox" style="float:right"> </div>
+
+		<!-- Go to www.addthis.com/dashboard to customize your tools -->
+				<div class="addthis_native_toolbox"></div>
+
       <div class="left_panel  leftpanelwidth">
 
 		
@@ -364,6 +367,7 @@
 	
         <div class="tab_container">
           <div class="tab_content" id="tab1">
+			  
             <?php if( count($reviews) > 0 ) { ?>
 			<div >
 				

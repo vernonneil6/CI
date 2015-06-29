@@ -24,9 +24,11 @@
 <link rel="stylesheet" href="css/flexslider.css" type="text/css">
 
 <script src="js/jquery.raty.min.js"></script>
+<script src="js/jquery.easy-ticker.js"></script>
 
 <script src="js/jquery.flexslider-min.js"></script>
 <script src="js/mobile_nav/jquery.slicknav.js"></script>
+
 <script>
  $(document).ready(function() {
  $('.data_table').delay(6000).fadeOut(600);
@@ -262,13 +264,8 @@ $('#search').on('keyup', function() {
 	.bold-text {
     font-weight: bold;
 }
-.addthis_counter.addthis_pill_style.addthis_nonzero a.addthis_button_expanded
-{
-display:none !important;
-}
-.addthis_counter .atc_s, .addthis_counter .addthis_button_expanded
-{
-background:none !important;
-}
+
 </style>
 
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55799ef149e6e251" async="async"></script>

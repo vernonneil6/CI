@@ -49,7 +49,11 @@
 <section class="container">
   <section class="main_contentarea">
     <div class="innr_wrap">
-	  <h1 class="bannertext"><span class="bannertextregular">RECENT </span>REVIEWS</h1><div class="addthis_native_toolbox" style="float:right;margin:10px 0;"></div>
+
+	  <h1 class="bannertext"><span class="bannertextregular">RECENT </span>REVIEWS</h1>
+	  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+				<div class="addthis_native_toolbox"></div>
+
       <?php if(count($reviews)>0)
 				 { ?>
       <div class="dir_rew_wrap">

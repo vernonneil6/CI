@@ -33,6 +33,39 @@ class Reviews extends CI_Model
 		}
  	}
 	
+	function get_latest_reviews($limit ='',$offset='')
+ 	{
+		//Setting Limit for Paging
+		if( $limit != '' && $offset == 0)
+		{ $this->db->limit($limit); }
+		else if( $limit != '' && $offset != 0)
+		{	$this->db->limit($limit, $offset);	}
+		
+		$siteid = $this->session->userdata('siteid');
+		//Executing Query
+		$this->db->select('r.*, cm.company,cm.logo,u.firstname,u.username,u.lastname,u.avatarbig,u.gender,u.avatarthum');
+		$this->db->from('reviews as r');
+		$this->db->join('company as cm','r.companyid=cm.id','left');
+		$this->db->join('user as u','r.reviewby=u.id','left');
+		$this->db->where('r.status','Enable');
+		$this->db->where('u.avatarthum <>','');
+		$this->db->order_by('reviewdate', 'DESC');
+		
+		$query = $this->db->get();
+	
+		//echo "<pre>";
+		//print_r($query->result_array());
+		//die();
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+	
 	function get_all_companies($limit ='',$offset='')
  	{
 		//Setting Limit for Paging
