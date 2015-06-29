@@ -74,11 +74,16 @@ $url=base_url()."login";
 $url1=base_url()."welcome/fblogin";
 $url2=base_url()."user/logout";
 
-if($currenturl !=$url && $currenturl !=$url1 && $currenturl !=$url2)
-{
-$this->session->set_userdata('last_url_1',$currenturl);
+$CI =& get_instance();
+$CI->load->library('user_agent');
+if($CI->agent->is_referral()){
+	$lasturl = $CI->agent->referrer();
+	if($lasturl !=$url && $lasturl !=$url1 && $lasturl !=$url2)
+	{	
+		$this->session->set_userdata('lastURL',$lasturl);
+	}
+}   
 
-}
 /* Ends Here */
 ?>
 <div align="center">
