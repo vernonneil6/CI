@@ -102,7 +102,7 @@ td{display:block;}
 
 @media only screen and (min-width: 310px) and (max-width: 770px)  {
 .main_contentarea{width:100%;display: block;}
-.head_bg{width:auto;float:none;height:20px;text-align:center;}
+.head_bg{width:auto;float:none !important;text-align:center; clear:both;}
 .main_footer, .container{width:auto;padding:0 20px; }
 .menu {display: none;}
 .yougot_logo{margin:0 auto;float:none;}
