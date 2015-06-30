@@ -78,6 +78,9 @@ class Welcome extends CI_Controller {
 		//Meta Keywords and Description
 		$this->data['keywords'] = $this->common->get_seosetting_value(4);
 		$this->data['description'] = $this->common->get_seosetting_value(5);
+		$geolocation= $this->load->library('geoplugin');
+		 $ip = $this->input->ip_address();
+		$this->data['geolocation'] = $this->geoplugin->get_geolocation($ip);
 		$total= $this->common->get_all_complaints_totaldamage($siteid);
 		
 		if(count($total)>0)
