@@ -299,10 +299,8 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .home_cap1{font-size:12px;}
 /*============================Menu===================================*/
 .menu{
- 	   
-		
-		float:left;
-		padding: 0 2px;
+		/*float:left;
+		padding: 0 2px;*/
 	}
 .menu a {
 	color: black;
@@ -2468,3 +2466,27 @@ width: 22px;border-radius: 3px;margin-right: 3px;
 {
  margin:10px;
 }
+/* Autosearch list */
+#display ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0 0 0 4px;
+    width: 555px;
+    height:175px;
+    overflow-x:hidden;
+}
+#display li
+{
+display: block;
+padding: 5px;
+background:#ccc;
+border-bottom: 1px solid #ccc;
+cursor:pointer;
+margin-right:0px;
+}
+#display{
+    position: absolute;
+    text-align: left;
+    z-index: 9999;
+}
+

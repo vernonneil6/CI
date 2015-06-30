@@ -72,6 +72,13 @@
 	</script>
 <?php } ?>
 </head><body>
+<?php 
+//print_r($geolocation);
+//echo 'Region='.$geolocation['geoplugin_region'];
+  $currentcity=$geolocation['geoplugin_city'];
+//echo 'Lat='.$geolocation['geoplugin_latitude'];
+//echo 'Long='.$geolocation['geoplugin_longitude'];
+?>
 <header class="noscroll-head">
   <div class="container">
     <div class="head_bg">
@@ -206,58 +213,51 @@ function FBLogin(){
     
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript">
+	function fill(Value)
+{
+$('#search').val(Value);
+$('#display').hide();
+}
 	jQuery(function($) {
-	 $( "#search" ).autocomplete();
-$('#search').on('keyup', function() {
-	$( "#search" ).autocomplete();
-	var req = $('#search').val();
-	
+	 var currentRequest = null;
+	 var data ='';
+	$('#search').on('keyup', function() {
+	//$( "#search" ).autocomplete();
+	$("#display").hide();
+	var req1 = $('#search').val();
+	var req2 ='New York';// $('#ccity').val();
+	var req='name:'+req1+',ccity:'+req2;
 	if (req.length > 0) {
-		//$('#loading').show();
+		$('#loading').show();
 		$('#loading').html('<img src="images/spin.gif" height="20px">');
-		$.ajax({
+		currentRequest=$.ajax({
 			
 			url: "<?php echo base_url(); ?>search/autocomplete", //Controller where search is performed
 			type: 'POST',
-			data: {'search_data': req},
-			
+			data: {'name':req1,'ccity':req2},	
+			beforeSend : function()
+				{           
+					if(currentRequest != null)
+					{		
+						currentRequest.abort();	
+						data = '';	
+						html = '';		
+						$("#display").hide();
+						
+					}
+				},		
 			success: function(html){
-				$.ui.autocomplete.prototype._renderItem = function (ul, item) {
-    item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
-    return $("<li></li>")
-            .data("item.autocomplete", item)
-            .append("<a>" + item.label + "</a>")
-            .appendTo(ul);
-};
-				//alert(html);
-					var datas = [
-  "Apple",
-  "Orange",
-  "Pineapple",
-  "Strawberry",
-  "Mango"
-  	];
-  	setTimeout(function() {
-    $('#loading').html('');
-}, 500);
-			
-			var data = JSON.parse(html);
-		
-		 	$( "#search" ).autocomplete({source:data,autoFocus: true,highlightClass: "bold-text",select: function(event, ui) {
-                $(event.target).val(ui.item.value);
-                $('#frmsearch').submit();
-                return false;
-            } });
-		 	
-                
-			}
-			
+				$("#display").html(html).show();
+				$('#loading').html('').hide();
+				html ='';
+				data = '';  
+				//console.log(data);       
+			}			
 		});
+		
 }
 });
 });
-
-
 </script>
 
 <style>

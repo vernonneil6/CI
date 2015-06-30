@@ -11,20 +11,12 @@ class Search extends CI_Controller
 
     public function autocomplete()
     {
-        $search_data = $this->input->post('search_data');
-        $query = $this->searchs->get_autocomplete($search_data);
-       //print_r($query);
-       if($query==''){ $val[]='No result'; }
-       
-        foreach ($query as $row => $result){
-         
-			$value=$result->category;
-			$val[]=$value;
-          
-        }
-		echo  json_encode($val);
+        $name = $this->input->post('name');
+        $city = $this->input->post('ccity');
+        $query = $this->searchs->get_autocompletes($name,$city);
+		echo  $query;
         die();
-       // $this->load->view('header', $data);
+       
     }
 }
 /* End of file search.php */

@@ -31,9 +31,12 @@
 			<div class='headersearch'>
 			<?php echo form_open('businessdirectory/search',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
 			<?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
-				<input type='text'  class='headersearchbar' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
+				<div class="qwe">
+				<input type='text' autocomplete="off"  class='headersearchbar' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
 				<button type="submit" class="headersearchbtn fa fa-search" value="" name="btnsearch"></button>
-				<div id="loading"></div>
+				 <div id="display"></div>
+		 </div>
+		 <div id="loading"></div>
 			<?php echo form_close();?> 
 			</div>
 		</div>		
