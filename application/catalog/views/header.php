@@ -202,11 +202,11 @@ function FBLogin(){
 
 <link rel="stylesheet" href="css/autocss.css" type="text/css">
     
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript">
 	jQuery(function($) {
 	 $( "#search" ).autocomplete();
-$('#search').on('keyup', function() {
+	$('#search').on('keyup', function() {
 	$( "#search" ).autocomplete();
 	var req = $('#search').val();
 	
