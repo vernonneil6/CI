@@ -170,10 +170,9 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
         </div>
         
       </div>
+      <!-- Go to www.addthis.com/dashboard to customize your tools -->
 	<div class="addthis_native_toolbox"></div>
       <div class="pr_detlwrp">
-		  <!-- Go to www.addthis.com/dashboard to customize your tools -->
-				<div class="addthis_native_toolbox"></div> 
         <div class="titl_pr_rel">
           <div class="pre_rls_rating">
             <ul>
