@@ -32,6 +32,7 @@ $post_values = array(
 	"x_city"                => $_POST['city'],
 	"x_address"		=> $_POST['streetaddress'],
 	"x_state"		=> $_POST['state'],
+	"x_country"     => $_POST['country'],
 	"x_zip"			=> $_POST['zip']
 	// Additional fields can be added here as outlined in the AIM integration
 	// guide at: http://developer.authorize.net
@@ -64,6 +65,7 @@ $post_values = array(
 	"x_city"                => $_POST['city'],
 	"x_address"		=> $_POST['streetaddress'],
 	"x_state"		=> $_POST['state'],
+	"x_country"     => $_POST['country'],
 	"x_zip"			=> $_POST['zip']
 	// Additional fields can be added here as outlined in the AIM integration
 	// guide at: http://developer.authorize.net
