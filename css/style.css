@@ -1870,7 +1870,7 @@ padding-left: 18px;
 }
 .font_size_2
 {
-	font-size : 36px;
+	font-size : 36px !important;
 }
 .negative_review_user
 {
