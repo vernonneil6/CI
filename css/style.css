@@ -1085,7 +1085,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .cmnt_mainwrp{width:100%; float:left;}
 .cmnt_mainwrp h2{padding: 10px 0 0;background:#2c6a99; width:98%; margin:35px auto 0 auto; font-family:"myriadpro-regular"; font-weight:bold; font-size:49px; text-transform:uppercase; color:#fff; text-align:center; letter-spacing:6px;}
 .cmnts_mainwrp{width:100%; float:left;}
-.cmnts_mainwrp h2{padding: 10px 0 0;background:#2c6a99; width:950px; margin:35px auto 0 auto; font-family:"myriadpro-regular"; font-weight:bold; font-size:35px; text-transform:uppercase; color:#fff; text-align:center; letter-spacing:5px;}
+.cmnts_mainwrp h2{padding: 10px 0 0;background:#2c6a99; width:98%; margin:35px auto 0 auto; font-family:"myriadpro-regular"; font-weight:bold; font-size:35px; text-transform:uppercase; color:#fff; text-align:center; letter-spacing:5px;}
 .cmnt_blckwrp{border-bottom: 1px solid #999;; margin:43px auto 0 auto;display:inline-block;width:100%;}
 .cmt_lft{float:left !important;}
 .clnt_name.txt_right{text-align:right; margin-right:10px; }
