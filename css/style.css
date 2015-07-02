@@ -269,7 +269,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .srch_btn{width:36px; box-shadow:none; height:30px; background: url(../images/icons.png) -177px 1px; border:0 none; overflow:hidden; cursor:pointer; float:left;}
 .headersignup{/*background:#2c6a99;*/ height: 22px; width:64px;  margin-right: 10px; float: left;}
 .headerlogin{/*background:#2c6a99;*/ height: 22px;  width: 62px; margin-right: 10px; float: left;}
-.headerbusiness{/*background:#2c6a99;*/ height: 22px;  width: 175px; margin-right: 10px; float: left;}
+.headerbusiness{/*background:#2c6a99;*/ height: 22px;  width: 175px; margin-right: 0; float: right;}
 .headerfb{background:url('../images/fbbg.png') no-repeat; height: 22px; width: 160px; float: left;}
 .headerfb a{padding: 4px 0 0 35px;  display: inline-block;}
 .headersearch{display:inline-block; margin: 30px 0 20px; text-align: center; width:967px;position: absolute;z-index:9999;bottom:35%;height:40px;}
@@ -298,10 +298,12 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .home_cap{text-transform: uppercase;font-size:13px;}
 .home_cap1{font-size:12px;}
 /*============================Menu===================================*/
-.menu{
-		/*float:left;
-		padding: 0 2px;*/
-	}
+
+/*.menu{
+		float:left;
+		padding: 0 2px;
+	}*/
+
 .menu a {
 	color: black;
     font-family: MyriadPro-BlackSemiCn;
@@ -348,8 +350,8 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 }
 .menu li:last-child {
 
--webkit-margin-end: 0px;
-	margin-right:0px;
+   margin-right: 0;
+
 }
 .menu li.last_menu {
 	background:none;
