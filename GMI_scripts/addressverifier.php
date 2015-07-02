@@ -14,6 +14,7 @@ $post_values = array(
 	"x_login"		=> "5h7G7Sbr",
 	"x_tran_key"		=> "94KU7Sznk72Kj3HK",
 	
+	
 	"x_version"		=> "3.1",
 	"x_delim_data"		=> "TRUE",
 	"x_delim_char"		=> "|",
@@ -32,6 +33,7 @@ $post_values = array(
 	"x_city"                => $_POST['city'],
 	"x_address"		=> $_POST['streetaddress'],
 	"x_state"		=> $_POST['state'],
+	"x_country"			=> $_POST['country'],
 	"x_zip"			=> $_POST['zip']
 	// Additional fields can be added here as outlined in the AIM integration
 	// guide at: http://developer.authorize.net
@@ -65,6 +67,7 @@ $post_values = array(
 	"x_city"                => $_POST['city'],
 	"x_address"		=> $_POST['streetaddress'],
 	"x_state"		=> $_POST['state'],
+	"x_country"			=> $_POST['country'],
 	"x_zip"			=> $_POST['zip']
 	// Additional fields can be added here as outlined in the AIM integration
 	// guide at: http://developer.authorize.net
