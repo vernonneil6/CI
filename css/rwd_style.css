@@ -142,7 +142,6 @@ td{display:block;}
 .cmnt_wrp{display:inline-block;float:none;margin-top:15px;}
 .tablecompliant, .user_dashboard{margin-left:20px;}
 .usercomment {margin-left: 20px !important;}
-
 .pr_rwrp,.verified_wrp{float:none;display:inline-block;text-align:center;margin:0 auto;}
 .pr_detlwrp{width:82%;margin:0 auto; display: block;float:none;}
 .pr_testmnl_wrp,.addcmnt_wrp,.testmnl_clntwrp,.titl_pr_rel,.pr_rwrp{width:auto;}

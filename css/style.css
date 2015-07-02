@@ -1065,7 +1065,6 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .pre_rls_rating ul{margin:0; padding:0;}
 .pre_rls_rating ul li{list-style:none; float:left;}
 .pre_rls_rating ul li a{background:url(../images/icons.png) -238px -45px no-repeat; width:20px; height:20px; display:block;}
-
 .pr_countwrp{display:table; margin:20px auto 0 auto;}
 .pr_countwrp ul{margin:0; padding:0;}
 .pr_countwrp ul li{list-style:none; float:left; background:url(../images/icons.png) -1px -117px no-repeat; width:72px; height:72px; margin-right:10px;}
