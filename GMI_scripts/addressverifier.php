@@ -27,8 +27,8 @@ $post_values = array(
 	"x_amount"		=> $_POST['finalamount'],
 	"x_description"		=> "Elite Transaction",
 
-	"x_first_name"		=> $_POST['fname'],
-	"x_last_name"		=> $_POST['lname'],
+	"x_first_name"		=> $_POST['firstname'],
+	"x_last_name"		=> $_POST['lastname'],
 	"x_city"                => $_POST['city'],
 	"x_address"		=> $_POST['streetaddress'],
 	"x_state"		=> $_POST['state'],
@@ -59,8 +59,8 @@ $post_values = array(
 	"x_amount"		=> $_POST['finalamount'],
 	"x_description"		=> "Elite Transaction",
 
-	"x_first_name"		=> $_POST['fname'],
-	"x_last_name"		=> $_POST['lname'],
+	"x_first_name"		=> $_POST['firstname'],
+	"x_last_name"		=> $_POST['lastname'],
 	"x_city"                => $_POST['city'],
 	"x_address"		=> $_POST['streetaddress'],
 	"x_state"		=> $_POST['state'],
