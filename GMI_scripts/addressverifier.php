@@ -4,8 +4,8 @@
 // developer accounts: https://test.authorize.net/gateway/transact.dll
 // for real accounts (even in test mode), please make sure that you are
 // posting to: https://secure.authorize.net/gateway/transact.dll
-$post_url = "https://secure.authorize.net/gateway/transact.dll";
-//$post_url = "https://test.authorize.net/gateway/transact.dll";
+//$post_url = "https://secure.authorize.net/gateway/transact.dll";
+$post_url = "https://test.authorize.net/gateway/transact.dll";
 if($_POST['discount_code_type']=='30-days-free-trial')
 {
 $post_values = array(
@@ -13,7 +13,7 @@ $post_values = array(
 	// the API Login ID and Transaction Key must be replaced with valid values
 	"x_login"		=> "5h7G7Sbr",
 	"x_tran_key"		=> "94KU7Sznk72Kj3HK",
-
+	
 	"x_version"		=> "3.1",
 	"x_delim_data"		=> "TRUE",
 	"x_delim_char"		=> "|",
@@ -27,8 +27,8 @@ $post_values = array(
 	"x_amount"		=> $_POST['finalamount'],
 	"x_description"		=> "Elite Transaction",
 
-	"x_first_name"		=> $_POST['fname'],
-	"x_last_name"		=> $_POST['lname'],
+	"x_first_name"		=> $_POST['firstname'],
+	"x_last_name"		=> $_POST['lastname'],
 	"x_city"                => $_POST['city'],
 	"x_address"		=> $_POST['streetaddress'],
 	"x_state"		=> $_POST['state'],
@@ -43,9 +43,10 @@ else
 $post_values = array(
 	
 	// the API Login ID and Transaction Key must be replaced with valid values
-	"x_login"		=> "5h7G7Sbr",
-	"x_tran_key"		=> "94KU7Sznk72Kj3HK",
-
+	"x_login"		=> "83EK7S4R8qy3",
+	"x_tran_key"		=> "5Rx8Mn8PAS5s77gr",
+	
+	
 	"x_version"		=> "3.1",
 	"x_delim_data"		=> "TRUE",
 	"x_delim_char"		=> "|",
@@ -59,8 +60,8 @@ $post_values = array(
 	"x_amount"		=> $_POST['finalamount'],
 	"x_description"		=> "Elite Transaction",
 
-	"x_first_name"		=> $_POST['fname'],
-	"x_last_name"		=> $_POST['lname'],
+	"x_first_name"		=> $_POST['firstname'],
+	"x_last_name"		=> $_POST['lastname'],
 	"x_city"                => $_POST['city'],
 	"x_address"		=> $_POST['streetaddress'],
 	"x_state"		=> $_POST['state'],
