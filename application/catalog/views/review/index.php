@@ -247,7 +247,7 @@
 				<?php } else { ?>
 				<td style="padding-bottom: 10px; padding-top: 10px;" width="40%"></td>
 				<td style="padding-bottom: 10px; padding-top: 10px;">	  
-					<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/'.$promo['image']; ?>" alt="Promo Image" />		
+					<img src="<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/uploads/coupon'.'/main/'.$promo['image']; ?>" alt="Promo Image" width="90%" />		
 				</td>
 				<?php } ?>
 		  </tr>

@@ -1624,7 +1624,7 @@ class Review extends CI_Controller
 					$this->email->from('reviews@yougotrated.com');
 					$this->email->to($getuser['email']);	
 					$this->email->cc('reviews@yougotrated.com');	
-					$this->email->subject('Congrats Received a Review Promocode.');
+					$this->email->subject('YouGotRated.com > Promo Code');
 					$this->email->message( '<table cellpadding="0" cellspacing="0" width="100%" border="0">
 															<tr>
 																<td>Hello '.ucfirst($getuser['firstname']).',</td>
@@ -1632,13 +1632,12 @@ class Review extends CI_Controller
 															<tr><td><br/></td></tr>
 															<tr>
 																<td style="padding-left:20px;">
-																 Thanks For Posting the Review. We provide you with the Gift review promo code. Details as follows.
+																 Thank you for posting a review on YouGotRated.com! Your promo/coupon is as follows:
 																</td>
 															</tr>
 															<tr>
 																<td>
 																	<table cellpadding="0" cellspacing="0" width="100%" border="0">
-																	<tr><td colspan="3"><h3>Promocode Detail</h3></td></tr>
 																	<tr>
 																		<td width: 10%>Title</td>
 																		<td>:</td>
@@ -1652,7 +1651,7 @@ class Review extends CI_Controller
 																	<tr>
 																		<td width: 10%>Coupon link</td>
 																		<td>:</td>
-																		<td style="padding-left: 5%;"><b>'.$couponurl.'/'.$promodetail['image'].'</b></td>
+																		<td style="padding-left: 5%;"><b><a href='.$couponurl.'/'.$promodetail['image'].'>'.$couponurl.'/'.$promodetail['image'].'</a></b></td>
 																	</tr>
 																	</table>
 																</td>
