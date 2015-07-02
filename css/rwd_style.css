@@ -151,7 +151,7 @@ td{display:block;}
 .vry_logo{float:none;width:auto;}
 .testmnl_p{margin:0;}
 .titl_pr_rel h1{font-size:25px;}
-.cmnt_mainwrp h2 {font-size:15px;}
+.cmnt_mainwrp h2 {font-size:15px !important;}
 .txrareawrp{width:100%;}
 .rvw_fillwrp,.head_sb_rvw{width:auto;}
 .rvw_fillwrp h3{font-size:20px;}
