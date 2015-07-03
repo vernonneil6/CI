@@ -363,7 +363,7 @@ else { ?>
 		</script> 
   <!-- box -->
   
-  <div class="box-content"> <?php echo form_open('elite/searchelitemember',array('class'=>'formBox','id'=>'frmsearch')); ?>  
+  <div class="box-content"> <?php echo form_open('elite/searchReviewUpload',array('class'=>'formBox','id'=>'frmsearch')); ?>  
       <fieldset>
         
         <!-- Error form message -->

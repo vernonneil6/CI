@@ -161,11 +161,11 @@ class Elite extends CI_Controller {
 			
 			// pagination	
 			if(!empty($sort_by) && !empty($sort_order)){
-				$siteURL = site_url("elite/review_upload/$sort_by/$sort_order");
+				$siteURL = site_url("elite/reviewUploadSecurity/$sort_by/$sort_order");
 				$uriSegment = 5;
 			}
 			else{
-				$siteURL = site_url("elite/review_upload");
+				$siteURL = site_url("elite/reviewUploadSecurity");
 				$uriSegment = 3;
 			}
 						
@@ -276,6 +276,20 @@ class Elite extends CI_Controller {
 			
 			$keyword = urlencode($this->input->post('keysearch'));		
 			redirect('elite/index/?s='.$keyword);	
+		}
+		else
+		{
+			redirect('elite','refresh');
+		}
+	}
+	
+	public function searchReviewUpload()
+	{
+		if($this->input->post('btnsearch')|| $this->input->post('keysearch'))
+		{
+			
+			$keyword = urlencode($this->input->post('keysearch'));		
+			redirect('elite/reviewUploadSecurity/?s='.$keyword);	
 		}
 		else
 		{
