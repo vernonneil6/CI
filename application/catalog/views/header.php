@@ -257,15 +257,31 @@ $('#display').hide();
 		
 }
 });
+ /*side banner script*/
+ $('#leftclosead').click( function(){ 
+      $(this).parents('.ad_left').hide(); 
+ });
+ $('#rightclosead').click( function(){ 
+     $(this).parents('.ad_right').hide(); 
+ });
+
 });
 </script>
+<div class="side_banners">
+	
+<?php if(isset($leftads) && count($leftads)){ ?> 
+	<div class="ad_left side_ads">
+	<div id="leftclosead">Click here to Close</div>
+	<a target="_blank" href="<?php echo $leftads[0]['url'];?>" title="Left Ads"  rel="Left Ads"><img src="<?php if( $leftads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($leftads[0]['image']); } ?>" alt="Left Adverstiment" width="120" /></a> </div>
+<?php } ?>
 
-<style>
-	.bold-text {
-    font-weight: bold;
-}
+<?php if(isset($rightads) && count($rightads)){ ?>       
+	<div class="ad_right side_ads">
+	<div id="rightclosead">Click here to Close</div>
+	<a target="_blank" href="<?php echo $rightads[0]['url'];?>" title="Right Ads"  rel="Right Ads"><img src="<?php if( $rightads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($rightads[0]['image']); } ?>" alt="Adverstiment" width="120" /></a> </div>
+<?php } ?>
 
-</style>
+</div>
 
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55799ef149e6e251" async="async"></script>

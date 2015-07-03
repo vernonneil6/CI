@@ -2415,6 +2415,16 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
 #selstatediv1{ float:right;margin-right:127px;}
 #selstatediv{ float:right;margin-right:127px;}
 
+.side_banners{width:100%;}
+.side_ads{
+position:fixed;
+ height: 500px;
+ top: 20%;
+}
+#leftclosead,#rightclosead{ cursor:pointer;}
+.ad_right{ right:0;}
+.ad_left{ left:0}
+
 .text-content {
     bottom: 55%;
     font-family: "myriadpro-regular";
