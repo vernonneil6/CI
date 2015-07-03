@@ -7,7 +7,8 @@
 			$ytendarray=explode("&", $ytendstring);
 			$ytcode=$ytendarray[0];
 	 ?>
-	 <div class="tutorialytvideo"><iframe id="video" width="80%" height="85%" style="margin-left:10%" src="//www.youtube.com/embed/<?php echo $ytcode;?>?rel=0" frameborder="0" allowfullscreen></iframe></div>
+	 <div class="tutorialytvideo">
+		<iframe id="video" width="80%" height="85%" style="margin-left:10%" src="//www.youtube.com/embed/<?php echo $ytcode;?>?rel=0" frameborder="0" allowfullscreen></iframe></div>
 <?php } else { echo $heading; ?>
 <!-- #content -->
 <div id="content">

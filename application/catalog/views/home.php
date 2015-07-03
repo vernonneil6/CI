@@ -10,7 +10,7 @@
 			{?>
 				<li>
 					<img src="uploads/slider/<?php echo $homeslide->image;?>" alt="How it works" title="How it works"  usemap="<?php if($i==0){echo '#planetmap';}?>">
-					<div class="text-content"> <span><?php echo strip_tags($homeslide->title);?></span></div>
+					<div class="text-content" style="bottom:0;"> <span><?php echo $homeslide->title;?></span></div>
 					<?php 
 					if($i==0)
 					{	?>

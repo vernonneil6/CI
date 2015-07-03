@@ -269,7 +269,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .srch_btn{width:36px; box-shadow:none; height:30px; background: url(../images/icons.png) -177px 1px; border:0 none; overflow:hidden; cursor:pointer; float:left;}
 .headersignup{/*background:#2c6a99;*/ height: 22px; width:64px;  margin-right: 10px; float: left;}
 .headerlogin{/*background:#2c6a99;*/ height: 22px;  width: 62px; margin-right: 10px; float: left;}
-.headerbusiness{/*background:#2c6a99;*/ height: 22px;  width: 175px; margin-right: 10px; float: left;}
+.headerbusiness{/*background:#2c6a99;*/ height: 22px;  width: 175px; margin-right: 0; float: right;}
 .headerfb{background:url('../images/fbbg.png') no-repeat; height: 22px; width: 160px; float: left;}
 .headerfb a{padding: 4px 0 0 35px;  display: inline-block;}
 .headersearch{display:inline-block; margin: 30px 0 20px; text-align: center; width:967px;position: absolute;z-index:9999;bottom:35%;height:40px;}
@@ -298,10 +298,12 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .home_cap{text-transform: uppercase;font-size:13px;}
 .home_cap1{font-size:12px;}
 /*============================Menu===================================*/
-.menu{
-		/*float:left;
-		padding: 0 2px;*/
-	}
+
+/*.menu{
+		float:left;
+		padding: 0 2px;
+	}*/
+
 .menu a {
 	color: black;
     font-family: MyriadPro-BlackSemiCn;
@@ -348,8 +350,8 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 }
 .menu li:last-child {
 
--webkit-margin-end: 0px;
-	margin-right:0px;
+   margin-right: 0;
+
 }
 .menu li.last_menu {
 	background:none;
@@ -1063,7 +1065,6 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .pre_rls_rating ul{margin:0; padding:0;}
 .pre_rls_rating ul li{list-style:none; float:left;}
 .pre_rls_rating ul li a{background:url(../images/icons.png) -238px -45px no-repeat; width:20px; height:20px; display:block;}
-
 .pr_countwrp{display:table; margin:20px auto 0 auto;}
 .pr_countwrp ul{margin:0; padding:0;}
 .pr_countwrp ul li{list-style:none; float:left; background:url(../images/icons.png) -1px -117px no-repeat; width:72px; height:72px; margin-right:10px;}
@@ -1085,7 +1086,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .cmnt_mainwrp{width:100%; float:left;}
 .cmnt_mainwrp h2{padding: 10px 0 0;background:#2c6a99; width:98%; margin:35px auto 0 auto; font-family:"myriadpro-regular"; font-weight:bold; font-size:49px; text-transform:uppercase; color:#fff; text-align:center; letter-spacing:6px;}
 .cmnts_mainwrp{width:100%; float:left;}
-.cmnts_mainwrp h2{padding: 10px 0 0;background:#2c6a99; width:950px; margin:35px auto 0 auto; font-family:"myriadpro-regular"; font-weight:bold; font-size:35px; text-transform:uppercase; color:#fff; text-align:center; letter-spacing:5px;}
+.cmnts_mainwrp h2{padding: 10px 0 0;background:#2c6a99; width:98%; margin:35px auto 0 auto; font-family:"myriadpro-regular"; font-weight:bold; font-size:35px; text-transform:uppercase; color:#fff; text-align:center; letter-spacing:5px;}
 .cmnt_blckwrp{border-bottom: 1px solid #999;; margin:43px auto 0 auto;display:inline-block;width:100%;}
 .cmt_lft{float:left !important;}
 .clnt_name.txt_right{text-align:right; margin-right:10px; }

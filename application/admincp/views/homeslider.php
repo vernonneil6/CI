@@ -53,7 +53,7 @@
             <label for="title">Title </label>
           </div>
           <div class="con slider_text">
-            <?php echo form_textarea( array( 'name'=>'title','id'=>'title','class'=> 'tinymce','style'=>'width:900px','value'=> stripslashes($title))); ?>
+            <?php echo form_textarea( array( 'name'=>'title','id'=>'title','class'=> 'tinymce','style'=>'width:900px','value'=> $title)); ?>
           </div>
         </div>
 	<div class="clearfix file">

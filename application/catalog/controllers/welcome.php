@@ -571,14 +571,16 @@ public function updates($id)
 
 public function fblogin()
 {
+	
+	
 	$fb_appId = $this->common->get_setting_value(20);
 	$fb_secret = $this->common->get_setting_value(21);
-	
-	$lasturl = $this->session->userdata('last_url_1');  
+	 
+	$lasturl = $this->session->userdata('lastURL');  
 	if($lasturl == ''){
 		$lasturl =site_url();
 	}	
-	 
+	
 	
 	$this->data['fbconfig'] = array(
 					  'appId'  => $fb_appId,

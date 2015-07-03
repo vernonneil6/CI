@@ -593,9 +593,11 @@ $(document).ready(function(){
  if($('#copypaymentinformation').is(':checked'))
  { 
 	var country = $('#country1').val();
+	var countryname = $('#countryname1').val();
 	getstates(country,"state","#selstatediv",$('#statedropmenu').val());
 	$('#streetaddress').val($('#streetaddress1').val());
 	$('#country').val(country);
+	$('#countryname').val(countryname);
 	$('#state').val($('#state1').val());
 	$('#city').val($('#city1').val());
 	$('#zip').val($('#zip1').val());
