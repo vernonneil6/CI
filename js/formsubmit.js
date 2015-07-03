@@ -419,6 +419,7 @@ console.log('test2');
 var requestData = {
 		firstname: $('#fname').val(),
 		lastname: $('#lname').val(),
+		company: $('#name').val(),
 		streetaddress: $('#streetaddress').val(),
 		country: $('#countryname').val(),
 		state: $('#state').val(),
