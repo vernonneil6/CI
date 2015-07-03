@@ -140,7 +140,21 @@ class Reviews extends CI_Model
  	
  	function select_review_date($companyid, $userid, $reviewid)
 	{
-		$query = $this->db->get_where('youg_review_date',array('company_id'=>$companyid,'user_id'=>$userid, 'review_id'=>$reviewid));
+		$query = $this->db->order_by('date', 'DESC')->get_where('youg_review_date',array('company_id'=>$companyid,'user_id'=>$userid, 'review_id'=>$reviewid));
+		
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	function getReviewmail($companyid, $reviewid, $userid)
+	{
+		$query = $this->db->order_by('date', 'DESC')->get_where('youg_reviewmail',array('company_id'=>$companyid, 'user_id'=>$userid, 'review_id'=>$reviewid));
 		
 		if ($query->num_rows() > 0)
 		{
@@ -447,6 +461,29 @@ class Reviews extends CI_Model
 		$ret['num_rows'] = $tmp[0]->count;
 		
 		return $ret;
+	}
+	
+	function getReviewDetails( $userid, $companyid ){
+		
+		$this->db->select('r.reviewtitle,r.reviewdate,r.comment,r.reviewby, cm.company,u.firstname,u.lastname');
+		$this->db->from('reviews as r');
+		$this->db->join('company as cm','r.companyid=cm.id','left');
+		$this->db->join('user as u','r.reviewby=u.id','left');		
+		$this->db->where('r.reviewby',$userid);
+		$this->db->where('r.companyid',$companyid);		
+		$this->db->where('r.status','Disable');
+		$this->db->order_by('r.reviewdate','DESC');
+		
+		$query = $this->db->get();
+		//print_r($query);die;
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		} 	
 	}
 	
 	function review_mail($reviewid, $companyid)
