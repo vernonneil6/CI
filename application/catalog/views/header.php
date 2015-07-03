@@ -73,11 +73,11 @@
 <?php } ?>
 </head><body>
 <?php 
-//print_r($geolocation);
-//echo 'Region='.$geolocation['geoplugin_region'];
-  $currentcity=$geolocation['geoplugin_city'];
-//echo 'Lat='.$geolocation['geoplugin_latitude'];
-//echo 'Long='.$geolocation['geoplugin_longitude'];
+/*print_r($geolocation);
+echo 'Region='.$geolocation['geoplugin_region'];
+$currentcity=$geolocation['geoplugin_city'];
+echo 'Lat='.$geolocation['geoplugin_latitude'];
+echo 'Long='.$geolocation['geoplugin_longitude'];*/
 ?>
 <header class="noscroll-head">
   <div class="container">
