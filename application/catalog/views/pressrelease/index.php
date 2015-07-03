@@ -88,9 +88,18 @@
 					<a class = "font_color_2 float_left" href="<?php echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>'s detail"><?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?></a>
 				
 				  <div class="rating float_left prof_rating">
-					
-					<span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
-					
+					<?php if($avgstar > 2) {  ?>
+					<div class ="count-<?php echo $avgstar?>">  
+					<?php for($r=0;$r<($avgstar);$r++){?>
+					<i class="vry_rat_icn"></i>
+					<?php } ?>
+				  </div>  
+					<?php for($p=0;$p<(5-($avgstar));$p++){?>
+					<img src="images/no_star.png" alt="no_star" title="no_star" />
+					<?php } } else {?>
+						<span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
+					<?php } ?>
+										
 				  </div>
 				</h2>
 				
