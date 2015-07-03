@@ -61,7 +61,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
 		$itemproaverage = $avgstar;
 		$avgstar = round($avgstar);
 		 
-		 if($avgstar > 2) {
+		 if($avgstar < 2) {
 		 ?>
           <div class="vry_rating comprates">
 			<div class ="count-<?php echo $avgstar?>">  
