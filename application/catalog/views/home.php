@@ -75,12 +75,13 @@
             $star = '<div class ="count-'.$complaints[$i]['rate'].'">';
             
             for($r=0;$r<($complaints[$i]['rate']);$r++){ 
-				$s =$r+1;
-                $star = $star.'<img src="images/sprite_star.png" alt="no_star" title="no_star" class="star-'. $s .'" />';
+				//$s =$r+1;
+                $star = $star.'<i class="vry_rat_icn"></i>';
             }
             $star= $star.'</div>';
+            
             for($p=0;$p<(5-($complaints[$i]['rate']));$p++){
-                $star = $star.'<img src="images/sprite_star.png" alt="no_star" title="no_star" class="no-star" />';                        
+                $star = $star.'<img src="images/no_star.png" alt="no_star" title="no_star" class="no-star" />';                        
             }
             $review_title = ucfirst(substr(stripslashes( $complaints[$i]['reviewtitle']),0,50)."...");
            

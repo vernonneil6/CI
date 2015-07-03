@@ -116,9 +116,11 @@
 					<?php echo ucfirst(stripslashes($reviews[$i]['company']));?>
 				</a>
 				<div class="rating">
+					<div class ="count-<?php echo $reviews[$i]['rate']?>">
 					<?php for($r=0;$r<($reviews[$i]['rate']);$r++){?>
 						<i class="vry_rat_icn"></i>
 						<?php } ?>
+					</div>	
 						<?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
 						<i class="dull_starrat"></i>
 				   <?php } ?>            

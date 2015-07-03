@@ -155,9 +155,11 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
 		$avgstar = round($avgstar);
 		;?>
           <div class="vry_rating reviewrates in_block">
+			<div class ="count-<?php echo $avgstar?>">  
             <?php for($r=0;$r<($avgstar);$r++){?>
             <i class="vry_rat_icn"></i>
             <?php } ?>
+            </div>
             <?php for($p=0;$p<(5-($avgstar));$p++){?>
             <img src="images/no_star.png" alt="no_star" title="no_star" />
             <?php } ?>
@@ -175,16 +177,17 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
       <div class="pr_detlwrp">
         <div class="titl_pr_rel">
           <div class="pre_rls_rating">
-            <ul>
-              
+
+          <div class ="count-<?php echo $review[0]['rate']?>">  
             <?php for($r=0;$r<($review[0]['rate']);$r++){?>
-            <li><i class="vry_rat_icn"></i></li>
+			<i class="vry_rat_icn"></i>
             <?php } ?>
+          </div>  
             <?php for($p=0;$p<(5-($review[0]['rate']));$p++){?>
-            <li><img src="images/no_star.png" alt="no_star" title="no_star" /></li>
+			<img src="images/no_star.png" alt="no_star" title="no_star" />
             <?php } ?>
         
-            </ul>
+ 
           </div>
           <h1>"<?php echo stripslashes($review[0]['reviewtitle']); ?>"</h1>
           <p>- <?php echo $reviewdate = date('m/d/Y',strtotime($review[0]['reviewdate']));;?> -</p>

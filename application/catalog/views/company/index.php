@@ -1,6 +1,7 @@
 <?php echo $header;?>
 <?php $avgstar = $this->common->get_avg_ratings_bycmid($company[0]['id']);
 			$itemproaverage = $avgstar;
+			$star = explode('.',$itemproaverage);
 			$avgstar = round($avgstar);
 			$elitemem_status = $this->common->get_eliteship_bycompanyid($company[0]['id']);
 			
@@ -87,8 +88,19 @@
 			<div class="compny_name">
 			  <h1><span itemprop="name" class = "fn" ><?php echo strtoupper($company[0]['company']);?></span></h1>
 			  <div class="vry_rating vryrating">
-	  
-				<span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
+	           
+	           <?php if($star[0] < 2) { ?>
+	           
+				<div class ="count-<?php echo $star[0] ?>">
+					<?php for($r=0;$r<($star[0]);$r++){?>
+					<i class="vry_rat_icn"></i>
+					<?php } ?>
+				</div>	
+					<?php for($p=0;$p<(5-($star[0]));$p++){?>
+					<i class="dull_starrat"></i>
+				   <?php } } else {?>
+							<span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
+					<?php }?>		
 			  </div>
 			</div>
 			<?php }else { ?>
@@ -99,7 +111,17 @@
 
 			<div class="vrytitle">YouGotRated VERIFIED MERCHANT</div>
 			  <div class="vry_rating vryrating">
+				<?php if($star[0] < 2) { ?>
+				<div class ="count-<?php echo $star[0] ?>">
+					<?php for($r=0;$r<($star[0]);$r++){?>
+					<i class="vry_rat_icn"></i>
+					<?php } ?>
+				</div>	
+					<?php for($p=0;$p<(5-($star[0]));$p++){?>
+					<i class="dull_starrat"></i>
+				   <?php } } else { ?>  
 			   <span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
+			   <?php } ?>
 			  </div>
 			</div>
 			<?php } ?>
@@ -422,16 +444,13 @@
             } 
             ?>
             </div>
-            
-            
-			
-
-
                 <div class="review_ratng_wrp">
                   <div class="rating <?php if($i%2==0){echo "raticn";}?>">
+                  <div class ="count-<?php echo $reviews[$i]['rate']?>">
                     <?php for($r=0;$r<($reviews[$i]['rate']);$r++){?>
                     <i class="vry_rat_icn"></i>
                     <?php } ?>
+                  </div>
                     <?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
                     <img src="images/no_star.png" alt="no_star" title="no_star" />
                     <?php } ?>

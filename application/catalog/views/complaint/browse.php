@@ -60,9 +60,20 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
 		$avgstar = $this->common->get_avg_ratings_bycmid($complaints[0]['companyid']);
 		$itemproaverage = $avgstar;
 		$avgstar = round($avgstar);
-		;?>
+		 
+		 if($avgstar > 2) {
+		 ?>
           <div class="vry_rating comprates">
-            <span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
+			<div class ="count-<?php echo $avgstar?>">  
+            <?php for($r=0;$r<($avgstar);$r++){?>
+			<i class="vry_rat_icn"></i>
+            <?php } ?>
+          </div>  
+            <?php for($p=0;$p<(5-($avgstar));$p++){?>
+			<img src="images/no_star.png" alt="no_star" title="no_star" />
+            <?php } } else {?>
+				<span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
+            <?php } ?>
           </div>
         <div class="vry_btn compbtn"><a href="<?php echo site_url('review/add/'.$complaints[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$complaints[0]['companyid']);?>" title="File Complaint">FILE COMPLAINT</a></div>
       </div>
