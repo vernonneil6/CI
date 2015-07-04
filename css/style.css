@@ -2420,8 +2420,11 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
 position:fixed;
  height: 500px;
  top: 20%;
+ z-index:99999;
 }
 #leftclosead,#rightclosead{ cursor:pointer;}
+#leftclosead img{ right:0px;position:absolute;}
+#rightclosead img{ left:0px;position:absolute;}
 .ad_right{ right:0;}
 .ad_left{ left:0}
 
