@@ -2463,7 +2463,7 @@ height:auto;
     border: 1px solid #dcdcdc;
     border-radius: 7px;
     list-style:none;
-    margin-bottom: 22px !important;
+    margin-top: 22px !important;
 }
 
 
@@ -2516,3 +2516,5 @@ margin-right:0px;
 .hm_rvw_wrp .view-all {margin-right:0;width:100%;float:right;}
 
 .review-slider li, .review-slider-right li  {background:#E0E0E0;box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.5);}
+
+.container .addvert-bottom{padding-top:0;}
