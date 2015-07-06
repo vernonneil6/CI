@@ -52,10 +52,6 @@
  </div>
 
 
-
-
-
-
   
 <section class="container" >
   <section class="main_contentarea" style="padding-top:0;">    
@@ -72,8 +68,8 @@
             $companyname = $this->users->get_company_bysingleid($complaints[$i]['companyid']); 
             $avgstar = $this->common->get_avg_ratings_bycmid($complaints[$i]['companyid']);
             $avgstar = round($avgstar);
-            $img_src = 'images/default_user.png';
-            if($user['id']==$complaints[$i]['reviewby'] && $user['avatarthum']!=""){
+            //$img_src = 'images/default_user.png';
+            if($user['id']==$complaints[$i]['reviewby']){
                 $img_src = 'uploads/user/thumb/'.$user['avatarthum'];
             }
             if(!empty($companyname['companyseokeyword'])){

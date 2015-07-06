@@ -2463,7 +2463,7 @@ height:auto;
     border: 1px solid #dcdcdc;
     border-radius: 7px;
     list-style:none;
-    margin-top: 22px !important;
+    margin-bottom: 22px !important;
 }
 
 
@@ -2473,7 +2473,7 @@ height:auto;
  margin:10px 0;
 }
 .addthis_native_toolbox .addthis_button_google_plusone { width:60px !important;}
-
+.addthis_native_toolbox .addthis_button_pinterest_pinit {width:40px !important;}
 /* Autosearch list */
 #display ul {
     list-style: outside none none;
