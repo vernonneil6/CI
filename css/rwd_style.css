@@ -340,10 +340,10 @@ span.toggle:before{
 .bannertext{font-size:45px;height:30px;}
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 600px) {
 .side_banners{display:none;}
 }
-@media only screen and (min-width: 1201px) {
+@media only screen and (min-width: 601px) {
 .side_banners{display:block;}
 }
 
