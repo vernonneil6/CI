@@ -272,15 +272,16 @@ $('#display').hide();
 
 </style>
 <script>
-	$(window).load(function() {
-/*side banner script*/
- $('#leftclosead').click( function(){ 
-      $(this).parents('.ad_left').hide(); 
- });
- $('#rightclosead').click( function(){ 
-     $(this).parents('.ad_right').hide(); 
- });
-});
+	/*side banner script*/
+$(window).load(function() {
+	
+	 $('#leftclosead').click( function(){ 
+		  $(this).parents('.ad_left').hide(); 
+	 });
+	 $('#rightclosead').click( function(){ 
+		 $(this).parents('.ad_right').hide(); 
+	 });
+
 });
 
 </script>
