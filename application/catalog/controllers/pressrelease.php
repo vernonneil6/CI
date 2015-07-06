@@ -78,8 +78,8 @@ class Pressrelease extends CI_Controller {
 		}
 		else{
 		
-		$this->data['keywords'] = $this->common->get_seosetting_value(4);
-		$this->data['description'] = $this->common->get_seosetting_value(5);
+		$this->data['keywords'] ='Press release Content';// $this->common->get_seosetting_value(4);
+		$this->data['description'] = 'Latest Press release,Search for Press release';
 		}
 		
 		$total= $this->common->get_all_complaints_totaldamage($siteid);
