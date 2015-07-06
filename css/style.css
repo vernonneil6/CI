@@ -612,8 +612,8 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
 .review_title{width:100%; float:left; margin-bottom:20px;}
 .review_title h2{float:left; font-family:"myriadpro-regular"; font-weight:bold; font-size:34px; color:#333; text-transform:uppercase; margin:0px; line-height:25px;}
 .review_title a{float:right; font-family: "myriadpro-regular";font-size:22px; color:#0080ff; text-transform:uppercase;}
-.review_block{float:left;padding: 10px 0; width:100%; margin-bottom:15px;}
-.review_lft{float:left; width: 40px;padding: 0 10px;}
+.review_block{float:left;padding: 10px; width:100%; margin-bottom:15px;}
+.review_lft{float:left; width: 40px;padding: 0 10px 4px 0;}
 .user_img{width:40px; height:40px; float:right; border-radius:100%;}
 .user_img img{width:40px; height:40px; float:right;}
 .user_name{float:left;width: 100%; }
@@ -649,7 +649,7 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
 }
 
 .review_post{float:right; margin-top:10px; font-family:"myriadpro-regular"; font-size:12px; text-transform:uppercase; color:#333; text-align:right;}
-.review_rgt{float:right; width:410px;}
+.review_rgt{float:right; width:100%;}
 .review_rgt p{float:left; width:98%; margin:0 0 5px; font-family:"MyriadPro-Regular";font-size:14px; color:#333;	}
 .rat_title h2 a{color:black;font-family: "MyriadPro-Regular";  font-weight:bold; font-size: 14px;}
 .rat_title label{display: inline-block;}
@@ -1326,8 +1326,9 @@ width: 310px;
 }
 .rightpanelwidth
 {
-width: 648px;
- margin-top: 30px;
+	width: 100%;
+	padding:0;
+	margin-top: 30px;
 }
 .wrapborder
 {
@@ -1335,14 +1336,15 @@ border-top:1px solid;
 }
 .reviewstab
 {
- padding: 0 10px 0 0;
-    width: 560px !important;
+	padding: 0;
+    width: 100%;
 }
+
 .profile_tab_space
 {
 	padding : 5px 0 5px 16px;
 	display : inline-block;
-	width:648px;
+	width:100%;
 }
 ul.tabbs 
 {
@@ -2072,7 +2074,7 @@ padding-left: 18px;
 	display: inline-block;
     font-family: myriadpro-regular;
     padding: 5px 0 5px 17px;
-    width: 100%;
+    
 }
 .profile_about_company
 {
