@@ -85,7 +85,7 @@ if($CI->agent->is_referral()){
 /* Ends Here */
 ?>
 <div class="container">
-<div align="center" class="addvert">
+<div align="center" class="addvert" id="bottomad">  
 	<?php if(isset($bottomads) && count($bottomads)){ ?>       
 	<div class="ad_bottom"><a href="<?php echo $bottomads[0]['url'];?>" title="Adverstiment"  rel="nofollow"><img src="<?php if( $bottomads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($bottomads[0]['image']); } ?>" alt="Adverstiment" width="940" height="180" class="adimg"/></a> </div>
 	<?php } ?>
