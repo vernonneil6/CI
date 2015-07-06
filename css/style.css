@@ -2433,36 +2433,25 @@ height:auto;
 
 .review-slider-right {
     /*display: block;*/
-    width:50%;
-    float:left;
+    width:49%;
+    float:right;
     
 }
 .review-slider {
     /*display: inline-block;*/
-    width:50%;
+    width:49%;
     float:left;
 }
 .review-slider ul{padding:0;padding-left:0px;}
 .review-slider-right ul{padding:0;float:right;padding-left:0px;}
 .review-slider li,.review-slider-right li {
     border: 1px solid #dcdcdc;
-    border-radius: 15px;
+    border-radius: 7px;
     list-style:none;
     margin-top: 22px !important;
 }
 
-/*.no-star{ background: none repeat scroll 0 0 #c8c8c8; }
 
-.no-star, .star-1, .star-2, .star-3, .star-4, .star-5 {
-width: 22px;border-radius: 3px;margin-right: 3px;
-}
-.count-1, .count-2, .count-3, .count-4, .count-5{display:inline;}
-.count-1 .star-1 {background: none repeat scroll 0 0 #e22027;}
-.count-2 .star-1, .count-2 .star-2 {background: none repeat scroll 0 0 #f47324;}
-.count-3 .star-1, .count-3 .star-2, .count-3 .star-3 {background: none repeat scroll 0 0 #f8cc18;}
-.count-4 .star-1, .count-4 .star-2, .count-4 .star-3, .count-4 .star-4 {background: none repeat scroll 0 0 #73b143;}
-.count-5 .star-1, .count-5 .star-2, .count-5 .star-3, .count-5 .star-4, .count-5 .star-5{background: none repeat scroll 0 0 #007f4e;} 
-*/
 /* Social Icons */
 .addthis_native_toolbox
 {
@@ -2499,3 +2488,14 @@ margin-right:0px;
     margin-right: 4px;
     width: 23px;
 }
+.hm_rvw_wrp .review_blocks{width:50%;}
+.hm_rvw_wrp .home_right {padding: 0 3px 0 13px;}
+.hm_rvw_wrp .user-img {width:65px;margin-right:10px;display: inline-block;float:left;}
+.hm_rvw_wrp .reptitle { display: inline-block; width: 82%; vertical-align: top;float:right;margin-bottom: 5px;}
+.hm_rvw_wrp .home_mar_line { float: right;vertical-align: top; width: 82%;margin-bottom: 5px !important;}
+.hm_rvw_wrp .review-head { float: right;text-align: left;width: 82%;}
+.hm_rvw_wrp .reviewspace_new{float:left;}
+.hm_rvw_wrp .user-name {clear: both;float: left; margin-bottom: 5px;}
+.hm_rvw_wrp .view-all {margin-right:0;width:100%;float:right;}
+
+.review-slider li, .review-slider-right li  {background:#E0E0E0;box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.5);}
