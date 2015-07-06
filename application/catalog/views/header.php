@@ -267,6 +267,7 @@ $('#display').hide();
 
 });
 </script>
+
 <div class="side_banners">
 	
 <?php if(isset($leftads) && count($leftads)){ ?> 
