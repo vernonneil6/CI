@@ -60,20 +60,41 @@ class Review extends CI_Controller
 		if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'add' )
 		{
    		$this->data['title'] = 'Add your Review';
+   		//Meta Keywords and Description
+		$this->data['keywords'] = 'Add new reviews';
+		$this->data['description'] = "Adding review on user's experiences";
 		}
 		
-		else if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'edit' )
+		elseif( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'edit' )
 		{
-   		$this->data['title'] = 'Edit Review';
+				$this->data['title'] = 'Edit Review';
+				//Meta Keywords and Description
+				$this->data['keywords'] = 'Edit reviews';
+				$this->data['description'] = 'Edit on your reviews';
 		}
-		
-		else if( $this->uri->segment(1) == 'review' && ( $this->uri->segment(2) == 'comments' || $this->uri->segment(2) == 'editcomment' ) )
+		elseif( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'browse' )
 		{
-   		$this->data['title'] = 'Comments On Review';
+			$words=$this->uri->segment(3);
+			$str = str_replace("-", " ", $words);
+			$compan=preg_replace('/[0-9]+/', '', $str);
+			$this->data['title'] = 'Company Reviews';
+			//Meta Keywords and Description
+			$this->data['keywords'] = $compan;
+			$this->data['description'] = 'Write Review,File complaints';
+		}
+		elseif( $this->uri->segment(1) == 'review' && ( $this->uri->segment(2) == 'comments' || $this->uri->segment(2) == 'editcomment' ) )
+		{
+			$this->data['title'] = 'Comments On Review';
+			//Meta Keywords and Description
+			$this->data['keywords'] = 'comment on reviews';
+			$this->data['description'] = 'comments on reviews is Agree,Disagree,Helpful';
 		}
 		else
 		{
-			$this->data['title'] = 'Business Reviews';
+			$this->data['title'] = 'Recent Reviews';
+			//Meta Keywords and Description
+			$this->data['keywords'] = 'Latest Reviews In YGR Directory';
+			$this->data['description'] = 'Review by users against companies';
 		}
 			$this->data['section_title'] = 'Reviews';
 

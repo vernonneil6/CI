@@ -84,30 +84,54 @@ class Complaint extends CI_Controller {
 		if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'weektrending' )
 		{
    		$this->data['title'] = 'Week trending complaints';
+   		$this->data['keywords'] ='';
+   		$this->data['description'] = '';
 		}
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'viewcomment' )
 		{
    		$this->data['title'] = 'Comments on complaints';
+   		$this->data['keywords'] ='';
+   		$this->data['description'] = '';
 		}
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'keysearchresult' || $this->uri->segment(2) == 'search' )
 		{
    		$this->data['title'] = 'Search complaints';
+   		$this->data['keywords'] ='';
+   		$this->data['description'] = '';
 		}
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'viewuser' )
 		{
-   		$this->data['title'] = 'View User';
+   		
+   		$companyid=$this->uri->segment(3);
+   		$userid=$this->uri->segment(4);
+   		$valuesss= $this->users->get_user_byid($userid);
+   		$this->data['title'] = $valuesss[0]['username']." user's Profile";
+   		$this->data['keywords'] = "User Profile";
+   		$this->data['description'] = $valuesss[0]['username']." User Complaints";
 		}
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'claimbusiness' )
 		{
    		$this->data['title'] = 'Claim Business';
+   		$this->data['keywords'] ='';
+   		$this->data['description'] = '';
+		}
+		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'add' )
+		{
+   		$this->data['keywords'] = 'Bussiness Dispute';
+		$this->data['description'] = 'Provide Details For Dispute';
+		$this->data['title'] = 'Complaints';
 		}
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'advfilter' )
 		{
    		$this->data['title'] = 'Advance Filter to search complaints';
+   		$this->data['keywords'] ='Filter Complaints';
+   		$this->data['description'] = 'Filter Complaints From date range & Type';
 		}
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'filter' )
 		{
    		$this->data['title'] = 'Advance Filter to search complaints';
+   		$this->data['keywords'] ='Filter Complaints';
+   		$this->data['description'] = 'Filter Complaints From date range & Type';
 		}
 		else if( $this->uri->segment(2)=='viewcompany'  && $this->uri->segment(3))
 			{
@@ -156,12 +180,17 @@ class Complaint extends CI_Controller {
 								{
 									$this->data['title'] = $companyname['company'].' '.'Complaints:YOUGOTRATED';
 									$this->data['keywords'] = $this->uri->segment(3);
-									$this->data['description'] = $complaint[0]['detail'];
+									$inputstring=$complaint[0]['detail'];
+									$pieces = explode(" ", $inputstring);
+									$first_part = implode(" ", array_splice($pieces, 0, 5));
+									$other_part = implode(" ", array_splice($pieces, 5));
+									
+									$this->data['description'] = $first_part;
 								}
 								else
 								{
-									$this->data['keywords'] = $this->common->get_seosetting_value(4);
-									$this->data['description'] = $this->common->get_seosetting_value(5);
+									$this->data['keywords'] = 'Bussiness Dispute';
+									$this->data['description'] = 'Provide Details For Dispute';
 									$this->data['title'] = 'Complaints';
 								}
 				
@@ -170,8 +199,8 @@ class Complaint extends CI_Controller {
 		else
 		{
 			//Meta Keywords and Description
-		$this->data['keywords'] = $this->common->get_seosetting_value(4);
-		$this->data['description'] = $this->common->get_seosetting_value(5);
+		$this->data['keywords'] = 'Latest Complaints';
+		$this->data['description'] = 'Complaints about bussiness';
 		$this->data['title'] = 'Complaints : YOUGOTRATED';
 		}
 		$this->data['section_title'] = 'Complaints : YOUGOTRATED';
@@ -192,8 +221,6 @@ class Complaint extends CI_Controller {
 		  
 		  //Addingg Setting Result to variable
 		  $this->data['complaints'] = $this->complaints->get_all_complaints($limit,$offset);
-		  
-		  
 		  $this->data['keywords'] = $this->complaints->get_all_searchs($siteid);
 		  
 		  $this->paging['base_url'] = site_url("complaint/index");
@@ -202,7 +229,6 @@ class Complaint extends CI_Controller {
 		  $this->pagination->initialize($this->paging);
           
 		  //Loading View File
-		 
 		  $this->load->view('complaint/index',$this->data);
 	}
 	
@@ -213,7 +239,7 @@ class Complaint extends CI_Controller {
 		  $limit = $this->paging['per_page'];
 		  $offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
 		  
-		  	//Addingg Setting Result to variable
+		  	//Adding Setting Result to variable
 			$this->data['complaints'] = $this->complaints->get_all_last_weekcomplaints($limit,$offset);
 		  	
 			$siteid = $this->session->userdata('siteid');

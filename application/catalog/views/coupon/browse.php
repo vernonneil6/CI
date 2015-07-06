@@ -76,8 +76,6 @@
       </div>
       <div class="addthis_native_toolbox"></div>
     <div class="pr_detlwrp">
-		<!-- Go to www.addthis.com/dashboard to customize your tools -->
-				<div class="addthis_native_toolbox"></div> 
       <div class="titl_pr_rel">
         <div class="pre_rls_rating"> </div>
         <h1>"COUPON OF <?php echo strtoupper(stripslashes($coupons[0]['company'])); ?>"</h1>

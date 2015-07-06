@@ -178,10 +178,101 @@
 					 }
 					?>	
 					
-				</td>			
+				</td>	
+				
+				
 				<?php endforeach; ?>
 				<td><a href="<?php echo site_url('review/removeview/'.$reviewsremove->id.'/'.$reviewsremove->companyid.'/'.$reviewsremove->reviewby); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
-				<td><a href="<?php echo site_url('review/printhistory/'.$reviewsremove->id.'/'.$reviewsremove->companyid); ?>">Click Here</a></td>
+				<td>
+					<?php $printID = 'printReview'.$reviewsremove->id; ?>
+					<div id="<?php echo $printID ?>" style="display:none">
+				 <?php 
+				  
+					$review_date= $this->reviews->select_review_date($reviewsremove->companyid, $reviewsremove->reviewby, $reviewsremove->id);
+					$review_mail = $this->reviews->getReviewmail($reviewsremove->companyid, $reviewsremove->id, $reviewsremove->reviewby);
+					$review_status = $this->reviews->reviews_status($reviewsremove->id, $reviewsremove->companyid);			 
+					$reviews = $this->reviews->getReviewDetails($reviewsremove->reviewby, $reviewsremove->companyid);		
+					
+					
+					//print_r($review_mail);
+					if($review_date){
+						
+						echo "Removal List: <br/>";
+						foreach($review_date as $reviewdate){
+							
+							echo $reviewdate['date']." :  ";
+								
+							if($reviewdate['status'] == '0') { 
+								echo "Started review removal process";
+							}
+							if($reviewdate['status'] == '1') { echo "Email sent to customer requesting they agree to remove review";}
+							if($reviewdate['status'] == '2') { echo "Customer submitted information about how to resolve";}
+							if($reviewdate['status'] == '3') { echo "Email sent to customer with shipping information of merchant";}
+
+							if($reviewdate['status'] == '4') { echo "Customer submitted shipping information of the product";}
+							if($reviewdate['status'] == '5') { echo "Email sent to customer with proof of refund";}
+							if($reviewdate['status'] == '6') { echo "Email sent to customer with shipping information";}
+							if($reviewdate['status'] == '7') { echo "Email sent to customer with new shipping information";}
+							if($reviewdate['status'] == '8') { echo "Waiting for customer to close the case";}	
+							echo "<br/>";
+							
+						}	
+					}
+					
+					if($review_mail){
+						echo "<br/> Removal List History: <br/>";	
+							
+						foreach($review_mail as $reviewmail){
+													
+							echo date('m-d-Y', strtotime($reviewmail['date'])) . " : " . $reviewmail['comment']."<br/>";						
+						}
+							
+						
+					}
+					if($reviews){
+						echo "<br/> Reviews: <br/>";
+						foreach($reviews as $review){
+							echo $review['reviewdate'] . " : " ."<br/><br/>". $review['comment'];						
+						}
+					}
+
+				 
+				 ?>
+				
+				<script>
+				
+				
+    function PrintElem(elem)
+    {
+		//alert($(elem).html());exit;
+        Popup($(elem).html());
+        
+    }
+
+    function Popup(data) 
+    {
+        var mywindow = window.open('', 'my div', 'height=400,width=600');
+        mywindow.document.write('<html><head>');
+        /*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
+        mywindow.document.write('</head><body>');
+        mywindow.document.write(data);
+        mywindow.document.write('</body></html>');
+
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10
+
+        mywindow.print();
+        mywindow.close();
+
+        return true;
+    }
+				</script>
+				</div>		
+					<a onclick="PrintElem('<?php echo "#".$printID; ?>');return false;" href="#">Click Here</a>
+					
+					
+					
+					</td>
 			</tr>
 			<?php endforeach; ?>			
 		</tbody>

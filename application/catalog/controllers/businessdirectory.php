@@ -79,10 +79,21 @@ class Businessdirectory extends CI_Controller {
 		if( $this->uri->segment(1) == 'businessdirectory' && ( $this->uri->segment(2) == 'search' || $this->uri->segment(2) == 'searchkey' ) )
 		{
 			$this->data['title'] = 'Search Companies';
+			$this->data['keywords'] = 'Search Business In Yougotrated Directory';
+			$this->data['description'] = 'The Bussiness your are looking for In Yougotrated Directory';
+		}
+		elseif($this->uri->segment(1) == 'businessdirectory' &&  $this->uri->segment(2) == 'add' )
+		{
+			
+			$this->data['title'] = 'Add A New Business';
+			$this->data['keywords'] = 'ADD BUSINESS TO YGR DIRECTORY';
+			$this->data['description'] = 'Becoming a YGR Elite member gives you benefit';
 		}
 		else
 		{
 			$this->data['title'] = 'Business Directory';
+			$this->data['keywords'] = 'Add/Search Business In Yougotrated Directory';
+			$this->data['description'] = 'Add new Bussiness,Search a Existing Bussiness In Yougotrated Directory';
 		}
 		
 		$this->data['section_title'] = 'Business Directory';
