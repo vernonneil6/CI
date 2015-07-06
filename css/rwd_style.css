@@ -281,6 +281,8 @@ span.toggle:before{
 .hm_rvw_wrp{width:99% !important;}
 .rat_title h2 a {overflow: hidden;text-overflow: ellipsis;white-space: nowrap; width: 100px;}
 .hm_rvw_wrp .user-name {margin-bottom: 3px; overflow: hidden;text-overflow: ellipsis; white-space: nowrap; width: 60px;}
+.review-head a { display: inline-block; width: 170px !important;overflow: hidden;text-overflow: ellipsis; white-space: nowrap;}
+.review-slider li, .review-slider-right li{margin-top:20px !important;}
 
 .review-slider ul{padding:0 0 0 0px;}
 .hm_rvw_wrp .home_right { padding: 10px 3px 0 13px;}
