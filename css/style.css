@@ -2420,8 +2420,11 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
 position:fixed;
  height: 500px;
  top: 20%;
+ z-index:99999;
 }
 #leftclosead,#rightclosead{ cursor:pointer;}
+#leftclosead img{ right:0px;position:absolute;}
+#rightclosead img{ left:0px;position:absolute;}
 .ad_right{ right:0;}
 .ad_left{ left:0}
 
@@ -2476,8 +2479,10 @@ width: 22px;border-radius: 3px;margin-right: 3px;
 /* Social Icons */
 .addthis_native_toolbox
 {
- margin:10px;
+ margin:10px 0;
 }
+.addthis_native_toolbox .addthis_button_google_plusone { width:60px !important;}
+
 /* Autosearch list */
 #display ul {
     list-style: outside none none;
