@@ -271,6 +271,18 @@ $('#display').hide();
 }
 
 </style>
+<script>
+/*side banner script*/
+ $('#leftclosead').click( function(){ 
+      $(this).parents('.ad_left').hide(); 
+ });
+ $('#rightclosead').click( function(){ 
+     $(this).parents('.ad_right').hide(); 
+ });
+
+});
+
+</script>
 <div class="side_banners">
 	
 <?php if(isset($leftads) && count($leftads)){ ?> 
