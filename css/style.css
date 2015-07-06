@@ -2479,8 +2479,10 @@ width: 22px;border-radius: 3px;margin-right: 3px;
 /* Social Icons */
 .addthis_native_toolbox
 {
- margin:10px;
+ margin:10px 0;
 }
+.addthis_native_toolbox .addthis_button_google_plusone { width:60px !important;}
+
 /* Autosearch list */
 #display ul {
     list-style: outside none none;
