@@ -612,8 +612,8 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
 .review_title{width:100%; float:left; margin-bottom:20px;}
 .review_title h2{float:left; font-family:"myriadpro-regular"; font-weight:bold; font-size:34px; color:#333; text-transform:uppercase; margin:0px; line-height:25px;}
 .review_title a{float:right; font-family: "myriadpro-regular";font-size:22px; color:#0080ff; text-transform:uppercase;}
-.review_block{float:left;padding: 10px 0; width:100%; margin-bottom:15px;}
-.review_lft{float:left; width: 40px;padding: 0 10px;}
+.review_block{float:left;padding: 10px; width:100%; margin-bottom:15px;}
+.review_lft{float:left; width: 40px;padding: 0 10px 4px 0;}
 .user_img{width:40px; height:40px; float:right; border-radius:100%;}
 .user_img img{width:40px; height:40px; float:right;}
 .user_name{float:left;width: 100%; }
@@ -649,7 +649,7 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
 }
 
 .review_post{float:right; margin-top:10px; font-family:"myriadpro-regular"; font-size:12px; text-transform:uppercase; color:#333; text-align:right;}
-.review_rgt{float:right; width:410px;}
+.review_rgt{float:right; width:100%;}
 .review_rgt p{float:left; width:98%; margin:0 0 5px; font-family:"MyriadPro-Regular";font-size:14px; color:#333;	}
 .rat_title h2 a{color:black;font-family: "MyriadPro-Regular";  font-weight:bold; font-size: 14px;}
 .rat_title label{display: inline-block;}
@@ -1326,8 +1326,9 @@ width: 310px;
 }
 .rightpanelwidth
 {
-width: 648px;
- margin-top: 30px;
+	width: 100%;
+	padding:0;
+	margin-top: 30px;
 }
 .wrapborder
 {
@@ -1335,14 +1336,15 @@ border-top:1px solid;
 }
 .reviewstab
 {
- padding: 0 10px 0 0;
-    width: 560px !important;
+	padding: 0;
+    width: 100%;
 }
+
 .profile_tab_space
 {
 	padding : 5px 0 5px 16px;
 	display : inline-block;
-	width:648px;
+	width:100%;
 }
 ul.tabbs 
 {
@@ -2072,7 +2074,7 @@ padding-left: 18px;
 	display: inline-block;
     font-family: myriadpro-regular;
     padding: 5px 0 5px 17px;
-    width: 100%;
+    
 }
 .profile_about_company
 {
@@ -2446,43 +2448,32 @@ height:auto;
 
 .review-slider-right {
     /*display: block;*/
-    width:50%;
-    float:left;
+    width:49%;
+    float:right;
     
 }
 .review-slider {
     /*display: inline-block;*/
-    width:50%;
+    width:49%;
     float:left;
 }
 .review-slider ul{padding:0;padding-left:0px;}
 .review-slider-right ul{padding:0;float:right;padding-left:0px;}
 .review-slider li,.review-slider-right li {
     border: 1px solid #dcdcdc;
-    border-radius: 15px;
+    border-radius: 7px;
     list-style:none;
-    margin-top: 22px !important;
+    margin-bottom: 22px !important;
 }
 
-/*.no-star{ background: none repeat scroll 0 0 #c8c8c8; }
 
-.no-star, .star-1, .star-2, .star-3, .star-4, .star-5 {
-width: 22px;border-radius: 3px;margin-right: 3px;
-}
-.count-1, .count-2, .count-3, .count-4, .count-5{display:inline;}
-.count-1 .star-1 {background: none repeat scroll 0 0 #e22027;}
-.count-2 .star-1, .count-2 .star-2 {background: none repeat scroll 0 0 #f47324;}
-.count-3 .star-1, .count-3 .star-2, .count-3 .star-3 {background: none repeat scroll 0 0 #f8cc18;}
-.count-4 .star-1, .count-4 .star-2, .count-4 .star-3, .count-4 .star-4 {background: none repeat scroll 0 0 #73b143;}
-.count-5 .star-1, .count-5 .star-2, .count-5 .star-3, .count-5 .star-4, .count-5 .star-5{background: none repeat scroll 0 0 #007f4e;} 
-*/
 /* Social Icons */
 .addthis_native_toolbox
 {
  margin:10px 0;
 }
 .addthis_native_toolbox .addthis_button_google_plusone { width:60px !important;}
-
+.addthis_native_toolbox .addthis_button_pinterest_pinit {width:40px !important;}
 /* Autosearch list */
 #display ul {
     list-style: outside none none;
@@ -2514,3 +2505,14 @@ margin-right:0px;
     margin-right: 4px;
     width: 23px;
 }
+.hm_rvw_wrp .review_blocks{width:50%;}
+.hm_rvw_wrp .home_right {padding: 0 3px 0 13px;}
+.hm_rvw_wrp .user-img {width:65px;margin-right:10px;display: inline-block;float:left;}
+.hm_rvw_wrp .reptitle { display: inline-block; width: 82%; vertical-align: top;float:right;margin-bottom: 5px;}
+.hm_rvw_wrp .home_mar_line { float: right;vertical-align: top; width: 82%;margin-bottom: 5px !important;}
+.hm_rvw_wrp .review-head { float: right;text-align: left;width: 82%;}
+.hm_rvw_wrp .reviewspace_new{float:left;}
+.hm_rvw_wrp .user-name {clear: both;float: left; margin-bottom: 5px;}
+.hm_rvw_wrp .view-all {margin-right:0;width:100%;float:right;}
+
+.review-slider li, .review-slider-right li  {background:#E0E0E0;box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.5);}

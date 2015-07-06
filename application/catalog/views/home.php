@@ -38,10 +38,10 @@
 		 </div>
 		 <div id="loading"></div>
 			<?php echo form_close();?>
-			<form method="GET" action="searchresult" id="search_form">
+				<form method="GET" action="searchresult" id="search_form">
 					<input type="text" class="headersearchbar" name="query" id="suggest"
 						autocomplete="off" value="<?php isset($_GET['query'])?htmlentities($_GET['query']):''?>">
-						 <input type="submit" id="send" name="send" value="Submit">
+					<input type="submit" id="send" name="send" value="Submit">
 				</form>
 			</div>
 		</div>		
@@ -50,10 +50,6 @@
 			
 	</div>
  </div>
-
-
-
-
 
 
   
@@ -72,8 +68,8 @@
             $companyname = $this->users->get_company_bysingleid($complaints[$i]['companyid']); 
             $avgstar = $this->common->get_avg_ratings_bycmid($complaints[$i]['companyid']);
             $avgstar = round($avgstar);
-            $img_src = 'images/default_user.png';
-            if($user['id']==$complaints[$i]['reviewby'] && $user['avatarthum']!=""){
+            //$img_src = 'images/default_user.png';
+            if($user['id']==$complaints[$i]['reviewby']){
                 $img_src = 'uploads/user/thumb/'.$user['avatarthum'];
             }
             if(!empty($companyname['companyseokeyword'])){
@@ -103,11 +99,11 @@
             $content =             
             '<li>
             <div class="review_blocks  feed-left">
-           <div class="review_left">
-               <img style="width:50px;height:50px" src="'.$img_src.'" alt="User image" title="User image">                                              
-           </div>       
-            <div class="review_right">                         
+         
+            <div class="home_right">                         
+                 
                <div class="rat_title">
+					<div class="user-img"> <img style="width:65px;height:65px" src="'.$img_src.'" alt="User image" title="User image"> </div>
                     <div class="reptitle">
                         <h2 style="padding: 0px; line-height: unset;"><a title="view Review Detail" class="reviewname home_mar_title" href="'.$siteurl.'">'.$review_detail.'</a></h2>
                         <span class="datehome">'.$review_date.'</span>
@@ -117,12 +113,13 @@
                         '.$star.'
                         <div class="clear"></div>
                     </div>                      
-                    <div><a class="home_cap">'.$review_title.'</a></div>
-                    <div><a title="view profile" class="home_cap1" href="'.$review_site_url.'">'.ucfirst($user['username']).'</a></div>                     
+                    <div class="review-head"><a class="home_cap">'.$review_title.'</a></div>
+                    <div class="user-name"><a title="view profile" class="home_cap1" href="'.$review_site_url.'">'.ucfirst($user['username']).'</a></div>                     
                     <div class="reviewspace_new" style="margin-top: 0px; margin-bottom: 0px;">
                         <a title="view Review Detail" href="">
-                        '.$complaints_content.'</a><div class="view-all"><a title="view Review Detail" href="'.site_url('review/browse/'.$complaints[$i]['seokeyword']).'"> <span></span></a><a href="'.site_url('review/browse/'.$complaints[$i]['seokeyword']).'">Read More</a></div>                                                 
+                        '.$complaints_content.'</a>                                                 
                     </div>
+                    <div class="view-all"><a title="view Review Detail" href="'.site_url('review/browse/'.$complaints[$i]['seokeyword']).'"> <span></span></a><a href="'.site_url('review/browse/'.$complaints[$i]['seokeyword']).'">Read More</a></div>
                 </div>             
                 </div>
             </div>            
