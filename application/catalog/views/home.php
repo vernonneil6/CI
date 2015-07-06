@@ -28,19 +28,26 @@
 		</ul>
 		<?php if($this->uri->segment(1)!='businessdirectory' && $this->uri->segment(1)!='solution' && $this->uri->segment(1)!='login' && $this->uri->segment(2)!='register') { ?> 
 		<div class="container">
-			<div class='headersearch'>
+			<div class='headersearch' >
 			<?php echo form_open('businessdirectory/search',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
 			<?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
-				<div class="qwe">
+				<div class="qwe" style="display:none">
 				<input type='text' autocomplete="off"  class='headersearchbar' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
 				<button type="submit" class="headersearchbtn fa fa-search" value="" name="btnsearch"></button>
 				 <div id="display"></div>
 		 </div>
 		 <div id="loading"></div>
-			<?php echo form_close();?> 
+			<?php echo form_close();?>
+			<form method="GET" action="searchresult" id="search_form">
+					<input type="text" class="headersearchbar" name="query" id="suggest"
+						autocomplete="off" value="<?php isset($_GET['query'])?htmlentities($_GET['query']):''?>">
+						 <input type="submit" id="send" name="send" value="Submit">
+				</form>
 			</div>
 		</div>		
    <?php }  ?>	
+   
+			
 	</div>
  </div>
 
@@ -69,20 +76,22 @@
             if($user['id']==$complaints[$i]['reviewby'] && $user['avatarthum']!=""){
                 $img_src = 'uploads/user/thumb/'.$user['avatarthum'];
             }
-            $siteurl = site_url('company/'.$companyname['companyseokeyword'].'/reviews/coupons/complaints');
+            if(!empty($companyname['companyseokeyword'])){
+				$siteurl = site_url('company/'.$companyname['companyseokeyword'].'/reviews/coupons/complaints');
+			}
             $review_detail = ucfirst(stripslashes($complaints[$i]['company'])); 
             $review_date = date('m/d/Y',strtotime($complaints[$i]['reviewdate'])); 
-            $star = '<div class ="count-'.$complaints[$i]['rate'].'">';
-            
-            for($r=0;$r<($complaints[$i]['rate']);$r++){ 
-				//$s =$r+1;
-                $star = $star.'<i class="vry_rat_icn"></i>';
-            }
-            $star= $star.'</div>';
-            
-            for($p=0;$p<(5-($complaints[$i]['rate']));$p++){
-                $star = $star.'<img src="images/no_star.png" alt="no_star" title="no_star" class="no-star" />';                        
-            }
+			$star = '<div class ="count-'.$complaints[$i]['rate'].'">';
+
+			for($r=0;$r<($complaints[$i]['rate']);$r++){ 
+							   //$s =$r+1;
+			   $star = $star.'<i class="vry_rat_icn"></i>';
+			}
+			$star= $star.'</div>';
+
+			for($p=0;$p<(5-($complaints[$i]['rate']));$p++){
+			   $star = $star.'<img src="images/no_star.png" alt="no_star" title="no_star" class="no-star" />';                        
+			}
             $review_title = ucfirst(substr(stripslashes( $complaints[$i]['reviewtitle']),0,50)."...");
            
             $review_site_url = 'complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby'];
