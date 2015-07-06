@@ -272,6 +272,7 @@ $('#display').hide();
 
 </style>
 <script>
+	$(window).load(function() {
 /*side banner script*/
  $('#leftclosead').click( function(){ 
       $(this).parents('.ad_left').hide(); 
@@ -279,7 +280,7 @@ $('#display').hide();
  $('#rightclosead').click( function(){ 
      $(this).parents('.ad_right').hide(); 
  });
-
+});
 });
 
 </script>
