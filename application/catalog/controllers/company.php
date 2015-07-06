@@ -158,7 +158,10 @@ class Company extends CI_Controller {
 			$company = $this->complaints->get_company_byseokeyword($this->uri->segment(2)); 
 			if(count($company)>0)
 			{
-				$this->data['title'] = ucfirst($company[0]['company']).' Reviews : '.$this->data['site_name']; 
+			
+				$this->data['title'] = ucfirst($company[0]['company']).' Reviews : '.$this->data['site_name'];
+				$this->data['keywords']='Reviews,Complaints,Press Release,Coupons,Photos,Videos';
+				$this->data['description']=implode(' ', array_slice(explode(' ', $company[0]['aboutus']), 0, 9));
 			}
 			else
 			{
