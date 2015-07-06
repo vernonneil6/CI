@@ -15,6 +15,11 @@
 <meta name="keywords" content="<?php echo $keywords;?>">
 <meta name="description" content="<?php echo $description;?>">
 <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+
+
+<link href="SphinxAutocompleteExample/css/bootstrap.css" rel="stylesheet">
+
+
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/rwd_style.css" type="text/css">
 <link rel="stylesheet" href="css/new.css" type="text/css">
@@ -73,11 +78,11 @@
 <?php } ?>
 </head><body>
 <?php 
-/*print_r($geolocation);
-echo 'Region='.$geolocation['geoplugin_region'];
-$currentcity=$geolocation['geoplugin_city'];
-echo 'Lat='.$geolocation['geoplugin_latitude'];
-echo 'Long='.$geolocation['geoplugin_longitude'];*/
+//print_r($geolocation);
+//echo 'Region='.$geolocation['geoplugin_region'];
+ // $currentcity=$geolocation['geoplugin_city'];
+//echo 'Lat='.$geolocation['geoplugin_latitude'];
+//echo 'Long='.$geolocation['geoplugin_longitude'];
 ?>
 <header class="noscroll-head">
   <div class="container">
@@ -257,17 +262,15 @@ $('#display').hide();
 		
 }
 });
- /*side banner script*/
- $('#leftclosead').click( function(){ 
-      $(this).parents('.ad_left').hide(); 
- });
- $('#rightclosead').click( function(){ 
-     $(this).parents('.ad_right').hide(); 
- });
-
 });
 </script>
 
+<style>
+	.bold-text {
+    font-weight: bold;
+}
+
+</style>
 <div class="side_banners">
 	
 <?php if(isset($leftads) && count($leftads)){ ?> 
@@ -283,6 +286,5 @@ $('#display').hide();
 <?php } ?>
 
 </div>
-
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55799ef149e6e251" async="async"></script>
