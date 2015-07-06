@@ -2423,6 +2423,7 @@ position:fixed;
  height: 500px;
  top: 20%;
  z-index:99999;
+ width:10%;
 }
 #leftclosead,#rightclosead{ cursor:pointer;}
 #leftclosead img{ right:0px;position:absolute;}
