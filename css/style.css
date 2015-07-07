@@ -2423,6 +2423,7 @@ position:fixed;
  height: 500px;
  top: 20%;
  z-index:99999;
+ width:10%;
 }
 #leftclosead,#rightclosead{ cursor:pointer;}
 #leftclosead img{ right:0px;position:absolute;}
@@ -2463,7 +2464,7 @@ height:auto;
     border: 1px solid #dcdcdc;
     border-radius: 7px;
     list-style:none;
-    margin-bottom: 22px !important;
+    margin-top: 22px !important;
 }
 
 
@@ -2511,8 +2512,10 @@ margin-right:0px;
 .hm_rvw_wrp .reptitle { display: inline-block; width: 82%; vertical-align: top;float:right;margin-bottom: 5px;}
 .hm_rvw_wrp .home_mar_line { float: right;vertical-align: top; width: 82%;margin-bottom: 5px !important;}
 .hm_rvw_wrp .review-head { float: right;text-align: left;width: 82%;}
-.hm_rvw_wrp .reviewspace_new{float:left;}
+.hm_rvw_wrp .reviewspace_new{float:left;clear:both;}
 .hm_rvw_wrp .user-name {clear: both;float: left; margin-bottom: 5px;}
 .hm_rvw_wrp .view-all {margin-right:0;width:100%;float:right;}
 
 .review-slider li, .review-slider-right li  {background:#E0E0E0;box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.5);}
+
+.container .addvert-bottom{padding-top:0;}

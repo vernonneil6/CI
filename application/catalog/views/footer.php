@@ -1,3 +1,5 @@
+
+
 <?php $fb = $this->common->get_semsetting_value(1);?>
 <?php $tw = $this->common->get_semsetting_value(2);?>
 <?php $pi = $this->common->get_semsetting_value(3);?>
@@ -85,12 +87,13 @@ if($CI->agent->is_referral()){
 /* Ends Here */
 ?>
 <div class="container">
-<div align="center" class="addvert" id="bottomad">  
-	<?php if(isset($bottomads) && count($bottomads)){ ?>       
-	<div class="ad_bottom"><a href="<?php echo $bottomads[0]['url'];?>" title="Adverstiment"  rel="nofollow"><img src="<?php if( $bottomads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($bottomads[0]['image']); } ?>" alt="Adverstiment" width="940" height="180" class="adimg"/></a> </div>
-	<?php } ?>
+	<div align="center" class="addvert-bottom">
+		<?php if(isset($bottomads) && count($bottomads)){ ?>       
+		<div class="ad_bottom"><a href="<?php echo $bottomads[0]['url'];?>" title="Adverstiment"  rel="nofollow"><img src="<?php if( $bottomads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($bottomads[0]['image']); } ?>" alt="Adverstiment" width="940" height="180" class="adimg"/></a> </div>
+		<?php } ?>
+	</div>
 </div>
-</div>
+
 <footer>
   <div class="ft_cat_wrp">
     <div class="container">
@@ -258,5 +261,51 @@ if($CI->agent->is_referral()){
 </div>
 </footer>
 <script type="text/javascript" src="js/use.js"></script>
+<script> 
+function __highlight(s, t) {
+    var matcher = new RegExp("(" + $.ui.autocomplete.escapeRegex(t) + ")", "ig");
+    return s.replace(matcher, "$1");
+}
+/*
+$(document).ready(
+	function() {
+	    $("#suggest").autocomplete(
+		    {
+			source : function(request, response) {
+			    $.ajax({
+				url : '/SphinxAutocompleteExample/ajax_suggest.php',
+				dataType : 'json',
+				data : {
+				    term : request.term
+				},
+
+				success : function(data) {
+					//alert(data);
+				    response($.map(data, function(item) {
+					return {
+					    label : __highlight(item.label,
+						    request.term),
+					    value : item.label
+					};
+				    }));
+				}
+			    });
+			},
+			minLength : 3,
+			select : function(event, ui) {
+
+			    $('#searchbutton').submit();
+			}
+		    }).keydown(function(e) {
+		if (e.keyCode === 13) {
+		    $("#search_form").trigger('submit');
+		}
+	    }).data("autocomplete")._renderItem = function(ul, item) {
+
+		return $("<li></li>").data("item.autocomplete", item).append(
+			$("<a></a>").html(item.label)).appendTo(ul);
+	    };
+	});*/
+</script>
 </body>
 </html>

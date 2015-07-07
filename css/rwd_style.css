@@ -114,7 +114,7 @@ td{display:block;}
 .headerbusiness, .headerlogin, .headersignup{float:none;display: inline-block;}
 /*.review_right div{width:auto;}*/
 .hm_rght_panel{margin-left:0;}
-.main_contentarea .container{padding:0;}
+.main_contentarea .container{padding:0 !important;}
 .main_contentarea .innr_wrap{width:auto;padding:0;}
 .dir_rew_wrap {margin-top:10px;}
 .login_box{width:auto;}
@@ -278,6 +278,12 @@ span.toggle:before{
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px !important;width:300px;}
 }
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
+.hm_rvw_wrp{width:99% !important;}
+.rat_title h2 a {overflow: hidden;text-overflow: ellipsis;white-space: nowrap; width: 100px;}
+.hm_rvw_wrp .user-name {margin-bottom: 3px; overflow: hidden;text-overflow: ellipsis; white-space: nowrap; width: 60px;}
+.review-head a { display: inline-block; width: 170px !important;overflow: hidden;text-overflow: ellipsis; white-space: nowrap;}
+.review-slider li, .review-slider-right li{margin-top:20px !important;}
+
 .review-slider ul{padding:0 0 0 0px;}
 .hm_rvw_wrp .home_right { padding: 10px 3px 0 13px;}
 .hm_rvw_wrp .reptitle,.hm_rvw_wrp .home_mar_line,.hm_rvw_wrp .home_mar_line, .hm_rvw_wrp .review-head{width:70%;}
@@ -340,10 +346,10 @@ span.toggle:before{
 .bannertext{font-size:45px;height:30px;}
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 600px) {
 .side_banners{display:none;}
 }
-@media only screen and (min-width: 1201px) {
+@media only screen and (min-width: 601px) {
 .side_banners{display:block;}
 }
 

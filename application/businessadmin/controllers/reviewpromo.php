@@ -498,7 +498,7 @@ class Reviewpromo extends CI_Controller {
 	
 	public function fieldcheck()
 	{
-		if($this->session->userdata['youg_admin'] && $this->input->is_ajax_request() && ( $this->input->post('promocode') ) )
+		if($this->session->userdata['youg_admin'] && $this->input->is_ajax_request() && ( $this->input->post('code') ) )
 	  {
 			if( $this->input->post('id') )
 			{
@@ -508,10 +508,10 @@ class Reviewpromo extends CI_Controller {
 			{
 				$id = 0;
 			}
-			if( $this->input->post('promocode') )
+			if( $this->input->post('code') )
 			{
-				$field = 'promocode';
-				$fieldvalue = addslashes($this->input->post('promocode'));
+				$field = 'code';
+				$fieldvalue = addslashes($this->input->post('code'));
 			}
 			
 			if($field)

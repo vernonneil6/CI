@@ -15,6 +15,11 @@
 <meta name="keywords" content="<?php echo $keywords;?>">
 <meta name="description" content="<?php echo $description;?>">
 <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+
+
+<link href="SphinxAutocompleteExample/css/bootstrap.css" rel="stylesheet">
+
+
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/rwd_style.css" type="text/css">
 <link rel="stylesheet" href="css/new.css" type="text/css">
@@ -73,11 +78,11 @@
 <?php } ?>
 </head><body>
 <?php 
-/*print_r($geolocation);
-echo 'Region='.$geolocation['geoplugin_region'];
-$currentcity=$geolocation['geoplugin_city'];
-echo 'Lat='.$geolocation['geoplugin_latitude'];
-echo 'Long='.$geolocation['geoplugin_longitude'];*/
+//print_r($geolocation);
+//echo 'Region='.$geolocation['geoplugin_region'];
+ // $currentcity=$geolocation['geoplugin_city'];
+//echo 'Lat='.$geolocation['geoplugin_latitude'];
+//echo 'Long='.$geolocation['geoplugin_longitude'];
 ?>
 <header class="noscroll-head">
   <div class="container">
@@ -257,32 +262,43 @@ $('#display').hide();
 		
 }
 });
- /*side banner script*/
- $('#leftclosead').click( function(){ 
-      $(this).parents('.ad_left').hide(); 
- });
- $('#rightclosead').click( function(){ 
-     $(this).parents('.ad_right').hide(); 
- });
-
 });
 </script>
 
+<style>
+	.bold-text {
+    font-weight: bold;
+}
+
+</style>
+<script>
+	/*side banner script*/
+$(window).load(function() {
+	
+	 $('#leftclosead').click( function(){ 
+		  $(this).parents('.ad_left').hide(); 
+	 });
+	 $('#rightclosead').click( function(){ 
+		 $(this).parents('.ad_right').hide(); 
+	 });
+
+});
+
+</script>
 <div class="side_banners">
 	
 <?php if(isset($leftads) && count($leftads)){ ?> 
 	<div class="ad_left side_ads">
-	<div id="leftclosead"><img src="<?php echo $this->common->get_setting_value('2');?>/images/close.png"></div>
-	<a target="_blank" href="<?php echo $leftads[0]['url'];?>" title="Left Ads"  rel="Left Ads"><img src="<?php if( $leftads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($leftads[0]['image']); } ?>" alt="Left Adverstiment" width="120" /></a> </div>
+	<div id="leftclosead"><img src="<?php echo $this->common->get_setting_value('2');?>/images/close-icon.png"></div>
+	<a target="_blank" href="<?php echo $leftads[0]['url'];?>" title="Left Ads"  rel="Left Ads"><img src="<?php if( $leftads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($leftads[0]['image']); } ?>" alt="Left Adverstiment" width="100%" /></a> </div>
 <?php } ?>
 
 <?php if(isset($rightads) && count($rightads)){ ?>       
 	<div class="ad_right side_ads">
-	<div id="rightclosead"><img src="<?php echo $this->common->get_setting_value('2');?>/images/close.png"></div>
-	<a target="_blank" href="<?php echo $rightads[0]['url'];?>" title="Right Ads"  rel="Right Ads"><img src="<?php if( $rightads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($rightads[0]['image']); } ?>" alt="Adverstiment" width="120" /></a> </div>
+	<div id="rightclosead"><img src="<?php echo $this->common->get_setting_value('2');?>/images/close-icon.png"></div>
+	<a target="_blank" href="<?php echo $rightads[0]['url'];?>" title="Right Ads"  rel="Right Ads"><img src="<?php if( $rightads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($rightads[0]['image']); } ?>" alt="Adverstiment" width="100%" /></a> </div>
 <?php } ?>
 
 </div>
-
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55799ef149e6e251" async="async"></script>
