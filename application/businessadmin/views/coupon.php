@@ -279,8 +279,8 @@ else { ?>
             <?php echo form_input( array( 'name'=>'couponcode','id'=>'couponcode','class'=>'input','type'=>'text','value'=>stripslashes($coupon[0]['promocode']),'onchange'=>'chkcode(this.value)' ) ); ?>
             <?php } ?>
           </div>
-          <div id="couponcodeerror" class="error" align="right">Couponcode is required.</div>
-          <div id="couponcodeverror" class="error" align="right">Couponcode is already exists.</div>
+          <div id="couponcodeerror" class="error" align="right">Coupon code required.</div>
+          <div id="couponcodeverror" class="error" align="right">Coupon code already exists.</div>
 </div>
     </div>
     </div>
@@ -341,7 +341,7 @@ else { ?>
             <?php echo form_input( array( 'name'=>'url','id'=>'url','class'=>'input','type'=>'text','value'=>stripslashes($coupon[0]['url']) )); ?>
             <?php } ?>
           </div>
-          <div id="urlerror" class="error" align="right">enter valid URL example(http://xyz.com)</div>
+          <div id="urlerror" class="error" align="right">Enter valid URL example(http://xyz.com)</div>
 
     </div>
      <div id="termscondn" class="review_txt_box">
