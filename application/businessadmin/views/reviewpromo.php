@@ -264,8 +264,8 @@ float: left;
             <?php echo form_input( array( 'name'=>'reviewpromocode','id'=>'reviewpromocode','class'=>'input','type'=>'text','value'=>stripslashes($reviewpromo[0]['code']),'onchange'=>'chkcode(this.value)' )); ?>
             <?php } ?>
           </div>
-          <div id="reviewpromocodeerror" class="error" align="right">Reviewpromocode is required.</div>
-          <div id="reviewpromocodeverror" class="error" align="right">Reviewpromocode is already exists.</div>
+          <div id="reviewpromocodeerror" class="error" align="right">Review promo code required.</div>
+          <div id="reviewpromocodeverror" class="error" align="right">Review promo code already exists.</div>
 </div>
     </div>
     </div>
@@ -283,7 +283,7 @@ float: left;
             <?php echo form_input( array( 'name'=>'datecreated','id'=>'datecreated','class'=>'input datetimepicker','type'=>'text','value'=>stripslashes($reviewpromo[0]['datecreated'])) ); ?>
             <?php } ?>
           </div>
-          <div id="datecreatederror" class="error" align="right">datecreated is required.</div>
+          <div id="datecreatederror" class="error" align="right">Date created is required.</div>
          
 </div>
     </div>

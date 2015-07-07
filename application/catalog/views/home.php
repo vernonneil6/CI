@@ -32,16 +32,16 @@
 			<?php echo form_open('businessdirectory/search',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
 			<?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
 				<div class="qwe" style="display:none">
-				<input type='text' autocomplete="off"  class='headersearchbar' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
-				<button type="submit" class="headersearchbtn fa fa-search" value="" name="btnsearch"></button>
-				 <div id="display"></div>
-		 </div>
-		 <div id="loading"></div>
+					<input type='text' autocomplete="off"  class='headersearchbar' placeholder="Search for a Business..." name="searchcomp"  id="search" value="<?php echo $serkeyword;?>" required maxlength="30">
+					<button type="submit" class="headersearchbtn fa fa-search" value="" name="btnsearch"></button>
+					 <div id="display"></div>
+				</div>
+				<div id="loading"></div>
 			<?php echo form_close();?>
-				<form method="GET" action="searchresult" id="search_form">
+				<form method="GET" action="searchresult" id="search_form" class="formBox">
 					<input type="text" class="headersearchbar" name="query" id="suggest"
 						autocomplete="off" value="<?php isset($_GET['query'])?htmlentities($_GET['query']):''?>">
-					<input type="submit" id="send" name="send" value="Submit">
+					<button type="submit" id="send" class="headersearchbtn fa fa-search" name="send" value="Submit">
 				</form>
 			</div>
 		</div>		
