@@ -371,7 +371,7 @@ class Reviewpromos extends CI_Model
  	{
 		switch($field)
 		{
-			case 'promocode' 				: $varfield = 'promocode';break;
+			case 'code' 				: $varfield = 'code';break;
 		}
 		if($id != 0)
 		{

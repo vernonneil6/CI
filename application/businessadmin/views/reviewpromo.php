@@ -69,16 +69,16 @@ else { ?>
 	function trim(stringToTrim) {
 		return stringToTrim.replace(/^\s+|\s+$/g,"");
 	}
-	function chkcode(promocode)
+	function chkcode(code)
 	{
-		if( trim(promocode) != '' )
+		if( trim(code) != '' )
 		{
 			$("#reviewpromocodeerror").hide();
 			//Return from conroller in php code : echo json_encode(array("result"=>"exist"));
 			$.ajax({
 				type 				: "POST",
 				url 				: "<?php echo site_url('reviewpromo/fieldcheck'); ?>",
-				data				:	{ <?php if($this->uri->segment(2) == 'edit' ) echo "'id' : ".$reviewpromo[0]['id'].", "; ?>'promocode' : promocode },
+				data				:	{ <?php if($this->uri->segment(2) == 'edit' ) echo "'id' : ".$reviewpromo[0]['id'].", "; ?>'code' :code },
 				dataType 			: "json",
 				cache				: false,
 				success				: function(data){
@@ -142,7 +142,7 @@ else { ?>
 				$("#titleerror").hide();
 			}
 			
-			/*if( trim($("#reviewpromocode").val()) == "" )
+			if( trim($("#reviewpromocode").val()) == "" )
 			{
 				$("#error").attr('style','display:block;');
 				$("#reviewpromocodeerror").show();
@@ -152,7 +152,7 @@ else { ?>
 			else
 			{
 				$("#reviewpromocodeerror").hide();
-			}*/
+			}
 			
 			if( trim($("#datecreated").val()) == "" )
 			{
@@ -254,18 +254,18 @@ float: left;
     <div class="clearfix">
     	  <div class="col1">
           <div class="lab">
-            <label for="reviewpromocode">Promotion Code <!-- <span class="errorsign">*</span> --></label>
+            <label for="reviewpromocode">Promotion Code <span class="errorsign">*</span></label>
           </div>
           <div class="con">
             <?php if($this->uri->segment(2) == 'add') { ?>
-            <?php echo form_input( array( 'name'=>'reviewpromocode','id'=>'reviewpromocode','class'=>'input','type'=>'text') ); ?>
+            <?php echo form_input( array( 'name'=>'reviewpromocode','id'=>'reviewpromocode','class'=>'input','type'=>'text','onchange'=>'chkcode(this.value)') ); ?>
             <?php } ?>
             <?php if($this->uri->segment(2) == 'edit') { ?>
-            <?php echo form_input( array( 'name'=>'reviewpromocode','id'=>'reviewpromocode','class'=>'input','type'=>'text','value'=>stripslashes($reviewpromo[0]['code']))); ?>
+            <?php echo form_input( array( 'name'=>'reviewpromocode','id'=>'reviewpromocode','class'=>'input','type'=>'text','value'=>stripslashes($reviewpromo[0]['code']),'onchange'=>'chkcode(this.value)' )); ?>
             <?php } ?>
           </div>
-          <div id="reviewpromocodeerror" class="error" align="right">reviewpromocode is required.</div>
-          <div id="reviewpromocodeverror" class="error" align="right">reviewpromocode is already exists.</div>
+          <div id="reviewpromocodeerror" class="error" align="right">Reviewpromocode is required.</div>
+          <div id="reviewpromocodeverror" class="error" align="right">Reviewpromocode is already exists.</div>
 </div>
     </div>
     </div>
