@@ -268,6 +268,7 @@ class Pressrelease extends CI_Controller {
 	{
 		if( $this->session->userdata['youg_admin'] )
 	  	{
+			
 			if( $this->input->post('btnsubmit') || $this->input->post('addpress')=='addpress')
 			{
 					$title = addslashes($this->input->post('title'));
@@ -276,18 +277,37 @@ class Pressrelease extends CI_Controller {
 					$metakeywords = addslashes($this->input->post('metakeywords'));
 					$metadescription = addslashes($this->input->post('metadescription'));
 					$presscontent = $this->input->post('presscontent');
+						$rawcontent = addslashes($this->input->post('presscontent'));
+					$rawcontent = strtolower($rawcontent);
+					$rawcontent = preg_replace('/<[^<|>]+?>/', '', htmlspecialchars_decode($rawcontent));
+					//make alphaunermic
+					$rawcontent = preg_replace("/&#?[a-z0-9]+;/i", "", $rawcontent);
+					//Clean multiple dashes or whitespaces
+					$rawcontent = preg_replace("/[\s-]+/", "", $rawcontent);
+					//Convert whitespaces to dash
+					$rawcontent = preg_replace("/[\s]/", "", $rawcontent);
+					$rawcontent = preg_replace("/[';:,.()!]/", "", $rawcontent);
+					$rawcontent = preg_replace('/["]/', "", $rawcontent);
+					$rawcontent =trim(html_entity_decode($rawcontent));
+					
 					$companyid = $this->session->userdata['youg_admin']['id'];
 					$siteid = $this->input->post('siteid');
-					
+					$inputs=$this->input->post();
+			
 					if( $presscontent!='')
 						{
-							$check_status = $this->pressreleases->check_pressrelease($companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$siteid);
+							/*$check_status = $this->pressreleases->check_pressrelease($companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$siteid);
 							if($check_status == 'fail'){
 								$this->session->set_flashdata('error', 'The same pressrelease content cannot be posted to more than one site!');
 								redirect('pressrelease/add', 'refresh');
-							}
+							}*/
+							$field='rawcontent';
+							$id='0';
+							$result = $this->pressreleases->presschkfield($id,$field,$rawcontent);	
+						if($result!='old')				
+						{
 							//Inserting Record
-							if( $this->pressreleases->insert($companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$siteid))
+							if( $this->pressreleases->insert($companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$rawcontent,$siteid))
 									{
 										$intid = $this->db->insert_id();
 										$title = strtolower($title);
@@ -326,6 +346,12 @@ class Pressrelease extends CI_Controller {
 										$this->session->set_flashdata('error', 'There is error in inserting Press Release. Try later!');
 										redirect('pressrelease/add', 'refresh');
 									}
+									
+								}else
+								{
+									$this->session->set_flashdata('error', 'The same pressrelease content cannot be posted to more than one site!');
+									redirect('pressrelease/add', 'refresh');
+								}
 								}
 								else
 								{
@@ -348,6 +374,20 @@ class Pressrelease extends CI_Controller {
 				$metakeywords = addslashes($this->input->post('metakeywords'));
 				$metadescription = addslashes($this->input->post('metadescription'));
 				$presscontent = addslashes($this->input->post('presscontent'));
+					$rawcontent = addslashes($this->input->post('presscontent'));
+					$rawcontent = strtolower($rawcontent);
+					$rawcontent = preg_replace('/<[^<|>]+?>/', '', htmlspecialchars_decode($rawcontent));
+					//make alphaunermic
+					$rawcontent = preg_replace("/&#?[a-z0-9]+;/i", "", $rawcontent);
+					//Clean multiple dashes or whitespaces
+					$rawcontent = preg_replace("/[\s-]+/", "", $rawcontent);
+					//Convert whitespaces to dash
+					$rawcontent = preg_replace("/[\s]/", "", $rawcontent);
+					$rawcontent = preg_replace("/[';:,.()!]/", "", $rawcontent);
+					$rawcontent = preg_replace('/["]/', "", $rawcontent);
+					$rawcontent =trim(html_entity_decode($rawcontent));
+					
+					
 				$siteid = addslashes($this->input->post('siteid'));
 				$companyid = $this->session->userdata['youg_admin']['id'];
 				
@@ -379,9 +419,13 @@ class Pressrelease extends CI_Controller {
 										{
 											$seokeyword = $title.'-'.$id;	
 										}
-										
+									
+			$field='rawcontent';
+			$result = $this->pressreleases->presschkfield($id,$field,$rawcontent);	
+			if($result!='old')				
+			{				
 				//Updating Record 
-				if( $this->pressreleases->update($id,$companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$seokeyword,$siteid))
+				if( $this->pressreleases->update($id,$companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$rawcontent,$seokeyword,$siteid))
 				{
 					$this->session->set_flashdata('success', 'Press Release updated successfully.');
 					redirect('pressrelease', 'refresh');
@@ -392,6 +436,13 @@ class Pressrelease extends CI_Controller {
 					$this->session->set_flashdata('error', 'There is error in updating  pressrelease. Try later!');
 					redirect('pressrelease', 'refresh');
 				}
+			}
+			else
+			{
+					$this->session->set_flashdata('error', 'The same pressrelease content cannot be posted to more than one site!');
+					redirect('pressrelease/edit/'.$id, 'refresh');
+				
+			}
 			}
 				else
 						{
@@ -508,10 +559,60 @@ class Pressrelease extends CI_Controller {
 		}
 	
 	}
+	
+	public function pressfieldcheck()
+	{
+		
+		//$inputs=$this->input->post();
+		//print_r($inputs);
+		//console.log($inputs);
+		//die();
+		if($this->session->userdata['youg_admin'] && $this->input->is_ajax_request() &&  $this->input->post('rawcontent') )
+		{
+			
+			if( $this->input->post('id') )
+			{
+				$id = $this->input->post('id');
+			}
+			else
+			{
+				$id = 0;
+			}
+			
+			if( $this->input->post('rawcontent') )
+			{
+				$field = 'rawcontent';
+				$fieldvalue = $this->input->post('rawcontent');
+					
+			}
+			
+			if($field)
+			{
+				//Loading Model File
+	  			$this->load->model('pressreleases');
+	  			die();
+				//Addingg Result to view parameter
+				$result = $this->pressreleases->presschkfield($id,$field,$fieldvalue);
+		
+				echo json_encode( array('result' => $result ) );
+			}
+		}
+		else
+		{
+			//redirect('pressrelease', 'refresh');
+		}
+	}
+	
+	
 	public function fieldcheck()
 	{
-		if($this->session->userdata['youg_admin'] && $this->input->is_ajax_request() && ( $this->input->post('title') || $this->input->post('subtitle')  ) )
-	  {
+		
+		if($this->session->userdata['youg_admin'] && $this->input->is_ajax_request() && ( $this->input->post('title') || $this->input->post('presscontent') || $this->input->post('subtitle')  ) )
+		{
+			$inputs=$this->input->post();
+		//print_r($inputs);
+		//console.log($inputs);
+		//die();
 			if( $this->input->post('id') )
 			{
 				$id = $this->input->post('id');
@@ -529,6 +630,12 @@ class Pressrelease extends CI_Controller {
 			{
 				$field = 'subtitle';
 				$fieldvalue = addslashes($this->input->post('subtitle'));
+			}
+			if( $this->input->post('presscontent') )
+			{
+				$field = 'rawcontent';
+				$fieldvalue = addslashes($this->input->post('presscontent'));
+					
 			}
 			
 			if($field)
