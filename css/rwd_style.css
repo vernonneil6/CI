@@ -242,6 +242,8 @@ span.toggle:before{
 
 
 @media only screen and (min-width: 440px) and (max-width: 549px)  {
+.rvw_fillwrp .rating_review { clear: both;display: block;width: 130px !important;}
+
 .review-slider ul{padding:0 0 0 0px;}
 .hm_rvw_wrp .home_right { padding: 10px 3px 0 13px;}
 .hm_rvw_wrp .reptitle,.hm_rvw_wrp .home_mar_line,.hm_rvw_wrp .home_mar_line, .hm_rvw_wrp .review-head{width:75%;}
