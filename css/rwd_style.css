@@ -10,9 +10,18 @@ td{display:block;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name{margin-bottom:5px;margin-top:10px;}
 .review-slider, .review-slider-right{float:none;width:100%;}
 .review-slider-right{display: none;}
+
+
 } 
 @media only screen and (max-width: 771px){
 .text-content{top:0.5em;font-size:1.5em;}
+
+.headerusername{
+	position: absolute;
+    right: 2em;
+    top: -38px;
+    z-index: 100000;
+}
 }
 @media only screen and (min-width: 771px) and (max-width: 1050px){
 
