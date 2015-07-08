@@ -144,7 +144,7 @@ td{display:block;}
 .usercomment {margin-left: 20px !important;}
 .pr_rwrp,.verified_wrp{float:none;display:inline-block;text-align:center;margin:0 auto;}
 .pr_detlwrp{width:82%;margin:0 auto; display: block;float:none;}
-.pr_testmnl_wrp,.addcmnt_wrp,.testmnl_clntwrp,.titl_pr_rel,.pr_rwrp{width:auto;}
+.pr_testmnl_wrp,.addcmnt_wrp,.testmnl_clntwrp,.titl_pr_rel,.pr_rwrp{width:100%;}
 .compny_name{width:100%;margin-bottom:3em;}
 .vry_btn{margin:0 auto;}
 .vry_logo{float:none;width:auto;}
