@@ -44,6 +44,10 @@ span.stars{
 {
 	display: inline-block;
 }
+.social_blck{
+	float:none;
+	display:inline-block;
+}
 
 }
 @media only screen and (min-width: 771px) and (max-width: 1050px){
@@ -307,7 +311,7 @@ span.toggle:before{
 .main_press_srchwrp{text-align:center;}
 .press_srchwrp,.pres_srch_wrp,.main_press_srchwrp{width:auto;}
 .press_srchwrp input.press_srch_txtbx[type="text"]{width:280px;}
-.p_realese_head{border-bottom:none;height:20px;}
+.p_realese_head{border-bottom:none;height:20px;margin-bottom: 3em;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px !important;width:300px;}
 }
 @media only screen and (min-width: 310px) and (max-width: 439px)  {

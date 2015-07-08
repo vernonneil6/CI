@@ -949,8 +949,8 @@ input[type="file"].filupload:before {
 input[type="text"].bdsrch_txtbx{width:430px; box-shadow:none; height:25px; font-family:"myriadpro-regular"; color:#999; font-size:14px; float:left; padding:0 5px; border:0 none; text-transform:uppercase; }
 .bdsrch_btn{width:28px; box-shadow:none; height:25px; background: url(../images/icons.png) -562px -64px; border:0 none; overflow:hidden; cursor:pointer; float:left; position:absolute; right:0; top:1px;}
 .bdsrch_wrp h2{ display:block; float:left; font-family:"myriadpro-regular"; font-weight:bold; font-size:25px; text-transform:uppercase;  line-height:26px; margin:4px 8px 0 0;}
-.orwrp{display:block; margin: 25px 0 40px;}
-.orinnrwrp{display:block;width:38px; height:274px; margin:0 auto 25px;  background: url(../images/or.png) center top no-repeat;}
+.orwrp{display:block; margin:0;}
+.orinnrwrp{display:block;width:38px; height:50px; margin:5px auto;  background: url(../images/or.png) center right no-repeat;}
 .bus_tag{text-align:center; font-size:36px; font-family:"myriadpro-regular"; font-weight:bold; color:#0080ff;line-height:25px; margin-top:9px; margin-bottom:0; border:0 none; padding:0; height:auto; display : inline-block;}
 
 /*============ Profile ===========================*/
