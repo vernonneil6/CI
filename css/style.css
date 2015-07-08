@@ -2467,6 +2467,12 @@ height:auto;
     margin-top: 22px !important;
 }
 
+.post_maincontent .mg_btm td {
+    padding-bottom: 5px;
+    padding-left: 0;
+    padding-right: 5px;
+    padding-top: 5px;
+}
 
 /* Social Icons */
 .addthis_native_toolbox
