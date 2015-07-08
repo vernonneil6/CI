@@ -39,6 +39,7 @@
  $('.data_table').delay(6000).fadeOut(600);
  $('#menu').slicknav();
  });
+ window.onorientationchange = function() { location.reload() };
 </script>
 
 <style>

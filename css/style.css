@@ -2525,3 +2525,5 @@ margin-right:0px;
 .review-slider li, .review-slider-right li  {background:#E0E0E0;box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.5);}
 
 .container .addvert-bottom{padding-top:0;}
+
+.count-1,.count-2,.count-3,.count-4{display: inline;}
