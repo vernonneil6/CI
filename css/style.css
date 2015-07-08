@@ -949,8 +949,8 @@ input[type="file"].filupload:before {
 input[type="text"].bdsrch_txtbx{width:430px; box-shadow:none; height:25px; font-family:"myriadpro-regular"; color:#999; font-size:14px; float:left; padding:0 5px; border:0 none; text-transform:uppercase; }
 .bdsrch_btn{width:28px; box-shadow:none; height:25px; background: url(../images/icons.png) -562px -64px; border:0 none; overflow:hidden; cursor:pointer; float:left; position:absolute; right:0; top:1px;}
 .bdsrch_wrp h2{ display:block; float:left; font-family:"myriadpro-regular"; font-weight:bold; font-size:25px; text-transform:uppercase;  line-height:26px; margin:4px 8px 0 0;}
-.orwrp{display:block; margin: 25px 0 40px;}
-.orinnrwrp{display:block;width:38px; height:274px; margin:0 auto 25px;  background: url(../images/or.png) center top no-repeat;}
+.orwrp{display:block; margin:0;}
+.orinnrwrp{display:block;width:38px; height:50px; margin:5px auto;  background: url(../images/or.png) center right no-repeat;}
 .bus_tag{text-align:center; font-size:36px; font-family:"myriadpro-regular"; font-weight:bold; color:#0080ff;line-height:25px; margin-top:9px; margin-bottom:0; border:0 none; padding:0; height:auto; display : inline-block;}
 
 /*============ Profile ===========================*/
@@ -1033,7 +1033,10 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .pressfact{color: #fff!important}
 .pressnotice{color: #fff!important;font-size: 15px;}
 .bannertext{
-	font-family:'Palatino-regular';font-size:18px;font-weight:normal;color: #2c6a99;letter-spacing: 3px;text-transform:uppercase;height: auto;letter-spacing: 3px;margin-top: 20px;
+	font-family:'Palatino-regular';font-size:50px;font-weight:normal;color: #2c6a99;letter-spacing: 3px;text-transform:uppercase;height: auto;letter-spacing: 3px;margin-top: 20px;
+	border:medium none;
+	margin-bottom: 0;
+	padding:0;
 }
 .bannertextregular{color:black;}
 .pagination{width:800px; margin:0 auto 30px auto; display:table; padding-top:10px; border-top:1px solid #666;}
@@ -1118,7 +1121,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .submt_btn{background:#2c6a99; border:1px solid #666; text-align:center; width:150px; height:150px; border-radius:100%; color:#fff; font-family:"myriadpro-regular"; font-weight:bold; font-size:36px; float:right; margin-top:100px; overflow:hidden; text-transform:uppercase; cursor:pointer;}
 
 /*============ Search Result ===========================*/
-.srch_rslt_wrp{ display:inline-block; width:100%;}
+.srch_rslt_wrp{ display:inline-block; border-top:1px solid #999999; width:100%;padding-top: 1em;}
 .serch_result h1{width:1050px;}
 .srch_result_blck{ display: inline-block; margin-top: 10px; width: 100%; border-bottom:1px solid #999;}
 .srch_rslt_left{width:510px; float:left; height:auto;}
@@ -1174,7 +1177,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .bannertextcoupon {
     color: #2c6a99;
     font-family: "Palatino-regular";
-    font-size: 18px;
+    font-size: 50px;
     font-weight: normal;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1462,10 +1465,6 @@ color:#2c6a99;
 	margin: 4px 47px 0 0!important;
 }
 
-.btxt
-{
-	font-size: 90px;
-}
 .searchlogos
 {
 	height : 110px;
@@ -1474,9 +1473,7 @@ color:#2c6a99;
 }
 .searchlogoss
 {
-	height : 90px;
-    width  : 90%;
-    margin : 0!important;
+	margin : 0!important;
 }
 .cpyynme
 {
