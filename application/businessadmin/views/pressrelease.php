@@ -90,6 +90,7 @@ echo $header; ?>
 		}
 	}
 </script>
+
 <script type="text/javascript">
 	function chksubtitle(subtitle)
 	{
@@ -132,6 +133,9 @@ echo $header; ?>
 	function trim(stringToTrim) {
 		return stringToTrim.replace(/^\s+|\s+$/g,"");
 	}
+	function removeSpaces(string) {
+ return string.split(' ').join('');
+}
 	$(document).ready(function() {
 		
 	<?php if( $this->uri->segment(2) == 'add' ) { ?>
@@ -140,7 +144,7 @@ echo $header; ?>
 	<?php if( $this->uri->segment(2) == 'edit' ) { ?>
 		$("#btnupdate").click(function () {
 	<?php } ?>
-	
+			
 			if( trim($("#title").val()) == "" )
 			{
 				$("#error").attr('style','display:block;');
@@ -408,7 +412,7 @@ echo $header; ?>
 					  echo display_ckeditor($ckeditor);
                 } ?>
                 <?php if($this->uri->segment(2) == 'edit') { ?>
-                <?php  echo form_textarea( array( 'name'=>'presscontent','id'=>'presscontent','class'=> 'cleditor','value'=> stripslashes($pressrelease[0]['presscontent']),'style'=>'width:900px' ) );
+                <?php  echo form_textarea( array( 'name'=>'presscontent','id'=>'presscontent','class'=> 'cleditor','value'=> stripslashes($pressrelease[0]['presscontent']),'style'=>'width:900px') );
 					  echo display_ckeditor($ckeditor); ?>
                 <?php } ?>
               </div>

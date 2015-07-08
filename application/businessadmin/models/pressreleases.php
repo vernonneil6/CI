@@ -100,7 +100,7 @@ Class Pressreleases extends CI_Model
 		die('d');
 	}
 	
-	function check_pressrelease($companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$siteid){
+/*	function check_pressrelease($companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$siteid){
 		$query = $this->db->query("SELECT * FROM `youg_pressrelease` WHERE `companyid` = ".$companyid." AND `presscontent` LIKE '%".mysql_escape_string($presscontent)."%'");
 		if ($query->num_rows() > 0){
 			return 'fail';
@@ -121,9 +121,9 @@ Class Pressreleases extends CI_Model
 			}
 		}
 		return 'success';
-	}
+	}*/
 	//Inserting Record
-	function insert($companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$siteid)
+	function insert($companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$rawcontent,$siteid)
 	{
 		$seokeyword = strtolower($title);
 		$seokeyword = str_replace(' ','-',$seokeyword);
@@ -139,6 +139,7 @@ Class Pressreleases extends CI_Model
 							'metakeywords'		=> $metakeywords,
 							'metadescription'	=> $metadescription,
 							'presscontent'  	=> $presscontent,
+							'rawcontent'  	=> $rawcontent,
 							'status' 			=> 'Enable',
 							'insertdate'		=> $date,
 							'websiteid'			=> $siteid
@@ -166,6 +167,7 @@ Class Pressreleases extends CI_Model
 							'metakeywords'		=> $metakeywords,
 							'metadescription'	=> $metadescription,
 							'presscontent'  	=> $presscontent,
+							'rawcontent'  	=> $rawcontent,
 							'status' 			=> 'Enable',
 							'insertdate'		=> $date,
 							'websiteid'			=> $i
@@ -210,7 +212,7 @@ Class Pressreleases extends CI_Model
  	}
 	
 	//Updating Record
-	function update($id,$companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$seokeyword,$siteid)
+	function update($id,$companyid,$title,$subtitle,$sortdesc,$metakeywords,$metadescription,$presscontent,$rawcontent,$seokeyword,$siteid)
  	{
 		$data = array(		
 							'companyid' 		=> $companyid,
@@ -220,6 +222,7 @@ Class Pressreleases extends CI_Model
 							'metakeywords'		=> $metakeywords,
 							'metadescription'	=> $metadescription,
 							'presscontent'  	=> $presscontent,
+							'rawcontent'  	=> $rawcontent,
 							'seokeyword'		=> $seokeyword,
 							'websiteid'  		=> $siteid
 					);
@@ -278,12 +281,48 @@ Class Pressreleases extends CI_Model
 		}
 	}
 	
+	
+	function presschkfield($id,$field,$fieldvalue)
+ 	{
+		
+		switch($field)
+		{
+			
+			case 'rawcontent'	: $varfield = 'rawcontent';break;
+			 	
+		}
+		if($id != 0)
+		{
+			$option = array('id !=' => $id,$varfield => $fieldvalue);
+		}
+		else
+		{
+			$option = array($varfield => $fieldvalue);
+		}
+		$query = $this->db->get_where('pressrelease', $option);
+		
+		//echo $this->db->last_query();
+		if ($query->num_rows() > 0)
+		{
+			return 'old';
+		}
+		else
+		{
+			return 'new';
+		}
+
+ 	}
+	
+	
+	
 	function chkfield($id,$field,$fieldvalue)
  	{
+		
 		switch($field)
 		{
 			case 'title' 		: $varfield = 'title';break;
 			case 'subtitle'		: $varfield = 'subtitle';break;
+			case 'rawcontent'	: $varfield = 'rawcontent';break;
 			 	
 		}
 		if($id != 0)
