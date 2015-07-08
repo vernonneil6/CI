@@ -207,7 +207,7 @@ span.stars{
 .bd_srchwrp{width:65%;}
 .bd_srchwrp input.bdsrch_txtbx[type="text"]{width:auto;}
 .main_bd_srchwrp{text-align:center;width:auto;}
-.serch_result h1{font-size:40px;}
+.serch_result h1{font-size:25px;}
 .verified_wrp a{margin-bottom:10px;}
 .srch_rslt_left .vry_logo{margin-top:0 !important;}
 .review_blocks.feed-right, .review_blocks.feed-left{height:auto;}
@@ -341,7 +341,7 @@ span.toggle:before{
 .hm_rvw_wrp .reptitle,.hm_rvw_wrp .home_mar_line,.hm_rvw_wrp .home_mar_line, .hm_rvw_wrp .review-head{width:70%;}
 .container{width:311px;padding:0 20px; }
 .headersearch{width:311px;}
-.bannertext{font-size:25px !important;height:25px;}
+.bannertext{font-size:25px !important;height:auto;}
 .revw_ratpoint span h5{display: block !important;margin-bottom:5px;}
 .revw_ratpoint span {line-height:20px;}
 .revw_blck_cnt h2{font-size:13px !important;}
@@ -395,7 +395,7 @@ span.toggle:before{
 .bus_dir_head  h1{height:20px;}
 .bus_tag{font-size:20px;}
 .headersearchbar{margin-bottom:10px;}
-.bannertext{font-size:35px;height:30px;}
+.bannertext{font-size:35px;height:auto;}
 }
 
 @media only screen and (max-width: 600px) {
