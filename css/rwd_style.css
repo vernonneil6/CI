@@ -12,10 +12,16 @@ td{display:block;}
 .review-slider-right{display: none;}
 #frmcomment > label {float:left;clear:both;}
 .rate-company{float:left;}
+.reg-row .form_left,.container .form_left{width: auto;clear:both;}
+.reg-row .form-circle{margin-left:0;}
+.reg-row .form_left > label { bottom: 20px; left: 65px; position: relative;width:auto;}
 } 
 @media only screen and (max-width: 771px){
 .text-content{top:0.5em;font-size:1.5em;}
 #frmcomment .txrareawrp{width:auto;float:left;}
+.reg-row .form_left{width: auto;}
+.reg-row .form-circle{margin-left:0;}
+
 } 
 @media only screen and (max-width: 771px){
 .text-content{top:0.5em;font-size:1.5em;}
@@ -100,7 +106,7 @@ span.stars{
 .revw_occupt span a{max-width:550px !important;display:block;}
 .p_realese_head{width:auto;}
 
-
+#frmcompany {margin:0;}
 .reg_frm{float:none;width:82%;margin:0 auto;}
 .reg-row:first-child{display: inline-block;}
 .form-col-2{width:300px;}
@@ -242,6 +248,9 @@ span.toggle:before{
 }
 
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
+
+.txt_box_complaint{width:488px;}
+
 .hm_rvw_wrp .home_right { padding: 10px 3px 0 13px;}
 .review-slider ul{padding:0 0 0 0px;}
 .review-slider li, .review-slider-right li{margin-top:20px !important;}
@@ -270,6 +279,8 @@ span.toggle:before{
 
 
 @media only screen and (min-width: 440px) and (max-width: 549px)  {
+.txt_box_complaint{width:363px;}
+
 .rvw_fillwrp .rating_review { clear: both;display: block;width: 130px !important;}
 
 .review-slider ul{padding:0 0 0 0px;}
@@ -315,6 +326,8 @@ span.toggle:before{
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px !important;width:300px;}
 }
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
+.txt_box_complaint{width:88%;}
+.term_tag {margin-bottom:15px;}
 #frmcomment .txrareawrp{width:250px !important;}
 
 .hm_rvw_wrp{width:99% !important;}
