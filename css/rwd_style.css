@@ -22,6 +22,24 @@ td{display:block;}
     top: -38px;
     z-index: 100000;
 }
+.vryrating{
+  width:100%;
+}
+.vry_btn a{
+	float:none;
+}
+span.stars{
+ margin:auto;
+}
+.leftpanelwidth {   
+	width:auto;
+    text-align: center;
+}
+
+.getdir_title label
+{
+	display: inline-block;
+}
 }
 @media only screen and (min-width: 771px) and (max-width: 1050px){
 
@@ -59,7 +77,7 @@ td{display:block;}
 .pr_rwrp,.verified_wrp{float:none;display:inline-block;text-align:center;margin:0 auto;}
 .pr_detlwrp{width:82%;margin:0 auto; display: block;float:none;}
 .pr_testmnl_wrp,.addcmnt_wrp,.testmnl_clntwrp,.titl_pr_rel,.pr_rwrp{width:100%;}
-.compny_name{width:100%;margin-bottom:3em;}
+.compny_name{width:100%;margin-bottom:1em;}
 .vry_btn{margin:0 auto;}
 .vry_logo{float:none;width:auto;}
 .testmnl_p{margin:0;}
@@ -352,7 +370,7 @@ span.toggle:before{
 .bus_dir_head  h1{height:20px;}
 .bus_tag{font-size:20px;}
 .headersearchbar{margin-bottom:10px;}
-.bannertext{font-size:45px;height:30px;}
+.bannertext{font-size:35px;height:30px;}
 }
 
 @media only screen and (max-width: 600px) {
