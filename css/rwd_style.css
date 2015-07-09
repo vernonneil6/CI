@@ -253,6 +253,9 @@ span.toggle:before{
 .dis_width .reg-row{width:100%;}
 }
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
+.dir_rew_wrap .revw_blck_cnt{float: right;width: 78%;}
+.dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
+.dir_rew_wrap .revw_blck_img{float: left;}
 
 .txt_box_complaint{width:488px;}
 
@@ -284,6 +287,10 @@ span.toggle:before{
 
 
 @media only screen and (min-width: 440px) and (max-width: 549px)  {
+.dir_rew_wrap .revw_blck_cnt{float: right;width: 73%;}
+.dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
+.dir_rew_wrap .revw_blck_img{float: left;}
+
 .txt_box_complaint{width:363px;}
 
 .rvw_fillwrp .rating_review { clear: both;display: block;width: 130px !important;}
@@ -333,6 +340,12 @@ span.toggle:before{
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px !important;width:300px;}
 }
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
+.dir_rew_wrap .revw_blck_cnt{float: right;width: 70%;}
+.dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
+.dir_rew_wrap .revw_blck_img{float: left;}
+.dir_rew_wrap .reviewverifiedlogo, .dir_rew_wrap .reviewnotverifiedlogo{height:80px;}
+.dir_rew_wrap .revw_occupt{width:93%;}
+
 .txt_box_complaint{width:88%;}
 .term_tag {margin-bottom:15px;}
 #frmcomment .txrareawrp{width:250px !important;}
