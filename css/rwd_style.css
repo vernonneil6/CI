@@ -247,13 +247,7 @@ span.stars{
 span.toggle:before {content: "\f067";}
 span.opened:before {content: "\f068";}
 .fmenu {display:none;}
-span.toggle {
-	cursor:pointer;
-	width:20px;
-	text-align: center;
-	font-size: 16px;
-	float:right
-}
+span.toggle {cursor:pointer;width:20px;text-align: center;	font-size: 16px;float:right}
 span.toggle:before{
   display: inline-block;
   font-family: FontAwesome;
@@ -431,9 +425,11 @@ span.toggle:before{
 .bus_tag{font-size:30px;}
 .bannertext{font-size:55px;}
 }
+
 @media only screen and (min-width: 620px) and (max-width: 770px)  {
 .headersearchbtn{bottom:1.3em;}
 }
+
 @media only screen and (min-width: 310px) and (max-width: 619px)  {
 .bannertextcoupon{font-size:25px !important;height:35px;}
 .bus_dir_head  h1{height:20px;}
@@ -445,6 +441,7 @@ span.toggle:before{
 @media only screen and (max-width: 600px) {
 .side_banners{display:none;}
 }
+
 @media only screen and (min-width: 601px) {
 .side_banners{display:block;}
 }
