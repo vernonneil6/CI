@@ -173,12 +173,12 @@ span.stars{
 .view-all a{float:none;}
 
 .revw_occupt{width:97%;}
-.revw_blck_cnt{width:100%;}
-.vry_logo {float:none;width:auto;text-align:center;/*margin-top:25px;*/}
+.revw_blck_cnt{width:77%;float:right;}
+/*.vry_logo {float:none;width:auto;text-align:center;/*margin-top:25px;*/}*/
 .revw_blck_img{display: inline;float:none;width:auto;}
 .reviewnotverifiedlogo{position:relative;/*top:20px;*/}
 .revw_blck_cnt{margin-bottom:10px;}
-.revw_blck_cnt h2{text-align:center;font-size:25px;}
+.revw_blck_cnt h2{font-size:25px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .reviewverifiedlogo{position:relative;top:10px;padding:0;}
 .pagination{width:92%;padding:0 20px;}
 .revw_ratpoint span h5, .revw_ratpoint span a{font-size:13px;}
@@ -191,7 +191,7 @@ span.stars{
 .pr_testmnl_wrp,.addcmnt_wrp,.testmnl_clntwrp,.titl_pr_rel,.pr_rwrp{width:100%;}
 .compny_name{width:100%;margin-bottom:3em;}
 .vry_btn{margin:0 auto;}
-.vry_logo{float:none;width:auto;}
+/*.vry_logo{float:none;width:auto;}*/
 .testmnl_p{margin:0;}
 .titl_pr_rel h1{font-size:25px;}
 .cmnt_mainwrp h2 {font-size:15px !important;}
@@ -284,6 +284,9 @@ span.toggle:before{
 
 
 @media only screen and (min-width: 440px) and (max-width: 549px)  {
+.revw_blck_img{width:80px;}
+.reviewverifiedlogo, .reviewnotverifiedlogo{height:85px;}
+
 .txt_box_complaint{width:363px;}
 
 .rvw_fillwrp .rating_review { clear: both;display: block;width: 130px !important;}
@@ -294,7 +297,7 @@ span.toggle:before{
 
 .container{width:411px;padding:0 20px;}
 .headersearch{width:411px;}
-.revw_blck_cnt h2{font-size:15px !important;}
+.revw_blck_cnt h2{font-size:15px !important;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 #first.footer_block,.main_footer{width:411px; padding:0;margin:0 auto;}
 .regr_lnk,.innr_wrap{width:411px;}
 .reg_frm_wrap{float:none;width:auto;}
@@ -333,6 +336,11 @@ span.toggle:before{
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px !important;width:300px;}
 }
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
+.revw_blck_img{width:60px;}
+.reviewverifiedlogo, .reviewnotverifiedlogo{height:68px;}
+.revw_desc{width:98%;text-align:justify;}
+.revw_occupt{width:93%;}
+
 .txt_box_complaint{width:88%;}
 .term_tag {margin-bottom:15px;}
 #frmcomment .txrareawrp{width:250px !important;}
@@ -351,7 +359,7 @@ span.toggle:before{
 .bannertext{font-size:25px !important;height:auto;}
 .revw_ratpoint span h5{display: block !important;margin-bottom:5px;}
 .revw_ratpoint span {line-height:20px;}
-.revw_blck_cnt h2{font-size:13px !important;}
+.revw_blck_cnt h2{font-size:13px !important;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .account_option .option{margin:0 0 15px 15px;}
 .login_lft{margin-left:5px;}
 .txt_box{width:71%;}
@@ -404,7 +412,23 @@ span.toggle:before{
 .headersearchbar{margin-bottom:10px;}
 .bannertext{font-size:35px;height:auto;}
 }
-
+@media only screen and (min-width: 310px) and (max-width: 689px)  {
+.verified_wrp .bsntvry_title{float:none;height:auto;}
+.verified_wrp .bsntvry_title .bsnntverified, .verified_wrp .bsntvry_title .bsntg{float:none;}
+.verified_wrp .bsvry_tag.bsntg > p {text-align: center;}
+.verified_wrp .compny_name .vry_rating, .verified_wrp .vry_btn{float:none;clear:both;}
+.coupon_wrap .revw_blck_img{display: inline-block;}
+}
+@media only screen and (min-width: 491px) and (max-width: 689px)  {
+.coupon_wrap .revw_blck_cnt{float:right;width:80%;}
+}
+@media only screen and (min-width: 395px) and (max-width: 490px)  {
+.coupon_wrap .revw_blck_cnt{float:right;width:78%;}
+}
+@media only screen and (min-width: 320px) and (max-width: 394px)  {
+.coupon_wrap .revw_blck_cnt{float:right;width:72%;}
+.coupon_wrap .revw_blck_cnt h2{text-align:left;}
+}
 @media only screen and (max-width: 600px) {
 .side_banners{display:none;}
 }
