@@ -129,7 +129,7 @@ span.stars{
 #streetaddress1{width:238px;}
 
 .headersearchbar{width:400px;}
-.headersearch .formBox{width:405px;}
+.headersearch .formBox{ }
 }
 @media only screen and (min-width: 771px) {
 .addbanner{padding-top:0;}
