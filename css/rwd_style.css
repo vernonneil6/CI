@@ -46,7 +46,9 @@ span.stars{
 	width:auto;
     text-align: center;
 }
-
+.rightpanelwidth {
+    width: 100%;
+}
 .getdir_title label
 {
 	display: inline-block;
