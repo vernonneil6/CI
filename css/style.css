@@ -1470,9 +1470,9 @@ color:#2c6a99;
 
 .searchlogos
 {
-	height : 110px;
-    width  : 100%;
-    margin : 0!important;
+  height: 100px;
+  width: auto;
+  margin: 0 auto!important;
 }
 .searchlogoss
 {
