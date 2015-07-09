@@ -15,6 +15,7 @@ td{display:block;}
 .reg-row .form_left,.container .form_left{width: auto;clear:both;}
 .reg-row .form-circle{margin-left:0;}
 .reg-row .form_left > label { bottom: 20px; left: 65px; position: relative;width:auto;}
+.transaction .form_left .reg_txt_box{clear: both;display: block;}
 } 
 @media only screen and (max-width: 771px){
 .text-content{top:0.5em;font-size:1.5em;}
@@ -57,6 +58,8 @@ span.stars{
 
 }
 @media only screen and (min-width: 771px) and (max-width: 1050px){
+
+.dis_width .company{padding-top:0;}
 .review-slider ul{width:94%;padding:0 0 0 20px;}
 .bannertextcoupon{font-size:53px !important;}
 .hm_rght_panel {margin-left:0;}
@@ -249,8 +252,13 @@ span.toggle:before{
 }
 .foot_mid_bar,.footer_block ul li.ftitle,.footer_block ul{width:100% !important;}
 }
-
+@media only screen and (min-width: 440px) and (max-width: 770px)  {
+.dis_width .reg-row{width:100%;}
+}
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
+.dir_rew_wrap .revw_blck_cnt{float: right;width: 78%;}
+.dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
+.dir_rew_wrap .revw_blck_img{float: left;}
 
 .txt_box_complaint{width:488px;}
 
@@ -282,6 +290,10 @@ span.toggle:before{
 
 
 @media only screen and (min-width: 440px) and (max-width: 549px)  {
+.dir_rew_wrap .revw_blck_cnt{float: right;width: 73%;}
+.dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
+.dir_rew_wrap .revw_blck_img{float: left;}
+
 .txt_box_complaint{width:363px;}
 
 .rvw_fillwrp .rating_review { clear: both;display: block;width: 130px !important;}
@@ -319,6 +331,8 @@ span.toggle:before{
 .headersearch{bottom:20%;}
 }
 @media only screen and (min-width: 310px) and (max-width: 549px)  {
+.reg-row .names{font-size: 16px;width:86% !important;}
+
 #loading{height:10px;float:none;margin:0 auto; position: relative; z-index: 9999999;}
 .headersearchbtn, .headersearchbar{margin:0 auto;float:none;}
 .formBox{width:auto;}
@@ -329,6 +343,12 @@ span.toggle:before{
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px !important;width:300px;}
 }
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
+.dir_rew_wrap .revw_blck_cnt{float: right;width: 70%;}
+.dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
+.dir_rew_wrap .revw_blck_img{float: left;}
+.dir_rew_wrap .reviewverifiedlogo, .dir_rew_wrap .reviewnotverifiedlogo{height:80px;}
+.dir_rew_wrap .revw_occupt{width:93%;}
+
 .txt_box_complaint{width:88%;}
 .term_tag {margin-bottom:15px;}
 #frmcomment .txrareawrp{width:250px !important;}
