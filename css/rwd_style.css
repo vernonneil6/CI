@@ -58,6 +58,10 @@ span.stars{
 
 }
 @media only screen and (min-width: 771px) and (max-width: 1050px){
+.verified_wrp .compny_name{width:80% !important;}
+.verified_wrp .compny_name > h1 {text-align: left !important;}
+.verified_wrp .vry_logo {float: left !important;}
+.coupon_dscrwrp .coupon_dscr{width:auto;}
 
 .dis_width .company{padding-top:0;}
 .review-slider ul{width:94%;padding:0 0 0 20px;}
@@ -95,6 +99,7 @@ span.stars{
 .pr_detlwrp{width:82%;margin:0 auto; display: block;float:none;}
 .pr_testmnl_wrp,.addcmnt_wrp,.testmnl_clntwrp,.titl_pr_rel,.pr_rwrp{width:100%;}
 .compny_name{width:100%;margin-bottom:1em;}
+
 .vry_btn{margin:0 auto;}
 .vry_logo{float:none;width:auto;}
 .testmnl_p{margin:0;}
@@ -147,6 +152,12 @@ span.stars{
 }
 
 @media only screen and (min-width: 310px) and (max-width: 770px)  {
+.verified_wrp .bsntvry_title{float:none;height:auto;}
+.verified_wrp .bsnntverified, .verified_wrp .bsntg{float:none;}
+.verified_wrp .bsvry_tag.bsntg > p{text-align:center;}
+.verified_wrp .compny_name .vry_rating, .verified_wrp .vry_btn {float:none;clear:both;}
+.coupon_dscrwrp .coupon_dscr{width:auto;}
+
 .main_contentarea{width:100%;display: block;}
 .head_bg{width:auto;float:none !important;text-align:center; clear:both;}
 .main_footer, .container{width:auto;padding:0 20px; }
@@ -251,6 +262,9 @@ span.toggle:before{
 }
 @media only screen and (min-width: 440px) and (max-width: 770px)  {
 .dis_width .reg-row{width:100%;}
+.coupon_wrap .revw_blck_cnt {float: right; width: 78%;}
+.coupon_wrap .revw_blck_img{display:inline;text-align:left}
+
 }
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
 .dir_rew_wrap .revw_blck_cnt{float: right;width: 78%;}
@@ -340,6 +354,10 @@ span.toggle:before{
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px !important;width:300px;}
 }
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
+.coupon_wrap .revw_blck_cnt {float: right; width: 72%;}
+.coupon_wrap .revw_blck_cnt h2{text-align:left;}
+.coupon_wrap .revw_blck_img{display:inline;text-align:left}
+
 .dir_rew_wrap .revw_blck_cnt{float: right;width: 70%;}
 .dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
 .dir_rew_wrap .revw_blck_img{float: left;}
