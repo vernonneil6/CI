@@ -468,7 +468,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 	color:#5682A9;
     font-family: "MyriadPro-BlackSemiCn";
     font-size: 13px;}
-.vry_logo{float:left; height:auto; width:105px;}
+.vry_logo{float:left; height:auto; width:auto;}
 .vry_title{float:left; height:16px; width:223px; margin-top:17px;}
 .vry_btn{width:80%; float:left;margin: 5px 0;}
 .vry_btn a{
@@ -869,7 +869,7 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 .free_elite{width:773px;}
 .reg_frm{float:left; display:block;}
 .reg-row:first-child{margin-top:43px; display:block;}
-.reg-row{margin-top:50px; display: inline-block;}
+.reg-row{margin-top:50px; display: inline-block; width:100%;}
 .reg-row .bname .website{float:left;}
 .reg-row_free{margin-top:50px; display: inline-block;float: right;margin-top: -142px;}
 .free_elite_box{height: 138px;border: 1px solid #666;padding: 20px;color: #999;font-family: 'myriadpro-regular';display: inline-block;line-height: 17px;}
@@ -885,9 +885,9 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 .disputenote{padding-top:32px;width: 502px; height: 172px;}
 .transaction{padding-top:0px;}
 
-.reg-row label{font-size:38px; font-family:"myriadpro-regular"; text-transform:uppercase; color:#666666; float:left; line-height:28px; width:100%;}
+.reg-row label{font-size:38px; font-family:"myriadpro-regular"; text-transform:uppercase; color:#666666; line-height:28px; width:100%;}
 .reg-row .names{font-size:24px; font-family:"myriadpro-regular"; text-transform:uppercase; color:#666666; float:left; line-height:28px; width:100%;}
-.reg-row .reg_fld{font-size:16px; font-family:"myriadpro-regular"; color:#999; float:left; margin-top:24px;width:100%; line-height:14px;text-transform:uppercase;}
+.reg-row .reg_fld{font-size:16px; font-family:"myriadpro-regular"; color:#999;  margin-top:24px;width:100%; line-height:14px;text-transform:uppercase;}
 .reg_txt_box{width:288px; display:inline-block; border:1px solid #666; height:23px; padding:0 0 0 10px; margin-top:15px; font-family:"myriadpro-regular"; font-size:14px;}
 input[type="radio"]{ display: none;}
 input[type="radio"]+label{ background: url(../images/unchk_radio.jpg) left center no-repeat; padding-left: 5px; width:85px;}
@@ -1126,7 +1126,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .srch_result_blck{ display: inline-block; margin-top: 10px; width: 100%; border-bottom:1px solid #999;}
 .srch_rslt_left{width:510px; float:left; height:auto;}
 .srch_rslt_right{width:510px; float:left; height:auto; margin-left:10px;}
-.verified_wrp.srch_rslt_vrfy{width:510px;}
+.verified_wrp.srch_rslt_vrfy{width:auto;}
 .verified_wrp.srch_rslt_vrfy .vry_title{width:79%;}
 .verified_wrp.srch_rslt_vrfy .compny_name{width:79%;}
 .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:36px; font-family:"myriadpro-regular"; margin:0; float:left;width: 600px;}
@@ -1306,7 +1306,10 @@ padding-top: 14px;
 height: 60px;
 width: 60px;
 }
-
+/* Elite Member Registeration */
+.business-info{
+	margin-top:2em;
+}
 
 .livefeed
 {
@@ -1324,12 +1327,12 @@ width: 120px;
 }
 .leftpanelwidth
 {
-width: 310px;
+width: 30%;
  margin-top: 30px;
 }
 .rightpanelwidth
 {
-	width: 100%;
+	width: 65%;
 	padding:0;
 	margin-top: 30px;
 }
@@ -1467,9 +1470,9 @@ color:#2c6a99;
 
 .searchlogos
 {
-	height : 110px;
-    width  : 100%;
-    margin : 0!important;
+  height: 100px;
+  width: auto;
+  margin: 0 auto!important;
 }
 .searchlogoss
 {
@@ -2154,6 +2157,7 @@ padding-left: 18px;
 	border: 1px solid #000000;
 	margin-top: 8px;
 	width: 249px;
+	margin-right: 5px;
 }
 .cvvpop {
     padding-left: 10px;
@@ -2274,11 +2278,11 @@ margin-top: 5px;
 }
 .form-col-1{
 	float:left;
-	width:190px;
+	width:20%;
 }
 .form-col-2{
 	float:left;
-	width:630px;
+	width:80%;
 }
 .form-circle{
 	width: 100px;
@@ -2407,12 +2411,15 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
 .banner_wrp img{height:100%; max-width:100%;}
 .pr_countwrp p{text-align:center;}
 .headersearchbtn,.headersearchbar{float:none;}
-.headersearch .formBox {margin: 0 auto; width: 555px;}
+.headersearch .formBox {margin: 0 auto; }
 #loading{  width:20px; margin:0 auto;}
 
 .business-callout .form-col-2{width:400px;}
-#selstatediv1{ float:right;margin-right:127px;}
-#selstatediv{ float:right;margin-right:127px;}
+#selstatediv1{ float: left;
+  margin-left: 5px;
+}
+#selstatediv{ float: left;
+  margin-left: 5px;}
 
 .side_banners{width:100%;}
 .side_ads{
@@ -2440,8 +2447,10 @@ position:fixed;
 .adimg{width:100%;height:auto;}
 
 .innr_wrap .headersearch{
-position: relative;
-height:auto;
+	position: relative;
+	height:auto;
+	width:100%;
+	margin:0 auto;
 }
 
 .review-slider-right {
