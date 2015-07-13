@@ -10,12 +10,62 @@ td{display:block;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name{margin-bottom:5px;margin-top:10px;}
 .review-slider, .review-slider-right{float:none;width:100%;}
 .review-slider-right{display: none;}
+#frmcomment > label {float:left;clear:both;}
+.rate-company{float:left;}
+.reg-row .form_left,.container .form_left{width: auto;clear:both;}
+.reg-row .form-circle{margin-left:0;}
+.reg-row .form_left > label { bottom: 20px; left: 65px; position: relative;width:auto;}
+.transaction .form_left .reg_txt_box{clear: both;display: block;}
 } 
 @media only screen and (max-width: 771px){
 .text-content{top:0.5em;font-size:1.5em;}
+#frmcomment .txrareawrp{width:auto;float:left;}
+.reg-row .form_left{width: auto;}
+.reg-row .form-circle{margin-left:0;}
+
+} 
+@media only screen and (max-width: 771px){
+.text-content{top:0.5em;font-size:1.5em;}
+
+.headerusername{
+	position: absolute;
+    right: 2em;
+    top: -38px;
+    z-index: 100000;
+}
+.vryrating{
+  width:100%;
+}
+.vry_btn a{
+	float:none;
+}
+span.stars{
+ margin:auto;
+}
+.leftpanelwidth {   
+	width:auto;
+    text-align: center;
+}
+.rightpanelwidth {
+    width: 100%;
+}
+.getdir_title label
+{
+	display: inline-block;
+}
+.social_blck{
+	float:none;
+	display:inline-block;
+}
+
 }
 @media only screen and (min-width: 771px) and (max-width: 1050px){
+.verified_wrp .compny_name{width:80% !important;}
+.verified_wrp .compny_name > h1 {text-align: left !important;}
+.verified_wrp .vry_logo {float: left !important;}
+.coupon_dscrwrp .coupon_dscr{width:auto;}
 
+.dis_width .company{padding-top:0;}
 .review-slider ul{width:94%;padding:0 0 0 20px;}
 .bannertextcoupon{font-size:53px !important;}
 .hm_rght_panel {margin-left:0;}
@@ -42,15 +92,16 @@ td{display:block;}
 .login_box{width:auto;}
 .tablecompliant{margin-left:30px;}
 .usercomment {margin-left: 155px !important;}
-.regr_lnk,.reg_frm_wrap{float:none;width:82%;margin:0 auto;}
+.regr_lnk,.reg_frm_wrap{float:none;width:100%;margin:0 auto;}
 .reg_txt_box{width:275px;}
 
 .banner_wrp{float:none;width:100%;margin:0 auto;}
 
 .pr_rwrp,.verified_wrp{float:none;display:inline-block;text-align:center;margin:0 auto;}
 .pr_detlwrp{width:82%;margin:0 auto; display: block;float:none;}
-.pr_testmnl_wrp,.addcmnt_wrp,.testmnl_clntwrp,.titl_pr_rel,.pr_rwrp{width:auto;}
-.compny_name{width:100%;margin-bottom:3em;}
+.pr_testmnl_wrp,.addcmnt_wrp,.testmnl_clntwrp,.titl_pr_rel,.pr_rwrp{width:100%;}
+.compny_name{width:100%;margin-bottom:1em;}
+
 .vry_btn{margin:0 auto;}
 .vry_logo{float:none;width:auto;}
 .testmnl_p{margin:0;}
@@ -65,24 +116,27 @@ td{display:block;}
 .revw_occupt span a{max-width:550px !important;display:block;}
 .p_realese_head{width:auto;}
 
-
+#frmcompany {margin:0;}
 .reg_frm{float:none;width:82%;margin:0 auto;}
 .reg-row:first-child{display: inline-block;}
-.form-col-2{width:300px;}
+.form-col-2{ }
 #streetaddress,#city,#country1,#state1,#zip{width:275px;}
 .form-col-2 label{font-size:25px;}
 .business-callout{float:none;margin-left:13.5em;}
 
 .banner_wrp{height:auto;}
-.banner_wrp img {display: block; height: auto; margin: 0 auto; width: 82% !important;}
+.banner_wrp img {display: block; height: auto; margin: 0 auto; width: 100% !important;}
 .new_usr a{font-size:20px;}
 .new_usr{font-size:25px;}
 
-#selstatediv1,#selstatediv{ float:none;margin-right:0;}
+#selstatediv1,#selstatediv{ float: none;
+  margin-left: 0;
+  display: inline-block;
+}
 #streetaddress1{width:238px;}
 
 .headersearchbar{width:400px;}
-.headersearch .formBox{width:405px;}
+.headersearch .formBox{ }
 }
 @media only screen and (min-width: 771px) {
 .addbanner{padding-top:0;}
@@ -103,6 +157,12 @@ td{display:block;}
 }
 
 @media only screen and (min-width: 310px) and (max-width: 770px)  {
+.verified_wrp .bsntvry_title{float:none;height:auto;}
+.verified_wrp .bsnntverified, .verified_wrp .bsntg{float:none;}
+.verified_wrp .bsvry_tag.bsntg > p{text-align:center;}
+.verified_wrp .compny_name .vry_rating, .verified_wrp .vry_btn {float:none;clear:both;}
+.coupon_dscrwrp .coupon_dscr{width:auto;}
+
 .main_contentarea{width:100%;display: block;}
 .head_bg{width:auto;float:none !important;text-align:center; clear:both;}
 .main_footer, .container{width:auto;padding:0 20px; }
@@ -144,7 +204,7 @@ td{display:block;}
 .usercomment {margin-left: 20px !important;}
 .pr_rwrp,.verified_wrp{float:none;display:inline-block;text-align:center;margin:0 auto;}
 .pr_detlwrp{width:82%;margin:0 auto; display: block;float:none;}
-.pr_testmnl_wrp,.addcmnt_wrp,.testmnl_clntwrp,.titl_pr_rel,.pr_rwrp{width:auto;}
+.pr_testmnl_wrp,.addcmnt_wrp,.testmnl_clntwrp,.titl_pr_rel,.pr_rwrp{width:100%;}
 .compny_name{width:100%;margin-bottom:3em;}
 .vry_btn{margin:0 auto;}
 .vry_logo{float:none;width:auto;}
@@ -166,7 +226,7 @@ td{display:block;}
 .bd_srchwrp{width:65%;}
 .bd_srchwrp input.bdsrch_txtbx[type="text"]{width:auto;}
 .main_bd_srchwrp{text-align:center;width:auto;}
-.serch_result h1{font-size:40px;}
+.serch_result h1{font-size:25px;}
 .verified_wrp a{margin-bottom:10px;}
 .srch_rslt_left .vry_logo{margin-top:0 !important;}
 .review_blocks.feed-right, .review_blocks.feed-left{height:auto;}
@@ -175,25 +235,19 @@ td{display:block;}
 .coupon_wrap .revw_blck_img{display:block;height:auto;margin:0 auto;text-align:center;}
 
 #frmaddcompany .reg-row:first-child{display: inline-block;}
-#frmaddcompany .form-col-2{width:300px;}
-#streetaddress,#city,#country1,#state1,#zip,#phone,#aboutcompany{width:225px;}
- 
+#frmaddcompany .form-col-2{ }
+#streetaddress,#city,#zip,#phone,#aboutcompany{width:225px;}
+#state1, #country1{ width:250px; }
 .banner_wrp{height:auto;}
 .banner_wrp img {display: block; height: auto; margin: 0 auto; width: 100% !important;}
 
-#selstatediv1,#selstatediv{ float:none;margin-right:0;}
+#selstatediv1,#selstatediv{ float:none;margin-left:0;}
 #streetaddress1{width:238px;}
 
 span.toggle:before {content: "\f067";}
 span.opened:before {content: "\f068";}
 .fmenu {display:none;}
-span.toggle {
-	cursor:pointer;
-	width:20px;
-	text-align: center;
-	font-size: 16px;
-	float:right
-}
+span.toggle {cursor:pointer;width:20px;text-align: center;	font-size: 16px;float:right}
 span.toggle:before{
   display: inline-block;
   font-family: FontAwesome;
@@ -205,8 +259,19 @@ span.toggle:before{
 }
 .foot_mid_bar,.footer_block ul li.ftitle,.footer_block ul{width:100% !important;}
 }
+@media only screen and (min-width: 440px) and (max-width: 770px)  {
+.dis_width .reg-row{width:100%;}
+.coupon_wrap .revw_blck_cnt {float: right; width: 78%;}
+.coupon_wrap .revw_blck_img{display:inline;text-align:left}
 
+}
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
+.dir_rew_wrap .revw_blck_cnt{float: right;width: 78%;}
+.dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
+.dir_rew_wrap .revw_blck_img{float: left;}
+
+.txt_box_complaint{width:488px;}
+
 .hm_rvw_wrp .home_right { padding: 10px 3px 0 13px;}
 .review-slider ul{padding:0 0 0 0px;}
 .review-slider li, .review-slider-right li{margin-top:20px !important;}
@@ -235,6 +300,14 @@ span.toggle:before{
 
 
 @media only screen and (min-width: 440px) and (max-width: 549px)  {
+.dir_rew_wrap .revw_blck_cnt{float: right;width: 73%;}
+.dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
+.dir_rew_wrap .revw_blck_img{float: left;}
+
+.txt_box_complaint{width:363px;}
+
+.rvw_fillwrp .rating_review { clear: both;display: block;width: 130px !important;}
+
 .review-slider ul{padding:0 0 0 0px;}
 .hm_rvw_wrp .home_right { padding: 10px 3px 0 13px;}
 .hm_rvw_wrp .reptitle,.hm_rvw_wrp .home_mar_line,.hm_rvw_wrp .home_mar_line, .hm_rvw_wrp .review-head{width:75%;}
@@ -268,16 +341,32 @@ span.toggle:before{
 .headersearch{bottom:20%;}
 }
 @media only screen and (min-width: 310px) and (max-width: 549px)  {
+.reg-row .names{font-size: 16px;width:86% !important;}
+
 #loading{height:10px;float:none;margin:0 auto; position: relative; z-index: 9999999;}
 .headersearchbtn, .headersearchbar{margin:0 auto;float:none;}
 .formBox{width:auto;}
 .main_press_srchwrp{text-align:center;}
 .press_srchwrp,.pres_srch_wrp,.main_press_srchwrp{width:auto;}
 .press_srchwrp input.press_srch_txtbx[type="text"]{width:280px;}
-.p_realese_head{border-bottom:none;height:20px;}
+.p_realese_head{border-bottom:none;height:20px;margin-bottom: 3em;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px !important;width:300px;}
 }
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
+.coupon_wrap .revw_blck_cnt {float: right; width: 72%;}
+.coupon_wrap .revw_blck_cnt h2{text-align:left;}
+.coupon_wrap .revw_blck_img{display:inline;text-align:left}
+
+.dir_rew_wrap .revw_blck_cnt{float: right;width: 70%;}
+.dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
+.dir_rew_wrap .revw_blck_img{float: left;}
+.dir_rew_wrap .reviewverifiedlogo, .dir_rew_wrap .reviewnotverifiedlogo{height:80px;}
+.dir_rew_wrap .revw_occupt{width:93%;}
+
+.txt_box_complaint{width:88%;}
+.term_tag {margin-bottom:15px;}
+#frmcomment .txrareawrp{width:250px !important;}
+
 .hm_rvw_wrp{width:99% !important;}
 .rat_title h2 a {overflow: hidden;text-overflow: ellipsis;white-space: nowrap; width: 100px;}
 .hm_rvw_wrp .user-name {margin-bottom: 3px; overflow: hidden;text-overflow: ellipsis; white-space: nowrap; width: 60px;}
@@ -289,7 +378,7 @@ span.toggle:before{
 .hm_rvw_wrp .reptitle,.hm_rvw_wrp .home_mar_line,.hm_rvw_wrp .home_mar_line, .hm_rvw_wrp .review-head{width:70%;}
 .container{width:311px;padding:0 20px; }
 .headersearch{width:311px;}
-.bannertext{font-size:25px !important;height:25px;}
+.bannertext{font-size:25px !important;height:auto;}
 .revw_ratpoint span h5{display: block !important;margin-bottom:5px;}
 .revw_ratpoint span {line-height:20px;}
 .revw_blck_cnt h2{font-size:13px !important;}
@@ -313,12 +402,13 @@ span.toggle:before{
 
 #frmaddcompany{float:none;width:311px;margin:0 auto;}
 #frmaddcompany .form-col-2 label{font-size:20px;}
-#frmaddcompany .form-col-2 {margin-top:2em;}
-#frmaddcompany .form-col-1{width:65px;}
-#frmaddcompany .form-circle{margin-left:0px;}
+#frmaddcompany .form-col-2 {margin-top:0;}
+#frmaddcompany .form-col-1{width:15%;}
+#frmaddcompany .form-circle{margin-left:0px; padding:15px;}
 .business-callout .form-col-2{width:268px !important;}
 #frmaddcompany .business-callout{float:none;}
- #streetaddress,#city,#country1,#state1,#zip,#phone,#aboutcompany{width:275px !important;}
+ #streetaddress,#city,#zip,#phone,#aboutcompany{width:275px !important;}
+ #state1, #country1{ width:231px; }
  .new_usr{float:none;text-align:center;font-size:20px;}
 
 .innr_wrap .new_usr a{font-size:15px; display:block;}
@@ -335,20 +425,23 @@ span.toggle:before{
 .bus_tag{font-size:30px;}
 .bannertext{font-size:55px;}
 }
+
 @media only screen and (min-width: 620px) and (max-width: 770px)  {
 .headersearchbtn{bottom:1.3em;}
 }
+
 @media only screen and (min-width: 310px) and (max-width: 619px)  {
 .bannertextcoupon{font-size:25px !important;height:35px;}
 .bus_dir_head  h1{height:20px;}
 .bus_tag{font-size:20px;}
 .headersearchbar{margin-bottom:10px;}
-.bannertext{font-size:45px;height:30px;}
+.bannertext{font-size:35px;height:auto;}
 }
 
 @media only screen and (max-width: 600px) {
 .side_banners{display:none;}
 }
+
 @media only screen and (min-width: 601px) {
 .side_banners{display:block;}
 }

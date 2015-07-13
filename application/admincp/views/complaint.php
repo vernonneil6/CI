@@ -496,6 +496,36 @@ else { ?>
         <?php if(count($removedcomplaints) > 0 ) { 
 			
 			?>
+			
+		<!--History -->	
+	<script type="text/javascript">
+
+
+		function PrintElem(elem)
+		{
+		//alert($(elem).html());exit;
+		Popup($(elem).html());
+
+		}
+
+		function Popup(data) 
+		{
+		var mywindow = window.open('', 'my div', 'height=400,width=600');
+		mywindow.document.write('<html><head>');
+		/*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
+		mywindow.document.write('</head><body>');
+		mywindow.document.write(data);
+		mywindow.document.write('</body></html>');
+
+		mywindow.document.close(); // necessary for IE >= 10
+		mywindow.focus(); // necessary for IE >= 10
+
+		mywindow.print();
+		mywindow.close();
+
+		return true;
+		}
+	</script>	
 		<!-- table -->
 		
 		 <table class="tab tab-drag complaints">
@@ -518,7 +548,7 @@ else { ?>
 						
 			<?php endforeach; ?>
 				<th>Action</th>
-				<th>Print History</th>
+				<th>History</th>
 			
 			</tr>
 		</thead>
@@ -567,7 +597,46 @@ else { ?>
 				</td>			
 				<?php endforeach; ?>
 				<td><a href="<?php echo site_url('complaint/view/'.$removedcomplaint->id); ?>" title="View Detail" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a></td>
-				<td><a href="<?php echo site_url('complaint/printhistory/'.$removedcomplaint->id); ?>">Click here</a></td>		
+				<td>
+					<?php $printID = 'printComplaints'.$removedcomplaint->id; ?>
+					<div id="<?php echo $printID ?>" style="display:none">
+					<?php 
+
+					$complaint_history = $this->complaints->getComplaintHistory($removedcomplaint->id);
+
+					if($complaint_history['num_rows'] > 0){
+
+						foreach($complaint_history as $complainthistory){
+							foreach ( $complainthistory as $complaints){
+								
+								if($complaints->complaindate != "" || $complaints->transaction_date != "" ) {
+									if($complaints->complaindate != "") { 
+										echo  date('m/d/Y',strtotime($complaints->whendate)) . " : ";
+										echo "Customer Filed a complaint with information <br/>";
+									}
+									if($complaints->transaction_date != "") { 
+										echo  date('m/d/Y',strtotime($complaints->transaction_date)) . " : ";
+										echo "Complaint has been closed";
+									}
+								
+								}
+							}	
+						}
+					}
+					else{
+						
+						echo "No Records Found";
+					}
+
+					?>
+					</div>
+
+					
+					
+					<a onclick="PrintElem('<?php echo "#".$printID; ?>');return false;" href="<?php echo site_url('complaint/printhistory/'.$removedcomplaint->id); ?>">Click here</a>
+					
+					
+				</td>		
 			</tr>
 			<?php endforeach; ?>			
 		</tbody>

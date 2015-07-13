@@ -117,6 +117,37 @@
 		
 		
 		?>
+		
+	<!--History -->	
+	<script type="text/javascript">
+
+
+		function PrintElem(elem)
+		{
+		//alert($(elem).html());exit;
+		Popup($(elem).html());
+
+		}
+
+		function Popup(data) 
+		{
+		var mywindow = window.open('', 'my div', 'height=400,width=600');
+		mywindow.document.write('<html><head>');
+		/*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
+		mywindow.document.write('</head><body>');
+		mywindow.document.write(data);
+		mywindow.document.write('</body></html>');
+
+		mywindow.document.close(); // necessary for IE >= 10
+		mywindow.focus(); // necessary for IE >= 10
+
+		mywindow.print();
+		mywindow.close();
+
+		return true;
+		}
+	</script>	
+				
 	 <table class="tab tab-drag review_remove">
 		<thead>
 			<tr class="top nodrop nodrag">
@@ -140,7 +171,7 @@
 			
 			<?php endforeach; ?>
 			<th>Action</th>
-			<th>Print History</th>
+			<th>History</th>
 			</tr>
 		</thead>
 		
@@ -200,7 +231,7 @@
 						echo "Removal List: <br/>";
 						foreach($review_date as $reviewdate){
 							
-							echo $reviewdate['date']." :  ";
+							echo date('m/d/Y', strtotime($reviewdate['date']))." :  ";
 								
 							if($reviewdate['status'] == '0') { 
 								echo "Started review removal process";
@@ -224,7 +255,7 @@
 							
 						foreach($review_mail as $reviewmail){
 													
-							echo date('m-d-Y', strtotime($reviewmail['date'])) . " : " . $reviewmail['comment']."<br/>";						
+							echo date('m/d/Y', strtotime($reviewmail['date'])) . " : " . $reviewmail['comment']."<br/>";						
 						}
 							
 						
@@ -232,41 +263,14 @@
 					if($reviews){
 						echo "<br/> Reviews: <br/>";
 						foreach($reviews as $review){
-							echo $review['reviewdate'] . " : " ."<br/><br/>". $review['comment'];						
+							echo date('m/d/Y', strtotime($review['reviewdate'])) . " : " ."<br/><br/>". $review['comment'];						
 						}
 					}
 
 				 
 				 ?>
 				
-				<script>
 				
-				
-    function PrintElem(elem)
-    {
-		//alert($(elem).html());exit;
-        Popup($(elem).html());
-        
-    }
-
-    function Popup(data) 
-    {
-        var mywindow = window.open('', 'my div', 'height=400,width=600');
-        mywindow.document.write('<html><head>');
-        /*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
-        mywindow.document.write('</head><body>');
-        mywindow.document.write(data);
-        mywindow.document.write('</body></html>');
-
-        mywindow.document.close(); // necessary for IE >= 10
-        mywindow.focus(); // necessary for IE >= 10
-
-        mywindow.print();
-        mywindow.close();
-
-        return true;
-    }
-				</script>
 				</div>		
 					<a onclick="PrintElem('<?php echo "#".$printID; ?>');return false;" href="#">Click Here</a>
 					

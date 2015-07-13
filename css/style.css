@@ -141,7 +141,7 @@ img{border:none;}
 .account_option .option
 {
 	display : inline-block;	
-	margin: 0 0 0 15px;
+	margin: 0 0 15px 15px;
     padding: 8px 10px;
 	border-radius: 5px;
 	color: white;
@@ -468,7 +468,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 	color:#5682A9;
     font-family: "MyriadPro-BlackSemiCn";
     font-size: 13px;}
-.vry_logo{float:left; height:auto; width:105px;}
+.vry_logo{float:left; height:auto; width:auto;}
 .vry_title{float:left; height:16px; width:223px; margin-top:17px;}
 .vry_btn{width:80%; float:left;margin: 5px 0;}
 .vry_btn a{
@@ -599,7 +599,7 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
     float:left;
     width: 20px;}
 
-.fadeout{background:#F5F5F5;}
+.tab_container .fadeout{background:#F5F5F5;}
 .table_block{display:table;}
 .review_blocks {display:table-cell;vertical-align:middle;}
 .review_right{display:table-cell;width:555px; padding:10px;}
@@ -869,7 +869,7 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 .free_elite{width:773px;}
 .reg_frm{float:left; display:block;}
 .reg-row:first-child{margin-top:43px; display:block;}
-.reg-row{margin-top:50px; display: inline-block;}
+.reg-row{margin-top:50px; display: inline-block; width:100%;}
 .reg-row .bname .website{float:left;}
 .reg-row_free{margin-top:50px; display: inline-block;float: right;margin-top: -142px;}
 .free_elite_box{height: 138px;border: 1px solid #666;padding: 20px;color: #999;font-family: 'myriadpro-regular';display: inline-block;line-height: 17px;}
@@ -885,9 +885,9 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 .disputenote{padding-top:32px;width: 502px; height: 172px;}
 .transaction{padding-top:0px;}
 
-.reg-row label{font-size:38px; font-family:"myriadpro-regular"; text-transform:uppercase; color:#666666; float:left; line-height:28px; width:100%;}
+.reg-row label{font-size:38px; font-family:"myriadpro-regular"; text-transform:uppercase; color:#666666; line-height:28px; width:100%;}
 .reg-row .names{font-size:24px; font-family:"myriadpro-regular"; text-transform:uppercase; color:#666666; float:left; line-height:28px; width:100%;}
-.reg-row .reg_fld{font-size:16px; font-family:"myriadpro-regular"; color:#999; float:left; margin-top:24px;width:100%; line-height:14px;text-transform:uppercase;}
+.reg-row .reg_fld{font-size:16px; font-family:"myriadpro-regular"; color:#999;  margin-top:24px;width:100%; line-height:14px;text-transform:uppercase;}
 .reg_txt_box{width:288px; display:inline-block; border:1px solid #666; height:23px; padding:0 0 0 10px; margin-top:15px; font-family:"myriadpro-regular"; font-size:14px;}
 input[type="radio"]{ display: none;}
 input[type="radio"]+label{ background: url(../images/unchk_radio.jpg) left center no-repeat; padding-left: 5px; width:85px;}
@@ -949,8 +949,8 @@ input[type="file"].filupload:before {
 input[type="text"].bdsrch_txtbx{width:430px; box-shadow:none; height:25px; font-family:"myriadpro-regular"; color:#999; font-size:14px; float:left; padding:0 5px; border:0 none; text-transform:uppercase; }
 .bdsrch_btn{width:28px; box-shadow:none; height:25px; background: url(../images/icons.png) -562px -64px; border:0 none; overflow:hidden; cursor:pointer; float:left; position:absolute; right:0; top:1px;}
 .bdsrch_wrp h2{ display:block; float:left; font-family:"myriadpro-regular"; font-weight:bold; font-size:25px; text-transform:uppercase;  line-height:26px; margin:4px 8px 0 0;}
-.orwrp{display:block; margin: 25px 0 40px;}
-.orinnrwrp{display:block;width:38px; height:274px; margin:0 auto 25px;  background: url(../images/or.png) center top no-repeat;}
+.orwrp{display:block; margin:0;}
+.orinnrwrp{display:block;width:38px; height:50px; margin:5px auto;  background: url(../images/or.png) center right no-repeat;}
 .bus_tag{text-align:center; font-size:36px; font-family:"myriadpro-regular"; font-weight:bold; color:#0080ff;line-height:25px; margin-top:9px; margin-bottom:0; border:0 none; padding:0; height:auto; display : inline-block;}
 
 /*============ Profile ===========================*/
@@ -982,7 +982,7 @@ h1 a{display:inline-block;}
 .revw_blck_img{width:100px; float:left; display:inline-block; height:130px; margin-right:10px;}
 .revw_blck_cnt{display:inline-block; float:left;margin-bottom: 50px; width: 87%;}
 .revw_blck_cnt h2{font-family:"myriadpro-regular"; font-weight:bold; font-size:36px; margin: 0 0 10px; color:#0080ff; text-transform:uppercase;line-height:30px; height:30px;}
-.revw_blck_cnt h2 .rating{width:19%; display:inline-block; float:none;}
+.revw_blck_cnt h2 .rating{width:auto; display:inline-block; float:none;}
 .revw_occupt{background:#333333; height:auto; float:left; width:100%; color:#fff; padding: 5px 3px 5px 10px;}
 .revw_occupt span{font-family:"myriadpro-regular"; font-weight:bold; font-size:18px; color:#fff; text-transform:uppercase; }
 .revw_occupt p{font-family:"myriadpro-regular"; text-indent:10px; font-weight:bold; font-size:14px; color:#0080ff; margin:0; display:inline; padding-left:3px;}
@@ -1033,7 +1033,10 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .pressfact{color: #fff!important}
 .pressnotice{color: #fff!important;font-size: 15px;}
 .bannertext{
-	font-family:'Palatino-regular';font-size:18px;font-weight:normal;color: #2c6a99;letter-spacing: 3px;text-transform:uppercase;height: auto;letter-spacing: 3px;margin-top: 20px;
+	font-family:'Palatino-regular';font-size:50px;font-weight:normal;color: #2c6a99;letter-spacing: 3px;text-transform:uppercase;height: auto;letter-spacing: 3px;margin-top: 20px;
+	border:medium none;
+	margin-bottom: 0;
+	padding:0;
 }
 .bannertextregular{color:black;}
 .pagination{width:800px; margin:0 auto 30px auto; display:table; padding-top:10px; border-top:1px solid #666;}
@@ -1118,12 +1121,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .submt_btn{background:#2c6a99; border:1px solid #666; text-align:center; width:150px; height:150px; border-radius:100%; color:#fff; font-family:"myriadpro-regular"; font-weight:bold; font-size:36px; float:right; margin-top:100px; overflow:hidden; text-transform:uppercase; cursor:pointer;}
 
 /*============ Search Result ===========================*/
-.srch_rslt_wrp{ display:inline-block; width:100%;}
+.srch_rslt_wrp{ display:inline-block; border-top:1px solid #999999; width:100%;padding-top: 1em;}
 .serch_result h1{width:1050px;}
 .srch_result_blck{ display: inline-block; margin-top: 10px; width: 100%; border-bottom:1px solid #999;}
 .srch_rslt_left{width:510px; float:left; height:auto;}
 .srch_rslt_right{width:510px; float:left; height:auto; margin-left:10px;}
-.verified_wrp.srch_rslt_vrfy{width:510px;}
+.verified_wrp.srch_rslt_vrfy{width:auto;}
 .verified_wrp.srch_rslt_vrfy .vry_title{width:79%;}
 .verified_wrp.srch_rslt_vrfy .compny_name{width:79%;}
 .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:36px; font-family:"myriadpro-regular"; margin:0; float:left;width: 600px;}
@@ -1174,7 +1177,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .bannertextcoupon {
     color: #2c6a99;
     font-family: "Palatino-regular";
-    font-size: 18px;
+    font-size: 50px;
     font-weight: normal;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1303,7 +1306,10 @@ padding-top: 14px;
 height: 60px;
 width: 60px;
 }
-
+/* Elite Member Registeration */
+.business-info{
+	margin-top:2em;
+}
 
 .livefeed
 {
@@ -1321,12 +1327,12 @@ width: 120px;
 }
 .leftpanelwidth
 {
-width: 310px;
+width: 30%;
  margin-top: 30px;
 }
 .rightpanelwidth
 {
-	width: 100%;
+	width: 65%;
 	padding:0;
 	margin-top: 30px;
 }
@@ -1357,7 +1363,7 @@ ul.tabbs li {
     list-style: none outside none;
     height: 35px;
     list-style: none outside none;
-	margin-right: 9px;
+    margin:0;	
 }
 ul.tabbs li:hover {
     background: #D58438;   
@@ -1462,21 +1468,15 @@ color:#2c6a99;
 	margin: 4px 47px 0 0!important;
 }
 
-.btxt
-{
-	font-size: 90px;
-}
 .searchlogos
 {
-	height : 110px;
-    width  : 100%;
-    margin : 0!important;
+  height: 100px;
+  width: auto;
+  margin: 0 auto!important;
 }
 .searchlogoss
 {
-	height : 90px;
-    width  : 90%;
-    margin : 0!important;
+	margin : 0!important;
 }
 .cpyynme
 {
@@ -2157,6 +2157,7 @@ padding-left: 18px;
 	border: 1px solid #000000;
 	margin-top: 8px;
 	width: 249px;
+	margin-right: 5px;
 }
 .cvvpop {
     padding-left: 10px;
@@ -2277,11 +2278,11 @@ margin-top: 5px;
 }
 .form-col-1{
 	float:left;
-	width:190px;
+	width:20%;
 }
 .form-col-2{
 	float:left;
-	width:630px;
+	width:80%;
 }
 .form-circle{
 	width: 100px;
@@ -2410,12 +2411,15 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
 .banner_wrp img{height:100%; max-width:100%;}
 .pr_countwrp p{text-align:center;}
 .headersearchbtn,.headersearchbar{float:none;}
-.headersearch .formBox {margin: 0 auto; width: 555px;}
+.headersearch .formBox {margin: 0 auto; }
 #loading{  width:20px; margin:0 auto;}
 
 .business-callout .form-col-2{width:400px;}
-#selstatediv1{ float:right;margin-right:127px;}
-#selstatediv{ float:right;margin-right:127px;}
+#selstatediv1{ float: left;
+  margin-left: 5px;
+}
+#selstatediv{ float: left;
+  margin-left: 5px;}
 
 .side_banners{width:100%;}
 .side_ads{
@@ -2443,8 +2447,10 @@ position:fixed;
 .adimg{width:100%;height:auto;}
 
 .innr_wrap .headersearch{
-position: relative;
-height:auto;
+	position: relative;
+	height:auto;
+	width:100%;
+	margin:0 auto;
 }
 
 .review-slider-right {
@@ -2467,6 +2473,23 @@ height:auto;
     margin-top: 22px !important;
 }
 
+.post_maincontent .mg_btm td {
+    padding-bottom: 5px;
+    padding-left: 0;
+    padding-right: 5px;
+    padding-top: 5px;
+}
+
+span.stars, span.stars span {
+		display: block;
+		background: url('/images/YGR_star_span.png') 0 -22px repeat-x;
+		width: 115px;
+		height: 22px;
+	}
+
+	span.stars span {
+		background-position: 0 0;
+	}
 
 /* Social Icons */
 .addthis_native_toolbox
@@ -2519,3 +2542,7 @@ margin-right:0px;
 .review-slider li, .review-slider-right li  {background:#E0E0E0;box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.5);}
 
 .container .addvert-bottom{padding-top:0;}
+
+.count-1,.count-2,.count-3,.count-4{display: inline;}
+
+#frmcomment .txrareawrp{width:640px;}

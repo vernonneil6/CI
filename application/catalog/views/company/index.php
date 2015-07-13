@@ -41,18 +41,6 @@
 		});
 	});
 </script>
-<style type="text/css">
-	span.stars, span.stars span {
-		display: block;
-		background: url(/images/YGR_star_span.png) 0 -22px repeat-x;
-		width: 115px;
-		height: 22px;
-	}
-
-	span.stars span {
-		background-position: 0 0;
-	}
-</style>
 <section class="container">
   <section class="main_contentarea">
    
@@ -258,6 +246,11 @@
 			  $mapaddress = stripslashes($company[0]['streetaddress'].','.$company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip']);
 			  $string = str_replace(' ', '-', $mapaddress);
 			  $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
+			  
+			  $mapaddress1 = stripslashes($company[0]['city'].','.$company[0]['state'].','.$company[0]['country'].','.$company[0]['zip']);
+			  $string1 = str_replace(' ', '-', $mapaddress1);
+			  $mapaddress1 = preg_replace('/[^A-Za-z0-9\-]/', '', $string1);
+			  $address=$mapaddress.'add='.$mapaddress1;
 			?>
             <script>
 			function PopupCenter(pageURL, title,w,h)
@@ -267,7 +260,7 @@
 			  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 			 }
 			</script>
-			<label class = "view_direction_map" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">Get Directions</label>       		         
+			<label class = "view_direction_map" onclick="PopupCenter('businessdirectory/map/<?php echo $address; ?>','','800','500');" target="_blank" title="View Map">Get Directions</label>       		         
 		</div>
 		
 	   </div>

@@ -978,20 +978,26 @@
                       <div class="search_content_date user_view">
 						  <div class = "treding_title"><b> <?php echo $cmyname['company']; ?> </b></div>
 					  </div>
+					  
+					  
+					  
 					  <table class = "mg_btm">
 						  
-						<tr><td style="width:115px;">Review title</td><td>:</td><td><b><?php echo $myratings[$i]['reviewtitle']; ?></b></td></tr>
-						<tr><td style="width:115px;vertical-align:top;">Review comment</td><td>:</td><td><b><?php echo $myratings[$i]['comment']; ?></b></td></tr>
+						<tr><td style="width:115px;">Review title  :</td><td><b><?php echo $myratings[$i]['reviewtitle']; ?></b></td></tr>
+						<tr><td style="width:115px;vertical-align:top;">Review comment  :</td><td><b><?php echo $myratings[$i]['comment']; ?></b></td></tr>
 						
 						<?php if($myratings[$i]['flag'] == '1') { ?>
-							<tr><td>Status</td><td>:</td><td><b>Merchant request to remove negative review.Click below link to remove review.</b></td></tr>
-							<tr><td></td><td></td><td><b><a href = "/review/resolution_options/<?php echo $myratings[$i]['id']; ?>" target = "_blank" class = "font_size_1">Click here</a></b></td></tr>
+							<tr><td>Status  :</td>
+							<td><b>Merchant request to remove negative review.Click below link to remove review.</b>
+							<b><a href = "/review/resolution_options/<?php echo $myratings[$i]['id']; ?>" target = "_blank" class = "font_size_1">Click here</a></b>
+							</td></tr>
+							
 						<?php } 
 						
 						if(count($review)>0) { ?>
 						  
-							<tr><td>Resolution</td><td>:</td><td><b><?php echo $review['resolution']; ?> </b></td></tr>
-							<tr><td>Comment</td><td>:</td><td><b><?php echo $review['comment']; ?> </b></td></tr>
+							<tr><td>Resolution  :</td><td><b><?php echo $review['resolution']; ?> </b></td></tr>
+							<tr><td>Comment  :</td><td><b><?php echo $review['comment']; ?> </b></td></tr>
 							<?php 
 								if($review['resolution'] == '1') 
 								{
@@ -1000,8 +1006,7 @@
 							?>
 										<tr><td>Status </td><td>:</td><td><b>Merchant to upload shipping information of your purchase.</b></td></tr>
 										<tr>
-											<td></td>
-											<td></td>
+											<td></td>											
 											<td>
 												If merchant upload shipping information then review will be deleted automatically.
 												If he fail to upload information within 7 days then the review will be automatically posted in online.
@@ -1017,16 +1022,16 @@
 									if($review['status'] == '0')
 									{
 							?>
-										<tr><td>Status </td><td>:</td><td><b>Send shipping information of product to merchant</b></td></tr>
-										<tr><td></td><td></td><td><a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></td></tr>
+										<tr><td>Status  :</td><td><b>Send shipping information of product to merchant</b>
+										
+										<a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></td></tr>
 							<?php 
 									} 
 									if($review['status'] == '1')
 									{
 							?>
-										<tr><td>Status </td><td>:</td><td><b>Merchant to upload proof of refund.</b></td></tr>
+										<tr><td>Status  :</td><td><b>Merchant to upload proof of refund.</b></td></tr>
 										<tr>
-											<td></td>
 											<td></td>
 											<td>
 												If he fail to upload proof within 13 days then the review will be automatically posted in online.
@@ -1037,8 +1042,8 @@
 									if($review['status'] == '2')
 									{
 							?>
-										<tr><td>Status </td><td>:</td><td><b>Merchant has upload proof of full refund.If u like to close the case click below link</b></td></tr>
-										<tr><td></td><td></td><td><a href = "/review/proof/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
+										<tr><td>Status  :</td><td><b>Merchant has upload proof of full refund.If u like to close the case click below link</b>
+										<a href = "/review/proof/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
 							<?php 
 									} 
 								}
@@ -1049,16 +1054,15 @@
 									if($review['status'] == '0')
 									{
 							?>
-										<tr><td>Status </td><td>:</td><td><b>Send shipping information of product to merchant</b></td></tr>
-										<tr><td></td><td></td><td><a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></td></tr>
+										<tr><td>Status  :</td><td><b>Send shipping information of product to merchant</b>
+										<a href = "/review/resolution/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to enter details</a></td></tr>
 							<?php 
 									} 
 									if($review['status'] == '1')
 									{
 							?>
-										<tr><td>Status </td><td>:</td><td><b>Merchant to upload new shipping information of product.</b></td></tr>
+										<tr><td>Status  :</td><td><b>Merchant to upload new shipping information of product.</b></td></tr>
 										<tr>
-											<td></td>
 											<td></td>
 											<td>
 												If he fail to upload new shipping information within 12 days then the review will be automatically posted in online.
@@ -1069,8 +1073,8 @@
 									if($review['status'] == '2')
 									{
 							?>
-										<tr><td>Status </td><td>:</td><td><b>Merchant has upload new shipping information.If u like to close the case click below link</b></td></tr>
-										<tr><td></td><td></td><td><a href = "/review/replacement/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
+										<tr><td>Status  :</td><td><b>Merchant has upload new shipping information.If u like to close the case click below link</b>
+										<a href = "/review/replacement/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
 							<?php 
 									} 
 								}
@@ -1081,10 +1085,9 @@
 									if($review['status'] == '0')
 									{
 							?>
-										<tr><td>Status </td><td>:</td><td><b>Merchant to upload information of missing item.</b></td></tr>
+										<tr><td>Status  :</td><td><b>Merchant to upload information of missing item.</b></td></tr>
 										<tr>
-											<td></td>
-											<td></td>
+											<td></td>											
 											<td>
 												If he fail to upload information of missing item within 17 days then the review will be automatically posted in online.
 											</td>
@@ -1094,8 +1097,8 @@
 									if($review['status'] == '2')
 									{
 							?>
-										<tr><td>Status </td><td>:</td><td><b>Merchant has upload information of missing item. If u like to close the case click below link</b></td></tr>
-										<tr><td></td><td></td><td><a href = "/review/replacement/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
+										<tr><td>Status  :</td><td><b>Merchant has upload information of missing item. If u like to close the case click below link</b>
+										<a href = "/review/replacement/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
 							<?php 
 									} 
 								}
@@ -1106,10 +1109,9 @@
 									if($review['status'] == '0')
 									{
 							?>
-										<tr><td>Status </td><td>:</td><td><b>Merchant to upload proof of refund.</b></td></tr>
+										<tr><td>Status  :</td><td><b>Merchant to upload proof of refund.</b></td></tr>
 										<tr>
-											<td></td>
-											<td></td>
+											<td></td>											
 											<td>
 												If he fail to upload proof of refund within 17 days then the review will be automatically posted in online.
 											</td>
@@ -1119,8 +1121,8 @@
 									if($review['status'] == '2')
 									{
 							?>
-										<tr><td>Status </td><td>:</td><td><b>Merchant has upload proof of refund. If u like to close the case click below link</b></td></tr>
-										<tr><td></td><td></td><td><a href = "/review/proof/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
+										<tr><td>Status  :</td><td><b>Merchant has upload proof of refund. If u like to close the case click below link</b></td>
+										<a href = "/review/proof/<?php echo $review['review_id']; ?>" target = "_blank" class = "font_size_1">Click here to close case</a></td></tr>
 							<?php 
 									}  
 								}

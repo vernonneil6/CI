@@ -13,18 +13,6 @@
 		});
 	});
 </script>
-<style type="text/css">
-	span.stars, span.stars span {
-		display: block;
-		background: url(/images/YGR_star_span.png) 0 -22px repeat-x;
-		width: 115px;
-		height: 22px;
-	}
-
-	span.stars span {
-		background-position: 0 0;
-	}
-</style>
 <section class="container">
   <section class="main_contentarea serch_result">
     

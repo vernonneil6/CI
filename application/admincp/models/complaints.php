@@ -243,6 +243,35 @@ class Complaints extends CI_Model
 		}
  	}
 	
+	function getComplaintHistory($id)
+ 	{
+				
+		if(!empty($id)){
+			
+			$q = $this->db->select('c.*')
+				->from('complaints as c')
+				->join('user as u','c.userid=u.id','left')
+				->join('company as cm','cm.id=c.companyid','left')			
+				->where(array('c.status'=>'Disable','c.id'=>$id));
+			
+			$ret['rows'] = $q->get()->result();				
+				
+			$q = $this->db->select('COUNT(*) as count', FALSE)
+				->from('complaints as c')
+				->join('user as u','c.userid=u.id','left')
+				->join('company as cm','cm.id=c.companyid','left')			
+				->where(array('c.status'=>'Disable','c.id'=>$id));	
+				
+				
+			$tmp = $q->get()->result();
+		
+			$ret['num_rows'] = $tmp[0]->count;
+		
+			return $ret;					
+		}
+ 	
+	}
+	
 	//Updating Record
 	function update($intid,$complainttype,$damagesinamt,$whendate,$location,$detail,$comseokeyword)
  	{

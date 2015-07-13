@@ -255,31 +255,30 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
 			  <div id="rateerror" class="error">Please choose a star rating.</div>
 			  <div id="commenterror" class="error">Comment is required.</div>
 			 
-			  <div>
+			  <div class="rate-company">
                 <?php if($this->uri->segment(2) == 'browse') { ?>
-                <label class = "comment_rating_label">Rate this company </label> <span class="error-sign">*</span> <i class="rating_review"></i>
+                <label class = "comment_rating_label">Rate this company  *</label><i class="rating_review"></i>
                 <?php } ?>
                 <?php if($this->uri->segment(2) == 'editcomment') { ?>
-                <label class = "comment_rating_label">Rate this company </label>
-                <span class="error-sign">*</span>          
-				<i class="rating_comment_review" data-score = "<?php echo $commentbyid[0]['rating'];?>"></i>
+                <label class = "comment_rating_label">Rate this company  *</label>
+                <i class="rating_comment_review" data-score = "<?php echo $commentbyid[0]['rating'];?>"></i>
 				<?php } ?>
               </div>
              
               <label for="review">
                 <?php if($this->uri->segment(2) == 'browse') { ?>
-                Add Your Comment
+                Add Your Comment  *
                 <?php } ?>
                 <?php if($this->uri->segment(2) == 'editcomment') { ?>
-                Edit Your Comment
+                Edit Your Comment  *
                 <?php } ?>
               </label>
-              <span class="error-sign">*</span>
+              
              
               
               <?php if($this->uri->segment(2) == 'browse') { ?>
 			 
-              <?php echo form_textarea( array( 'name'=>'comment','id'=>'comment','class'=>'txrareawrp','style'=>'height:50px;width:640px')); ?>
+              <?php echo form_textarea( array( 'name'=>'comment','id'=>'comment','class'=>'txrareawrp','style'=>'height:50px;')); ?>
               <?php } ?>
               <?php if($this->uri->segment(2) == 'editcomment') { ?>
 			  <input type = "hidden" value = "<?php echo $commentbyid[0]['id'];?>" name = "id" >
