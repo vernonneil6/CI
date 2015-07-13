@@ -94,22 +94,61 @@ class Pressrelease extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	public function index( $company_name = "",  $description = "" , $pressid = '')
 	{
 		$this->load->library('pagination');
 		
 	  	$limit = $this->paging['per_page'];
   	  	$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+  	  		
+  	  	if($company_name != "" && $description != "" && $pressid != ''){
+  	  	
+  	
+			$this->data['pressrelease'] = $this->pressreleases->getPressReleaseByID($pressid);
+			
+			if(count($this->data['pressrelease'])>0)
+			{
+				//echo "<pre>"; print_r($this->data['pressrelease']); die();
+				//Loading View File
+				$company = $this->complaints->get_company_byid($this->data['pressrelease'][0]['companyid']);
+				$this->data['company'] = $this->complaints->get_company_byid($this->data['pressrelease'][0]['companyid']);
+				$companyid = $this->data['pressrelease'][0]['companyid'];
+				if(count($company)>0)
+				{
+					$this->data['companyname'] = ucfirst($company[0]['company']);
+					$this->data['aboutus'] = $company[0]['aboutus'];
+					$this->data['address'] = $company[0]['streetaddress'].'<br>'.$company[0]['city'].',  '.$company[0]['state'].',  '.$company[0]['country'].',  '.$company[0]['zip'];
+					$this->data['phone'] = $company[0]['phone'];
+					$this->data['url'] = $company[0]['siteurl'];
+					$this->data['country'] = $company[0]['country'];
+					$this->data['sems'] = $this->complaints->get_companysem_bycompanyid($companyid);
+				}
+							
+				//other pressreleases
+				
+				$this->data['otherpressreleases'] = $this->pressreleases->get_all_pressreleases(3);
+				$except=$id;
+				$this->data['mypressreleases'] = $this->pressreleases->get_my_pressreleases($companyid,$except);
+				
+				$this->load->view('pressrelease/browse1',$this->data);
+			}
+			else
+			{
+				redirect('pressrelease','refresh');
+			} 	  	
+  	  	
+		}else{
 		
-	 	$this->data['pressreleases'] = $this->pressreleases->get_all_pressreleases($limit,$offset);
+			$this->data['pressreleases'] = $this->pressreleases->get_all_pressreleases($limit,$offset);
 		
-	  	$this->paging['base_url'] = site_url("pressrelease/index");
-  	  	$this->paging['uri_segment'] = 3;
-	  	$this->paging['total_rows'] = count($this->pressreleases->get_all_pressreleases());
-	  	$this->pagination->initialize($this->paging);
+			$this->paging['base_url'] = site_url("pressrelease/index");
+			$this->paging['uri_segment'] = 3;
+			$this->paging['total_rows'] = count($this->pressreleases->get_all_pressreleases());
+			$this->pagination->initialize($this->paging);
 		
-		//Loading View File
-		$this->load->view('pressrelease/index',$this->data);
+			//Loading View File
+			$this->load->view('pressrelease/index',$this->data);
+		}
 	}
 	public function browse($id='')
 	{
