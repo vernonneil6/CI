@@ -159,9 +159,10 @@ class Company extends CI_Controller {
 			if(count($company)>0)
 			{
 				$cabout=$company[0]['aboutus'];
+				$keycompany=str_replace('"', '',$company[0]['company']);
 				if($cabout!=''){$description=implode(' ', array_slice(explode(' ', $company[0]['aboutus']), 0, 9));}else{$description=$company[0]['company'];};
-				$this->data['title'] = ucfirst($company[0]['company']).' Reviews : '.$this->data['site_name'];
-				$this->data['keywords']=$company[0]['company'].' Reviews,'.$company[0]['company'].' Complaints, '.$company[0]['company'].' Press Release,'.$company[0]['company'].' Coupons,'.$company[0]['company'].' Photos,'.$company[0]['company'].' Videos';
+				$this->data['title'] = ucfirst($keycompany).' Reviews : '.$this->data['site_name'];
+				$this->data['keywords']=$keycompany.' Reviews,'.$keycompany.' Complaints, '.$keycompany.' Press Release,'.$keycompany.' Coupons,'.$keycompany.' Photos,'.$keycompany .' Videos';
 				$this->data['description']=$description;
 			}
 			else
