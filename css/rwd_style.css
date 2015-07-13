@@ -136,7 +136,7 @@ span.stars{
 #streetaddress1{width:238px;}
 
 .headersearchbar{width:400px;}
-.headersearch .formBox{ }
+.flexslider .headersearch .formBox{width:405px !important; }
 }
 @media only screen and (min-width: 771px) {
 .addbanner{padding-top:0;}
@@ -294,7 +294,7 @@ span.toggle:before{
 .new_usr{font-size:21px;}
 
 .headersearchbar{width:300px;height:30px;}
-.headersearch .formBox{width:305px;}
+.flexslider .headersearch .formBox{width:305px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
 }
 
@@ -336,7 +336,7 @@ span.toggle:before{
 .new_usr{font-size:18px;}
 
 .headersearchbar{width:250px;height:30px;}
-.headersearch .formBox{width:255px;}
+.flexslider .headersearch .formBox{width:255px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
 .headersearch{bottom:20%;}
 }
@@ -414,7 +414,7 @@ span.toggle:before{
 .innr_wrap .new_usr a{font-size:15px; display:block;}
 
 .headersearchbar{width:220px;height:30px;}
-.headersearch .formBox{width:225px;}
+.flexslider .headersearch .formBox{width:225px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
 .headersearch{bottom:0%;}
 }
