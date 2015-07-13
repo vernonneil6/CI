@@ -182,13 +182,16 @@ class Company extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-		public function index($word='',$text1='',$text2='',$text3='')
+		public function index($member_status ='',$city_state ='',$company_name = '',$company_id='')
 		{
-		  	if($word!='' && $text1!='' && $text2!='' && $text3!='')
+		  	if($member_status !='' && $city_state !='' && $company_name !='' && $company_id!='')
 			{
-		  	if( $word!='')
+		  	if( $member_status !='')
 			{
-				$this->data['company'] = $this->complaints->get_company_byseokeyword(urldecode($word)); 
+				//echo $company_id;
+				//$this->data['company'] = $this->complaints->get_company_byseokeyword(urldecode($member_status)); 
+				$this->data['company'] = $this->complaints->get_company_byid($company_id);
+				//print_r($this->data['company']);die;
 				if(count($this->data['company'])>0) {
 				
 				$this->load->library('pagination');
@@ -252,6 +255,7 @@ class Company extends CI_Controller {
 		
 		public function reviews($word='')
 		{
+			
 		  	if( $word!='')
 			{
 				$this->data['company'] = $this->complaints->get_company_byseokeyword($word); 
@@ -890,6 +894,8 @@ class Company extends CI_Controller {
 				}
 
 		}
+		
+		
 	}
 	
  //echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');

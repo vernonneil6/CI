@@ -112,7 +112,27 @@
             </div>
           <div class="revw_blck_cnt">
             <h2>
-				<a href="<?php echo site_url('company/'.$companyseokeyword.'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes($reviews[$i]['company']);?>'s detail" class="reviewcolor">
+				
+				
+				<?php 
+				
+				//print_r($company[0]['company']);die;
+				$company_name = preg_split("/[\s,]+/", strtolower($company[0]['company']));
+				if(count($elitemem_status)==0){
+					
+					$company_seoslug = "company/not-verified/".trim(ucfirst(strtolower($company[0]['city'])))."-".trim($company[0]['state'])."/".$company_name[0]."/".$company[0]['id'];
+					
+				}else{
+					$company_seoslug = "company/elite-members/".trim(ucfirst(strtolower($company[0]['city'])))."-".trim($company[0]['state'])."/".preg_replace('/[^a-zA-Z0-9-.]/', '', trim(strtolower($company[0]['company'])))."/".$company[0]['id'];
+				}
+					
+					?>
+					
+					
+				
+				
+				
+				<a href="<?php echo site_url($company_seoslug);?>" title="view <?php echo stripslashes($reviews[$i]['company']);?>'s detail" class="reviewcolor">
 					<?php echo ucfirst(stripslashes($reviews[$i]['company']));?>
 				</a>
 				<div class="rating">
@@ -128,7 +148,8 @@
             </h2>            
             <div class="revw_occupt"> 
 				<span>
-					<a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="see details" style="color:#FFFFFF;">
+							
+					<a href="<?php echo $reviews[$i]['seoslug']; ?>" title="see details" style="color:#FFFFFF;">
 						"<?php echo $reviews[$i]['reviewtitle'];?>"
 					</a>
 				</span>-
@@ -164,7 +185,7 @@
                 <?php echo ($reviewdate==$today)?$diff:date('m/d/Y',strtotime($reviews[$i]['reviewdate'])); ?> </div>
             </div>
             <div class="revw_desc">
-				<a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="see details">
+				<a href="<?php echo $reviews[$i]['seoslug'];?>" title="see details">
 				 "<?php echo (stripslashes($reviews[$i]['comment'])); ?>"
 				 </a>
             </div>
@@ -203,7 +224,7 @@
 					  <?php } ?>              
 				</span>
 				<div class="cmnt_wrp">
-                    <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add Comment" style="cursor:pointer !important;">
+                    <a href="<?php echo $reviews[$i]['seoslug'];?>" title="Add Comment" style="cursor:pointer !important;">
                             +  Add comment
                     </a>
 	            </div>
