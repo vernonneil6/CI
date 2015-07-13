@@ -161,7 +161,7 @@ class Review extends CI_Controller
 			$this->data['reviewid'] = $reviewid;
 			$this->data['comments'] = $this->reviews->get_comments_byreviewid($reviewid,$limit,$offset);
 
-			$this->paging['base_url'] = site_url("review/browse/".$reviewseokey."/index");
+			$this->paging['base_url'] = site_url($this->data['review'][0]['seoslug']);
 			$this->paging['uri_segment'] = 5;
 			$this->paging['total_rows'] = count($this->reviews->get_comments_byreviewid($reviewid));
 			$this->pagination->initialize($this->paging);
