@@ -73,7 +73,7 @@ class Coupon extends CI_Controller {
    		$this->data['keywords'] = 'Comments On Coupons,Deals & Steals';
    		$this->data['description'] = 'Comments On Coupons,Deals & Steals';
 		}
-		elseif($this->uri->segment(1) == 'coupon' && $this->uri->segment(2) == 'browse')
+		else if($this->uri->segment(1) == 'coupon' && $this->uri->segment(2) == 'browse')
 		{
 			$this->data['title'] = $companyname['company'] ."  ". 'Coupons : YOUGOTRATED';
    		$this->data['keywords'] = 'Coupon Of'.$companyname['company'];
