@@ -127,7 +127,7 @@ class Pressrelease extends CI_Controller {
 				//other pressreleases
 				
 				$this->data['otherpressreleases'] = $this->pressreleases->get_all_pressreleases(3);
-				$except=$id;
+				$except=$pressid;
 				$this->data['mypressreleases'] = $this->pressreleases->get_my_pressreleases($companyid,$except);
 				
 				$this->load->view('pressrelease/browse1',$this->data);

@@ -115,17 +115,18 @@
 				
 				
 				<?php 
-				
+				if(count($company) > 0){
 				//print_r($company[0]['company']);die;
 				$company_name = preg_split("/[\s,]+/", strtolower($company[0]['company']));
 				if(count($elitemem_status)==0){
 					
-					$company_seoslug = "company/not-verified/".trim(ucfirst(strtolower($company[0]['city'])))."-".trim($company[0]['state'])."/".$company_name[0]."/".$company[0]['id'];
+					$company_seoslug = "company/not-verified/".trim(ucfirst(strtolower($company[0]['city'])))."-".trim($company[0]['state'])."/".$company_name."/".$company[0]['id'];
 					
 				}else{
 					$company_seoslug = "company/elite-members/".trim(ucfirst(strtolower($company[0]['city'])))."-".trim($company[0]['state'])."/".preg_replace('/[^a-zA-Z0-9-.]/', '', trim(strtolower($company[0]['company'])))."/".$company[0]['id'];
 				}
 					
+				}
 					?>
 					
 					

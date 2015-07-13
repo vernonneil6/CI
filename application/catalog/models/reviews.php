@@ -1084,7 +1084,11 @@ class Reviews extends CI_Model
 			$reviewcompanies = preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($res->company)));			
 			$reviewtitles = preg_replace('/[^a-zA-Z0-9_.]/', '_', trim(strtolower($res->reviewtitle)));
 			
-			$review_view_url = "reviews/".$reviewcompanies."/".$reviewtitles."/".$res->id; 
+			if($reviewcompanies != ""){
+				$review_view_url = "reviews/".$reviewcompanies."/".$reviewtitles."/".$res->id; 
+			}else{
+				$review_view_url = "reviews/anonymous/".$reviewtitles."/".$res->id; 
+			}	
 			
 			$data = array('seoslug' => $review_view_url);
 
