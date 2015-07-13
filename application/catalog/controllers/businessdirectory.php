@@ -79,7 +79,7 @@ class Businessdirectory extends CI_Controller {
 		if( $this->uri->segment(1) == 'businessdirectory' && ( $this->uri->segment(2) == 'search' || $this->uri->segment(2) == 'searchkey' ) )
 		{
 			$this->data['title'] = 'Search Companies';
-			$this->data['keywords'] = 'Search Business In Yougotrated Directory';
+			$this->data['keywords'] = 'Your search Result,Search Business In Yougotrated Directory';
 			$this->data['description'] = 'Search Business In Yougotrated Directory';
 		}
 		elseif($this->uri->segment(1) == 'businessdirectory' &&  $this->uri->segment(2) == 'add' )
@@ -99,7 +99,7 @@ class Businessdirectory extends CI_Controller {
 		else
 		{
 			$this->data['title'] = 'Business Directory';
-			$this->data['keywords'] = 'Add Business In YGR,Search Business In YGR,Submit a new Business';
+			$this->data['keywords'] = 'Add Business In YGR,Search Business In YGR,Submit a new Business,Business Directory';
 			$this->data['description'] = 'Add new Bussiness and Search a Existing Bussiness In YGR Directory';
 		}
 		

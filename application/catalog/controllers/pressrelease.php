@@ -78,7 +78,7 @@ class Pressrelease extends CI_Controller {
 		}
 		else{
 		
-		$this->data['keywords'] ='Press release Content In YGR Directory,Latest press Release,Recent Press Release';// $this->common->get_seosetting_value(4);
+		$this->data['keywords'] ='Press Releases,Press release Content In YGR Directory,Latest press Release,Recent Press Release';// $this->common->get_seosetting_value(4);
 		$this->data['description'] = 'Latest Press release In YGR Directory,Search for Press release In YGR Directory';
 		}
 		
