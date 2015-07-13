@@ -106,7 +106,7 @@ class Complaint extends CI_Controller {
    		$userid=$this->uri->segment(4);
    		$valuesss= $this->users->get_user_byid($userid);
    		$this->data['title'] = $valuesss[0]['username']." user's Profile";
-   		$this->data['keywords'] = "User Profile";
+   		$this->data['keywords'] = "User Profile In YGR";
    		$this->data['description'] = $valuesss[0]['username']." User Complaints";
 		}
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'claimbusiness' )
@@ -117,14 +117,14 @@ class Complaint extends CI_Controller {
 		}
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'add' )
 		{
-   		$this->data['keywords'] = 'Bussiness Dispute';
+   		$this->data['keywords'] = 'Bussiness Dispute In YGR';
 		$this->data['description'] = 'Provide Details For Dispute';
 		$this->data['title'] = 'Complaints';
 		}
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'advfilter' )
 		{
    		$this->data['title'] = 'Advance Filter to search complaints';
-   		$this->data['keywords'] ='Filter Complaints';
+   		$this->data['keywords'] ='Filter Complaints In YGR';
    		$this->data['description'] = 'Filter Complaints From date range & Type';
 		}
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'filter' )
@@ -199,7 +199,7 @@ class Complaint extends CI_Controller {
 		else
 		{
 			//Meta Keywords and Description
-		$this->data['keywords'] = 'Latest Complaints';
+		$this->data['keywords'] = 'Latest Complaints In YGR';
 		$this->data['description'] = 'Complaints about bussiness';
 		$this->data['title'] = 'Complaints : YOUGOTRATED';
 		}

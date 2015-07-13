@@ -93,7 +93,7 @@ class Review extends CI_Controller
 		{
 			$this->data['title'] = 'Recent Reviews';
 			//Meta Keywords and Description
-			$this->data['keywords'] = 'Latest Reviews In YGR Directory';
+			$this->data['keywords'] = 'Latest Reviews In YGR';
 			$this->data['description'] = 'Review by users against companies';
 		}
 			$this->data['section_title'] = 'Reviews';

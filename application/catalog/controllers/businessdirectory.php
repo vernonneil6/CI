@@ -86,14 +86,21 @@ class Businessdirectory extends CI_Controller {
 		{
 			
 			$this->data['title'] = 'Add A New Business';
-			$this->data['keywords'] = 'ADD BUSINESS TO YGR DIRECTORY';
+			$this->data['keywords'] = 'ADD BUSINESS In YGR';
 			$this->data['description'] = 'Becoming a YGR Elite member gives you benefit';
+		}
+		elseif($this->uri->segment(1) == 'businessdirectory' &&  $this->uri->segment(2) == 'category' )
+		{
+			
+				$this->data['title'] = 'Business Directory';
+			$this->data['keywords'] = $this->uri->segment(3).' Categories In YGR';
+			$this->data['description'] = $this->uri->segment(3).' Bussiness Directory Company List In YGR';
 		}
 		else
 		{
 			$this->data['title'] = 'Business Directory';
-			$this->data['keywords'] = 'Add/Search Business In Yougotrated Directory';
-			$this->data['description'] = 'Add new Bussiness,Search a Existing Bussiness In Yougotrated Directory';
+			$this->data['keywords'] = 'Add/Search Business In YGR Directory';
+			$this->data['description'] = 'Add new Bussiness,Search a Existing Bussiness In YGR Directory';
 		}
 		
 		$this->data['section_title'] = 'Business Directory';
