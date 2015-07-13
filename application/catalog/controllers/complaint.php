@@ -124,13 +124,13 @@ class Complaint extends CI_Controller {
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'advfilter' )
 		{
    		$this->data['title'] = 'Advance Filter to search complaints';
-   		$this->data['keywords'] ='Filter Complaints In YGR';
+   		$this->data['keywords'] ='Filter Complaints In YGR , Search Complaints In YGR';
    		$this->data['description'] = 'Filter Complaints From date range & Type';
 		}
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'filter' )
 		{
    		$this->data['title'] = 'Advance Filter to search complaints';
-   		$this->data['keywords'] ='Filter Complaints';
+   		$this->data['keywords'] ='Filter Complaints,search Complaints';
    		$this->data['description'] = 'Filter Complaints From date range & Type';
 		}
 		else if( $this->uri->segment(2)=='viewcompany'  && $this->uri->segment(3))
@@ -199,7 +199,7 @@ class Complaint extends CI_Controller {
 		else
 		{
 			//Meta Keywords and Description
-		$this->data['keywords'] = 'Latest Complaints In YGR';
+		$this->data['keywords'] = 'Latest Complaints In YGR,Recent Complaints IN YGR';
 		$this->data['description'] = 'Complaints about bussiness';
 		$this->data['title'] = 'Complaints : YOUGOTRATED';
 		}

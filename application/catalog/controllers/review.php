@@ -80,7 +80,7 @@ class Review extends CI_Controller
 			$this->data['title'] = 'Company Reviews';
 			//Meta Keywords and Description
 			$this->data['keywords'] = $compan.'In YGR';
-			$this->data['description'] = 'Write Review In YGR,File complaintsIn YGR';
+			$this->data['description'] = 'Write Review In YGR,File complaints ';
 		}
 		elseif( $this->uri->segment(1) == 'review' && ( $this->uri->segment(2) == 'comments' || $this->uri->segment(2) == 'editcomment' ) )
 		{
@@ -93,7 +93,7 @@ class Review extends CI_Controller
 		{
 			$this->data['title'] = 'Recent Reviews';
 			//Meta Keywords and Description
-			$this->data['keywords'] = 'Latest Reviews In YGR';
+			$this->data['keywords'] = 'Latest Reviews In YGR , Recent Reviews';
 			$this->data['description'] = 'Review by users against companies';
 		}
 			$this->data['section_title'] = 'Reviews';

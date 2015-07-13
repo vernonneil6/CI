@@ -98,7 +98,7 @@ class Company extends CI_Controller {
 			 	  	if(count($company)>0)
 						{
 								$this->data['title'] = $company[0]['company'].' : '.$this->data['site_name'];
-								$this->data['keywords'] = $this->uri->segment(2);
+								$this->data['keywords'] = ' Complaints'.str_replace("-", " "$this->uri->segment(2));
 								$this->data['description'] = $company[0]['aboutus'];
 						}
 						else
