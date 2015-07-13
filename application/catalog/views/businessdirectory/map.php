@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Travel modes in directions</title>
+    <title>Direction Map</title>
     <style>
       html, body, #map-canvas {
         height: 100%;
@@ -21,12 +21,33 @@
         border: 1px solid #999;
       }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
-     <?php $json = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=".$address."&sensor=false");
-    $json = json_decode($json);
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&v=3.exp&signed_in=true"></script>
+     <?php 
+     error_reporting(0);
+     $inputaddress=$address;
+     $input=explode('add=',$inputaddress);
+    
+       $address1=$input[0];
+       $address2=$input[1];
+  
+     $json = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=".$address1."&sensor=false");
+     $json = json_decode($json);
+      $result=$json->status;
+    if($result=='ZERO_RESULTS')
+    {
+		 $address2;
+		 $json = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=".$address2."&sensor=false");
+		 $json = json_decode($json);
+	}else
+	{
+		
+		  $json = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=".$address1."&sensor=false");
+		 $json = json_decode($json);
+	}
 
      $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
      $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'}; 
+     
      // current Ip get lat long
      //$ip = '107.170.167.130';
      $ip = $_SERVER['REMOTE_ADDR'];
@@ -57,10 +78,21 @@ function initialize() {
   }
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
   directionsDisplay.setMap(map);
-}
+  calcRoute();
+  var myLatlng = new google.maps.LatLng(<?php echo $lat?>,<?php echo $long;?>);
+  var mapElement = document.getElementById('map');
 
+                // Create the Google Map using out element and options defined above
+                var map = new google.maps.Map(mapElement, mapOptions);
+                
+                var marker = new google.maps.Marker({
+					  position: myLatlng,
+					  map: map
+				});
+}
+ 
 function calcRoute() {
-  var selectedMode = document.getElementById('mode').value;
+  var selectedMode ='DRIVING';
   var request = {
       origin: from,
       destination: to,
@@ -78,22 +110,21 @@ function calcRoute() {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
+
     </script>
+    
+   
   </head>
   <body>
 	  
     <div id="panel">
 		<?php //echo $clatitude.',' .$clongitude;?>
 		<?php //echo $lat.','.$long;?>
-    <b>Mode of Travel: </b>
-    <select id="mode" onchange="calcRoute();">
-      <option value="DRIVING">Driving</option>
-      <option value="WALKING">Walking</option>
-      <option value="BICYCLING">Bicycling</option>
-      <option value="TRANSIT">Transit</option>
-    </select>
+		
+    
     </div>
    
     <div id="map-canvas"></div>
+   
   </body>
 </html>
