@@ -72,6 +72,12 @@ class Coupon extends CI_Controller {
    		$this->data['keywords'] = 'Comments On Coupons,Deals & Steals';
    		$this->data['description'] = 'Comments On Coupons,Deals & Steals';
 		}
+		elseif($this->uri->segment(1) == 'coupon' && $this->uri->segment(2) == 'browse')
+		{
+			$this->data['title'] = $companyname['company'] ."  ". 'Coupons : YOUGOTRATED';
+   		$this->data['keywords'] = 'Coupon Of'.$companyname['company'];
+   		$this->data['description'] = 'coupons from'.$companyname['company'];
+		}
 		else
 		{
 			$this->data['title'] = 'Coupons and Deals';
@@ -82,7 +88,7 @@ class Coupon extends CI_Controller {
 		$this->paging = $this->config->item('paging');
 		
 		$this->data['keywords'] = 'Coupons,Deals & Steals';//$this->common->get_seosetting_value(4);
-		$this->data['description'] = 'Coupons,Deals & Steals On Bussiness';//$this->common->get_seosetting_value(5);
+		$this->data['description'] = 'Coupons,Deals & Steals On Business';//$this->common->get_seosetting_value(5);
 
 		//Meta Keywords and Description
 		//$this->data['keywords'] = $this->common->get_seosetting_value(4);

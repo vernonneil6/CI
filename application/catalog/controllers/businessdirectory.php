@@ -99,8 +99,8 @@ class Businessdirectory extends CI_Controller {
 		else
 		{
 			$this->data['title'] = 'Business Directory';
-			$this->data['keywords'] = 'Add Business In YGR,Search Business In YGR';
-			$this->data['description'] = 'Add new Bussiness,Search a Existing Bussiness In YGR Directory';
+			$this->data['keywords'] = 'Add Business In YGR,Search Business In YGR,Submit a new Business';
+			$this->data['description'] = 'Add new Bussiness and Search a Existing Bussiness In YGR Directory';
 		}
 		
 		$this->data['section_title'] = 'Business Directory';
