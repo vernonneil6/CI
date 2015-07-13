@@ -1782,6 +1782,11 @@ class Review extends CI_Controller
 	   
 	    
 	 }
+	 public function update_elites(){
+		// die('im');
+		$this->reviews->update_fields();
+		//$this->reviews->updateCompanySlug();
+	 }
 	 
 	 
 }
