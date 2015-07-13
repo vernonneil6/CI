@@ -2411,7 +2411,7 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
 .banner_wrp img{height:100%; max-width:100%;}
 .pr_countwrp p{text-align:center;}
 .headersearchbtn,.headersearchbar{float:none;}
-.headersearch .formBox {margin: 0 auto; }
+.flexslider .headersearch .formBox {margin: 0 auto; width:555px; }
 #loading{  width:20px; margin:0 auto;}
 
 .business-callout .form-col-2{width:400px;}
