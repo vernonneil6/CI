@@ -155,7 +155,7 @@ class Complaint extends CI_Controller {
 			 	  	if(count($company)>0)
 						{
 								$this->data['title'] = $company[0]['company'].' '.'Complaints:YOUGOTRATED';
-								$this->data['keywords'] = $this->uri->segment(3);
+								$this->data['keywords'] = 'Complaints Against'.$company[0]['company'];
 								$this->data['description'] = $company[0]['aboutus'];
 						}
 						else
@@ -179,7 +179,7 @@ class Complaint extends CI_Controller {
 					 	  		if(count($complaint)>0)
 								{
 									$this->data['title'] = $companyname['company'].' '.'Complaints:YOUGOTRATED';
-									$this->data['keywords'] = $companyname['company'];
+									$this->data['keywords'] = 'Complaints Against '. $companyname['company'];
 									$inputstring=$complaint[0]['detail'];
 									$pieces = explode(" ", $inputstring);
 									$first_part = implode(" ", array_splice($pieces, 0, 5));
