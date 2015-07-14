@@ -169,7 +169,7 @@ foreach($catlist as $row=> $result)
 <?php if(isset($topads)){ ?>
 <?php if(count($topads)){ ?>
 <div class="container">	
-<div align="center" class="addvert"><a href="<?php echo $topads[0]['url'];?>" title="Adverstiment" target="_blank" rel="nofollow"><img src="<?php if( $topads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($topads[0]['image']); } ?>" alt="Adverstiment" width="" height="" class="adimg"/></a> </div>
+<div align="center" class="addvert" id="add-banner"><a href="<?php echo $topads[0]['url'];?>" title="Adverstiment" target="_blank" rel="nofollow"><img src="<?php if( $topads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($topads[0]['image']); } ?>" alt="Adverstiment" width="" height="" class="adimg"/></a> </div>
 </div>
 <?php } ?>
 <?php } ?>
@@ -275,7 +275,18 @@ $('#display').hide();
 <script>
 	/*side banner script*/
 $(window).load(function() {
-	
+	var className = $('#add-banner').attr('class');
+	if(className == 'addvert')
+	{
+			$(".main_contentarea").css({ 'padding-top': '0' });  
+			$("#main_contentarea").css({ 'padding-top': '0' }); 
+			$(".account").css({ 'padding-top': '0' });  
+	}.account
+	else{
+			$(".main_contentarea").css({ 'padding-top': '8.5em' });  
+			$("#main_contentarea").css({ 'padding-top': '8.5em' }); 
+			$(".account").css({ 'padding-top': '8.5em' }); 
+		}
 	 $('#leftclosead').click( function(){ 
 		  $(this).parents('.ad_left').hide(); 
 	 });

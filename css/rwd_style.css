@@ -144,7 +144,7 @@ span.stars{
 .footer-col {display: inline;}
 .fmenu {display: block !important;}
 .noscroll-head{position:fixed;z-index:10000;background: none repeat scroll 0 0 #fff;border-bottom:1px solid rgba(0, 0, 0, 0.25);}
-.addvert, .main_contentarea, #main_contentarea, .account {padding-top: 8.5em;}
+.addvert{padding-top: 8.5em;}
 }
 @media only screen and (min-width: 850px) and (max-width: 1050px)  {
 .main_footer, .innr_wrap, .container{width:82%;padding:0 20px; }
