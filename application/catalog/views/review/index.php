@@ -60,6 +60,7 @@
         <?php for($i=0; $i<count($reviews); $i++) {?>
         <?php $company=$this->reviews->get_company_byid($reviews[$i]['companyid']);
         $companyseokeyword = ($company) ? $company[0]['companyseokeyword'] : '';
+        $company_seoslug = ($company) ? $company[0]['seoslug'] : '';
 		$elitemem_status = $this->common->get_eliteship_bycompanyid($reviews[$i]['companyid']);
 		?>
         <script>
@@ -98,41 +99,21 @@
 			<div class="revw_blck_img">            <?php 
 				if(count($elitemem_status)==0){?>
 					<div class="vry_logo"> 
-						<a href="<?php echo site_url('company/'.$companyseokeyword.'/reviews/coupons/complaints');?>" title="view company Detail">
+						<a href="<?php echo site_url($company_seoslug);?>" title="view company Detail">
 							<img  class="reviewnotverifiedlogo" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($reviews[$i]['company'])); ?>" />
 						</a> 
 					</div>  <?php 
 					}else{  ?>
 					<div class="vry_logo"> 
-						<a href="<?php echo site_url('company/'.$companyseokeyword.'/reviews/coupons/complaints');?>" title="view company Detail">
+						<a href="<?php echo site_url($company_seoslug);?>" title="view company Detail">
 							<img class="reviewverifiedlogo" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($reviews[$i]['company'])); ?>" />
 						</a> 
 					</div>      <?php
 				} ?>            
             </div>
           <div class="revw_blck_cnt">
-            <h2>
-				
-				
-				<?php 
-				if(count($company) > 0){
-				//print_r($company[0]['company']);die;
-				$company_name = preg_split("/[\s,]+/", strtolower($company[0]['company']));
-				if(count($elitemem_status)==0){
-					
-					$company_seoslug = "company/not-verified/".trim(ucfirst(strtolower($company[0]['city'])))."-".trim($company[0]['state'])."/".$company_name."/".$company[0]['id'];
-					
-				}else{
-					$company_seoslug = "company/elite-members/".trim(ucfirst(strtolower($company[0]['city'])))."-".trim($company[0]['state'])."/".preg_replace('/[^a-zA-Z0-9-.]/', '', trim(strtolower($company[0]['company'])))."/".$company[0]['id'];
-				}
-					
-				}
-					?>
-					
-					
-				
-				
-				
+            <h2>			
+			
 				<a href="<?php echo site_url($company_seoslug);?>" title="view <?php echo stripslashes($reviews[$i]['company']);?>'s detail" class="reviewcolor">
 					<?php echo ucfirst(stripslashes($reviews[$i]['company']));?>
 				</a>

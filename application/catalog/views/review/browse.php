@@ -129,25 +129,28 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
 <section class="container">
   <section class="main_contentarea">
     <div class="verified_wrp pr_rwrp verfs_top">
-      <?php $company=$this->reviews->get_company_byid($review[0]['companyid']);?>
-      <?php  //get avg star by cmpyid
+      <?php 
+			$company=$this->reviews->get_company_byid($review[0]['companyid']);
+			$company_seoslug = ($company) ? $company[0]['seoslug'] : '';
+			
+			//get avg star by cmpyid
 			$avgstar = $this->common->get_avg_ratings_bycmid($review[0]['companyid']);
 			$avgstar = round($avgstar);
-			//$elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyid']);
-			?>
+			
+	  ?>
       <div class="verified_wrp pr_rwrp pr_rwrp">
         <?php /*?><div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view complaint Detail"><img src="<?php if( $review[0]['logo'] ) { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($review[0]['logo']); } else { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" width="103px" height="88px" /></a> </div><?php */?>
         
         <?php if(count($elitemem_status)==0){?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url($company_seoslug); ?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
         <?php }else{
 				  ?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
         <?php
 				  } ?>
         <div class="compny_name">
 			
-          <h1><a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><?php  echo $review[0]['company'];?></a></h1>
+          <h1><a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><?php  echo $review[0]['company'];?></a></h1>
           
           <?php if(count($elitemem_status)==0){?>
 			<a href="http://business.yougotrated.com/?elitemem=<?php echo $review[0]['companyid'] ?>" title="Upgrade to Elite">

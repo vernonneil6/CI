@@ -66,15 +66,16 @@
         for($i=0;$i<count($complaints);$i++){
             $user=$this->users->get_user_bysingleid($complaints[$i]['reviewby']) ;
             $companyname = $this->users->get_company_bysingleid($complaints[$i]['companyid']); 
+            $company_seoslug = ($companyname) ? $companyname['seoslug'] : '';
             $avgstar = $this->common->get_avg_ratings_bycmid($complaints[$i]['companyid']);
             $avgstar = round($avgstar);
             //$img_src = 'images/default_user.png';
             if($user['id']==$complaints[$i]['reviewby']){
                 $img_src = 'uploads/user/thumb/'.$user['avatarthum'];
             }
-            if(!empty($companyname['companyseokeyword'])){
-				$siteurl = site_url('company/'.$companyname['companyseokeyword'].'/reviews/coupons/complaints');
-			}
+            
+			$siteurl = site_url($company_seoslug);
+			
             $review_detail = ucfirst(stripslashes($complaints[$i]['company'])); 
             $review_date = date('m/d/Y',strtotime($complaints[$i]['reviewdate'])); 
 			$star = '<div class ="count-'.$complaints[$i]['rate'].'">';
@@ -119,7 +120,7 @@
                         <a title="view Review Detail" href="">
                         '.$complaints_content.'</a>                                                 
                     </div>
-                    <div class="view-all"><a title="view Review Detail" href="'.site_url('review/browse/'.$complaints[$i]['seokeyword']).'"> <span></span></a><a href="'.site_url('review/browse/'.$complaints[$i]['seokeyword']).'">Read More</a></div>
+                    <div class="view-all"><a title="view Review Detail" href="'.site_url($complaints[$i]['seoslug']).'"> <span></span></a><a href="'.site_url($complaints[$i]['seoslug']).'">Read More</a></div>
                 </div>             
                 </div>
             </div>            

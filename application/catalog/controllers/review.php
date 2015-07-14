@@ -104,42 +104,9 @@ class Review extends CI_Controller
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	/*public function index($companyid = NULL,$promosuccess = NULL)
-	{
-		if (strpos($promosuccess,'ygrsuccess') !== false && array_key_exists('youg_user',$this->session->userdata)) {
-			$promoid = trim(str_replace('ygrsuccess','',$promosuccess));
-			$promocodevalid = '';
-			$promocodevalid = $this->reviews->find_reviewpromocodeid($promoid);
-			$this->data['promo'] = $promocodevalid;
-			$this->data['companyid'] = $companyid;
-		} else {
-			$this->data['promo'] = '';
-			$this->data['companyid'] = '';
-		}
-		$this->load->library('pagination');
-		$limit = $this->paging['per_page'];
-		
-		if(!empty($companyid) && strpos($promosuccess,'ygrsuccess') !== false){
-			$offset = 0;
-			$this->paging['uri_segment'] = 5;
-		} else {
-			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
-			$this->paging['uri_segment'] = 3;
-		}
-
-	    $this->data['reviews'] = $this->reviews->get_all_reviews($limit,$offset);
-		
-	  $this->paging['base_url'] = site_url("review/index");
-  	  //$this->paging['uri_segment'] = 3;
-	  $this->paging['total_rows'] = count($this->reviews->get_all_reviews());
-	  $this->pagination->initialize($this->paging);
-		//Loading View File
-		$this->load->view('review/index',$this->data);
-	}
-	*/
+	
 	public function index($company_name = '', $review_title = '', $review_id = '', $companyid = NULL, $promosuccess = NULL)
 	{
-		//echo $this->uri->segment(3);die;
 		
 		/*Review View page*/
 		if( $company_name != '' && $review_title != '' && $review_id != ''){ 
@@ -1782,10 +1749,20 @@ class Review extends CI_Controller
 	   
 	    
 	 }
-	 public function update_elites(){
-		// die('im');
-		$this->reviews->update_fields();
-		//$this->reviews->updateCompanySlug();
+	 
+	 /* Update SEO Slug */
+	 public function update_seoslug( $update_slug ){
+		
+		if($update_slug == 1){
+			$this->reviews->updateCompaniesSlug();			
+		}elseif($update_slug == 2){			
+			$this->reviews->updateReviewsSlug();			
+		}elseif($update_slug == 3){
+			$this->reviews->updateComplaintsSlug();
+		}elseif($update_slug == 4){
+			$this->reviews->updateCouponsSlug();
+		}
+		
 	 }
 	 
 	 
