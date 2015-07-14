@@ -84,8 +84,8 @@ class Complaint extends CI_Controller {
 		if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'weektrending' )
 		{
    		$this->data['title'] = 'Week trending complaints';
-   		$this->data['keywords'] ='';
-   		$this->data['description'] = '';
+   		$this->data['keywords'] ='HAVE A COMPLAINT? REPORT IT AND GET IT RESOLVED!';
+   		$this->data['description'] = 'Its never been easier to get your complaints resolved!';
 		}
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'viewcomment' )
 		{
@@ -96,8 +96,8 @@ class Complaint extends CI_Controller {
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'keysearchresult' || $this->uri->segment(2) == 'search' )
 		{
    		$this->data['title'] = 'Search complaints';
-   		$this->data['keywords'] ='';
-   		$this->data['description'] = '';
+   		$this->data['keywords'] ='Search Complaints';
+   		$this->data['description'] = 'Search Complaints by businessname ';
 		}
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'viewuser' )
 		{
@@ -105,9 +105,9 @@ class Complaint extends CI_Controller {
    		$companyid=$this->uri->segment(3);
    		$userid=$this->uri->segment(4);
    		$valuesss= $this->users->get_user_byid($userid);
-   		$this->data['title'] = $valuesss[0]['username']." user's Profile";
-   		$this->data['keywords'] = "User Profile In YGR";
-   		$this->data['description'] = $valuesss[0]['username']." User Complaints";
+   		$this->data['title'] = $valuesss[0]['username']." user Profile";
+   		$this->data['keywords'] = $valuesss[0]['username']." User Profile In YGR";
+   		$this->data['description'] = $valuesss[0]['username']." Complaints Details Page";
 		}
 		else if( $this->uri->segment(1) == 'complaint' && $this->uri->segment(2) == 'claimbusiness' )
 		{
