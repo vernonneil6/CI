@@ -117,7 +117,7 @@ class Company extends CI_Controller {
 		
 		if( $this->uri->segment(1)=='company' && $this->uri->segment(2)=='reviews')
 		{
-			$company = $this->complaints->get_company_byseokeyword($this->uri->segment(2)); 
+			$company = $this->complaints->get_company_byseokeyword($this->uri->segment(3)); 
 			if(count($company)>0)
 			{
 				$this->data['title'] = ucfirst($company[0]['company']).' reviews : '.$this->data['site_name']; 
@@ -156,6 +156,7 @@ class Company extends CI_Controller {
 		elseif( $this->uri->segment(1)=='company' && $this->uri->segment(2)!='reviews' )
 		{
 			$company = $this->complaints->get_company_byseokeyword($this->uri->segment(2)); 
+			
 			if(count($company)>0)
 			{
 				$cabout=$company[0]['aboutus'];
