@@ -10,6 +10,10 @@
         margin: 0px;
         padding: 0px
       }
+      #error{color:red;display:none;text-align:center; }
+		  
+		  
+	 
       #panel {
         position: absolute;
         top: 5px;
@@ -66,7 +70,8 @@ function calcRoute(start,end,mode) {
     }
     else
     {
-             $("#error").append("Unable to retrieve your route<br />");
+		 $("#error").show();
+		
           }
   });
 }
@@ -98,7 +103,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     </select>
     <input type="submit" />
       <input type="reset" />
-       <p id="error"></p>
+       <p id="error"><b>Unable to retrieve your route</b><br /></p>
     </form>
     </div>
     <div id="map-canvas"></div>
