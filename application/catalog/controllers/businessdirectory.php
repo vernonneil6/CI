@@ -79,21 +79,28 @@ class Businessdirectory extends CI_Controller {
 		if( $this->uri->segment(1) == 'businessdirectory' && ( $this->uri->segment(2) == 'search' || $this->uri->segment(2) == 'searchkey' ) )
 		{
 			$this->data['title'] = 'Search Companies';
-			$this->data['keywords'] = 'Search Business In Yougotrated Directory';
-			$this->data['description'] = 'The Bussiness your are looking for In Yougotrated Directory';
+			$this->data['keywords'] = 'Your search Result,Search Business In Yougotrated Directory';
+			$this->data['description'] = 'Search Business In Yougotrated Directory';
 		}
 		elseif($this->uri->segment(1) == 'businessdirectory' &&  $this->uri->segment(2) == 'add' )
 		{
 			
 			$this->data['title'] = 'Add A New Business';
-			$this->data['keywords'] = 'ADD BUSINESS TO YGR DIRECTORY';
+			$this->data['keywords'] = 'ADD BUSINESS In YGR';
 			$this->data['description'] = 'Becoming a YGR Elite member gives you benefit';
+		}
+		elseif($this->uri->segment(1) == 'businessdirectory' &&  $this->uri->segment(2) == 'category' )
+		{
+			
+				$this->data['title'] = 'Business Directory';
+			$this->data['keywords'] = 'SEARCH RESULTS FOR '.$this->uri->segment(3).' Categories In YGR';
+			$this->data['description'] = $this->uri->segment(3).' Bussiness Directory List In YGR';
 		}
 		else
 		{
 			$this->data['title'] = 'Business Directory';
-			$this->data['keywords'] = 'Add/Search Business In Yougotrated Directory';
-			$this->data['description'] = 'Add new Bussiness,Search a Existing Bussiness In Yougotrated Directory';
+			$this->data['keywords'] = 'Add Business In YGR,Search Business In YGR,Submit a new Business,Business Directory';
+			$this->data['description'] = 'Add new Bussiness and Search a Existing Bussiness In YGR Directory';
 		}
 		
 		$this->data['section_title'] = 'Business Directory';

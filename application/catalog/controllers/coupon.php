@@ -61,7 +61,8 @@ class Coupon extends CI_Controller {
 		
 		
 		$total= $this->common->get_all_complaints_totaldamage($siteid);
-		
+		$company = $this->coupons->get_company_bycouponseokeyword($this->uri->segment(3));
+		$companyname = $this->users->get_company_bysingleid($company['companyid']);
 		if(count($total)>0) {
 		$this->data['total'] = round($total[0]['total']);
 		}
@@ -72,18 +73,25 @@ class Coupon extends CI_Controller {
    		$this->data['keywords'] = 'Comments On Coupons,Deals & Steals';
    		$this->data['description'] = 'Comments On Coupons,Deals & Steals';
 		}
+		else if($this->uri->segment(1) == 'coupon' && $this->uri->segment(2) == 'browse')
+		{
+			$this->data['title'] = $companyname['company'] ."  ". 'Coupons : YOUGOTRATED';
+   		$this->data['keywords'] = 'Coupon Of '. $companyname['company'];
+   		$this->data['description'] = 'coupons from '. $companyname['company'];
+		}
 		else
 		{
 			$this->data['title'] = 'Coupons and Deals';
+			$this->data['keywords'] = 'Coupons,Deals & Steals';//$this->common->get_seosetting_value(4);
+		$this->data['description'] = 'Coupons,Deals & Steals On Business';//$this->common->get_seosetting_value(5);
+
 		}
 	
 		//Loadin Pagination Custome Config File
 		$this->config->load('paging',TRUE);
 		$this->paging = $this->config->item('paging');
 		
-		$this->data['keywords'] = 'Coupons,Deals & Steals';//$this->common->get_seosetting_value(4);
-		$this->data['description'] = 'Coupons,Deals & Steals On Bussiness';//$this->common->get_seosetting_value(5);
-
+		
 		//Meta Keywords and Description
 		//$this->data['keywords'] = $this->common->get_seosetting_value(4);
 		//$this->data['description'] = $this->common->get_seosetting_value(5);

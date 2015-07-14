@@ -136,7 +136,7 @@ span.stars{
 #streetaddress1{width:238px;}
 
 .headersearchbar{width:400px;}
-.headersearch .formBox{ }
+.flexslider .headersearch .formBox{width:405px !important; }
 }
 @media only screen and (min-width: 771px) {
 .addbanner{padding-top:0;}
@@ -144,7 +144,7 @@ span.stars{
 .footer-col {display: inline;}
 .fmenu {display: block !important;}
 .noscroll-head{position:fixed;z-index:10000;background: none repeat scroll 0 0 #fff;border-bottom:1px solid rgba(0, 0, 0, 0.25);}
-.addvert, .main_contentarea, #main_contentarea, .account {padding-top: 8.5em;}
+.addvert{padding-top: 8.5em;}
 }
 @media only screen and (min-width: 850px) and (max-width: 1050px)  {
 .main_footer, .innr_wrap, .container{width:82%;padding:0 20px; }
@@ -157,6 +157,12 @@ span.stars{
 }
 
 @media only screen and (min-width: 310px) and (max-width: 770px)  {
+.addthis_default_style .addthis_separator, .addthis_default_style .at300b, .addthis_default_style .at4-icon, .addthis_default_style .at300bo, .addthis_default_style .at300m, .addthis_default_style .at300bs, .addthis_default_style .addthis_counter{float:none !important;}
+.addthis_native_toolbox a{margin-bottom:0 !important;}
+.addthis_button_pinterest_pinit {height: 20px !important;overflow: hidden !important;}
+
+
+.reg-row .reg_fld{margin-bottom:10px;line-height:17px;margin-top:0;}
 .verified_wrp .bsntvry_title{float:none;height:auto;}
 .verified_wrp .bsnntverified, .verified_wrp .bsntg{float:none;}
 .verified_wrp .bsvry_tag.bsntg > p{text-align:center;}
@@ -266,6 +272,7 @@ span.toggle:before{
 
 }
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
+.reg-row .names {font-size: 20px;}
 .dir_rew_wrap .revw_blck_cnt{float: right;width: 78%;}
 .dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
 .dir_rew_wrap .revw_blck_img{float: left;}
@@ -294,7 +301,7 @@ span.toggle:before{
 .new_usr{font-size:21px;}
 
 .headersearchbar{width:300px;height:30px;}
-.headersearch .formBox{width:305px;}
+.flexslider .headersearch .formBox{width:305px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
 }
 
@@ -336,7 +343,7 @@ span.toggle:before{
 .new_usr{font-size:18px;}
 
 .headersearchbar{width:250px;height:30px;}
-.headersearch .formBox{width:255px;}
+.flexslider .headersearch .formBox{width:255px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
 .headersearch{bottom:20%;}
 }
@@ -389,7 +396,7 @@ span.toggle:before{
 .regr_lnk,.innr_wrap{width:311px;}
 .reg-row label{font-size:18px;}
 .reg_frm_wrap{float:none;width:auto;}
-.reg_txt_box,.reg_txt_box-lg,.reg_txt_box-md, #streetaddress1{width:88%;}
+.reg_txt_box,.reg_txt_box-lg,.reg_txt_box-md, #streetaddress1{width:225px;}
 .reg_txt_box-xsml{margin-left:0;}
 .pull-right{float:none;}
 .pr_countwrp ul li{margin-bottom:10px;}
@@ -414,7 +421,7 @@ span.toggle:before{
 .innr_wrap .new_usr a{font-size:15px; display:block;}
 
 .headersearchbar{width:220px;height:30px;}
-.headersearch .formBox{width:225px;}
+.flexslider .headersearch .formBox{width:225px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
 .headersearch{bottom:0%;}
 }

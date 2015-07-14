@@ -98,7 +98,7 @@ class Company extends CI_Controller {
 			 	  	if(count($company)>0)
 						{
 								$this->data['title'] = $company[0]['company'].' : '.$this->data['site_name'];
-								$this->data['keywords'] = $this->uri->segment(2);
+								$this->data['keywords'] = ' Complaints'.str_replace("-", " ",$this->uri->segment(2));
 								$this->data['description'] = $company[0]['aboutus'];
 						}
 						else
@@ -117,7 +117,7 @@ class Company extends CI_Controller {
 		
 		if( $this->uri->segment(1)=='company' && $this->uri->segment(2)=='reviews')
 		{
-			$company = $this->complaints->get_company_byseokeyword($this->uri->segment(2)); 
+			$company = $this->complaints->get_company_byseokeyword($this->uri->segment(3)); 
 			if(count($company)>0)
 			{
 				$this->data['title'] = ucfirst($company[0]['company']).' reviews : '.$this->data['site_name']; 
@@ -156,12 +156,15 @@ class Company extends CI_Controller {
 		elseif( $this->uri->segment(1)=='company' && $this->uri->segment(2)!='reviews' )
 		{
 			$company = $this->complaints->get_company_byseokeyword($this->uri->segment(2)); 
+			
 			if(count($company)>0)
 			{
-			
-				$this->data['title'] = ucfirst($company[0]['company']).' Reviews : '.$this->data['site_name'];
-				$this->data['keywords']='Reviews,Complaints,Press Release,Coupons,Photos,Videos';
-				$this->data['description']=implode(' ', array_slice(explode(' ', $company[0]['aboutus']), 0, 9));
+				$cabout=$company[0]['aboutus'];
+				$keycompany=str_replace('"', '',$company[0]['company']);
+				if($cabout!=''){$description=implode(' ', array_slice(explode(' ', $company[0]['aboutus']), 0, 9));}else{$description=$company[0]['company'];};
+				$this->data['title'] = ucfirst($keycompany).' Reviews : '.$this->data['site_name'];
+				$this->data['keywords']=$keycompany.' Reviews,'.$keycompany.' Complaints, '.$keycompany.' Press Release,'.$keycompany.' Coupons,'.$keycompany.' Photos,'.$keycompany .' Videos';
+				$this->data['description']=$description;
 			}
 			else
 			{

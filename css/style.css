@@ -273,8 +273,8 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .headerfb{background:url('../images/fbbg.png') no-repeat; height: 22px; width: 160px; float: left;}
 .headerfb a{padding: 4px 0 0 35px;  display: inline-block;}
 .headersearch{display:inline-block; margin: 30px 0 20px; text-align: center; width:967px;position: absolute;z-index:9999;bottom:35%;height:40px;}
-.headersearchbar{border-radius:5px; height: 40px;  padding: 0 0 0 10px; width: 550px; border:1px solid #2C6A99;font-family: MyriadPro-SemiboldCondIt; font-size: 18px;}
-.headersearchbtn{background:white;border:none;font-size: 26px !important;float:right !important;border:0;position:relative;bottom:1.4em;cursor:pointer;}
+.headersearchbar{border-radius:5px; height: 40px;  padding: 0 0 0 10px; width: 550px; border:0 none;font-family: MyriadPro-SemiboldCondIt; font-size: 18px;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;opacity: 0.8;}
+.headersearchbtn{background:none;border:none;font-size: 26px !important;float:right !important;border:0;position:relative;bottom:1.4em;cursor:pointer;}
 .headersub_btn{background:url('../images/searchbtn.png'); width:115px;height: 40px; padding-top: 1px; vertical-align: top;border:none; color: white; font-family: MyriadPro-BlackSemiCn;  font-size: 14px;margin-left: -148px;margin-top: 20px;}
 .sub_paypal{padding-top: 44px;margin-top: 22px;margin-left: -66px;}
 
@@ -887,7 +887,8 @@ footer{width:100%; float:left; height:auto; margin-top:30px;}
 
 .reg-row label{font-size:38px; font-family:"myriadpro-regular"; text-transform:uppercase; color:#666666; line-height:28px; width:100%;}
 .reg-row .names{font-size:24px; font-family:"myriadpro-regular"; text-transform:uppercase; color:#666666; float:left; line-height:28px; width:100%;}
-.reg-row .reg_fld{font-size:16px; font-family:"myriadpro-regular"; color:#999;  margin-top:24px;width:100%; line-height:14px;text-transform:uppercase;}
+.reg-row .reg_fld{font-size:16px; font-family:"myriadpro-regular"; color:#999;  margin-top:24px;width:100%; line-height:14px;text-transform:uppercase;float: left;}
+#frmaddcompany .reg-row .reg_fld {float: none;}
 .reg_txt_box{width:288px; display:inline-block; border:1px solid #666; height:23px; padding:0 0 0 10px; margin-top:15px; font-family:"myriadpro-regular"; font-size:14px;}
 input[type="radio"]{ display: none;}
 input[type="radio"]+label{ background: url(../images/unchk_radio.jpg) left center no-repeat; padding-left: 5px; width:85px;}
@@ -1075,7 +1076,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .cnt_content span{font-family:"myriadpro-regular"; font-weight:bold; color:#333	; font-size:18px; text-transform:uppercase;}
 .cnt_content p{margin:5px 0 0 0 ; font-family:"myriadpro-regular"; font-weight:bold; color:#fff; font-size:18px;}
 .pr_testmnl_wrp{width:950px; display:table; margin:0 auto;  font-family: myriadpro-regular;}
-.pr_testmnl_wrp p{font-family:"myriadpro-regular"; font-size:18px; color:#333;}
+.pr_testmnl_wrp p{font-family:"myriadpro-regular"; font-size:18px; color:#333;margin-top: 10px;}
 .testmnl_clntwrp{width:600px; margin:0 auto; display:table;}
 .clnt_intr{float:right; display:block;}
 .clnt_pic{display:inline-block; width:40px; height:40px; vertical-align:middle;}
@@ -1524,6 +1525,7 @@ color:#2c6a99;
 	width:auto!important;
 	margin-bottom: 20px!important;
 	float: right;
+	margin-top:20px;
 	
 }
 .clt_nme
@@ -2278,7 +2280,7 @@ margin-top: 5px;
 }
 .form-col-1{
 	float:left;
-	width:20%;
+	width:190px;
 }
 .form-col-2{
 	float:left;
@@ -2411,7 +2413,7 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
 .banner_wrp img{height:100%; max-width:100%;}
 .pr_countwrp p{text-align:center;}
 .headersearchbtn,.headersearchbar{float:none;}
-.headersearch .formBox {margin: 0 auto; }
+.flexslider .headersearch .formBox {margin: 0 auto; width:555px; }
 #loading{  width:20px; margin:0 auto;}
 
 .business-callout .form-col-2{width:400px;}
@@ -2546,3 +2548,4 @@ margin-right:0px;
 .count-1,.count-2,.count-3,.count-4{display: inline;}
 
 #frmcomment .txrareawrp{width:640px;}
+.headersearchbar:hover, .headersearchbar:focus{opacity:1;} 
