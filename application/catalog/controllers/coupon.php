@@ -99,9 +99,9 @@ class Coupon extends CI_Controller {
 		
 		$this->data['section_title'] = 'Coupons : YOUGOTRATED';
 		
-		if($this->uri->segment(3))
+		if($this->uri->segment(5))
 		{
-		$company = $this->coupons->get_company_bycouponseokeyword($this->uri->segment(3));
+		$company = $this->coupons->get_company_bycouponseokeyword($this->uri->segment(5));
 		$companyname = $this->users->get_company_bysingleid($company['companyid']);
 		$this->data['title'] = $companyname['company'] ."  ". 'Coupons : YOUGOTRATED';
 		}
@@ -112,27 +112,61 @@ class Coupon extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	public function index( $company_name = '', $coupon_title = '', $coupon_id = '' )
 	{
-		  $this->load->library('pagination');
-		    			
-		  $limit = $this->paging['per_page'];
-		  $offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
-		  
-		  //Addingg Setting Result to variable
-		  $this->data['coupons'] = $this->coupons->get_all_coupons($limit,$offset);
-		  $siteid = $this->session->userdata('siteid');
-		  $this->data['keywords'] = $this->coupons->get_all_searchs($siteid);
-		  
-		  $this->paging['base_url'] = site_url("coupon/index");
-		  $this->paging['uri_segment'] = 3;
-		  $this->paging['total_rows'] = count($this->coupons->get_all_coupons());
-		  $this->pagination->initialize($this->paging);
+		
+			if( $company_name != '' && $coupon_title != '' && $coupon_id != '')
+			{
+				
+		  		$couponseo = $this->coupons->get_coupon_byid($coupon_id);
+				if(count($couponseo))
+				{
+					$this->data['coupons'] = $this->coupons->get_coupon_byid($couponseo[0]['id']);
+					$this->data['couponcomments'] = $this->coupons->get_comments_bycouponid($couponseo[0]['id']);
 
-		//$this->data['userimgs']=$this->coupons->user_image();
-          
-		  //Loading View File
-		  $this->load->view('coupon/index',$this->data);
+
+					if(count($this->data['coupons'])>0)
+					{
+						//get other coupons same for that company
+
+						$this->data['othercoupons'] = $this->coupons->get_coupon_bycompanyid($this->data['coupons'][0]['companyid'],$this->data['coupons'][0]['id']); 
+
+						//Loading View File
+						$this->load->view('coupon/browse',$this->data);
+					}
+					else
+					{
+						redirect('coupon','refresh');
+					}
+				}
+				else
+				{
+					redirect('coupon','refresh');
+				}
+			}
+			else
+			{
+		
+					  $this->load->library('pagination');
+									
+					  $limit = $this->paging['per_page'];
+					  $offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+					  
+					  //Addingg Setting Result to variable
+					  $this->data['coupons'] = $this->coupons->get_all_coupons($limit,$offset);
+					  $siteid = $this->session->userdata('siteid');
+					  $this->data['keywords'] = $this->coupons->get_all_searchs($siteid);
+					  
+					  $this->paging['base_url'] = site_url("coupon/index");
+					  $this->paging['uri_segment'] = 3;
+					  $this->paging['total_rows'] = count($this->coupons->get_all_coupons());
+					  $this->pagination->initialize($this->paging);
+
+					//$this->data['userimgs']=$this->coupons->user_image();
+					  
+					  //Loading View File
+					  $this->load->view('coupon/index',$this->data);
+			}
 	}
 	
 	

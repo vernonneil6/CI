@@ -183,23 +183,20 @@ class Company extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-		public function index($member_status ='',$city_state ='',$company_name = '',$company_id='')
+		public function index($param1 = '',$param2 = '',$param3 = '',$param4 = '')
 		{
-		  	if($member_status !='' && $city_state !='' && $company_name !='' && $company_id!='')
+		  	if($param1 != '' && $param2 != '' && $param3 != '' && $param4 != '')
 			{
-		  	if( $member_status !='')
-			{
-				//echo $company_id;
-				//$this->data['company'] = $this->complaints->get_company_byseokeyword(urldecode($member_status)); 
-				$this->data['company'] = $this->complaints->get_company_byid($company_id);
+						
+				$this->data['company'] = $this->complaints->get_company_byid($param4);
 				//print_r($this->data['company']);die;
 				if(count($this->data['company'])>0) {
-				
+
 				$this->load->library('pagination');
 				$limit = $this->paging['per_page'];
 				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
-				
-		  		$this->data['complaints'] = $this->complaints->get_complaint_bycompanyid($this->data['company'][0]['id']);
+
+				$this->data['complaints'] = $this->complaints->get_complaint_bycompanyid($this->data['company'][0]['id']);
 				$this->data['reviews'] = $this->reviews->get_reviews_bycompanyid($this->data['company'][0]['id'],$limit,$offset);
 				$this->data['coupons'] = $this->complaints->get_coupon_bycompanyid($this->data['company'][0]['id']);
 				$this->data['gallerys'] = $this->complaints->get_gallery_bycompanyid($this->data['company'][0]['id']);
@@ -208,50 +205,92 @@ class Company extends CI_Controller {
 				$this->data['companyreviews'] = $this->complaints->get_companyreviews_bycompanyid($this->data['company'][0]['id']);
 				$this->data['companypdfs'] = $this->complaints->get_companypdfs_bycompanyid($this->data['company'][0]['id']);
 				$this->data['companypressreleases'] = $this->complaints->get_companypressreleases_bycompanyid($this->data['company'][0]['id']);
-							
-			    $this->paging['base_url'] = site_url("company/index");
-			    $this->paging['uri_segment'] = 3;
-			    $this->paging['total_rows'] = count($this->reviews->get_reviews_bycompanyid($this->data['company'][0]['id']));
-			    $this->pagination->initialize($this->paging);
-			   
-				//Loading View File
-		 		 if(count($this->data['company'])>0)
+
+				$this->paging['base_url'] = site_url("company/index");
+				$this->paging['uri_segment'] = 3;
+				$this->paging['total_rows'] = count($this->reviews->get_reviews_bycompanyid($this->data['company'][0]['id']));
+				$this->pagination->initialize($this->paging);
+
+					//Loading View File
+					if(count($this->data['company'])>0)
 					{
-						
-	  
+
 						//get total REVIEWS
 						//get total COMPLAINTS
 						//get total DAMAGES
-						
+
 						$this->data['to_reviews'] = $this->complaints->get_to_reviews_cid($this->data['company'][0]['id']);
 						$this->data['to_complaints'] = $this->complaints->get_to_complaints_cid($this->data['company'][0]['id']);
 						$this->data['to_damages'] = $this->complaints->get_to_damages_cid($this->data['company'][0]['id']);
 						$this->data['company_timings'] = $this->complaints->get_company_onetimings($this->data['company'][0]['id']);
-								
-					  
-						
+
 						$this->load->view('company/index',$this->data);
 					}
-				else
+					else
 					{
 						redirect(base_url(), 'refresh');
 					}
 				}
 				else
 				{
-				redirect(base_url(), 'refresh');
-			}
-			}
-		else
-			{
 					redirect(base_url(), 'refresh');
-			}
-		}
-			else
-			{
-					redirect(base_url(), 'refresh');
-			}
+				}
 		
+			}
+			elseif($param1 != '' && $param2 != '' && $param3 != '')
+			{
+				
+				if($param2 == 'view-all-videos'){
+					
+					$this->data['company'] = $this->users->get_company_byid($param3); 
+					
+					if(count($this->data['company'])>0) 
+					{
+
+						$this->data['videos'] = $this->complaints->get_videos_bycompanyid($this->data['company'][0]['id']);
+
+						if(count($this->data['videos'])>0)
+						{
+							$this->load->view('companyvideos',$this->data);
+						}
+						else
+						{
+							redirect('', 'refresh');
+						}
+					}
+					else
+					{
+						redirect('', 'refresh');
+					}
+				
+				}else{
+					
+					$this->data['company'] = $this->users->get_company_byid($param3);
+					
+					if(count($this->data['company'])>0) 
+					{
+
+						$this->data['gallerys'] = $this->complaints->get_gallery_bycompanyid($this->data['company'][0]['id']);		
+
+						if(count($this->data['gallerys'])>0)
+						{
+							$this->load->view('companyphotos',$this->data);
+						}
+						else
+						{
+							redirect('', 'refresh');
+						}
+					}
+					else
+					{
+						redirect('', 'refresh');
+					}
+				}
+								
+			}
+			else{
+					redirect(base_url(), 'refresh');
+			}		
 		}
 		
 		public function reviews($word='')

@@ -34,7 +34,7 @@
                         if($newdate > 60){$diff = round(($d1-$d2)/60/60).' hours ago';}else{$diff = $newdate.' minutes ago';}
                         ?>
           <div class="revw_blck_cnt">
-            <h2> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail" class="complaintlist"> <?php echo strtoupper($complaints[$i]['company']);?> </a> </h2>
+            <h2> <a href="<?php echo site_url($complaints[$i]['seoslug']); ?>" title="view complaint detail" class="complaintlist"> <?php echo strtoupper($complaints[$i]['company']);?> </a> </h2>
             <div class="revw_occupt"> <span></span>-
               <p>
                 <?php if($complaints[$i]['userid']!=0){ ?>
@@ -47,8 +47,8 @@
               </p>
               <div class="revw_date"> <?php echo date('m/d/Y',strtotime($dbdate));?> </div>
             </div>
-            <div class="revw_desc"> " <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['detail']),0,212)."..."); ?></a>" </div>
-            <div class="revw_ratpoint"> <span> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail">Reported Damage: $<?php echo $complaints[$i]['damagesinamt'];?> </a> </span>
+            <div class="revw_desc"> " <a href="<?php echo site_url($complaints[$i]['seoslug']); ?>" title="view complaint detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['detail']),0,212)."..."); ?></a>" </div>
+            <div class="revw_ratpoint"> <span> <a href="<?php echo site_url($complaints[$i]['seoslug']); ?>" title="view complaint detail">Reported Damage: $<?php echo $complaints[$i]['damagesinamt'];?> </a> </span>
             </div>
           </div>
           <?php } ?>

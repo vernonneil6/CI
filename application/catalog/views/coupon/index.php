@@ -14,7 +14,7 @@
         <?php if(count($coupons)>0) {?>
         <?php for($i=0; $i<count($coupons); $i++) { ?>
         <div class="revw_blck">
-          <div class="revw_blck_img"><a href="<?php echo site_url('coupon/browse/'.$coupons[$i]['seokeyword']); ?>" title="view coupon detail"><img src="<?php if( strlen($coupons[$i]['image'])>5 ){ echo $this->common->get_setting_value('2').$this->config->item('coupon_thumb_upload_path');?><?php echo stripslashes($coupons[$i]['image']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($coupons[$i]['company'])); ?>" width="80px" height="65px"/></a> </div>
+          <div class="revw_blck_img"><a href="<?php echo site_url($coupons[$i]['seoslug']); ?>" title="view coupon detail"><img src="<?php if( strlen($coupons[$i]['image'])>5 ){ echo $this->common->get_setting_value('2').$this->config->item('coupon_thumb_upload_path');?><?php echo stripslashes($coupons[$i]['image']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($coupons[$i]['company'])); ?>" width="80px" height="65px"/></a> </div>
           <div class="revw_blck_cnt">
             <h2> <?php echo $coupons[$i]['company'];?> <span>EXPIRES: <?php echo date('m/d/Y',strtotime($coupons[$i]['enddate']));?></span></h2>
             <div class="coupon_dscrwrp">
@@ -22,7 +22,7 @@
                 <div class="revw_desc"> 
 				  <a title="Title">Title : <span><?php echo $coupons[$i]['title'];?></span> </a> <br/>
 				  <a href="<?php echo $coupons[$i]['url']; ?>" title="Promocode" target="_blank" rel="nofollow">Promocode : <span><?php echo $coupons[$i]['promocode'];?></span> </a> <br/>
-                  <a href="<?php echo site_url('coupon/browse/'.$coupons[$i]['seokeyword']); ?>" title="Business Category"><span><?php echo ucfirst($coupons[$i]['category']);?></span> </a> </div>
+                  <a href="<?php echo site_url($coupons[$i]['seoslug']); ?>" title="Business Category"><span><?php echo ucfirst($coupons[$i]['category']);?></span> </a> </div>
               </div>
  		<?php if($coupons[$i]['logo']!='')
 		{
@@ -31,7 +31,7 @@
 		<?php
 		}
 		?>              
-		<div class="offer_wrp"> <a href="<?php echo site_url('coupon/browse/'.$coupons[$i]['seokeyword']); ?>"><img src="images/YouGotRated_Essential_ViewOffer.png" alt="View Offer" title="View Offer"></a> </div>
+		<div class="offer_wrp"> <a href="<?php echo site_url($coupons[$i]['seoslug']); ?>"><img src="images/YouGotRated_Essential_ViewOffer.png" alt="View Offer" title="View Offer"></a> </div>
             </div>
           </div>
         </div>
