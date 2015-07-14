@@ -219,7 +219,7 @@ class Complaint extends CI_Controller {
 		  $limit = $this->paging['per_page'];
 		  $offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
 		  
-		  //Addingg Setting Result to variable
+		  //Adding Setting Result to variable
 		  $this->data['complaints'] = $this->complaints->get_all_complaints($limit,$offset);
 		  $this->data['keywords'] = $this->complaints->get_all_searchs($siteid);
 		  
