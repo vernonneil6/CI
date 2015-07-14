@@ -1076,7 +1076,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .cnt_content span{font-family:"myriadpro-regular"; font-weight:bold; color:#333	; font-size:18px; text-transform:uppercase;}
 .cnt_content p{margin:5px 0 0 0 ; font-family:"myriadpro-regular"; font-weight:bold; color:#fff; font-size:18px;}
 .pr_testmnl_wrp{width:950px; display:table; margin:0 auto;  font-family: myriadpro-regular;}
-.pr_testmnl_wrp p{font-family:"myriadpro-regular"; font-size:18px; color:#333;}
+.pr_testmnl_wrp p{font-family:"myriadpro-regular"; font-size:18px; color:#333;margin-top: 10px;}
 .testmnl_clntwrp{width:600px; margin:0 auto; display:table;}
 .clnt_intr{float:right; display:block;}
 .clnt_pic{display:inline-block; width:40px; height:40px; vertical-align:middle;}
@@ -1525,6 +1525,7 @@ color:#2c6a99;
 	width:auto!important;
 	margin-bottom: 20px!important;
 	float: right;
+	margin-top:20px;
 	
 }
 .clt_nme
@@ -2547,4 +2548,4 @@ margin-right:0px;
 .count-1,.count-2,.count-3,.count-4{display: inline;}
 
 #frmcomment .txrareawrp{width:640px;}
-.headersearchbar:hover{opacity:1;} 
+.headersearchbar:hover, .headersearchbar:focus{opacity:1;} 

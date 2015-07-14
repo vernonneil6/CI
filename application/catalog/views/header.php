@@ -276,17 +276,19 @@ $('#display').hide();
 	/*side banner script*/
 $(window).load(function() {
 	var className = $('#add-banner').attr('class');
+	if($(window).width() >= 770) {
 	if(className == 'addvert')
 	{
 			$(".main_contentarea").css({ 'padding-top': '0' });  
 			$("#main_contentarea").css({ 'padding-top': '0' }); 
 			$(".account").css({ 'padding-top': '0' });  
-	}.account
+	}
 	else{
 			$(".main_contentarea").css({ 'padding-top': '8.5em' });  
 			$("#main_contentarea").css({ 'padding-top': '8.5em' }); 
 			$(".account").css({ 'padding-top': '8.5em' }); 
 		}
+	}
 	 $('#leftclosead').click( function(){ 
 		  $(this).parents('.ad_left').hide(); 
 	 });
