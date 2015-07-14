@@ -91,9 +91,9 @@ class Coupon extends CI_Controller {
 		
 		$this->data['section_title'] = 'Coupons : YOUGOTRATED';
 		
-		if($this->uri->segment(5))
+		if($this->uri->segment(7))
 		{
-		$company = $this->coupons->get_company_bycouponseokeyword($this->uri->segment(5));
+		$company = $this->coupons->get_company_bycouponseokeyword($this->uri->segment(7));
 		$companyname = $this->users->get_company_bysingleid($company['companyid']);
 		$this->data['title'] = $companyname['company'] ."  ". 'Coupons : YOUGOTRATED';
 		}
