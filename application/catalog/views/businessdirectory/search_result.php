@@ -21,9 +21,9 @@
     <div class="srch_rslt_wrp">
 		<div style='text-align:center' class="add-business">
       If the business you are looking for isnt here, add it!
-
 	<a href="<?php echo site_url('businessdirectory/add');?>">ADD BUSINESS</a>
   </div>
+	<div class="add-busi-dir"> <a href="<?php echo site_url('businessdirectory/add');?>">Add Business to Directory</a></div>	
       <form class="busdt_wrap" method="post" id="frmcompany" action="businessdirectory/search">
       <div class="main_bd_srchwrp">
           <div class="bdsrch_wrp">
