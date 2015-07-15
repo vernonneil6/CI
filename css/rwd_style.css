@@ -356,7 +356,6 @@ span.toggle:before{
 .headersearch{bottom:20%;}
 }
 @media only screen and (min-width: 310px) and (max-width: 549px)  {
-.srch_rslt_wrp .add-business a{display: block;width:110px;margin:0 auto;}
 .reg-row .names{font-size: 16px;width:86% !important;}
 
 #loading{height:10px;float:none;margin:0 auto; position: relative; z-index: 9999999;}
