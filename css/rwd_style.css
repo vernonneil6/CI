@@ -60,6 +60,7 @@ span.stars{
 
 }
 @media only screen and (min-width: 771px) and (max-width: 1050px){
+
 .verified_wrp .compny_name{width:80% !important;}
 .verified_wrp .compny_name > h1 {text-align: left !important;}
 .verified_wrp .vry_logo {float: left !important;}
@@ -136,7 +137,7 @@ span.stars{
 #streetaddress1{width:238px;}
 
 .headersearchbar{width:400px;}
-.flexslider .headersearch .formBox{width:405px !important; }
+.flexslider .headersearch .formBox, .innr_wrap .headersearch .formBox{width:405px !important; margin:0 auto !important;}
 }
 @media only screen and (min-width: 771px) {
 .addbanner{padding-top:0;}
@@ -301,7 +302,7 @@ span.toggle:before{
 .new_usr{font-size:21px;}
 
 .headersearchbar{width:300px;height:30px;}
-.flexslider .headersearch .formBox{width:305px;}
+.flexslider .headersearch .formBox, .innr_wrap .headersearch .formBox{width:305px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
 }
 
@@ -343,11 +344,12 @@ span.toggle:before{
 .new_usr{font-size:18px;}
 
 .headersearchbar{width:250px;height:30px;}
-.flexslider .headersearch .formBox{width:255px;}
+.flexslider .headersearch .formBox, .innr_wrap .headersearch .formBox{width:255px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
 .headersearch{bottom:20%;}
 }
 @media only screen and (min-width: 310px) and (max-width: 549px)  {
+.srch_rslt_wrp .add-business a{display: block;width:110px;margin:0 auto;}
 .reg-row .names{font-size: 16px;width:86% !important;}
 
 #loading{height:10px;float:none;margin:0 auto; position: relative; z-index: 9999999;}
@@ -360,6 +362,9 @@ span.toggle:before{
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px !important;width:300px;}
 }
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
+#frmcompany .bd_srchwrp #searchcomp {width:auto;}
+#frmcompany .bd_srchwrp{width:100%;}
+
 .coupon_wrap .revw_blck_cnt {float: right; width: 72%;}
 .coupon_wrap .revw_blck_cnt h2{text-align:left;}
 .coupon_wrap .revw_blck_img{display:inline;text-align:left}
@@ -421,7 +426,7 @@ span.toggle:before{
 .innr_wrap .new_usr a{font-size:15px; display:block;}
 
 .headersearchbar{width:220px;height:30px;}
-.flexslider .headersearch .formBox{width:225px;}
+.flexslider .headersearch .formBox, .innr_wrap .headersearch .formBox{width:225px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
 .headersearch{bottom:0%;}
 }
@@ -440,7 +445,7 @@ span.toggle:before{
 @media only screen and (min-width: 310px) and (max-width: 619px)  {
 .bannertextcoupon{font-size:25px !important;height:35px;}
 .bus_dir_head  h1{height:20px;}
-.bus_tag{font-size:20px;}
+.bus_tag{font-size:17px;}
 .headersearchbar{margin-bottom:10px;}
 .bannertext{font-size:35px;height:auto;}
 }
