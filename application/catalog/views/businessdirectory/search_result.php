@@ -19,7 +19,7 @@
 		<span class="bannertextregular">YOUR SEARCH </span>RESULTS</h1>
     </h1>
     <div class="srch_rslt_wrp">
-		<div style='text-align:center'>
+		<div style='text-align:center' class="add-business">
       If the business you are looking for isnt here, add it!
 
 	<a href="<?php echo site_url('businessdirectory/add');?>">ADD BUSINESS</a>
@@ -27,7 +27,7 @@
       <form class="busdt_wrap" method="post" id="frmcompany" action="businessdirectory/search">
       <div class="main_bd_srchwrp">
           <div class="bdsrch_wrp">
-            <h2>Search</h2>
+            <h2>Search Again</h2>
             <div class="bd_srchwrp">
               <input type="text" class="bdsrch_txtbx" placeholder="ENTER CITY OR COMPANY NAME HERE" id="searchcomp" name="searchcomp" maxlength="100" required value="<?php echo $keyword;?>">
               <input type="submit" class="bdsrch_btn" title="Search" id="btnsearch" name="btnsearch" value="">
