@@ -37,8 +37,9 @@ td{display:block;}
   width:100%;
 }
 .vry_btn a{
-	float:none;
+	background:none;color:#000;text-decoration:underline;
 }
+.vry_btn a:hover { background:none;}
 span.stars{
  margin:auto;
 }
@@ -158,6 +159,7 @@ span.stars{
 }
 
 @media only screen and (min-width: 310px) and (max-width: 770px)  {
+
 #custom-share1{ display:block !important;float:left; }
 #custom-share{ display:none;}
 .testmnl_cln,.clnt_intr{ float:left;}
@@ -168,6 +170,7 @@ span.stars{
 
 
 .reg-row .reg_fld{margin-bottom:10px;line-height:17px;margin-top:0;}
+
 .verified_wrp .bsntvry_title{float:none;height:auto;}
 .verified_wrp .bsnntverified, .verified_wrp .bsntg{float:none;}
 .verified_wrp .bsvry_tag.bsntg > p{text-align:center;}
