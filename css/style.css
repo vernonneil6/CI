@@ -273,7 +273,8 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .headerfb{background:url('../images/fbbg.png') no-repeat; height: 22px; width: 160px; float: left;}
 .headerfb a{padding: 4px 0 0 35px;  display: inline-block;}
 .headersearch{display:inline-block; margin: 30px 0 20px; text-align: center; width:967px;position: absolute;z-index:9999;bottom:35%;height:40px;}
-.headersearchbar{border-radius:5px; height: 40px;  padding: 0 0 0 10px; width: 550px; border:0 none;font-family: MyriadPro-SemiboldCondIt; font-size: 18px;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;opacity: 0.8;}
+#search_form .headersearchbar{border-radius:5px; height: 40px;  padding: 0 0 0 10px; width: 550px; border:0 none;font-family: MyriadPro-SemiboldCondIt; font-size: 18px;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;opacity: 0.8;}
+.headersearchbar{border-radius:5px; height: 40px;  padding: 0 0 0 10px; width: 550px; border:1px solid #2c6a99;font-family: MyriadPro-SemiboldCondIt; font-size: 18px;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;}
 .headersearchbtn{background:none;border:none;font-size: 26px !important;float:right !important;border:0;position:relative;bottom:1.4em;cursor:pointer;}
 .headersub_btn{background:url('../images/searchbtn.png'); width:115px;height: 40px; padding-top: 1px; vertical-align: top;border:none; color: white; font-family: MyriadPro-BlackSemiCn;  font-size: 14px;margin-left: -148px;margin-top: 20px;}
 .sub_paypal{padding-top: 44px;margin-top: 22px;margin-left: -66px;}
@@ -952,7 +953,7 @@ input[type="text"].bdsrch_txtbx{width:430px; box-shadow:none; height:25px; font-
 .bdsrch_wrp h2{ display:block; float:left; font-family:"myriadpro-regular"; font-weight:bold; font-size:25px; text-transform:uppercase;  line-height:26px; margin:4px 8px 0 0;}
 .orwrp{display:block; margin:0;}
 .orinnrwrp{display:block;width:38px; height:50px; margin:5px auto;  background: url(../images/or.png) center right no-repeat;}
-.bus_tag{text-align:center; font-size:36px; font-family:"myriadpro-regular"; font-weight:bold; color:#0080ff;line-height:25px; margin-top:9px; margin-bottom:0; border:0 none; padding:0; height:auto; display : inline-block;}
+.bus_tag{text-align:center; font-size:30px; font-family:"myriadpro-regular"; font-weight:bold; color:#0080ff;line-height:25px; margin-top:9px; margin-bottom:0; border:0 none; padding:0; height:auto; display : inline-block;}
 
 /*============ Profile ===========================*/
 
@@ -2134,6 +2135,8 @@ padding-left: 18px;
 {
   color: #2C6A99; 
 }
+.bus_tag .complaintlist {background: none repeat scroll 0 0 #2c6a99;border-radius: 15px;color: #fff;padding: 17px 10px 10px;}
+
 .complaint_user_title
 {
 	font-family: myriadpro-boldcond;
@@ -2413,7 +2416,7 @@ float:right;margin-top:0px;border:4px solid #2C6A99; font-family: "myriadpro-reg
 .banner_wrp img{height:100%; max-width:100%;}
 .pr_countwrp p{text-align:center;}
 .headersearchbtn,.headersearchbar{float:none;}
-.flexslider .headersearch .formBox {margin: 0 auto; width:555px; }
+.flexslider .headersearch .formBox, .innr_wrap .headersearch .formBox {margin: 0 auto; width:555px; }
 #loading{  width:20px; margin:0 auto;}
 
 .business-callout .form-col-2{width:400px;}
@@ -2548,4 +2551,9 @@ margin-right:0px;
 .count-1,.count-2,.count-3,.count-4{display: inline;}
 
 #frmcomment .txrareawrp{width:640px;}
-.headersearchbar:hover, .headersearchbar:focus{opacity:1;} 
+#search_form .headersearchbar:hover, #search_form .headersearchbar:focus{opacity:1;} 
+#frmcompany .bd_srchwrp{width:360px;}
+#frmcompany .bd_srchwrp #searchcomp{width:335px;}
+
+.add-business a {background: none repeat scroll 0 0 #2c6a99; border-radius: 15px;color: #fff;font-weight: bold;padding: 8px 10px 5px;}
+.srch_rslt_wrp #frmcompany{ margin-bottom: 15px; margin-top: 55px;}
