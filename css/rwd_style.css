@@ -160,6 +160,10 @@ span.stars{
 
 @media only screen and (min-width: 310px) and (max-width: 770px)  {
 
+#custom-share1{ display:block !important;float:left; }
+#custom-share{ display:none;}
+.testmnl_cln,.clnt_intr{ float:left;}
+
 .addthis_default_style .addthis_separator, .addthis_default_style .at300b, .addthis_default_style .at4-icon, .addthis_default_style .at300bo, .addthis_default_style .at300m, .addthis_default_style .at300bs, .addthis_default_style .addthis_counter{float:none !important;}
 .addthis_native_toolbox a{margin-bottom:0 !important;}
 .addthis_button_pinterest_pinit {height: 20px !important;overflow: hidden !important;}
@@ -365,6 +369,8 @@ span.toggle:before{
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px !important;width:300px;}
 }
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
+.add-busi-dir a {font-size: 20px;}
+
 #frmcompany .bd_srchwrp #searchcomp {width:auto;}
 #frmcompany .bd_srchwrp{width:100%;}
 
