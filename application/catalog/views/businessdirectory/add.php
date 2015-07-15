@@ -242,7 +242,7 @@
               });
           </script>
 
-<section class="container">
+<section class="container business-directory">
   <section class="main_contentarea">
     <!--<div class="banner_wrp"> <img src="images/YouGotRated_HeaderGraphics_SignUpPage.png" alt="Register" title="Register"> </div>-->
     <div class="regr_lnk">
@@ -255,72 +255,68 @@
       <div>
         <form class="reg_frm" action="businessdirectory/add" id="frmaddcompany" method="post" enctype="multipart/form-data"> 
           
-          <div class="reg-row">
+          <div class="reg-row" style="position:relative">
+			  
 			<div>
-				<span class="form-col-1">
+				<div class="form-col-1">
 					<span class="form-circle">1</span>
-				</span>
-				<span class="form-col-2" style="width:300px;">
-					<label>BUSINESS' NAME</label>           
-					<input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name" >
-					<div id="nameerror" class="error">Name is required.</div>
-					<div id="nametknerror" class="error">This company name is already exists.</div>
-					<div id="namechecks" class="error"></div>					
-				</span>
-			</div> 
-          </div>
-          
-          <div class="reg-row business-callout">
-			<div >
-				<span class="form-col-2" >
-					<a href="/solution/claimbusiness"><h3 >YouGotRated Elite Membership:</h3></a>
-					<h4 >Becoming a YGR Elite member gives you the following benefits:</h4>        
-					<ul>
-					<li><p>Negative review removal tool</p></li>
-					<li><p>Verified Seal</p></li>
-					<li><p>Press Releases</p></li>				
-					<li><p>Photo Gallery</p></li>
-					<li><p>Review Promo Tools</p></li>
-					<li style="margin-bottom:5px;"><p>Much more! <a href="/solution/claimbusiness"><b style="color:#000;">CLICK HERE</b></a> to UPGRADE!</p></li>
-					</ul>
-				</span>
-			</div> 
-          </div>
-          
-          <div class="reg-row" style="margin-top:10px;">
-			<div>
-				<span class="form-col-1">
-					&nbsp;
-				</span>
-				<span class="form-col-2" style="width:300px;">
-					<div class="reg_fld">BUSINESS'S WEBSITE?</div>
-					<input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150" onchange="chkwebsite(this.value);">
-					<div id="websiteerror" class="error">Website is required.</div>
-					<div id="weberror" class="error"></div>
-				</span>
-			</div> 
-          </div>
-          
-          
-          
-          <div class="reg-row" style="margin-top:10px;">
-			<div>
-				<span class="form-col-1">
-					&nbsp;
-				</span>
-				<span class="form-col-2">
-					<div class="reg_fld">CATEGORY</div>
-					<div id="" style="overflow-y: scroll; height:180px;border: 1px solid #D9D9D9;width:100%;">
+				</div>
+				<div class="form-col-2">
+					
+					<div class="business-fields">
+					
+						<label>BUSINESS' NAME</label><br/>       
+						<input type="text" class="reg_txt_box" placeholder="NAME" id="name" name="name" >
+						<div id="nameerror" class="error">Name is required.</div>
+						<div id="nametknerror" class="error">This company name is already exists.</div>
+						<div id="namechecks" class="error"></div>	
+						
+						<div class="reg_fld">BUSINESS'S WEBSITE?</div>
+						<input type="text" class="reg_txt_box" placeholder="WEBSITE" id="website" name="website"  maxlength="150" onchange="chkwebsite(this.value);">
+						<div id="websiteerror" class="error">Website is required.</div>
+						<div id="weberror" class="error"></div>
+					
+					</div>
+					
+					<div class="business-callout">
+						<div class="" >
+						<a href="/solution/claimbusiness"><h3 >YouGotRated Elite Membership:</h3></a>
+						<h4 >Becoming a YGR Elite member gives you the following benefits:</h4>        
+						<ul>
+						<li><p>Negative review removal tool</p></li>
+						<li><p>Verified Seal</p></li>
+						<li><p>Press Releases</p></li>				
+						<li><p>Photo Gallery</p></li>
+						<li><p>Review Promo Tools</p></li>
+						<li style="margin-bottom:5px;"><p>Much more! <a href="/solution/claimbusiness"><b style="color:#000;">CLICK HERE</b></a> to UPGRADE!</p></li>
+						</ul>
+						</div>
+					</div>
+							
+					
+					<div style="clear:both">
+					
+						<div class="reg_fld">CATEGORY</div>
+						<div id="" style="overflow-y: scroll; height:180px;border: 1px solid #D9D9D9;width:100%;">
 						<?php for($i=0;$i<count($categories);$i++) { ?>
 						<?php  $option = array( 'name'=>'cat[]', 'id'=>'cat-'.$categories[$i]['id'], 'value'=>$categories[$i]['id'],'class'=>'checkboxLabel' );
 						echo form_checkbox( $option ); ?>
 						&nbsp; <span style="color: #999999;"> <?php echo stripslashes($categories[$i]['category'])."<br/>";?> </span>
 						<?php } ?>
-					  </div>
-					<div id="websiteerror" class="error">Website is required.</div>				
-				</span>
-			</div> 
-          </div>
+						</div>
+						<div id="websiteerror" class="error">Website is required.</div>
+					</div> 
+									
+				</div>
+				
+				
+				
+			</div>
+										
+			
+          </div>     
+          <div style="clear:both"></div>          
+        
           
           <div class="reg-row">
 			<div>
@@ -328,7 +324,7 @@
 					<span class="form-circle">2</span>
 				</span>
 				<span class="form-col-2">
-					<label>BUSINESS EMAIL ADDRESS</label>            
+					<label>BUSINESS EMAIL ADDRESS</label><br/>            
 					<input type="email" class="reg_txt_box" placeholder="E-MAIL ADDRESS" id="email" name="email"  maxlength="250" onchange="chkmail(this.value);">
 					<div id="emailerror" class="error">Enter valid Emailid.</div>
 					<div id="emailcheck" class="error"></div>
@@ -346,20 +342,33 @@
 				<span class="form-col-2">
 					<label>BUSINESS ADDRESS</label>            
 					<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress" id="streetaddress" maxlength="150">
-					<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />					
-					<!--<input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" />-->
-					<?php echo form_dropdown('country',$selcon,'','id="country1" class="seldrop" onchange=getbusinessstates(this.value,"state","#selstatediv1","");');?>
-				   <!--<input type="hidden" name="country" id="countryname1"/>-->
-					<!--<input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" />-->
-					<span id="selstatediv1"><?php $selstate=array(''=>'--Select State--'); ?>
-					<?php echo form_dropdown('state',$selstate,'','id="state1" class="seldrop"');?></span>
-					<input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
 					<div id="streetaddresserror" class="error">Street Address is required.</div>
+					
+					<div class="city-country">
+					
+					<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />					
 					<div id="cityerror" class="error">City is required.</div>
-					<div id="stateerror" class="error">State is required.</div>
+					
+					
+					<?php echo form_dropdown('country',$selcon,'','id="country1" class="seldrop" onchange=getbusinessstates(this.value,"state","#selstatediv1","");');?>
 					<div id="countryerror" class="error">Country is required.</div>
-					<div id="ziperror" class="error">Zip Code is required.</div>
-					<div id="zipverror" class="error">Enter digits only valid format 123456</div>
+					</div>
+				   
+					<div class="zip-state">
+						<input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip" name="zip" maxlength="10" />
+						<div id="ziperror" class="error">Zip Code is required.</div>
+						<div id="zipverror" class="error">Enter digits only valid format 123456</div>
+
+						<span id="selstatediv1" style="float:none;"><?php $selstate=array(''=>'--Select State--'); ?>
+						<?php echo form_dropdown('state',$selstate,'','id="state1" class="seldrop"');?>
+							<div id="stateerror" class="error">State is required.</div>
+						</span>					
+					</div>
+					
+					
+					
+					
+					
 					<div style="margin-top:36px;" class="reg_fld">BUSINESS PHONE NUMBER</div>
 					<div>
 					  <input type="text" class="reg_txt_box-md" placeholder="(XXX) XXX - XXXX" name="phone" maxlength="12" id="phone">

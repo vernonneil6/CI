@@ -124,7 +124,12 @@ span.stars{
 .form-col-2{ }
 #streetaddress,#city,#country1,#state1,#zip{width:275px;}
 .form-col-2 label{font-size:25px;}
-.business-callout{float:none;margin-left:13.5em;}
+.business-callout{	
+	clear: both;
+    float: left;
+    margin-bottom: 1em;
+    margin-top: 1em !important;
+}
 
 .banner_wrp{height:auto;}
 .banner_wrp img {display: block; height: auto; margin: 0 auto; width: 100% !important;}
@@ -304,7 +309,12 @@ span.toggle:before{
 
 #frmaddcompany{float:none;width:511px;margin:0 auto;}
 #frmaddcompany .form-col-2 label{font-size:25px;}
-.business-callout{float:none;margin-left:13.5em;}
+.business-callout{
+	clear: both;
+    float: left;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
 .new_usr a{font-size:20px;}
 .new_usr{font-size:21px;}
 
@@ -345,7 +355,12 @@ span.toggle:before{
 #frmaddcompany .form-col-2 label{font-size:25px;}
 #frmaddcompany .form-col-1{width:65px;}
 #frmaddcompany .form-circle{margin-left:0px;}
-.business-callout{float:none;margin-left:4.5em;}
+.business-callout{
+	clear: both;
+    float: left;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
 
 .new_usr a{font-size:15px;}
 .new_usr{font-size:18px;}
@@ -427,8 +442,14 @@ span.toggle:before{
 #frmaddcompany .form-col-1{width:15%;}
 #frmaddcompany .form-circle{margin-left:0px; padding:15px;}
 .business-callout .form-col-2{width:268px !important;}
-#frmaddcompany .business-callout{float:none;}
- #streetaddress,#city,#zip,#phone,#aboutcompany{width:275px !important;}
+#frmaddcompany .business-callout{
+	clear: both;
+    float: left;
+    margin-bottom: 1em;
+    margin-top: 1em;
+
+}
+ #streetaddress,#city,#zip,#phone,#aboutcompany{}
  #state1, #country1{ width:231px; }
  .new_usr{float:none;text-align:center;font-size:20px;}
 

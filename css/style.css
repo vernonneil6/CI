@@ -2290,6 +2290,11 @@ margin-top: 5px;
 	float:left;
 	width:190px;
 }
+.claimbusiness .form-col-1,
+.business-directory .form-col-1{
+	float:left;
+	width:20%;
+}
 .form-col-2{
 	float:left;
 	width:80%;

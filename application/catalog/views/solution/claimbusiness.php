@@ -10,7 +10,7 @@
         <div class="new_usr"> Elite Member Registration: <a title="New Business">New Business Monthly Cost : <span id="discpricebanner">$<?php echo $defaultprice=$this->common->get_setting_value(19);?></span> </a> </div>        
       </div>
     </div>
-    <div class="container">
+    <div class="container claimbusiness">
       <div class="reg_step_edit_claim1"></div>
       <div class="reg_frm_wrap" style="width:100%;">
 		<?php 
