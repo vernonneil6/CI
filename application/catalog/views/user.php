@@ -973,7 +973,7 @@
                   <?php for($i=0; $i<count($myratings); $i++) { ?>
 				  <?php $cmyname = $this->users->get_company_bysingleid($myratings[$i]['companyid']); ?>
 				  <?php $review = $this->users->get_single_rating($user[0]['id'], $myratings[$i]['companyid']); ?>
-                  <div class="main_livepost negative_review_user">
+                  <div class="main_livepost negative_review_user <?php if($i%2==0){echo 'fadeout';}?>">
                   <div class="post_maincontent">
                       <div class="search_content_date user_view">
 						  <div class = "treding_title"><b> <?php echo $cmyname['company']; ?> </b></div>
