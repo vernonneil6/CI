@@ -60,6 +60,7 @@
         <?php for($i=0; $i<count($reviews); $i++) {?>
         <?php $company=$this->reviews->get_company_byid($reviews[$i]['companyid']);
         $companyseokeyword = ($company) ? $company[0]['companyseokeyword'] : '';
+        $company_seoslug = ($company) ? $company[0]['seoslug'] : '';
 		$elitemem_status = $this->common->get_eliteship_bycompanyid($reviews[$i]['companyid']);
 		?>
         <script>
@@ -98,21 +99,22 @@
 			<div class="revw_blck_img">            <?php 
 				if(count($elitemem_status)==0){?>
 					<div class="vry_logo"> 
-						<a href="<?php echo site_url('company/'.$companyseokeyword.'/reviews/coupons/complaints');?>" title="view company Detail">
+						<a href="<?php echo site_url($company_seoslug);?>" title="view company Detail">
 							<img  class="reviewnotverifiedlogo" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($reviews[$i]['company'])); ?>" />
 						</a> 
 					</div>  <?php 
 					}else{  ?>
 					<div class="vry_logo"> 
-						<a href="<?php echo site_url('company/'.$companyseokeyword.'/reviews/coupons/complaints');?>" title="view company Detail">
+						<a href="<?php echo site_url($company_seoslug);?>" title="view company Detail">
 							<img class="reviewverifiedlogo" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($reviews[$i]['company'])); ?>" />
 						</a> 
 					</div>      <?php
 				} ?>            
             </div>
           <div class="revw_blck_cnt">
-            <h2>
-				<a href="<?php echo site_url('company/'.$companyseokeyword.'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes($reviews[$i]['company']);?>'s detail" class="reviewcolor">
+            <h2>			
+			
+				<a href="<?php echo site_url($company_seoslug);?>" title="view <?php echo stripslashes($reviews[$i]['company']);?>'s detail" class="reviewcolor">
 					<?php echo ucfirst(stripslashes($reviews[$i]['company']));?>
 				</a>
 				<div class="rating">
@@ -128,7 +130,8 @@
             </h2>            
             <div class="revw_occupt"> 
 				<span>
-					<a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="see details" style="color:#FFFFFF;">
+							
+					<a href="<?php echo $reviews[$i]['seoslug']; ?>" title="see details" style="color:#FFFFFF;">
 						"<?php echo $reviews[$i]['reviewtitle'];?>"
 					</a>
 				</span>-
@@ -164,7 +167,7 @@
                 <?php echo ($reviewdate==$today)?$diff:date('m/d/Y',strtotime($reviews[$i]['reviewdate'])); ?> </div>
             </div>
             <div class="revw_desc">
-				<a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="see details">
+				<a href="<?php echo $reviews[$i]['seoslug'];?>" title="see details">
 				 "<?php echo (stripslashes($reviews[$i]['comment'])); ?>"
 				 </a>
             </div>
@@ -203,7 +206,7 @@
 					  <?php } ?>              
 				</span>
 				<div class="cmnt_wrp">
-                    <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add Comment" style="cursor:pointer !important;">
+                    <a href="<?php echo $reviews[$i]['seoslug'];?>" title="Add Comment" style="cursor:pointer !important;">
                             +  Add comment
                     </a>
 	            </div>

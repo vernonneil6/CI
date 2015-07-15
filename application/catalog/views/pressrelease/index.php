@@ -93,12 +93,30 @@
 				
 				<div class="revw_occupt"> 
 					<span>
-						<a class = "font_color_white" href="<?php echo site_url('pressrelease/browse/'.$pressreleases[$i]['seokeyword']); ?>" title="view <?php echo stripslashes(str_replace("-"," ",ucfirst($pressreleases[$i]['title']))); ?>'s detail">"<?php echo substr(stripslashes(str_replace("-"," ",ucfirst($pressreleases[$i]['title']))),0,50)."..."; ?>"</a>
+						<?php 
+					
+			if($pressreleases[$i]['company'] != ''){
+				$reviewcompanies = preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($pressreleases[$i]['company'])));
+			}
+			else
+			{
+				$reviewcompanies = 'anonymous';	
+			}
+			
+			$presscontent = implode(' ', array_slice(str_word_count($pressreleases[$i]['subtitle'], 2), 0, 4));														 
+			$presscontents = preg_replace('/[^a-zA-Z0-9-.]/',"_" ,trim(strtolower($presscontent)));
+			$seoslug = "pressrelease/".$reviewcompanies."/".$presscontents."/".$pressreleases[$i]['id']; 
+					
+					?>
+						<a class = "font_color_white" href="<?php echo site_url($seoslug); ?>" title="view <?php echo stripslashes(str_replace("-"," ",ucfirst($pressreleases[$i]['title']))); ?>'s detail">"<?php echo substr(stripslashes(str_replace("-"," ",ucfirst($pressreleases[$i]['title']))),0,50)."..."; ?>"</a>
 					</span>
 				</div>
 				
 				<div class="revw_desc">
-					<a href="<?php echo site_url('pressrelease/browse/'.$pressreleases[$i]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?>'s detail"> "<?php echo stripslashes(substr($pressreleases[$i]['sortdesc'],0,100)).'...'; ?>"</a>
+					
+					
+					
+					<a href="<?php echo site_url($seoslug); ?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?>'s detail"> "<?php echo stripslashes(substr($pressreleases[$i]['sortdesc'],0,100)).'...'; ?>"</a>
 				</div>
 			  </div>
 			</div>

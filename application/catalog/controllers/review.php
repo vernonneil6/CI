@@ -104,37 +104,90 @@ class Review extends CI_Controller
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index($companyid = NULL,$promosuccess = NULL)
+	
+	public function index($company_name = '', $review_title = '', $review_id = '', $companyid = NULL, $promosuccess = NULL)
 	{
-		if (strpos($promosuccess,'ygrsuccess') !== false && array_key_exists('youg_user',$this->session->userdata)) {
-			$promoid = trim(str_replace('ygrsuccess','',$promosuccess));
-			$promocodevalid = '';
-			$promocodevalid = $this->reviews->find_reviewpromocodeid($promoid);
-			$this->data['promo'] = $promocodevalid;
-			$this->data['companyid'] = $companyid;
-		} else {
-			$this->data['promo'] = '';
-			$this->data['companyid'] = '';
-		}
-		$this->load->library('pagination');
-		$limit = $this->paging['per_page'];
 		
-		if(!empty($companyid) && strpos($promosuccess,'ygrsuccess') !== false){
-			$offset = 0;
-			$this->paging['uri_segment'] = 5;
-		} else {
-			$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
-			$this->paging['uri_segment'] = 3;
-		}
+		/*Review View page*/
+		if( $company_name != '' && $review_title != '' && $review_id != ''){ 
+			
+			//echo "iam in";die;
+			$review_details = $this->reviews->get_review_byid($review_id);
+			//echo print_r($reviewbyseo);die;
+			if(count($review_details))
+			{
+				$reviewid = $review_details[0]['id'];
 
-	    $this->data['reviews'] = $this->reviews->get_all_reviews($limit,$offset);
+			$this->load->library('pagination');
+			$this->session->set_flashdata('last_url',uri_string());		    			
+			$limit = $this->paging['per_page'];
+			$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
+
+			$this->data['review'] = $this->reviews->get_review_byid($reviewid);
+			$this->data['disreview'] = $this->reviews->get_disreview_byid($reviewid);
+			$this->data['reviewid'] = $reviewid;
+			$this->data['comments'] = $this->reviews->get_comments_byreviewid($reviewid,$limit,$offset);
+
+			$this->paging['base_url'] = site_url($this->data['review'][0]['seoslug']);
+			$this->paging['uri_segment'] = 5;
+			$this->paging['total_rows'] = count($this->reviews->get_comments_byreviewid($reviewid));
+			$this->pagination->initialize($this->paging);
+
+
+			if(count($this->data['disreview'])>0){
+			$this->data['elite'] = $this->reviews->elitemship($this->data['disreview'][0]['companyid']);
+			}
+			else
+			{
+			$this->data['elite']=array();	
+			}
+
+			//Loading View File
+			if((count($this->data['review'])>0) || count($this->data['disreview'])>0)
+			{
+				$this->load->view('review/browse',$this->data);
+			}
+			else
+			{
+				redirect('review','refresh');
+			}
+			}
+			
 		
-	  $this->paging['base_url'] = site_url("review/index");
-  	  //$this->paging['uri_segment'] = 3;
-	  $this->paging['total_rows'] = count($this->reviews->get_all_reviews());
-	  $this->pagination->initialize($this->paging);
-		//Loading View File
-		$this->load->view('review/index',$this->data);
+		}
+		else{
+			
+			//echo "d";die;
+			if (strpos($promosuccess,'ygrsuccess') !== false && array_key_exists('youg_user',$this->session->userdata)) {
+				$promoid = trim(str_replace('ygrsuccess','',$promosuccess));
+				$promocodevalid = '';
+				$promocodevalid = $this->reviews->find_reviewpromocodeid($promoid);
+				$this->data['promo'] = $promocodevalid;
+				$this->data['companyid'] = $companyid;
+			} else {
+				$this->data['promo'] = '';
+				$this->data['companyid'] = '';
+			}
+			$this->load->library('pagination');
+			$limit = $this->paging['per_page'];
+			
+			if(!empty($companyid) && strpos($promosuccess,'ygrsuccess') !== false){
+				$offset = 0;
+				$this->paging['uri_segment'] = 5;
+			} else {
+				$offset = ($this->uri->segment(3) != '') ? $this->uri->segment(3) : 0;
+				$this->paging['uri_segment'] = 3;
+			}
+
+			$this->data['reviews'] = $this->reviews->get_all_reviews($limit,$offset);
+
+			$this->paging['base_url'] = site_url("review/index");
+			//$this->paging['uri_segment'] = 3;
+			$this->paging['total_rows'] = count($this->reviews->get_all_reviews());
+			$this->pagination->initialize($this->paging);
+			//Loading View File
+			$this->load->view('review/index',$this->data);
+		}
 	}
 	
 	public function add($companyid='')
@@ -221,14 +274,21 @@ class Review extends CI_Controller
 		$review = strip_tags($this->input->post('review'));
 		$reviewtitle = $this->input->post('reviewtitle');
 		$autopost = $this->input->post('autopost');		
-
+		
+		$reviewcompany = $this->reviews->get_company_byid($companyid);
+		//print_r($reviewcompany[0]['company']);die;
+		$reviewcompanies = preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($reviewcompany[0]['company'])));
+		$reviewtitles = preg_replace('/[^a-zA-Z0-9_.]/', '_', trim(strtolower($reviewtitle)));
+		
+		$seoslug = "reviews/".$reviewcompanies."/".$reviewtitles."/".$id; 
+			
 		if($this->input->post('id')!='')
 		{
 			if( $this->input->post('btnupdate') || $review!='')
 			{
 				if($rating!='' || $rating!=0)
 				{
-					$updated = $this->reviews->update($id,$companyid,$userid,$rating,$review,$reviewtitle,$autopost);
+					$updated = $this->reviews->update($id,$companyid,$userid,$rating,$review,$reviewtitle,$autopost,$seoslug);
 					if( $updated == 'updated')
 					{
 						$this->session->set_flashdata('success', 'review updated successfully.');
@@ -473,6 +533,7 @@ class Review extends CI_Controller
 		$reviewpromo = $this->input->post('reviewpromo');	
 		$reviewvalid = $this->input->post('reviewvalid');	
 		$promoid = $this->input->post('promoid');	
+		
 		$encode_promoid = '';
 		if(!empty($promoid) && $promoid != 0)
 			$encode_promoid = $this->encrypt->encode($promoid);
@@ -491,10 +552,10 @@ class Review extends CI_Controller
 
 		if($review != '')
 		{
-
+	
 			$company=$this->reviews->get_company_byid($companyid);
 			$user=$this->users->get_user_byid($userid);
-
+			
 			if($rating!='' && $rating!=0)
 			{
 				$elite=$this->reviews->elitemship($companyid);
@@ -1274,7 +1335,7 @@ class Review extends CI_Controller
 						
 						$review = $this->reviews->get_review1_byid($reviewid[0]['reviewid']);					
 						
-						redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
+						redirect($review[0]['seoslug'], 'refresh');
 					}
 					else
 					{
@@ -1302,9 +1363,10 @@ class Review extends CI_Controller
    		
 		if($this->input->post('id')!='') 
 		{
+		
 			//If Old Record Update
 			if( $this->input->post('btncommentsubmit') || $this->input->post('comment')!='')
-			{
+			{	
 
 				//Getting id
 				$id = $this->input->post('id');
@@ -1316,16 +1378,18 @@ class Review extends CI_Controller
 												
 				//Updating Record With Image
 				$updated = $this->reviews->update_comment($id,$reviewid,$userid,$comment,$rating);
+				
 				if( $updated == 'updated')
 				{
 					$this->session->set_flashdata('success', 'comment updated successfully.');
 					$review = $this->reviews->get_review1_byid($reviewid);
-					redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
+					//echo $review[0]['seoslug'];die;
+					redirect('reviews', 'refresh');
 				}
 				else
 				{
 					$this->session->set_flashdata('error', 'There is error in updating comment. Try later!');
-					redirect('review', 'refresh');
+					redirect('reviews', 'refresh');
 				}
 			}
 		}
@@ -1365,7 +1429,7 @@ class Review extends CI_Controller
 									
 									$this->session->set_flashdata('success', 'comment posted successfully.');
 									$review = $this->reviews->get_review1_byid($reviewid);
-									redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
+									redirect('review/'.$review[0]['seoslug'], 'refresh');
 								}
 								else
 								{
@@ -1383,7 +1447,7 @@ class Review extends CI_Controller
 									
 									$this->session->set_flashdata('success', 'comment posted successfully.');
 									$review = $this->reviews->get_review1_byid($reviewid);
-									redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
+									redirect('review/'.$review[0]['seoslug'], 'refresh');
 								}
 								else
 								{
@@ -1483,7 +1547,7 @@ class Review extends CI_Controller
 						{	
 							$this->session->set_flasdata('success', 'comment posted successfully.');							
 							$review = $this->reviews->get_review1_byid($reviewid);
-							redirect('review/browse/'.$review[0]['seokeyword'], 'refresh');
+							redirect('review/'.$review[0]['seoslug'], 'refresh');
 						}
 						else
 						{	
@@ -1685,6 +1749,23 @@ class Review extends CI_Controller
 	   
 	    
 	 }
+	 
+	 /* Update SEO Slug */
+	 public function update_seoslug( $update_slug ){
+		
+		if($update_slug == 1){
+			$this->reviews->updateCompaniesSlug();			
+		}elseif($update_slug == 2){			
+			$this->reviews->updateReviewsSlug();			
+		}elseif($update_slug == 3){
+			$this->reviews->updateComplaintsSlug();
+		}elseif($update_slug == 4){
+			$this->reviews->updateCouponsSlug();
+		}
+		
+	 }
+	 
+	 
 }
 /* End of file dashboard.php */
 /* Location: ./application/controllers/dashboard.php */

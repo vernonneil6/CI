@@ -211,8 +211,30 @@ class Complaint extends CI_Controller {
 		$this->data['footer'] = $this->load->view('footer',$this->data,true);
 	}
 	
-	public function index()
+	public function index( $company_name = '', $description = '', $complaint_id = '' )
 	{
+		if( $company_name !='' && $description != '' && $complaint_id != '')
+		{
+			$this->data['complaints'] = $this->complaints->get_complaint_byid($complaint_id); 	  	
+			if(count($this->data['complaints'])>0)
+			{
+				//get other complaints same for that company
+				
+				$this->data['othercomplaints'] = $this->complaints->get_complaint_bycompanyid($this->data['complaints'][0]['companyid'],$this->data['complaints'][0]['id']); 
+				
+				//Loading View File
+				$this->load->view('complaint/browse',$this->data);
+			}
+			else
+			{
+				redirect('complaint','refresh');
+			}
+		}
+		else
+		{
+			
+		
+		
 		  $this->load->library('pagination');
 		  $siteid = $this->session->userdata('siteid');
 		    			
@@ -230,6 +252,10 @@ class Complaint extends CI_Controller {
           
 		  //Loading View File
 		  $this->load->view('complaint/index',$this->data);
+		  
+		  
+		}
+		  
 	}
 	
 	public function weektrending()

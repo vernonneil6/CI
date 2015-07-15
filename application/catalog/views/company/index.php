@@ -53,11 +53,14 @@
 
 		
 		<div>
-			<?php if(count($elitemem_status)==0){?>
-			<div class="vry_logo"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
+			<?php 
+			
+			$company_seoslug = ($company) ? $company[0]['seoslug'] : '';
+			if(count($elitemem_status)==0){?>
+			<div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img src="images/notverified.png" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
 			<?php }else{
 					  ?>
-			<div class="vry_logo"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
+			<div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
 			<?php } ?>
 			  
 				  
@@ -453,7 +456,7 @@
                     </div>
                 </div>
                 <p><span itemprop ="reviewbody"><?php echo stripslashes($reviews[$i]['comment']);?></span></p>
-                <div class="cmnt_wrp wrps"> <a href="review/browse/<?php echo $reviews[$i]['seokeyword'];?>" title="Add comment">  +  Add comment </a> </div>
+                <div class="cmnt_wrp wrps"> <a href="<?php echo $reviews[$i]['seoslug'];?>" title="Add comment">  +  Add comment </a> </div>
               </div>
             <div itemscope itemtype = "http://schema.org/Rating" itemprop = "reviewRating">
 
@@ -637,10 +640,19 @@
               <?php } 
 				}
 				if(count($gallerys)>5)
-				{			
+				{	
+					
+					if(count($company) > 0){
+						$company_name = preg_replace("/\.$/","",$company[0]['company']);
+						$company_name = trim(preg_replace('/-+/', '-',preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company_name)))), '-');
+					}else{
+						$company_name = "anonymous";
+					} 
+					$company_photo_url = "company/".$company_name."/view-all-photos/".$company[0]['id'];
+							
 				?>
 					<p align="right" class="cmnt_wrp">
-					<a href="<?php echo site_url('company/photos/'.$company[0]['id']);?>" title="View All">View All</a></p>
+					<a href="<?php echo site_url($company_photo_url);?>" title="View All">View All</a></p>
 
               <?php } } else { ?>
               <div class="form-message warning">
@@ -691,9 +703,19 @@
             <?php  }
             if(count($videos)>5)
 			  {
+				  
+				 
+				if(count($company) > 0){
+					$company_name = preg_replace("/\.$/","",$company[0]['company']);
+					$company_name = trim(preg_replace('/-+/', '-',preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company_name)))), '-');
+				}else{
+					$company_name = "anonymous";
+				} 
+				$company_video_url = "company/".$company_name."/view-all-videos/".$company[0]['id'];
+				  
             ?>
             <p align="right" class="cmnt_wrp">
-				<a href="<?php echo site_url('company/videos/'.$company[0]['id']);?>" title="View All">View All</a></p>
+				<a href="<?php echo site_url($company_video_url);?>" title="View All">View All</a></p>
 				<?php
 			}
 			?>

@@ -114,28 +114,31 @@ class Reviews extends CI_Model
 			
 			$company1 = $this->db->get_where('company', array('id' => $companyid));
 			$company = $company1->result_array();
+			
+			/*SEO slug*/	
+			
+			$reviewtitles = preg_replace('/[^a-zA-Z0-9_.]/', '_', trim(strtolower($reviewtitle)));		
+			
 			if(count($company)>0)
 			{
-				//$company = $company->result_array();
-				//lower case everything
-			$companyname = strtolower($company[0]['company']);
-			//make alphaunermic
-			$companyname = preg_replace("/[^a-z0-9\s-]/", "", $companyname);
-			//Clean multiple dashes or whitespaces
-			$companyname = preg_replace("/[\s-]+/", " ", $companyname);
-			//Convert whitespaces to dash
-			$companyname = preg_replace("/[\s]/", "-", $companyname);
-			
-			$seokeyword = $companyname.'-review-'.$id;
+				$reviewcompanies = preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company[0]['company'])));
 			}
 			else
 			{
-				$seokeyword = 'review-'.$id;	
-			}
+				$reviewcompanies = 'anonymous';	
+			}														
 			
-			$link = 'review/browse/'.$seokeyword;
+			$seoslug = "reviews/".$reviewcompanies."/".$reviewtitles."/".$id; 
+			
+			//echo $seoslug;die;
+			$update_data = array(
+					'seoslug' => $seoslug
+			);
+			
 			$this->db->where('id', $id);
-			$this->db->update('reviews',array('link'=>$link,'seokeyword'=>$seokeyword));
+			$this->db->update('reviews', $update_data); 
+				
+			/*SEO slug*/	
 			
 			return 'added';
 		}
@@ -172,27 +175,29 @@ class Reviews extends CI_Model
 			
 			$company1 = $this->db->get_where('company', array('id' => $companyid));
 			$company = $company1->result_array();
+			/*SEO slug*/	
+			
+			$reviewtitles = preg_replace('/[^a-zA-Z0-9_.]/', '_', trim(strtolower($reviewtitle)));		
+			
 			if(count($company)>0)
 			{
-				//lower case everything
-			$companyname = strtolower($company[0]['company']);
-			//make alphaunermic
-			$companyname = preg_replace("/[^a-z0-9\s-]/", "", $companyname);
-			//Clean multiple dashes or whitespaces
-			$companyname = preg_replace("/[\s-]+/", " ", $companyname);
-			//Convert whitespaces to dash
-			$companyname = preg_replace("/[\s]/", "-", $companyname);
-			
-			$seokeyword = $companyname.'-review-'.$id;
+				$reviewcompanies = preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company[0]['company'])));
 			}
 			else
 			{
-				$seokeyword = 'review-'.$id;	
-			}
+				$reviewcompanies = 'anonymous';	
+			}														
 			
-			$link = 'review/browse/'.$seokeyword;
+			$seoslug = "reviews/".$reviewcompanies."/".$reviewtitles."/".$id; 
+			
+			$update_data = array(
+					'seoslug' => $seoslug
+			);
+			
 			$this->db->where('id', $id);
-			$this->db->update('reviews',array('link'=>$link,'seokeyword'=>$seokeyword));
+			$this->db->update('reviews', $update_data); 
+				
+			/*SEO slug*/	
 			
 			return 'added';
 		}
@@ -326,7 +331,7 @@ class Reviews extends CI_Model
 	
 	
 	//Updating Record
-	function update($id,$companyid,$userid,$rating,$review,$reviewtitle,$autopost)
+	function update($id,$companyid,$userid,$rating,$review,$reviewtitle,$autopost,$seoslug)
  	{
 		$date = date('Y-m-d H:i:s');
 		$varipaddress = $_SERVER['REMOTE_ADDR'];
@@ -336,7 +341,8 @@ class Reviews extends CI_Model
 							'rate' 			=> $rating,
 					    	'comment'		=> $review,
 					    	'autopost'		=> $autopost,
-							'reviewby' 		=> $userid
+							'reviewby' 		=> $userid,
+							'seoslug' 		=> $seoslug
 						);
 
 		$this->db->where('id', $id);
@@ -348,7 +354,8 @@ class Reviews extends CI_Model
 		{
 			return false;
 		}
- 	}
+ 	}	
+	
 	
 	//Querying to Check E-mail or review name is already exists
 	function chkfield($id,$field,$fieldvalue)
@@ -811,27 +818,29 @@ class Reviews extends CI_Model
 			
 			$company1 = $this->db->get_where('company', array('id' => $companyid));
 			$company = $company1->result_array();
+			/*SEO slug*/	
+			
+			$reviewtitles = preg_replace('/[^a-zA-Z0-9_.]/', '_', trim(strtolower($reviewtitle)));		
+			
 			if(count($company)>0)
 			{
-				//lower case everything
-			$companyname = strtolower($company[0]['company']);
-			//make alphaunermic
-			$companyname = preg_replace("/[^a-z0-9\s-]/", "", $companyname);
-			//Clean multiple dashes or whitespaces
-			$companyname = preg_replace("/[\s-]+/", " ", $companyname);
-			//Convert whitespaces to dash
-			$companyname = preg_replace("/[\s]/", "-", $companyname);
-			
-			$seokeyword = $companyname.'-review-'.$id;
+				$reviewcompanies = preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company[0]['company'])));
 			}
 			else
 			{
-				$seokeyword = 'review-'.$id;	
-			}
+				$reviewcompanies = 'anonymous';	
+			}														
 			
-			$link = 'review/browse/'.$seokeyword;
+			$seoslug = "reviews/".$reviewcompanies."/".$reviewtitles."/".$id; 
+			
+			$update_data = array(
+					'seoslug' => $seoslug
+			);
+			
 			$this->db->where('id', $id);
-			$this->db->update('reviews',array('link'=>$link,'seokeyword'=>$seokeyword));
+			$this->db->update('reviews', $update_data); 
+				
+			/*SEO slug*/	
 			
 			return $id;
 		}
@@ -1061,7 +1070,189 @@ class Reviews extends CI_Model
 		}
 		
 	}
+	
+	function updateReviewsSlug(){
+		
+			$this->db->select('r.*, cm.company,cm.logo,cm.aboutus,cm.companyseokeyword,,u.firstname,u.username,u.lastname,u.avatarbig,u.gender,u.state');
+			$this->db->from('youg_reviews as r');
+			$this->db->join('youg_company as cm','r.companyid=cm.id','left');
+			$this->db->join('youg_user as u','r.reviewby=u.id','left');		
+			$query = $this->db->get();
+			$result = $query->result();
+			foreach($result as $res){
+			//print_r($res);die;
+			
+			if($res->company != ''){				
+				$company_name = preg_replace("/\.$/","",$res->company);				
+				$reviewcompanies = trim(preg_replace('/-+/', '-',preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company_name)))), '-');
+			}
+			else
+			{
+				$reviewcompanies = 'anonymous';	
+			}
+			
+			$reviewtitles = trim(preg_replace('/_+/', '_',preg_replace('/[^a-zA-Z0-9_.]/', '_', trim(strtolower($res->reviewtitle)))), '_');
+			
+			$review_seoslug = "reviews/".$reviewcompanies."/".$reviewtitles."/".$res->id; 
+			
+			echo $review_seoslug."<br/>";
+			$data = array('seoslug' => $review_seoslug);
 
+			$where = "id = ".$res->id;
+
+			$str = $this->db->update('youg_reviews', $data, $where); 
+				
+
+			}	
+	}
+	function updateCompaniesSlug(){
+		
+		
+			$this->db->select('c.id,c.city,c.state,c.company');
+			$this->db->from('youg_company as c');		
+			$this->db->limit(100000,700000);	
+			$query = $this->db->get()->result();
+			
+			foreach($query as $res){
+			//print_r($res);die;
+				
+			$this->load->model('Common');
+			
+			$elitemem_status = $this->Common->get_eliteship_bycompanyid($res->id);
+			
+			
+			if($res->company != ''){
+				$company_name = preg_replace("/\.$/","",$res->company);
+				$company_name = trim(preg_replace('/-+/', '-',preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company_name)))), '-');
+			}else{
+				$company_name = "anonymous";
+			}
+			
+			$city_state = ucfirst(strtolower($res->city))."-".trim($res->state);
+			$city_state = preg_replace('/[^a-zA-Z0-9-.]/', '', trim($city_state));
+			
+			if(count($elitemem_status)==0){
+				
+				$company_seoslug = "company/not-verified/".$city_state."/".$company_name."/".$res->id;
+				
+			}else{
+				$company_seoslug = "company/elite-members/".$city_state."/".$company_name."/".$res->id;
+			}
+			
+			$data = array('seoslug' => $company_seoslug);
+			
+			echo $company_seoslug.PHP_EOL;
+			$where = "id = ".$res->id;	
+				
+
+			$this->db->update('youg_company', $data, $where); 
+			//die('1');	
+
+			}
+		
+	}
+	function updateComplaintsSlug(){
+		
+			
+			$this->db->select('c.*,cm.company');
+			$this->db->from('youg_complaints as c');
+			$this->db->join('youg_company as cm','c.companyid=cm.id','left');				
+			$query = $this->db->get()->result();
+			
+			foreach($query as $res){
+			//print_r($res);die;			
+			
+			if($res->company != ''){
+				$company_name = preg_replace("/\.$/","",$res->company);
+				$reviewcompanies = trim(preg_replace('/-+/', '-',preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company_name)))), '-');				
+			}
+			else
+			{
+				$reviewcompanies = 'anonymous';	
+			}
+			
+			if($res->detail != ''){
+				if(!is_numeric($res->detail)){
+					$detail = implode(' ', array_slice(str_word_count($res->detail, 2), 0, 4));	
+				}else{
+					$detail = $res->detail;
+				}
+			}
+			else
+			{
+				$detail = "no_detail";		
+			}
+			
+																 
+			$details = preg_replace('/[^a-zA-Z0-9-.]/',"_" ,trim(strtolower($detail)));
+			if (strlen($details) > 20){
+				$details = substr($details, 0, 20);
+			}
+			$details = trim(preg_replace('/-+/', '-', $details), '-');	
+
+			$seoslug = "complaints/".$reviewcompanies."/".$details."/".$res->id; 
+			echo $seoslug."<br/>";
+			
+			$data = array('seoslug' => $seoslug);
+			
+
+			$where = "id = ".$res->id;	
+				
+
+			$this->db->update('youg_complaints as c', $data, $where); 
+			
+
+			}	
+			
+	}
+	
+	function updateCouponsSlug(){
+		
+		
+		
+			$this->db->select('c.*,cm.company');
+			$this->db->from('youg_coupon as c');
+			$this->db->join('youg_company as cm','c.companyid=cm.id','left');				
+			$query = $this->db->get()->result();
+			
+			foreach($query as $res){
+			//print_r($res);die;			
+			
+			if($res->company != ''){
+				$company_name = preg_replace("/\.$/","",$res->company);
+				$reviewcompanies = trim(preg_replace('/-+/', '-',preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company_name)))), '-');
+			}
+			else
+			{
+				$reviewcompanies = 'anonymous';	
+			}
+			
+			if($res->title != ""){		
+				$coupontitle = preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($res->title)));
+				$coupontitle = trim(preg_replace('/-+/', '-', $coupontitle), '-');													 
+			}else{
+				$coupontitle = "no-title";
+			}
+			
+			$seoslug = "coupons/".$reviewcompanies."/".$coupontitle."/".$res->id; 
+			echo $seoslug."<br/>";
+			
+			$data = array('seoslug' => $seoslug);
+			
+
+			$where = "id = ".$res->id;	
+				
+
+			$this->db->update('youg_coupon as c', $data, $where); 
+			//die('1');	
+
+			}
+	
+			
+			
+	}
+	
+	
 	
 }
 ?>

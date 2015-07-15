@@ -40,7 +40,19 @@
 
 $route['default_controller'] = "welcome";
 $route['404_override'] = 'error';
-$route['company/([a-z0-9-]+)/([a-z0-9-]+)/([a-z0-9-]+)/([a-z0-9-]+)'] = "company/index/$1/$2/$3/$4";
+
+
+$route['company/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)'] = "company/index/$1/$2/$3/$4";
+
+$route['company/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)'] = "company/index/$1/$2/$3";
+
+$route['reviews/([a-zA-Z0-9-]+)/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-]+)'] = "review/index/$1/$2/$3";
+
+$route[ 'pressrelease/([a-zA-Z0-9-]+)/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)' ] = 'pressrelease/index/$1/$2/$3';
+
+$route[ 'complaints/([a-zA-Z0-9-]+)/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)' ] = 'complaint/index/$1/$2/$3';
+
+$route[ 'coupons/([a-zA-Z0-9-]+)/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)' ] = 'coupon/index/$1/$2/$3';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

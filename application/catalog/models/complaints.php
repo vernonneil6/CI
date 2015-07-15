@@ -147,24 +147,44 @@ class Complaints extends CI_Model
 			//echo "<pre>";
 			//print_r($company);
 			
-		//	$companyname = str_replace(' ','-',$company[0]['company']);
-		
-			//lower case everything
-			$companyname = strtolower($company[0]['company']);
-			//make alphaunermic
-			$companyname = preg_replace("/[^a-z0-9\s-]/", "", $companyname);
-			//Clean multiple dashes or whitespaces
-			$companyname = preg_replace("/[\s-]+/", " ", $companyname);
-			//Convert whitespaces to dash
-			$companyname = preg_replace("/[\s]/", "-", $companyname);
-
-			//$companyname = str_replace('.','',$company[0]['company']);
-			$seokeyword = $companyname.'-complaint-'.$comid;
-			$link = 'complaint/browse/'.$seokeyword;	
-			$this->db->where('id', $comid);
-			$this->db->update('complaints',array('comseokeyword' => $seokeyword, 'link'=>$link));
 			
-			return $seokeyword;
+			if($company[0]['company'] != ''){
+				$company_name = preg_replace("/\.$/","",$company[0]['company']);
+				$reviewcompanies = trim(preg_replace('/-+/', '-',preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company_name)))), '-');
+			}
+			else
+			{
+				$reviewcompanies = 'anonymous';	
+			}
+			
+			if($detail != ''){
+				if(!is_numeric($detail)){
+					$complaint_details = implode(' ', array_slice(str_word_count($detail, 2), 0, 4));	
+				}else{
+					$complaint_details = $detail;
+				}
+			}
+			else
+			{
+				$complaint_details = "no_detail";		
+			}
+			
+																 
+			$details = preg_replace('/[^a-zA-Z0-9-.]/',"_" ,trim(strtolower($complaint_details)));
+			if (strlen($details) > 20){
+				$details = substr($details, 0, 20);
+			}
+			$details = trim(preg_replace('/-+/', '-', $details), '-');	
+
+			$seoslug = "complaints/".$reviewcompanies."/".$details."/".$res->id; 
+			
+			
+			$complaints_data = array('seoslug' => $seoslug);
+						
+			$this->db->where('id', $comid);
+			$this->db->update('complaints',$complaints_data);
+					
+			return $seoslug;
 		}
 		else
 		{
@@ -367,25 +387,46 @@ class Complaints extends CI_Model
 	
 	function insert_companyseo($companyid,$company)
 	{
-			$companyname = strtolower($company);
-			//make alphaunermic
-			$companyname = preg_replace("/[^a-z0-9\s-]/", "", $companyname);
-			//Clean multiple dashes or whitespaces
-			$companyname = preg_replace("/[\s-]+/", " ", $companyname);
-			//Convert whitespaces to dash
-			$companyname = preg_replace("/[\s]/", "-", $companyname);
+			
+		if($company_id != ''){
+				
+			$this->load->model('Common');
+							
+			$elitemem_status = $this->Common->get_eliteship_bycompanyid($company_id);
 
-		
-		$seokeyword = $companyname.'-'.$companyid;
-		
-		$this->db->where('id', $companyid);
-		if( $this->db->update('company',array('companyseokeyword' => $seokeyword)))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
+
+			if($company[0]['company'] != ''){
+				$company_name = preg_replace("/\.$/","",$company[0]['company']);
+				$company_name = trim(preg_replace('/-+/', '-',preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company_name)))), '-');
+			}else{
+				$company_name = "anonymous";
+			}
+
+			$city_state = ucfirst(strtolower($company[0]['city']))."-".$company[0]['state'];
+			$city_state = preg_replace('/[^a-zA-Z0-9-.]/', '', trim($city_state));
+
+			if(count($elitemem_status)==0){
+				
+				$company_seoslug = "company/not-verified/".$city_state."/".$company_name."/".$res->id;
+				
+			}else{
+				$company_seoslug = "company/elite-members/".$city_state."/".$company_name."/".$res->id;
+			}					
+
+
+			$companies_data = array( 
+			'seoslug' => $company_seoslug
+			);
+
+			$this->db->where('id', $companyid);
+			if( $this->db->update('company',$companies_data))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 	}
 		

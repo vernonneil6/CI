@@ -53,87 +53,104 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
               }
               $(document).ready(function() {
                   
-              <?php if( $this->uri->segment(2) == 'browse' ) { ?>
-                  $("#btncommentsubmit").click(function () {
-              <?php } ?>
-              <?php if( $this->uri->segment(2) == 'editcomment' ) { ?>
-                  $("#btncommentupdate").click(function () {
-              <?php } ?>
-              
-					  
-					  if( trim($("#comment").val()) == "" )
-					  {
-						  $("#commenterror").show();
-						  $("#comment").val('').focus();
-						  return false;
-					  }
-					  else
-					  {
-						   $("#commenterror").hide();
-					  }
-						
-					  if ($("input[name='score']").val() == "")
-					  {
-						  $("#rateerror").show();
-						  return false;
-					  }
-					  else
-					  {
-						  $("#rateerror").hide();
-					  }
-					  
-					    $("#frmcomment").submit();
-					    
-			
-                          
-                  });
+				$("#btncommentsubmit").click(function () {
+					if( trim($("#comment").val()) == "" )
+					{
+						$("#commenterror").show();
+						$("#comment").val('').focus();
+						return false;
+					}
+					else
+					{
+						$("#commenterror").hide();
+					}
+
+					if ($("input[name='score']").val() == "")
+					{
+						$("#rateerror").show();
+						return false;
+					}
+					else
+					{
+						$("#rateerror").hide();
+					}
+
+					$("#frmcomment").submit();
+				});
+                 
+                 
+                $("#btncommentupdate").click(function () {
+					if( trim($("#comment").val()) == "" )
+					{
+						$("#commenterror").show();
+						$("#comment").val('').focus();
+						return false;
+					}
+					else
+					{
+						$("#commenterror").hide();
+					}
+
+					if ($("input[name='score']").val() == "")
+					{
+						$("#rateerror").show();
+						return false;
+					}
+					else
+					{
+						$("#rateerror").hide();
+					}
+
+					$("#frmcomment").submit();
+				});  
+         
+				$('.rating_review').raty({ starOff : '../js/rating/img/star-off.png', starOn : '../images/YGR_Star_on.png'});
+				$('.rating_comment_review').raty({
+					starOff : '../js/rating/img/star-off.png', 
+					starOn : '../images/YGR_Star_on.png',
+					score: function() {
+						return $(this).attr('data-score');
+					}
+				});
+				$('.review_comment_view').raty({
+					readOnly: true,
+					starOff : '../js/rating/img/star-off.png', 
+					starOn : '../images/YGR_Star_on.png',
+					score: function() {
+						return $(this).attr('data-score');
+					}
+				});
+                 
               
               });
           </script>
-<script>
-	$(document).ready(function() {
-		  $('.rating_review').raty({ starOff : '../js/rating/img/star-off.png', starOn : '../images/YGR_Star_on.png'});
-		  $('.rating_comment_review').raty({
-				starOff : '../js/rating/img/star-off.png', 
-				starOn : '../images/YGR_Star_on.png',
-				score: function() {
-				return $(this).attr('data-score');
-			  }
-			});
-		  $('.review_comment_view').raty({
-				readOnly: true,
-				starOff : '../js/rating/img/star-off.png', 
-				starOn : '../images/YGR_Star_on.png',
-				score: function() {
-				return $(this).attr('data-score');
-			  }
-			});
-	 }); 
-</script>
 <?php $company=$this->reviews->get_company_byid($review[0]['companyid']);?>
 
 <section class="container">
   <section class="main_contentarea">
     <div class="verified_wrp pr_rwrp verfs_top">
-      <?php $company=$this->reviews->get_company_byid($review[0]['companyid']);?>
-      <?php  //get avg star by cmpyid
+      <?php 
+			$company=$this->reviews->get_company_byid($review[0]['companyid']);
+			$company_seoslug = ($company) ? $company[0]['seoslug'] : '';
+			
+			//get avg star by cmpyid
 			$avgstar = $this->common->get_avg_ratings_bycmid($review[0]['companyid']);
 			$avgstar = round($avgstar);
-			//$elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyid']);
-			?>
+			
+	  ?>
       <div class="verified_wrp pr_rwrp pr_rwrp">
         <?php /*?><div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view complaint Detail"><img src="<?php if( $review[0]['logo'] ) { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($review[0]['logo']); } else { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" width="103px" height="88px" /></a> </div><?php */?>
         
         <?php if(count($elitemem_status)==0){?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/notverified.png" alt="YGR-<?php echo str_replace('"',"",ucfirst(stripslashes($review[0]['company']))); ?>-notverified-logo" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url($company_seoslug); ?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
         <?php }else{
 				  ?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/verifiedlogo.jpg" alt="YGR-<?php echo str_replace('"',"",ucfirst(stripslashes($review[0]['company']))); ?>-verified-logo" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
         <?php
 				  } ?>
         <div class="compny_name">
 			
-          <h1><a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><?php  echo $review[0]['company'];?></a></h1>
+          <h1><a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><?php  echo $review[0]['company'];?></a></h1>
           
           <?php if(count($elitemem_status)==0){?>
 			<a href="http://business.yougotrated.com/?elitemem=<?php echo $review[0]['companyid'] ?>" title="Upgrade to Elite">
@@ -259,49 +276,43 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
 			  <div id="rateerror" class="error">Please choose a star rating.</div>
 			  <div id="commenterror" class="error">Comment is required.</div>
 			 
-			  <div class="rate-company">
-                <?php if($this->uri->segment(2) == 'browse') { ?>
-                <label class = "comment_rating_label">Rate this company  *</label><i class="rating_review"></i>
-                <?php } ?>
-                <?php if($this->uri->segment(2) == 'editcomment') { ?>
-                <label class = "comment_rating_label">Rate this company  *</label>
-                <i class="rating_comment_review" data-score = "<?php echo $commentbyid[0]['rating'];?>"></i>
-				<?php } ?>
-              </div>
+			    <div class="rate-company">  
+				<label class = "comment_rating_label">Rate this company  *</label>            
+                <?php if($this->uri->segment(2) == 'editcomment') { ?>					
+					<i class="rating_comment_review" data-score = "<?php echo $commentbyid[0]['rating'];?>"></i>
+				<?php }else{ ?>
+					<i class="rating_review"></i>
+                <?php } ?>	
+				</div>
              
-              <label for="review">
-                <?php if($this->uri->segment(2) == 'browse') { ?>
-                Add Your Comment  *
-                <?php } ?>
+              <label for="review">              
                 <?php if($this->uri->segment(2) == 'editcomment') { ?>
-                Edit Your Comment  *
+					Edit Your Comment  *
+                <?php }else{ ?>
+					  Add Your Comment  *
                 <?php } ?>
-              </label>
-              
-             
-              
-              <?php if($this->uri->segment(2) == 'browse') { ?>
-			 
-              <?php echo form_textarea( array( 'name'=>'comment','id'=>'comment','class'=>'txrareawrp','style'=>'height:50px;')); ?>
-              <?php } ?>
+              </label>      
+                    
               <?php if($this->uri->segment(2) == 'editcomment') { ?>
-			  <input type = "hidden" value = "<?php echo $commentbyid[0]['id'];?>" name = "id" >
+					<input type = "hidden" value = "<?php echo $commentbyid[0]['id'];?>" name = "id" >
               <?php echo form_textarea( array( 'name'=>'comment','id'=>'comment','class'=>'txrareawrp','type'=>'text','value'=>nl2br(stripslashes($commentbyid[0]['comment'])),'style'=>'height:50px;width:640px' ) ); ?>
+              <?php }else{ ?>
+				  
+              <?php echo form_textarea( array( 'name'=>'comment','id'=>'comment','class'=>'txrareawrp','style'=>'height:50px;')); ?>
               <?php } ?>
               
               <!-- Submit form -->
-              <?php if($this->uri->segment(2) == 'browse') { ?>
-              <?php echo form_input(array('name'=>'btncommentsubmit','id'=>'btncommentsubmit','class'=>'lgn_btn','type'=>'submit','value'=>'Post Comment')); ?>
-              <?php } ?>
-              <?php if($this->uri->segment(2) == 'editcomment') { ?>
+			  <?php if($this->uri->segment(2) == 'editcomment') { ?>
               <?php echo form_input(array('name'=>'btncommentupdate','id'=>'btncommentupdate','class'=>'lgn_btn','type'=>'submit','value'=>'Update')); ?>
-              <?php } ?>
+              <?php }else{ ?>
+			  <?php echo form_input(array('name'=>'btncommentsubmit','id'=>'btncommentsubmit','class'=>'lgn_btn','type'=>'submit','value'=>'Post Comment')); ?>
+              <?php } ?>	  
+				  
               <?php echo form_hidden( array( 'reviewid' => $this->encrypt->encode($reviewid) ) ); ?> 
               <?php echo form_close();?> 
             </div>
-            <?php  }
-           else{?>
-            <a href="login"> <i class="add_cmnt"></i> Please login add comment </a>
+            <?php  }else{ ?>
+				<a href="login"> <i class="add_cmnt"></i> Please login add comment </a>
             <?php } ?>
           </div>
         </div>

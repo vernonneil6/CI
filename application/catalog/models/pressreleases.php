@@ -66,6 +66,30 @@ class Pressreleases extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	
+ 	
+ 	
+ 	//Getting value for editing
+	function getPressReleaseByID($id)
+ 	{
+		//Executing Query
+		$this->db->select('p.*,cm.company,cm.logo,cm.companyseokeyword');
+		$this->db->from('pressrelease as p');
+		$this->db->join('company as cm','p.companyid=cm.id');
+		$this->db->where('p.status','Enable');
+		$this->db->where('p.id',$id);
+		
+		$query = $this->db->get();
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
 	
 	function search_pressrelease($keyword,$limit ='',$offset='')
  	{
