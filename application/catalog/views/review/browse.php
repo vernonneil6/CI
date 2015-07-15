@@ -154,7 +154,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
           
           <?php if(count($elitemem_status)==0){?>
 			<a href="http://business.yougotrated.com/?elitemem=<?php echo $review[0]['companyid'] ?>" title="Upgrade to Elite">
-					<img class="notverfiedimg" src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
+					<img class="notverfiedimg" src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg" alt="YGR-Businessprofile-Notverified">
 				<div class="business_link"> 			
 					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
 				</div>
@@ -190,7 +190,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
         
       </div>
       <!-- Go to www.addthis.com/dashboard to customize your tools -->
-	<div class="addthis_native_toolbox"></div>
+	<div class="addthis_native_toolbox" id="custom-share"></div>
       <div class="pr_detlwrp">
         <div class="titl_pr_rel">
           <div class="pre_rls_rating">
@@ -250,7 +250,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
 				  <?php if($username['avatarthum']==null) {?>
 					  <img src="images/default_user.png" alt="Client Image" title="Client Image"> 
 				  <?php } else { ?>
-					  <img src="uploads/user/thumb/<?php echo $username['avatarthum'];?>" alt="User image" title="User image">
+					  <img src="uploads/user/thumb/<?php echo $username['avatarthum'];?>" alt="YGR-<?php echo $username['username'];?>-profile-image" title="User image">
 				  <?php } ?>
 			  </div>
               <div class="clnt_name">
@@ -262,7 +262,11 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
                 <h4><a href="<?php echo site_url('complaint/viewuser/'.$review[0]['companyid'].'/'.$review[0]['reviewby']);?>" title="view profile"> <?php if($review[0]['username']!='') { echo stripslashes($review[0]['username']); } else { echo stripslashes($username['firstname']); } ?></a></h4>
                 <?php } ?>
                 <span><?php echo $review[0]['state'];?></span> </div>
+				
             </div>
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+				<div class="addthis_native_toolbox" id="custom-share1" style="display:none"></div>
+           
           </div>
           <div class="addcmnt_wrp">
             <div class="cmnt_wrp">
@@ -358,8 +362,10 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
 			  <?php if($user[0]['avatarthum']==null) {?>
 				  <img src="images/default_user.png" alt="Client Image" title="Client Image"> 
 			  <?php } else { ?>
-				  <img src="uploads/user/thumb/<?php echo $user[0]['avatarthum'];?>" alt="User image" title="User image">
+				  <img src="uploads/user/thumb/<?php echo $user[0]['avatarthum'];?>" alt="YGR-<?php echo $username['username'];?>-Profile-image" title="User image">
+			  
 			  <?php } ?>
+			 
 		  </div>
         </div>
         <div class="review_rgt cmnt_dscr">
