@@ -1110,7 +1110,7 @@ class Reviews extends CI_Model
 		
 			$this->db->select('c.id,c.city,c.state,c.company');
 			$this->db->from('youg_company as c');		
-			$this->db->limit(500000);	
+			$this->db->limit(100000,700000);	
 			$query = $this->db->get()->result();
 			
 			foreach($query as $res){

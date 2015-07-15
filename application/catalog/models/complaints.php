@@ -149,7 +149,8 @@ class Complaints extends CI_Model
 			
 			
 			if($company[0]['company'] != ''){
-				$reviewcompanies = trim(preg_replace('/-+/', '-',preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company[0]['company'])))), '-');
+				$company_name = preg_replace("/\.$/","",$company[0]['company']);
+				$reviewcompanies = trim(preg_replace('/-+/', '-',preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company_name)))), '-');
 			}
 			else
 			{
@@ -179,7 +180,7 @@ class Complaints extends CI_Model
 			
 			
 			$complaints_data = array('seoslug' => $seoslug);
-			
+						
 			$this->db->where('id', $comid);
 			$this->db->update('complaints',$complaints_data);
 					
@@ -387,38 +388,45 @@ class Complaints extends CI_Model
 	function insert_companyseo($companyid,$company)
 	{
 			
-			
-			if($company_id != ''){
+		if($company_id != ''){
 				
-				$this->load->model('Common');
-				
-				$elitemem_status = $this->common->get_eliteship_bycompanyid($company_id);
-				
-				$company_name = preg_replace('/[^a-zA-Z0-9-.]/', '', trim(strtolower($company[0]['company'])));
-				$city_state = ucfirst(strtolower($company[0]['city']))."-".$company[0]['state'];
-				$city_state = preg_replace('/[^a-zA-Z0-9-.]/', '', trim($city_state));
-				
-				if(count($elitemem_status)==0){
-					
-					$company_seoslug = "company/not-verified/".$city_state."/".$company_name."/".$company[0]['id'];
-					
-				}else{
-					$company_seoslug = "company/elite-members/".$city_state."/".$company_name."/".$company[0]['id'];
-				}					
+			$this->load->model('Common');
+							
+			$elitemem_status = $this->Common->get_eliteship_bycompanyid($company_id);
+
+
+			if($company[0]['company'] != ''){
+				$company_name = preg_replace("/\.$/","",$company[0]['company']);
+				$company_name = trim(preg_replace('/-+/', '-',preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company_name)))), '-');
+			}else{
+				$company_name = "anonymous";
 			}
-		
+
+			$city_state = ucfirst(strtolower($company[0]['city']))."-".$company[0]['state'];
+			$city_state = preg_replace('/[^a-zA-Z0-9-.]/', '', trim($city_state));
+
+			if(count($elitemem_status)==0){
+				
+				$company_seoslug = "company/not-verified/".$city_state."/".$company_name."/".$res->id;
+				
+			}else{
+				$company_seoslug = "company/elite-members/".$city_state."/".$company_name."/".$res->id;
+			}					
+
+
 			$companies_data = array( 
-				'seoslug' => $company_seoslug
+			'seoslug' => $company_seoslug
 			);
-			
-		$this->db->where('id', $companyid);
-		if( $this->db->update('company',$companies_data))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
+
+			$this->db->where('id', $companyid);
+			if( $this->db->update('company',$companies_data))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 	}
 		
