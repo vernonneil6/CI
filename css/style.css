@@ -1047,7 +1047,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .pressfact{color: #fff!important}
 .pressnotice{color: #fff!important;font-size: 15px;}
 .bannertext{
-	font-family:'Palatino-regular';font-size:50px;font-weight:normal;color: #2c6a99;letter-spacing: 3px;text-transform:uppercase;height: auto;letter-spacing: 3px;margin-top: 20px;
+	font-family:'Palatino-regular';font-weight:normal;letter-spacing: 3px;text-transform:uppercase;height: auto;letter-spacing: 3px;margin-top: 20px;
 	border:medium none;
 	margin-bottom: 0;
 	padding:0;
@@ -1535,12 +1535,13 @@ color:#2c6a99;
 }
 .testmnl_cln
 {
-	width:auto!important;
+	/*width:auto!important;*/
 	margin-bottom: 20px!important;
 	float: right;
 	margin-top:20px;
 	
 }
+.clnt_intr .hypen{float:left;line-height:35px;margin-right:5px;}
 .clt_nme
 {
     vertical-align: super!important;
@@ -2586,12 +2587,22 @@ margin-right:0px;
 .container .addvert-bottom{padding-top:0;}
 
 .count-1,.count-2,.count-3,.count-4{display: inline;}
+.add-busi-dir a {background: none repeat scroll 0 0 #2c6a99; border-radius: 15px;color: #fff;padding: 10px 10px 10px;font-size:30px;font-weight: bold;}
+.add-busi-dir{margin: 30px auto 0;text-align: center;}
 
+
+.bannertext h1, .bannertext h2, .bannertext h3, .bannertext h4, .bannertext h5, .bannertext h6
+{ 
+margin:0px;-webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;}
 #frmcomment .txrareawrp{width:640px;}
 #search_form .headersearchbar:hover, #search_form .headersearchbar:focus{opacity:1;} 
 #frmcompany .bd_srchwrp{width:360px;}
 #frmcompany .bd_srchwrp #searchcomp{width:335px;}
 
 .srch_rslt_wrp #frmcompany{ margin-bottom: 15px; margin-top: 55px;}
-.add-busi-dir a {background: none repeat scroll 0 0 #2c6a99; border-radius: 15px;color: #fff;padding: 10px 10px 10px;font-size:30px;font-weight: bold;}
-.add-busi-dir{margin: 30px auto 0;text-align: center;}
+
+
+

@@ -161,13 +161,19 @@ span.stars{
 @media only screen and (min-width: 310px) and (max-width: 400px){
 .container{padding:0 7px !important; }
 .ft_cat_wrp .container, .main_footer, .innr_wrap{padding:0 !important;}
+
 }
 
 @media only screen and (min-width: 310px) and (max-width: 770px)  {
 
-#custom-share1{ display:block !important;float:left; }
-#custom-share{ display:none;}
+#custom-share1{ display:block !important;float:left;margin:0px; }
+#custom-share,.custom-countwrp{ display:none;}
 .testmnl_cln,.clnt_intr{ float:left;}
+.clnt_intr{ text-align:left;}
+.clnt_name a{ margin-bottom:0px !important;}
+.clnt_intr div{ float:left;line-height:27px;}
+.custom-countwrp1{ display:block !important;margin-left:50px; margin-bottom:10px;}
+.custom-countwrp1 ul li{margin-bottom:10px;}
 
 .addthis_default_style .addthis_separator, .addthis_default_style .at300b, .addthis_default_style .at4-icon, .addthis_default_style .at300bo, .addthis_default_style .at300m, .addthis_default_style .at300bs, .addthis_default_style .addthis_counter{float:none !important;}
 .addthis_native_toolbox a{margin-bottom:0 !important;}
@@ -338,6 +344,7 @@ span.toggle:before{
 .dir_rew_wrap .revw_blck_cnt{float: right;width: 73%;}
 .dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
 .dir_rew_wrap .revw_blck_img{float: left;}
+.custom-countwrp1{ margin-left:0px !important;}
 
 .txt_box_complaint{width:363px;}
 

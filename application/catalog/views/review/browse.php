@@ -213,7 +213,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
        
        
        
-        <div class="pr_countwrp">
+        <div class="pr_countwrp custom-countwrp">
           <ul>
             <li>
               <div class="cnt_content cnt_cnet"> <span>HELPFUL</span>
@@ -245,7 +245,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
         <div class="pr_testmnl_wrp">
           <p class = "testmnl_p">"<?php echo stripslashes($review[0]['comment']); ?>"</p>
           <div class="testmnl_clntwrp testmnl_cln">
-            <div class="clnt_intr"> - &nbsp;&nbsp;
+            <div class="clnt_intr"><div class="hypen">-</div>
               <div class="clnt_pic"> 
 				  <?php if($username['avatarthum']==null) {?>
 					  <img src="images/default_user.png" alt="Client Image" title="Client Image"> 
@@ -262,12 +262,43 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
                 <h4><a href="<?php echo site_url('complaint/viewuser/'.$review[0]['companyid'].'/'.$review[0]['reviewby']);?>" title="view profile"> <?php if($review[0]['username']!='') { echo stripslashes($review[0]['username']); } else { echo stripslashes($username['firstname']); } ?></a></h4>
                 <?php } ?>
                 <span><?php echo $review[0]['state'];?></span> </div>
-				
-            </div>
-            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+				<!-- Go to www.addthis.com/dashboard to customize your tools -->
 				<div class="addthis_native_toolbox" id="custom-share1" style="display:none"></div>
-           
+            </div>
+            
+         
           </div>
+          <!-- responsive-->
+           <div class="pr_countwrp custom-countwrp1" style="display:none;">
+          <ul>
+            <li>
+              <div class="cnt_content cnt_cnet"> <span>HELPFUL</span>
+                <p><?php 
+				
+				echo $helpful = $this->common->get_votes($review[0]['id'],'helpful');?>
+				
+                
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="cnt_content cnt_cnet"> <span>Funny</span>
+                <p><?php echo $funny = $this->common->get_votes($review[0]['id'],'funny');?></p>
+              </div>
+            </li>
+            <li>
+              <div class="cnt_content cnt_cnet"> <span>Agree</span>
+                <p><?php echo $agree = $this->common->get_votes($review[0]['id'],'agree');?></p>
+              </div>
+            </li>
+            <li>
+              <div class="cnt_content cnt_cnet"> <span>Disagree</span>
+                <p><?php echo $disagree = $this->common->get_votes($review[0]['id'],'disagree');?></p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- End-->
           <div class="addcmnt_wrp">
             <div class="cmnt_wrp">
               <?php 
@@ -316,6 +347,9 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
             <?php } ?>
           </div>
         </div>
+   
+    
+     
       </div>
     </div>
     <?php if(count($comments)>0){?>
