@@ -115,7 +115,7 @@ span.stars{
 .verified_wrp.srch_rslt_vrfy .compny_name h2{text-align:left;}
 .verified_wrp.srch_rslt_vrfy{width:130px;}
 
-.revw_occupt span a{max-width:550px !important;display:block;}
+.revw_occupt span a{max-width:550px !important;}
 .p_realese_head{width:auto;}
 
 #frmcompany {margin:0;}
@@ -217,6 +217,13 @@ span.stars{
 .reviewverifiedlogo{position:relative;top:10px;padding:0;}
 .pagination{width:92%;padding:0 20px;}
 .revw_ratpoint span h5, .revw_ratpoint span a{font-size:13px;}
+.revw_occupt span{
+	font-size: 13px;
+}
+.revw_date{
+	font-size: 13px;
+	float:left;
+}
 .revw_ratpoint{text-align:center;height:auto;}
 .cmnt_wrp{display:inline-block;float:none;margin-top:15px;}
 .tablecompliant, .user_dashboard{margin-left:20px;}
@@ -283,6 +290,7 @@ span.toggle:before{
 .coupon_wrap .revw_blck_cnt {float: right; width: 78%;}
 .coupon_wrap .revw_blck_img{display:inline;text-align:left}
 
+
 }
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
 .reg-row .names {font-size: 20px;}
@@ -291,7 +299,9 @@ span.toggle:before{
 .dir_rew_wrap .revw_blck_img{float: left;}
 
 .txt_box_complaint{width:488px;}
-
+.revw_date{
+	float:right;
+}
 .hm_rvw_wrp .home_right { padding: 10px 3px 0 13px;}
 .review-slider ul{padding:0 0 0 0px;}
 .review-slider li, .review-slider-right li{margin-top:20px !important;}
@@ -383,6 +393,7 @@ span.toggle:before{
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px !important;width:300px;}
 }
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
+
 .add-busi-dir a {font-size: 20px;}
 
 #frmcompany .bd_srchwrp #searchcomp {width:auto;}
@@ -396,7 +407,7 @@ span.toggle:before{
 .dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
 .dir_rew_wrap .revw_blck_img{float: left;}
 .dir_rew_wrap .reviewverifiedlogo, .dir_rew_wrap .reviewnotverifiedlogo{height:80px;}
-.dir_rew_wrap .revw_occupt{width:93%;}
+.dir_rew_wrap .revw_occupt{width:93%; font-size:13px;}
 
 .txt_box_complaint{width:88%;}
 .term_tag {margin-bottom:15px;}
