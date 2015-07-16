@@ -112,23 +112,26 @@
 				} ?>            
             </div>
           <div class="revw_blck_cnt">
-            <h2>			
-			
-				<a href="<?php echo site_url($company_seoslug);?>" title="view <?php echo stripslashes($reviews[$i]['company']);?>'s detail" class="reviewcolor">
-					<?php echo ucfirst(stripslashes($reviews[$i]['company']));?>
-				</a>
+			 <div class="review-headers">
+				<h2>			
+
+					<a href="<?php echo site_url($company_seoslug);?>" title="view <?php echo stripslashes($reviews[$i]['company']);?>'s detail" class="reviewcolor">
+						<?php echo ucfirst(stripslashes($reviews[$i]['company']));?>
+					</a>				
+				</h2> 
 				<div class="rating">
-					<div class ="count-<?php echo $reviews[$i]['rate']?>">
-					<?php for($r=0;$r<($reviews[$i]['rate']);$r++){?>
-						<i class="vry_rat_icn"></i>
-						<?php } ?>
-					</div>	
-						<?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
-						<i class="dull_starrat"></i>
-				   <?php } ?>            
+						<div class ="count-<?php echo $reviews[$i]['rate']?>">
+						<?php for($r=0;$r<($reviews[$i]['rate']);$r++){?>
+							<i class="vry_rat_icn"></i>
+							<?php } ?>
+						</div>	
+							<?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
+							<i class="dull_starrat"></i>
+					   <?php } ?>            
 				</div>
-            </h2>            
-            <div class="revw_occupt"> 
+			</div>            
+            <div class="revw_occupt">
+				<div class="review-title-user">
 				<span>
 							
 					<a href="<?php echo $reviews[$i]['seoslug']; ?>" title="see details" style="color:#FFFFFF;">
@@ -152,6 +155,7 @@
 					}
 					?>					
 				</p>
+				</div> 
               <div class="revw_date">
                 <?php
 					    $reviewdate = date('m/d/Y',strtotime($reviews[$i]['reviewdate']));
