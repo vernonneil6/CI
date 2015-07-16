@@ -1035,7 +1035,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .pressfact{color: #fff!important}
 .pressnotice{color: #fff!important;font-size: 15px;}
 .bannertext{
-	font-family:'Palatino-regular';font-size:50px;font-weight:normal;color: #2c6a99;letter-spacing: 3px;text-transform:uppercase;height: auto;letter-spacing: 3px;margin-top: 20px;
+	font-family:'Palatino-regular';font-weight:normal;letter-spacing: 3px;text-transform:uppercase;height: auto;letter-spacing: 3px;margin-top: 20px;
 	border:medium none;
 	margin-bottom: 0;
 	padding:0;
@@ -1523,12 +1523,13 @@ color:#2c6a99;
 }
 .testmnl_cln
 {
-	width:auto!important;
+	/*width:auto!important;*/
 	margin-bottom: 20px!important;
 	float: right;
 	margin-top:20px;
 	
 }
+.clnt_intr .hypen{float:left;line-height:35px;margin-right:5px;}
 .clt_nme
 {
     vertical-align: super!important;
@@ -2557,3 +2558,10 @@ margin-right:0px;
 
 .add-business a {background: none repeat scroll 0 0 #2c6a99; border-radius: 15px;color: #fff;font-weight: bold;padding: 8px 10px 5px;}
 .srch_rslt_wrp #frmcompany{ margin-bottom: 15px; margin-top: 55px;}
+
+.bannertext h1, .bannertext h2, .bannertext h3, .bannertext h4, .bannertext h5, .bannertext h6
+{ 
+margin:0px;-webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;}
