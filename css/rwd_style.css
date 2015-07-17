@@ -285,6 +285,7 @@ span.toggle:before{
 .foot_mid_bar,.footer_block ul li.ftitle,.footer_block ul{width:100% !important;}
 }
 @media only screen and (min-width: 440px) and (max-width: 770px)  {
+.headersearch{bottom:30%; font-size:13px;}
 .dis_width .reg-row{width:100%;}
 .coupon_wrap .revw_blck_cnt {float: right; width: 78%;}
 .coupon_wrap .revw_blck_img{display:inline;text-align:left}
@@ -303,6 +304,7 @@ span.toggle:before{
 .review-slider li, .review-slider-right li{margin-top:20px !important;}
 .container{width:511px;padding:0 20px; }
 .headersearch{width:511px;}
+.headersearch .bannertext{font-size:13px;}
 .regr_lnk,.innr_wrap{width:511px;}
 .reg_frm_wrap{float:none;width:auto;}
 .reg_txt_box{width:225px;}
@@ -379,7 +381,7 @@ span.toggle:before{
 }
 @media only screen and (min-width: 310px) and (max-width: 549px)  {
 .reg-row .names{font-size: 16px;width:86% !important;}
-
+.headersearch .bannertext{font-size:9px;}
 #loading{height:10px;float:none;margin:0 auto; position: relative; z-index: 9999999;}
 .headersearchbtn, .headersearchbar{margin:0 auto;float:none;}
 .formBox{width:auto;}
@@ -420,7 +422,7 @@ span.toggle:before{
 .hm_rvw_wrp .reptitle,.hm_rvw_wrp .home_mar_line,.hm_rvw_wrp .home_mar_line, .hm_rvw_wrp .review-head{width:70%;}
 .container{width:311px;padding:0 20px; }
 .headersearch{width:311px;}
-.bannertext{font-size:25px !important;height:auto;}
+.bannertext{height:auto;}
 .revw_ratpoint span h5{display: block !important;margin-bottom:5px;}
 .revw_ratpoint span {line-height:20px;}
 .revw_blck_cnt h2{font-size:13px !important;}
@@ -471,7 +473,9 @@ span.toggle:before{
 .bannertextcoupon{font-size:35px !important;height:35px;}
 .bus_dir_head  h1{height:45px;}
 .bus_tag{font-size:30px;}
-.bannertext{font-size:55px;}
+.headersearch.headertoptext{bottom:75%;margin:0px;}
+.headersearch{bottom:40%;}
+.headersearch.headerbottomtext{bottom:30%;margin:0px;}
 }
 
 @media only screen and (min-width: 620px) and (max-width: 770px)  {
@@ -483,7 +487,11 @@ span.toggle:before{
 .bus_dir_head  h1{height:20px;}
 .bus_tag{font-size:17px;}
 .headersearchbar{margin-bottom:10px;}
-.bannertext{font-size:35px;height:auto;}
+.headersearch.headertoptext{bottom:65%;margin:0px;}
+.headersearch{bottom:25%; font-size:13px;}
+.headersearch.headerbottomtext{bottom:7%;margin:0px;}
+#search_form .headersearchbar{ height:30px;}
+
 }
 
 @media only screen and (max-width: 600px) {

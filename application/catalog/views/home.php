@@ -9,7 +9,7 @@
 			foreach($homesliding as $homeslide)
 			{?>
 				<li>
-					<img src="uploads/slider/<?php echo $homeslide->image;?>" alt="How it works" title="How it works"  usemap="<?php if($i==0){echo '#planetmap';}?>">
+					<img src="uploads/slider/<?php echo $homeslide->image;?>" alt="YGR Banner" title="YGR Banner"  usemap="<?php if($i==0){echo '#planetmap';}?>">
 					<div class="text-content" style="bottom:0;"> <span><?php echo $homeslide->title;?></span></div>
 					<?php 
 					if($i==0)
@@ -28,7 +28,58 @@
 		</ul>
 		<?php if($this->uri->segment(1)!='businessdirectory' && $this->uri->segment(1)!='solution' && $this->uri->segment(1)!='login' && $this->uri->segment(2)!='register') { ?> 
 		<div class="container">
+			
+			<div class="headersearch headertoptext">
+			<div class="bannertext" style="width:60%;margin:0 auto;">
+				<?php 
+				$l=0;
+				$homebannertext;
+			//echo"<pre>"; print_r($homebannertext);die;
+			foreach($homebannertext as $bannertext)
+			{
+				   $logozone=$bannertext->position; ?>
+				   
+				<?php if($logozone=='top1' && $l==0){
+				?><div class="banner-top1">	<?php echo $bannertext->text;?></div>
+				<?php $l++;}?>
+				
+			<?php } 
+			$j=0;
+			foreach($homebannertext as $bannertext)
+			{
+				   $logozone=$bannertext->position; ?>
+				  
+				<?php if($logozone=='top2' && $j==0){
+				?>	 <div class="banner-top2" ><?php echo $bannertext->text;?></div>
+				<?php $j++; }?>
+				
+			<?php } 
+			$k=0;
+			foreach($homebannertext as $bannertext)
+			{
+				   $logozone=$bannertext->position; ?>
+				 
+				<?php if($logozone=='top3' && $k==0){
+				?>	  <div class="banner-top3" ><?php echo $bannertext->text;?></div>
+				<?php $k++; }?>
+				
+			<?php } 
+				
+			/*foreach($homelogosliding as $homelogoslide)
+			{
+				   $logozone=$homelogoslide->zone;
+				if($logozone=='top'){
+				?>	<img src="uploads/logoslider/<?php echo $homelogoslide->image;?>" alt="YGR-verified-logo" width="100%" />
+				<?php break;}
+				$m++;
+			}*/
+				
+				?>
+				</div>
+			
+			</div>
 			<div class='headersearch' >
+				
 			<?php echo form_open('businessdirectory/search',array('class'=>'formBox','name'=>'frmsearch','id'=>'frmsearch')); ?>
 			<?php if( $this->uri->segment(1)=='complaint' && $this->uri->segment(2)=='search') { $serkeyword=base64_decode($this->uri->segment(3));} else { $serkeyword =''; } ?>
 				<div class="qwe" style="display:none">
@@ -38,12 +89,55 @@
 				</div>
 				<div id="loading"></div>
 			<?php echo form_close();?>
+			
 				<form method="GET" action="searchresult" id="search_form" class="formBox">
 					<input type="text" class="headersearchbar" name="query" id="suggest"
 						autocomplete="off" value="<?php isset($_GET['query'])?htmlentities($_GET['query']):''?>">
-					<button type="submit" id="send" class="headersearchbtn fa fa-search" name="send" value="Submit">
+					<button type="submit" id="send" class="headersearchbtn fa fa-search" name="send" value="Submit"></button>
 				</form>
 			</div>
+			
+			
+			<div class="headersearch headerbottomtext">
+				<div class="bannertext" style="width:60%;margin:0 auto;">
+				<?php 
+						$l=0;
+						$homebannertext;
+			foreach($homebannertext as $bannertext)
+			{
+				   $logozone=$bannertext->position; ?>
+				 
+				<?php if($logozone=='bottom1' && $l==0){
+				?>  <div class="banner-bottom1">	<?php echo $bannertext->text;?></div>
+				<?php $l++;}?>
+				
+			<?php } 
+			$m=0;
+			foreach($homebannertext as $bannertext)
+			{
+				   $logozone=$bannertext->position; ?>
+				  
+				<?php if($logozone=='bottom2' && $m==0){
+				?>	 <div class="banner-bottom2" ><?php echo $bannertext->text;?></div>
+				<?php $m++; }?>
+				
+			<?php }
+			$n=0; 
+			foreach($homebannertext as $bannertext)
+			{
+				   $logozone=$bannertext->position; ?>
+				   
+				<?php if($logozone=='bottom3' && $n==0){
+				?><div class="banner-bottom3" >	<?php echo $bannertext->text;?></div>
+				<?php $n++; }?>
+				
+			<?php } 
+					?>
+				</div>
+				</div>
+				
+			
+			
 		</div>		
    <?php }  ?>	
    
@@ -66,16 +160,15 @@
         for($i=0;$i<count($complaints);$i++){
             $user=$this->users->get_user_bysingleid($complaints[$i]['reviewby']) ;
             $companyname = $this->users->get_company_bysingleid($complaints[$i]['companyid']); 
-            $company_seoslug = ($companyname) ? $companyname['seoslug'] : '';
             $avgstar = $this->common->get_avg_ratings_bycmid($complaints[$i]['companyid']);
             $avgstar = round($avgstar);
             //$img_src = 'images/default_user.png';
             if($user['id']==$complaints[$i]['reviewby']){
                 $img_src = 'uploads/user/thumb/'.$user['avatarthum'];
             }
-            
-			$siteurl = site_url($company_seoslug);
-			
+            if(!empty($companyname['companyseokeyword'])){
+				$siteurl = site_url('company/'.$companyname['companyseokeyword'].'/reviews/coupons/complaints');
+			}
             $review_detail = ucfirst(stripslashes($complaints[$i]['company'])); 
             $review_date = date('m/d/Y',strtotime($complaints[$i]['reviewdate'])); 
 			$star = '<div class ="count-'.$complaints[$i]['rate'].'">';
@@ -104,7 +197,7 @@
             <div class="home_right">                         
                  
                <div class="rat_title">
-					<div class="user-img"> <img style="width:65px;height:65px" src="'.$img_src.'" alt="User image" title="User image"> </div>
+					<div class="user-img"> <img style="width:65px;height:65px" src="'.$img_src.'" alt="'.$user['username'].'-YGR-profile-image" title="'.$user['username'].'-YGR-profile-image"> </div>
                     <div class="reptitle">
                         <h2 style="padding: 0px; line-height: unset;"><a title="view Review Detail" class="reviewname home_mar_title" href="'.$siteurl.'">'.$review_detail.'</a></h2>
                         <span class="datehome">'.$review_date.'</span>
@@ -120,7 +213,7 @@
                         <a title="view Review Detail" href="">
                         '.$complaints_content.'</a>                                                 
                     </div>
-                    <div class="view-all"><a title="view Review Detail" href="'.site_url($complaints[$i]['seoslug']).'"> <span></span></a><a href="'.site_url($complaints[$i]['seoslug']).'">Read More</a></div>
+                    <div class="view-all"><a title="view Review Detail" href="'.site_url('review/browse/'.$complaints[$i]['seokeyword']).'"> <span></span></a><a href="'.site_url('review/browse/'.$complaints[$i]['seokeyword']).'">Read More</a></div>
                 </div>             
                 </div>
             </div>            

@@ -273,7 +273,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
 .headerfb{background:url('../images/fbbg.png') no-repeat; height: 22px; width: 160px; float: left;}
 .headerfb a{padding: 4px 0 0 35px;  display: inline-block;}
 .headersearch{display:inline-block; margin: 30px 0 20px; text-align: center; width:967px;position: absolute;z-index:9999;bottom:35%;height:40px;}
-#search_form .headersearchbar{border-radius:5px; height: 40px;  padding: 0 0 0 10px; width: 550px; border:0 none;font-family: MyriadPro-SemiboldCondIt; font-size: 18px;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;opacity: 0.8;}
+#search_form .headersearchbar{border-radius:5px; height: 40px;  padding: 0 0 0 10px; border:0 none;font-family: MyriadPro-SemiboldCondIt; font-size: 18px;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;opacity: 0.8;}
 .headersearchbar{border-radius:5px; height: 40px;  padding: 0 0 0 10px; width: 550px; border:1px solid #2c6a99;font-family: MyriadPro-SemiboldCondIt; font-size: 18px;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;}
 .headersearchbtn{background:none;border:none;font-size: 26px !important;float:right !important;border:0;position:relative;bottom:1.4em;cursor:pointer;}
 .headersub_btn{background:url('../images/searchbtn.png'); width:115px;height: 40px; padding-top: 1px; vertical-align: top;border:none; color: white; font-family: MyriadPro-BlackSemiCn;  font-size: 14px;margin-left: -148px;margin-top: 20px;}
@@ -2578,7 +2578,9 @@ margin-right:0px;
 .add-busi-dir a {background: none repeat scroll 0 0 #2c6a99; border-radius: 15px;color: #fff;padding: 10px 10px 10px;font-size:30px;font-weight: bold;}
 .add-busi-dir{margin: 30px auto 0;text-align: center;}
 
-
+.headersearch.headertoptext{bottom:60%;margin:0px;}
+.headersearch.headerbottomtext{bottom:25%;margin:0px;}
+.bannertext p{ margin:0px;padding:0px;}
 .bannertext h1, .bannertext h2, .bannertext h3, .bannertext h4, .bannertext h5, .bannertext h6
 { 
 margin:0px;-webkit-margin-before: 0em;
