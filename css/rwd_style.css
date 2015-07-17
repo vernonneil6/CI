@@ -336,7 +336,7 @@ span.toggle:before{
 .new_usr a{font-size:20px;}
 .new_usr{font-size:21px;}
 
-.headersearchbar{width:300px;height:30px;}
+.headersearchbar{width:300px;height:20px;}
 .flexslider .headersearch .formBox, .innr_wrap .headersearch .formBox{width:305px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
 }
@@ -387,7 +387,13 @@ span.toggle:before{
 .headersearchbar{width:250px;height:30px;}
 .flexslider .headersearch .formBox, .innr_wrap .headersearch .formBox{width:255px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
+.headersearch.headertoptext{bottom:55%;margin:0px;}
 .headersearch{bottom:20%;}
+.headersearch.headerbottomtext{bottom:10%;margin:0px;}
+}
+@media only screen and (min-width: 600px) and (max-width: 700px)  {
+.headersearch{height:20px;}
+
 }
 @media only screen and (min-width: 310px) and (max-width: 549px)  {
 .reg-row .names{font-size: 16px;width:86% !important;}
@@ -499,7 +505,7 @@ span.toggle:before{
 .bus_tag{font-size:17px;}
 .headersearchbar{margin-bottom:10px;}
 .headersearch.headertoptext{bottom:65%;margin:0px;}
-.headersearch{bottom:25%; font-size:13px;}
+.headersearch{bottom:25%; font-size:13px;height:30px;}
 .headersearch.headerbottomtext{bottom:7%;margin:0px;}
 #search_form .headersearchbar{ height:30px;}
 

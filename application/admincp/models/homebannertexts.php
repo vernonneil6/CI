@@ -11,7 +11,8 @@ Class Homebannertexts extends CI_Model
 	{
 		$data = array(	
 						'position' => $position,
-						'text' 	=> $text		
+						'text' 	=> $text,
+						'status'	=> '1'
 					     );
 
 		if( $this->db->insert('youg_bannertext', $data) )
