@@ -41,6 +41,8 @@
 				<form method="GET" action="searchresult" id="search_form" class="formBox">
 					<input type="text" class="headersearchbar" name="query" id="suggest"
 						autocomplete="off" value="<?php isset($_GET['query'])?htmlentities($_GET['query']):''?>">
+					<input type="hidden" class="input-large" name="city" id="city"  value="<?=isset($_GET['city'])?htmlentities($_GET['city']):''?>"> 
+					<input type="hidden" class="input-large" name="state" id="state"  value="<?=isset($_GET['state'])?htmlentities($_GET['state']):''?>"> 
 					<button type="submit" id="send" class="headersearchbtn fa fa-search" name="send" value="Submit">
 				</form>
 			</div>

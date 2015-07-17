@@ -266,14 +266,14 @@ function __highlight(s, t) {
     var matcher = new RegExp("(" + $.ui.autocomplete.escapeRegex(t) + ")", "ig");
     return s.replace(matcher, "$1");
 }
-/*
+
 $(document).ready(
 	function() {
 	    $("#suggest").autocomplete(
 		    {
 			source : function(request, response) {
 			    $.ajax({
-				url : '/SphinxAutocompleteExample/ajax_suggest.php',
+				url : '/sp/ajax_suggest.php',
 				dataType : 'json',
 				data : {
 				    term : request.term
@@ -300,12 +300,12 @@ $(document).ready(
 		if (e.keyCode === 13) {
 		    $("#search_form").trigger('submit');
 		}
-	    }).data("autocomplete")._renderItem = function(ul, item) {
+	    }).data("ui-autocomplete")._renderItem = function(ul, item) {
 
 		return $("<li></li>").data("item.autocomplete", item).append(
 			$("<a></a>").html(item.label)).appendTo(ul);
 	    };
-	});*/
+	});
 </script>
 </body>
 </html>
