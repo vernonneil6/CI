@@ -14,7 +14,7 @@
 </style>
 <script>
 	$(document).ready(function() {
-<!-------- Rating---------->
+		<!-------- Rating---------->
 		  $('.rating_review').raty({ starOff : 'js/rating/img/star-off.png',
 		  starOn : 'js/rating/img/star-on.png'});
 	 }); 
@@ -123,22 +123,35 @@
               });
   
 			$('#thumb-up').toggle(function(){
-				$('#thumb-down').hide();
-				$('#thumb-up').css({"color" : "#2c6a99"});
+				$('#thumb-down-block').hide();
+				$('#thumb-up').css({"color" : "#2c6a99",});
+				$('#thumb-up-block .thumb-text').css({"color" : "#2c6a99"});
+				//$('#thumb-down').css({"color" : "black"});
+				//$('#thumb-down-block .thumb-text').css({"color" : "black"});
 				$('#autopost').val("1");
 			},function(){
-				$('#thumb-down').show();
+				$('#thumb-down-block').show();
 				$('#thumb-up').css({"color" : "black"});
+				$('#thumb-up-block .thumb-text').css({"color" : "black "});
+				//$('#thumb-down').css({"color" : "black"});
+				//$('#thumb-down-block .thumb-text').css({"color" : "black"});
 				$('#autopost').val("");
 			});
 			
 			$('#thumb-down').toggle(function(){
-				$('#thumb-up').hide();
+				$('#thumb-up-block').hide();
 				$('#thumb-down').css({"color" : "#2c6a99"});
+				$('#thumb-down-block .thumb-text').css({"color" : "#2c6a99"});
+				//$('#thumb-up').css({"color" : "black"});
+				//$('#thumb-up-block .thumb-text').css({"color" : "black "});
 				$('#autopost').val("0");
 			},function(){
-				$('#thumb-up').show();
+				$('#thumb-up-block').show();
 				$('#thumb-down').css({"color" : "black"});
+				$('#thumb-down-block .thumb-text').css({"color" : "black"});
+				//$('#thumb-up').css({"color" : "black"});
+				//$('#thumb-up-block .thumb-text').css({"color" : "black "});
+				
 				$('#autopost').val("");
 			});
 			
@@ -153,7 +166,7 @@
         <div id="rateerror" class="error">Please choose a star rating.</div>
         <div id="posterror" class="error">Please choose review about your company.</div>
         <h3>HOW WOULD YOU RATE THIS COMPANY? <i class="rating_review"></i></h3>
-        <h3>HOW WOULD YOU REVIEW THIS COMPANY? <i class="fa fa-thumbs-up thumb" id = "thumb-up"></i><i class="fa fa-thumbs-down thumb" id = "thumb-down"></i></h3>
+        <h3 class="thumb-like"><div class="thumb-head">HOW WOULD YOU REVIEW THIS COMPANY? </div><div class="thumb-like-block"><span class="thumb-block" id="thumb-up-block"><i class="fa fa-thumbs-up thumb" id = "thumb-up"></i><span class="thumb-text">positive</span></span><span class="thumb-block" id="thumb-down-block"><i class="fa fa-thumbs-down thumb" id = "thumb-down"></i><span class="thumb-text">Negative</span></span></div></h3>
         <h3>WHAT DO YOU HAVE TO SAY ABOUT THIS COMPANY?</h3>
 		<input type = "hidden" value = "" name = "autopost" id = "autopost">
         <input class="txt_box review_txt_box" id="reviewtitle" name="reviewtitle" placeholder="review title"/>
@@ -210,7 +223,7 @@
       
       <?php echo form_close();?> </div>
            <div class="lgn_btnlogo" > <a href="<?php echo base_url();?>">
-                        <img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a></div>
+                        <img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated-mini-logo" title="Yougotrated-mini-logo"></a></div>
              </div>
   </section>
 </section>
