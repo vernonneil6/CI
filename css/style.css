@@ -1570,6 +1570,9 @@ color:#2c6a99;
     padding: 0!important;
     width: auto!important;
 }
+
+
+
 .advancefiltertitle
 {
 	font-size : 85px!important;
@@ -1997,10 +2000,12 @@ padding-left: 18px;
 }
 .thumb
 {
-	margin : 0 0 0 10px;
+	margin : 0 0 0 5px;
 	cursor : pointer;
 }
-
+.thumb-head{float:left;}
+.thumb-like-block .thumb-block{background-color: #ccc;padding: 2px;border-radius: 25px;margin-right:2px;float:left;}
+.thumb-text{font-size:12px;}
 .thumb:hover
 {
 	color: #2c6a99!important;
