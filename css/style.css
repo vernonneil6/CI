@@ -569,7 +569,7 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
 	margin-bottom: 30px;
 }
 .map_wrap{width:510px; height:214px;float:left; padding-bottom:15px; background: url(../images/map_shadow.png) bottom center no-repeat; position: absolute;left:35%;}
-.Flexible-container {   position: relative; padding-bottom:12.8%; padding-top: 30px;  height: 0;  overflow: hidden;}
+.Flexible-container {   position: relative; padding-bottom:12.8%; padding-top: 30px;  height: auto;  overflow: hidden;}
 .Flexible-container iframe,   
 .Flexible-container object,  
 .Flexible-container embed {
@@ -1136,7 +1136,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 /*============ Search Result ===========================*/
 .srch_rslt_wrp{ display:inline-block; border-top:1px solid #999999; width:100%;padding-top: 1em;}
-.serch_result h1{width:1050px;}
+.serch_result h1{}
 .srch_result_blck{ display: inline-block; margin-top: 10px; width: 100%; border-bottom:1px solid #999;}
 .srch_rslt_left{width:510px; float:left; height:auto;}
 .srch_rslt_right{width:510px; float:left; height:auto; margin-left:10px;}
@@ -2587,7 +2587,7 @@ margin-right:0px;
 .container .addvert-bottom{padding-top:0;}
 
 .count-1,.count-2,.count-3,.count-4{display: inline;}
-.add-busi-dir a {background: none repeat scroll 0 0 #2c6a99; border-radius: 15px;color: #fff;padding: 10px 10px 10px;font-size:30px;font-weight: bold;}
+.add-busi-dir a {background: none repeat scroll 0 0 #2c6a99; border-radius: 15px;color: #fff;padding: 10px 10px 10px;font-size:20px;font-weight: bold;}
 .add-busi-dir{margin: 30px auto 0;text-align: center;}
 
 .headersearch.headertoptext{bottom:60%;margin:0px;}
