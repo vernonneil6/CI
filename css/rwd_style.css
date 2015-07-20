@@ -459,7 +459,7 @@ span.toggle:before{
 .reg_txt_box,.reg_txt_box-lg,.reg_txt_box-md, #streetaddress1{width:225px;}
 .reg_txt_box-xsml{margin-left:0;}
 .pull-right{float:none;}
-.pr_countwrp ul li{margin-bottom:10px;margin-right:2px;}
+.pr_countwrp ul li{margin-bottom:10px;margin-right:3px;margin-left:2px;}
 .clnt_name{margin-left:4px;}
 .pr_countwrp{width:100%;}
 .head_sb_rvw h1{font-size:30px;}
