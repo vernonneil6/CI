@@ -172,7 +172,7 @@ span.stars{
 .clnt_intr{ text-align:left;}
 .clnt_name a{ margin-bottom:0px !important;}
 .clnt_intr div{ float:left;line-height:27px;}
-.custom-countwrp1{ display:block !important;margin-left:50px; margin-bottom:10px;}
+.custom-countwrp1{ display:block !important;margin-left:25px; margin-bottom:10px;}
 .custom-countwrp1 ul li{margin-bottom:10px;}
 
 .addthis_default_style .addthis_separator, .addthis_default_style .at300b, .addthis_default_style .at4-icon, .addthis_default_style .at300bo, .addthis_default_style .at300m, .addthis_default_style .at300bs, .addthis_default_style .addthis_counter{float:none !important;}
@@ -235,7 +235,7 @@ span.stars{
 .tablecompliant, .user_dashboard{margin-left:20px;}
 .usercomment {margin-left: 20px !important;}
 .pr_rwrp,.verified_wrp{float:none;display:inline-block;text-align:center;margin:0 auto;}
-.pr_detlwrp{width:82%;margin:0 auto; display: block;float:none;}
+.pr_detlwrp{width:95%;margin:0 auto; display: block;float:none;}
 .pr_testmnl_wrp,.addcmnt_wrp,.testmnl_clntwrp,.titl_pr_rel,.pr_rwrp{width:100%;}
 .compny_name{width:100%;margin-bottom:3em;}
 .vry_btn{margin:0 auto;}
@@ -336,7 +336,7 @@ span.toggle:before{
 .new_usr a{font-size:20px;}
 .new_usr{font-size:21px;}
 
-.headersearchbar{width:300px;height:30px;}
+.headersearchbar{width:300px;height:20px;}
 .flexslider .headersearch .formBox, .innr_wrap .headersearch .formBox{width:305px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
 }
@@ -431,7 +431,7 @@ span.toggle:before{
 .review-slider ul{padding:0 0 0 0px;}
 .hm_rvw_wrp .home_right { padding: 10px 3px 0 13px;}
 .hm_rvw_wrp .reptitle,.hm_rvw_wrp .home_mar_line,.hm_rvw_wrp .home_mar_line, .hm_rvw_wrp .review-head{width:70%;}
-.container{width:311px;padding:0 20px; }
+.container{width:375px;padding:0px; }
 .headersearch{width:311px;}
 .bannertext{height:auto;}
 .revw_ratpoint span h5{display: block !important;margin-bottom:5px;}
@@ -448,7 +448,7 @@ span.toggle:before{
 .reg_txt_box-xsml{margin-left:0;}
 .pull-right{float:none;}
 .pr_countwrp ul li{margin-bottom:10px;}
-.pr_countwrp{width:65%;}
+.pr_countwrp{width:100%;}
 .head_sb_rvw h1{font-size:30px;}
 .srch_rslt_left{width:311px;}
 .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px;}
