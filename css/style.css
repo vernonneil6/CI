@@ -2003,9 +2003,12 @@ padding-left: 18px;
 	margin : 0 0 0 5px;
 	cursor : pointer;
 }
+/*----Thumb Design----*/
 .thumb-head{float:left;}
-.thumb-like-block .thumb-block{background-color: #ccc;padding: 2px;border-radius: 25px;margin-right:2px;float:left;}
-.thumb-text{font-size:12px;}
+.thumb-like-block .thumb-block{background-color: #ccc;padding:10px;padding-right:5px;border-radius: 25px;margin-right:2px;float:left;}
+.thumb-text{font-size:12px;  top: -5px;position: relative;}
+
+/*----End-----*/
 .thumb:hover
 {
 	color: #2c6a99!important;
