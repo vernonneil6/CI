@@ -166,12 +166,12 @@ span.stars{
 
 @media only screen and (min-width: 310px) and (max-width: 770px)  {
 
-#custom-share1{ display:block !important;float:left;margin:0px; }
+#custom-share1{ display:block !important;float:left;margin:2px; }
 #custom-share,.custom-countwrp{ display:none;}
 .testmnl_cln,.clnt_intr{ float:left;}
 .clnt_intr{ text-align:left;}
 .clnt_name a{ margin-bottom:0px !important;}
-.clnt_intr div{ float:left;line-height:27px;}
+.clnt_intr div{ float:left;}
 .custom-countwrp1{ display:block !important;margin-left:30px; margin-bottom:10px;}
 .custom-countwrp1 ul li{margin-bottom:10px;}
 
