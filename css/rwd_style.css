@@ -435,7 +435,7 @@ span.toggle:before{
 #frmcomment .txrareawrp{width:250px !important;}
 
 .hm_rvw_wrp{width:99% !important;}
-.rat_title h2 a {overflow: hidden;text-overflow: ellipsis;white-space: nowrap; width: 100px;}
+.rat_title h2 a {overflow: hidden;text-overflow: ellipsis;}
 .hm_rvw_wrp .user-name {margin-bottom: 3px; overflow: hidden;text-overflow: ellipsis; white-space: nowrap; width: 60px;}
 .review-head a { display: inline-block; width: 170px !important;overflow: hidden;text-overflow: ellipsis; white-space: nowrap;}
 .review-slider li, .review-slider-right li{margin-top:20px !important;}
