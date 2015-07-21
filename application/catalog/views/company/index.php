@@ -7,28 +7,32 @@
 			
 			?>
 <!--<script type="text/javascript" src="js/tytabs.jquery.min.js"></script>-->
-<script type="text/javascript" language="javascript">
-	$(document).ready(function() {
-	//Default Action
-	$(".tab_content").hide(); //Hide all content
-	$("ul.tabbs li:first").addClass("active").show(); //Activate first tab
-	$(".tab_content:first").show(); //Show first tab content
-		$("ul.tabbs li").click(function() {
-			$("ul.tabbs li").removeClass("active"); //Remove any "active" class
-			$(this).addClass("active"); //Add "active" class to selected tab
-			$(".tab_content").hide(); //Hide all tab content
-			var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
-			$(activeTab).fadeIn(); //Fade in the active content
-			$("#tab6 iframe").each(function() { 
-				$('.'+$(this).attr('class'))[0].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
-			});
-			return false;
-		});
-	 }); 
-	 
-</script>
+
+<link rel="stylesheet" href="<?php echo site_url('js/Easy-Responsive-Tab-Accordion/easy-responsive-tabs.css'); ?>">
+
+<script src="<?php echo site_url('js/Easy-Responsive-Tab-Accordion/easy-responsive-tabs.js');?>"></script>
+
+
+
 <script type="text/javascript">
 	$(document).ready(function(){
+		
+		
+		$('#horizontalTab').easyResponsiveTabs({
+			type: 'default', //Types: default, vertical, accordion           
+			width: 'auto', //auto or any width like 600px
+			fit: true,   // 100% fit in a container
+			closed: 'accordion', // Start closed if in accordion view
+			activate: function(event) { // Callback function if tab is switched
+			var $tab = $(this);
+			var $info = $('#tabInfo');
+			var $name = $('span', $info);
+			$name.text($tab.text());
+			$info.show();
+			}
+		});
+		
+		
 		$( ".stars" ).each(function() { 
 			// Get the value
 			var val = $(this).data("rating");
@@ -39,11 +43,54 @@
 			// Replace the numerical value with stars
 			$(this).html($span);
 		});
+		
+		
+		 // tabbed content
+    // http://www.entheosweb.com/tutorials/css/tabs.asp
+    $(".tab_content").hide();
+    $(".tab_content:first").show();
+
+  /* if in tab mode */
+    $("ul.tabs li").click(function() {
+		
+      $(".tab_content").hide();
+      var activeTab = $(this).attr("rel"); 
+      $("#"+activeTab).fadeIn();		
+		
+      $("ul.tabs li").removeClass("active");
+      $(this).addClass("active");
+
+	  $(".tab_drawer_heading").removeClass("d_active");
+	  $(".tab_drawer_heading[rel^='"+activeTab+"']").addClass("d_active");
+	  
+    });
+	/* if in drawer mode */
+	$(".tab_drawer_heading").click(function() {
+      
+      $(".tab_content").hide();
+      var d_activeTab = $(this).attr("rel"); 
+      $("#"+d_activeTab).fadeIn();
+	  
+	  $(".tab_drawer_heading").removeClass("d_active");
+      $(this).addClass("d_active");
+	  
+	  $("ul.tabs li").removeClass("active");
+	  $("ul.tabs li[rel^='"+d_activeTab+"']").addClass("active");
+    });
+	
+	
+	
+	
+	/* Extra class "tab_last" 
+	   to add border to right side
+	   of last tab */
+	$('ul.tabs li').last().addClass("tab_last");
+	
+		
 	});
 </script>
 <section class="container">
   <section class="main_contentarea">
-   
     <div class="innr_wrap wrapborder" itemscope itemtype="http://schema.org/localBusiness">
 
 		<!-- Go to www.addthis.com/dashboard to customize your tools -->
@@ -363,244 +410,253 @@
 			<?php echo stripslashes($company[0]['aboutus']); ?>
 		</div>
 	</div>
-	
-		<div class = "profile_tab_space">
-			<ul class="tabbs">
-			  <?php if(count($elitemem_status)==0){?>
-			  <li><a href="#tab1" title="REVIEWS">REVIEWS</a></li>
-			  <li><a href="#tab2" title="COMPLAINTS">COMPLAINTS</a></li>
-			  <li><a href="#tab4" title="COUPONS">COUPONS</a></li>
-			  <?php } else {
-				  ?>
-			  <li><a href="#tab1" title="REVIEWS">REVIEWS</a></li>
-			  <li><a href="#tab2" title="COMPLAINTS">COMPLAINTS</a></li>
-			  <li><a href="#tab3" title="PRESS RELEASES">PRESS RELEASES</a></li>
-			  <li><a href="#tab4" title="COUPONS">COUPONS</a></li>
-			  <li><a href="#tab5" title="PHOTOS">PHOTOS</a></li>
-			  <li><a href="#tab6" title="VIDEOS" style="background:none !important;">VIDEOS</a></li>
-			  <?php
-				   } ?>
-			</ul>
-		</div>
-	
-        <div class="tab_container">
-          <div class="tab_content" id="tab1">
-			  
-            <?php if( count($reviews) > 0 ) { ?>
-			<div >
-				
-			
-			
-            <?php if(count($reviews)>5)
-			  {
+
+ <!--Profile Tab--->
+
+	<div id="horizontalTab" class="profile_tab_space">
+	<ul class="resp-tabs-list">
+		<li>REVIEWS</li>
+		<li>COMPLAINTS</li>
+		<?php if(count($elitemem_status)==0){?>
+		<li>COUPONS</li>		 
+		<?php } else {  ?>				
+		<li>COUPONS</li>
+		<li>PRESS RELEASES</li>			  
+		<li>PHOTOS</li>
+		<li>VIDEOS</li>
+		<?php } ?>	
+	</ul>
+	<div class="resp-tabs-container">
+		<div>	
+			<p>		
+		<?php if( count($reviews) > 0 ) { 
+			if(count($reviews)>5)
+			{
 				$newreviews = 5;
-			  }
-			  else
-			  {
-			  	$newreviews = count($reviews);
-			  }?>
-            <?php for($i=0; $i<$newreviews; $i++) { 			    
-				  $users = $this->users->get_user_bysingleid($reviews[$i]['reviewby']); 
-			?>
-            <div itemscope itemtype = "http://schema.org/Review" itemprop = "review" class="review_block <?php if($i%2==0){echo "fadeout";}?>">
-              <div class="review_lft">
-				
-					<div class="user_img">
-						<?php if($users['avatarthum']==null) {?>
-						<img src="images/default_user.png" alt="User image" title="User image">
-						<?php } else {?>
-						<img src="uploads/user/thumb/<?php echo $users['avatarthum'];?>" alt="User image" title="User image">	 
-						<?php } ?>
-					</div>
-               
-               <meta itemprop = "itemReviewed" content = "<?php echo site_url(); ?>">
-              </div>
-              <div class="review_rgt reviewstab">
-			
-			
+			}
+			else
+			{
+				$newreviews = count($reviews);
+			}
+			for($i=0; $i<$newreviews; $i++) { 			    
+				$users = $this->users->get_user_bysingleid($reviews[$i]['reviewby']); 
+		?>
+		<div itemscope itemtype = "http://schema.org/Review" itemprop = "review" class="review_block <?php if($i%2==0){echo "fadeout";}?>">
+		<div class="review_lft">
+
+			<div class="user_img">
+			<?php if($users['avatarthum']==null) {?>
+				<img src="images/default_user.png" alt="User image" title="User image">
+			<?php } else {?>
+				<img src="uploads/user/thumb/<?php echo $users['avatarthum'];?>" alt="User image" title="User image">	 
+			<?php } ?>
+			</div>
+			<meta itemprop = "itemReviewed" content = "<?php echo site_url(); ?>">
+		</div>
+		<div class="review_rgt reviewstab">
 			<div class="user_name">	
-            <?php 
+			<?php 
 			if($reviews[$i]['type']=='csv' || $reviews[$i]['type']=='ygr') 
 			{ 
-			    if($users['id']==$reviews[$i]['reviewby'])
-			    {
+			if($users['id']==$reviews[$i]['reviewby'])
+			{
 			?>
-					<a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><span itemprop = "author"><?php if($users['username']!=''){ echo $users['username']; } else { echo $users['firstname']; } ?></span></a>
+				<a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"><span itemprop = "author"><?php if($users['username']!=''){ echo $users['username']; } else { echo $users['firstname']; } ?></span></a>
 			<?php
-				}
-				else
-				{
+			}
+			else
+			{
 			?>
-					<a><span itemprop = "author"><?php echo $reviews[$i]['reviewby']; ?></span></a>
+				<a><span itemprop = "author"><?php echo $reviews[$i]['reviewby']; ?></span></a>
 			<?php
-				}
+			}
 			?>
-            <div class="datereview"><span itemprop = "datePublished"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></span></div>
-            <?php  
-            } 
-            ?>
-            </div>
-                <div class="review_ratng_wrp">
-                  <div class="rating <?php if($i%2==0){echo "raticn";}?>">
-                  <div class ="count-<?php echo $reviews[$i]['rate']?>">
-                    <?php for($r=0;$r<($reviews[$i]['rate']);$r++){?>
-                    <i class="vry_rat_icn"></i>
-                    <?php } ?>
-                  </div>
-                    <?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
-                    <img src="images/no_star.png" alt="no_star" title="no_star" />
-                    <?php } ?>
-                  </div>
-                  <div class="rat_title reptitle">
-                    <h2><?php echo stripslashes($reviews[$i]['reviewtitle']);?></h2>
-                    </div>
-                </div>
-                <p><span itemprop ="reviewbody"><?php echo stripslashes($reviews[$i]['comment']);?></span></p>
-                <div class="cmnt_wrp wrps"> <a href="<?php echo $reviews[$i]['seoslug'];?>" title="Add comment">  +  Add comment </a> </div>
-              </div>
-            <div itemscope itemtype = "http://schema.org/Rating" itemprop = "reviewRating">
+			<div class="datereview"><span itemprop = "datePublished"><?php echo date("m/d/Y",strtotime($reviews[$i]['reviewdate']));?></span></div>
+		<?php  
+		} 
+		?>
+		</div>
+		<div class="review_ratng_wrp">
+		<div class="rating <?php if($i%2==0){echo "raticn";}?>">
+		<div class ="count-<?php echo $reviews[$i]['rate']?>">
+		<?php for($r=0;$r<($reviews[$i]['rate']);$r++){?>
+		<i class="vry_rat_icn"></i>
+		<?php } ?>
+		</div>
+		<?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
+		<img src="images/no_star.png" alt="no_star" title="no_star" />
+		<?php } ?>
+		</div>
+		<div class="rat_title reptitle">
+		<h2><?php echo stripslashes($reviews[$i]['reviewtitle']);?></h2>
+		</div>
+		</div>
+		<p><span itemprop ="reviewbody"><?php echo stripslashes($reviews[$i]['comment']);?></span></p>
+		<div class="cmnt_wrp wrps"> <a href="<?php echo $reviews[$i]['seoslug'];?>" title="Add comment">  +  Add comment </a> </div>
+		</div>
+		<div itemscope itemtype = "http://schema.org/Rating" itemprop = "reviewRating">
 
-				  <meta itemprop = "ratingValue" content="<?php echo $reviews[$i]['rate']; ?>">
-				  <meta itemprop = "bestRating"  content="<?php echo  '5'; ?>">
-				  <meta itemprop = "worstRating" content="<?php echo '0'; ?>">	
-			</div>
-            </div>
-            
-            <?php } 
-			?>
-            <p align="right" class="cmnt_wrp wrps"><a href="<?php echo site_url('company/reviews/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a>
-            </p>
-            <?php
-			}?>
-            <?php  if( count($reviews)==0 ) 
-			  { ?>
-            <div class="form-message warning">
-              <p>No Reviews.</p>
-            </div>
-            <?php } ?>
-            
-            </div>
-          </div>
-          <div class="tab_content" id="tab2">
-            <?php if( count($complaints) > 0 ) { ?>
-            <?php if(count($complaints)>5)
-			  {
-			  	
-				$newcomplaints = 5;
-			  }
-			  else
-			  {
-			  	$newcomplaints = count($complaints);
-			  }?>
-            <?php for($i=0; $i<($newcomplaints); $i++) { ?>
-            <?php 
-				$company=$this->complaints->get_company_byid($complaints[$i]['companyid']);
-				$usersimg = $this->users->get_user_bysingleid($complaints[$i]['userid']);
-            ?>
-            <div class="review_block <?php if($i%2==0){echo "fadeout";}?>">
-              <div class="review_lft">
-                <div class="user_img">
-					<?php if($usersimg['avatarthum']==null) {?>
-						<img src="images/default_user.png" alt="User image" title="User image">
-						<?php } else {?>
-						<img src="uploads/user/thumb/<?php echo $usersimg['avatarthum'];?>" alt="User image" title="User image">	 
-					<?php } ?>
-				</div>
-	         </div>
-                
-              
-              <div class="review_rgt reviewstab">
+		<meta itemprop = "ratingValue" content="<?php echo $reviews[$i]['rate']; ?>">
+		<meta itemprop = "bestRating"  content="<?php echo  '5'; ?>">
+		<meta itemprop = "worstRating" content="<?php echo '0'; ?>">	
+		</div>
+		</div>
+
+		<?php } 
+		?>
+		<p align="right" class="cmnt_wrp wrps"><a href="<?php echo site_url('company/reviews/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a>
+		</p>
+
+		<?php
+		}?>
+		<?php  if( count($reviews)==0 ) 
+		{ ?>
+		<div class="form-message warning">
+		<p>No Reviews.</p>
+		</div>
+		<?php } ?>
+
+</p>
+			
+			
+		</div>
+		<div>
+			<p>
+			
+			<?php if( count($complaints) > 0 ) { ?>
+<?php if(count($complaints)>5)
+{
+
+$newcomplaints = 5;
+}
+else
+{
+$newcomplaints = count($complaints);
+}?>
+<?php for($i=0; $i<($newcomplaints); $i++) { ?>
+<?php 
+$company=$this->complaints->get_company_byid($complaints[$i]['companyid']);
+$usersimg = $this->users->get_user_bysingleid($complaints[$i]['userid']);
+?>
+<div class="review_block <?php if($i%2==0){echo "fadeout";}?>">
+<div class="review_lft">
+<div class="user_img">
+<?php if($usersimg['avatarthum']==null) {?>
+<img src="images/default_user.png" alt="User image" title="User image">
+<?php } else {?>
+<img src="uploads/user/thumb/<?php echo $usersimg['avatarthum'];?>" alt="User image" title="User image">	 
+<?php } ?>
+</div>
+</div>
+
+
+<div class="review_rgt reviewstab">
+
+<div class="user_name">
+<?php $user=$this->users->get_user_byid($complaints[$i]['userid']);?>
+<?php 
+if(count($user)>0) { 
+?>
+<a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" title="view profile"><?php echo $user[0]['username'];?></a>
+<?php } else { ?>
+<a><?php echo "";?></a>
+<?php	}?>
+<span class="datereview"><?php echo date('m/d/Y',strtotime($complaints[$i]['complaindate']));?></span>
+</div>
+
+
+<div class="review_ratng_wrp">
+<div class="rat_title reptitle">
+<h2>Reported Damage: $<?php echo $complaints[$i]['damagesinamt'];?></h2>
+</div>
+<p> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['detail']),0,212)."..."); ?></a> </p>
+
+</div>
+</div>
+
+
+</div>
+<?php } ?><div class="cmnt_wrp wrps "><a class="valigns" href="<?php echo site_url('company/complaints/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a></div> <?php }else{?>
+<div class="review_block noblock">
+<p>No Complaints.</p>
+</div>
+<?php } ?>
+
+			
+			</p>
+		</div>
+		<div>
+			<p>
+			
+			<?php if( count($coupons) > 0 ) { ?>
+<?php if(count($coupons)>5)
+{
+$d = 5;
+}
+else
+{
+$d = count($coupons);
+}?>
+<?php for($i=0; $i<$d; $i++) { ?>
+<div class="review_block <?php if($i%2==0){echo "fadeout";}?>">
+<div class="review_rgt reviewstab">
+<div class="review_ratng_wrp">
+<div class="rat_title reptitle">
+<h2>
+<a href="<?php echo site_url('coupon/browse/'.$coupons[$i]['seokeyword']);?>" title="view coupon detail"><?php echo stripslashes($coupons[$i]['title']); ?></a>
+<span><a href="<?php echo $coupons[$i]['url'];?>" title="<?php echo $coupons[$i]['url'];?>" target="_blank" rel="nofollow">Promocode: <span><?php echo $coupons[$i]['promocode'];?></span> </a></span></div>
+</h2>
+</div>
+<p><?php echo date("m/d/Y",strtotime($coupons[$i]['enddate']));?></p>
+</div>
+</div>
+<?php } ?>
+<p align="right" class="cmnt_wrp wrps">
+<a href="<?php echo site_url('company/coupons/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a>
+</p>
+<?php } 
+else { ?>
+<div class="review_block noblock">
+<p>No Coupons.</p>
+</div>
+<?php } ?>
+			</p>
+		</div>
 		
-					<div class="user_name">
-							  <?php $user=$this->users->get_user_byid($complaints[$i]['userid']);?>
-							  <?php 
-								if(count($user)>0) { 
-							  ?>
-									<a href="<?php echo site_url('complaint/viewuser/'.$complaints[$i]['companyid'].'/'.$complaints[$i]['userid']); ?>" title="view profile"><?php echo $user[0]['username'];?></a>
-							  <?php } else { ?>
-							  <a><?php echo "";?></a>
-							  <?php	}?>
-					 <span class="datereview"><?php echo date('m/d/Y',strtotime($complaints[$i]['complaindate']));?></span>
-                </div>
-
-
-                <div class="review_ratng_wrp">
-                  <div class="rat_title reptitle">
-                    <h2>Reported Damage: $<?php echo $complaints[$i]['damagesinamt'];?></h2>
-                   </div>
-                 <p> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['detail']),0,212)."..."); ?></a> </p>
-                
-                </div>
-                </div>
-                
+<?php if(count($elitemem_status)==1){?>		
 		
-              </div>
-              <?php } ?><div class="cmnt_wrp wrps "><a class="valigns" href="<?php echo site_url('company/complaints/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a></div> <?php }else{?>
-              <div class="review_block noblock">
-                <p>No Complaints.</p>
-              </div>
-              <?php } ?>
-            </div>
-         
-          <div class="tab_content" id="tab3">
-            <?php if(count($companypressreleases)>0)
-		  {?>
-            <?php for($pr=0;$pr<count($companypressreleases);$pr++){?>
-            <div class="review_block <?php if($pr%2==0){echo "fadeout";}?>">
-              <div class="review_rgt reviewstab">
-                <div class="review_ratng_wrp">
-                  <div class="rat_title reptitle">
-                    <h2 class="flats"><a href="<?php echo site_url('pressrelease/browse/'.$companypressreleases[$pr]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($companypressreleases[$pr]['title'])); ?>'s detail"><?php echo $companypressreleases[$pr]['title'];?></a></h2>
-                    <span class="datereview pads"><?php echo date('m/d/Y',strtotime($companypressreleases[$pr]['insertdate']));?></span></div>
-                </div>
-                <p> <a href="<?php echo site_url('pressrelease/browse/'.$companypressreleases[$pr]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($companypressreleases[$pr]['title'])); ?>'s detail"> <?php echo $companypressreleases[$pr]['sortdesc'];?> </a> </p>
-              </div>
-            </div>
-            <?php } ?>
-            <p align="right" class="cmnt_wrp wrps">
-            <a href="<?php echo site_url('company/pressreleases/'.$company[0]['companyseokeyword']);?>" title="View All">View All</a></p>
-            <?php }else{ ?>
-            <div class="review_block noblock">
-              <p> No Pressreleases. </p>
-            </div>
-            <?php } ?>
-          </div>
-          <div class="tab_content" id="tab4">
-            <?php if( count($coupons) > 0 ) { ?>
-            <?php if(count($coupons)>5)
-			  {
-				$d = 5;
-			  }
-			  else
-			  {
-			  	$d = count($coupons);
-			  }?>
-            <?php for($i=0; $i<$d; $i++) { ?>
-            <div class="review_block <?php if($i%2==0){echo "fadeout";}?>">
-              <div class="review_rgt reviewstab">
-                <div class="review_ratng_wrp">
-                  <div class="rat_title reptitle">
-                    <h2>
-				<a href="<?php echo site_url('coupon/browse/'.$coupons[$i]['seokeyword']);?>" title="view coupon detail"><?php echo stripslashes($coupons[$i]['title']); ?></a>
-                   		<span><a href="<?php echo $coupons[$i]['url'];?>" title="<?php echo $coupons[$i]['url'];?>" target="_blank" rel="nofollow">Promocode: <span><?php echo $coupons[$i]['promocode'];?></span> </a></span></div>
-		     </h2>
-                </div>
-                <p><?php echo date("m/d/Y",strtotime($coupons[$i]['enddate']));?></p>
-              </div>
-            </div>
-            <?php } ?>
-            <p align="right" class="cmnt_wrp wrps">
-            <a href="<?php echo site_url('company/coupons/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a>
-            </p>
-            <?php } 
-                else { ?>
-            <div class="review_block noblock">
-              <p>No Coupons.</p>
-            </div>
-            <?php } ?>
-          </div>
-          <div class="tab_content" id="tab5">
-            <div class="review_block noblock">
+		<div>
+			
+			
+			<p>
+		<?php if(count($companypressreleases)>0)
+	{?>
+	<?php for($pr=0;$pr<count($companypressreleases);$pr++){?>
+	<div class="review_block <?php if($pr%2==0){echo "fadeout";}?>">
+	<div class="review_rgt reviewstab">
+	<div class="review_ratng_wrp">
+	<div class="rat_title reptitle">
+	<h2 class="flats"><a href="<?php echo site_url('pressrelease/browse/'.$companypressreleases[$pr]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($companypressreleases[$pr]['title'])); ?>'s detail"><?php echo $companypressreleases[$pr]['title'];?></a></h2>
+	<span class="datereview pads"><?php echo date('m/d/Y',strtotime($companypressreleases[$pr]['insertdate']));?></span></div>
+	</div>
+	<p> <a href="<?php echo site_url('pressrelease/browse/'.$companypressreleases[$pr]['seokeyword']); ?>" title="view <?php echo stripslashes(ucfirst($companypressreleases[$pr]['title'])); ?>'s detail"> <?php echo $companypressreleases[$pr]['sortdesc'];?> </a> </p>
+	</div>
+	</div>
+	<?php } ?>
+	<p align="right" class="cmnt_wrp wrps">
+	<a href="<?php echo site_url('company/pressreleases/'.$company[0]['companyseokeyword']);?>" title="View All">View All</a></p>
+	<?php }else{ ?>
+	<div class="review_block noblock">
+	<p> No Pressreleases. </p>
+	</div>
+	<?php } ?>
+		
+		</p></div>
+		
+		
+		<div>
+		<p>
+			<div class="review_block noblock">
               <link rel="stylesheet" href="<?php echo base_url();?>js/orbit/orbit-1.2.3.css" type="text/css">
               <script type="text/javascript" src="<?php echo base_url();?>js/orbit/jquery.orbit-1.2.3.min.js"></script>
               <?php if( count($gallerys) > 0 ) { ?>
@@ -660,11 +716,13 @@
               </div>
               <?php } ?>
             </div>
-          </div>
-          
-          
-         <div class="tab_content" id="tab6">
-            <?php 
+		</p>
+		
+		</div>
+		<div>
+			<p>
+			
+				 <?php 
 				if( count($videos) > 0 ) { 	
 			    
 			 
@@ -719,8 +777,16 @@
 				<?php
 			}
 			?>
-         </div>
-          
+			</p>
+		
+		</div>
+<?php } ?>		
+	</div>
+</div>
+
+	
+ <!--Profile Tab--->	
+	     
         </div>
       </div>
        </div>

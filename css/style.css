@@ -1362,9 +1362,10 @@ border-top:1px solid;
 
 .profile_tab_space
 {
-	padding : 5px 0 5px 16px;
-	display : inline-block;
+	padding : 0;
+	display : block;
 	width:100%;
+	margin: 0px;
 }
 ul.tabbs 
 {
