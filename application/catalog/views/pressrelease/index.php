@@ -42,7 +42,10 @@
 		<div class="dir_rew_wrap">
         <?php for($i=0; $i<count($pressreleases); $i++) { ?>
        
-          <?php 
+          <?php           
+			//print_r($pressreleases);die;
+        	
+        	
 			$avgstar = $this->common->get_avg_ratings_bycmid($pressreleases[$i]['companyid']);
 			$itemproaverage = $avgstar;
 			$avgstar = round($avgstar);
@@ -56,13 +59,13 @@
 					{
 				 ?>
 						<div class="vry_logo"> 
-							<a href="<?php echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail">
+							<a href="<?php echo site_url($pressreleases[$i]['seoslug']);?>" title="view company Detail">
 								<img  class="reviewnotverifiedlogo" src="images/notverified.png"  />
 							</a> 
 						</div>  <?php 
 						}else{  ?>
 						<div class="vry_logo"> 
-							<a href="<?php echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail">
+							<a href="<?php echo site_url($pressreleases[$i]['seoslug']);?>" title="view company Detail">
 								<img class="reviewverifiedlogo" src="images/verifiedlogo.jpg" />
 							</a> 
 						</div>      
@@ -73,7 +76,7 @@
 			  </div>
 			  <div class="revw_blck_cnt">
 				<h2>
-					<a class = "font_color_2 float_left" href="<?php echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>'s detail"><?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?></a>
+					<a class = "font_color_2 float_left" href="<?php echo site_url($pressreleases[$i]['seoslug']);?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>'s detail"><?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?></a>
 				
 				  <div class="rating float_left prof_rating">
 					<?php if($avgstar < 2) {  ?>

@@ -41,24 +41,24 @@
 			$itemproaverage = $avgstar;
 			$avgstar = round($avgstar);
 			$elitemem_status = $this->common->get_eliteship_bycompanyid($companies[$i]['id']);
-			
+			$company_seoslug = ($companies) ? $companies[$i]['seoslug'] : '';
 			?>
      <div class="srch_result_blck">
         <div class="innr_wrap">
           <div class="srch_rslt_left">
             <div class="verified_wrp srch_rslt_vrfy vfy_rvw">
               <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>
+              <div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.urlencode($companies[$i]['companyseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
                   <?php
 				  } ?>
 			<div>
 				
              <div class="compny_name cpyynme">
                 <h2>
-				<a class="cmpn_name" href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" >
+				<a class="cmpn_name" href="<?php echo site_url($company_seoslug);?>" title="view company Detail" >
 				<?php echo strtoupper($companies[$i]['company']);?>
 				
 				
@@ -72,7 +72,7 @@
 				</a>
 				
               <?php } else { ?>
-                      <a class="vrf_merchant" href="<?php echo site_url('company/'.urlencode($companies[$i]['companyseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail"><div class="vrytitle verifytag">YouGotRated VERIFIED MERCHANT</div></a>
+                      <a class="vrf_merchant" href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><div class="vrytitle verifytag">YouGotRated VERIFIED MERCHANT</div></a>
               <?php  } ?>
 			
                 </a>

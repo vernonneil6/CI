@@ -163,6 +163,7 @@
         for($i=0;$i<count($complaints);$i++){
             $user=$this->users->get_user_bysingleid($complaints[$i]['reviewby']) ;
             $companyname = $this->users->get_company_bysingleid($complaints[$i]['companyid']); 
+            $comany_seoslug = ($companyname) ? $companyname['seoslug'] : '';
             $avgstar = $this->common->get_avg_ratings_bycmid($complaints[$i]['companyid']);
             $avgstar = round($avgstar);
             //$img_src = 'images/default_user.png';
@@ -170,7 +171,7 @@
                 $img_src = 'uploads/user/thumb/'.$user['avatarthum'];
             }
             if(!empty($companyname['companyseokeyword'])){
-				$siteurl = site_url('company/'.$companyname['companyseokeyword'].'/reviews/coupons/complaints');
+				$siteurl = site_url($comany_seoslug);
 			}
             $review_detail = ucfirst(stripslashes($complaints[$i]['company'])); 
             $review_date = date('m/d/Y',strtotime($complaints[$i]['reviewdate'])); 
@@ -213,10 +214,10 @@
                     <div class="review-head"><a class="home_cap">'.$review_title.'</a></div>
                     <div class="user-name"><a title="view profile" class="home_cap1" href="'.$review_site_url.'">'.ucfirst($user['username']).'</a></div>                     
                     <div class="reviewspace_new" style="margin-top: 0px; margin-bottom: 0px;">
-                        <a title="view Review Detail" href="">
+                        <a title="view Review Detail" href="'.site_url($complaints[$i]['seoslug']).'">
                         '.$complaints_content.'</a>                                                 
                     </div>
-                    <div class="view-all"><a title="view Review Detail" href="'.site_url('review/browse/'.$complaints[$i]['seokeyword']).'"> <span></span></a><a href="'.site_url('review/browse/'.$complaints[$i]['seokeyword']).'">Read More</a></div>
+                    <div class="view-all"><a title="view Review Detail" href="'.site_url($complaints[$i]['seoslug']).'"> <span></span></a><a href="'.site_url($complaints[$i]['seoslug']).'">Read More</a></div>
                 </div>             
                 </div>
             </div>            

@@ -12,7 +12,7 @@ class Complaints extends CI_Model
 		
 		$sites = array(1,$siteid);
 		//Executing Query
-		$this->db->select('c.*, cm.company,cm.logo,cm.companyseokeyword');
+		$this->db->select('c.*, cm.seoslug as company_seoslug,cm.company,cm.logo,cm.companyseokeyword');
 		$this->db->from('complaints as c');
 		$this->db->join('company as cm','c.companyid=cm.id');
 		$this->db->where('c.status','Enable');
