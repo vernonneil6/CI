@@ -827,9 +827,9 @@ class Complaints extends CI_Model
 		$this->db->join('company as cm','c.companyid=cm.id');
 		$this->db->join('category as ct','c.categoryid=ct.id');
 		$this->db->where('c.status','Enable');
-		$this->db->where('c.status','Enable');
+		//$this->db->where('c.status','Enable');
 		$this->db->where('cm.id',$id);
-		$this->db->order_by('c.enddate','ASC');
+		$this->db->order_by('c.enddate','DESC');
 		
 		$query = $this->db->get();
 		
@@ -1343,7 +1343,16 @@ class Complaints extends CI_Model
 		{	$this->db->limit($limit, $offset);	}
 		$siteid = $this->session->userdata('siteid');
 		//$this->db->limit(5);
-		$query = $this->db->get_where('pressrelease',array('status'=>'Enable','companyid'=>$id,'websiteid'=>$siteid));
+		//$this->db->get_where('pressrelease',array('status'=>'Enable','companyid'=>$id,'websiteid'=>$siteid));
+		//$query = $this->db->order_by('insertdate', 'DESC');
+		
+		$this->db->select('*');
+		$this->db->from('pressrelease');
+		$this->db->where('status','Enable');
+		$this->db->where('companyid',$id);
+		$this->db->where('websiteid',$siteid);
+		$this->db->order_by('insertdate','DESC');
+		$query = $this->db->get();
 		
 		if ($query->num_rows() > 0)
 		{
