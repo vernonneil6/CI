@@ -2004,9 +2004,9 @@ padding-left: 18px;
 	cursor : pointer;
 }
 /*----Thumb Design----*/
-.thumb-head{float:left;}
-.thumb-like-block .thumb-block{background-color: #ccc;padding:5px;border-radius: 25px;margin-right:5px;float:left;}
-.thumb-text{font-size:12px;}
+/*.thumb-head{float:left;}
+.thumb-like-block .thumb-block{background-color: #ccc;padding:5px;border-radius: 25px;margin-right:5px;float:left;}*/
+.thumb-text{font-size:12px;display:none;}
 
 /*----End-----*/
 .thumb:hover
