@@ -80,7 +80,8 @@ class Welcome extends CI_Controller {
 		$this->data['description'] = $this->common->get_seosetting_value(5);
 		$geolocation= $this->load->library('geoplugin');
 		 $ip = $this->input->ip_address();
-		$this->data['geolocation'] = $this->geoplugin->get_geolocation($ip);
+		$geolocation = $this->geoplugin->get_geolocation($ip);
+		$this->data['currentcity'] ='New York';//$geolocation['geoplugin_city'];
 		$total= $this->common->get_all_complaints_totaldamage($siteid);
 		
 		if(count($total)>0)
@@ -101,6 +102,7 @@ class Welcome extends CI_Controller {
 	{
 		
 		$this->data['homesliding']=$this->sliders->homepageslider();
+		$this->data['homebannertext']=$this->sliders->homebannertext();
 		
 		$limit=24;
 		$this->data['complaints'] = $this->reviews->get_latest_reviews($limit);

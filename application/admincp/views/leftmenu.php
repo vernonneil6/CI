@@ -183,6 +183,18 @@
 			</li>
 		</ul>
 	</li>
+	
+	<li class="<?=($this->uri->segment(1)==='homebannertext')?'active':''?>">
+		<a href="<?php echo site_url('homebannertext'); ?>" title="Home Page Slider">Home Page Banner Text</a>
+		<ul class="submenu">
+			<li>
+				<a href="<?php echo site_url('homebannertext/add'); ?>" title="Add Image">Add Text</a>
+			</li>
+			<li>
+				<a href="<?php echo site_url('homebannertext'); ?>" title="List All Image">List All Text</a>
+			</li>
+		</ul>
+	</li>
     
     <li class="<?=($this->uri->segment(1)==='report')?'active':''?>">
 		<a href="<?php echo site_url('report');?>" class="link" title="Reports">Reports</a>

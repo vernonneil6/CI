@@ -17,7 +17,7 @@ class Coupons extends CI_Model
 		$this->db->join('category as ct','c.categoryid=ct.id');
 		$this->db->where('c.status','Enable');
 		$this->db->where('c.websiteid',$siteid);
-		$this->db->order_by('c.enddate','ASC');
+		$this->db->order_by('c.enddate','DESC');
 		
 		$query = $this->db->get();
 	
