@@ -1762,6 +1762,9 @@ class Review extends CI_Controller
 		}elseif($update_slug == 4){
 			$this->reviews->updateCouponsSlug();
 		}
+		elseif($update_slug == 5){
+			$this->reviews->updatePressReleasesSlug();
+		}
 		
 	 }
 	 

@@ -1105,6 +1105,55 @@ class Reviews extends CI_Model
 
 			}	
 	}
+	
+	
+	function updatePressReleasesSlug(){
+		
+			$this->db->select('r.*, cm.company');
+			$this->db->from('youg_pressrelease as p');
+			$this->db->join('youg_company as cm','p.companyid=cm.id','left');
+							
+			$query = $this->db->get();
+			$result = $query->result();
+			foreach($result as $res){
+			//print_r($res);die;
+			
+			if($res->company != ''){				
+				$company_name = preg_replace("/\.$/","",$res->company);				
+				$presscompanies = trim(preg_replace('/-+/', '-',preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company_name)))), '-');
+			}
+			else
+			{
+				$presscompanies = 'anonymous';	
+			}
+			
+						
+			if($res->subtitle != ''){
+				if(!is_numeric($res->subtitle)){
+					$presscontent = implode(' ', array_slice(str_word_count($res->subtitle, 2), 0, 4));
+					$presscontents = preg_replace('/[^a-zA-Z0-9-.]/',"_" ,trim(strtolower($presscontent)));	
+				}else{
+					$presscontents = preg_replace('/[^a-zA-Z0-9-.]/',"_" ,trim(strtolower($res->subtitle)));	
+				}
+			}
+			else
+			{
+				$presscontents = "no_subtitle";		
+			}
+			
+			$seoslug = "pressrelease/".$presscompanies."/".$presscontents."/".$res->id; 		
+			
+			echo $seoslug."<br/>";
+			$data = array('seoslug' => $seoslug);
+
+			$where = "id = ".$res->id;
+
+			$str = $this->db->update('youg_pressrelease', $data, $where); 
+				
+
+			}	
+	}
+	
 	function updateCompaniesSlug(){
 		
 		

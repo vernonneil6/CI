@@ -569,7 +569,7 @@ if(count($user)>0) {
 <div class="rat_title reptitle">
 <h2>Reported Damage: $<?php echo $complaints[$i]['damagesinamt'];?></h2>
 </div>
-<p> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['detail']),0,212)."..."); ?></a> </p>
+<p> <a href="<?php echo site_url($complaints[$i]['seoslug']); ?>" title="view complaint detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['detail']),0,212)."..."); ?></a> </p>
 
 </div>
 </div>
@@ -603,7 +603,7 @@ $d = count($coupons);
 <div class="review_ratng_wrp">
 <div class="rat_title reptitle">
 <h2>
-<a href="<?php echo site_url('coupon/browse/'.$coupons[$i]['seokeyword']);?>" title="view coupon detail"><?php echo stripslashes($coupons[$i]['title']); ?></a>
+<a href="<?php echo site_url($coupons[$i]['seoslug']);?>" title="view coupon detail"><?php echo stripslashes($coupons[$i]['title']); ?></a>
 <span><a href="<?php echo $coupons[$i]['url'];?>" title="<?php echo $coupons[$i]['url'];?>" target="_blank" rel="nofollow">Promocode: <span><?php echo $coupons[$i]['promocode'];?></span> </a></span></div>
 </h2>
 </div>
