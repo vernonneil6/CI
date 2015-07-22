@@ -34,17 +34,17 @@
             
             <div class="verified_wrp srch_rslt_vrfy vfy_rvw">
               <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
+              <div class="vry_logo"> <a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.urlencode($company[0]['companyseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>    
                   <?php
 				  } ?>
 			<div>
               
 		  <div class="compny_name cpyynme">
 			<h2>
-			<a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" style="height:auto;color:#333333 !important;">
+			<a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail" style="height:auto;color:#333333 !important;">
 			<?php echo strtoupper($company[0]['company']);?>
 			</a>
 			</h2>
