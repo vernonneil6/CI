@@ -1871,7 +1871,7 @@ padding-left: 18px;
 }
 .verified_browse
 {
-	width : 120px!important;
+	width : 120px;
 }
 .lefter{width: 142px;text-align: left; }
 .photo{float: right;}
@@ -2263,7 +2263,7 @@ float: none!important;
 }
 .compbtn{
 
-width: auto!important;
+width: 160px;
 float: none!important;
 
 }

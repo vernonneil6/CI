@@ -79,7 +79,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
 				if(count($user)>0){
 				?>
         <div class="testmnl_clntwrp browse_user">
-          <div class="clnt_intr"> - &nbsp;&nbsp;
+          <div class="clnt_intr"><div class="hypen">-</div>
             <div class="clnt_pic"> 
 				<?php if($user[0]['avatarthum']==null) {?>
 					<a href="<?php echo site_url('complaint/viewuser/'.$complaints[0]['companyid'].'/'.$complaints[0]['userid']);?>" title="view profile">

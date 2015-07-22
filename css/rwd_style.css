@@ -42,6 +42,7 @@ td{display:block;}
 .vry_btn a{
 	background:none;color:#000;text-decoration:underline;float:none;
 }
+.compbtn a{ float:left !important;}
 .vry_btn a:hover { background:none;}
 span.stars{
  margin:auto;
@@ -66,7 +67,7 @@ span.stars{
 @media only screen and (min-width: 771px) and (max-width: 1050px){
 
 .verified_wrp .compny_name{width:80% !important;}
-.verified_wrp .compny_name > h1 {text-align: left !important;}
+/*.verified_wrp .compny_name > h1 {text-align: left !important;}*/
 .verified_wrp .vry_logo {float: left !important;}
 .coupon_dscrwrp .coupon_dscr{width:auto;}
 
