@@ -36,10 +36,10 @@
           <div class="srch_rslt_left">
             <div class="verified_wrp srch_rslt_vrfy">
               <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/notverified.png" class="reviewverifiedlogo marginlogo" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>
+              <div class="vry_logo"> <a href="<?php echo site_url($companies[$i]['seoslug']);?>" title="view company Detail" target="_blank"><img src="images/notverified.png" class="reviewverifiedlogo marginlogo" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" target="_blank"><img src="images/verifiedlogo.jpg" class="reviewverifiedlogo marginlogo" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url($companies[$i]['seoslug']);?>" title="view company Detail" target="_blank"><img src="images/verifiedlogo.jpg" class="reviewverifiedlogo marginlogo" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
                   <?php
 				  } ?>
               <!--<php if(count($elitemem_status)==0){?>
@@ -51,7 +51,7 @@
 				  } ?>-->
               <div class="compny_name">
                 <h2>
-				<a href="<?php echo site_url('company/'.$companies[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" style="height:auto;color:#333333 !important;" target="_blank">
+				<a href="<?php echo site_url($companies[$i]['seoslug']);?>" title="view company Detail" style="height:auto;color:#333333 !important;" target="_blank">
 				<?php echo strtoupper($companies[$i]['company']);?>
                 </a>
                 </h2>

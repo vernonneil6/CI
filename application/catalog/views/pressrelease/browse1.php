@@ -14,17 +14,17 @@
             
             <div class="verified_wrp srch_rslt_vrfy vfy_rvw">
               <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
+              <div class="vry_logo"> <a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.urlencode($company[0]['companyseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>    
                   <?php
 				  } ?>
 			<div>
               
 		  <div class="compny_name cpyynme">
 			<h2>
-			<a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" style="height:auto;color:#333333 !important;">
+			<a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail" style="height:auto;color:#333333 !important;">
 			<?php echo strtoupper($company[0]['company']);?>
 			</a>
 			</h2>
@@ -124,7 +124,7 @@
 				<div class="clnt_intr cmt_none">
 				  <div class="clnt_pic valign_img"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
 				  <div class="clnt_name txt_right txt_lefts">
-					<h4><a href="<?php echo site_url('company/'.$mypressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View company"><?php echo stripslashes(ucfirst($mypressreleases[$i]['company'])); ?></a></h4>
+					<h4><a href="<?php echo site_url($mypressreleases[$i]['company_seoslug']);?>" title="View company"><?php echo stripslashes(ucfirst($mypressreleases[$i]['company'])); ?></a></h4>
 					<span><?php echo stripslashes(ucfirst($mypressreleases[$i]['country'])); ?></span>
 					<p><?php echo $this->pressreleases->get_count_for_pressreleases($mypressreleases[$i]['companyid']);?> POSTS</p>
 				  </div>

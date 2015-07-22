@@ -657,8 +657,42 @@ else { ?>
 		<div>
 		<p>
 			<div class="review_block noblock">
-              <link rel="stylesheet" href="<?php echo base_url();?>js/orbit/orbit-1.2.3.css" type="text/css">
-              <script type="text/javascript" src="<?php echo base_url();?>js/orbit/jquery.orbit-1.2.3.min.js"></script>
+              <link rel="stylesheet" href="<?php echo base_url();?>js/orbit/orbit-1.2.3.csss" type="text/css">
+              <script type="text/javascript" src="<?php echo base_url();?>js/orbit/jquery.orbit-1.2.3.min.jss"></script>
+              <link rel="stylesheet" href="<?php echo base_url();?>js/flexslider/flexslider.css" type="text/css">
+              <script type="text/javascript" src="<?php echo base_url();?>js/flexslider/jquery.flexslider.js"></script>
+              <script type="text/javascript">
+              
+              // Can also be used with $(document).ready()
+$(window).load(function() {
+  $('#profile-flexslider').flexslider({
+    animation: "slide",
+    
+    after: function(slider){
+    currHeight = $('.slides > li').eq(slider.currentSlide).outerHeight(true);
+    $('.flexslider').height(currHeight);
+  }
+    
+  });
+});
+              </script>
+               <div class="flexslider" id="profile-flexslider">
+          <ul class="slides">
+            <li>
+  	    	    <img src="<?php echo $site;?>uploads/images/9aa576af0c5b529d5164f35f314740de.png" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="<?php echo $site;?>uploads/images/82ec90334f6d31d2c76ee377e98569f0.png" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="<?php echo $site;?>uploads/images/e4492d6cf2c1db62a3a3a6709a827298.png" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="<?php echo $site;?>uploads/images/aa2dd981eb771c862d295a39cb4845d8.jpeg" />
+  	    		</li>
+          </ul>
+        </div>
+              
               <?php if( count($gallerys) > 0 ) { ?>
 			  <?php if(count($gallerys)>5)
 			  {
@@ -822,12 +856,12 @@ else { ?>
 			<meta itemprop="position" content="2" />
 		</li>
 		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-			<a itemprop="item" href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>"><span itemprop="name"><?php echo $company[0]['company']; ?></span></a>
+			<a itemprop="item" href="<?php echo site_url($company[0]['seoslug']);?>"><span itemprop="name"><?php echo $company[0]['company']; ?></span></a>
 			<meta itemprop="position" content="3" />
 		</li>
 		<?php } else { ?>
 		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-			<a itemprop="item" href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>"><span itemprop="name"><?php echo $company[0]['company']; ?></span></a>
+			<a itemprop="item" href="<?php echo site_url($company[0]['seoslug']);?>"><span itemprop="name"><?php echo $company[0]['company']; ?></span></a>
 			<meta itemprop="position" content="2" />
 		</li>
 		<?php } ?>

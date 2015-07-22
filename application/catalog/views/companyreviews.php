@@ -121,7 +121,7 @@
 													}
 					  ?>
               <div class="rev-date"> <?php echo ($reviewdate==$today)?$diff:date('m/d/Y',strtotime($reviews[$i]['reviewdate'])); ?> </div></td>
-            <td width="600" align="justify" valign="top" colspan="2" style="padding-bottom:5px"><span class="rev-user"> <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"> <?php echo stripslashes($reviews[$i]['username']); ?></a></span> reviewed <span class="rev-company"><a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view <?php echo stripslashes($reviews[$i]['company']);?>'s detail"><?php echo ucfirst(stripslashes($reviews[$i]['company']));?></a></span><br>
+            <td width="600" align="justify" valign="top" colspan="2" style="padding-bottom:5px"><span class="rev-user"> <a href="<?php echo site_url('complaint/viewuser/'.$reviews[$i]['companyid'].'/'.$reviews[$i]['reviewby']);?>" title="view profile"> <?php echo stripslashes($reviews[$i]['username']); ?></a></span> reviewed <span class="rev-company"><a href="<?php echo site_url($company[0]['seoslug']);?>" title="view <?php echo stripslashes($reviews[$i]['company']);?>'s detail"><?php echo ucfirst(stripslashes($reviews[$i]['company']));?></a></span><br>
               <br>
               <span>
               <div id="tab-Testing"> 
