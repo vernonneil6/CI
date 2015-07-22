@@ -35,7 +35,7 @@ td{display:block;}
 }
 .vryrating{
   width: 127px;
-  float: inherit;
+  float: none;
   margin: 0 auto !important;
 }
 .vry_btn a{
@@ -167,7 +167,7 @@ span.stars{
 }
 
 @media only screen and (min-width: 310px) and (max-width: 770px)  {
-
+#atstbx{ width:320px;maring:0 auto;}
 #custom-share1{ display:block !important;float:left;margin:2px; }
 #custom-share,.custom-countwrp{ display:none;}
 .testmnl_cln,.clnt_intr{ float:left;}
@@ -345,7 +345,7 @@ span.toggle:before{
 
 
 @media only screen and (min-width: 440px) and (max-width: 549px)  {
-#atstbx{ width:82%;maring:0 auto;}
+
 .dir_rew_wrap .revw_blck_cnt{float: right;width: 73%;}
 .dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
 .dir_rew_wrap .revw_blck_img{float: left;}
@@ -418,7 +418,7 @@ span.toggle:before{
 }
 
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
-#atstbx{ width:82%;maring:0 auto;}
+
 .add-busi-dir a {font-size: 20px;}
 
 #frmcompany .bd_srchwrp #searchcomp {width:auto;}
