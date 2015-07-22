@@ -38,6 +38,7 @@ td{display:block;}
   float: none;
   margin: 0 auto !important;
 }
+.reviewbtn a{float:left !important;}
 .vry_btn a{
 	background:none;color:#000;text-decoration:underline;float:none;
 }
@@ -167,14 +168,14 @@ span.stars{
 }
 
 @media only screen and (min-width: 310px) and (max-width: 770px)  {
-#atstbx{ width:320px;maring:0 auto;}
+#atstbx{ width:320px;margin:0 auto;}
 #custom-share1{ display:block !important;float:left;margin:2px; }
 #custom-share,.custom-countwrp{ display:none;}
 .testmnl_cln,.clnt_intr{ float:left;}
 .clnt_intr{ text-align:left;}
-.clnt_name a{ margin-bottom:0px !important;}
-.clnt_intr div{ float:left;}
-.custom-countwrp1{ display:block !important;margin-left:30px; margin-bottom:10px;}
+.clnt_name a{ margin-bottom:0px !important; }
+.clnt_intr div{ float:left;margin-left:5px;}
+.custom-countwrp1{ display:block !important;margin-bottom:10px;}
 .custom-countwrp1 ul li{margin-bottom:10px;}
 
 .addthis_default_style .addthis_separator, .addthis_default_style .at300b, .addthis_default_style .at4-icon, .addthis_default_style .at300bo, .addthis_default_style .at300m, .addthis_default_style .at300bs, .addthis_default_style .addthis_counter{float:none !important;}
@@ -299,7 +300,7 @@ span.toggle:before{
 .coupon_wrap .revw_blck_cnt {float: right; width: 78%;}
 .coupon_wrap .revw_blck_img{display:inline;text-align:left}
 
-
+.pr_countwrp ul{ width:330px; margin:0 auto;}
 }
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
 .reg-row .names {font-size: 20px;}
@@ -464,6 +465,7 @@ span.toggle:before{
 .reg_txt_box-xsml{margin-left:0;}
 .pull-right{float:none;}
 .pr_countwrp ul li{margin-bottom:10px;margin-right:2px;margin-left:3px;}
+.pr_countwrp ul{ width:308px; margin:0 auto;}
 .clnt_name{margin-left:4px;}
 .pr_countwrp{width:100%;}
 .head_sb_rvw h1{font-size:30px;}
