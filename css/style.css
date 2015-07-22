@@ -2001,13 +2001,15 @@ padding-left: 18px;
 }
 .thumb
 {
-	margin : 0 0 0 5px;
+	margin : 0 0 0 10px;
 	cursor : pointer;
 }
 /*----Thumb Design----*/
 .thumb-head{float:left;}
-/*.thumb-like-block .thumb-block{background-color: #ccc;padding:5px;border-radius: 25px;margin-right:5px;float:left;}*/
-.thumb-text{font-size:12px;display:none;}
+.thumb-like-block {float:left; margin:2px;}
+.thumb-block{float:left; margin:2px;margin-top:-10px;}
+.thumb-block ul{ float:left;margin:0;padding:0;list-style:none;}
+.thumb-text{font-size:12px;margin-top:-8px;}
 
 /*----End-----*/
 .thumb:hover

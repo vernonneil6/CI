@@ -166,7 +166,23 @@
         <div id="rateerror" class="error">Please choose a star rating.</div>
         <div id="posterror" class="error">Please choose review about your company.</div>
         <h3>HOW WOULD YOU RATE THIS COMPANY? <i class="rating_review"></i></h3>
-        <h3 class="thumb-like"><div class="thumb-head">HOW WOULD YOU REVIEW THIS COMPANY? </div><div class="thumb-like-block"><span class="thumb-block" id="thumb-up-block"><i class="fa fa-thumbs-up thumb" id = "thumb-up"></i><span class="thumb-text">Positive</span></span><span class="thumb-block" id="thumb-down-block"><i class="fa fa-thumbs-down thumb" id = "thumb-down"></i><span class="thumb-text">Negative</span></span></div></h3>
+        <h3 class="thumb-like">
+			<div class="thumb-head">HOW WOULD YOU REVIEW THIS COMPANY? </div>
+			<div class="thumb-like-block">
+				<div class="thumb-block" id="thumb-up-block">
+					<ul>
+						<li class="fa thumb" id = "thumb-up"><img src="images/pos.png"></li>
+						<li class="thumb-text">Positive</li>
+					</ul>
+				</div>
+				<div class="thumb-block" id="thumb-down-block">
+					<ul>
+						<li class="fa thumb" id = "thumb-down"><img src="images/nega.png"></li>
+						<li class="thumb-text">Negative</li>
+					</ul>
+				</div>
+			</div>
+		</h3>
         <h3>WHAT DO YOU HAVE TO SAY ABOUT THIS COMPANY?</h3>
 		<input type = "hidden" value = "" name = "autopost" id = "autopost">
         <input class="txt_box review_txt_box" id="reviewtitle" name="reviewtitle" placeholder="review title"/>
