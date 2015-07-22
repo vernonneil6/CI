@@ -11,7 +11,7 @@ class Pressreleases extends CI_Model
 		{	$this->db->limit($limit, $offset);	}
 		
 		//Executing Query
-		$this->db->select('p.*,cm.seoslug,cm.company,cm.logo,cm.country,cm.companyseokeyword');
+		$this->db->select('p.*,cm.seoslug as company_seoslug,cm.company,cm.logo,cm.country,cm.companyseokeyword');
 		$this->db->from('pressrelease as p');
 		$this->db->join('company as cm','p.companyid=cm.id');
 		$this->db->where('p.status','Enable');

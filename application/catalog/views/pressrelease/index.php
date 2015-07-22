@@ -59,13 +59,13 @@
 					{
 				 ?>
 						<div class="vry_logo"> 
-							<a href="<?php echo site_url($pressreleases[$i]['seoslug']);?>" title="view company Detail">
+							<a href="<?php echo site_url($pressreleases[$i]['company_seoslug']);?>" title="view company Detail">
 								<img  class="reviewnotverifiedlogo" src="images/notverified.png"  />
 							</a> 
 						</div>  <?php 
 						}else{  ?>
 						<div class="vry_logo"> 
-							<a href="<?php echo site_url($pressreleases[$i]['seoslug']);?>" title="view company Detail">
+							<a href="<?php echo site_url($pressreleases[$i]['company_seoslug']);?>" title="view company Detail">
 								<img class="reviewverifiedlogo" src="images/verifiedlogo.jpg" />
 							</a> 
 						</div>      
@@ -76,7 +76,7 @@
 			  </div>
 			  <div class="revw_blck_cnt">
 				<h2>
-					<a class = "font_color_2 float_left" href="<?php echo site_url($pressreleases[$i]['seoslug']);?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>'s detail"><?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?></a>
+					<a class = "font_color_2 float_left" href="<?php echo site_url($pressreleases[$i]['company_seoslug']);?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>'s detail"><?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?></a>
 				
 				  <div class="rating float_left prof_rating">
 					<?php if($avgstar < 2) {  ?>
@@ -96,22 +96,8 @@
 				
 				<div class="revw_occupt"> 
 					<span>
-						<?php 
-					
-			if($pressreleases[$i]['company'] != ''){
-				$reviewcompanies = preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($pressreleases[$i]['company'])));
-			}
-			else
-			{
-				$reviewcompanies = 'anonymous';	
-			}
-			
-			$presscontent = implode(' ', array_slice(str_word_count($pressreleases[$i]['subtitle'], 2), 0, 4));														 
-			$presscontents = preg_replace('/[^a-zA-Z0-9-.]/',"_" ,trim(strtolower($presscontent)));
-			$seoslug = "pressrelease/".$reviewcompanies."/".$presscontents."/".$pressreleases[$i]['id']; 
-					
-					?>
-						<a class = "font_color_white" href="<?php echo site_url($seoslug); ?>" title="view <?php echo stripslashes(str_replace("-"," ",ucfirst($pressreleases[$i]['title']))); ?>'s detail">"<?php echo substr(stripslashes(str_replace("-"," ",ucfirst($pressreleases[$i]['title']))),0,50)."..."; ?>"</a>
+						
+						<a class = "font_color_white" href="<?php echo site_url($pressreleases[$i]['seoslug']); ?>" title="view <?php echo stripslashes(str_replace("-"," ",ucfirst($pressreleases[$i]['title']))); ?>'s detail">"<?php echo substr(stripslashes(str_replace("-"," ",ucfirst($pressreleases[$i]['title']))),0,50)."..."; ?>"</a>
 					</span>
 				</div>
 				
