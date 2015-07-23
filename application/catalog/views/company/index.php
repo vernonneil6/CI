@@ -676,6 +676,7 @@ $(window).load(function() {
   });
 });
               </script>
+              <?php $site = site_url();	?>
                <div class="flexslider" id="profile-flexslider">
           <ul class="slides">
             <li>
@@ -702,10 +703,7 @@ $(window).load(function() {
 			  {
 			  	$d = count($gallerys);
 			  }?>
-              <?php $site = site_url();
-			  
-			 
-			  		?>
+              
               <script type="text/javascript">
 				$(window).load(function() {
 				$('.gallery_featured').orbit();
@@ -718,7 +716,7 @@ $(window).load(function() {
               <div class="container1">
                 <div id="featured" class = "gallery_featured">
                   <?php for($f=0; $f<count($photos); $f++) { ?>
-					<img src="<?php echo site_url('uploads/gallery/main/'.stripslashes($photos[$f]['photo']); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="520;" height="392"/>
+					<img src="<?php echo $site;?>uploads/gallery/main/<?php echo stripslashes($photos[$f]['photo']); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="520;" height="392"/>
                   <?php } ?>
                 </div>
               </div>
