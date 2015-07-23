@@ -1109,7 +1109,7 @@ class Reviews extends CI_Model
 	
 	function updatePressReleasesSlug(){
 		
-			$this->db->select('r.*, cm.company');
+			$this->db->select('p.*, cm.company');
 			$this->db->from('youg_pressrelease as p');
 			$this->db->join('youg_company as cm','p.companyid=cm.id','left');
 							
