@@ -636,7 +636,7 @@ else { ?>
 
 				$(window).load(function() {
 				$(".rslides").responsiveSlides({
-
+					nav: true
 				});
 				});
 				</script>
