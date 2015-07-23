@@ -462,6 +462,7 @@
 
 		<?php } 
 		?>
+		<div style='clear:both'></div>
 		<p align="right" class="cmnt_wrp wrps"><a href="<?php echo site_url('company/reviews/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a>
 		</p>
 
@@ -534,7 +535,9 @@ if(count($user)>0) {
 
 
 </div>
-<?php } ?><div class="cmnt_wrp wrps "><a class="valigns" href="<?php echo site_url('company/complaints/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a></div> <?php }else{?>
+<?php } ?>
+<div style='clear:both'></div>
+<div class="cmnt_wrp wrps "><a class="valigns" href="<?php echo site_url('company/complaints/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a></div> <?php }else{?>
 <div class="review_block noblock">
 <p>No Complaints.</p>
 </div>
@@ -569,6 +572,7 @@ $d = count($coupons);
 </div>
 </div>
 <?php } ?>
+<div style='clear:both'></div>
 <p align="right" class="cmnt_wrp wrps">
 <a href="<?php echo site_url('company/coupons/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="View All">View All</a>
 </p>
@@ -601,6 +605,7 @@ else { ?>
 	</div>
 	</div>
 	<?php } ?>
+	<div style='clear:both'></div>
 	<p align="right" class="cmnt_wrp wrps">
 	<a href="<?php echo site_url('company/pressreleases/'.$company[0]['companyseokeyword']);?>" title="View All">View All</a></p>
 	<?php }else{ ?>
@@ -675,6 +680,7 @@ else { ?>
 					$company_photo_url = "company/".$company_name."/view-all-photos/".$company[0]['id'];
 							
 				?>
+				<div style='clear:both'></div>
 					<p align="right" class="cmnt_wrp">
 					<a href="<?php echo site_url($company_photo_url);?>" title="View All">View All</a></p>
 
@@ -734,6 +740,7 @@ else { ?>
 			$company_video_url = "company/".$company_name."/view-all-videos/".$company[0]['id'];
 				  
             ?>
+            <div style='clear:both'></div>
             <p align="right" class="cmnt_wrp">
 				<a href="<?php echo site_url($company_video_url);?>" title="View All">View All</a></p>
 				<?php
