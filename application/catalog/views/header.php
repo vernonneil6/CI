@@ -16,9 +16,7 @@
 <meta name="description" content="<?php echo $description;?>">
 <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
 
-
 <link href="SphinxAutocompleteExample/css/bootstrap.css" rel="stylesheet">
-
 
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/rwd_style.css" type="text/css">
@@ -33,14 +31,6 @@
 
 <script src="js/jquery.flexslider-min.js"></script>
 <script src="js/mobile_nav/jquery.slicknav.js"></script>
-
-<script>
- $(document).ready(function() {
- $('.data_table').delay(6000).fadeOut(600);
- $('#menu').slicknav();
- });
- window.onorientationchange = function() { location.reload() };
-</script>
 
 <style>
 .isa_info, .isa_success, .isa_warning, .isa_error {
@@ -64,6 +54,9 @@
 .isa_error {
 	background-color: #EBEBEB;
 }
+.bold-text {
+    font-weight: bold;
+}
 </style>
 <?php if($_SERVER['SERVER_NAME'] == 'www.yougotrated.com' || $_SERVER['SERVER_NAME'] == 'yougotrated.com'){ ?>
 	<script>
@@ -78,13 +71,7 @@
 	</script>
 <?php } ?>
 </head><body>
-<?php 
-//print_r($geolocation);
-//echo 'Region='.$geolocation['geoplugin_region'];
- // $currentcity=$geolocation['geoplugin_city'];
-//echo 'Lat='.$geolocation['geoplugin_latitude'];
-//echo 'Long='.$geolocation['geoplugin_longitude'];
-?>
+
 <header class="noscroll-head">
   <div class="container">
     <div class="head_bg">
@@ -105,23 +92,14 @@
 	</div>
         <?php }?>
         <?php $actual_link = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];?>
-        <script>
-			function PopupCenter(pageURL, title,w,h)
-			 {
-			  var left = (screen.width/2)-(w/2);
-		  	  var top = (screen.height/2)-(h/2);
-			  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-  
-}
-			</script>
-
+       
       </div>
     </div>
    
     <div class="menu" id="menu">
       <ul>
          <!--<li><a href="<?php echo base_url();?>" title="Home">Home<span><span></a> </li>-->
-        <li><a href="<?php echo site_url('businessdirectory/category/');?>" title="Categories">Categories</a>
+        <li><a href="#" title="Categories">Categories</a>
 <ul>
 <?php $catlist = $this->common->get_all_categorys('1','category','ASC'); 
 foreach($catlist as $row=> $result)
@@ -170,7 +148,22 @@ foreach($catlist as $row=> $result)
 <?php } ?>
 <?php } ?>
 <?php $fb_appId = $this->common->get_setting_value(20);?>
-<script>
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$('.data_table').delay(6000).fadeOut(600);
+		$('#menu').slicknav();
+	});
+	window.onorientationchange = function() { location.reload() };	
+	
+	function PopupCenter(pageURL, title,w,h){
+		  var left = (screen.width/2)-(w/2);
+		  var top = (screen.height/2)-(h/2);
+		  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+
+	}
+	
+	/*FB */
 window.fbAsyncInit = function() {
 FB.init({
 appId      : '<?php echo $fb_appId;?>',
@@ -209,67 +202,55 @@ function FBLogin(){
     }, {scope: 'email'});
 }
 
-</script>
 
-<link rel="stylesheet" href="css/autocss.css" type="text/css">
-    
-    <script src="<?php echo site_url('js/jquery-ui-1.10.3.js');?>"></script>
-<script type="text/javascript">
-	function fill(Value)
+function fill(Value)
 {
 $('#search').val(Value);
 $('#display').hide();
 }
-	jQuery(function($) {
-	 var currentRequest = null;
-	 var data ='';
-	$('#search').on('keyup', function() {
-	//$( "#search" ).autocomplete();
-	$("#display").hide();
-	var req1 = $('#search').val();
-	var req2 ='New York';// $('#ccity').val();
-	var req='name:'+req1+',ccity:'+req2;
-	if (req.length > 0) {
-		$('#loading').show();
-		$('#loading').html('<img src="images/spin.gif" height="20px">');
-		currentRequest=$.ajax({
-			
-			url: "<?php echo base_url(); ?>search/autocomplete", //Controller where search is performed
-			type: 'POST',
-			data: {'name':req1,'ccity':req2},	
-			beforeSend : function()
-				{           
-					if(currentRequest != null)
-					{		
-						currentRequest.abort();	
-						data = '';	
-						html = '';		
-						$("#display").hide();
-						
-					}
-				},		
-			success: function(html){
-				$("#display").html(html).show();
-				$('#loading').html('').hide();
-				html ='';
-				data = '';  
-				//console.log(data);       
-			}			
-		});
+jQuery(function($) {
+ var currentRequest = null;
+ var data ='';
+$('#search').on('keyup', function() {
+//$( "#search" ).autocomplete();
+$("#display").hide();
+var req1 = $('#search').val();
+var req2 ='New York';// $('#ccity').val();
+var req='name:'+req1+',ccity:'+req2;
+if (req.length > 0) {
+	$('#loading').show();
+	$('#loading').html('<img src="images/spin.gif" height="20px">');
+	currentRequest=$.ajax({
 		
+		url: "<?php echo base_url(); ?>search/autocomplete", //Controller where search is performed
+		type: 'POST',
+		data: {'name':req1,'ccity':req2},	
+		beforeSend : function()
+			{           
+				if(currentRequest != null)
+				{		
+					currentRequest.abort();	
+					data = '';	
+					html = '';		
+					$("#display").hide();
+					
+				}
+			},		
+		success: function(html){
+			$("#display").html(html).show();
+			$('#loading').html('').hide();
+			html ='';
+			data = '';  
+			//console.log(data);       
+		}			
+	});
+	
 }
 });
 });
-</script>
 
-<style>
-	.bold-text {
-    font-weight: bold;
-}
 
-</style>
-<script>
-	/*side banner script*/
+/*side banner script*/
 $(window).load(function() {
 	var className = $('#add-banner').attr('class');
 	if($(window).width() >= 770) {
@@ -291,17 +272,15 @@ $(window).load(function() {
 	 $('#rightclosead').click( function(){ 
 		 $(this).parents('.ad_right').hide(); 
 	 });
-	$.ajax({
-		type: 'GET',
-		url: "https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55799ef149e6e251", 
-		contentType: "application/json",
-		dataType: 'jsonp',		
-		success: function(result){
-        console.log(result);
-    }});
+
 });
 
 </script>
+
+<link rel="stylesheet" href="css/autocss.css" type="text/css">
+    
+<script src="<?php echo site_url('js/jquery-ui-1.10.3.js');?>"></script>
+
 <div class="side_banners">
 	
 <?php if(isset($leftads) && count($leftads)){ ?> 
@@ -317,5 +296,5 @@ $(window).load(function() {
 <?php } ?>
 
 </div>
-<!-- Go to www.addthis.com/dashboard to customize your tools //s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55799ef149e6e251-->
-<script type="text/javascript" src="" async="async"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55799ef149e6e251" async="async"></script>
