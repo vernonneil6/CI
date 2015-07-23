@@ -65,8 +65,7 @@
 		 <div><label class = "widget_company_name"><a target="_blank" href = "<?php echo base_url().'company/'.$companyseo.'/reviews/coupons/complaints'; ?>"><?php echo ucfirst($companyname); ?></a></label></div>
 		 <div class="vry_rating vryrating">
 			<span class="stars" data-rating="<?php echo $averagerating; ?>" style="float: left;"></span>
-			<label class = "single_review"><?php echo $total."  Reviews"; ?></label>
-			<p style="color: #A2A2A2; font-size: 9px; margin-bottom: -6px;margin-top: 3px;">Some Reviews may have originated from other review platforms and have been aggregated.</p>
+			<label class = "single_review"><?php echo $total."  Reviews"; ?></label>			
 		  </div>	
 		  <div class = "clear"></div>			  
 	</div>
