@@ -613,7 +613,7 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
 .review_title{width:100%; float:left; margin-bottom:20px;}
 .review_title h2{float:left; font-family:"myriadpro-regular"; font-weight:bold; font-size:34px; color:#333; text-transform:uppercase; margin:0px; line-height:25px;}
 .review_title a{float:right; font-family: "myriadpro-regular";font-size:22px; color:#0080ff; text-transform:uppercase;}
-.review_block{float:left;padding: 10px; width:100%; margin-bottom:15px;}
+.review_block{float:left;padding: 10px; width:auto; margin-bottom:15px;}
 .review_lft{float:left; width: 40px;padding: 0 10px 4px 0;}
 .user_img{width:40px; height:40px; float:right; border-radius:100%;}
 .user_img img{width:40px; height:40px; float:right;}
@@ -655,6 +655,12 @@ table.hrly_tb tbody td{text-align:center; font-family: "myriadpro-regular";text-
 .rat_title h2 a{color:black;font-family: "MyriadPro-Regular";  font-weight:bold; font-size: 14px;}
 .rat_title label{display: inline-block;}
 .rat_title label a{/*font-family:'MyriadPro-BlackSemiCn';font-size:12px;*/}
+.review_block .cmnt_wrp.wrps {
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+}
 .review_ratng_wrp{float:left; width:100%;}
 .rating{width:100%; float:left;padding-top: 5px;}
 .revw_blck .rating{float: left;
@@ -2005,7 +2011,7 @@ padding-left: 18px;
 	margin : 0 0 0 10px;
 	cursor : pointer;
 }
-#horizontalTab{padding-left:15px;}
+#horizontalTab{padding-left:0;}
 /*----Thumb Design----*/
 .thumb-head{float:left;}
 .thumb-like-block {float:left; margin:2px;}
@@ -2107,7 +2113,7 @@ padding-left: 18px;
 {
 	display: inline-block;
     font-family: myriadpro-regular;
-    padding: 5px 0 5px 17px;
+    padding: 5px 10px 5px 10px;
     
 }
 .profile_about_company

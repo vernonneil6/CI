@@ -238,7 +238,7 @@ span.stars{
 	float:left;
 }
 .revw_ratpoint{text-align:left;height:auto;}
-.cmnt_wrp{display:inline-block;float:none;margin-top:15px;}
+.cmnt_wrp{display:inline-block;float:none;margin-top:15px;padding-left: 10px;}
 .tablecompliant, .user_dashboard{margin-left:20px;}
 .usercomment {margin-left: 20px !important;}
 .pr_rwrp,.verified_wrp{float:none;display:inline-block;text-align:center;margin:0 auto;}
