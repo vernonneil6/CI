@@ -340,11 +340,11 @@
             <label>TERMS AND CONDITIONS</label>
             <div class="reg_fld">PLEASE COMPLETE THESE FINAL STEPS TO SUBMIT YOUR COMPLAINT.</div>
             <div class="term_tag" dir="seltdterms">
-              <input type="checkbox" class="" id="am_2" value="Yes" name="readterms" style="display:block;"/>
+              <input type="checkbox" class="" id="am_2" value="Yes" name="readterms" style="display:inline;"/>
               <label for="am_2">I HAVE READ AND AGREE TO THE YOUGOTRATED <a href="<?php echo site_url('terms');?>" title="TERMS AND CONDITIONS" target="_blank">TERMS AND CONDITIONS</a>.</label>
             </div>
             <div class="term_tag" dir="seltdterms">
-              <input type="checkbox" class="" id="am_1" value="Yes" name="terms" style="display:block;"/>
+              <input type="checkbox" class="" id="am_1" value="Yes" name="terms" style="display:inline;"/>
               <label for="am_1">I AGREE TO THE YOUGOTRATED TERMS AND CONDITIONS.</label>
             </div>
             <div id="termserror" class="error">Please Agree to TERMS AND CONDITIONS</div>
