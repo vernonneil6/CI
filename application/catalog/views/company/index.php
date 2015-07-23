@@ -690,21 +690,19 @@ else { ?>
 		<div>
 			<p>
 			
-				 <?php 
+			<?php 
 				if( count($videos) > 0 ) { 	
-			    
-			 
-			  		
-			?>
-			 <?php if(count($videos)>5)
-			  {
-				$d = 5;
-			  }
-			  else
-			  {
-			  	$d = count($videos);
-			  }?>
-            <?php for($i=0; $i<$d; $i++) { ?>
+			    	  		
+					if(count($videos)>5)
+					{
+					$d = 5;
+					}
+					else
+					{
+					$d = count($videos);
+					}
+			  
+			   for($i=0; $i<$d; $i++) { ?>
             <div class="noblock review_block">
               <div class="company_content_title contenttag"><?php echo $videos[$i]['title'];?></div>
               <br />
@@ -722,29 +720,31 @@ else { ?>
               <div style="display:none;"> <a href="<?php echo $videos[$i]['videourl'];?>" title="<?php echo $videos[$i]['videourl'];?>"><?php echo $videos[$i]['videourl'];?></a> </div>
             </div>
             <?php 
-			}
+			}			
+			if(count($videos)>5)
+			{
+			  
 			 
-			?>
-				
-            <?php  }
-            if(count($videos)>5)
-			  {
-				  
-				 
-				if(count($company) > 0){
-					$company_name = preg_replace("/\.$/","",$company[0]['company']);
-					$company_name = trim(preg_replace('/-+/', '-',preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company_name)))), '-');
-				}else{
-					$company_name = "anonymous";
-				} 
-				$company_video_url = "company/".$company_name."/view-all-videos/".$company[0]['id'];
+			if(count($company) > 0){
+				$company_name = preg_replace("/\.$/","",$company[0]['company']);
+				$company_name = trim(preg_replace('/-+/', '-',preg_replace('/[^a-zA-Z0-9-.]/', '-', trim(strtolower($company_name)))), '-');
+			}else{
+				$company_name = "anonymous";
+			} 
+			$company_video_url = "company/".$company_name."/view-all-videos/".$company[0]['id'];
 				  
             ?>
             <p align="right" class="cmnt_wrp">
 				<a href="<?php echo site_url($company_video_url);?>" title="View All">View All</a></p>
 				<?php
 			}
-			?>
+				
+            }
+            else { ?>
+              <div class="form-message warning">
+                <p>No Videos.</p>
+              </div>
+              <?php }   ?>
 			</p>
 		
 		</div>
