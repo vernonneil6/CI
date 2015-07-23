@@ -44,47 +44,6 @@
 			$(this).html($span);
 		});
 		
-		
-		 // tabbed content
-    // http://www.entheosweb.com/tutorials/css/tabs.asp
-    $(".tab_content").hide();
-    $(".tab_content:first").show();
-
-  /* if in tab mode */
-    $("ul.tabs li").click(function() {
-		
-      $(".tab_content").hide();
-      var activeTab = $(this).attr("rel"); 
-      $("#"+activeTab).fadeIn();		
-		
-      $("ul.tabs li").removeClass("active");
-      $(this).addClass("active");
-
-	  $(".tab_drawer_heading").removeClass("d_active");
-	  $(".tab_drawer_heading[rel^='"+activeTab+"']").addClass("d_active");
-	  
-    });
-	/* if in drawer mode */
-	$(".tab_drawer_heading").click(function() {
-      
-      $(".tab_content").hide();
-      var d_activeTab = $(this).attr("rel"); 
-      $("#"+d_activeTab).fadeIn();
-	  
-	  $(".tab_drawer_heading").removeClass("d_active");
-      $(this).addClass("d_active");
-	  
-	  $("ul.tabs li").removeClass("active");
-	  $("ul.tabs li[rel^='"+d_activeTab+"']").addClass("active");
-    });
-	
-	
-	
-	
-	/* Extra class "tab_last" 
-	   to add border to right side
-	   of last tab */
-	$('ul.tabs li').last().addClass("tab_last");
 	
 		
 	});
@@ -656,42 +615,8 @@ else { ?>
 		
 		<div>
 		<p>
-			<div class="review_block noblock">
-              <link rel="stylesheet" href="<?php echo base_url();?>js/orbit/orbit-1.2.3.csss" type="text/css">
-              <script type="text/javascript" src="<?php echo base_url();?>js/orbit/jquery.orbit-1.2.3.min.jss"></script>
-              <link rel="stylesheet" href="<?php echo base_url();?>js/flexslider/flexslider.css" type="text/css">
-              <script type="text/javascript" src="<?php echo base_url();?>js/flexslider/jquery.flexslider.js"></script>
-              <script type="text/javascript">
-              
-              // Can also be used with $(document).ready()
-$(window).load(function() {
-  $('#profile-flexslider').flexslider({
-    animation: "slide",
-    
-    after: function(slider){
-    currHeight = $('.slides > li').eq(slider.currentSlide).outerHeight(true);
-    $('.flexslider').height(currHeight);
-  }
-    
-  });
-});
-              </script>
-               <div class="flexslider" id="profile-flexslider">
-          <ul class="slides">
-            <li>
-  	    	    <img src="<?php echo $site;?>uploads/images/9aa576af0c5b529d5164f35f314740de.png" />
-  	    		</li>
-  	    		<li>
-  	    	    <img src="<?php echo $site;?>uploads/images/82ec90334f6d31d2c76ee377e98569f0.png" />
-  	    		</li>
-  	    		<li>
-  	    	    <img src="<?php echo $site;?>uploads/images/e4492d6cf2c1db62a3a3a6709a827298.png" />
-  	    		</li>
-  	    		<li>
-  	    	    <img src="<?php echo $site;?>uploads/images/aa2dd981eb771c862d295a39cb4845d8.jpeg" />
-  	    		</li>
-          </ul>
-        </div>
+			<div class="review_block noblock">           
+            
               
               <?php if( count($gallerys) > 0 ) { ?>
 			  <?php if(count($gallerys)>5)
@@ -706,21 +631,29 @@ $(window).load(function() {
 			  
 			 
 			  		?>
-              <script type="text/javascript">
+			  	<link rel="stylesheet" href="<?php echo base_url();?>js/responsive-slides/responsiveslides.css" type="text/css">
+				<script type="text/javascript" src="<?php echo base_url();?>js/responsive-slides/responsiveslides.js"></script>
+				<script type="text/javascript">
 				$(window).load(function() {
-				$('.gallery_featured').orbit();
-					});
+				$(".rslides").responsiveSlides({
+
+				});
+				});
 				</script>
               <?php for($i=0; $i<$d; $i++) { ?>
               <?php $photos = $this->complaints->get_photos_bygalleryid($gallerys[$i]['id']);?>
               <div class = "gallery_title"><?php echo $gallerys[$i]['title'];?></div>
               <?php if(count($photos)>0){ ?>
               <div class="container1">
-                <div id="featured" class = "gallery_featured">
+                  <div class="rslides_container">  
+						<ul class="rslides">
                   <?php for($f=0; $f<count($photos); $f++) { ?>
-					<img src="<?php echo $site;?>uploads/gallery/main/<?php echo stripslashes($photos[$f]['photo']); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="520;" height="392"/>
+						<li>
+							<img src="<?php echo $site;?>uploads/gallery/main/<?php echo stripslashes($photos[$f]['photo']); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="520;" height="392"/>
+						</li>
                   <?php } ?>
-                </div>
+						</ul>
+					</div>							
               </div>
               <div style="padding-bottom:15; margin-top:15px;"></div>
               <?php } else { ?>
