@@ -1873,6 +1873,7 @@ padding-left: 18px;
 {
 	width : 120px;
 }
+.cmt_lft.lefter{ width:95%;margin:0 auto;float:none !important;}
 .lefter{width: 142px;text-align: left; }
 .photo{float: right;}
 .namespace{ padding: 13px 0 0;}

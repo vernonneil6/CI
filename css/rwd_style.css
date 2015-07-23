@@ -178,6 +178,7 @@ span.stars{
 .clnt_intr{ text-align:left;}
 .clnt_name a{ margin-bottom:0px !important; }
 .clnt_intr div{ float:left;margin-left:5px;}
+.clnt_intr .clnt_pic.photo{float:right;}
 .custom-countwrp1{ display:block !important;margin-bottom:10px;}
 .custom-countwrp1 ul li{margin-bottom:10px;}
 
