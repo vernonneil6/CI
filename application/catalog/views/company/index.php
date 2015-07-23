@@ -112,11 +112,11 @@
 			  
 				  
 			<?php if(count($elitemem_status)==0){?>
-			<div>
+			<div class="business-img">
 				<?php $urls="http://business.yougotrated.com/?elitemem=".$company[0]['id'].""; ?>
 				
 				<a href="<?php echo $urls;?>" title="Upgrade to Elite">
-					<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
+					<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg" >
 				<div class="business_link"> 			
 					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
 				</div>
@@ -684,7 +684,7 @@ else { ?>
               <div class="container1">
                 <div id="featured" class = "gallery_featured">
                   <?php for($f=0; $f<count($photos); $f++) { ?>
-					<img src="<?php echo $site;?>uploads/gallery/main/<?php echo stripslashes($photos[$f]['photo']); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="520;" height="392"/>
+					<img src="<?php echo site_url('uploads/gallery/main/'.stripslashes($photos[$f]['photo']); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="520;" height="392"/>
                   <?php } ?>
                 </div>
               </div>

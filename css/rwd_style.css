@@ -16,13 +16,14 @@ td{display:block;}
 .reg-row .form-circle{margin-left:0;}
 .reg-row .form_left > label { bottom: 20px; left: 65px; position: relative;width:auto;}
 .transaction .form_left .reg_txt_box{clear: both;display: block;}
+
 } 
 @media only screen and (max-width: 771px){
 .text-content{top:0.5em;font-size:1.5em;}
 #frmcomment .txrareawrp{width:auto;float:left;}
 .reg-row .form_left{width: auto;}
 .reg-row .form-circle{margin-left:0;}
-
+.compny_name h1{float:none;}
 } 
 @media only screen and (max-width: 771px){
 .text-content{top:0.5em;font-size:1.5em;}
@@ -63,7 +64,7 @@ span.stars{
 
 }
 @media only screen and (min-width: 771px) and (max-width: 1050px){
-
+.left_panel .business-img a img{width:100%;}
 .verified_wrp .compny_name{width:80% !important;}
 .verified_wrp .compny_name > h1 {text-align: left !important;}
 .verified_wrp .vry_logo {float: left !important;}
@@ -167,7 +168,7 @@ span.stars{
 }
 
 @media only screen and (min-width: 310px) and (max-width: 770px)  {
-#atstbx{ width:320px;maring:0 auto;}
+#atstbx{ width:320px;margin:0 auto;}
 #custom-share1{ display:block !important;float:left;margin:2px; }
 #custom-share,.custom-countwrp{ display:none;}
 .testmnl_cln,.clnt_intr{ float:left;}
