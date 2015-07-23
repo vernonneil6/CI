@@ -105,7 +105,7 @@
 					
 					
 					
-					<a href="<?php echo site_url($seoslug); ?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?>'s detail"> "<?php echo stripslashes(substr($pressreleases[$i]['sortdesc'],0,100)).'...'; ?>"</a>
+					<a href="<?php echo site_url($pressreleases[$i]['seoslug']); ?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['title'])); ?>'s detail"> "<?php echo stripslashes(substr($pressreleases[$i]['sortdesc'],0,100)).'...'; ?>"</a>
 				</div>
 			  </div>
 			</div>
