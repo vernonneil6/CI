@@ -649,7 +649,9 @@ else { ?>
 						<ul class="rslides">
                   <?php for($f=0; $f<count($photos); $f++) { ?>
 						<li>
-							<img src="<?php echo $site;?>uploads/gallery/main/<?php echo stripslashes($photos[$f]['photo']); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="520;" height="392"/>
+							
+							<?php $photoURL = "uploads/gallery/main/".stripslashes($photos[$f]['photo']); ?>
+							<img src="<?php echo site_url($photoURL); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="520;" height="392"/>
 						</li>
                   <?php } ?>
 						</ul>
