@@ -680,16 +680,16 @@ $(window).load(function() {
                <div class="flexslider" id="profile-flexslider">
           <ul class="slides">
             <li>
-  	    	    <img src="<?php echo $site;?>uploads/images/9aa576af0c5b529d5164f35f314740de.png" />
+  	    	    <img src="<?php echo $site;?>uploads/gallery/main/9aa576af0c5b529d5164f35f314740de.png" />
   	    		</li>
   	    		<li>
-  	    	    <img src="<?php echo $site;?>uploads/images/82ec90334f6d31d2c76ee377e98569f0.png" />
+  	    	    <img src="<?php echo $site;?>uploads/gallery/main/82ec90334f6d31d2c76ee377e98569f0.png" />
   	    		</li>
   	    		<li>
-  	    	    <img src="<?php echo $site;?>uploads/images/e4492d6cf2c1db62a3a3a6709a827298.png" />
+  	    	    <img src="<?php echo $site;?>uploads/gallery/main/e4492d6cf2c1db62a3a3a6709a827298.png" />
   	    		</li>
   	    		<li>
-  	    	    <img src="<?php echo $site;?>uploads/images/aa2dd981eb771c862d295a39cb4845d8.jpeg" />
+  	    	    <img src="<?php echo $site;?>uploads/gallery/main/aa2dd981eb771c862d295a39cb4845d8.jpeg" />
   	    		</li>
           </ul>
         </div>
@@ -780,7 +780,7 @@ $(window).load(function() {
 					$ytendstring=end($ytendarray);
 					$ytendarray=explode("&", $ytendstring);
 					$ytcode=$ytendarray[0];
-					echo "<iframe class=\"videotab$i\" width=\"520\" height=\"280\" src=\"http://www.youtube.com/embed/$ytcode?enablejsapi=1&version=3&playerapiid=ytplayer\" frameborder=\"1\" allowscriptaccess=\"always\" allowfullscreen></iframe>";
+					echo "<iframe class=\"videotab$i\" width=\"100%\" height=\"300\" src=\"http://www.youtube.com/embed/$ytcode?enablejsapi=1&version=3&playerapiid=ytplayer\" frameborder=\"1\" allowscriptaccess=\"always\" allowfullscreen></iframe>";
 				?>  
               </div>
               <div style="display:none;"> <a href="<?php echo $videos[$i]['videourl'];?>" title="<?php echo $videos[$i]['videourl'];?>"><?php echo $videos[$i]['videourl'];?></a> </div>
