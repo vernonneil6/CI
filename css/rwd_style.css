@@ -91,7 +91,8 @@ span.stars{
 .revw_blck_cnt{width:83%;float:right;}
 .reviewnotverifiedlogo, .reviewverifiedlogo{position: relative;right: 15px;}
 .revw_blck_img{margin-right:0;}
-.revw_ratpoint span a{font-size:14px;}
+.revw_ratpoint span a{font-size:12px;}
+.revw_ratpoint span a{padding:0 4px;}
 .pagination{width:100%;}
 .revw_blck_cnt h2{font-size:25px;}
 .login_box{width:auto;}
@@ -339,7 +340,7 @@ span.toggle:before{
 .new_usr a{font-size:20px;}
 .new_usr{font-size:21px;}
 
-.headersearchbar{width:300px;height:20px;}
+.headersearchbar{width:300px;height:30px;}
 .flexslider .headersearch .formBox, .innr_wrap .headersearch .formBox{width:305px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
 }
@@ -509,6 +510,7 @@ span.toggle:before{
 
 @media only screen and (min-width: 620px) and (max-width: 770px)  {
 .headersearchbtn{bottom:1.3em;}
+.bus_tag{font-size:25px;}
 }
 
 @media only screen and (min-width: 310px) and (max-width: 619px)  {
