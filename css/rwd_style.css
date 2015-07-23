@@ -16,13 +16,14 @@ td{display:block;}
 .reg-row .form-circle{margin-left:0;}
 .reg-row .form_left > label { bottom: 20px; left: 65px; position: relative;width:auto;}
 .transaction .form_left .reg_txt_box{clear: both;display: block;}
+
 } 
 @media only screen and (max-width: 771px){
 .text-content{top:0.5em;font-size:1.5em;}
 #frmcomment .txrareawrp{width:auto;float:left;}
 .reg-row .form_left{width: auto;}
 .reg-row .form-circle{margin-left:0;}
-
+.compny_name h1{float:none;}
 } 
 @media only screen and (max-width: 771px){
 .text-content{top:0.5em;font-size:1.5em;}
@@ -65,12 +66,12 @@ span.stars{
 
 }
 @media only screen and (min-width: 771px) and (max-width: 1050px){
-
+.left_panel .business-img a img{width:100%;}
 .verified_wrp .compny_name{width:80% !important;}
 /*.verified_wrp .compny_name > h1 {text-align: left !important;}*/
 .verified_wrp .vry_logo {float: left !important;}
 .coupon_dscrwrp .coupon_dscr{width:auto;}
-
+.menu ul{ margin:0 auto;width:677px;}
 .dis_width .company{padding-top:0;}
 .review-slider ul{width:94%;padding:0 0 0 20px;}
 .bannertextcoupon{font-size:53px !important;}
@@ -92,7 +93,8 @@ span.stars{
 .revw_blck_cnt{width:83%;float:right;}
 .reviewnotverifiedlogo, .reviewverifiedlogo{position: relative;right: 15px;}
 .revw_blck_img{margin-right:0;}
-.revw_ratpoint span a{font-size:14px;}
+.revw_ratpoint span a{font-size:12px;}
+.revw_ratpoint span a{padding:0 4px;}
 .pagination{width:100%;}
 .revw_blck_cnt h2{font-size:25px;}
 .login_box{width:auto;}
@@ -176,6 +178,7 @@ span.stars{
 .clnt_intr{ text-align:left;}
 .clnt_name a{ margin-bottom:0px !important; }
 .clnt_intr div{ float:left;margin-left:5px;}
+.clnt_intr .clnt_pic.photo{float:right;}
 .custom-countwrp1{ display:block !important;margin-bottom:10px;}
 .custom-countwrp1 ul li{margin-bottom:10px;}
 
@@ -340,7 +343,7 @@ span.toggle:before{
 .new_usr a{font-size:20px;}
 .new_usr{font-size:21px;}
 
-.headersearchbar{width:300px;height:20px;}
+.headersearchbar{width:300px;height:30px;}
 .flexslider .headersearch .formBox, .innr_wrap .headersearch .formBox{width:305px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
 }
@@ -511,6 +514,7 @@ span.toggle:before{
 
 @media only screen and (min-width: 620px) and (max-width: 770px)  {
 .headersearchbtn{bottom:1.3em;}
+.bus_tag{font-size:25px;}
 }
 
 @media only screen and (min-width: 310px) and (max-width: 619px)  {

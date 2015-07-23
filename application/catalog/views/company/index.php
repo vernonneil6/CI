@@ -71,11 +71,11 @@
 			  
 				  
 			<?php if(count($elitemem_status)==0){?>
-			<div>
+			<div class="business-img">
 				<?php $urls="http://business.yougotrated.com/?elitemem=".$company[0]['id'].""; ?>
 				
 				<a href="<?php echo $urls;?>" title="Upgrade to Elite">
-					<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
+					<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg" >
 				<div class="business_link"> 			
 					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
 				</div>
@@ -615,11 +615,14 @@ else { ?>
 		
 		<div>
 		<p>
+
 			<div class="review_block noblock">           
-            
+     
+
               
-              <?php if( count($gallerys) > 0 ) { ?>
-			  <?php if(count($gallerys)>5)
+              <?php 
+              if( count($gallerys) > 0 ) { 
+			  if(count($gallerys)>5)
 			  {
 				$d = 5;
 			  }
@@ -627,13 +630,10 @@ else { ?>
 			  {
 			  	$d = count($gallerys);
 			  }?>
-              <?php $site = site_url();
-			  
-			 
-			  		?>
 			  	<link rel="stylesheet" href="<?php echo base_url();?>js/responsive-slides/responsiveslides.css" type="text/css">
 				<script type="text/javascript" src="<?php echo base_url();?>js/responsive-slides/responsiveslides.js"></script>
 				<script type="text/javascript">
+
 				$(window).load(function() {
 				$(".rslides").responsiveSlides({
 
@@ -715,7 +715,7 @@ else { ?>
 					$ytendstring=end($ytendarray);
 					$ytendarray=explode("&", $ytendstring);
 					$ytcode=$ytendarray[0];
-					echo "<iframe class=\"videotab$i\" width=\"520\" height=\"280\" src=\"http://www.youtube.com/embed/$ytcode?enablejsapi=1&version=3&playerapiid=ytplayer\" frameborder=\"1\" allowscriptaccess=\"always\" allowfullscreen></iframe>";
+					echo "<iframe class=\"videotab$i\" width=\"100%\" height=\"300\" src=\"http://www.youtube.com/embed/$ytcode?enablejsapi=1&version=3&playerapiid=ytplayer\" frameborder=\"1\" allowscriptaccess=\"always\" allowfullscreen></iframe>";
 				?>  
               </div>
               <div style="display:none;"> <a href="<?php echo $videos[$i]['videourl'];?>" title="<?php echo $videos[$i]['videourl'];?>"><?php echo $videos[$i]['videourl'];?></a> </div>
