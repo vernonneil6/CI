@@ -71,7 +71,7 @@ span.stars{
 /*.verified_wrp .compny_name > h1 {text-align: left !important;}*/
 .verified_wrp .vry_logo {float: left !important;}
 .coupon_dscrwrp .coupon_dscr{width:auto;}
-
+.menu ul{ margin:0 auto;width:677px;}
 .dis_width .company{padding-top:0;}
 .review-slider ul{width:94%;padding:0 0 0 20px;}
 .bannertextcoupon{font-size:53px !important;}
