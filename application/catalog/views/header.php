@@ -114,11 +114,7 @@
   
 }
 			</script>
-<script type="text/javascript">
-		$(window).load(function() {
-			$('.flexslider').flexslider();
-		});
-	</script>
+
       </div>
     </div>
    
@@ -217,7 +213,7 @@ function FBLogin(){
 
 <link rel="stylesheet" href="css/autocss.css" type="text/css">
     
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="<?php echo site_url('js/jquery-ui-1.10.3.js');?>"></script>
 <script type="text/javascript">
 	function fill(Value)
 {
@@ -295,7 +291,14 @@ $(window).load(function() {
 	 $('#rightclosead').click( function(){ 
 		 $(this).parents('.ad_right').hide(); 
 	 });
-
+	$.ajax({
+		type: 'GET',
+		url: "https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55799ef149e6e251", 
+		contentType: "application/json",
+		dataType: 'jsonp',		
+		success: function(result){
+        console.log(result);
+    }});
 });
 
 </script>
@@ -314,5 +317,5 @@ $(window).load(function() {
 <?php } ?>
 
 </div>
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55799ef149e6e251" async="async"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools //s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55799ef149e6e251-->
+<script type="text/javascript" src="" async="async"></script>
