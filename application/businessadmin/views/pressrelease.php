@@ -582,18 +582,20 @@ else { ?>
 				{?>
 				<td>
 				<?php 
-					$title=urlencode($pressrelease->title);
-					$url=urlencode($pageurl.$pressrelease->seokeyword);
+					$fronturl='http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';
+					$shareurl= $fronturl.$pressrelease->seoslug;
+					$title=ucfirst(str_replace("-"," ",$pressrelease->title));
+					$url=urlencode($shareurl);
 					$m = ($this->settings->get_setting_value('2').substr($this->config->item('company_thumb_upload_path'),3).stripslashes($pressimage));?>
                  <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $title;?>&amp;p[url]=<?php echo $url; ?>&amp;&p[images][0]=<?php echo $m;?>', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)">
                    <img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
                 </a>
                     
                 
-               <a title="google+" onClick="window.open('https://plus.google.com/share?url=<?php echo urlencode($pageurl.$pressreleases[$i]['seokeyword']);?>','Google+','width=500,height=400,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes');">
+               <a title="google+" onClick="window.open('https://plus.google.com/share?url=<?php echo urlencode($shareurl);?>','Google+','width=500,height=400,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes');">
                 <img width="16" height="17" border="0" src="images/go.jpg" alt="googleshare">
                </a>
-				<a href="https://twitter.com/share" class="twitter-share-button" data-url="google.com" data-text="<?php echo ucwords($pressreleases[$i]['title']);?> <?php echo $pageurl.$pressreleases[$i]['seokeyword'];?>" data-count="none">Tweet</a>
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo urlencode($shareurl);?>" data-text="<?php echo ucwords($title);?> <?php echo $shareurl;?>" data-count="none">Tweet</a>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </td>
         <?php

@@ -169,7 +169,8 @@ else {
 		
 		<tbody>
 			<?php foreach($reviews as $review): 
-			
+			//print_r($review);
+			//die;
 			?>
 			<tr>
 				<?php foreach($fields as $field_name => $field_display): ?>
@@ -194,6 +195,7 @@ else {
 					}elseif($field_name == 'rate'){ ?>
 					
 					<img src="images/stars/<?php echo stripslashes($review->rate); ?>.png" title="<?php echo stripslashes($review->rate); ?> Stars" />					
+				
 					<?php
 					}
 					elseif ($field_name == 'status' ) { ?>
@@ -220,16 +222,18 @@ else {
 					<a href="<?php echo site_url('review/view/'.$review->id); ?>" title="View Detail of <?php echo stripslashes($pressrelease->id);?>" class="colorbox"><img width="16" height="17" border="0" src="images/detail.jpeg" alt="view"></a>		
 				</td> 
 				<td>  
-					<?php 				 
+					<?php 	
+						$fronturl='http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';
+						$shareurl= $fronturl.$review->seoslug;			 
 						$title=urlencode('My post');
-						$url=urlencode($pageurl.$review->seokeyword);
+						$url=urlencode($shareurl);
 						$image=urlencode('http://livemarketnews.com/dressfinity/skin/frontend/default/default/images/logo.jpg');
 					?>
-                <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $title;?>&amp;p[url]=<?php echo $url; ?>&amp;&p[images][0]=<?php echo $image;?>', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)" title="Facebook">
+                <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $review->comment;?>&amp;p[url]=<?php echo $shareurl; ?>&amp;&p[images][0]=<?php echo $image;?>', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)" title="Facebook">
                     <img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
                 </a>
-                <a href="https://plus.google.com/share?url=<?php echo urlencode($pageurl.$review->seokeyword);?>" title="Google+"><img width="16" height="17" border="0" src="images/go.jpg" alt="googleshare"></a>
-          		<a href="https://twitter.com/share" class="twitter-share-button" data-url="google.com" data-text="<?php echo $pageurl.$review->id;?>" data-count="none">Tweet</a>
+                <a href="https://plus.google.com/share?url=<?php echo $shareurl;?>" title="Google+"><img width="16" height="17" border="0" src="images/go.jpg" alt="googleshare"></a>
+          		<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $shareurl;?>" data-text="<?php echo $review->comment;?>" data-count="none">Tweet</a>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>        
 				</td>
 				

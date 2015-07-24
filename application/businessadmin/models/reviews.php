@@ -73,14 +73,14 @@ class Reviews extends CI_Model
 		//results query
 		if($siteid!='all')
 		{
-			$q = $this->db->select('r.id,r.reviewtitle,r.reviewby,r.comment,r.rate,r.reviewdate,r.status,c.company,u.username,u.firstname,u.lastname')
+			$q = $this->db->select('r.id,r.reviewtitle,r.reviewby,r.comment,r.rate,r.reviewdate,r.status,r.seoslug,c.company,u.username,u.firstname,u.lastname')
 			->from('reviews as r')
 			->join('user as u','r.reviewby=u.id','left')
 			->join('company as c','c.id=r.companyid','left')
 			->where(array('r.companyid' => $companyid,'r.websiteid' => $siteid));
 			
 		}else{
-			$q = $this->db->select('r.reviewtitle,r.reviewby,r.comment,r.rate,r.reviewdate,r.status,c.company,u.username,u.firstname,u.lastname')
+			$q = $this->db->select('r.reviewtitle,r.reviewby,r.comment,r.rate,r.reviewdate,r.status,r.eoslug,c.company,u.username,u.firstname,u.lastname')
 			->from('reviews as r')
 			->join('user as u','r.reviewby=u.id','left')
 			->join('company as c','c.id=r.companyid','left')
