@@ -173,6 +173,7 @@ span.stars{
 @media only screen and (min-width: 310px) and (max-width: 770px)  {
 #atstbx{ width:320px;margin:0 auto;}
 #custom-share1{ display:block !important;float:left;margin:2px; }
+#custom-share1 .addthis_button_facebook_like{ height: 20px;position: relative;}
 #custom-share,.custom-countwrp{ display:none;}
 .testmnl_cln,.clnt_intr{ float:left;}
 .clnt_intr{ text-align:left;}
