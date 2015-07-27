@@ -18,9 +18,6 @@
  *
  * @return boolean
  */
-$comp_data = unserialize($_COOKIE['yougbusinessadmin_session']); 
-$comp_name = str_replace(' ','_',$comp_data['youg_admin']['companyname']);
-$folder_name = $comp_name.'_'.$comp_data['youg_admin']['id'];
 function CheckAuthentication()
 {
 	// WARNING : DO NOT simply return "true". By doing so, you are allowing
@@ -32,26 +29,8 @@ function CheckAuthentication()
 	// ... where $_SESSION['IsAuthorized'] is set to "true" as soon as the
 	// user logs in your system. To be able to use session variables don't
 	// forget to add session_start() at the top of this file.
-	//$comp_data = unserialize($_COOKIE['yougbusinessadmin_session']);
-	if(!empty($folder_name))
-	{
-			
-			if(isset($_SERVER['HTTPS'])){ $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http"; }
-			else{  $protocol = 'http'; }
-			if(!is_dir($protocol . "://" . $_SERVER['HTTP_HOST'].'/uploads/'.$folder_name))
-			{
-				$oldmask = umask(0);
-				mkdir($protocol . "://" . $_SERVER['HTTP_HOST'].'/uploads/'.$folder_name, 0777);
-				umask($oldmask);
-				return true;
-			}	
-	}
-	
-	else
-	{
-		return true;
-	}
-	//return true;
+
+	return true;
 }
 
 // LicenseKey : Paste your license key here. If left blank, CKFinder will be
@@ -83,19 +62,7 @@ ATTENTION: The trailing slash is required.
 */
 if(isset($_SERVER['HTTPS'])){ $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http"; }
     else{  $protocol = 'http'; }
-	
-
-	if(!empty($folder_name))
-	{	
-		$baseUrl = $protocol . "://" . $_SERVER['HTTP_HOST'].'/uploads/'.$folder_name.'/';
-		$baseDir = resolveUrl($baseUrl);
-	}
-	else 
-	{    
-		$baseUrl = $protocol . "://" . $_SERVER['HTTP_HOST'].'/uploads/';
-		$baseDir = resolveUrl($baseUrl);
-	}
-
+$baseUrl = $protocol . "://" . $_SERVER['HTTP_HOST'].'/uploads/';
 $enabled = true;
 
 /*
@@ -115,7 +82,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-
+$baseDir = resolveUrl($baseUrl);
 
 /*
  * ### Advanced Settings
@@ -125,9 +92,6 @@ ATTENTION: The trailing slash is required.
 Thumbnails : thumbnails settings. All thumbnails will end up in the same
 directory, no matter the resource type.
 */
-
-if(!($folder_name))
-{
 $config['Thumbnails'] = Array(
 		'url' => $baseUrl . '_thumbs',
 		'directory' => $baseDir . '_thumbs',
@@ -137,7 +101,6 @@ $config['Thumbnails'] = Array(
 		'maxHeight' => 100,
 		'bmpSupported' => false,
 		'quality' => 80);
-}
 
 /*
 Set the maximum size of uploaded images. If an uploaded image is larger, it
