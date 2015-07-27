@@ -1,7 +1,7 @@
 @media only screen and (max-width: 1050px){
 .review_right{width:auto;}
 .review_right div{width:500px;}
-.fadeout {background: none;}
+.fadeout {background:#E0E0E0;box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.5);width: auto;}
 table{margin:0 auto;}
 td{display:block;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy{display:inline;}

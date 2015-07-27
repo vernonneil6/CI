@@ -32,6 +32,7 @@
 			}
 		});
 		
+		$('h2[aria-controls="tab_item-0"]').click();
 		
 		$( ".stars" ).each(function() { 
 			// Get the value
