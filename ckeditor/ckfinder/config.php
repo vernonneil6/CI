@@ -365,7 +365,6 @@ For more complex configuration options visit our Developer's Guide
 */
 $config['XSendfile'] = false;
 
-
 include_once "plugins/imageresize/plugin.php";
 include_once "plugins/fileeditor/plugin.php";
 include_once "plugins/zip/plugin.php";

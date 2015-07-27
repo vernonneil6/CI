@@ -597,9 +597,8 @@
                     hidden: !0,
                     label:'Browse From server'
                 }]
-             
-                
-            },
+			},
+            
             
           {
                 id: "advanced",
