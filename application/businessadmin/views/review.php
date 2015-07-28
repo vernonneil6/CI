@@ -226,11 +226,10 @@ else {
 				</td> 
 				<td>  
 					<?php 	
-						//$fronturl='http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';
+						$fronturl='http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';
 						$titles = preg_replace('/[^A-Za-z0-9\-]/',' ',$review->reviewtitle);
 						$titles=str_replace('"','',$titles);
-						$fronturl='http://www.yougotrated.writerbin.com/';
-						$imageurl='http://www.yougotrated.writerbin.com/images/ygr_logos.png';
+						$imageurl=$fronturl.'images/ygr_logos.png';
 						$shareurl= $fronturl.$review->seoslug;	
 						$url=urlencode($shareurl);
 						$image=urlencode('http://livemarketnews.com/dressfinity/skin/frontend/default/default/images/logo.jpg');
@@ -241,9 +240,9 @@ else {
 			<img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
 		</button>
        	
-                <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $review->comment;?>&amp;p[url]=<?php echo $shareurl; ?>&amp;p[images][0]=<?php echo $image;?>&t=testufgudguysdvguf', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)" title="Facebook">
+                <!--<a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $review->comment;?>&amp;p[url]=<?php echo $shareurl; ?>&amp;p[images][0]=<?php echo $image;?>&t=testufgudguysdvguf', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)" title="Facebook">
                    <img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
-                </a>
+                </a>-->
 				
                 <a data-content="Sample Text" href="https://plus.google.com/share?url=<?php echo $shareurl;?>&content=sample" title="Google+"><img width="16" height="17" border="0" src="images/go.jpg" alt="googleshare"></a>
           		<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $shareurl;?>" data-image="<?php echo $imageurl;?>" data-text="<?php echo $review->comment;?>" data-count="none">Tweet</a>

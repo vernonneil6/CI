@@ -15,7 +15,7 @@
 				var userInfo;    
 			window.fbAsyncInit = function() 
 			{
-			   FB.init({ appId: '716557038467744',});
+			   FB.init({ appId: '829307780448839',});
                function updateButton(response) 
                 {
 				   button       =   document.getElementByClassName('fb-auth');
