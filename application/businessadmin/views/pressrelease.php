@@ -589,6 +589,9 @@ else { ?>
            <button id="fb-auth-<?php echo $i;?>" onClick="reply_click(this.id,'<?php echo $title;?>','<?php echo $pressrelease->subtitle;?>','<?php echo $fronturl;?>','<?php echo $shareurl;?>','<?php echo $m;?>')" class="fb-auth" style="border:none;background:none;cursor:pointer">
 			<img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
 		   </button>
+                 <!--<a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $title;?>&amp;p[url]=<?php echo $url; ?>&amp;&p[images][0]=<?php echo $m;?>', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)">
+                   <img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
+                </a>-->
                     
                 
                <a title="google+" onClick="window.open('https://plus.google.com/share?url=<?php echo urlencode($shareurl);?>','Google+','width=500,height=400,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes');">
