@@ -168,7 +168,10 @@ else {
 		</thead>
 		
 		<tbody>
-			<?php foreach($reviews as $review): 
+			<?php 
+			$i=0;
+			foreach($reviews as $review): 
+			$i++;
 			//print_r($review);
 			//die;
 			?>
@@ -223,31 +226,36 @@ else {
 				</td> 
 				<td>  
 					<?php 	
-						$fronturl='http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';
-						$shareurl= $fronturl.$review->seoslug;			 
-						$title=urlencode('My post');
+						//$fronturl='http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';
+						$titles = preg_replace('/[^A-Za-z0-9\-]/',' ',$review->reviewtitle);
+						$titles=str_replace('"','',$titles);
+						$fronturl='http://www.yougotrated.writerbin.com/';
+						$imageurl='http://www.yougotrated.writerbin.com/images/ygr_logos.png';
+						$shareurl= $fronturl.$review->seoslug;	
 						$url=urlencode($shareurl);
 						$image=urlencode('http://livemarketnews.com/dressfinity/skin/frontend/default/default/images/logo.jpg');
 					?>
-                <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $review->comment;?>&amp;p[url]=<?php echo $shareurl; ?>&amp;&p[images][0]=<?php echo $image;?>', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)" title="Facebook">
-                    <img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
+					
+       
+        <button id="fb-auth-<?php echo $i;?>" onClick="reply_click(this.id,'<?php echo $titles;?>','<?php echo $review->comment;?>','<?php echo $fronturl;?>','<?php echo $shareurl;?>','<?php echo $image;?>')" class="fb-auth" style="border:none;background:none;cursor:pointer">
+			<img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
+		</button>
+       	
+                <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $review->comment;?>&amp;p[url]=<?php echo $shareurl; ?>&amp;p[images][0]=<?php echo $image;?>&t=testufgudguysdvguf', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)" title="Facebook">
+                   <img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
                 </a>
-                <a href="https://plus.google.com/share?url=<?php echo $shareurl;?>" title="Google+"><img width="16" height="17" border="0" src="images/go.jpg" alt="googleshare"></a>
-          		<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $shareurl;?>" data-text="<?php echo $review->comment;?>" data-count="none">Tweet</a>
+				
+                <a data-content="Sample Text" href="https://plus.google.com/share?url=<?php echo $shareurl;?>&content=sample" title="Google+"><img width="16" height="17" border="0" src="images/go.jpg" alt="googleshare"></a>
+          		<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $shareurl;?>" data-image="<?php echo $imageurl;?>" data-text="<?php echo $review->comment;?>" data-count="none">Tweet</a>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>        
 				</td>
 				
 			</tr>
 			<?php endforeach; ?>			
 		</tbody>
-		
+		<div id="fb-root"></div>
 	</table>
-    
-    
-    
-    
-    
-   
+	
     <!-- /table --> 
     <!-- /pagination -->
     <?php  if($this->pagination->create_links()) { ?>
