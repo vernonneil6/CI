@@ -2,7 +2,10 @@
 	<script type="text/javascript">
 			function reply_click(id,caption,content,name,url,image)
 			{
+<<<<<<< HEAD
 				
+=======
+>>>>>>> 647fef2d5fab550aa161535123c41c9785990954
 						
 						var fid=id;
 						var title=caption;
@@ -62,18 +65,20 @@
             //stream publish method
             function streamPublish(caption, description, hrefTitle,name,hrefLink,image, userPrompt)
             {
-               
+
+				var newimage="'"+image+"'";
+
                 FB.ui(
                 {
                     method: 'stream.publish',
                     //message: 'Hai welcome this is post from api call',
                     attachment: 
                     {
-						media: [{ type: "image",src: image,href: name }], // Go here if user click the picture
+						media: [{ type: "image",src:newimage,href:name }], // Go here if user click the picture
                         name: caption,
                         caption: name,
                         description: description,
-                       // images: 'http://www.yougotrated.com/images/ygr_logos.png',
+                        images: image,
                         href:  hrefLink
                     },
                     action_links: 

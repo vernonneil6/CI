@@ -535,8 +535,7 @@ else { ?>
 			<?php 
 			$i=0;
 			foreach($pressreleases as $pressrelease): 
-			//print_r($pressrelease);
-			//die();
+			
 			$i++;
 			?>
 			<tr>
@@ -580,11 +579,23 @@ else { ?>
 				{?>
 				<td>
 				<?php 
+					$pid=$pressrelease->companyid;
+					$comp_details=$this->pressreleases->get_company_byid($pid);
+					$pressimage=$comp_details['0']['logo'];
+					if ($pressimage=='')
+					{
+						$pressimages='ygr_logos.png';
+						$m = ($this->settings->get_setting_value('2').'images/'.stripslashes($pressimages));
+					}else
+					{
+						$m= $this->settings->get_setting_value('2').substr($this->config->item('company_thumb_upload_path'),3).stripslashes($pressimage);
+					}
+					
 					$fronturl='http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';
 					$shareurl= $fronturl.$pressrelease->seoslug;
 					$title=ucfirst(str_replace("-"," ",$pressrelease->title));
 					$url=urlencode($shareurl);
-					$m = ($this->settings->get_setting_value('2').substr($this->config->item('company_thumb_upload_path'),3).stripslashes($pressimage));?>
+					?>
                  
            <button id="fb-auth-<?php echo $i;?>" onClick="reply_click(this.id,'<?php echo $title;?>','<?php echo $pressrelease->subtitle;?>','<?php echo $fronturl;?>','<?php echo $shareurl;?>','<?php echo $m;?>')" class="fb-auth" style="border:none;background:none;cursor:pointer">
 			<img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">

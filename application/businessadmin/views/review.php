@@ -231,7 +231,15 @@ else {
 						$titles=str_replace('"','',$titless);
 						$commentss = preg_replace('/[^A-Za-z0-9\-]/',' ',$review->comment);
 						$comment=str_replace('"','',$commentss);
-						$imageurl= $fronturl.'images/ygr_logos.png';
+						$reviewimage=$review->logo;
+						if ($reviewimage=='')
+						{
+							$reviewimages='ygr_logos.png';
+							$imageurl = $this->settings->get_setting_value('2').'images/'.stripslashes($reviewimages);
+						}else
+						{
+						     $imageurl= $this->settings->get_setting_value('2').substr($this->config->item('company_thumb_upload_path'),3).stripslashes($reviewimage);
+					    }
 						$shareurl= $fronturl.$review->seoslug;	
 						$url=urlencode($shareurl);
 						$image=$imageurl;
