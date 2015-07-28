@@ -2,7 +2,7 @@
 	<script type="text/javascript">
 			function reply_click(id,caption,content,name,url,image)
 			{
-				alert(image);
+				
 						
 						var fid=id;
 						var title=caption;
@@ -62,7 +62,7 @@
             //stream publish method
             function streamPublish(caption, description, hrefTitle,name,hrefLink,image, userPrompt)
             {
-               alert(image);
+               
                 FB.ui(
                 {
                     method: 'stream.publish',
