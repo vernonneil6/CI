@@ -190,9 +190,9 @@
            
             $review_site_url = 'complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby'];
             if(strlen($complaints[$i]['comment']) > 137){ 
-                $complaints_content = ucfirst(substr(stripslashes($complaints[$i]['comment']),0,140)."...");                
+                $complaints_content = ucfirst(substr(stripslashes($complaints[$i]['comment']),0,100)."...");                
             }else{
-                $complaints_content = ucfirst(substr(stripslashes($complaints[$i]['comment']),0,137));                
+                $complaints_content = ucfirst(substr(stripslashes($complaints[$i]['comment']),0,100));                
             }
             $content =             
             '<li>

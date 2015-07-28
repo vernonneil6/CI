@@ -2598,7 +2598,7 @@ margin-right:0px;
 .hm_rvw_wrp .reptitle { display: inline-block; width: 82%; vertical-align: top;float:right;margin-bottom: 5px;}
 .hm_rvw_wrp .home_mar_line { float: right;vertical-align: top; width: 82%;margin-bottom: 5px !important;}
 .hm_rvw_wrp .review-head { float: right;text-align: left;width: 82%;}
-.hm_rvw_wrp .reviewspace_new{float:left;clear:both;}
+.hm_rvw_wrp .reviewspace_new{float:left;clear:both; height:40px;}
 .hm_rvw_wrp .user-name {clear: both;float: left; margin-bottom: 5px;}
 .hm_rvw_wrp .view-all {margin-right:0;width:100%;float:right;}
 

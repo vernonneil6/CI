@@ -48,6 +48,7 @@ class Reviews extends CI_Model
 		$this->db->join('company as cm','r.companyid=cm.id','left');
 		$this->db->join('user as u','r.reviewby=u.id','left');
 		$this->db->where('r.status','Enable');
+		$this->db->where("cm.company IS NOT NULL");
 		$this->db->where('u.avatarthum <>','');
 		$this->db->order_by('reviewdate', 'DESC');
 		
