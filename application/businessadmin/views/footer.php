@@ -2,6 +2,7 @@
 	<script type="text/javascript">
 			function reply_click(id,caption,content,name,url,image)
 			{
+				alert(image);
 						
 						var fid=id;
 						var title=caption;
@@ -9,7 +10,7 @@
 						var url=url;
 						var image=image;
 						var name=name;
-						showStream(title,content,title,name,url,url,image)
+						showStream(title,content,title,name,url,image,url)
 			}
 				var button;
 				var userInfo;    
@@ -59,9 +60,9 @@
             }
  
             //stream publish method
-            function streamPublish(caption, description, hrefTitle,name, hrefLink,image, userPrompt)
+            function streamPublish(caption, description, hrefTitle,name,hrefLink,image, userPrompt)
             {
-               
+               alert(image);
                 FB.ui(
                 {
                     method: 'stream.publish',
@@ -72,7 +73,7 @@
                         name: caption,
                         caption: name,
                         description: description,
-                        images: 'http://www.yougotrated.com/images/ygr_logos.png',
+                       // images: 'http://www.yougotrated.com/images/ygr_logos.png',
                         href:  hrefLink
                     },
                     action_links: 
@@ -84,13 +85,13 @@
                 function(response) { });
  
             }
-            function showStream(rtitle,content,rtitle,name, url, url)
+            function showStream(rtitle,content,rtitle,name, url,image, url)
             {
 				
                 FB.api('/me', function(response) 
                 {
                     //console.log(response.id);
-                    streamPublish(rtitle,content,rtitle,name, url, url);
+                    streamPublish(rtitle,content,rtitle,name, url,image, url);
                 });
             }
 		

@@ -505,10 +505,6 @@ else { ?>
     </fieldset>
     <?php echo form_close(); ?> 
     </div>
-      
-      
-    
-    
     <?php if( count($pressreleases) > 0 ) {
 
 	 ?>
@@ -517,8 +513,6 @@ else { ?>
 		<thead>
 			<tr class="top nodrop nodrag">
 			<?php 
-			
-			
 			foreach($fields as $field_name => $field_display): ?>
 		
 			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order sorttitle \"" ?>>
@@ -537,7 +531,6 @@ else { ?>
 			<th>Share On</th>
 			</tr>
 		</thead>
-		
 		<tbody>
 			<?php 
 			$i=0;
@@ -588,7 +581,6 @@ else { ?>
 				<td>
 				<?php 
 					$fronturl='http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';
-					//$fronturl='http://www.yougotrated.writerbin.com/';
 					$shareurl= $fronturl.$pressrelease->seoslug;
 					$title=ucfirst(str_replace("-"," ",$pressrelease->title));
 					$url=urlencode($shareurl);
@@ -597,9 +589,6 @@ else { ?>
            <button id="fb-auth-<?php echo $i;?>" onClick="reply_click(this.id,'<?php echo $title;?>','<?php echo $pressrelease->subtitle;?>','<?php echo $fronturl;?>','<?php echo $shareurl;?>','<?php echo $m;?>')" class="fb-auth" style="border:none;background:none;cursor:pointer">
 			<img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
 		   </button>
-                <!-- <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $title;?>&amp;p[url]=<?php echo $url; ?>&amp;&p[images][0]=<?php echo $m;?>', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)">
-                   <img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
-                </a>-->
                     
                 
                <a title="google+" onClick="window.open('https://plus.google.com/share?url=<?php echo urlencode($shareurl);?>','Google+','width=500,height=400,dependent=yes,resizable=yes,scrollbars=yes,menubar=no,toolbar=no,status=no,directories=no,location=yes');">
