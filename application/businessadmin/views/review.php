@@ -227,8 +227,10 @@ else {
 				<td>  
 					<?php 	
 						$fronturl='http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].'/';
-						$titles = preg_replace('/[^A-Za-z0-9\-]/',' ',$review->reviewtitle);
-						$titles=str_replace('"','',$titles);
+						$titless = preg_replace('/[^A-Za-z0-9\-]/',' ',$review->reviewtitle);
+						$titles=str_replace('"','',$titless);
+						$commentss = preg_replace('/[^A-Za-z0-9\-]/',' ',$review->comment);
+						$comment=str_replace('"','',$commentss);
 						$imageurl=$fronturl.'images/ygr_logos.png';
 						$shareurl= $fronturl.$review->seoslug;	
 						$url=urlencode($shareurl);
@@ -236,7 +238,7 @@ else {
 					?>
 					
        
-        <button id="fb-auth-<?php echo $i;?>" onClick="reply_click(this.id,'<?php echo $titles;?>','<?php echo $review->comment;?>','<?php echo $fronturl;?>','<?php echo $shareurl;?>','<?php echo $image;?>')" class="fb-auth" style="border:none;background:none;cursor:pointer">
+        <button id="fb-auth-<?php echo $i;?>" onClick="reply_click(this.id,'<?php echo $titles;?>','<?php echo $comment;?>','<?php echo $fronturl;?>','<?php echo $shareurl;?>','<?php echo $image;?>')" class="fb-auth" style="border:none;background:none;cursor:pointer">
 			<img width="16" height="17" border="0" src="images/fa.png" alt="fbshare">
 		</button>
        	
@@ -245,7 +247,7 @@ else {
                 </a>-->
 				
                 <a data-content="Sample Text" href="https://plus.google.com/share?url=<?php echo $shareurl;?>&content=sample" title="Google+"><img width="16" height="17" border="0" src="images/go.jpg" alt="googleshare"></a>
-          		<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $shareurl;?>" data-image="<?php echo $imageurl;?>" data-text="<?php echo $review->comment;?>" data-count="none">Tweet</a>
+          		<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $shareurl;?>" data-image="<?php echo $imageurl;?>" data-text="<?php echo $comment;?>" data-count="none">Tweet</a>
 				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>        
 				</td>
 				
