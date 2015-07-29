@@ -990,9 +990,10 @@ i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/YGR_
 h1{text-align:center; margin:40px auto 0 auto;height:86px; padding-bottom:23px; border-bottom:1px solid #999;}
 h1 a{display:inline-block;}
 .dir_rew_wrap{ display: inline-block; margin-top: 90px;  width: 100%;}
-.revw_blck{display:inline-block; float:left; width:100%;}
-.revw_blck_img{width:100px; float:left; display:inline-block; height:130px; margin-right:10px;}
-.revw_blck_cnt{display:inline-block; float:left;margin-bottom: 50px; width: 87%;}
+.revw_blck{display:inline-block; float:left; width:100%;border-radius: 5px;padding: 10px;background: #E0E0E0;margin-bottom:25px;
+  box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.5);}
+.revw_blck_img{width:100px; float:left; display:inline-block; height:100px; margin-right:10px; margin-top:5px;}
+.revw_blck_cnt{display:inline-block; float:left;margin-top: 10px; width: 87%;}
 .revw_blck_cnt h2{font-family:"myriadpro-regular"; font-weight:bold; font-size:36px; margin: 0; color:#0080ff; text-transform:uppercase;line-height:30px; height:30px;float: left;}
 .revw_blck_cnt h2 .rating{width:auto; display:inline-block; float:none;}
 .revw_occupt{background:#333333; height:auto; float:left; width:100%; color:#fff; padding: 5px 3px 5px 10px;}

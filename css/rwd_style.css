@@ -49,7 +49,7 @@ span.stars{
  margin:auto;
 }
 .leftpanelwidth {   
-	width:auto;
+	width:100%;
     text-align: center;
 }
 .rightpanelwidth {
@@ -176,7 +176,7 @@ span.stars{
   width: 95%;
   border-radius: 5px;
   box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.5);}
-#atstbx{ width:320px;margin:0 auto;}
+#atstbx{ width:375px;margin:0 auto;}
 #custom-share1{ display:block !important;float:left;margin:2px; }
 #custom-share1 .addthis_button_facebook_like{ height: 20px;position: relative;}
 #custom-share,.custom-countwrp{ display:none;}
