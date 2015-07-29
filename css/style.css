@@ -1001,7 +1001,7 @@ h1 a{display:inline-block;}
 .revw_occupt p{font-family:"myriadpro-regular"; text-indent:10px; font-weight:bold; font-size:14px; color:#0080ff; margin:0; display:inline; padding-left:3px;}
 .revw_date{font-size:16px; font-family:"myriadpro-regular"; font-weight:bold; color:#ccc; float:right; padding-right:10px; line-height:23px;}
 .revw_desc{display:inline-block; float:left; height:auto; overflow:hidden; font-family:"myriadpro-regular"; line-height:18px; font-size:16px; color:#333; margin-top:10px; padding-bottom:10px;border-bottom:1px solid #999;width:100%;}
-.revw_ratpoint{height:15px; display:inline-block; float:left; margin-top:10px; width:100%;}
+.revw_ratpoint{display:inline-block; float:left; margin-top:10px; width:100%;}
 .revw_ratpoint span{display:inline-block; float:left; line-height:11px;}
 .revw_ratpoint span h5{font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#000; text-transform:uppercase; margin:0;line-height:13px; display:inline-block;}
 .revw_ratpoint span a{font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#286a9a;  text-transform:uppercase; padding:0 8px; border-right:1px solid #ccc;}

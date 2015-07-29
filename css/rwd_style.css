@@ -236,7 +236,7 @@ span.stars{
 .revw_blck_cnt h2{text-align:center;font-size:25px;}
 .reviewverifiedlogo{position:relative;top:10px;padding:0;}
 .pagination{width:92%;padding:0 20px;}
-.revw_ratpoint span h5, .revw_ratpoint span a{font-size:13px;}
+.revw_ratpoint span h5, .revw_ratpoint span a{font-size:11px;padding:0 4px;}
 .revw_occupt span{
 	font-size: 13px;
 }
@@ -358,7 +358,7 @@ span.toggle:before{
 
 @media only screen and (min-width: 440px) and (max-width: 549px)  {
 
-.dir_rew_wrap .revw_blck_cnt{float: right;width: 73%;}
+.dir_rew_wrap .revw_blck_cnt{float: right;width: 70%;}
 .dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
 .dir_rew_wrap .revw_blck_img{float: left;}
 .custom-countwrp1{ margin-left:0px !important;}
@@ -411,7 +411,7 @@ span.toggle:before{
 
 }
 @media only screen and (min-width: 310px) and (max-width: 549px)  {
-
+.revw_blck{width:95%;}
 .reg-row .names{font-size: 16px;width:86% !important;}
 .headersearch .bannertext{font-size:9px;}
 #loading{height:10px;float:none;margin:0 auto; position: relative; z-index: 9999999;}
@@ -535,7 +535,9 @@ span.toggle:before{
 #search_form .headersearchbar{ height:30px;}
 
 }
-
+@media only screen and (max-width: 920px) {
+.cmnt_block{float:left;}
+}
 @media only screen and (max-width: 600px) {
 .side_banners{display:none;}
 }
