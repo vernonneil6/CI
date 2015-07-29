@@ -171,6 +171,11 @@ span.stars{
 }
 
 @media only screen and (min-width: 310px) and (max-width: 770px)  {
+.cmnt_blckwrp{margin-top:20px;}
+.cmnt_blckwrp{background: #E0E0E0;border:none;padding: 10px;
+  width: 95%;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.5);}
 #atstbx{ width:320px;margin:0 auto;}
 #custom-share1{ display:block !important;float:left;margin:2px; }
 #custom-share1 .addthis_button_facebook_like{ height: 20px;position: relative;}
@@ -178,7 +183,7 @@ span.stars{
 .testmnl_cln,.clnt_intr{ float:left;}
 .clnt_intr{ text-align:left;}
 .clnt_name a{ margin-bottom:0px !important; }
-.clnt_intr div{ float:left;margin-left:5px;}
+.clnt_intr div{ float:left;clear:left;}
 .clnt_intr .clnt_pic.photo{float:right;}
 .custom-countwrp1{ display:block !important;margin-bottom:10px;}
 .custom-countwrp1 ul li{margin-bottom:10px;}
