@@ -230,7 +230,7 @@ span.stars{
 .revw_occupt{width:97%;}
 .revw_blck_cnt{width:100%;}
 .vry_logo {float:none;width:auto;text-align:center;/*margin-top:25px;*/}
-.revw_blck_img{display: inline;float:none;width:auto;}
+.revw_blck_img{display: inline;float:none;width:auto;margin-top:30px;}
 .reviewnotverifiedlogo{position:relative;/*top:20px;*/}
 .revw_blck_cnt{margin-bottom:10px;}
 .revw_blck_cnt h2{text-align:center;font-size:25px;}
