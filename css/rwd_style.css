@@ -195,7 +195,8 @@ span.stars{
 .verified_wrp .bsvry_tag.bsntg > p{text-align:center;}
 .verified_wrp .compny_name .vry_rating, .verified_wrp .vry_btn {float:none;clear:both;}
 .coupon_dscrwrp .coupon_dscr{width:auto;}
-
+.verified_wrp .write-file{ width:160px;}
+.verified_wrp .write-file a{float:left;}
 .main_contentarea{width:100%;display: block;}
 .head_bg{width:auto;float:none !important;text-align:center; clear:both;}
 .main_footer, .container{width:auto;padding:0 20px; }
