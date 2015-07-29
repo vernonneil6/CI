@@ -107,7 +107,7 @@ class Coupons extends CI_Model
  	
  	function get_company_bycouponseokeyword($word)
  	{
-		$query = $this->db->get_where('coupon', array('seokeyword' => $word));
+		$query = $this->db->get_where('coupon', array('seoslug' => $word));
 		
 		if ($query->num_rows() > 0)
 		{

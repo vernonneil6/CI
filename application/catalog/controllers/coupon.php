@@ -61,7 +61,8 @@ class Coupon extends CI_Controller {
 		
 		
 		$total= $this->common->get_all_complaints_totaldamage($siteid);
-		$company = $this->coupons->get_company_bycouponseokeyword($this->uri->segment(3));
+		$seokey= $this->uri->segment(1).'/'.$this->uri->segment(2).'/'.$this->uri->segment(3).'/'.$this->uri->segment(4);
+		$company = $this->coupons->get_company_bycouponseokeyword($seokey);
 		$companyname = $this->users->get_company_bysingleid($company['companyid']);
 		if(count($total)>0) {
 		$this->data['total'] = round($total[0]['total']);
