@@ -190,9 +190,9 @@
            
             $review_site_url = 'complaint/viewuser/'.$complaints[$i]['id'].'/'.$complaints[$i]['reviewby'];
             if(strlen($complaints[$i]['comment']) > 137){ 
-                $complaints_content = ucfirst(substr(stripslashes($complaints[$i]['comment']),0,140)."...");                
+                $complaints_content = ucfirst(substr(stripslashes($complaints[$i]['comment']),0,100)."...");                
             }else{
-                $complaints_content = ucfirst(substr(stripslashes($complaints[$i]['comment']),0,137));                
+                $complaints_content = ucfirst(substr(stripslashes($complaints[$i]['comment']),0,100));                
             }
             $content =             
             '<li>
@@ -204,8 +204,7 @@
 					<div class="user-img"> <img style="width:65px;height:65px" src="'.$img_src.'" alt="'.$user['username'].'-YGR-profile-image" title="'.$user['username'].'-YGR-profile-image"> </div>
                     <div class="reptitle">
                         <h2 style="padding: 0px; line-height: unset;"><a title="view Review Detail" class="reviewname home_mar_title" href="'.$siteurl.'">'.$review_detail.'</a></h2>
-                        <span class="datehome">'.$review_date.'</span>
-                        <div class="clear"></div>
+                         <div class="clear"></div>
                     </div>             
                     <div class="home_mar_line" style="margin-top: 0px; margin-bottom: 0px;">
                         '.$star.'

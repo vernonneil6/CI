@@ -493,7 +493,7 @@ input[type="text"].search_txtbox{width:210px; box-shadow:none; height:30px; back
     padding: 5px;
     text-transform: uppercase;
 }
-.vry_rating{float:left; margin-top:10px; margin-left:5px;}
+.vry_rating{float:left; margin-top:10px; margin-left:5px;clear:both;}
 i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/icons.png) -237px -65px no-repeat; margin-right:4px;}
 .vry_btn a:hover
 {
@@ -977,7 +977,7 @@ input[type="text"].bdsrch_txtbx{width:430px; box-shadow:none; height:25px; font-
 /*============ Profile ===========================*/
 
 .bsntvry_logo{float:left; height:auto; width:105px;}
-.bsntvry_title{float:left; height:17px; width:479px; background: url(../images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg) no-repeat; margin-top:17px; position:relative; }
+.bsntvry_title{float:left; width:479px; background: url(../images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg) no-repeat; margin-top:4px; position:relative; }
 .bsntvry_btn{width:80%; float:left;}
 .bsntvry_btn a{float:left; height:20px; margin-right:5px; padding:0 5px; font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; text-transform:uppercase; color:#fff; background:#0080ff;}
 .bsntvry_rating{float:left; margin-top:10px; margin-left:5px;}
@@ -993,15 +993,16 @@ i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/YGR_
 .bus_btm_tag a{color:#0080ff;} 
 .bsntitle{background : none!important; width : auto!important;}
 .bsnntverified{float:left;}
-.bsntg{position : static!important; float:left; padding : 0 0 0 10px;}
+.bsntg{position : static!important; float:left; padding : 0 0 0 10px;clear: left;text-align: center;margin-top: 5px;}
 
 /*============ Business_Review ===========================*/
 h1{text-align:center; margin:40px auto 0 auto;height:86px; padding-bottom:23px; border-bottom:1px solid #999;}
 h1 a{display:inline-block;}
 .dir_rew_wrap{ display: inline-block; margin-top: 90px;  width: 100%;}
-.revw_blck{display:inline-block; float:left; width:100%;}
-.revw_blck_img{width:100px; float:left; display:inline-block; height:130px; margin-right:10px;}
-.revw_blck_cnt{display:inline-block; float:left;margin-bottom: 50px; width: 87%;}
+.revw_blck{display:inline-block; float:left; width:100%;border-radius: 5px;padding: 10px;background: #E0E0E0;margin-bottom:25px;
+  box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.5);}
+.revw_blck_img{width:100px; float:left; display:inline-block; height:100px; margin-right:10px; margin-top:5px;}
+.revw_blck_cnt{display:inline-block; float:left;margin-top: 10px; width: 87%;}
 .revw_blck_cnt h2{font-family:"myriadpro-regular"; font-weight:bold; font-size:36px; margin: 0; color:#0080ff; text-transform:uppercase;line-height:30px; height:30px;float: left;}
 .revw_blck_cnt h2 .rating{width:auto; display:inline-block; float:none;}
 .revw_occupt{background:#333333; height:auto; float:left; width:100%; color:#fff; padding: 5px 3px 5px 10px;}
@@ -1009,7 +1010,7 @@ h1 a{display:inline-block;}
 .revw_occupt p{font-family:"myriadpro-regular"; text-indent:10px; font-weight:bold; font-size:14px; color:#0080ff; margin:0; display:inline; padding-left:3px;}
 .revw_date{font-size:16px; font-family:"myriadpro-regular"; font-weight:bold; color:#ccc; float:right; padding-right:10px; line-height:23px;}
 .revw_desc{display:inline-block; float:left; height:auto; overflow:hidden; font-family:"myriadpro-regular"; line-height:18px; font-size:16px; color:#333; margin-top:10px; padding-bottom:10px;border-bottom:1px solid #999;width:100%;}
-.revw_ratpoint{height:15px; display:inline-block; float:left; margin-top:10px; width:100%;}
+.revw_ratpoint{display:inline-block; float:left; margin-top:10px; width:100%;}
 .revw_ratpoint span{display:inline-block; float:left; line-height:11px;}
 .revw_ratpoint span h5{font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#000; text-transform:uppercase; margin:0;line-height:13px; display:inline-block;}
 .revw_ratpoint span a{font-family:"myriadpro-regular"; font-weight:bold; font-size:16px; color:#286a9a;  text-transform:uppercase; padding:0 8px; border-right:1px solid #ccc;}
@@ -1022,6 +1023,8 @@ h1 a{display:inline-block;}
   float: left;
   width: 50%;
   text-overflow: ellipsis;
+   white-space: nowrap;
+  overflow: hidden;
 }
 .revw_date{
   text-align: right;
@@ -2612,7 +2615,8 @@ margin-right:0px;
 .hm_rvw_wrp .reptitle { display: inline-block; width: 82%; vertical-align: top;float:right;margin-bottom: 5px;}
 .hm_rvw_wrp .home_mar_line { float: right;vertical-align: top; width: 82%;margin-bottom: 5px !important;}
 .hm_rvw_wrp .review-head { float: right;text-align: left;width: 82%;}
-.hm_rvw_wrp .reviewspace_new{float:left;clear:both;}
+
+.hm_rvw_wrp .reviewspace_new{float:left;clear:both;height:40px;}
 .hm_rvw_wrp .user-name {clear: both;float: left; margin-bottom: 5px;}
 .hm_rvw_wrp .view-all {margin-right:0;width:100%;float:right;}
 
@@ -2623,7 +2627,7 @@ margin-right:0px;
 .count-1,.count-2,.count-3,.count-4{display: inline;}
 .add-busi-dir a {background: none repeat scroll 0 0 #2c6a99; border-radius: 15px;color: #fff;padding: 10px 10px 10px;font-size:20px;font-weight: bold;}
 .add-busi-dir{margin: 30px auto 0;text-align: center;}
-
+.ui-autocomplete{ z-index:99999;}
 .headersearch.headertoptext{bottom:60%;margin:0px;}
 .headersearch.headerbottomtext{bottom:25%;margin:0px;}
 .bannertext p{ margin:0px;padding:0px;}

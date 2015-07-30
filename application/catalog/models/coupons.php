@@ -107,20 +107,6 @@ class Coupons extends CI_Model
  	
  	function get_company_bycouponseokeyword($word)
  	{
-		$query = $this->db->get_where('coupon', array('seokeyword' => $word));
-		
-		if ($query->num_rows() > 0)
-		{
-			return $query->row_array();
-		}
-		else
-		{
-			return array();
-		}
- 	}
- 	
- 	function get_coupon_by_seoslug($word)
- 	{
 		$query = $this->db->get_where('coupon', array('seoslug' => $word));
 		
 		if ($query->num_rows() > 0)
@@ -132,6 +118,7 @@ class Coupons extends CI_Model
 			return array();
 		}
  	}
+ 	
 	
 	function get_coupon_bycompanyid($id,$couponid='')
  	{
@@ -276,6 +263,28 @@ class Coupons extends CI_Model
 		$this->db->join('company as cm','c.companyid=cm.id');
 		$this->db->join('category as ct','c.categoryid=ct.id');
 		$this->db->where('c.seokeyword',$word);
+		$this->db->where('c.status','Enable');
+		
+		$query = $this->db->get();
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+ 	
+ 	
+ 	//Getting value for editing
+	function get_coupon_by_seoslug($word)
+ 	{
+		$this->db->select('c.*, cm.company,cm.logo,cm.companyseokeyword,ct.category');
+		$this->db->from('coupon as c');
+		$this->db->join('company as cm','c.companyid=cm.id');
+		$this->db->join('category as ct','c.categoryid=ct.id');
+		$this->db->where('c.seoslug',$word);
 		$this->db->where('c.status','Enable');
 		
 		$query = $this->db->get();

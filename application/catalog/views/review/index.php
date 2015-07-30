@@ -106,7 +106,7 @@
 					}else{  ?>
 					<div class="vry_logo"> 
 						<a href="<?php echo site_url($company_seoslug);?>" title="view company Detail">
-							<img class="reviewverifiedlogo" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($reviews[$i]['company'])); ?>" />
+							<img class="reviewverifiedlogo" src="images/verifiedlogo.png" alt="<?php echo ucfirst(stripslashes($reviews[$i]['company'])); ?>" />
 						</a> 
 					</div>      <?php
 				} ?>            
@@ -209,16 +209,18 @@
 					  <a href="<?php echo site_url('review/add').'/'.$reviews[$i]['companyid'];?>" title="Review This Company" class="dir-searchbtn" style="cursor:pointer !important;">Review It</a>
 					  <?php } ?>              
 				</span>
-				<div class="cmnt_wrp">
-                    <a href="<?php echo $reviews[$i]['seoslug'];?>" title="Add Comment" style="cursor:pointer !important;">
-                            +  Add comment
-                    </a>
+				<div class="cmnt_block">
+					<div class="cmnt_wrp cmnt_1">
+						<a href="<?php echo $reviews[$i]['seoslug'];?>" title="Add Comment" style="cursor:pointer !important;">
+								+  Add comment
+						</a>
+					</div>
+					<div class="cmnt_wrp cmnt_2">
+						<a href="<?php echo site_url('company/reviews/'.$companyseokeyword.'/reviews/coupons/complaints');?>" title="View All" style="cursor:pointer !important;margin-right: 10px;">
+								+   View All
+						</a>
+					</div> 
 	            </div>
-				<div class="cmnt_wrp">
-                    <a href="<?php echo site_url('company/reviews/'.$companyseokeyword.'/reviews/coupons/complaints');?>" title="View All" style="cursor:pointer !important;margin-right: 10px;">
-                            +   View All
-                    </a>
-	            </div> 
 	        </div>
           </div>
         </div>

@@ -38,7 +38,11 @@
         <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?>" /></a> </div>
         <?php  } ?>
 				  
-        <?php if(count($elitemem_status)==0){?>
+       
+        <div class="compny_name">
+          <h1><?php echo $coupons[0]['company'];?></h1>
+         
+		<?php if(count($elitemem_status)==0){?>
        <div class="bsntvry_title bsntitle">
           <img src = <?php echo base_url()."images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg";  ?>  class = "bsnntverified">
           <div class="bsvry_tag bsntg"> <span>IS THIS YOUR BUSINESS?</span>
@@ -48,11 +52,7 @@
         
         <?php }else { ?>
         <div class="vry_title"></div>
-        <?php } ?>
-        <div class="compny_name">
-          <h1><?php echo $coupons[0]['company'];?></h1>
-          <?php 
-
+        <?php } 
 		//$avgstar = $this->common->get_avg_ratings_bycmid($coupons[0]['companyid']);
 		//$avgstar = round($avgstar);
 		?>
@@ -60,7 +60,7 @@
             <span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
           </div>
         </div>
-        <div class="vry_btn"><a href="<?php echo base_url('review/add/'.$coupons[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add');?>" title="File Complaint">FILE COMPLAINT</a></div>
+        <div class="vry_btn write-file"><a href="<?php echo base_url('review/add/'.$coupons[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add');?>" title="File Complaint">FILE COMPLAINT</a></div>
       </div>
       <div class="addthis_native_toolbox"></div>
     <div class="pr_detlwrp">
