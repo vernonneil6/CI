@@ -106,7 +106,7 @@
                     '<span class="' + prefix + '_icon-bar"></span>',
                     '<span class="' + prefix + '_icon-bar"></span>',
                 '</span>',
-            '</' + settings.parentTag + '>'
+            '</' + settings.parentTag + '><span id="slick-nav-welcome" class="welcome-text"></span>'
             ].join('')
         );
         $(menuBar).append($this.btn);

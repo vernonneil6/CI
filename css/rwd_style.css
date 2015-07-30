@@ -29,10 +29,7 @@ td{display:block;}
 .text-content{top:0.5em;font-size:1.5em;}
 
 .headerusername{
-	position: absolute;
-    right: 2em;
-    top: -38px;
-    z-index: 100000;
+	display: none;
 }
 .vryrating{
   width: 127px;
@@ -171,7 +168,7 @@ span.stars{
 }
 
 @media only screen and (min-width: 310px) and (max-width: 770px)  {
-#atstbx{ width:320px;margin:0 auto;}
+#atstbx{ width:100%;margin:0 auto;}
 #custom-share1{ display:block !important;float:left;margin:2px; }
 #custom-share,.custom-countwrp{ display:none;}
 .testmnl_cln,.clnt_intr{ float:left;}

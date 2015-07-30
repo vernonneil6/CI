@@ -79,7 +79,7 @@
       <div class="head_right">
         <?php if( array_key_exists('youg_user',$this->session->userdata) ) { ?>
         <div class="head_right_lnk">
-		<span class="headerusername">Welcome <?php echo $name = $this->session->userdata['youg_user']['name'];?>&nbsp;</span>
+		<span id="headerusername" class="headerusername">Welcome <?php echo $name = $this->session->userdata['youg_user']['name'];?>&nbsp;</span>
 		<div class="headerdashboard"><a href="<?php echo site_url('user');?>" title="Dashboard">Dashboard</a></div>
 		<div class="headerlogout"><a href="<?php echo site_url('user/logout');?>" title="Logout">Logout</a></div>
  	</div>
@@ -152,7 +152,14 @@ foreach($catlist as $row=> $result)
 	
 	$(document).ready(function() {
 		$('.data_table').delay(6000).fadeOut(600);
-		$('#menu').slicknav();
+		$('#menu').slicknav({
+			
+			init: function(){
+				
+				$("#slick-nav-welcome").html($('#headerusername').html());
+			}
+				
+		});
 	});
 	window.onorientationchange = function() { location.reload() };	
 	
