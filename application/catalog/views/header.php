@@ -71,7 +71,12 @@
 	</script>
 <?php } ?>
 </head><body>
-
+</script>
+<script type="text/javascript">
+		$(window).load(function() {
+			$('.flexslider').flexslider();
+		});
+	</script>
 <header class="noscroll-head">
   <div class="container">
     <div class="head_bg">
@@ -114,7 +119,7 @@ foreach($catlist as $row=> $result)
 					$categoryname = preg_replace("/[\s]/", "-", $categoryname);
 	
 	?>
-<li><a href="<?php echo site_url('businessdirectory/category/')."/".$categoryname."/".$result['id'];?>"><?php echo $result['category'];?></a></li>
+<!--<li><a href="<?php echo site_url('businessdirectory/category/')."/".$categoryname."/".$result['id'];?>"><?php echo $result['category'];?></a></li>-->
 <?php } ?>
 </ul></li>
         <li><a href="<?php echo site_url('businessdirectory');?>" title="Directory">Directory</a></li>
