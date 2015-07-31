@@ -4,6 +4,7 @@
 .fadeout {background:#E0E0E0;box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.5);width: auto;}
 table{margin:0 auto;}
 td{display:block;}
+.ui-datepicker-calendar td{display:table-cell;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy{display:inline;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .vry_logo{float:left;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:25px;}
