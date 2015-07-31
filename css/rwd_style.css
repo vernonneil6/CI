@@ -6,9 +6,9 @@ table{margin:0 auto;}
 td{display:block;}
 .ui-datepicker-calendar td{display:table-cell;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy{display:inline;}
-.srch_rslt_left .verified_wrp.srch_rslt_vrfy .vry_logo{float:left;}
+/*.srch_rslt_left .verified_wrp.srch_rslt_vrfy .vry_logo{float:left;}*/
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:25px;}
-.srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name{margin-bottom:5px;margin-top:10px;}
+.srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name{margin-bottom:5px;margin-top:5px;float:left;width:300px;}
 .review-slider, .review-slider-right{float:none;width:100%;}
 .review-slider-right{display: none;}
 #frmcomment > label {float:left;clear:both;}
@@ -199,7 +199,9 @@ span.stars{
 .verified_wrp .bsntvry_title{float:none;height:auto;}
 .verified_wrp .bsnntverified, .verified_wrp .bsntg{float:none;}
 .verified_wrp .bsvry_tag.bsntg > p{text-align:center;}
-.verified_wrp .compny_name .vry_rating, .verified_wrp .vry_btn {float:none;clear:both;}
+.verified_wrp .vry_btn {float:none;clear:both;}
+.verified_wrp.srch_rslt_vrfy .vry_btn{clear:none;}
+.verified_wrp.srch_rslt_vrfy .vry_btn a , .verified_wrp.srch_rslt_vrfy .vry_btn,.verified_wrp .compny_name .vry_rating{ float:left;}
 .coupon_dscrwrp .coupon_dscr{width:auto;}
 .verified_wrp .write-file{ width:160px;}
 .verified_wrp .write-file a{float:left;}
@@ -275,10 +277,9 @@ span.stars{
 .main_bd_srchwrp{text-align:center;width:auto;}
 .serch_result h1{font-size:25px;}
 .verified_wrp a{margin-bottom:10px;}
-.srch_rslt_left .vry_logo{margin-top:0 !important;}
+.srch_rslt_left .vry_logo{margin-top:0 !important;float:left;}
 .review_blocks.feed-right, .review_blocks.feed-left{height:auto;}
 .p_realese_head{width:auto;}
-
 .coupon_wrap .revw_blck_img{display:block;height:auto;margin:0 auto;text-align:center;}
 
 #frmaddcompany .reg-row:first-child{display: inline-block;}

@@ -1157,13 +1157,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .srch_rslt_wrp{ display:inline-block; border-top:1px solid #999999; width:100%;padding-top: 1em;}
 .serch_result h1{}
 .srch_result_blck{ display: inline-block; margin-top: 10px; width: 100%; border-bottom:1px solid #999;}
-.srch_rslt_left{width:510px; float:left; height:auto;}
+.srch_rslt_left{float:left; height:auto;}
 .srch_rslt_right{width:510px; float:left; height:auto; margin-left:10px;}
 .verified_wrp.srch_rslt_vrfy{width:auto;}
 .verified_wrp.srch_rslt_vrfy .vry_title{width:79%;}
 .verified_wrp.srch_rslt_vrfy .compny_name{width:79%;}
 .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:36px; font-family:"myriadpro-regular"; margin:0; float:left;width: 600px;}
-.verified_wrp.srch_rslt_vrfy .vry_btn{width:79%;}
+.verified_wrp.srch_rslt_vrfy .vry_btn{width:175px;}
 .notvry_title{float:left; height:16px; width:261px; background: url(../images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg) no-repeat; margin-top:17px;}
 
 /*============ HOME ===========================*/
