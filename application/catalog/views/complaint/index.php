@@ -8,6 +8,8 @@
       <h1 class="bannertextcoupon"><!--<a href="" title=""><img src="images/complaint_title.png" alt="Business Complaints" title="Business Complaints"></a>-->
    		<span class="bannertextregular">Recent </span>Complaints
      </h1>
+     <!-- Go to www.addthis.com/dashboard to customize your tools -->
+				<div class="addthis_native_toolbox"></div>
       <div class="dir_rew_wrap">
         <?php if(count($complaints)>0){ ?>
         <?php for($i=0; $i<count($complaints); $i++) {
