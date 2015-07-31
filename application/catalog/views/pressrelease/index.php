@@ -66,7 +66,7 @@
 						}else{  ?>
 						<div class="vry_logo"> 
 							<a href="<?php echo site_url($pressreleases[$i]['company_seoslug']);?>" title="view company Detail">
-								<img class="reviewverifiedlogo" src="images/verifiedlogo.jpg" />
+								<img class="reviewverifiedlogo" src="images/verifiedlogo.png" />
 							</a> 
 						</div>      
 				<?php

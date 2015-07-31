@@ -31,7 +31,7 @@
 				  ?>
           <div class="revw_blck_img">
 			  <div class="vry_logo"> 
-				  <a href="<?php echo site_url($complaints[$i]['company_seoslug']);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?>" />
+				  <a href="<?php echo site_url($complaints[$i]['company_seoslug']);?>" title="view company Detail"><img src="images/verifiedlogo.png" class = "reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?>" />
 				  </a> 
 			  </div>
 		  </div>
