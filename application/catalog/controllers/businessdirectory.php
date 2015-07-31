@@ -279,8 +279,8 @@ class Businessdirectory extends CI_Controller {
 			}
 			
 			$this->data['keyword']=$searchcomp;
-			
-			$limit = $this->paging['per_page'];
+			$this->load->library('pagination');
+			$limit =$this->paging['per_page'];
 			$offset = ($this->uri->segment(4) != '') ? $this->uri->segment(4) : 0;
 			
 			//Addingg Setting Result to variable
@@ -512,8 +512,8 @@ class Businessdirectory extends CI_Controller {
 	public function category($catname='',$catid='')
 	{
 			$this->data['catname']=$catname;
-			
-			$limit = $this->paging['per_page'];
+			$this->load->library('pagination');
+			$limit = $this->paging['per_page']=10;
 			$offset = ($this->uri->segment(5) != '') ? $this->uri->segment(5) : 0;
 			//Addingg Setting Result to variable
 			$this->data['companies'] = $this->common->search_company_catid($catid,$limit,$offset);
