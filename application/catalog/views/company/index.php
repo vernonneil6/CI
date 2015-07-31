@@ -17,7 +17,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
-		
+
 		$('#horizontalTab').easyResponsiveTabs({
 			type: 'default', //Types: default, vertical, accordion           
 			width: 'auto', //auto or any width like 600px
@@ -32,7 +32,7 @@
 			}
 		});
 		
-		$('h2[aria-controls="tab_item-0"]').click();
+		$('li[aria-controls="tab_item-0"]').click();
 		
 		$( ".stars" ).each(function() { 
 			// Get the value
