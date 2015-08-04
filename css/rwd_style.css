@@ -27,6 +27,7 @@ td{display:block;}
 .compny_name h1{float:none;}
 } 
 @media only screen and (max-width: 771px){
+.coupon_wrap .revw_blck_cnt h2 {width:100%;text-align:left;}
 .text-content{top:0.5em;font-size:1.5em;}
 
 .headerusername{
@@ -64,6 +65,10 @@ span.stars{
 
 }
 @media only screen and (min-width: 771px) and (max-width: 1050px){
+.revw_blck .revw_blck_cnt .revw_ratpoint .cmnt_block{ clear: both;float: left;left: 25%;position: relative;}
+.compli_detail .compny_name{text-align:left;padding-left: 10px;}
+.compli_detail .compny_name .vry_btn{margin:0;}
+
 .left_panel .business-img a img{width:100%;}
 .verified_wrp .compny_name{width:80% !important;}
 /*.verified_wrp .compny_name > h1 {text-align: left !important;}*/
@@ -119,7 +124,7 @@ span.stars{
 .verified_wrp.srch_rslt_vrfy .compny_name h2{text-align:left;}
 .verified_wrp.srch_rslt_vrfy{width:130px;}
 
-.revw_occupt span a{max-width:550px !important;}
+.revw_occupt span a{max-width:550px !important;display:block;}
 .p_realese_head{width:auto;}
 
 #frmcompany {margin:0;}
@@ -316,10 +321,11 @@ span.toggle:before{
 .pr_countwrp ul{ width:330px; margin:0 auto;}
 }
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
+.revw_blck{width:96%;}
 .reg-row .names {font-size: 20px;}
 .dir_rew_wrap .revw_blck_cnt{float: right;width: 78%;}
 .dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
-.dir_rew_wrap .revw_blck_img{float: left;}
+.dir_rew_wrap .revw_blck_img{float: left;margin-right:7px;}
 
 .txt_box_complaint{width:488px;}
 .revw_date{
@@ -413,7 +419,10 @@ span.toggle:before{
 
 }
 @media only screen and (min-width: 310px) and (max-width: 549px)  {
-.revw_blck{width:95%;}
+.cmnt_wrp.cmnt_1, .cmnt_wrp.cmnt_2 {padding-left:7px;}
+
+.revw_blck .revw_blck_cnt .revw_desc {text-align:justify;}
+.revw_blck{width:93%;}
 .reg-row .names{font-size: 16px;width:86% !important;}
 .headersearch .bannertext{font-size:9px;}
 #loading{height:10px;float:none;margin:0 auto; position: relative; z-index: 9999999;}
@@ -432,6 +441,7 @@ span.toggle:before{
 }
 
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
+.resp-tab-content .review_block{width:30%;}
 
 .add-busi-dir a {font-size: 20px;}
 
@@ -444,7 +454,7 @@ span.toggle:before{
 
 .dir_rew_wrap .revw_blck_cnt{float: right;width: 70%;}
 .dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
-.dir_rew_wrap .revw_blck_img{float: left;}
+.dir_rew_wrap .revw_blck_img{float: left;margin-right: 5px;}
 .dir_rew_wrap .reviewverifiedlogo, .dir_rew_wrap .reviewnotverifiedlogo{height:80px;}
 .dir_rew_wrap .revw_occupt{width:93%; font-size:13px;}
 
@@ -461,7 +471,7 @@ span.toggle:before{
 .review-slider ul{padding:0 0 0 0px;}
 .hm_rvw_wrp .home_right { padding: 10px 3px 0 13px;}
 .hm_rvw_wrp .reptitle,.hm_rvw_wrp .home_mar_line,.hm_rvw_wrp .home_mar_line, .hm_rvw_wrp .review-head{width:70%;}
-.container{width:95%;padding:0px; }
+.container{width:311px;padding:0px; }
 .headersearch{width:311px;}
 .bannertext{height:auto;}
 .revw_ratpoint span h5{display: block !important;margin-bottom:5px;}

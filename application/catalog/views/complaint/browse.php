@@ -17,7 +17,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
 </script>
 <section class="container">
   <section class="main_contentarea">
-    <div class="verified_wrp pr_rwrp">
+    <div class="verified_wrp pr_rwrp compli_detail">
         <?php if(count($elitemem_status)==0){?>
         <div class="vry_logo verified_browse"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class = "reviewnotverifiedlogos" alt="<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>" /></a> </div>
         <?php }else{
