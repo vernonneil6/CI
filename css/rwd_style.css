@@ -70,9 +70,9 @@ span.stars{
 .compli_detail .compny_name .vry_btn{margin:0;}
 
 .left_panel .business-img a img{width:100%;}
-.verified_wrp .compny_name{width:80% !important;}
-/*.verified_wrp .compny_name > h1 {text-align: left !important;}*/
-.verified_wrp .vry_logo {float: left !important;}
+/*.verified_wrp .compny_name{width:80% !important;}
+.verified_wrp .compny_name > h1 {text-align: left !important;}
+.verified_wrp .vry_logo {float: left !important;}*/
 .coupon_dscrwrp .coupon_dscr{width:auto;}
 .menu ul{ margin:0 auto;width:677px;}
 .dis_width .company{padding-top:0;}
@@ -441,7 +441,7 @@ span.toggle:before{
 }
 
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
-.resp-tab-content .review_block{width:30%;}
+.resp-tab-content .review_block{width:92%;}
 
 .add-busi-dir a {font-size: 20px;}
 

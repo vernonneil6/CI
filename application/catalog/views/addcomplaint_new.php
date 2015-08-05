@@ -58,11 +58,10 @@
 </script>
 <script>		 
 						 $(document).ready(function(){
-							$('#datecompany').datepicker({
-							//	dateFormat : 'mm/dd/yy', maxDate: new Date
-
+							$('#datecompany').datepicker({	//	dateFormat : 'mm/dd/yy', maxDate: new Date 
 							});
-										
+							$('#transdate').datepicker({	});		
+							
 							$("#btncompany").click(function () {
 
 							 
