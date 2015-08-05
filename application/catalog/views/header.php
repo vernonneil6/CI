@@ -106,7 +106,7 @@
          <!--<li><a href="<?php echo base_url();?>" title="Home">Home<span><span></a> </li>-->
         <li><a href="#" title="Categories">Categories</a>
 <ul>
-<?php $catlist = $this->common->get_all_categorys('1','category','ASC'); 
+<?php $catlist = $this->common->get_all_categorys_menu('1','category','ASC'); 
 foreach($catlist as $row=> $result)
 {
 					//lower case everything
@@ -119,7 +119,7 @@ foreach($catlist as $row=> $result)
 					$categoryname = preg_replace("/[\s]/", "-", $categoryname);
 	
 	?>
-<!--<li><a href="<?php echo site_url('businessdirectory/category/')."/".$categoryname."/".$result['id'];?>"><?php echo $result['category'];?></a></li>-->
+<li><a href="<?php echo site_url('businessdirectory/category/')."/".$categoryname."/".$result['id'];?>"><?php echo $result['category'];?></a></li>
 <?php } ?>
 </ul></li>
         <li><a href="<?php echo site_url('businessdirectory');?>" title="Directory">Directory</a></li>

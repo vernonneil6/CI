@@ -264,6 +264,40 @@ Class Common extends CI_Model
 			return array();
 		}
  	}
+ 	
+ 	
+ 	function get_all_categorys_menu($siteid,$sortby = 'category',$orderby = 'ASC')
+ 	{
+		switch($sortby)
+		{
+			case 'category' : $sortby = 'category';break;
+			default 	    : $sortby = 'category';break;
+		}
+		
+		//Ordering Data
+		//$this->db->order_by($sortby,$orderby);
+		
+		//Executing Query
+		$query = $this->db->get_where('category',array('status'=>'Enable','websiteid'=>$siteid),20);
+		
+		if ($query->num_rows() > 0)
+		{
+			$result = $query->result_array();
+			function sortByOrder($result, $b) {
+				return strcmp( $result['category'], $b['category']);
+			}
+			usort($result, 'sortByOrder');
+			return $result;
+		}
+		else
+		{
+			return array();
+		}
+ 	}
+ 	
+ 	
+ 	
+ 	
 	function get_relation_byciduid($companyid,$userid)
 	{
 		$query = $this->db->get_where('youg_relation',array('companyid'=> $companyid,'userid' => $userid));
