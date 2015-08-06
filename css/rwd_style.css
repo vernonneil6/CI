@@ -448,6 +448,12 @@ span.toggle:before{
 }
 
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
+.serch_result .notverfiedimg{width:200px;}
+.serch_result .clickhere{width:155px;}
+.serch_result .contct_dtl {width:75%;}
+.serch_result .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2 {width:205px;}
+.serch_result .cmpn_name {overflow: hidden;text-overflow: ellipsis; white-space: nowrap;}
+
 .resp-tab-content .review_block{width:92%;}
 
 .add-busi-dir a {font-size: 20px;}

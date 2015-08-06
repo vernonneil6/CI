@@ -2649,3 +2649,8 @@ margin:0px;-webkit-margin-before: 0em;
 
 .coupons .pr_detlwrp{margin-top: 15px;}
 
+.serch_result .verified_wrp.srch_rslt_vrfy .compny_name h2{width:100%;}
+.serch_result .notverfiedimg { margin-top: 10px !important;}
+.serch_result .vry_rating {margin-top: 0;}
+.serch_result .srh_rght{clear:both;}
+.serch_result .Flexible-container {padding-top:0;}
