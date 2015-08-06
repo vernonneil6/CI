@@ -24,7 +24,7 @@
           </script>
 
 <section class="container">
-  <section class="main_contentarea">
+  <section class="main_contentarea coupons">
     <?php  	$avgstar = $this->common->get_avg_ratings_bycmid($coupons[0]['companyid']);
 			$itemproaverage = $avgstar;
 			$avgstar = round($avgstar);
@@ -51,18 +51,18 @@
         </div>
         
         <?php }else { ?>
-        <div class="vry_title"></div>
-        <?php } 
+		<div class="vrytitle verifytag">YouGotRated VERIFIED MERCHANT</div>
+         <?php } 
 		//$avgstar = $this->common->get_avg_ratings_bycmid($coupons[0]['companyid']);
 		//$avgstar = round($avgstar);
 		?>
-          <div class="vry_rating ratess">
+          <div class="vry_rating ratess coupon_star">
             <span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
           </div>
         </div>
-        <div class="vry_btn write-file"><a href="<?php echo base_url('review/add/'.$coupons[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add');?>" title="File Complaint">FILE COMPLAINT</a></div>
+        <div class="vry_btn write-file coupon_detail"><a href="<?php echo base_url('review/add/'.$coupons[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add');?>" title="File Complaint">FILE COMPLAINT</a></div>
       </div>
-      <div class="addthis_native_toolbox"></div>
+      <div class="addthis_native_toolbox" id="coupon_share"></div>
     <div class="pr_detlwrp">
       <div class="titl_pr_rel">
         <div class="pre_rls_rating"> </div>
