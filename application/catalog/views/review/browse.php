@@ -3,48 +3,50 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($review[0]['companyi
 $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
 ?><script type="text/javascript" language="javascript">				  
 		  function countme(rid,vote)
-		  {
-			  $.ajax({
+		    {
+			  $.ajax
+			   ({
 				  type 				: "POST",
 				  url 				: "<?php echo site_url('review/countme');?>",
-				  dataType 		: "json",
+				  dataType 		    : "json",
 				  data				: {reviewid:rid,vote : vote},
 				  cache				: false,
 				  success			: function(data)
 									  {	
-										$('#'+vote+rid).html(data.total);
+										$('.'+vote).html(data.total);
 									
 									  }
-			   });
-		  }
+			    });
+		    }
 		  function check(ip,rid,vote)
-		  {
+		    {
 			  
-			  $.ajax({
+			  $.ajax
+			   ({
 				  type 				: "POST",
 				  url 				: "<?php echo site_url('review/checkvote');?>",
-				  dataType 		: "json",
+				  dataType 		    : "json",
 				  data				: { ip:ip,reviewid:rid,vote : vote},
 				  cache				: false,
 				  success			: function(data)
 									  {	
 										if(data.message == 'deleted')
 										{
-										   $('#'+vote+'a'+'_'+rid).removeClass('vote-disable');
-										   $('#'+vote+'a'+'_'+rid).addClass('vote');
+										   $('.'+vote).removeClass('vote-disable');
+										   $('.'+vote).addClass('vote');
 										}
 										if(data.message == 'added')
 										{
-										   $('#'+vote+'a'+'_'+rid).removeClass('vote');
-										   $('#'+vote+'a'+'_'+rid).addClass('vote-disable');										   										  
+										   $('.'+vote).removeClass('vote');
+										   $('.'+vote).addClass('vote-disable');										   										  
 										}
 										countme(rid,vote);
 									  }
 				  
 									  
-			   });
+			    });
 			  
-		  }
+		    }
 
 		  </script>
 <script type="text/javascript" language="javascript">
@@ -123,9 +125,9 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
                  
               
               });
+            
           </script>
 <?php $company=$this->reviews->get_company_byid($review[0]['companyid']);?>
-
 <section class="container">
   <section class="main_contentarea">
     <div class="verified_wrp pr_rwrp verfs_top">
@@ -171,7 +173,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
 		$avgstar = $this->common->get_avg_ratings_bycmid($review[0]['companyid']);
 		$avgstar = round($avgstar);
 		;?>
-          <div class="vry_rating reviewrates in_block">
+          <div class="vry_rating reviewrates in_block custom-top-rating">
 			<div class ="count-<?php echo $avgstar?>">  
             <?php for($r=0;$r<($avgstar);$r++){?>
             <i class="vry_rat_icn"></i>
@@ -211,33 +213,79 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
         </div>
        
        
-       
+				<script>
+					<?php $ip = $_SERVER['REMOTE_ADDR'];  ?>
+					$(function()
+					{ 
+					   $(".helpfuls").click(function() {
+						 var vote = 'helpful';
+						 var reviewid = $(this).attr('reviewid');
+						 check('<?php echo $ip;?>',reviewid,vote);
+					   });
+					   $(".funnys").click(function() {
+						 var vote = 'funny';
+						 var reviewid = $(this).attr('reviewid');
+						 check('<?php echo $ip;?>',reviewid,vote);
+					   });
+					   $(".agrees").click(function() {
+						 var vote = 'agree';
+						 var reviewid = $(this).attr('reviewid');
+						 check('<?php echo $ip;?>',reviewid,vote);
+						 countme(reviewid,'disagree');
+						 $('.disagree').removeClass('vote-disable');
+						 $('.disagree').addClass('vote'); 
+					   });
+					   $(".disagrees").click(function() {
+						 var vote = 'disagree';
+						 var reviewid = $(this).attr('reviewid');
+						 check('<?php echo $ip;?>',reviewid,vote);
+						 countme(reviewid,'agree');
+						 $('.agree').removeClass('vote-disable');
+						 $('.agree').addClass('vote'); 
+					   });
+					});
+				</script>
        
         <div class="pr_countwrp custom-countwrp">
           <ul>
             <li>
-              <div class="cnt_content cnt_cnet"> <span>HELPFUL</span>
-                <p><?php 
-				
-				echo $helpful = $this->common->get_votes($review[0]['id'],'helpful');?>
-				
+              <div class="cnt_content cnt_cnet"> <span class="helpfuls" style="cursor:pointer !important;" reviewid="<?php echo $review[0]['id'];?>">HELPFUL</span>
+                <p>
+				 <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'helpful') == 'true'){ ?>
+					  <a class="vote-disable helpful" reviewid="<?php echo $review[0]['id'];?>" title="Helpful" ><b id="helpful<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'helpful');?></b></a>
+					  <?php }else{ ?>
+					  <a class="vote helpful"  reviewid="<?php echo $review[0]['id'];?>" title="Helpful" ><?php echo $this->reviews->getcount($reviews[$i]['id'],'helpful');?></a>
+					  <?php } ?>
                 
                 </p>
               </div>
             </li>
             <li>
-              <div class="cnt_content cnt_cnet"> <span>Funny</span>
-                <p><?php echo $funny = $this->common->get_votes($review[0]['id'],'funny');?></p>
+              <div class="cnt_content cnt_cnet"> <span class="funnys" reviewid="<?php echo $review[0]['id'];?>" style="cursor:pointer !important;">Funny</span>
+               <p> <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'funny') == 'true'){?>
+					  <a class="vote-disable funny" title="funny" reviewid="<?php echo $review[0]['id'];?>" ><b id="funny<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'funny');?></b> Funny</a>
+					  <?php }else{ ?>
+					  <a class="vote funny" title="funny" reviewid="<?php echo $review[0]['id'];?>" ><?php echo $this->reviews->getcount($review[0]['id'],'funny');?></a>
+				   <?php } ?>
+			  </p>
               </div>
             </li>
             <li>
-              <div class="cnt_content cnt_cnet"> <span>Agree</span>
-                <p><?php echo $agree = $this->common->get_votes($review[0]['id'],'agree');?></p>
+              <div class="cnt_content cnt_cnet"> <span class="agrees" reviewid="<?php echo $review[0]['id'];?>" style="cursor:pointer !important;">Agree</span>
+                <p><?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'agree') == 'true'){?>
+					  <a class="vote-disable agree" reviewid="<?php echo $review[0]['id'];?>" title="Agree" ><b id="agree<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'agree');?></b> Agree</a>
+					  <?php }else{ ?>
+					  <a class="vote agree" reviewid="<?php echo $review[0]['id'];?>" title="Agree" ><?php echo $this->reviews->getcount($review[0]['id'],'agree');?></a>
+					  <?php } ?></p>
               </div>
             </li>
             <li>
-              <div class="cnt_content cnt_cnet"> <span>Disagree</span>
-                <p><?php echo $disagree = $this->common->get_votes($review[0]['id'],'disagree');?></p>
+              <div class="cnt_content cnt_cnet"> <span class="disagrees" reviewid="<?php echo $review[0]['id'];?>" style="cursor:pointer !important;">Disagree</span>
+                <p> <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'disagree') == 'true'){?>
+					  <a class="vote-disable disagree" title="disagree" reviewid="<?php echo $review[0]['id'];?>" ><b id="disagree<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'disagree');?></b> Disagree</a>
+					  <?php }else{ ?>
+					  <a class="vote disagree" title="disagree" reviewid="<?php echo $review[0]['id'];?>" ><?php echo $this->reviews->getcount($review[0]['id'],'disagree');?></a>
+					  <?php } ?></p>
               </div>
             </li>
           </ul>
@@ -272,28 +320,46 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
            <div class="pr_countwrp custom-countwrp1" style="display:none;">
           <ul>
             <li>
-              <div class="cnt_content cnt_cnet"> <span>HELPFUL</span>
+              <div class="cnt_content cnt_cnet"> <span class="helpfuls" style="cursor:pointer !important;" reviewid="<?php echo $review[0]['id'];?>">HELPFUL</span>
                 <p><?php 
 				
-				echo $helpful = $this->common->get_votes($review[0]['id'],'helpful');?>
-				
+				//echo $helpful = $this->common->get_votes($review[0]['id'],'helpful');
+				//echo $this->reviews->getcount($review[0]['id'],'helpful');?>
+				 <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'helpful') == 'true'){ ?>
+					  <a class="vote-disable helpful" reviewid="<?php echo $review[0]['id'];?>" title="Helpful" ><b id="helpful<?php echo $reviews[$i]['id'];?>"><?php echo $this->reviews->getcount($reviews[$i]['id'],'helpful');?></b></a>
+					  <?php }else{ ?>
+					  <a class="vote helpful" reviewid="<?php echo $review[0]['id'];?>" title="Helpful" ><?php echo $this->reviews->getcount($reviews[$i]['id'],'helpful');?></a>
+					  <?php } ?>
                 
                 </p>
               </div>
             </li>
             <li>
-              <div class="cnt_content cnt_cnet"> <span>Funny</span>
-                <p><?php echo $funny = $this->common->get_votes($review[0]['id'],'funny');?></p>
+              <div class="cnt_content cnt_cnet"> <span class="funnys" reviewid="<?php echo $review[0]['id'];?>" style="cursor:pointer !important;">funny</span>
+                <p> <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'funny') == 'true'){?>
+					  <a class="vote-disable funny" title="funny" reviewid="<?php echo $review[0]['id'];?>" ><b id="funny<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'funny');?></b> Funny</a>
+					  <?php }else{ ?>
+					  <a class="vote funny" title="funny" reviewid="<?php echo $review[0]['id'];?>" ><?php echo $this->reviews->getcount($review[0]['id'],'funny');?></a>
+					  <?php } ?>
+					  </p>
               </div>
             </li>
             <li>
-              <div class="cnt_content cnt_cnet"> <span>Agree</span>
-                <p><?php echo $agree = $this->common->get_votes($review[0]['id'],'agree');?></p>
+              <div class="cnt_content cnt_cnet"> <span class="agrees" reviewid="<?php echo $review[0]['id'];?>" style="cursor:pointer !important;">Agree</span>
+                 <p><?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'agree') == 'true'){?>
+					  <a class="vote-disable agree" reviewid="<?php echo $review[0]['id'];?>" title="Agree" ><b id="agree<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'agree');?></b> Agree</a>
+					  <?php }else{ ?>
+					  <a class="vote agree" reviewid="<?php echo $review[0]['id'];?>" title="Agree" ><?php echo $this->reviews->getcount($review[0]['id'],'agree');?></a>
+					  <?php } ?></p>
               </div>
             </li>
             <li>
-              <div class="cnt_content cnt_cnet"> <span>Disagree</span>
-                <p><?php echo $disagree = $this->common->get_votes($review[0]['id'],'disagree');?></p>
+              <div class="cnt_content cnt_cnet"> <span class="disagrees" reviewid="<?php echo $review[0]['id'];?>" style="cursor:pointer !important;">Disagree</span>
+                <p> <?php if($this->reviews->check_vote($ip,$reviews[$i]['id'],'disagree') == 'true'){?>
+					  <a class="vote-disable disagree" title="disagree" reviewid="<?php echo $review[0]['id'];?>" ><b id="disagree<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'disagree');?></b> Disagree</a>
+					  <?php }else{ ?>
+					  <a class="vote disagree" title="disagree" reviewid="<?php echo $review[0]['id'];?>" ><?php echo $this->reviews->getcount($review[0]['id'],'disagree');?></a>
+					  <?php } ?></p>
               </div>
             </li>
           </ul>

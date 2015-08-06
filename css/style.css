@@ -996,6 +996,7 @@ i.vry_rat_icn{width:23px; height:23px; float:left; background:url(../images/YGR_
 .bsntg{position : static!important; float:left; padding : 0 0 0 10px;clear: left;text-align: center;margin-top: 5px;}
 
 /*============ Business_Review ===========================*/
+.vote , .vote-disable{ color:#fff;}
 h1{text-align:center; margin:40px auto 0 auto;height:86px; padding-bottom:23px; border-bottom:1px solid #999;}
 h1 a{display:inline-block;}
 .dir_rew_wrap{ display: inline-block; margin-top: 90px;  width: 100%;}
