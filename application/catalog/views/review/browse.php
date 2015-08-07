@@ -263,7 +263,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
             <li>
               <div class="cnt_content cnt_cnet"> <span class="funnys" reviewid="<?php echo $review[0]['id'];?>" style="cursor:pointer !important;">Funny</span>
                <p> <?php if($this->reviews->check_vote($ip,$review[0]['id'],'funny') == 'true'){?>
-					  <a class="vote-disable funny" title="funny" reviewid="<?php echo $review[0]['id'];?>" ><b id="funny<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'funny');?></b> Funny</a>
+					  <a class="vote-disable funny" title="funny" reviewid="<?php echo $review[0]['id'];?>" ><b id="funny<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'funny');?></b> </a>
 					  <?php }else{ ?>
 					  <a class="vote funny" title="funny" reviewid="<?php echo $review[0]['id'];?>" ><?php echo $this->reviews->getcount($review[0]['id'],'funny');?></a>
 				   <?php } ?>
@@ -273,7 +273,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
             <li>
               <div class="cnt_content cnt_cnet"> <span class="agrees" reviewid="<?php echo $review[0]['id'];?>" style="cursor:pointer !important;">Agree</span>
                 <p><?php if($this->reviews->check_vote($ip,$review[0]['id'],'agree') == 'true'){?>
-					  <a class="vote-disable agree" reviewid="<?php echo $review[0]['id'];?>" title="Agree" ><b id="agree<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'agree');?></b> Agree</a>
+					  <a class="vote-disable agree" reviewid="<?php echo $review[0]['id'];?>" title="Agree" ><b id="agree<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'agree');?></b> </a>
 					  <?php }else{ ?>
 					  <a class="vote agree" reviewid="<?php echo $review[0]['id'];?>" title="Agree" ><?php echo $this->reviews->getcount($review[0]['id'],'agree');?></a>
 					  <?php } ?></p>
@@ -282,7 +282,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
             <li>
               <div class="cnt_content cnt_cnet"> <span class="disagrees" reviewid="<?php echo $review[0]['id'];?>" style="cursor:pointer !important;">Disagree</span>
                 <p> <?php if($this->reviews->check_vote($ip,$review[0]['id'],'disagree') == 'true'){?>
-					  <a class="vote-disable disagree" title="disagree" reviewid="<?php echo $review[0]['id'];?>" ><b id="disagree<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'disagree');?></b> Disagree</a>
+					  <a class="vote-disable disagree" title="disagree" reviewid="<?php echo $review[0]['id'];?>" ><b id="disagree<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'disagree');?></b> </a>
 					  <?php }else{ ?>
 					  <a class="vote disagree" title="disagree" reviewid="<?php echo $review[0]['id'];?>" ><?php echo $this->reviews->getcount($review[0]['id'],'disagree');?></a>
 					  <?php } ?></p>
@@ -337,7 +337,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
             <li>
               <div class="cnt_content cnt_cnet"> <span class="funnys" reviewid="<?php echo $review[0]['id'];?>" style="cursor:pointer !important;">funny</span>
                 <p> <?php if($this->reviews->check_vote($ip,$review[0]['id'],'funny') == 'true'){?>
-					  <a class="vote-disable funny" title="funny" reviewid="<?php echo $review[0]['id'];?>" ><b id="funny<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'funny');?></b> Funny</a>
+					  <a class="vote-disable funny" title="funny" reviewid="<?php echo $review[0]['id'];?>" ><b id="funny<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'funny');?></b> </a>
 					  <?php }else{ ?>
 					  <a class="vote funny" title="funny" reviewid="<?php echo $review[0]['id'];?>" ><?php echo $this->reviews->getcount($review[0]['id'],'funny');?></a>
 					  <?php } ?>
@@ -347,7 +347,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
             <li>
               <div class="cnt_content cnt_cnet"> <span class="agrees" reviewid="<?php echo $review[0]['id'];?>" style="cursor:pointer !important;">Agree</span>
                  <p><?php if($this->reviews->check_vote($ip,$review[0]['id'],'agree') == 'true'){?>
-					  <a class="vote-disable agree" reviewid="<?php echo $review[0]['id'];?>" title="Agree" ><b id="agree<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'agree');?></b> Agree</a>
+					  <a class="vote-disable agree" reviewid="<?php echo $review[0]['id'];?>" title="Agree" ><b id="agree<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'agree');?></b> </a>
 					  <?php }else{ ?>
 					  <a class="vote agree" reviewid="<?php echo $review[0]['id'];?>" title="Agree" ><?php echo $this->reviews->getcount($review[0]['id'],'agree');?></a>
 					  <?php } ?></p>
@@ -356,7 +356,7 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
             <li>
               <div class="cnt_content cnt_cnet"> <span class="disagrees" reviewid="<?php echo $review[0]['id'];?>" style="cursor:pointer !important;">Disagree</span>
                 <p> <?php if($this->reviews->check_vote($ip,$review[0]['id'],'disagree') == 'true'){?>
-					  <a class="vote-disable disagree" title="disagree" reviewid="<?php echo $review[0]['id'];?>" ><b id="disagree<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'disagree');?></b> Disagree</a>
+					  <a class="vote-disable disagree" title="disagree" reviewid="<?php echo $review[0]['id'];?>" ><b id="disagree<?php echo $review[0]['id'];?>"><?php echo $this->reviews->getcount($review[0]['id'],'disagree');?></b> </a>
 					  <?php }else{ ?>
 					  <a class="vote disagree" title="disagree" reviewid="<?php echo $review[0]['id'];?>" ><?php echo $this->reviews->getcount($review[0]['id'],'disagree');?></a>
 					  <?php } ?></p>
