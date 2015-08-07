@@ -17,7 +17,14 @@ td{display:block;}
 .reg-row .form-circle{margin-left:0;}
 .reg-row .form_left > label { bottom: 20px; left: 65px; position: relative;width:auto;}
 .transaction .form_left .reg_txt_box{clear: both;display: block;}
+.coupon_star{width:127px !important; float:none !important;margin:0 auto;}
+.coupon_detail{width:160px !important; float:none !important;margin:0 auto;}
+#coupon_share .addthis-animated{margin:0 auto !important;}
 
+.coupons .bsntvry_title{float:none;}
+.coupons .bsnntverified { clear: both;display: block;float: none;margin: 0 auto;}
+.coupons .bsntg { float:none;padding:0;}
+.coupons .bsvry_tag p{text-align: center;}
 } 
 @media only screen and (max-width: 771px){
 .text-content{top:0.5em;font-size:1.5em;}
@@ -441,6 +448,12 @@ span.toggle:before{
 }
 
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
+.serch_result .notverfiedimg{width:200px;}
+.serch_result .clickhere{width:155px;}
+.serch_result .contct_dtl {width:75%;}
+.serch_result .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2 {width:205px;}
+.serch_result .cmpn_name {overflow: hidden;text-overflow: ellipsis; white-space: nowrap;}
+
 .resp-tab-content .review_block{width:92%;}
 
 .add-busi-dir a {font-size: 20px;}

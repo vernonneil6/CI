@@ -2647,5 +2647,12 @@ margin:0px;-webkit-margin-before: 0em;
 
 .srch_rslt_wrp #frmcompany{ margin-bottom: 15px; margin-top: 55px;}
 
+#coupon_share .addthis-animated { margin-left: 7.4em !important;}
 
+.coupons .pr_detlwrp{margin-top: 15px;}
 
+.serch_result .verified_wrp.srch_rslt_vrfy .compny_name h2{width:100%;}
+.serch_result .notverfiedimg { margin-top: 10px !important;}
+.serch_result .vry_rating {margin-top: 0;}
+.serch_result .srh_rght{clear:both;}
+.serch_result .Flexible-container {padding-top:0;}
