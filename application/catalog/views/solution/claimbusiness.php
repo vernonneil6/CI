@@ -99,25 +99,36 @@
 				<div class="business-info">
 					<label>BUSINESS ADDRESS INFORMATION: </label>
 					<div class="reg_fld">WHAT IS YOUR COMPANY ADDRESS?</div>
-					<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress1" id="streetaddress1" maxlength="200" />
+					<input type="text" class="reg_txt_box-lg" placeholder="ADDRESS LINE" name="streetaddress1" id="streetaddress1" maxlength="200" value="<?php echo $showdata['streetaddress']; ?>" />
 					<br/>           
 					<div style="float:left;">
-					<?php echo form_dropdown('country1',$selcon,'','id="country1" class="seldrop" onchange=getstates(this.value,"state1","#selstatediv1","");');?>
+					<?php echo form_dropdown('country1',$selcon,$showdata['country'],'id="country1" class="seldrop" onchange=getstates(this.value,"state1","#selstatediv1","");');?>
 					<input type="hidden" name="countryname1" id="countryname1"/>
 					</div>
+					
 					<?php 
-					$selstate=array(''=>'--Select State--');
+					if($showdata['state']){
+						$selstate=array($showdata['state']=>$showdata['state']);
+					}else
+					{
+						$selstate=array(''=>'--Select State--');
+					}
 					?>
+					<script>
+						//getstates('<?php echo $showdata['country'];?>',"state1","#selstatediv1","");
+						
+						</script>
+						
 					<div id="selstatediv1" >
-					<?php echo form_dropdown('state1',$selstate,'','id="state1" class="seldrop"');?>
+					 <?php  echo form_dropdown('state1',$selstate,$showdata['state'],'id="state1" class="seldrop"');  ?>
 					</div>
 					<br/>
 					<div style="clear:both"></div>
-					<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city1" name="city1" maxlength="50" />
+					<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city1" name="city1" maxlength="50" value="<?php echo $showdata['city']; ?>" />
 					<?php /*?><input type="text" class="reg_txt_box-md" placeholder="STATE" id="state" name="state" maxlength="50" /><?php */?>
 					<?php /*?><input type="text" class="reg_txt_box-md" placeholder="COUNTRY" id="country" name="country" maxlength="50" /><?php */?>
 
-					<input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip1" name="zip1" maxlength="10" />
+					<input type="text" class="reg_txt_box-md" placeholder="ZIP CODE" id="zip1" name="zip1" maxlength="10" value="<?php echo $showdata['zip']; ?>" />
 						<div id="comstrcheck1" class="error"></div>
 						<input type="hidden" id="substreetaddress1">
 						<div id="streetaddresserror" class="error">Street Address is required.</div>
@@ -190,8 +201,9 @@
 				<?php 
 				$selstate=array(''=>'--Select State--');
 				?>
-				<div id="selstatediv">
-				<?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop"');?></div>
+				<div id="selstatediv" class="stateclick">
+				
+				<?php echo form_dropdown('state',$selstate,'','id="state" class="seldrop" ');?></div>
 				<br/>
 				<div style="clear:both"></div>
 				<input type="text" class="reg_txt_box-md" placeholder="CITY" id="city" name="city" maxlength="50" />
@@ -463,12 +475,17 @@ $(document).ready(function(){
 	var country = $('#country1').val();
 	var countryname = $('#countryname1').val();
 	$('#countryname').val(countryname);
-	getstates(country,"state","#selstatediv",$('#statedropmenu').val());
+	var state=getstates(country,"state","#selstatediv",$('#state1').val());
+	//alert(state);
 	$('#streetaddress').val($('#streetaddress1').val());
 	$('#country').val(country);
+	//$('.stateclicks').hide();
+	//$('.stateclicks1').show();
+	
 	$('#state').val($('#state1').val());
 	$('#city').val($('#city1').val());
 	$('#zip').val($('#zip1').val());
+	
 
  }
  //else
