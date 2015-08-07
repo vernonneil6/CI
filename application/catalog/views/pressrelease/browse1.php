@@ -1,18 +1,15 @@
 <?php echo $header;?>
 <section class="container">
   <section class="main_contentarea">
-	<h1  class="bannertextcoupon profile_page_heading noborder">
-		<div class ="float_left profile_page_title">
-			<span class="bannertextregular">PRESS </span><br> RELEASES
-		</div>
+	
 		<?php 
 		    $avgstar = $this->common->get_avg_ratings_bycmid($company[0]['id']);
 			$avgstar = round($avgstar);
 			$elitemem_status = $this->common->get_eliteship_bycompanyid($company[0]['id']);
 		?>
-		<div class="srch_rslt_left profile_page_content">
+		<div class="verified_wrp pr_rwrp verfs_top">
             
-            <div class="verified_wrp srch_rslt_vrfy vfy_rvw">
+            <div class="verified_wrp pr_rwrp pr_rwrp">
               <?php if(count($elitemem_status)==0){?>
               <div class="vry_logo"> <a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
               <?php }else{
@@ -20,18 +17,17 @@
               <div class="vry_logo"> <a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>    
                   <?php
 				  } ?>
-			<div>
-              
-		  <div class="compny_name cpyynme">
-			<h2>
+			
+		  <div class="compny_name">
+			<h1>
 			<a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail" style="height:auto;color:#333333 !important;">
 			<?php echo strtoupper($company[0]['company']);?>
 			</a>
-			</h2>
-		  </div>
+			</h1>
+		  
           
           <?php if(count($elitemem_status)==0){?>
-			<div>
+			
 				<?php $urls="http://business.yougotrated.com/?elitemem=".$company[0]['id'].""; ?>
 				
 				<a href="<?php echo $urls;?>" title="Upgrade to Elite">
@@ -40,13 +36,13 @@
 					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
 				</div>
 				</a>    
-			</div>
+			
 		<?php }else { ?>
 			<div class="vrytitle">YouGotRated VERIFIED MERCHANT</div>
 		<?php } ?>
              
-		  <div class="compny_name" style="margin-top:-12px;">
-			<div class="vry_rating">
+		  <div class="vry_rating reviewrates in_block custom-top-rating" style="margin-top:-12px;">
+			<div class="count-1">
 			  <?php for($r=0;$r<$avgstar;$r++){?>
 			  <i class="vry_rat_icn"></i>
 			  <?php } ?>
@@ -57,7 +53,7 @@
 		  </div>
 		  
 
-				<div class="vry_btn">
+				<div class="vry_btn reviewbtn d_tab">
 					<a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> 
 					<a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
 				</div>
@@ -65,7 +61,8 @@
 				
             </div>
             </div>
-            <div class="contct_dtl cntdll">
+           
+            <div class="contct_dtl cntdll presscontact">
               <ul>
                 <li><span>ADDRESS</span> <a> <?php echo ucfirst($company[0]['streetaddress']);?>&nbsp;&nbsp;&nbsp;<?php echo ucfirst($company[0]['city']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($company[0]['state']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($company[0]['country']);?>,&nbsp;&nbsp;&nbsp;<?php echo ($company[0]['zip']);?> </a></li>
                 <li><span>PHONE</span> <a href="tel:<?php echo ($company[0]['phone']);?>" title="call us"><?php echo ($company[0]['phone']);?></a></li>
@@ -78,7 +75,7 @@
           
           
           
-      </h1>     
+          
     <div class="pr_detlwrp">
       <div class="titl_pr_rel">
         <h1>"<?php echo stripslashes(str_replace("-"," ",ucfirst($pressrelease[0]['title']))); ?>"</h1>

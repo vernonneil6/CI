@@ -444,7 +444,7 @@ span.toggle:before{
 
 @media only screen and (min-width: 310px) and (max-width: 410px)  {
 .custom-countwrp1{margin-left:0px;}
-.addthis_counter{ display:none !important;}
+/*.addthis_counter{ display:none !important;}*/
 }
 
 @media only screen and (min-width: 310px) and (max-width: 439px)  {
@@ -558,13 +558,14 @@ span.toggle:before{
 .headersearch{bottom:25%; font-size:13px;height:30px;}
 .headersearch.headerbottomtext{bottom:7%;margin:0px;}
 #search_form .headersearchbar{ height:30px;}
-
+.image_novrf{margin-top:0px !important;}
 }
 @media only screen and (max-width: 920px) {
 .cmnt_block{float:left;}
 }
 @media only screen and (max-width: 600px) {
 .side_banners{display:none;}
+
 }
 
 @media only screen and (min-width: 601px) {
