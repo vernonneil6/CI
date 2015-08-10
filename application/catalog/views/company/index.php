@@ -49,7 +49,7 @@
 		
 	});
 </script>
-<section class="container">
+<section class="container company-index">
   <section class="main_contentarea">
     <div class="innr_wrap wrapborder" itemscope itemtype="http://schema.org/localBusiness">
 
@@ -64,10 +64,10 @@
 			
 			$company_seoslug = ($company) ? $company[0]['seoslug'] : '';
 			if(count($elitemem_status)==0){?>
-			<div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img src="images/notverified.png" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
+			<div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img src="images/notverified.png" class="imgverify" alt="YGR-<?php echo ucfirst(stripslashes($company[0]['company'])); ?>-Notverified-logo" /></a> </div>
 			<?php }else{
 					  ?>
-			<div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
+			<div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="imgverify" alt="YGR-<?php echo ucfirst(stripslashes($company[0]['company'])); ?>-Verified-logo" /></a> </div>
 			<?php } ?>
 			  
 				  
@@ -76,7 +76,7 @@
 				<?php $urls="http://business.yougotrated.com/?elitemem=".$company[0]['id'].""; ?>
 				
 				<a href="<?php echo $urls;?>" title="Upgrade to Elite">
-					<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg" >
+					<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg" alt="YGR-BusinessProfile-NotVerified" >
 				<div class="business_link"> 			
 					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
 				</div>
@@ -405,9 +405,9 @@
 
 			<div class="user_img">
 			<?php if($users['avatarthum']==null) {?>
-				<img src="images/default_user.png" alt="User image" title="User image">
+				<img src="images/default_user.png" alt="YGR-Default-image" title="User image">
 			<?php } else {?>
-				<img src="uploads/user/thumb/<?php echo $users['avatarthum'];?>" alt="User image" title="User image">	 
+				<img src="uploads/user/thumb/<?php echo $users['avatarthum'];?>" alt="YGR-User-image" title="User image">	 
 			<?php } ?>
 			</div>
 			<meta itemprop = "itemReviewed" content = "<?php echo site_url(); ?>">
@@ -502,9 +502,9 @@ $usersimg = $this->users->get_user_bysingleid($complaints[$i]['userid']);
 <div class="review_lft">
 <div class="user_img">
 <?php if($usersimg['avatarthum']==null) {?>
-<img src="images/default_user.png" alt="User image" title="User image">
+<img src="images/default_user.png" alt="YGR-Default-image" title="User image">
 <?php } else {?>
-<img src="uploads/user/thumb/<?php echo $usersimg['avatarthum'];?>" alt="User image" title="User image">	 
+<img src="uploads/user/thumb/<?php echo $usersimg['avatarthum'];?>" alt="YGR-User-image" title="User image">	 
 <?php } ?>
 </div>
 </div>
@@ -656,7 +656,7 @@ else { ?>
 						<li>
 							
 							<?php $photoURL = "uploads/gallery/main/".stripslashes($photos[$f]['photo']); ?>
-							<img src="<?php echo site_url($photoURL); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="520;" height="392"/>
+							<img src="<?php echo site_url($photoURL); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="YGR-<?php echo stripslashes($photos[$f]['photo']); ?>" width="520;" height="392"/>
 						</li>
                   <?php } ?>
 						</ul>
