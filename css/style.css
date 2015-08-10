@@ -1095,7 +1095,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 /*============ Press Release Details ===========================*/
 .pr_detlwrp{width:100%; float:left; height:auto; display:inline-block; margin-top:83px;}
 .pr_rwrp{width:1050px; float:left; height:auto;}
-.titl_pr_rel{width:600px; margin:0 auto; display:block; border-bottom:1px solid #999; border-top:1px solid #999;}
+.titl_pr_rel{width:90%; margin:0 auto; display:block; border-bottom:1px solid #999; border-top:1px solid #999;}
 .titl_pr_rel h1{word-wrap: break-word; width:inherit; border-bottom:0; height:inherit; margin:0; padding:0; font-size:44px; font-family:"myriadpro-regular"; font-weight:bold;}
 .titl_pr_rel p{ font-family:"myriadpro-regular"; font-size:16px; color:#666; text-align:center; margin:0;}
 .pre_rls_rating{display:table; margin:0 auto;}
@@ -2653,6 +2653,6 @@ margin:0px;-webkit-margin-before: 0em;
 
 .serch_result .verified_wrp.srch_rslt_vrfy .compny_name h2{width:100%;}
 .serch_result .notverfiedimg { margin-top: 10px !important;}
-.serch_result .vry_rating {margin-top: 0;}
+.serch_result .vry_rating {margin-top: 10px;}
 .serch_result .srh_rght{clear:both;}
 .serch_result .Flexible-container {padding-top:0;}
