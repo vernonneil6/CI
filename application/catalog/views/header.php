@@ -80,7 +80,7 @@
 <header class="noscroll-head">
   <div class="container">
     <div class="head_bg">
-      <div class="yougot_logo"><a href="<?php echo base_url();?>" title="<?php echo $site_name;?>"><img src="images/ygr_logos.png" alt="<?php echo $site_name;?>" title="<?php echo $site_name;?>"></a></div>
+      <div class="yougot_logo"><a href="<?php echo base_url();?>" title="<?php echo $site_name;?>"><img src="images/ygr_logos.png" alt="<?php echo $site_name;?>-logo" title="<?php echo $site_name;?>"></a></div>
       <div class="head_right">
         <?php if( array_key_exists('youg_user',$this->session->userdata) ) { ?>
         <div class="head_right_lnk">
@@ -148,7 +148,7 @@ foreach($catlist as $row=> $result)
 <?php if(isset($topads)){ ?>
 <?php if(count($topads)){ ?>
 <div class="container">	
-<div align="center" class="addvert" id="add-banner"><a href="<?php echo $topads[0]['url'];?>" title="Adverstiment" target="_blank" rel="nofollow"><img src="<?php if( $topads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($topads[0]['image']); } ?>" alt="Adverstiment" width="" height="" class="adimg"/></a> </div>
+<div align="center" class="addvert" id="add-banner"><a href="<?php echo $topads[0]['url'];?>" title="Adverstiment" target="_blank" rel="nofollow"><img src="<?php if( $topads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($topads[0]['image']); } ?>" alt="YGR-Top-Adverstiment" width="" height="" class="adimg"/></a> </div>
 </div>
 <?php } ?>
 <?php } ?>
@@ -297,14 +297,14 @@ $(window).load(function() {
 	
 <?php if(isset($leftads) && count($leftads)){ ?> 
 	<div class="ad_left side_ads">
-	<div id="leftclosead"><img src="<?php echo $this->common->get_setting_value('2');?>/images/close-icon.png"></div>
-	<a target="_blank" href="<?php echo $leftads[0]['url'];?>" title="Left Ads"  rel="Left Ads"><img src="<?php if( $leftads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($leftads[0]['image']); } ?>" alt="Left Adverstiment" width="100%" /></a> </div>
+	<div id="leftclosead"><img src="<?php echo $this->common->get_setting_value('2');?>/images/close-icon.png" alt="YGR-Adclose"></div>
+	<a target="_blank" href="<?php echo $leftads[0]['url'];?>" title="Left Ads"  rel="Left Ads"><img src="<?php if( $leftads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($leftads[0]['image']); } ?>" alt="YGR-Left-Adverstiment" width="100%" /></a> </div>
 <?php } ?>
 
 <?php if(isset($rightads) && count($rightads)){ ?>       
 	<div class="ad_right side_ads">
-	<div id="rightclosead"><img src="<?php echo $this->common->get_setting_value('2');?>/images/close-icon.png"></div>
-	<a target="_blank" href="<?php echo $rightads[0]['url'];?>" title="Right Ads"  rel="Right Ads"><img src="<?php if( $rightads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($rightads[0]['image']); } ?>" alt="Adverstiment" width="100%" /></a> </div>
+	<div id="rightclosead"><img src="<?php echo $this->common->get_setting_value('2');?>/images/close-icon.png" alt="YGR-Adclose"></div>
+	<a target="_blank" href="<?php echo $rightads[0]['url'];?>" title="Right Ads"  rel="Right Ads"><img src="<?php if( $rightads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($rightads[0]['image']); } ?>" alt="YGR-Right-Adverstiment" width="100%" /></a> </div>
 <?php } ?>
 
 </div>

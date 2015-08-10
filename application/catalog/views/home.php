@@ -9,7 +9,7 @@
 			foreach($homesliding as $homeslide)
 			{?>
 				<li>
-					<img src="uploads/slider/<?php echo $homeslide->image;?>" alt="YGR Banner" title="YGR Banner"  usemap="<?php if($i==0){echo '#planetmap';}?>">
+					<img src="uploads/slider/<?php echo $homeslide->image;?>" alt="YGR-Banner" title="YGR Banner"  usemap="<?php if($i==0){echo '#planetmap';}?>">
 					<div class="text-content" style="bottom:0;"> <span><?php echo $homeslide->title;?></span></div>
 					<?php 
 					if($i==0)
