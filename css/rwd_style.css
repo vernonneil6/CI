@@ -120,8 +120,9 @@ span.stars{
 .pr_detlwrp{width:82%;margin:0 auto; display: block;float:none;}
 .pr_testmnl_wrp,.addcmnt_wrp,.testmnl_clntwrp,.titl_pr_rel,.pr_rwrp{width:100%;}
 .compny_name{width:100%;margin-bottom:1em;}
-
+.serch_result .vry_btn{clear:left;}
 .vry_btn{margin:0 auto;}
+.serch_result .vry_logo{float:left;}
 .vry_logo{float:none;width:auto;}
 .testmnl_p{margin:0;}
 .txrareawrp{width:82%;}
