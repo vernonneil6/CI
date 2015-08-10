@@ -1,16 +1,14 @@
 <?php echo $header;?>
-
 <section class="container">
   <section class="main_contentarea">
     <div class="innr_wrap">
-      
       <div class="dir_rew_wrap">
         <?php if(count($complaints)>0){ ?>
         <?php for($i=0; $i<count($complaints); $i++) { ?>
         <div class="revw_blck">
-          <div class="revw_blck_img"> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><img src="<?php if( $complaints[$i]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($complaints[$i]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?>" width="100px" height="40px"/></a> </div>
+          <div class="revw_blck_img"> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><img src="<?php if( $complaints[$i]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($complaints[$i]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="YGR-<?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?>-logo" width="100px" height="40px"/></a> </div>
           <?php 
-                        $date = date_default_timezone_set('Asia/Kolkata');                             
+                        //$date = date_default_timezone_set('Asia/Kolkata');                             
                         $dbdate = date('Y-m-d',strtotime($complaints[$i]['whendate']));
                         $complaindate = date('m/d/Y',strtotime($complaints[$i]['complaindate']));
                         $today = date('m/d/Y');

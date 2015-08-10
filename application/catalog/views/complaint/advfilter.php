@@ -1,5 +1,4 @@
 <?php echo $header;?>
-
 <section class="container">
   <section class="main_contentarea">
 	  <h1 class="bannertext advancefiltertitle"><span class="bannertextregular">ADVANCE </span>FILTER</h1>

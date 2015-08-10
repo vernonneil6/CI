@@ -19,10 +19,10 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
   <section class="main_contentarea">
     <div class="verified_wrp pr_rwrp compli_detail">
         <?php if(count($elitemem_status)==0){?>
-        <div class="vry_logo verified_browse"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class = "reviewnotverifiedlogos" alt="<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo verified_browse"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class = "reviewnotverifiedlogos" alt="YGR-<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>-Notverified-logo" /></a> </div>
         <?php }else{
 				  ?>
-        <div class="vry_logo verified_browse"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo verified_browse"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "reviewverifiedlogo" alt="YGR-<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>-Verified-logo" /></a> </div>
         <?php
 				  } ?>
      
@@ -31,7 +31,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
         <h1><?php echo (stripslashes($complaints[0]['company'])); ?></h1>
           <?php if(count($elitemem_status)==0){?>
 			<a href="http://business.yougotrated.com/?elitemem=<?php echo $complaints[0]['companyid'] ?>" title="Upgrade to Elite">
-					<img class="notverfiedimg" src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
+					<img class="notverfiedimg" src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg" alt="YGR-BusinessProfile-NotVerified">
 				<div class="business_link complink"> 			
 					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
 				</div>
@@ -83,10 +83,10 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
             <div class="clnt_pic"> 
 				<?php if($user[0]['avatarthum']==null) {?>
 					<a href="<?php echo site_url('complaint/viewuser/'.$complaints[0]['companyid'].'/'.$complaints[0]['userid']);?>" title="view profile">
-						<img src="images/default_user.png" alt="Client Image" title="Client Image"> 
+						<img src="images/default_user.png" alt="YGR-Default-UserImage" title="Default User Image"> 
 					</a>
 				   <?php } else { ?>
-					  <img src="uploads/user/thumb/<?php echo $user[0]['avatarthum'];?>" alt="User image" title="User image">
+					  <img src="uploads/user/thumb/<?php echo $user[0]['avatarthum'];?>" alt="YGR-User-image" title="User image">
 				   <?php } ?>
 				
 			</div>
@@ -113,7 +113,7 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
           </div>
           <div class="clnt_pic photo"> 
 			  <?php if($othercomplaints[$j]['avatarthum']==null) {?>
-					<img src="images/default_user.png" alt="Client Image" title="Client Image"> 
+					<img src="images/default_user.png" alt="YGR-Default-UserImage" title="Default User Image"> 
 			  <?php } else { ?>
 					<img src="uploads/user/thumb/<?php echo $othercomplaints[$j]['avatarthum'];?>" alt="User image" title="User image">
 			  <?php } ?>
