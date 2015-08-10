@@ -1,72 +1,8 @@
-
-
 <?php $fb = $this->common->get_semsetting_value(1);?>
 <?php $tw = $this->common->get_semsetting_value(2);?>
 <?php $pi = $this->common->get_semsetting_value(3);?>
 <?php $go = $this->common->get_semsetting_value(4);?>
 <?php $li= $this->common->get_semsetting_value(5);?>
-<script type="text/javascript" language="javascript">
-function elitelogin()
-{        
-	  if( $("#user_name").val()=='' )
-	  {
-		 $("#user_name").val('').focus();
-		 return false;
-	  }
-	  if( $("#user_pass").val()=='' )
-	  {
-		 $("#user_pass").val('').focus();
-		 return false;
-	  }
-		
-	 $("#elitelogin").submit();
-		
-}
-
-function userlogin()
-{  
-	  if( $("#loginemail").val()=='' )
-	  {
-		 $("#loginemail").val('').focus();
-		 return false;
-	  }
-	  if( $("#loginpassword").val()=='' )
-	  {
-		 $("#loginpassword").val('').focus();
-		 return false;
-	  }
-		
-	 $("#userflogin").submit();		
-}
-function createCookie(name, value, days) {
-    var expires;
-
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toGMTString();
-    } else {
-        expires = "";
-    }
-		document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
-	}
-	
-function readCookie(name) {
-		var nameEQ = encodeURIComponent(name) + "=";
-		var ca = document.cookie.split(';');
-		for (var i = 0; i < ca.length; i++) {
-			var c = ca[i];
-			while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-			if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
-		}
-		return null;
-	}
-
-	function eraseCookie(name) {
-		createCookie(name, "", -1);
-	}	
-
-</script>
 <?php
 /* Facebook login redirect to pervious page to welcome controller fblogin() */
 $currenturl=base_url(uri_string()); 
@@ -191,11 +127,11 @@ if($CI->agent->is_referral()){
 				  <ul>
 					<li class="social_tit foot_title_bar">JOIN THE CONVERSATION</li>
 					<div class="foot_social_img ">
-						<li class="twitter "><a href="<?php echo $tw;?>" title="Twitter"><img src="../images/img/socialicon/twitter.jpg" /></a></li>
-						<li class="facebook "><a href="<?php echo $fb;?>" title="Facebook"><img src="../images/img/socialicon/facebook.jpg" /></a></li>
-						<li class="google "><a href="<?php echo $go;?>" title="Google"><img src="../images/img/socialicon/googleplus.jpg" /></a></li>
-						<li class="pinterest "><a href="<?php echo $pi;?>" title="Pinterest"><img src="../images/img/socialicon/pinterest.jpg" /></a></li>
-						<li class="linkedin "><a href="<?php echo $li;?>" title="linkedin"><img src="../images/img/socialicon/LinkedIn_icon.jpg" /></a></li>
+						<li class="twitter "><a href="<?php echo $tw;?>" title="Twitter"><img src="../images/img/socialicon/twitter.jpg" alt="YGR-Social-Twitter" title="YGR-Social-Twitter" /></a></li>
+						<li class="facebook "><a href="<?php echo $fb;?>" title="Facebook"><img src="../images/img/socialicon/facebook.jpg" alt="YGR-Social-Facebook" title="YGR-Social-Facebook" /></a></li>
+						<li class="google "><a href="<?php echo $go;?>" title="Google"><img src="../images/img/socialicon/googleplus.jpg" alt="YGR-Social-Google" title="YGR-Social-Google" /></a></li>
+						<li class="pinterest "><a href="<?php echo $pi;?>" title="Pinterest"><img src="../images/img/socialicon/pinterest.jpg" alt="YGR-Social-Pin" title="YGR-Social-Pin" /></a></li>
+						<li class="linkedin "><a href="<?php echo $li;?>" title="linkedin"><img src="../images/img/socialicon/LinkedIn_icon.jpg" alt="YGR-Social-LinkedIn" title="YGR-Social-LinkedIn" /></a></li>
 					</div>
 				  </ul>
 			  </div>
@@ -261,51 +197,5 @@ if($CI->agent->is_referral()){
 </div>
 </footer>
 <script type="text/javascript" src="js/use.js"></script>
-<script> 
-function __highlight(s, t) {
-    var matcher = new RegExp("(" + $.ui.autocomplete.escapeRegex(t) + ")", "ig");
-    return s.replace(matcher, "$1");
-}
-
-$(document).ready(
-	function() {
-	    $("#suggest").autocomplete(
-		    {
-			source : function(request, response) {
-			    $.ajax({
-				url : '/sp/ajax_suggest.php',
-				dataType : 'json',
-				data : {
-				    term : request.term
-				},
-
-				success : function(data) {
-					//alert(data);
-				    response($.map(data, function(item) {
-					return {
-					    label : __highlight(item.label,
-						    request.term),
-					    value : item.label
-					};
-				    }));
-				}
-			    });
-			},
-			minLength : 3,
-			select : function(event, ui) {
-
-			    $('#searchbutton').submit();
-			}
-		    }).keydown(function(e) {
-		if (e.keyCode === 13) {
-		    $("#search_form").trigger('submit');
-		}
-	    }).data("ui-autocomplete")._renderItem = function(ul, item) {
-
-		return $("<li></li>").data("item.autocomplete", item).append(
-			$("<a></a>").html(item.label)).appendTo(ul);
-	    };
-	});
-</script>
 </body>
 </html>

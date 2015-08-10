@@ -11,10 +11,10 @@
             
             <div class="verified_wrp pr_rwrp pr_rwrp">
               <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"> <a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
+              <div class="vry_logo"> <a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="YGR-<?php echo ucfirst(stripslashes($company[0]['company'])); ?>-Notverified-logo" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="YGR-<?php echo ucfirst(stripslashes($company[0]['company'])); ?>-Verified-logo" /></a> </div>    
                   <?php
 				  } ?>
 			
@@ -31,7 +31,7 @@
 				<?php $urls="http://business.yougotrated.com/?elitemem=".$company[0]['id'].""; ?>
 				
 				<a href="<?php echo $urls;?>" title="Upgrade to Elite">
-					<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
+					<img src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg" alt="YGR-BusinessProfile-NotVerified">
 				<div class="business_link"> 			
 					IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
 				</div>
@@ -89,7 +89,7 @@
         <p><?php echo stripslashes(($pressrelease[0]['presscontent'])); ?></p>
         <div class="testmnl_clntwrp cmt_single">
           <div class="clnt_intr">
-            <div class="clnt_pic valign_img"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
+            <div class="clnt_pic valign_img"> <img src="images/default_user.png" alt="YGR-Default-User-Image" title="Client Image"> </div>
             <div class="clnt_name">
               
               <h4 class = "text_compny_heading"><?php echo $companyname;?></h4>
@@ -121,7 +121,7 @@
 		<?php for($i=0;$i<count($mypressreleases);$i++){?>
 		    <div class="cmnt_blckwrp">
 				<div class="clnt_intr cmt_none">
-				  <div class="clnt_pic valign_img"> <img src="images/default_user.png" alt="Client Image" title="Client Image"> </div>
+				  <div class="clnt_pic valign_img"> <img src="images/default_user.png" alt="YGR-Default-User-Image" title="Client Image"> </div>
 				  <div class="clnt_name txt_right txt_lefts">
 					<h4><a href="<?php echo site_url($mypressreleases[$i]['company_seoslug']);?>" title="View company"><?php echo stripslashes(ucfirst($mypressreleases[$i]['company'])); ?></a></h4>
 					<span><?php echo stripslashes(ucfirst($mypressreleases[$i]['country'])); ?></span>
