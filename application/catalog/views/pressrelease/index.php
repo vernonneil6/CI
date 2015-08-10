@@ -60,13 +60,13 @@
 				 ?>
 						<div class="vry_logo"> 
 							<a href="<?php echo site_url($pressreleases[$i]['company_seoslug']);?>" title="view company Detail">
-								<img  class="reviewnotverifiedlogo" src="images/notverified.png"  />
+								<img  class="reviewnotverifiedlogo" src="images/notverified.png" alt="YGR-Notverifiedlogo"  />
 							</a> 
 						</div>  <?php 
 						}else{  ?>
 						<div class="vry_logo"> 
 							<a href="<?php echo site_url($pressreleases[$i]['company_seoslug']);?>" title="view company Detail">
-								<img class="reviewverifiedlogo" src="images/verifiedlogo.png" />
+								<img class="reviewverifiedlogo" src="images/verifiedlogo.png" alt="YGR-Verifiedlogo" />
 							</a> 
 						</div>      
 				<?php
@@ -122,7 +122,7 @@
               <table cellpadding="0" cellspacing="0" width="99%">
 				  <tr>
 					<td class="red-left">No Records Found.</td>
-					<td class="red-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_red.gif" alt="Close"/></a></td>
+					<td class="red-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_red.gif" alt="YGR-Close"/></a></td>
 				  </tr>
               </table>
           </div>
@@ -136,7 +136,7 @@
 		<div class="pagination"> <?php echo $this->pagination->create_links(); ?> </div>  
 	  <?php } ?>
 	  
-	  <div class="lgn_btnlogo"> <a href="<?php echo site_url(); ?>"><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
+	  <div class="lgn_btnlogo"> <a href="<?php echo site_url(); ?>"><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated-Mini-logo" title="Yougotrated"></a> </div>
       
     </div>
   </section>
