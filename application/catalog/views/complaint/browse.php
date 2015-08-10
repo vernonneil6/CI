@@ -64,12 +64,14 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
             <?php } ?>
           </div>
         <div class="vry_btn compbtn"><a href="<?php echo site_url('review/add/'.$complaints[0]['companyid']);?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add/'.$complaints[0]['companyid']);?>" title="File Complaint">FILE COMPLAINT</a></div>
-      <!-- Go to www.addthis.com/dashboard to customize your tools -->
-				<div class="addthis_native_toolbox"></div>
+     
 
       </div>
+      
     </div>
     <div class="pr_detlwrp">
+		 <!-- Go to www.addthis.com/dashboard to customize your tools -->
+				<div class="addthis_native_toolbox"></div>
       <div class="titl_pr_rel">
         <div class="pre_rls_rating"> </div>
         <h1>"COMPLAINT AGAINST <?php echo strtoupper(stripslashes($complaints[0]['company'])); ?>"</h1>
