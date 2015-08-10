@@ -36,10 +36,10 @@
           <div class="srch_rslt_left">
             <div class="verified_wrp srch_rslt_vrfy">
               <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"> <a href="<?php echo site_url($companies[$i]['seoslug']);?>" title="view company Detail" target="_blank"><img src="images/notverified.png" class="reviewverifiedlogo marginlogo" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>
+              <div class="vry_logo"> <a href="<?php echo site_url($companies[$i]['seoslug']);?>" title="view company Detail" target="_blank"><img src="images/notverified.png" class="reviewverifiedlogo marginlogo" alt="YGR-<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>-Notverified-logo" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url($companies[$i]['seoslug']);?>" title="view company Detail" target="_blank"><img src="images/verifiedlogo.jpg" class="reviewverifiedlogo marginlogo" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url($companies[$i]['seoslug']);?>" title="view company Detail" target="_blank"><img src="images/verifiedlogo.jpg" class="reviewverifiedlogo marginlogo" alt="YGR-<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>-Verified-logo" /></a> </div>    
                   <?php
 				  } ?>
               <!--<php if(count($elitemem_status)==0){?>
@@ -107,7 +107,7 @@
       <?php } 
 	  } ?>
     </div>
-    <div class="lgn_btnlogo"> <a href="<?php echo base_url();?>" title="<?php echo $site_name;?>"><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
+    <div class="lgn_btnlogo"> <a href="<?php echo base_url();?>" title="<?php echo $site_name;?>"><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated-Mini-logo" title="Yougotrated"></a> </div>
     <!--pagination--> 
   </section>
 </section>

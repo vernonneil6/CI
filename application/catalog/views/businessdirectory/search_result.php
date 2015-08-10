@@ -47,10 +47,10 @@
           <div class="srch_rslt_left">
             <div class="verified_wrp srch_rslt_vrfy vfy_rvw">
               <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>
+              <div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="YGR-<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>-Notverified-logo" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="YGR-<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>-Verified-logo" /></a> </div>    
                   <?php
 				  } ?>
 			<div>
@@ -64,7 +64,7 @@
 			<?php if(count($elitemem_status)==0){?>
 			
 				<a class="image_novrf" href="http://business.yougotrated.com/?elitemem=<?php echo $companies[$i]['id'] ?>" title="Upgrade to Elite">
-					<img class="notverfiedimg" src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg">
+					<img class="notverfiedimg" src="images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg" alt="YGR-BusinessProfile-NotVerified">
 					<div class="business_link clickhere"> 			
 						IS THIS YOUR BUSINESS? CLICK HERE TO BECOME VERIFIED			
 					</div></a>
@@ -159,7 +159,7 @@
       <?php } 
 	  } ?>
     </div>
-    <div class="lgn_btnlogo"> <a><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
+    <div class="lgn_btnlogo"> <a><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated-Mini-logo" title="Yougotrated"></a> </div>
     <!--pagination--> 
   </section>
 </section>
