@@ -23,7 +23,7 @@
           <?php if(count($elitemem_status)==0){?>
           <div class="revw_blck_img">
 			  <div class="vry_logo"> 
-				  <a href="<?php echo site_url($complaints[$i]['company_seoslug']);?>" title="view company Detail"><img src="images/notverified.png" class = "reviewnotverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?>" />
+				  <a href="<?php echo site_url($complaints[$i]['company_seoslug']);?>" title="view company Detail"><img src="images/notverified.png" class = "reviewnotverifiedlogo" alt="YGR-<?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?>-Notverified-logo" />
 				  </a> 
 				  </div> 
 				  </div>
@@ -31,7 +31,7 @@
 				  ?>
           <div class="revw_blck_img">
 			  <div class="vry_logo"> 
-				  <a href="<?php echo site_url($complaints[$i]['company_seoslug']);?>" title="view company Detail"><img src="images/verifiedlogo.png" class = "reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?>" />
+				  <a href="<?php echo site_url($complaints[$i]['company_seoslug']);?>" title="view company Detail"><img src="images/verifiedlogo.png" class = "reviewverifiedlogo" alt="YGR-<?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?>-Verified-logo" />
 				  </a> 
 			  </div>
 		  </div>
