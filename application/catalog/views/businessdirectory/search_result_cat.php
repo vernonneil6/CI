@@ -55,12 +55,13 @@
 				<?php echo strtoupper($companies[$i]['company']);?>
                 </a>
                 </h2>
-              </div>
-              <div class="compny_name" style="margin-top:-15px;">
-                <div class="vry_rating">
+                 <div class="vry_rating">
                   <span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
                 </div>
               </div>
+             
+               
+              
               <div class="vry_btn"><a href="review/add/<?php echo $companies[$i]['id'];?>" title="Write review">WRITE REVIEW</a> <a href="<?php echo site_url('complaint/add');?>" title="File Complaint"> FILE COMPLAINT</a></div>
             </div>
             <div class="contct_dtl cntdll">
