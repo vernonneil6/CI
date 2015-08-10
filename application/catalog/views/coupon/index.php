@@ -14,7 +14,7 @@
         <?php if(count($coupons)>0) {?>
         <?php for($i=0; $i<count($coupons); $i++) { ?>
         <div class="revw_blck">
-          <div class="revw_blck_img"><a href="<?php echo site_url($coupons[$i]['seoslug']); ?>" title="view coupon detail"><img src="<?php if( strlen($coupons[$i]['image'])>5 ){ echo $this->common->get_setting_value('2').$this->config->item('coupon_thumb_upload_path');?><?php echo stripslashes($coupons[$i]['image']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($coupons[$i]['company'])); ?>" width="80px" height="65px"/></a> </div>
+          <div class="revw_blck_img"><a href="<?php echo site_url($coupons[$i]['seoslug']); ?>" title="view coupon detail"><img src="<?php if( strlen($coupons[$i]['image'])>5 ){ echo $this->common->get_setting_value('2').$this->config->item('coupon_thumb_upload_path');?><?php echo stripslashes($coupons[$i]['image']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="YGR-<?php echo ucfirst(stripslashes($coupons[$i]['company'])); ?>-coupon" width="80px" height="65px"/></a> </div>
           <div class="revw_blck_cnt">
             <h2> <?php echo $coupons[$i]['company'];?> <span>EXPIRES: <?php echo date('m/d/Y',strtotime($coupons[$i]['enddate']));?></span></h2>
             <div class="coupon_dscrwrp">
@@ -27,11 +27,11 @@
  		<?php if($coupons[$i]['logo']!='')
 		{
 		?>
- 		<div class='couponlogoarea'><img src="<?php  echo 'uploads/company/thumb/'.$coupons[$i]['logo']; ?>" class='couponlogoimg' ></div>
+ 		<div class='couponlogoarea'><img src="<?php  echo 'uploads/company/thumb/'.$coupons[$i]['logo']; ?>" alt="YGR-<?php echo $coupons[$i]['company'];?>-Couponlogo" class='couponlogoimg' ></div>
 		<?php
 		}
 		?>              
-		<div class="offer_wrp"> <a href="<?php echo site_url($coupons[$i]['seoslug']); ?>"><img src="images/YouGotRated_Essential_ViewOffer.png" alt="View Offer" title="View Offer"></a> </div>
+		<div class="offer_wrp"> <a href="<?php echo site_url($coupons[$i]['seoslug']); ?>"><img src="images/YouGotRated_Essential_ViewOffer.png" alt="YGR-ViewOffer-Image" title="View Offer"></a> </div>
             </div>
           </div>
         </div>

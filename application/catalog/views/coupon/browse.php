@@ -33,9 +33,9 @@
       <div class="verified_wrp pr_rwrp pr_rwrp">
 
         <?php if(count($elitemem_status)==0){?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class="reviewnotverifiedlogo" alt="<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class="reviewnotverifiedlogo" alt="YGR-<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?>-Notverifiedlogo" /></a> </div>
         <?php }else{ ?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="reviewverifiedlogo" alt="YGR-<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?>-Verifiedlogo" /></a> </div>
         <?php  } ?>
 				  
        
@@ -44,7 +44,7 @@
          
 		<?php if(count($elitemem_status)==0){?>
        <div class="bsntvry_title bsntitle">
-          <img src = <?php echo base_url()."images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg";  ?>  class = "bsnntverified">
+          <img src = <?php echo base_url()."images/YouGotRated_BusinessProfile_NotVerified-CompanyHeaderText.jpg";  ?> alt="YGR-BusinessProfile-NotVerified"  class = "bsnntverified">
           <div class="bsvry_tag bsntg"> <span>IS THIS YOUR BUSINESS?</span>
             <p><a href="solution/claimbusiness" title="CLICK HERE TO BECOME VERIFIED">CLICK HERE TO BECOME VERIFIED</a></p>
           </div>
@@ -97,7 +97,7 @@ echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME'].$_SE
           <div class="clnt_name txt_right">
             <h4><?php echo (stripslashes($coupons[0]['company'])); ?></h4>
           </div>
-          <div class="clnt_pic"> <img src="images/default_user.png" alt="Client Image" title="Client Image"></a> </div>
+          <div class="clnt_pic"> <img src="images/default_user.png" alt="YGR-Default-UserImage" title="Client Image"></a> </div>
         </div>
         <div class="review_rgt cmnt_dscr">
           <p><?php echo $othercoupons[$j]['title'];?></p>
