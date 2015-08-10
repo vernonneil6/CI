@@ -34,10 +34,9 @@
           </div>
         </div>
         </form>
-      <?php if( count($companies) > 0) { ?>
-      <?php for($i=0; $i<count($companies); $i++) { ?>
-      
-      <?php $avgstar = $this->common->get_avg_ratings_bycmid($companies[$i]['id']);
+      <?php if( count($companies) > 0) { 
+		   for($i=0; $i<count($companies); $i++) { 
+			$avgstar = $this->common->get_avg_ratings_bycmid($companies[$i]['id']);
 			$itemproaverage = $avgstar;
 			$avgstar = round($avgstar);
 			$elitemem_status = $this->common->get_eliteship_bycompanyid($companies[$i]['id']);
@@ -88,9 +87,6 @@
 				  <a href="<?php echo site_url('complaint/add/'.$companies[$i]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
 			  </div>
             </div>
-              
-
-
             </div>
             </div>
             <div class="contct_dtl cntdll">
@@ -99,12 +95,9 @@
                 <?php 
                   $country = $this->complaints->get_country_byidss($companies[$i]['country']); if($country) { $elitecountry=$country['name']; } else { $elitecountry=$companies[$i]['country']; }
 			      $companycountry= $this->complaints->get_country_byidss($companies[$i]['companycountry']); if($companycountry){ $nonelitecountry=$companycountry['name']; } else { $nonelitecountry=$companies[$i]['companycountry']; }
-				?>
-				<?php if(count($elitemem_status) > 0) { ?>
-			         
-						    <?php if($companies[$i]['companystreet']=="" || $companies[$i]['companystreet']!="" ) { ?>
-								
-							    <?php if($companies[$i]['companystreet']==""){ ?>
+				  if(count($elitemem_status) > 0) { 
+					   if($companies[$i]['companystreet']=="" || $companies[$i]['companystreet']!="" ) { 
+						    if($companies[$i]['companystreet']==""){ ?>
 										<a>
 										   <?php echo ucfirst($companies[$i]['streetaddress']);?>&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['city']); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['state']); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($elitecountry); ?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($companies[$i]['zip']); ?>
 										</a>
@@ -134,16 +127,15 @@
                 <li><span>WEBSITE</span> <a href="<?php echo (strpos($companies[$i]['siteurl'],'http') !== false) ? '' :'//'; echo ($companies[$i]['siteurl']);?>" title="company website"><?php echo ($companies[$i]['siteurl']);?></a></li>
                 <li><span>E-MAIL</span> <a href="mailto:<?php echo ($companies[$i]['email']);?>" title="mail us"><?php echo ($companies[$i]['email']);?></a></li>
                 <li><span>Total Reviews</span><a>  <?php echo $this->complaints->get_to_reviews_cid($companies[$i]['id']); ?></a></li> 
-                <li><a style="font-size: 11px;">Some Reviews may have originated from other review platforms and have been aggregated.</a></li> 
+               <!--<li><a style="font-size: 11px;">Some Reviews may have originated from other review platforms and have been aggregated.</a></li> -->
               </ul>
             </div>
           </div>
-          <?php 
+			<?php 
 			  $mapaddress = stripslashes($companies[$i]['streetaddress'].','.$companies[$i]['city'].','.$companies[$i]['state'].','.$companies[$i]['country'].','.$companies[$i]['zip']);
 			  $string = str_replace(' ', '-', $mapaddress); // Replaces all spaces with hyphens.
-
-   $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
-			  ?>
+			  $mapaddress = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
+			?>
           <div class="srch_rslt_right srh_rght">
             <div class="" align="center">
               <div class="Flexible-container">         
@@ -152,7 +144,7 @@
 			{
 				var left = (screen.width/2)-(w/2);
 				var top = (screen.height/2)-(h/2);
-			  var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+			    var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
   
 			}
 			</script><a style="cursor: pointer;" onclick="PopupCenter('businessdirectory/map/<?php echo $mapaddress; ?>','','800','500');" target="_blank" title="View Map">View Map</a>
@@ -161,10 +153,7 @@
           </div>
         </div>
       </div>
-      
       <?php } 
-	 
-	 
 	 if($this->pagination->create_links()) { ?>
       <div class="pagination"><?php echo $this->pagination->create_links(); ?></div>
       <?php } 
