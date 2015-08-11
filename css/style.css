@@ -1160,7 +1160,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .srch_result_blck{ display: inline-block; margin-top: 10px; width: 100%; border-bottom:1px solid #999;}
 .srch_rslt_left{float:left; height:auto;}
 .srch_rslt_right{width:510px; float:left; height:auto; margin-left:10px;}
-.verified_wrp.srch_rslt_vrfy{width:auto;}
+.verified_wrp.srch_rslt_vrfy{width:79%;}
 .verified_wrp.srch_rslt_vrfy .vry_title{width:79%;}
 .verified_wrp.srch_rslt_vrfy .compny_name{width:79%;}
 .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:36px; font-family:"myriadpro-regular"; margin:0; float:left;width: 600px;}
