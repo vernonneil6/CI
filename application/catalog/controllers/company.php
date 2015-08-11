@@ -168,7 +168,10 @@ class Company extends CI_Controller {
 			}
 			else
 			{
+				
 				$this->data['title'] = 'company : '. $this->data['site_name']; 
+				$this->data['keywords'] ='Test'. $this->common->get_seosetting_value(4);
+			    $this->data['description'] = strip_tags($this->common->get_seosetting_value(5));
 			}
 		}
 		else
