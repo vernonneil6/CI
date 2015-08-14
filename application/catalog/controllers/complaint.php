@@ -200,9 +200,9 @@ class Complaint extends CI_Controller {
 				//Meta Keywords
 				$words=ucfirst($this->uri->segment(2));
 				$str = str_replace("-", " ", $words);
-				$compans=preg_replace('/[]+/', '', $str);
+				$compans=preg_replace('/+/', '', $str);
 				$compan=strip_tags($compans);
-				$this->data['keywords'] = 'Complaints Against'.$compan;
+				$this->data['keywords'] = 'Complaints Against '.$compan;
 				//Meta Description
 				$words1=ucfirst($this->uri->segment(3));
 				$str1 = str_replace("_", " ", $words1);
@@ -210,7 +210,7 @@ class Complaint extends CI_Controller {
 				$compan1=strip_tags($compans1);
 				
 				$this->data['description'] = $compan1;
-				$this->data['title'] = 'Complaints Against'.$compan;
+				$this->data['title'] = 'Complaints Against '.$compan;
 		}
 		else
 		{
