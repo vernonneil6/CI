@@ -162,7 +162,7 @@ class Complaint extends CI_Controller {
 						{
 								$this->data['keywords'] = $this->common->get_seosetting_value(4);
 								$this->data['description'] = $this->common->get_seosetting_value(5);
-								$this->data['title'] = 'Complaints : YOUGOTRATED';
+								$this->data['title'] = 'Recent Complaints : YOUGOTRATED';
 						}
 					}
 					}
@@ -195,13 +195,29 @@ class Complaint extends CI_Controller {
 								}
 				
 			}
-		
+		elseif($this->uri->segment(1)=='complaints' && $this->uri->segment(2) && $this->uri->segment(3) && $this->uri->segment(4))
+		{
+				//Meta Keywords
+				$words=ucfirst($this->uri->segment(2));
+				$str = str_replace("-", " ", $words);
+				$compans=preg_replace('/[0-9]+/', '', $str);
+				$compan=strip_tags($compans);
+				$this->data['keywords'] = 'Complaints Against'.$compan;
+				//Meta Description
+				$words1=ucfirst($this->uri->segment(3));
+				$str1 = str_replace("-", " ", $words1);
+				$compans1=preg_replace('/[0-9]+/', '', $str1);
+				$compan1=strip_tags($compans1);
+				
+				$this->data['description'] = $compan1;
+				$this->data['title'] = 'Complaints Against'.$compan1;
+		}
 		else
 		{
 			//Meta Keywords and Description
 		$this->data['keywords'] = 'Latest Complaints In YGR,Recent Complaints IN YGR';
 		$this->data['description'] = 'Complaints about bussiness';
-		$this->data['title'] = 'Complaints : YOUGOTRATED';
+		$this->data['title'] = 'Recent Complaints : YOUGOTRATED';
 		}
 		$this->data['section_title'] = 'Complaints : YOUGOTRATED';
 
