@@ -59,10 +59,16 @@ class Review extends CI_Controller
 		
 		if( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'add' )
 		{
-   		$this->data['title'] = 'Add your Review';
-   		//Meta Keywords and Description
-		$this->data['keywords'] = 'Add new reviews In YGR';
-		$this->data['description'] = "Adding review on user's experiences";
+   		    $companyid= $this->uri->segment(3);
+			$company=$this->reviews->get_company_byid($companyid);
+			$companynames=$company[0]['company'];
+			$compans=preg_replace('/[0-9]+/', '', $companynames);
+			$compan=strip_tags($compans);
+			//echo print_r($company);die;
+			$this->data['title'] = 'Add your Review';
+			//Meta Keywords and Description
+			$this->data['keywords'] = $compan. ' Company Review In YGR';
+			$this->data['description'] = "Adding new review on user's experiences against ".$compan. " Company In YGR";
 		}
 		
 		elseif( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'edit' )
@@ -72,15 +78,23 @@ class Review extends CI_Controller
 				$this->data['keywords'] = 'Edit reviews';
 				$this->data['description'] = 'Edit on your reviews';
 		}
-		elseif( $this->uri->segment(1) == 'review' && $this->uri->segment(2) == 'browse' )
+		elseif( $this->uri->segment(1) == 'reviews' && $this->uri->segment(2) != '' )
 		{
-			$words=$this->uri->segment(3);
+			$reviewbyseo = $this->reviews->get_review_byseokeyword($this->uri->segment(2));
+				//echo print_r($reviewbyseo);die;
+			$words=ucfirst($this->uri->segment(2));
 			$str = str_replace("-", " ", $words);
-			$compan=preg_replace('/[0-9]+/', '', $str);
-			$this->data['title'] = 'Company Reviews';
+			$compans=preg_replace('/[0-9]+/', '', $str);
+			$compan=strip_tags($compans);
+			$this->data['title'] = $compan.' Company Reviews';
 			//Meta Keywords and Description
-			$this->data['keywords'] = $compan.'In YGR';
-			$this->data['description'] = 'Write Review In YGR,File complaints ';
+			$this->data['keywords'] = $compan.' Review In YGR';
+			$words1=ucfirst($this->uri->segment(3));
+			$str1 = str_replace("_", " ", $words1);
+			$compans1=preg_replace('/[0-9]+/', '', $str1);
+			$compan1=strip_tags($compans1);
+			
+			$this->data['description'] = $compans1;
 		}
 		elseif( $this->uri->segment(1) == 'review' && ( $this->uri->segment(2) == 'comments' || $this->uri->segment(2) == 'editcomment' ) )
 		{
