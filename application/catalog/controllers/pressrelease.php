@@ -76,10 +76,46 @@ class Pressrelease extends CI_Controller {
 				$this->data['description'] = $pressrelease[0]['metadescription'];
 			}
 		}
+		elseif($this->uri->segment(1)=='pressrelease' && $this->uri->segment(2)!='search')
+		{
+				 $words=ucfirst($this->uri->segment(2));
+				$str = str_replace("-", " ", $words);
+				$compans=preg_replace('/[0-9]+/', '', $str);
+				$compan=strip_tags($compans);
+				$pressrelease= $this->pressreleases->get_pressrelease_bytitle($compan);
+				$this->data['title'] = $compans." Pressrelease";
+			if(count($pressrelease)>0)
+			{
+				$this->data['keywords'] = $pressrelease[0]['metakeywords'];
+				$this->data['description'] = $pressrelease[0]['metadescription'];
+			}else
+			{
+				$words=ucfirst($this->uri->segment(2));
+				$str = str_replace("-", " ", $words);
+				$compans=preg_replace('/[0-9]+/', '', $str);
+				$compan=strip_tags($compans);
+				
+				$this->data['keywords'] =$compans.' Company Pressrelease In YGR';
+				$this->data['description'] ='More pressreleases from '.$compans.' Company In YGR';
+				
+			}
+		}
+		elseif($this->uri->segment(1)=='pressrelease' && $this->uri->segment(2)=='search')
+		{
+			if($this->input->post('searchpress'))
+			{
+				$press=trim(ucfirst($this->input->post('searchpress')));
+			}else
+			{
+				$press='Search';
+			}
+			$this->data['keywords'] =$press.' Pressreleases in YGR';
+			$this->data['description'] = 'Search for Pressrelease In YGR Directory';
+		}
 		else{
 		
-		$this->data['keywords'] ='Press Releases,Press release Content In YGR Directory,Latest press Release,Recent Press Release';// $this->common->get_seosetting_value(4);
-		$this->data['description'] = 'Latest Press release In YGR Directory,Search for Press release In YGR Directory';
+		$this->data['keywords'] ='Pressreleases,Pressrelease Content In YGR Directory,Latest pressrelease,Recent Pressrelease';// $this->common->get_seosetting_value(4);
+		$this->data['description'] = 'Latest Press release In YGR Directory,Search for Pressrelease In YGR Directory';
 		}
 		
 		$total= $this->common->get_all_complaints_totaldamage($siteid);
