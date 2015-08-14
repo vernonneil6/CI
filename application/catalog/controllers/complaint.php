@@ -200,7 +200,7 @@ class Complaint extends CI_Controller {
 				//Meta Keywords
 				$words=ucfirst($this->uri->segment(2));
 				$str = str_replace("-", " ", $words);
-				$compans=preg_replace('/[0-9]+/', '', $str);
+				$compans=preg_replace('/[]+/', '', $str);
 				$compan=strip_tags($compans);
 				$this->data['keywords'] = 'Complaints Against'.$compan;
 				//Meta Description
