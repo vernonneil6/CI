@@ -100,10 +100,23 @@ class Pressrelease extends CI_Controller {
 				
 			}
 		}
+		elseif($this->uri->segment(1)=='pressrelease' && $this->uri->segment(2)=='search')
+		{
+			if($this->input->post('searchpress'))
+			{
+				$press=trim(ucfirst($this->input->post('searchpress')));
+			}else
+			{
+				$press='Search';
+			}
+			$this->data['keywords'] =$press.' Pressreleases in YGR';
+			$this->data['description'] = 'Search for Pressrelease In YGR Directory';
+		}
+
 		else{
 		
-		$this->data['keywords'] ='Press Releases,Press release Content In YGR Directory,Latest press Release,Recent Press Release';// $this->common->get_seosetting_value(4);
-		$this->data['description'] = 'Latest Press release In YGR Directory,Search for Press release In YGR Directory';
+		$this->data['keywords'] ='Pressreleases,Pressrelease Content In YGR Directory,Latest pressrelease,Recent Pressrelease';// $this->common->get_seosetting_value(4);
+		$this->data['description'] = 'Latest Press release In YGR Directory,Search for Pressrelease In YGR Directory';
 		}
 		
 		$total= $this->common->get_all_complaints_totaldamage($siteid);
