@@ -59,13 +59,13 @@
 					{
 				 ?>
 						<div class="vry_logo"> 
-							<a href="<?php echo site_url($pressreleases[$i]['company_seoslug']);?>" title="view company Detail">
+							<a href="<?php echo site_url($pressreleases[$i]['seoslug']);?>" title="view company Detail">
 								<img  class="reviewnotverifiedlogo" src="images/notverified.png" alt="YGR-Notverifiedlogo"  />
 							</a> 
 						</div>  <?php 
 						}else{  ?>
 						<div class="vry_logo"> 
-							<a href="<?php echo site_url($pressreleases[$i]['company_seoslug']);?>" title="view company Detail">
+							<a href="<?php echo site_url($pressreleases[$i]['seoslug']);?>" title="view company Detail">
 								<img class="reviewverifiedlogo" src="images/verifiedlogo.png" alt="YGR-Verifiedlogo" />
 							</a> 
 						</div>      
@@ -76,7 +76,7 @@
 			  </div>
 			  <div class="revw_blck_cnt">
 				<h2>
-					<a class = "font_color_2 float_left" href="<?php echo site_url($pressreleases[$i]['company_seoslug']);?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>'s detail"><?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?></a>
+					<a class = "font_color_2 float_left" href="<?php echo site_url($pressreleases[$i]['seoslug']);?>" title="view <?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?>'s detail"><?php echo stripslashes(ucfirst($pressreleases[$i]['company'])); ?></a>
 				
 				  <div class="rating float_left prof_rating">
 					<?php if($avgstar < 2) {  ?>
