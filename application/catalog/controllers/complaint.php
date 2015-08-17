@@ -204,10 +204,14 @@ class Complaint extends CI_Controller {
 				$compan=strip_tags($compans);
 				$this->data['keywords'] = 'Complaints Against '.$compan;
 				//Meta Description
-				$words1=ucfirst($this->uri->segment(3));
-				$str1 = str_replace("_", " ", $words1);
-				$compans1=preg_replace('/[0-9]+/', '', $str1);
-				$compan1=strip_tags($compans1);
+				$complaints=$this->complaints->get_complaint_byid($this->uri->segment(4)); 
+				$description=$complaints['0']['detail'];
+				$words = str_word_count($description, 10);
+				$pos = array_keys($words);
+				$text = substr($description, 0, 100) . '...';
+				$str1 = str_replace("_", " ", $text);
+				$compans1=preg_replace('/[0-9]+/', '', $text);
+				 $compan1=strip_tags($compans1);
 				
 				$this->data['description'] = $compan1;
 				$this->data['title'] = 'Complaints Against '.$compan;
