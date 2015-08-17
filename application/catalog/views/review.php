@@ -4,7 +4,7 @@
   <section class="inner_main">
     <div class="main_contentarea"> <?php echo $menu; ?> 
     <?php if($topads){ ?>
-       <div class="ad_up"><a href="<?php echo $topads[0]['url'];?>" title="Adverstiment" target="_blank" rel="nofollow"><img src="<?php if( $topads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($topads[0]['image']); } ?>" alt="Adverstiment" width="940" height="180" class="adimg"/></a> </div>
+       <div class="ad_up"><a href="<?php echo $topads[0]['url'];?>" title="Adverstiment" target="_blank" rel="nofollow"><img src="<?php if( $topads[0]['image'] ) { echo $this->common->get_setting_value('2').$this->config->item('ad_main_upload_path');?><?php echo stripslashes($topads[0]['image']); } ?>" alt="YGR-Top-Adverstiment" width="940" height="180" class="adimg"/></a> </div>
      
 		  <?php } ?>
     
@@ -21,7 +21,7 @@
         <table border="0" width="100%" cellpadding="0" cellspacing="0">
           <tr>
             <td class="green-left"><?php echo $this->session->flashdata('success'); ?></td>
-            <td class="green-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_green.gif" alt="Close"/></a></td>
+            <td class="green-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_green.gif" alt="YGR-Flash-Close"/></a></td>
           </tr>
         </table>
       </div>
@@ -33,7 +33,7 @@
         <table border="0" width="100%" cellpadding="0" cellspacing="0">
           <tr>
             <td class="red-left"><?php echo $this->session->flashdata('error'); ?></td>
-            <td class="red-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_red.gif" alt="Close"/></a></td>
+            <td class="red-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_red.gif" alt="YGR-Flash-Close"/></a></td>
           </tr>
         </table>
       </div>
@@ -233,7 +233,7 @@
         <table border="0" width="100%" cellpadding="0" cellspacing="0">
           <tr>
             <td class="green-left"><?php echo $this->session->flashdata('success'); ?></td>
-            <td class="green-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_green.gif" alt="Close"/></a></td>
+            <td class="green-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_green.gif" alt="YGR-Flash-Close"/></a></td>
           </tr>
         </table>
       </div>
@@ -245,7 +245,7 @@
         <table border="0" width="100%" cellpadding="0" cellspacing="0">
           <tr>
             <td class="red-left"><?php echo $this->session->flashdata('error'); ?></td>
-            <td class="red-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_red.gif" alt="Close"/></a></td>
+            <td class="red-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_red.gif" alt="YGR-Flash-Close"/></a></td>
           </tr>
         </table>
       </div>
@@ -258,7 +258,7 @@
         <?php for($i=0; $i<count($companies); $i++) { ?>
         <div class="main_dir">
           <div class="dir_maincontent">
-            <div class="dir-image"> <a href="<?php echo site_url('review/browse/'.$companies[$i]['id']); ?>" title="view <?php echo stripslashes($companies[$i]['company']); ?>'s detail"><img src="<?php if( $companies[$i]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($companies[$i]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo stripslashes($companies[$i]['logo']); ?>" width="100px" height="40px" /></a> </div>
+            <div class="dir-image"> <a href="<?php echo site_url('review/browse/'.$companies[$i]['id']); ?>" title="view <?php echo stripslashes($companies[$i]['company']); ?>'s detail"><img src="<?php if( $companies[$i]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($companies[$i]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="YGR-<?php echo stripslashes($companies[$i]['logo']); ?>-Logo" width="100px" height="40px" /></a> </div>
             <div class="post-date" style="width:200px"><a style="color:#fff; padding: 3px 16px;font-size:16px; text-shadow:none" href="<?php echo site_url('review/add').'/'.$companies[$i]['id'];?>" title="Rate This Company" class="dir-searchbtn">rate it</a></div>
             <div class="dir_content_title"><a href="<?php echo site_url('review/browse/'.$companies[$i]['id']); ?>" title="view <?php echo stripslashes($companies[$i]['company']); ?>'s detail"><?php echo stripslashes($companies[$i]['company']); ?></a></div>
             <div class="dir_content_dscr" style="width:888px"> <a href="<?php echo site_url('review/browse/'.$companies[$i]['id']); ?>" title="view <?php echo stripslashes($companies[$i]['company']); ?>'s detail"><?php echo substr(stripslashes($companies[$i]['aboutus']),0,212)."..."; ?></a> </div>
@@ -301,7 +301,7 @@
               <div class="task-photo"> <img width="60px" src="<?php if( strlen($user[0]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($user[0]['avatarbig']); } else { if($user[0]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/male.png"; } 
 		  	if($user[0]['gender']=='Female') { echo $this->common->get_setting_value('2')."images/female.png"; } 
 		  } 
-		   ?>" alt="<?php echo stripslashes($user[0]['username']); ?>"/> </div>
+		   ?>" alt="YGR-<?php echo stripslashes($user[0]['username']); ?>-Profile-Image"/> </div>
               </a>
               <div class="rev-company"><a href="<?php echo site_url('complaint/viewuser/'.$disreview[0]['companyid'].'/'.$disreview[0]['reviewby']);?>" title="view profile"><?php echo $user[0]['username'];?></a></div>
               <?php } ?>
@@ -399,7 +399,7 @@
         <table border="0" width="100%" cellpadding="0" cellspacing="0">
           <tr>
             <td class="green-left"><?php echo $this->session->flashdata('success'); ?></td>
-            <td class="green-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_green.gif" alt="Close"/></a></td>
+            <td class="green-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_green.gif" alt="YGR-Flash-Close"/></a></td>
           </tr>
         </table>
       </div>
@@ -411,7 +411,7 @@
         <table border="0" width="100%" cellpadding="0" cellspacing="0">
           <tr>
             <td class="red-left"><?php echo $this->session->flashdata('error'); ?></td>
-            <td class="red-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_red.gif" alt="Close"/></a></td>
+            <td class="red-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_red.gif" alt="YGR-Flash-Close"/></a></td>
           </tr>
         </table>
       </div>
@@ -483,7 +483,7 @@
               <div class="task-photo"> <img width="60px" src="<?php if( strlen($review[0]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($review[0]['avatarbig']); } else { if($review[0]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/male.png"; } 
 		  	if($review[0]['gender']=='Female') { echo $this->common->get_setting_value('2')."images/female.png"; } 
 		  } 
-		   ?>" alt="<?php echo stripslashes($review[0]['username']); ?>"/> </div>
+		   ?>" alt="YGR-<?php echo stripslashes($review[0]['username']); ?>-Profile-Image"/> </div>
               </a>
               <div class="rev-company"><a href="<?php echo site_url('complaint/viewuser/'.$review[0]['companyid'].'/'.$review[0]['reviewby']);?>" title="view profile"><?php echo $review[0]['username'];?></a></div>
               <?php
@@ -640,7 +640,7 @@
               <div class="task-photo" style="width:40px; float:left; margin-right:20px"> <img width="60px" src="<?php if( strlen($user[0]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($user[0]['avatarbig']); } else { if($user[0]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/male.png"; } 
 		  	if($user[0]['gender']=='Female') { echo $this->common->get_setting_value('2')."images/female.png"; } 
 		  } 
-		   ?>" alt="<?php echo stripslashes($user[0]['username']); ?>"/> </div>
+		   ?>" alt="YGR-<?php echo stripslashes($user[0]['username']); ?>-Profile-Image"/> </div>
               <div>
                 <div> <span class="rev-user user_view"> <a href="<?php echo site_url('complaint/viewuser/'.$review[0]['companyid'].'/'.$user[0]['id']);?>" title="view profile"> <?php echo $user[0]['username'];?></a></span>
                   <?php if( array_key_exists('youg_user',$this->session->userdata) ) { ?>
@@ -785,7 +785,7 @@
         <table border="0" width="100%" cellpadding="0" cellspacing="0">
           <tr>
             <td class="green-left"><?php echo $this->session->flashdata('success'); ?></td>
-            <td class="green-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_green.gif" alt="Close"/></a></td>
+            <td class="green-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_green.gif" alt="YGR-Flash-Close"/></a></td>
           </tr>
         </table>
       </div>
@@ -797,7 +797,7 @@
         <table border="0" width="100%" cellpadding="0" cellspacing="0">
           <tr>
             <td class="red-left"><?php echo $this->session->flashdata('error'); ?></td>
-            <td class="red-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_red.gif" alt="Close"/></a></td>
+            <td class="red-right"><a class="close-green" title="Close"><img src="<?php echo base_url(); ?>images/messages/icon_close_red.gif" alt="YGR-Flash-Close"/></a></td>
           </tr>
         </table>
       </div>
@@ -910,7 +910,7 @@
               <div class="task-photo"> <img width="60px" src="<?php if( strlen($reviews[$i]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($reviews[$i]['avatarbig']); } else { if($reviews[$i]['gender']=='Male') { echo $this->common->get_setting_value('2')."images/male.png"; } 
 		  	if($reviews[$i]['gender']=='Female') { echo $this->common->get_setting_value('2')."images/female.png"; } 
 		  } 
-		   ?>" alt="<?php echo stripslashes($reviews[0]['username']); ?>"/> </div>
+		   ?>" alt="YGR-<?php echo stripslashes($reviews[0]['username']); ?>-Profile-Image"/> </div>
               <?php }
 			  
 			  ?>
