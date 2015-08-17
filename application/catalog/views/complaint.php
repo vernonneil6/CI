@@ -209,7 +209,7 @@ $(document).ready(function() {
               <td valign="top" colspan="2"><div class="post_content_title" style="padding-bottom:0; height:auto;margin-bottom:5px;"><?php echo stripslashes($company[0]['company']); ?></div></td>
             </tr>
             <tr>
-              <td width="110px;"><img src="<?php if( $company[0]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($company[0]['logo']); } else { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" width="100px" height="40px;" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>"/></td>
+              <td width="110px;"><img src="<?php if( $company[0]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($company[0]['logo']); } else { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" width="100px" height="40px;" alt="YGR-<?php echo str_replace('"',"",ucfirst(stripslashes($company[0]['company']))); ?>-image"/></td>
               <td class="company_content_title" style="padding-left:10px;"><?php echo ucfirst(stripslashes($company[0]['company'])); ?>&nbsp;summary </td>
             </tr>
             <tr>
@@ -284,7 +284,7 @@ $(document).ready(function() {
                 <div style="margin-top:5px;float:none;padding-left:10px;">
                   <?php if( count($companysems)>0 ) {?>
                   <?php for($j=0;$j<count($companysems);$j++){?>
-                  <a href="<?php echo $companysems[$j]['url'];?>" title="<?php echo $companysems[$j]['title']; ?>" target="_blank"> <img src="<?php echo base_url(); ?>uploads/companysem/thumb/<?php echo $companysems[$j]['thumbimg']; ?>" title="<?php echo $companysems[$j]['title']; ?>" width="30px;" height="30px;" alt="<?php echo $companysems[$j]['title']; ?>"/> </a>
+                  <a href="<?php echo $companysems[$j]['url'];?>" title="<?php echo $companysems[$j]['title']; ?>" target="_blank"> <img src="<?php echo base_url(); ?>uploads/companysem/thumb/<?php echo $companysems[$j]['thumbimg']; ?>" title="<?php echo $companysems[$j]['title']; ?>" width="30px;" height="30px;" alt="YGR-<?php echo $companysems[$j]['title']; ?>"/> </a>
                   <?php
 		
 		} }?>
@@ -312,7 +312,7 @@ $(document).ready(function() {
                   <?php $file =$this->common->get_setting_value('2').$this->config->item('pdf_main_upload_path').$companypdfs[$x]['pdf'];?>
                   <?php $title = ucfirst(stripslashes($companypdfs[$x]['title'])); ?>
                   <a style="cursor: pointer;" onclick="PopupCenter('<?php echo $file;?>','<?php echo $title;?>','800','500');" target="_blank" title="View document">
-                  <div class="company_content_title"><?php echo $companypdfs[$x]['title'];?>&nbsp; <img src="<?php echo base_url();?>/images/pdf.png" title="pdf" alt="pdf" /> </div>
+                  <div class="company_content_title"><?php echo $companypdfs[$x]['title'];?>&nbsp; <img src="<?php echo base_url();?>/images/pdf.png" title="pdf" alt="YGR-pdf" /> </div>
                   </a> </div>
                 <?php } ?>
                 <?php } };?></td>
@@ -392,7 +392,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 <div class="post_maincontenttab">
                   <div class="post_content_dscrtab user_view"> <a href="<?php echo site_url('review/browse/'.$reviews[$i]['seokeyword']);?>" title="view comment detail"><?php echo stripslashes($reviews[$i]['comment']); ?></a> <br/>
                     <br/>
-                    <img src="<?php echo base_url(); ?>images/stars/<?php echo $reviews[$i]['rate']; ?>.png" alt="<?php echo 'Ratings : '.$reviews[$i]['rate']; ?>" title="<?php 'Ratings : '.$reviews[$i]['rate']; ?>" class="star_image"/> </div>
+                    <img src="<?php echo base_url(); ?>images/stars/<?php echo $reviews[$i]['rate']; ?>.png" alt="YGR-<?php echo 'Ratings : '.$reviews[$i]['rate']; ?>" title="<?php 'Ratings : '.$reviews[$i]['rate']; ?>" class="star_image"/> </div>
                   <?php 
                         $date = date_default_timezone_set('Asia/Kolkata');                        $dbdate = date('Y-m-d',strtotime($reviews[$i]['reviewdate']));
                         $today = date('m/d/Y');
@@ -417,7 +417,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 <div class="post_maincontenttab">
                   <div class="post_content_dscrtab user_view"> <a href="" title="Comment"><?php echo stripslashes($companyreviews[$x]['comment']); ?></a> <br/>
                     <br/>
-                    <img src="<?php echo base_url(); ?>images/stars/<?php echo $companyreviews[$x]['rate']; ?>.png" alt="<?php echo 'Ratings : '.$companyreviews[$x]['rate']; ?>" title="<?php 'Ratings : '.$companyreviews[$x]['rate']; ?>" class="star_image"/> </div>
+                    <img src="<?php echo base_url(); ?>images/stars/<?php echo $companyreviews[$x]['rate']; ?>.png" alt="YGR-<?php echo 'Ratings : '.$companyreviews[$x]['rate']; ?>" title="<?php 'Ratings : '.$companyreviews[$x]['rate']; ?>" class="star_image"/> </div>
                   <?php 
                         $date = date_default_timezone_set('Asia/Kolkata');                        $dbdate = date('Y-m-d',strtotime($companyreviews[$x]['reviewdate']));
                         $today = date('m/d/Y');
@@ -537,7 +537,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 <div class="post_maincontenttab">
                   <div class="post_content_dscrtab user_view"> <a href="<?php echo site_url('complaint/viewcomment/'.$reviews[$i]['id']);?>" title="view comment detail"><?php echo stripslashes($reviews[$i]['comment']); ?></a> <br/>
                     <br/>
-                    <img src="<?php echo base_url(); ?>images/stars/<?php echo $reviews[$i]['rate']; ?>.png" alt="<?php echo 'Ratings : '.$reviews[$i]['rate']; ?>" title="<?php 'Ratings : '.$reviews[$i]['rate']; ?>" class="star_image"/> </div>
+                    <img src="<?php echo base_url(); ?>images/stars/<?php echo $reviews[$i]['rate']; ?>.png" alt="YGR-<?php echo 'Ratings : '.$reviews[$i]['rate']; ?>" title="<?php 'Ratings : '.$reviews[$i]['rate']; ?>" class="star_image"/> </div>
                   <?php 
                         $date = date_default_timezone_set('Asia/Kolkata');                        $dbdate = date('Y-m-d',strtotime($reviews[$i]['reviewdate']));
                         $today = date('m/d/Y');
@@ -562,7 +562,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 <div class="post_maincontenttab">
                   <div class="post_content_dscrtab user_view"> <a href="" title="comment"><?php echo stripslashes($companyreviews[$x]['comment']); ?></a> <br/>
                     <br/>
-                    <img src="<?php echo base_url(); ?>images/stars/<?php echo $companyreviews[$x]['rate']; ?>.png" alt="<?php echo 'Ratings : '.$companyreviews[$x]['rate']; ?>" title="<?php 'Ratings : '.$companyreviews[$x]['rate']; ?>" class="star_image"/> </div>
+                    <img src="<?php echo base_url(); ?>images/stars/<?php echo $companyreviews[$x]['rate']; ?>.png" alt="YGR-<?php echo 'Ratings : '.$companyreviews[$x]['rate']; ?>" title="<?php 'Ratings : '.$companyreviews[$x]['rate']; ?>" class="star_image"/> </div>
                   <?php 
                         $date = date_default_timezone_set('Asia/Kolkata');                        $dbdate = date('Y-m-d',strtotime($companyreviews[$x]['reviewdate']));
                         $today = date('m/d/Y');
@@ -639,7 +639,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
               <div class="container1">
                 <div id="featured">
                   <?php for($f=0; $f<count($photos); $f++) { ?>
-                  <img src="<?php echo $site;?>uploads/gallery/main/<?php echo stripslashes($photos[$f]['photo']); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="<?php echo stripslashes($photos[$f]['photo']); ?>" width="644px;" height="350px;" />
+                  <img src="<?php echo $site;?>uploads/gallery/main/<?php echo stripslashes($photos[$f]['photo']); ?>" title="<?php echo stripslashes($gallerys[$i]['title']); ?>" alt="YGR-<?php echo stripslashes($photos[$f]['photo']); ?>-Gallery" width="644px;" height="350px;" />
                   <?php } ?>
                 </div>
               </div>
@@ -725,7 +725,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                     {
 						$avgratings1=0;
 					} ?>
-              <img src="<?php echo base_url(); ?>images/stars/<?php echo ceil(($avgratings+$avgratings1)/2); ?>.png" alt="<?php echo 'Ratings : '.(($avgratings+$avgratings1)/2); ?>" title="<?php 'Ratings : '.(($avgratings+$avgratings1)/2); ?>" class="star_image"/>
+              <img src="<?php echo base_url(); ?>images/stars/<?php echo ceil(($avgratings+$avgratings1)/2); ?>.png" alt="YGR-<?php echo 'Ratings : '.(($avgratings+$avgratings1)/2); ?>" title="<?php 'Ratings : '.(($avgratings+$avgratings1)/2); ?>" class="star_image"/>
               <?php
 			  } ?>
               <br />
@@ -814,7 +814,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
         </div>
         <table width="95%" border="0" cellspacing="0" cellpadding="0" class="complaint_user_table">
           <tr height="80">
-            <td width="200" valign="top"><div class="task-photo"> <img width="60px" src="<?php if( strlen($user[0]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($user[0]['avatarbig']); } else {  echo $this->common->get_setting_value('2')."images/default_user.png";  }  ?>" alt="<?php echo stripslashes($user[0]['username']); ?>"/> </div>
+            <td width="200" valign="top"><div class="task-photo"> <img width="60px" src="<?php if( strlen($user[0]['avatarbig']) > 1 ){ echo $this->common->get_setting_value('2').$this->config->item('user_thumb_upload_path');?><?php echo stripslashes($user[0]['avatarbig']); } else {  echo $this->common->get_setting_value('2')."images/default_user.png";  }  ?>" alt="YGR-<?php echo stripslashes($user[0]['username']); ?>-Profile-Image"/> </div>
               <span class="rev-company"><?php echo "Joined on";?><br/>
               <?php echo date('d M, Y',strtotime($user[0]['registerdate']));?></span><br/>
               <span class="rev-company"><?php echo $user[0]['city'];?></span><br/>
@@ -1023,7 +1023,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
             <td><b>Company Profile Summary</b></td>
           </tr>
           <tr>
-            <td width="140"><div class="task-photo"> <img src="<?php if( $complaints[0]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($complaints[0]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>" style="border:1px solid #dcdcdc" width="100px" height="40px"/> </div></td>
+            <td width="140"><div class="task-photo"> <img src="<?php if( $complaints[0]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($complaints[0]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="YGR-<?php echo str_replace('"',"",ucfirst(stripslashes($complaints[0]['company']))); ?>-image" style="border:1px solid #dcdcdc" width="100px" height="40px"/> </div></td>
           </tr>
           <tr height="35">
             <td><b>Company Statistics</b></td>
@@ -1175,7 +1175,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
             <td><b>Company Profile Summary</b></td>
           </tr>
           <tr>
-            <td width="140"><div class="task-photo"> <img src="<?php if( $comments[0]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($comments[0]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($comments[0]['company'])); ?>" style="border:1px solid #dcdcdc" width="100px" height="40px"/> </div></td>
+            <td width="140"><div class="task-photo"> <img src="<?php if( $comments[0]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($comments[0]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="YGR-<?php echo str_replace('"',"",ucfirst(stripslashes($comments[0]['company']))); ?>-Image" style="border:1px solid #dcdcdc" width="100px" height="40px"/> </div></td>
           </tr>
           <tr height="35">
             <td><b>Company Statistics</b></td>
@@ -1867,7 +1867,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
             <!--</span>--> </div>
           <div class="post_maincontent">
             <?php if(count($company)>0) { ?>
-            <div class="side-image"> <a href="<?php echo site_url('complaint/browse/'.$lastweekcomplaints[$i]['comseokeyword']); ?>" title="view complaint detail"><img src="<?php if( $company[0]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($company[0]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" width="100px" height="40px"/></a> </div>
+            <div class="side-image"> <a href="<?php echo site_url('complaint/browse/'.$lastweekcomplaints[$i]['comseokeyword']); ?>" title="view complaint detail"><img src="<?php if( $company[0]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($company[0]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="YGR-<?php echo str_replace('"',"",ucfirst(stripslashes($company[0]['company']))); ?>" width="100px" height="40px"/></a> </div>
             <?php } ?>
             <?php if(count($company)>0) { ?>
             <div class="post_content_title"><a href="<?php echo site_url('complaint/browse/'.$lastweekcomplaints[$i]['comseokeyword']); ?>" title="view complaint detail"><?php echo ucfirst(stripslashes($company[0]['company'])); ?></a></div>
@@ -1993,7 +1993,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
             Reports </span></a> <!--<span>--><a href="<?php echo site_url('company').'/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints';?>" title="view all">View All</a><!--</span>--> </div>
           <div class="post_maincontent">
             <?php if(count($company)>0) { ?>
-            <div class="side-image"> <a href="<?php echo site_url('complaint/browse/'.$filtercomplaints[$i]['comseokeyword']); ?>" title="view complaint detail"><img src="<?php if( $company[0]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($company[0]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" width="100px" height="40px"/></a> </div>
+            <div class="side-image"> <a href="<?php echo site_url('complaint/browse/'.$filtercomplaints[$i]['comseokeyword']); ?>" title="view complaint detail"><img src="<?php if( $company[0]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($company[0]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="YGR-<?php echo str_replace('"',"",ucfirst(stripslashes($company[0]['company']))); ?>-Image" width="100px" height="40px"/></a> </div>
             <?php } ?>
             <?php if(count($company)>0) { ?>
             <div class="post_content_title"><a href="<?php echo site_url('complaint/browse/'.$filtercomplaints[$i]['comseokeyword']); ?>" title="view complaint detail"><?php echo stripslashes($company[0]['company']); ?></a></div>
@@ -2125,7 +2125,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
             Related<br>
             Reports </span></a> <!--<span>--><a href="<?php echo site_url('company').'/'.$complaints[$i]['companyseokeyword'].'/reviews/coupons/complaints';?>" title="view all">View All</a><!--</span>--> </div>
           <div class="post_maincontent">
-            <div class="side-image"> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><img src="<?php if( $complaints[$i]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($complaints[$i]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?>" width="100px" height="40px"/></a> </div>
+            <div class="side-image"> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><img src="<?php if( $complaints[$i]['logo'] ){ echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($complaints[$i]['logo']); } else{echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."/no_image.png"; } ?>" alt="YGR-<?php echo str_replace('"',"",ucfirst(stripslashes($complaints[$i]['company']))); ?>-Image" width="100px" height="40px"/></a> </div>
             <div class="post_content_title"><a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><?php echo ucfirst(stripslashes($complaints[$i]['company'])); ?></a></div>
             <div class="post_content_dscr user_view" style="margin-top:2px;width: -moz-available;"> <a href="<?php echo site_url('complaint/browse/'.$complaints[$i]['comseokeyword']); ?>" title="view complaint detail"><?php echo strtolower(substr(stripslashes($complaints[$i]['detail']),0,212)."..."); ?></a> </div>
             <?php 

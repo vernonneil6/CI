@@ -266,7 +266,7 @@ else
 }
 ?>			
     <div class="lgn_btnlogo" > <a href="<?php echo base_url();?>">
-                        <img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a></div>
+                        <img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated-Mini-Logo" title="Yougotrated"></a></div>
              </div>
   </div>
 
