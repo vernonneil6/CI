@@ -153,9 +153,9 @@ class Company extends CI_Controller {
 			}
 		}
 		
-		elseif( $this->uri->segment(1)=='company' && $this->uri->segment(2)!='reviews' )
+		elseif( $this->uri->segment(1)=='company' && ($this->uri->segment(2)=='elite-members' || $this->uri->segment(2)=='not-verified') )
 		{
-			$company = $this->complaints->get_company_byseokeyword($this->uri->segment(2)); 
+			$company = $this->common->get_company_byid($this->uri->segment(5)); 
 			
 			if(count($company)>0)
 			{
@@ -168,7 +168,6 @@ class Company extends CI_Controller {
 			}
 			else
 			{
-				
 				$this->data['title'] = 'company : '. $this->data['site_name']; 
 				$this->data['keywords'] ='Test'. $this->common->get_seosetting_value(4);
 			    $this->data['description'] = strip_tags($this->common->get_seosetting_value(5));
