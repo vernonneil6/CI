@@ -107,7 +107,10 @@
         <?php } ?>
 
 <?php if( (!$this->uri->segment(2) && $this->uri->segment(2) == '')  || ($this->uri->segment(2) && $this->uri->segment(2) == 'index' ) ) { ?>
+<section class="container">
+  <section class="main_contentarea">
 <div class = "account">
+	
 	<h3>Login to YouGotRated</h3>
 	<div class = "account_option">	
 		<div class="option facebookcolor" onclick="FBLogin();"><i class="fa fa-facebook facebookboder"></i><span>Login with Facebook</span></div>
@@ -134,6 +137,8 @@
 		</div>
 	</div>
 </div>
+</section>
+</section>
 <?php } else if($this->uri->segment(2) && $this->uri->segment(2) == 'forgot' ||  $this->uri->segment(2)=='forgotusername'){?>
 <div class = "account">
 	<h3>Forgot Password</h3>
@@ -152,7 +157,7 @@
 	</div>
 </div>
 <?php }?>
-	<div class="lgn_btnlogo"> <a><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated" title="Yougotrated"></a> </div>
+	<div class="lgn_btnlogo"> <a><img src="images/ygr_logos.png" class="logo_btm" alt="Yougotrated-Mini-Logo" title="Yougotrated"></a> </div>
     </div>
   </section>
 </section>
