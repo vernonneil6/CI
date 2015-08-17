@@ -767,7 +767,7 @@ else { ?>
       </div>
        </div>
 	<div class="load_rvw"> 
-		<a href="<?php echo site_url();?>" title="YOUGOTRATED"><img class="logo_btm" src="images/ygr_logos.png" alt="YOUGOTRATED" title="YOUGOTRATED"> </a> 
+		<a href="<?php echo site_url();?>" title="YOUGOTRATED"><img class="logo_btm" src="images/ygr_logos.png" alt="YOUGOTRATED-Mini-Logo" title="YOUGOTRATED"> </a> 
 	</div>
     </div>
     
@@ -778,7 +778,8 @@ else { ?>
 		</li>
 		<?php $ex = explode(',',$company[0]['categoryid']); $cat_breadcrumb = ''; ?>
 		<?php 
-		if(!empty($ex)){
+		if(!empty($ex))
+		{
 			for($a=0;$a<count($ex);$a++)
 			{
 
