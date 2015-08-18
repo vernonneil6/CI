@@ -430,6 +430,7 @@ span.toggle:before{
 
 }
 @media only screen and (min-width: 310px) and (max-width: 549px)  {
+.pr_testmnl_wrp{display:block;}
 .cmnt_wrp.cmnt_1, .cmnt_wrp.cmnt_2 {padding-left:7px;}
 .clnt_name span{float:left;}
 .revw_blck .revw_blck_cnt .revw_desc {text-align:justify;}
