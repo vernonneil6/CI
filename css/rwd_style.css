@@ -328,7 +328,6 @@ span.toggle:before{
 .dis_width .reg-row{width:100%;}
 .coupon_wrap .revw_blck_cnt {float: right; width: 78%;}
 .coupon_wrap .revw_blck_img{display:inline;text-align:left}
-
 .pr_countwrp ul{ width:330px; margin:0 auto;}
 }
 @media only screen and (min-width: 550px) and (max-width: 770px)  {
