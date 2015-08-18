@@ -493,7 +493,7 @@ span.toggle:before{
 .revw_ratpoint span h5{display: block !important;margin-bottom:5px;}
 .revw_ratpoint span {line-height:20px;}
 .revw_blck_cnt h2{font-size:13px !important;}
-.account_option .option{margin:0 0 15px 15px;}
+.account_option .option{margin:0 0 15px 0px;}
 .login_lft{margin-left:5px;}
 .txt_box{width:71%;}
 #first.footer_block,.main_footer{width:311px; padding:0;margin:0 auto;}
