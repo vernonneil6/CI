@@ -1109,7 +1109,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 .cnt_content span{font-family:"myriadpro-regular"; font-weight:bold; color:#333	; font-size:18px; text-transform:uppercase;}
 .cnt_content p{margin:5px 0 0 0 ; font-family:"myriadpro-regular"; font-weight:bold; color:#fff; font-size:18px;}
 .pr_testmnl_wrp{width:950px; display:table; margin:0 auto;  font-family: myriadpro-regular;}
-.pr_testmnl_wrp p{font-family:"myriadpro-regular"; font-size:18px; color:#333;margin-top: 10px;}
+.pr_testmnl_wrp p{font-family:"myriadpro-regular"; font-size:18px; color:#333;margin: 10px 0 0 0;}
 .testmnl_clntwrp{width:600px; margin:0 auto; display:table;}
 .clnt_intr{float:right; display:block;}
 .clnt_pic{display:inline-block; width:40px; height:40px; vertical-align:middle;}
