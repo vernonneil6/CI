@@ -433,7 +433,7 @@ span.toggle:before{
 .revw_blck .revw_blck_cnt .revw_desc {text-align:justify;}
 .revw_blck{width:93%;}
 .reg-row .names{font-size: 16px;width:86% !important;}
-.headersearch .bannertext{font-size:9px;}
+.headersearch .bannertext{font-size:6px;}
 #loading{height:10px;float:none;margin:0 auto; position: relative; z-index: 9999999;}
 .headersearchbtn, .headersearchbar{margin:0 auto;float:none;}
 .formBox{width:auto;}
@@ -560,7 +560,7 @@ span.toggle:before{
 .headersearch.headertoptext{bottom:65%;margin:0px;}
 .headersearch{bottom:25%; font-size:13px;height:30px;}
 .headersearch.headerbottomtext{bottom:7%;margin:0px;}
-#search_form .headersearchbar{ height:30px;}
+#search_form .headersearchbar{ height:25px;}
 .image_novrf{margin-top:0px !important;}
 }
 @media only screen and (max-width: 920px) {
