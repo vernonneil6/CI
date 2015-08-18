@@ -389,7 +389,7 @@ span.toggle:before{
 .hm_rvw_wrp .home_right { padding: 10px 3px 0 13px;}
 .hm_rvw_wrp .reptitle,.hm_rvw_wrp .home_mar_line,.hm_rvw_wrp .home_mar_line, .hm_rvw_wrp .review-head{width:75%;}
 
-.container{padding:0 20px;}
+.container{padding:0 20px;width:95%}
 .headersearch{width:411px;}
 .revw_blck_cnt h2{font-size:15px !important;}
 #first.footer_block,.main_footer{width:411px; padding:0;margin:0 auto;}
@@ -489,7 +489,7 @@ span.toggle:before{
 .review-slider ul{padding:0 0 0 0px;}
 .hm_rvw_wrp .home_right { padding: 10px 3px 0 13px;}
 .hm_rvw_wrp .reptitle,.hm_rvw_wrp .home_mar_line,.hm_rvw_wrp .home_mar_line, .hm_rvw_wrp .review-head{width:70%;}
-.container{padding:0px; }
+.container{padding:0px;width:95%; }
 .bannertext{height:auto;}
 .revw_ratpoint span h5{display: block !important;margin-bottom:5px;}
 .revw_ratpoint span {line-height:20px;}
@@ -536,7 +536,7 @@ span.toggle:before{
 .headersearchbar{width:220px;height:30px;}
 .flexslider .headersearch .formBox, .innr_wrap .headersearch .formBox{width:225px;}
 .headersearchbtn{font-size: 22px !important;bottom:1.7em;cursor:pointer}
-.headersearch{bottom:0%;}
+.headersearch{bottom:0%;width:100%;}
 }
 
 @media only screen and (min-width: 620px) and (max-width: 1050px)  {
@@ -559,7 +559,7 @@ span.toggle:before{
 .bus_tag{font-size:17px;}
 .headersearchbar{margin-bottom:10px;}
 .headersearch.headertoptext{bottom:65%;margin:0px;}
-.headersearch{bottom:25%; font-size:13px;height:30px;}
+.headersearch{bottom:25%; font-size:13px;height:30px;width:100%;}
 .headersearch.headerbottomtext{bottom:7%;margin:0px;}
 #search_form .headersearchbar{ height:25px;}
 .image_novrf{margin-top:0px !important;}
