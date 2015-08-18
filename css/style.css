@@ -87,7 +87,7 @@ body {
 	margin:0px;
 	padding:0px;
 	background-attachment:fixed; 
-	display:table;
+	/*display:table;*/
 	}
 a {color:#666;font-family: MyriadPro-Regular; outline:none; text-decoration:none;word-wrap: break-word;}
 a:hover {text-decoration:none}
