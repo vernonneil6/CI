@@ -199,6 +199,8 @@ span.stars{
 .clnt_intr{ text-align:left;}
 .clnt_name a{ margin-bottom:0px !important; }
 .clnt_intr div{ float:left;clear:left;}
+.clnt_intr .clnt_name{clear:none;}
+.clnt_name span{float:left;}
 .clnt_intr .clnt_pic.photo{float:right;}
 .custom-countwrp1{ display:block !important;margin-bottom:10px;}
 .custom-countwrp1 ul li{margin-bottom:10px;}
@@ -388,7 +390,7 @@ span.toggle:before{
 .hm_rvw_wrp .home_right { padding: 10px 3px 0 13px;}
 .hm_rvw_wrp .reptitle,.hm_rvw_wrp .home_mar_line,.hm_rvw_wrp .home_mar_line, .hm_rvw_wrp .review-head{width:75%;}
 
-.container{width:411px;padding:0 20px;}
+.container{padding:0 20px;}
 .headersearch{width:411px;}
 .revw_blck_cnt h2{font-size:15px !important;}
 #first.footer_block,.main_footer{width:411px; padding:0;margin:0 auto;}
@@ -429,7 +431,7 @@ span.toggle:before{
 }
 @media only screen and (min-width: 310px) and (max-width: 549px)  {
 .cmnt_wrp.cmnt_1, .cmnt_wrp.cmnt_2 {padding-left:7px;}
-
+.clnt_name span{float:left;}
 .revw_blck .revw_blck_cnt .revw_desc {text-align:justify;}
 .revw_blck{width:93%;}
 .reg-row .names{font-size: 16px;width:86% !important;}
