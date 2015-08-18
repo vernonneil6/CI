@@ -8,7 +8,7 @@ td{display:block;}
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy{display:inline;}
 /*.srch_rslt_left .verified_wrp.srch_rslt_vrfy .vry_logo{float:left;}*/
 .srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:25px;}
-.srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name{margin-bottom:5px;margin-top:5px;float:left;width:300px;}
+.srch_rslt_left .verified_wrp.srch_rslt_vrfy .compny_name{margin-bottom:5px;margin-top:5px;float:left;width:auto;}
 .review-slider, .review-slider-right{float:none;width:100%;}
 .review-slider-right{display: none;}
 #frmcomment > label {float:left;clear:both;}
@@ -509,7 +509,7 @@ span.toggle:before{
 .clnt_name{margin-left:4px;}
 .pr_countwrp{width:100%;}
 .head_sb_rvw h1{font-size:30px;}
-.srch_rslt_left{width:402px;}
+.srch_rslt_left{width:100%;}
 .verified_wrp.srch_rslt_vrfy .compny_name h2{font-size:20px;}
 .serch_result h1{font-size:20px;}
 .review_right div{width:200px;}
