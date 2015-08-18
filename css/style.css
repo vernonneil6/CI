@@ -1229,7 +1229,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
     color: #2c6a99;
     margin : 0 0 7px 0;
 }
-.coupon_wrap{ display: inline-block; margin-top: 90px;  width: 100%;}
+.coupon_wrap{ display: inline-block; margin-top: 20px;  width: 100%;}
 .coupon_wrap .revw_blck_cnt h2, .coupon_wrap .revw_blck_cnt h2 .recenttitle{font-family:"myriadpro-regular"; font-weight:bold; font-size:23px; padding: 3px 0 0 6px; color:#fff; text-transform:uppercase; margin:0; line-height:30px; height:30px; background:#2C6A99;}
 .coupon_wrap .revw_blck_cnt h2 span, .coupon_wrap .revw_blck_cnt h2 .recentexpire{float:right; font-size:16px; color:#000; margin-right:10px;}
 .coupon_dscrwrp{width:100%; display:inline-block; padding-bottom:10px; border-bottom:1px solid #999;}

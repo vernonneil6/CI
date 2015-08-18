@@ -463,9 +463,10 @@ span.toggle:before{
 #frmcompany .bd_srchwrp #searchcomp {width:auto;}
 #frmcompany .bd_srchwrp{width:100%;}
 
-.coupon_wrap .revw_blck_cnt {float: right; width: 72%;}
-.coupon_wrap .revw_blck_cnt h2{text-align:left;}
+.coupon_wrap .revw_blck_cnt {float: right; width: 72%;margin-top:4px;}
+.coupon_wrap .revw_blck_cnt h2{text-align:left;height:auto;line-height:28px;}
 .coupon_wrap .revw_blck_img{display:inline;text-align:left}
+.coupon_wrap .revw_blck_cnt h2 span{float:left;}
 
 .dir_rew_wrap .revw_blck_cnt{float: right;width: 70%;}
 .dir_rew_wrap .revw_blck_cnt h2{text-align:left;  overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 90%;}
@@ -552,7 +553,7 @@ span.toggle:before{
 }
 
 @media only screen and (min-width: 310px) and (max-width: 619px)  {
-.bannertextcoupon{font-size:25px !important;height:35px;}
+.bannertextcoupon{font-size:18px !important;height:35px;}
 .bus_dir_head  h1{height:20px;}
 .bus_tag{font-size:17px;}
 .headersearchbar{margin-bottom:10px;}
