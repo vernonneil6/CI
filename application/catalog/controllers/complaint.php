@@ -154,7 +154,7 @@ class Complaint extends CI_Controller {
 						$company= $this->complaints->get_company_byseokeyword($this->uri->segment(3));
 			 	  	if(count($company)>0)
 						{
-								$this->data['title'] = $company[0]['company'].' '.'Complaints:YOUGOTRATED';
+								$this->data['title'] = $company[0]['company'].' '.'Complaints';
 								$this->data['keywords'] = 'Complaints Against'.$company[0]['company'];
 								$this->data['description'] = $company[0]['aboutus'];
 						}
@@ -178,7 +178,7 @@ class Complaint extends CI_Controller {
 						
 					 	  		if(count($complaint)>0)
 								{
-									$this->data['title'] = $companyname['company'].' '.'Complaints:YOUGOTRATED';
+									$this->data['title'] = $companyname['company'].' '.'Complaints';
 									$this->data['keywords'] = 'Complaints Against '. $companyname['company'];
 									$inputstring=$complaint[0]['detail'];
 									$pieces = explode(" ", $inputstring);
@@ -211,7 +211,7 @@ class Complaint extends CI_Controller {
 				$compan1=strip_tags($compans1);
 				
 				$this->data['description'] = $compan1;
-				$this->data['title'] = 'Complaints Against '.$compan;
+				$this->data['title'] = ucfirst($compan).' Complaints';
 		}
 		else
 		{

@@ -86,7 +86,7 @@ class Review extends CI_Controller
 			$str = str_replace("-", " ", $words);
 			$compans=preg_replace('/[0-9]+/', '', $str);
 			$compan=strip_tags($compans);
-			$this->data['title'] = $compan.' Company Reviews';
+			$this->data['title'] = $compan.' Reviews';
 			//Meta Keywords and Description
 			$this->data['keywords'] = $compan.' Review In YGR';
 			$words1=ucfirst($this->uri->segment(3));

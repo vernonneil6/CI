@@ -17,12 +17,13 @@ $elitemem_status = $this->common->get_eliteship_bycompanyid($complaints[0]['comp
 </script>
 <section class="container">
   <section class="main_contentarea">
+	   <h1 class="bannertext"><span class="bannertextregular"><?php echo $complaints[0]['company'];?></span> Complaints</h1>
     <div class="verified_wrp pr_rwrp compli_detail">
         <?php if(count($elitemem_status)==0){?>
-        <div class="vry_logo verified_browse"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class = "reviewnotverifiedlogos" alt="YGR-<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>-Notverified-logo" /></a> </div>
+        <div class="vry_logo verified_browse"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class = "reviewnotverifiedlogos" alt="YGR-<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?> Notverified Seal" /></a> </div>
         <?php }else{
 				  ?>
-        <div class="vry_logo verified_browse"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "reviewverifiedlogo" alt="YGR-<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?>-Verified-logo" /></a> </div>
+        <div class="vry_logo verified_browse"> <a href="<?php echo site_url('company/'.$complaints[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "reviewverifiedlogo" alt="YGR-<?php echo ucfirst(stripslashes($complaints[0]['company'])); ?> Verified Seal" /></a> </div>
         <?php
 				  } ?>
      

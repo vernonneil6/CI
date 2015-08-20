@@ -130,6 +130,8 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
 <?php $company=$this->reviews->get_company_byid($review[0]['companyid']);?>
 <section class="container">
   <section class="main_contentarea">
+	  
+	  <h1 class="bannertext"><span class="bannertextregular"><?php echo $review[0]['company'];?></span> Reviews</h1>
     <div class="verified_wrp pr_rwrp verfs_top">
       <?php 
 			$company=$this->reviews->get_company_byid($review[0]['companyid']);
@@ -144,10 +146,10 @@ $username = $this->users->get_user_bysingleid($review[0]['reviewby']);
         <?php /*?><div class="vry_logo"> <a href="<?php echo site_url('company/'.$review[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view complaint Detail"><img src="<?php if( $review[0]['logo'] ) { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path');?><?php echo stripslashes($review[0]['logo']); } else { echo $this->common->get_setting_value('2').$this->config->item('company_thumb_upload_path')."no_image.png"; } ?>" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" width="103px" height="88px" /></a> </div><?php */?>
         
         <?php if(count($elitemem_status)==0){?>
-        <div class="vry_logo"> <a href="<?php echo site_url($company_seoslug); ?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url($company_seoslug); ?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?> NotVerified Seal" /></a> </div>
         <?php }else{
 				  ?>
-        <div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?>" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img class = "reviewnotverifiedlogos" src="images/verifiedlogo.jpg" alt="<?php echo ucfirst(stripslashes($review[0]['company'])); ?> Verified Seal" /></a> </div>
         <?php
 				  } ?>
         <div class="compny_name">

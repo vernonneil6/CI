@@ -25,6 +25,7 @@
 
 <section class="container">
   <section class="main_contentarea coupons">
+	  <h1 class="bannertext"><span class="bannertextregular"><?php echo $coupons[0]['company'];?></span> Coupons</h1>
     <?php  	$avgstar = $this->common->get_avg_ratings_bycmid($coupons[0]['companyid']);
 			$itemproaverage = $avgstar;
 			$avgstar = round($avgstar);

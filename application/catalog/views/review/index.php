@@ -100,13 +100,13 @@
 				if(count($elitemem_status)==0){?>
 					<div class="vry_logo"> 
 						<a href="<?php echo site_url($company_seoslug);?>" title="view company Detail">
-							<img  class="reviewnotverifiedlogo" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($reviews[$i]['company'])); ?>" />
+							<img  class="reviewnotverifiedlogo" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($reviews[$i]['company'])); ?> NotVerified Seal" />
 						</a> 
 					</div>  <?php 
 					}else{  ?>
 					<div class="vry_logo"> 
 						<a href="<?php echo site_url($company_seoslug);?>" title="view company Detail">
-							<img class="reviewverifiedlogo" src="images/verifiedlogo.png" alt="<?php echo ucfirst(stripslashes($reviews[$i]['company'])); ?>" />
+							<img class="reviewverifiedlogo" src="images/verifiedlogo.png" alt="<?php echo ucfirst(stripslashes($reviews[$i]['company'])); ?> Verified Seal" />
 						</a> 
 					</div>      <?php
 				} ?>            
