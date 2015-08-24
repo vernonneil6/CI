@@ -1,7 +1,7 @@
 <?php echo $header;?>
 <section class="container">
   <section class="main_contentarea">
-	
+	<h1 class="bannertext"><span class="bannertextregular"><?php echo strtoupper($company[0]['company']);?></span> Pressrelease</h1>
 		<?php 
 		    $avgstar = $this->common->get_avg_ratings_bycmid($company[0]['id']);
 			$avgstar = round($avgstar);
@@ -11,10 +11,10 @@
             
             <div class="verified_wrp pr_rwrp pr_rwrp">
               <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"> <a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="YGR-<?php echo ucfirst(stripslashes($company[0]['company'])); ?>-Notverified-logo" /></a> </div>
+              <div class="vry_logo"> <a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?> Notverified Seal" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="YGR-<?php echo ucfirst(stripslashes($company[0]['company'])); ?>-Verified-logo" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url($company[0]['seoslug']);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?> Verified Seal" /></a> </div>    
                   <?php
 				  } ?>
 			

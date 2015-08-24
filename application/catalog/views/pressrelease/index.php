@@ -60,13 +60,13 @@
 				 ?>
 						<div class="vry_logo"> 
 							<a href="<?php echo site_url($pressreleases[$i]['seoslug']);?>" title="view company Detail">
-								<img  class="reviewnotverifiedlogo" src="images/notverified.png" alt="YGR-Notverifiedlogo"  />
+								<img  class="reviewnotverifiedlogo" src="images/notverified.png" alt="<?php echo ucfirst(stripslashes($pressreleases[$i]['company'])); ?>"  />
 							</a> 
 						</div>  <?php 
 						}else{  ?>
 						<div class="vry_logo"> 
 							<a href="<?php echo site_url($pressreleases[$i]['seoslug']);?>" title="view company Detail">
-								<img class="reviewverifiedlogo" src="images/verifiedlogo.png" alt="YGR-Verifiedlogo" />
+								<img class="reviewverifiedlogo" src="images/verifiedlogo.png" alt="<?php echo ucfirst(stripslashes($pressreleases[$i]['company'])); ?> Verified Seal" />
 							</a> 
 						</div>      
 				<?php

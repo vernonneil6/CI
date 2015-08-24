@@ -34,9 +34,9 @@
       <div class="verified_wrp pr_rwrp pr_rwrp">
 
         <?php if(count($elitemem_status)==0){?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class="reviewnotverifiedlogo" alt="YGR-<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?>-Notverifiedlogo" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/notverified.png" class="reviewnotverifiedlogo" alt="<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?> Notverified Seal" /></a> </div>
         <?php }else{ ?>
-        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="reviewverifiedlogo" alt="YGR-<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?>-Verifiedlogo" /></a> </div>
+        <div class="vry_logo"> <a href="<?php echo site_url('company/'.$coupons[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="reviewverifiedlogo" alt="<?php echo ucfirst(stripslashes($coupons[0]['company'])); ?> Verified Seal" /></a> </div>
         <?php  } ?>
 				  
        

@@ -36,10 +36,10 @@
           <div class="srch_rslt_left">
             <div class="verified_wrp srch_rslt_vrfy">
               <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"> <a href="<?php echo site_url($companies[$i]['seoslug']);?>" title="view company Detail" target="_blank"><img src="images/notverified.png" class="reviewverifiedlogo marginlogo" alt="YGR-<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>-Notverified-logo" /></a> </div>
+              <div class="vry_logo"> <a href="<?php echo site_url($companies[$i]['seoslug']);?>" title="view company Detail" target="_blank"><img src="images/notverified.png" class="reviewverifiedlogo marginlogo" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?> Notverified Seal" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url($companies[$i]['seoslug']);?>" title="view company Detail" target="_blank"><img src="images/verifiedlogo.jpg" class="reviewverifiedlogo marginlogo" alt="YGR-<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?>-Verified-logo" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url($companies[$i]['seoslug']);?>" title="view company Detail" target="_blank"><img src="images/verifiedlogo.jpg" class="reviewverifiedlogo marginlogo" alt="<?php echo ucfirst(stripslashes($companies[$i]['company'])); ?> Verified Seal" /></a> </div>    
                   <?php
 				  } ?>
               <!--<php if(count($elitemem_status)==0){?>

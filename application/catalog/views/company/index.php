@@ -64,10 +64,10 @@
 			
 			$company_seoslug = ($company) ? $company[0]['seoslug'] : '';
 			if(count($elitemem_status)==0){?>
-			<div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img src="images/notverified.png" class="imgverify" alt="YGR-<?php echo ucfirst(stripslashes($company[0]['company'])); ?>-Notverified-logo" /></a> </div>
+			<div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img src="images/notverified.png" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?> Notverified Seal" /></a> </div>
 			<?php }else{
 					  ?>
-			<div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="imgverify" alt="YGR-<?php echo ucfirst(stripslashes($company[0]['company'])); ?>-Verified-logo" /></a> </div>
+			<div class="vry_logo"> <a href="<?php echo site_url($company_seoslug);?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class="imgverify" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?> Verified Seal" /></a> </div>
 			<?php } ?>
 			  
 				  
