@@ -1183,10 +1183,10 @@ class Reviews extends CI_Model
 			
 			if(count($elitemem_status)==0){
 				
-				$company_seoslug = "company/not-verified/".$city_state."/".$company_name."/".$res->id;
+				$company_seoslug = "profile/not-verified/".$city_state."/".$company_name."/".$res->id;
 				
 			}else{
-				$company_seoslug = "company/elite-members/".$city_state."/".$company_name."/".$res->id;
+				$company_seoslug = "profile/elite-members/".$city_state."/".$company_name."/".$res->id;
 			}
 			
 			$data = array('seoslug' => $company_seoslug);
