@@ -197,5 +197,51 @@ if($CI->agent->is_referral()){
 </div>
 </footer>
 <script type="text/javascript" src="js/use.js"></script>
+<script> 
+function __highlight(s, t) {
+    var matcher = new RegExp("(" + $.ui.autocomplete.escapeRegex(t) + ")", "ig");
+    return s.replace(matcher, "$1");
+}
+
+$(document).ready(
+	function() {
+	    $("#suggest").autocomplete(
+		    {
+			source : function(request, response) {
+			    $.ajax({
+				url : '/sp/ajax_suggest.php',
+				dataType : 'json',
+				data : {
+				    term : request.term
+				},
+
+				success : function(data) {
+					//alert(data);
+				    response($.map(data, function(item) {
+					return {
+					    label : __highlight(item.label,
+						    request.term),
+					    value : item.label
+					};
+				    }));
+				}
+			    });
+			},
+			minLength : 3,
+			select : function(event, ui) {
+
+			    $('#searchbutton').submit();
+			}
+		    }).keydown(function(e) {
+		if (e.keyCode === 13) {
+		    $("#search_form").trigger('submit');
+		}
+	    }).data("ui-autocomplete")._renderItem = function(ul, item) {
+
+		return $("<li></li>").data("item.autocomplete", item).append(
+			$("<a></a>").html(item.label)).appendTo(ul);
+	    };
+	});
+</script>
 </body>
 </html>

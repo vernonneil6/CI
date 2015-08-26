@@ -11,12 +11,9 @@ class Search extends CI_Controller
 
     public function autocomplete()
     {
-        $name = $this->input->post('name');
-        $city = $this->input->post('ccity');
-        $query = $this->searchs->get_autocompletes($name,$city);
-		echo  $query;
-        die();
-       
+        $this->data['name'] = $this->input->get('query');
+        $city = 'New York';//$this->input->post('ccity');
+        $this->load->view('customsearch',$this->data);
     }
 }
 /* End of file search.php */
