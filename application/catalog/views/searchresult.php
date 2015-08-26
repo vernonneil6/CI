@@ -12,39 +12,6 @@
 			$(this).html($span);
 		});
 	});
-	
-	$(document).ready(function() {
-		
-				$.ajax({
-					url : '/sp/ajax_suggest.php',
-					dataType : 'json',
-					data : {
-						term :'<?php echo($_GET['query']);?>'
-					},
-					success : function(data) 
-					{	
-						//console.log(JSON.stringify(data));
-						//$.each(data, function() {
-							//$("#result_spinx ul").append($('<li></li>').text(this.label));
-							//alert(this.label);
-							//console.log(data);
-            
-			var json_obj = $.parseJSON(data);//parse JSON
-            
-            var output="<ul>";
-            for (var i in data) 
-            {
-                output+="<li><a href=<?php echo current_url();?>?query="+ data[i].label +">" + data[i].label +"</a></li>";
-            }
-            output+="</ul>";
-            
-            $('#result_spinx').html(output);
-						
-						
-					}
-				});
-			
-	});
 </script>
 <style type="text/css">
 	span.stars, span.stars span {
@@ -353,7 +320,7 @@ if (isset($_GET['query']) && trim($_GET['query']) != '' ||
 </style>
 
 <section class="container">
-  <section class="main_contentarea serch_result">
+  <section class="main_contentarea serch_result" style="padding-top:7.5em;">
     <h1 class="bannertext btxt">
 		<span class="bannertextregular">YOUR SEARCH </span>RESULTS</h1>
     </h1>
@@ -370,10 +337,10 @@ if (isset($_GET['query']) && trim($_GET['query']) != '' ||
 						<div class="bdsrch_wrp">
 						<h2>Search</h2>
 						<div class="bd_srchwrp">
-							<input type="text" placeholder="ENTER CITY OR COMPANY NAME HERE" class="input-large bdsrch_txtbx" name="query" id="suggest" data-fv-stringlength-min="3" autocomplete="off" value="<?=isset($_GET['query'])?htmlentities($_GET['query']):''?>"> 
+							<input type="text" placeholder="ENTER CITY OR COMPANY NAME HERE" class="input-large bdsrch_txtbx" name="query" id="suggest" autocomplete="off" value="<?=isset($_GET['query'])?htmlentities($_GET['query']):''?>"> 
 							<!-- <input type="text" class="input-large" name="city" id="city"  value="<?=isset($_GET['city'])?htmlentities($_GET['city']):''?>"> 
 							<input type="text" class="input-large" name="state" id="state"  value="<?=isset($_GET['state'])?htmlentities($_GET['state']):''?>"> -->
-							<input type="submit" class="btn btn-primary bdsrch_btn" id="send" name="send" value="" onclick="CheckLength('suggest') ">
+							<input type="submit" class="btn btn-primary bdsrch_btn" id="send" name="send" value="" >
 						</div>
 						</div>
 					</div>
@@ -393,32 +360,25 @@ if (isset($_GET['query']) && trim($_GET['query']) != '' ||
 			<div id="result_spinxs" style="margin:0px auto !important;font-size: 18px;text-align:left;"></div>
 		</div>
 	</div>
-	<?php endif; ?>
+	
 	<script>
-		function CheckLength(query) {
 		
-			var password = document.getElementById(query).value;
-
-			if (password.length < 4)
-			{
-				//alert('should have miniumum 3 chars');
-				return false;
-			}else
-			{
-				return true;
-			}
-
-		}
-		$(document).ready(function() 
+		$(document).ready(function()
 		{
-		 $.ajax({
-					url: "<?php echo base_url(); ?>search/autocomplete", //Controller where search is performed
+		
+		$.ajax({
+					url: "<?php echo base_url(); ?>search/autocompletes", //Controller where search is performed
 					type: 'GET',
 					data : {query :'<?php echo $suggest; ?>'},
 					success : function(data){ $("#test").html(data);}
 				});
+			
+			
 		});
 	</script>
+	
+	<?php endif; ?>
+	
 	<div id="test"></div>
 	<div class="lead" style="margin:0px auto !important;  padding: 25px 0;display:none;">
 	<!--	Total found:<?php echo $total_found?> -->&nbsp;	

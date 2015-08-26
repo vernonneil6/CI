@@ -219,8 +219,7 @@ $(document).ready(
 					//alert(data);
 				    response($.map(data, function(item) {
 					return {
-					    label : __highlight(item.label,
-						    request.term),
+					    label : __highlight(item.label,request.term),
 					    value : item.label
 					};
 				    }));
