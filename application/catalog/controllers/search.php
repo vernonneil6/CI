@@ -9,7 +9,7 @@ class Search extends CI_Controller
 	
     }
 
-    public function autocomplete()
+    public function autocompletes()
     {
         $this->data['name'] = $this->input->get('query');
         $city = 'New York';//$this->input->post('ccity');
