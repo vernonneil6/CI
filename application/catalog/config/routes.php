@@ -41,6 +41,7 @@
 $route['default_controller'] = "welcome";
 $route['404_override'] = 'error';
 
+$route['profile/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)'] = "profile/index/$1/$2/$3/$4";
 
 $route['company/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)'] = "company/index/$1/$2/$3/$4";
 
