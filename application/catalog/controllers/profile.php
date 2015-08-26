@@ -162,7 +162,7 @@ class Profile extends CI_Controller {
 				$cabout=$company[0]['aboutus'];
 				$keycompany=str_replace('"', '',$company[0]['company']);
 				if($cabout!=''){$description=implode(' ', array_slice(explode(' ', $company[0]['aboutus']), 0, 9));}else{$description=$company[0]['company'];};
-				$this->data['title'] = ucfirst($keycompany).' Reviews : '.$this->data['site_name'];
+				$this->data['title'] = ucfirst($keycompany).' Profile : '.$this->data['site_name'];
 				$this->data['keywords']=$keycompany.' Reviews,'.$keycompany.' Complaints, '.$keycompany.' Press Release,'.$keycompany.' Coupons,'.$keycompany.' Photos,'.$keycompany .' Videos';
 				$this->data['description']=$description;
 			}
