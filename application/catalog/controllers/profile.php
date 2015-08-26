@@ -115,7 +115,7 @@ class Profile extends CI_Controller {
 			$this->data['description'] = $this->common->get_seosetting_value(5);
 		}
 		
-		if( $this->uri->segment(1)=='company' && $this->uri->segment(2)=='reviews')
+		if( $this->uri->segment(1)=='profile' && $this->uri->segment(2)=='reviews')
 		{
 			$company = $this->complaints->get_company_byseokeyword($this->uri->segment(3)); 
 			if(count($company)>0)
@@ -127,7 +127,7 @@ class Profile extends CI_Controller {
 				$this->data['title'] = 'company : '. $this->data['site_name']; 
 			}
 		}
-		elseif( $this->uri->segment(1)=='company' && $this->uri->segment(2)=='coupons')
+		elseif( $this->uri->segment(1)=='profile' && $this->uri->segment(2)=='coupons')
 		{
 			$company = $this->complaints->get_company_byseokeyword($this->uri->segment(2)); 
 			if(count($company)>0)
@@ -139,7 +139,7 @@ class Profile extends CI_Controller {
 				$this->data['title'] = 'company : '. $this->data['site_name']; 
 			}
 		}
-		elseif( $this->uri->segment(1)=='company' && $this->uri->segment(2)=='complaints')
+		elseif( $this->uri->segment(1)=='profile' && $this->uri->segment(2)=='complaints')
 		{
 			
 			$company = $this->complaints->get_company_byseokeyword($this->uri->segment(2)); 
@@ -153,7 +153,7 @@ class Profile extends CI_Controller {
 			}
 		}
 		
-		elseif( $this->uri->segment(1)=='company' && ($this->uri->segment(2)=='elite-members' || $this->uri->segment(2)=='not-verified') )
+		elseif( $this->uri->segment(1)=='profile' && ($this->uri->segment(2)=='elite-members' || $this->uri->segment(2)=='not-verified') )
 		{
 			$company = $this->common->get_company_byid($this->uri->segment(5)); 
 			
