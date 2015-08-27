@@ -16,11 +16,9 @@
 <section class="container">
   <section class="main_contentarea">
     <div class="innr_wrap">
-      
-      <h1  class="bannertextcoupon profile_page_heading">
-		<div class ="float_left profile_page_title">
-			<span class="bannertextregular">PRESS </span><br> RELEASES
-		</div>
+		<h1  class="bannertext">
+			<span class="bannertextregular"><?php echo ucfirst($company[0]['company']);?> PRESSRELEASES </span>
+		</h1> 
 		<?php 
 		    
 		    $avgstar = $this->common->get_avg_ratings_bycmid($company[0]['id']);
@@ -29,26 +27,24 @@
 			$elitemem_status = $this->common->get_eliteship_bycompanyid($company[0]['id']);
 			
 		?>
-		<div class="srch_rslt_left profile_page_content">
-            
-            <div class="verified_wrp srch_rslt_vrfy vfy_rvw">
+		<div class="verified_wrp pr_rwrp verfs_top">
+            <div class="verified_wrp pr_rwrp pr_rwrp">
               <?php if(count($elitemem_status)==0){?>
-              <div class="vry_logo"  style="min-height: 138px;"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>
+              <div class="vry_logo"  style="min-height: 138px;"> <a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" ><img src="images/notverified.png" class = "searchlogos" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?> Notverified Seal" /></a> </div>
               <?php }else{
 				  ?>
-              <div class="vry_logo"> <a href="<?php echo site_url('company/'.urlencode($company[0]['companyseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.jpg" class = "searchlogoss" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?>" /></a> </div>    
+              <div class="vry_logo"> <a href="<?php echo site_url('company/'.urlencode($company[0]['companyseokeyword']).'/reviews/coupons/complaints');?>" title="view company Detail"><img src="images/verifiedlogo.png" class = "searchlogoss" alt="<?php echo ucfirst(stripslashes($company[0]['company'])); ?> Verified Seal" /></a> </div>    
                   <?php
 				  } ?>
 			<div>
               
-		  <div class="compny_name cpyynme">
-			<h2>
+		   <div class="compny_name ">
+			<h1>
 			<a href="<?php echo site_url('company/'.$company[0]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail" style="height:auto;color:#333333 !important;">
 			<?php echo strtoupper($company[0]['company']);?>
 			</a>
-			</h2>
-		  </div>
-          
+			</h1>
+		  
           <?php if(count($elitemem_status)==0){?>
 			<div class="vrytitle">
 				<?php $urls="http://business.yougotrated.com/?elitemem=".$company[0]['id'].""; ?>
@@ -63,23 +59,17 @@
 		<?php }else { ?>
 			<div class="vrytitle">YouGotRated VERIFIED MERCHANT</div>
 		<?php } ?>
-             
-		  <div class="compny_name" style="margin-top:-12px;">
-			<div class="vry_rating">
+			<div class="vry_rating reviewrates in_block custom-top-rating">
 			  <span class="stars" data-rating="<?php echo $itemproaverage; ?>"></span>
 			</div>
-		  </div>
-		  
-
-				<div class="vry_btn">
+			<div class="vry_btn reviewbtn d_tab">
 					<a href="review/add/<?php echo $company[0]['id'];?>" title="Write review">WRITE REVIEW</a> 
 					<a href="<?php echo site_url('complaint/add/'.$company[0]['id']);?>" title="File Complaint"> FILE COMPLAINT</a>
 				</div>
-			
-				
             </div>
             </div>
-            <div class="contct_dtl cntdll">
+             <div class="contct_dtl cntdll presscontact">
+				<div class="inner-contct">
               <ul>
                 <li><span>ADDRESS</span> <a> <?php echo ucfirst($company[0]['streetaddress']);?>&nbsp;&nbsp;&nbsp;<?php echo ucfirst($company[0]['city']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($company[0]['state']);?>,&nbsp;&nbsp;&nbsp;<?php echo ucfirst($company[0]['country']);?>,&nbsp;&nbsp;&nbsp;<?php echo ($company[0]['zip']);?> </a></li>
                 <li><span>PHONE</span> <a href="tel:<?php echo ($company[0]['phone']);?>" title="call us"><?php echo ($company[0]['phone']);?></a></li>
@@ -88,10 +78,7 @@
               </ul>
             </div>
           </div>
-          
-          
-          
-      </h1>      
+          </div>
       
       
       
@@ -126,13 +113,13 @@
 				 ?>
 						<div class="vry_logo"> 
 							<a href="<?php echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail">
-								<img  class="reviewnotverifiedlogo" src="images/notverified.png"  />
+								<img style="margin:0px;" class="reviewnotverifiedlogo" src="images/notverified.png" alt="<?php echo ucfirst($pressreleases[$i]['company']);?> Notverified Seal"  />
 							</a> 
 						</div>  <?php 
 						}else{  ?>
 						<div class="vry_logo"> 
 							<a href="<?php echo site_url('company/'.$pressreleases[$i]['companyseokeyword'].'/reviews/coupons/complaints');?>" title="view company Detail">
-								<img class="reviewverifiedlogo" src="images/verifiedlogo.jpg" />
+								<img style="margin:0px;" class="reviewverifiedlogo" src="images/verifiedlogo.png" alt="<?php echo ucfirst($pressreleases[$i]['company']);?> Verified Seal" />
 							</a> 
 						</div>      
 				<?php

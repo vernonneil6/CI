@@ -1071,6 +1071,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 	border:medium none;
 	margin-bottom: 0;
 	padding:0;
+	font-size: 18pt;
 }
 .bannertextregular{color:black;}
 .pagination{width:800px; margin:0 auto 30px auto; display:table; padding-top:10px; border-top:1px solid #666;}
@@ -1094,7 +1095,7 @@ input[type="text"].press_srch_txtbx{width:480px; box-shadow:none; height:38px; f
 
 /*============ Press Release Details ===========================*/
 .pr_detlwrp{width:100%; float:left; height:auto; display:inline-block; margin-top:83px;}
-.pr_rwrp{width:1050px; float:left; height:auto;}
+.pr_rwrp{width:100%; float:left; height:auto;}
 .titl_pr_rel{width:90%; margin:0 auto; display:block; border-bottom:1px solid #999; border-top:1px solid #999;}
 .titl_pr_rel h1{word-wrap: break-word; width:inherit; border-bottom:0; height:inherit; margin:0; padding:0; font-size:44px; font-family:"myriadpro-regular"; font-weight:bold;}
 .titl_pr_rel p{ font-family:"myriadpro-regular"; font-size:16px; color:#666; text-align:center; margin:0;}
@@ -1211,7 +1212,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .bannertextcoupon {
     color: #2c6a99;
     font-family: "Palatino-regular";
-    font-size: 50px;
+    font-size: 18pt;
     font-weight: normal;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1231,7 +1232,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 .coupon_wrap{ display: inline-block; margin-top: 20px;  width: 100%;}
 .coupon_wrap .revw_blck_cnt h2, .coupon_wrap .revw_blck_cnt h2 .recenttitle{font-family:"myriadpro-regular"; font-weight:bold; font-size:23px; padding: 3px 0 0 6px; color:#fff; text-transform:uppercase; margin:0; line-height:30px; height:30px; background:#2C6A99;}
-.coupon_wrap .revw_blck_cnt h2 span, .coupon_wrap .revw_blck_cnt h2 .recentexpire{float:right; font-size:16px; color:#000; margin-right:10px;}
+.coupon_wrap .revw_blck_cnt h2 span, .coupon_wrap .revw_blck_cnt h2 .recentexpire{float:right; font-size:16px; color:#000; margin-right:10px;margin-left: 1em;}
 .coupon_dscrwrp{width:100%; display:inline-block; padding-bottom:10px; border-bottom:1px solid #999;}
 .coupon_dscr{width:770px; float:left; }
 .coupon_dscr .revw_occupt{background:none; color:#333;}
