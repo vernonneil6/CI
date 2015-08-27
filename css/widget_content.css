@@ -167,7 +167,7 @@
 
 .popupwidth 
 {
-	width: 500px!important;
+	width: 100%;
 	height: 550px!important;
 	border-radius : 0;
 	background : #fff;
@@ -236,12 +236,9 @@
 }
 .pop_width
 {
-	width: 500px;
 	display: inline-block;
 }
 /*tools*/
-
-
 .tooltip_text
 {
 	display:none;
