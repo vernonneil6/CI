@@ -100,13 +100,13 @@
 }
 .review_tab_bottom
 {
-	height: 371px;
+
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 0 15px;
+    padding: 0 10px;
     -webkit-overflow-scrolling: touch;
     position: absolute;
-    width: 470px;
+    width: 95%;
 }
 .review_tab_top
 {
@@ -236,6 +236,7 @@
 }
 .pop_width
 {
+width:100%;
 	display: inline-block;
 }
 /*tools*/
@@ -376,3 +377,12 @@ a {color:#666;font-family: MyriadPro-Regular; outline:none; text-decoration:none
 
 .lhn_help_btn{ top: 175px !important; } 
 .lhn_help_container{ top: 160px !important; }
+@media only screen and (max-width: 499px)  {
+.widget_img {
+  float: none;
+  /* padding: 0 15px 0 0; */
+  width: 100%;
+  clear: both;
+  text-align: center;
+}
+}
