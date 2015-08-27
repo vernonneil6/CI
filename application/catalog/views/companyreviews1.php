@@ -182,7 +182,7 @@
             <i class="vry_rat_icn"></i>
             <?php } ?>
             <?php for($p=0;$p<(5-($reviews[$i]['rate']));$p++){?>
-            <i class="dull_rat_icn"></i>
+            <i class="dull_starrat"></i>
             <?php } ?>
             
           </div>
