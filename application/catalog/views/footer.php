@@ -25,12 +25,13 @@ if($CI->agent->is_referral()){
 <link rel="stylesheet" href="http://www.yougotrated.writerbin.com/css/widget.css" type="text/css">
 	<script type="text/javascript" src="http://www.yougotrated.writerbin.com/js/widget.js" ></script>
 
-	<div class = "company_review_tab fancybox" href="#review_popup"  onclick="showPopup('http://www.yougotrated.writerbin.com/widget/content/650001')"></div>
-	<div class="review_cover" id="review_cover">	
-	<div id="review_popup" class = "popupwidth">
-		<div class='close_popup' onclick="closePopup()"> </div>		
-		
-	</div> 
+	<div class = "company_review_tab fancybox" href="#review_popup" onclick="ygrembeddedwidgetshowPopup('<?php echo 'http'.(empty($_SERVER['HTTPS'])?'':'s').'://'.$_SERVER['SERVER_NAME']. '/widget/content/'.$companyid; ?>')"></div>
+<div class="review_cover ygrembbededwidget" id="review_cover">	
+<div id="review_popup" class = "popupwidth ">
+	<div class='close_popup' onclick="ygrembeddedwidgetclosePopup()"> </div>		
+	
+</div> 
+</div>
 <div class="container">
 	<div align="center" class="addvert-bottom">
 		<?php if(isset($bottomads) && count($bottomads)){ ?>       
