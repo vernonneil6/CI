@@ -1,6 +1,6 @@
 <?php echo $header;?>
 
-<section class="container">
+<section class="container couponpage">
   <section class="main_contentarea">
     <div class="innr_wrap">
       <h1  class="bannertextcoupon bnrtxt">
