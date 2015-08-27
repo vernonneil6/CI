@@ -43,7 +43,7 @@
 	}
 </style>
 </head>
-<body>
+<body class="ygrembbededwidget">
 <div class = "pop_width">
 	<div class = "review_poweredby">Powered by YouGotRated</div>
 	
