@@ -102,11 +102,12 @@
 {
 
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
     padding: 0 10px;
     -webkit-overflow-scrolling: touch;
     position: absolute;
     width: 95%;
+    max-height:40em;
 }
 .review_tab_top
 {
@@ -385,4 +386,5 @@ a {color:#666;font-family: MyriadPro-Regular; outline:none; text-decoration:none
   clear: both;
   text-align: center;
 }
+.review_tab_top{font-size:14px;}
 }

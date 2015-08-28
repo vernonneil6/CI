@@ -67,7 +67,7 @@ height:100%;
 .ygrembbededwidget #review_popup
 {
 width:80%;
-height:80%;
+max-height:40em;
 }
 
 }
