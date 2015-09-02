@@ -208,6 +208,13 @@ class Pressrelease extends CI_Controller {
 									'filebrowserImageBrowseUrl' => '',
 									'filebrowserBrowseUrl' => '',
 									'filebrowserFlashBrowseUrl' => '',
+									'filebrowserBrowseUrl'      => '../../ckeditor/ckfinder/ckfinder.html',
+									'filebrowserImageBrowseUrl' => '../../ckeditor/ckfinder/ckfinder.html?Type=Images',
+									'filebrowserFlashBrowseUrl' => '../../ckeditor/ckfinder/ckfinder.html?Type=Flash',
+									'filebrowserUploadUrl'      => '../../ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+									'filebrowserImageUploadUrl' => '../../ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+									'filebrowserFlashUploadUrl' => '../../ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+									
 								),
 						);
 			//Loading View File
