@@ -94,7 +94,10 @@ class Coupon extends CI_Controller {
 		//Loadin Pagination Custome Config File
 		$this->config->load('paging',TRUE);
 		$this->paging = $this->config->item('paging');
-		
+		$this->data['title'] = 'Coupons : YOUGOTRATED';		
+			$this->data['section_title'] = 'Coupons : YOUGOTRATED';
+		$this->data['keywords'] = $this->common->get_seosetting_value(4);
+			$this->data['description'] = $this->common->get_seosetting_value(5);
 		//Load header and save in variable
 		$this->data['header'] = $this->load->view('header',$this->data,true);
 		$this->data['menu'] = $this->load->view('menu',$this->data,true);
