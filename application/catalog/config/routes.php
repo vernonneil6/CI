@@ -41,6 +41,14 @@
 $route['default_controller'] = "welcome";
 $route['404_override'] = 'error';
 
+$route['([a-zA-Z0-9-]+)/coupons/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-]+)'] = "coupon/index/$1/$2/$3";
+
+$route['([a-zA-Z0-9-]+)/pressrelease/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-]+)'] = "pressrelease/index/$1/$2/$3";
+
+$route['([a-zA-Z0-9-]+)/complaints/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-]+)'] = "complaint/index/$1/$2/$3";
+
+$route['([a-zA-Z0-9-]+)/reviews/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-]+)'] = "review/index/$1/$2/$3";
+
 $route['profile/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)'] = "profile/index/$1/$2/$3/$4";
 
 $route['company/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+)'] = "company/index/$1/$2/$3/$4";
