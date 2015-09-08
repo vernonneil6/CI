@@ -68,9 +68,9 @@ if($_SERVER['HTTP_HOST']=="localhost")
 else
 {
 	$db['default']['hostname'] = 'localhost';
-	$db['default']['username'] = 'mxiind_hitesh';
-	$db['default']['password'] = 'vS^T+ymX)~)P';
-	$db['default']['database'] = 'mbdbtech_mxipldb2014';
+	$db['default']['username'] = 'test';
+	$db['default']['password'] = 'testP';
+	$db['default']['database'] = 'mtestmxipldb2014';
 	$db['default']['dbdriver'] = 'mysql';
 	$db['default']['dbprefix'] = 'youg_';
 	$db['default']['pconnect'] = TRUE;
